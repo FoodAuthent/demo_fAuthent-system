@@ -1,0 +1,53 @@
+/*
+ * TODO	
+ */
+package org.foodauthent.api;
+
+import org.foodauthent.model.FingerprintSet;
+
+/**
+ * 
+ *
+ * @author Martin Horn, University of Konstanz
+ */
+@javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
+public interface FingerprintService {
+
+    /**
+     * TODO
+     *
+     * @param fingerprintSet A fingerprint set containing fingerprint metadata.
+     *
+     * @return the result
+     */
+    java.util.UUID createFingerprintSet(FingerprintSet fingerprintSet);
+        
+    /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param keywords Keywords to search for
+     *
+     * @return the result
+     */
+    java.util.List<java.util.UUID> findFingerprintSetByKeyword(java.util.List<String> keywords);
+        
+    /**
+     * TODO
+     *
+     * @param fingerprintsetId 
+     *
+     * @return the result
+     */
+    FingerprintSet getFingerprintSetById(java.util.UUID fingerprintsetId);
+        
+    /**
+     * TODO
+     *
+     * @param data 
+     * @param fingerprintsetId The fingerprintset the data is associated with.
+     *
+     * 
+     */
+    void uploadFingerprintDataset(byte[] data, java.util.UUID fingerprintsetId);
+        
+}

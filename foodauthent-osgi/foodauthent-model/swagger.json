@@ -1,0 +1,298 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is the FoodAuthent API Description [www.foodauthent.net]",
+    "version" : "1.0.0",
+    "title" : "FoodAuthent Swagger API",
+    "termsOfService" : "https://www.foodauthent.net/terms/",
+    "contact" : {
+      "email" : "api@foodauthent.net"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "api.foodauthent.net",
+  "basePath" : "/v1/workflow",
+  "tags" : [ {
+    "name" : "sop",
+    "description" : "All standard operating procedure endpoints."
+  }, {
+    "name" : "product",
+    "description" : "All product endpoints."
+  }, {
+    "name" : "fingerprint",
+    "description" : "All fingerprint/sample endpoints."
+  }, {
+    "name" : "workflow",
+    "description" : "All workflow endpoints."
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/sop/{id}" : {
+      "get" : {
+        "tags" : [ "sop" ],
+        "summary" : "Download SOP.",
+        "description" : "TODO",
+        "operationId" : "getSOP",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "TODO",
+          "required" : true,
+          "type" : "string",
+          "format" : "uuid"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "TODO",
+            "schema" : {
+              "$ref" : "#/definitions/SOP"
+            }
+          }
+        }
+      }
+    },
+    "/fingerprint" : {
+      "post" : {
+        "tags" : [ "fingerprint" ],
+        "summary" : "Create a new fingerprint.",
+        "description" : "TODO",
+        "operationId" : "createFingerprint",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "fingerprint",
+          "description" : "TODO",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Fingerprint"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The new id of the fingerprint in the fa-system.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "/product" : {
+      "post" : {
+        "tags" : [ "product" ],
+        "summary" : "Create a new product entity.",
+        "description" : "TODO",
+        "operationId" : "createProduct",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "product",
+          "description" : "TODO",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Product"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Product has been created successfully and the new fa-id of the product is returned.",
+            "schema" : {
+              "type" : "string",
+              "format" : "uuid"
+            }
+          }
+        }
+      }
+    },
+    "/product/findByGtin" : {
+      "get" : {
+        "tags" : [ "product" ],
+        "summary" : "Find product by gtin.",
+        "description" : "TODO",
+        "operationId" : "findProductByGtin",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "gtin",
+          "in" : "query",
+          "description" : "TODO",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The found product.",
+            "schema" : {
+              "$ref" : "#/definitions/Product"
+            }
+          },
+          "404" : {
+            "description" : "Not found."
+          }
+        }
+      }
+    },
+    "/prediction/job/{id}" : {
+      "get" : {
+        "tags" : [ "workflow" ],
+        "summary" : "Lets one to ask for the status of a particular job.",
+        "operationId" : "getPredictionJob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "TODO",
+          "required" : true,
+          "type" : "string",
+          "format" : "uuid"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The prediction job.",
+            "schema" : {
+              "$ref" : "#/definitions/PredictionJob"
+            }
+          }
+        }
+      }
+    },
+    "/prediction/job" : {
+      "post" : {
+        "tags" : [ "workflow" ],
+        "summary" : "Starts a prediction for a fingerprint.",
+        "operationId" : "createPredictionJob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "workflow-id",
+          "in" : "query",
+          "description" : "TODO",
+          "required" : false,
+          "type" : "string",
+          "format" : "uuid"
+        }, {
+          "name" : "fingerprint-id",
+          "in" : "query",
+          "description" : "TODO",
+          "required" : false,
+          "type" : "string",
+          "format" : "uuid"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The prediction job.",
+            "schema" : {
+              "$ref" : "#/definitions/PredictionJob"
+            }
+          }
+        }
+      }
+    },
+    "/prediction" : {
+      "get" : {
+        "tags" : [ "workflow" ],
+        "summary" : "Gets all running prediction job.",
+        "operationId" : "getPredictionResult",
+        "parameters" : [ {
+          "name" : "workflow-id",
+          "in" : "query",
+          "description" : "TODO",
+          "required" : false,
+          "type" : "string",
+          "format" : "uuid"
+        }, {
+          "name" : "fingerprint-id",
+          "in" : "query",
+          "description" : "TODO",
+          "required" : false,
+          "type" : "string",
+          "format" : "uuid"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "List of predictions.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Prediction"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "SOP" : {
+      "type" : "object",
+      "properties" : {
+        "fa-id" : {
+          "type" : "string",
+          "format" : "uuid"
+        }
+      }
+    },
+    "Fingerprint" : {
+      "type" : "object",
+      "properties" : {
+        "fa-id" : {
+          "type" : "string",
+          "format" : "uuid"
+        }
+      },
+      "description" : "The raw fingerprint/sample metadata including, e.g., the meassurment meta data such as device info, processing info, etc."
+    },
+    "Product" : {
+      "type" : "object",
+      "properties" : {
+        "fa-id" : {
+          "type" : "string",
+          "format" : "uuid"
+        },
+        "gtin" : {
+          "type" : "string"
+        },
+        "brand" : {
+          "type" : "string"
+        }
+      },
+      "description" : "Global product metadata, e.g., country of origin, etc. There can be multiple fingerprints for one product."
+    },
+    "PredictionJob" : {
+      "type" : "object",
+      "properties" : {
+        "job-id" : {
+          "type" : "string",
+          "format" : "uuid"
+        },
+        "worklfow-id" : {
+          "type" : "string",
+          "format" : "uuid"
+        },
+        "fingerprint-id" : {
+          "type" : "string",
+          "format" : "uuid"
+        },
+        "status" : {
+          "type" : "string",
+          "enum" : [ "running", "success", "failed" ]
+        }
+      },
+      "description" : "Represents an ongoing prediction."
+    },
+    "Prediction" : {
+      "type" : "object",
+      "properties" : {
+        "confidence" : {
+          "type" : "number",
+          "description" : "The confidence for the prediction result.",
+          "minimum" : 0,
+          "maximum" : 1
+        }
+      }
+    }
+  }
+}
