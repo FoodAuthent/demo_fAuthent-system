@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: slf4j-simple
+Bundle-SymbolicName: slf4j.simple
+Bundle-Version: 1.7.25
+Bundle-ClassPath: slf4j-simple-1.7.25.jar
+Bundle-Vendor: SLF4J.ORG
+Fragment-Host: slf4j.api
+Export-Package: org.slf4j.impl;version="1.7.25"
+Implementation-Version: 1.7.25
+Built-By: ceki
+Bundle-Description: SLF4J Simple binding
+X-Compile-Source-JDK: 1.5
+Created-By: Apache Maven
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Implementation-Title: slf4j-simple
+X-Compile-Target-JDK: 1.5
+Build-Jdk: 1.7.0_17
+Archiver-Version: Plexus Archiver
