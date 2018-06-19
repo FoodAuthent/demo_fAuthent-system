@@ -155,6 +155,6 @@
         <module>foodauthent-model</module>
         <module>foodauthent-api</module>
         <module>foodauthent-api-internal</module>
-        <module>foodauthent-swagger</module>
+        <module>foodauthent-rest</module>
     </modules>
 </project>
