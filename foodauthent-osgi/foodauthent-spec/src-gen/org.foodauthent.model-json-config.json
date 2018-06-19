@@ -1,0 +1,25 @@
+{
+    "lang" : "org.foodauthent.codegen.FoodAuthentCodegen",
+    "inputSpec" : "src-gen/api/foodauthent.yaml",
+    "outputDir" : "../foodauthent-model/",
+    "modelPackage" : "org.foodauthent.model.json.mixin",
+    "apiPackage"   : "NOT GENERATED",
+    "fullJavaUtil" : true,
+    "dateLibrary" : "java8",
+    "sourceFolder" : "src/generated",
+    "templateDir" : "src-gen/templates",
+    "additionalProperties" : {
+        "codegenName" : "models",
+        "modelTemplateFile" : "json/mixIn.mustache",
+        "modelNamePattern" : "##name##MixIn",
+        "modelPropertyNamePattern" : "##name##",
+        "modelPropertyPackage" : "org.foodauthent.model",
+        "supportingFiles" : [
+            {
+                "templateFile": "json/modelUtil.mustache",
+                "package" : "org.foodauthent.model.json",
+                "destinationFileName" : "ModelUtil.java"
+            }     
+         ]
+    }
+}

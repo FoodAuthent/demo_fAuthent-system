@@ -1,0 +1,23 @@
+{
+    "lang" : "org.foodauthent.codegen.FoodAuthentCodegen",
+    "inputSpec" : "src-gen/api/foodauthent.yaml",
+    "outputDir" : "../foodauthent-swagger-client/",
+    "modelPackage" : "NOT GENERATED",
+    "apiPackage"   : "NOT GENERATED",
+    "fullJavaUtil" : true,
+    "interfaceOnly": true,
+    "dateLibrary" : "java8",
+    "sourceFolder" : "src/main/webapp/swagger",
+    "templateDir" : "src-gen/templates",
+    "additionalProperties" : {
+        "codegenName" : "swagger-client",
+        "supportingFiles" : [
+            {
+                "templateFile": "swagger.mustache",
+                "package" : "",
+                "destinationFileName" : "foodauthent.yaml"
+            }     
+         ]
+    }
+    
+}

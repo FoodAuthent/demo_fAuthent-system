@@ -1,0 +1,152 @@
+{{>licenseInfo}}
+package {{package}};
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+
+{{#imports}}
+import {{import}};
+{{/imports}}
+
+{{#models}}
+{{#model}}
+
+/**
+ * {{#description}}{{.}}{{/description}}{{^description}}{{classname}}{{/description}}
+ *
+ {{>authors}}
+ */
+{{>generatedAnnotation}}
+public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} extends FaModel {
+
+    {{#vars}}
+    {{#isEnum}}
+    {{^isContainer}}
+{{>enumClass}}
+    {{/isContainer}}
+    {{/isEnum}}
+    {{#items.isEnum}}
+      {{#items}}
+      {{^isContainer}}
+{{>enumClass}}
+      {{/isContainer}}
+      {{/items}}
+    {{/items.isEnum}}
+  {{/vars}}
+
+  {{#vars}}
+  private {{{datatypeWithEnum}}} {{name}};
+  {{/vars}}
+  
+  public String getTypeID() {
+    return "{{name}}";
+  }
+  
+  private {{classname}}({{classname}}Builder builder) {
+    {{#parent}}super();{{/parent}}
+    {{#allVars}}
+    {{#required}}
+    if(builder.{{name}} == null) {
+        throw new IllegalArgumentException("{{name}} must not be null.");
+    }
+    {{/required}}
+    {{name}} = immutable(builder.{{name}});
+    {{/allVars}}
+    
+    faId = generateFaIdIfMissing(faId);
+  }
+  
+   /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+        {{classname}} ent = ({{classname}})o;
+        return{{#allVars}} Objects.equals({{name}}, ent.{{name}}){{^-last}} &&{{/-last}}{{/allVars}};
+    }
+
+
+  {{#vars}}
+  {{#useBeanValidation}}{{>beanValidation}}{{/useBeanValidation}}public {{{datatypeWithEnum}}} {{getter}}() {
+        return {{name}};
+    }
+    
+  {{/vars}}
+  
+ 	/**
+  	 * @return a newly created builder
+  	 */
+  	public static {{classname}}Builder builder() {
+  		return new {{classname}}Builder();
+  	}
+  
+    public static class {{classname}}Builder {
+    
+        private {{classname}}Builder(){
+            {{#parent}}super();{{/parent}}
+        }
+    
+        {{#allVars}}
+        private {{{datatypeWithEnum}}} {{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}};
+        {{/allVars}}
+
+        {{#allVars}}
+        {{^isReadOnly}}
+        public {{classname}}Builder {{setter}}({{{datatypeWithEnum}}} {{name}}) {
+             {{#required}}
+             if({{name}} == null) {
+                 throw new IllegalArgumentException("{{name}} must not be null.");
+             }
+             {{/required}}
+             this.{{name}} = {{name}};
+             return this;
+        }
+
+        {{/isReadOnly}}        
+        {{/allVars}}
+        
+        public {{classname}} build() {
+            return new {{classname}}(this);
+        }
+    
+    }
+    
+    
+    /**
+     * Turns an object into an immutable one (if not already).
+     * TODO move it somewhere else
+     *
+     * @param obj the object to treat
+     * @return the object itself or a immutable copy
+     */
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public static <T> T immutable(final T obj) {
+        if (obj == null) {
+            return null;
+        } else if (obj instanceof Map) {
+            return (T)Collections.unmodifiableMap(new HashMap((Map)obj));
+        } else if (obj instanceof List) {
+            return (T)Collections.unmodifiableList(new ArrayList((List)obj));
+        } else {
+            return obj;
+        }
+    }
+    
+
+}
+{{/model}}
+{{/models}}

@@ -1,0 +1,18 @@
+{
+    "lang" : "org.foodauthent.codegen.FoodAuthentCodegen",
+    "inputSpec" : "src-gen/api/foodauthent.yaml",
+    "outputDir" : "../foodauthent-model/",
+    "modelPackage" : "org.foodauthent.model",
+    "apiPackage"   : "NOT GENERATED",
+    "fullJavaUtil" : true,
+    "dateLibrary" : "java8",
+    "sourceFolder" : "src/generated",
+    "templateDir" : "src-gen/templates",
+    "additionalProperties" : {
+        "codegenName" : "models",
+        "modelTemplateFile" : "model.mustache",
+        "modelNamePattern" : "##name##",
+        "modelPropertyNamePattern" : "##name##",
+        "modelPropertyPackage" : "org.foodauthent.model"
+    }
+}

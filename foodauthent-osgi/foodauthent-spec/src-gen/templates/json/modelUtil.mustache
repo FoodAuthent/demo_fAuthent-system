@@ -1,0 +1,33 @@
+{{>licenseInfo}}
+package org.foodauthent.model.json;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.foodauthent.model.*;
+import org.foodauthent.model.json.mixin.*;
+
+/**
+ * TODO
+ 
+ * @author Martin Horn, University of Konstanz
+ */
+public class ModelUtil {
+
+    private ModelUtil() {
+        //utility class
+    }
+
+    /**
+     * TODO
+     */
+    public static final void addModelMixIns(final ObjectMapper mapper) {
+    
+     	{{#models}}
+        {{#model}}
+        mapper.addMixIn({{name}}.class, {{classname}}.class);
+        mapper.addMixIn({{name}}.{{name}}Builder.class, {{classname}}.{{classname}}Builder.class);
+        {{/model}}
+        {{/models}}
+    	
+    }
+}

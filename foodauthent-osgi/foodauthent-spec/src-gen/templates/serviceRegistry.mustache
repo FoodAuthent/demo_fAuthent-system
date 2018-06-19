@@ -1,0 +1,20 @@
+package org.foodauthent.api;
+
+{{#tags}}
+import org.foodauthent.impl.{{nameLowerCase}}.{{name}}ServiceImpl;
+{{/tags}}
+
+{{>generatedAnnotation}}
+public class ServiceRegistry {
+	
+	public static <S> S get(Class<S> serviceClass) {
+		{{#tags}}
+		if(serviceClass == {{name}}Service.class) {
+			return (S) new {{name}}ServiceImpl();
+		} 
+        {{/tags}}
+		throw new IllegalArgumentException(
+			"No implementation available for service " + serviceClass.getSimpleName());
+	
+	}
+}
