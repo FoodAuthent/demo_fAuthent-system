@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="3">
+<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="4">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.2.2.v20180210-1608"/>
@@ -18,6 +18,23 @@
 <unit id="com.eclipsesource.jaxrs.provider.sse.feature.feature.group" version="2.2.0.201602281253"/>
 <unit id="com.eclipsesource.jaxrs.provider.swagger.feature.feature.group" version="1.1.1.201602281253"/>
 <repository location="http://hstaudacher.github.io/osgi-jax-rs-connector"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="ch.qos.logback.slf4j" version="1.1.2.v20160301-0943"/>
+<unit id="ch.qos.logback.slf4j.source" version="1.1.2.v20160301-0943"/>
+<unit id="org.slf4j.api" version="1.7.10.v20170428-1633"/>
+<unit id="org.slf4j.api.source" version="1.7.10.v20170428-1633"/>
+<unit id="org.slf4j.apis.log4j" version="1.7.10.v20160208-0839"/>
+<unit id="org.slf4j.apis.log4j.source" version="1.7.10.v20160208-0839"/>
+<unit id="org.slf4j.binding.nop" version="1.7.10.v20160301-1109"/>
+<unit id="org.slf4j.binding.nop.source" version="1.7.10.v20160301-1109"/>
+<unit id="org.slf4j.binding.simple" version="1.7.10.v20160301-1109"/>
+<unit id="org.slf4j.binding.simple.source" version="1.7.10.v20160301-1109"/>
+<unit id="org.slf4j.bridge.jul" version="1.7.10.v20160208-0839"/>
+<unit id="org.slf4j.bridge.jul.source" version="1.7.10.v20160208-0839"/>
+<unit id="org.slf4j.ext" version="1.7.10.v20170224-1220"/>
+<unit id="org.slf4j.ext.source" version="1.7.10.v20170224-1220"/>
+<repository location="http://repository.foodauthent.net/p2/orbit-R20180330011457/"/>
 </location>
 </locations>
 </target>

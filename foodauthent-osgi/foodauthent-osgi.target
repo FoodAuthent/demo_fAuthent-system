@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="10">
+<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="11">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="com.eclipsesource.jaxrs.connector.feature.feature.group" version="5.3.1.201602281253"/>
+<unit id="com.eclipsesource.jaxrs.jersey.runtime.feature.feature.group" version="2.22.1.201602281253"/>
 <unit id="com.eclipsesource.jaxrs.provider.gson.feature.feature.group" version="2.3.0.201602281253"/>
 <unit id="com.eclipsesource.jaxrs.provider.moxy.feature.feature.group" version="2.2.0.201602281253"/>
 <unit id="com.eclipsesource.jaxrs.provider.multipart.feature.feature.group" version="2.2.0.201602281253"/>
 <unit id="com.eclipsesource.jaxrs.provider.security.feature.feature.group" version="2.2.0.201602281253"/>
 <unit id="com.eclipsesource.jaxrs.provider.sse.feature.feature.group" version="2.2.0.201602281253"/>
 <unit id="com.eclipsesource.jaxrs.provider.swagger.feature.feature.group" version="1.1.1.201602281253"/>
-<unit id="foodauthent-dependency-feature.feature.group" version="1.0.0.201806182028"/>
 <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.2.2.v20180210-1608"/>
 <unit id="org.eclipse.equinox.compendium.sdk.feature.group" version="3.13.1.v20170811-1407"/>
 <unit id="org.eclipse.equinox.core.feature.feature.group" version="1.4.2.v20180210-1608"/>
 <unit id="org.eclipse.equinox.executable.feature.group" version="3.7.2.v20171108-1834"/>
 <unit id="org.eclipse.equinox.server.core.feature.group" version="1.5.3.v20180210-1608"/>
 <unit id="org.eclipse.equinox.server.jetty.feature.group" version="1.4.4.v20180322-2228"/>
+<unit id="org.foodauthent.dependencies.feature.feature.group" version="1.0.0.201806201155"/>
 <repository location="http://repository.foodauthent.net/p2/foodauthent-dependencies/"/>
 </location>
 </locations>

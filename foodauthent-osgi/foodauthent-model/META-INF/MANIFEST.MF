@@ -11,4 +11,6 @@ Export-Package: org.foodauthent.model,
 Bundle-ClassPath: .
 Import-Package: com.fasterxml.jackson.annotation;version="2.4.5",
  com.fasterxml.jackson.databind;version="2.4.5",
- com.fasterxml.jackson.databind.annotation;version="2.4.5"
+ com.fasterxml.jackson.databind.annotation;version="2.4.5",
+ com.fasterxml.jackson.datatype.jdk8;version="2.4.5",
+ com.fasterxml.jackson.datatype.jsr310;version="2.4.5"

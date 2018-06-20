@@ -5,19 +5,25 @@ Bundle-SymbolicName: org.foodauthent.rest
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .
-Import-Package: io.swagger.annotations;version="[1.5.4,2.0.0)",
+Import-Package: com.fasterxml.jackson.core;version="2.4.5",
+ com.fasterxml.jackson.databind;version="2.4.5",
+ com.fasterxml.jackson.datatype.jdk8;version="2.4.5",
+ com.fasterxml.jackson.datatype.jsr310;version="2.4.5",
+ io.swagger.annotations;version="[1.5.4,2.0.0)",
  javax.servlet;version="3.0.0",
  javax.servlet.http;version="3.0.0",
  javax.ws.rs;version="[2.0.0,3.0.0)",
  javax.ws.rs.core;version="[2.0.0,3.0.0)",
+ javax.ws.rs.ext;version="2.0.0",
  org.eclipse.equinox.http.servlet;version="1.2.0",
  org.eclipse.jetty.servlet;version="9.4.8",
  org.foodauthent.api,
  org.foodauthent.model,
+ org.foodauthent.model.json,
+ org.foodauthent.model.json.mixin,
  org.glassfish.jersey.servlet;version="2.22.2",
  org.osgi.framework;version="[1.5.0,2.0.0)",
  org.osgi.service.cm;version="[1.2.0,2.0.0)",
- org.osgi.service.http;version="1.2.1"
-Bundle-Activator: net.foodauthent.swagger.Activator
-Require-Bundle: com.eclipsesource.jaxrs.jersey-all;bundle-version="2.22.2",
- com.eclipsesource.jaxrs.swagger-all;bundle-version="1.5.7"
+ org.osgi.service.http;version="1.2.1",
+ org.slf4j;version="1.7.10"
+Bundle-Activator: org.foodauthent.rest.Activator

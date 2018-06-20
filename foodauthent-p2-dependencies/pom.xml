@@ -10,6 +10,7 @@
 		<tycho.version>1.1.0</tycho.version>
 		<!-- p2 repositories -->
 		<equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a</equinox-oxygen-repo.url>
+		<orbit-repo.url>http://repository.foodauthent.net/p2/orbit-R20180330011457</orbit-repo.url>
 		<jaxrs-connector-repo.url>http://hstaudacher.github.io/osgi-jax-rs-connector</jaxrs-connector-repo.url>
 
 		<!-- use UTF-8 -->
@@ -20,6 +21,11 @@
 		<repository>
 			<id>equinox-oxygen</id>
 			<url>${equinox-oxygen-repo.url}</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>orbit-oxygen</id>
+			<url>${orbit-repo.url}</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
@@ -85,20 +91,24 @@
 					<includeAllDependencies>true</includeAllDependencies>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.7</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.7</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 	<modules>
-		<module>slf4j.api</module>
-		<module>slf4j.simple</module>
+		<module>com.fasterxml.jackson.datatype.jackson-datatype-jdk8</module>
+		<module>com.fasterxml.jackson.datatype.jackson-datatype-jsr310</module>
 		<module>foodauthent-dependencies-feature</module>
 		<module>foodauthent-dependencies-p2-site</module>
 	</modules>

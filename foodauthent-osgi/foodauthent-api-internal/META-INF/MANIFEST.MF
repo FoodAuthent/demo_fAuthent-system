@@ -10,4 +10,4 @@ Export-Package: org.foodauthent.internal.api.job,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: org.foodauthent.api.internal.exeption,
  org.foodauthent.model,
- org.slf4j;version="1.7.25"
+ org.slf4j;version="1.7.10"
