@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;;
 
 public class ObjectMapperUtil {
 
@@ -20,7 +20,7 @@ public class ObjectMapperUtil {
 	if (MAPPER == null) {
 	    MAPPER = new ObjectMapper();
 	    MAPPER.registerModule(new Jdk8Module());
-	    MAPPER.registerModule(new JSR310Module());
+	    MAPPER.registerModule(new JavaTimeModule());
 	    MAPPER.enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
 	    MAPPER.enable(DeserializationFeature.READ_ENUMS_USING_TO_STRING);
 	    ModelUtil.addModelMixIns(MAPPER);

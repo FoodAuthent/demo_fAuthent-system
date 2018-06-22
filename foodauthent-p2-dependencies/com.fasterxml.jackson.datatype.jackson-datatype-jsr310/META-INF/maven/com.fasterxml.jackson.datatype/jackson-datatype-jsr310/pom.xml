@@ -4,11 +4,11 @@
   <parent>
     <groupId>com.fasterxml.jackson</groupId>
     <artifactId>jackson-parent</artifactId>
-    <version>2.4</version>
+    <version>2.6.1</version>
   </parent>
   <groupId>com.fasterxml.jackson.datatype</groupId>
   <artifactId>jackson-datatype-jsr310</artifactId>
-  <version>2.4.5</version>
+  <version>2.6.2</version>
   <name>Jackson-Datatype-JSR310</name>
   <packaging>bundle</packaging>
   <description>Add-on module to support JSR-310 (Java 8 Date &amp; Time API) data types.</description>
@@ -25,27 +25,21 @@
     <connection>scm:git:git@github.com:FasterXML/jackson-datatype-jsr310.git</connection>
     <developerConnection>scm:git:git@github.com:FasterXML/jackson-datatype-jsr310.git</developerConnection>
     <url>http://github.com/FasterXML/jackson-datatype-jsr310</url>    
-    <tag>jackson-datatype-jsr310-2.4.5</tag>
+    <tag>jackson-datatype-jsr310-2.6.2</tag>
   </scm>
 
   <properties>
-    <version.jackson.core>2.4.5</version.jackson.core>
+    <version.jackson.core>2.6.2</version.jackson.core>
     <!-- Generate PackageVersion.java into this directory. -->
     <packageVersion.dir>com/fasterxml/jackson/datatype/jsr310</packageVersion.dir>
     <packageVersion.package>${project.groupId}.jsr310</packageVersion.package>
     <javac.src.version>1.8</javac.src.version>
     <javac.target.version>1.8</javac.target.version>
     <!-- Configuration properties for the OSGi maven-bundle-plugin -->
-    <osgi.import>com.fasterxml.jackson.core
-,com.fasterxml.jackson.core.util
-,com.fasterxml.jackson.databind
-,com.fasterxml.jackson.databind.deser.std
-,com.fasterxml.jackson.databind.jsontype
-,com.fasterxml.jackson.databind.module
-,com.fasterxml.jackson.databind.node
-,com.fasterxml.jackson.databind.ser.std
-    </osgi.import>
+    <!-- import should be generated automatically from needed deps; export from simple package (include all) -->
+<!--
     <osgi.export>${project.groupId}.jsr310.*;version=${project.version}</osgi.export>
+-->
   </properties>
 
   <dependencies>
@@ -72,6 +66,16 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>${version.plugin.surefire}</version>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>com/fasterxml/jackson/**/failing/*.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
@@ -103,11 +107,6 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <version>2.4.0</version>
       </plugin>
       <plugin>
         <!-- Inherited from oss-base. Generate PackageVersion.java.-->

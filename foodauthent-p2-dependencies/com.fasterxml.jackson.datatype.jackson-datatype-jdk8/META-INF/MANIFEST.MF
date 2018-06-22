@@ -2,37 +2,38 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Jackson-datatype-jdk8
 Bundle-SymbolicName: com.fasterxml.jackson.datatype.jackson-datatype-jdk8
-Bundle-Version: 2.4.5.qualifier
-Bundle-ClassPath: jackson-datatype-jdk8-2.4.5.jar
+Bundle-Version: 2.6.2.qualifier
+Bundle-ClassPath: jackson-datatype-jdk8-2.6.2.jar
 Bundle-Vendor: FasterXML
-Export-Package: com.fasterxml.jackson.datatype.jdk8;version="2.4.5"
-Bundle-Description: Add-on module for Jackson (http://jackson.codehaus.org) to supportJDK 8 data types.
-Build-Jdk: 1.8.0
-Specification-Version: 2.4.5
-Implementation-Title: Jackson-datatype-jdk8
-Tool: Bnd-1.50.0
-Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
-Implementation-Vendor: FasterXML
+Export-Package: com.fasterxml.jackson.datatype.jdk8;version="2.6.2"
 Specification-Vendor: FasterXML
-X-Compile-Target-JDK: 1.8
+Specification-Title: Jackson-datatype-jdk8
 X-Compile-Source-JDK: 1.8
-Implementation-Build-Date: 2015-01-14 08:27:58-0800
-Bundle-DocURL: http://github.com/FasterXML/jackson-datatype-jdk8/
-Bnd-LastModified: 1421252884700
-Built-By: tatu
 Implementation-Vendor-Id: com.fasterxml.jackson.datatype
 Created-By: Apache Maven Bundle Plugin
-Specification-Title: Jackson-datatype-jdk8
-Implementation-Version: 2.4.5
-Import-Package: com.fasterxml.jackson.core;version="[2.4.5,2.5)",
-  com.fasterxml.jackson.core.util;version="[2.4.5,2.5)",
-  com.fasterxml.jackson.databind;version="[2.4.5,2.5)",
-  com.fasterxml.jackson.databind.deser;version="[2.4.5,2.5)",
-  com.fasterxml.jackson.databind.deser.std;version="[2.4.5,2.5)",
-  com.fasterxml.jackson.databind.jsonFormatVisitors;version="[2.4.5,2.5)",
-  com.fasterxml.jackson.databind.jsontype;version="[2.4.5,2.5)",
-  com.fasterxml.jackson.databind.module;version="[2.4.5,2.5)",
-  com.fasterxml.jackson.databind.ser;version="[2.4.5,2.5)",
-  com.fasterxml.jackson.databind.ser.std;version="[2.4.5,2.5)",
-  com.fasterxml.jackson.databind.type;version="[2.4.5,2.5)"
+Implementation-Vendor: FasterXML
+Tool: Bnd-2.3.0.201405100607
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Implementation-Version: 2.6.2
+Build-Jdk: 1.8.0
+Bundle-Description: Add-on module for Jackson (http://jackson.codehaus.org) to supportJDK 8 data types.
+Implementation-Build-Date: 2015-09-15 10:48:46-0700
+Implementation-Title: Jackson-datatype-jdk8
+Bnd-LastModified: 1442339331634
+Import-Package: com.fasterxml.jackson.core;version="[2.6,3)",
+  com.fasterxml.jackson.core.util;version="[2.6,3)",
+  com.fasterxml.jackson.databind;version="[2.6,3)",
+  com.fasterxml.jackson.databind.deser;version="[2.6,3)",
+  com.fasterxml.jackson.databind.deser.std;version="[2.6,3)",
+  com.fasterxml.jackson.databind.jsonFormatVisitors;version="[2.6,3)",
+  com.fasterxml.jackson.databind.jsontype;version="[2.6,3)",
+  com.fasterxml.jackson.databind.module;version="[2.6,3)",
+  com.fasterxml.jackson.databind.ser;version="[2.6,3)",
+  com.fasterxml.jackson.databind.ser.std;version="[2.6,3)",
+  com.fasterxml.jackson.databind.type;version="[2.6,3)"
+X-Compile-Target-JDK: 1.8
+Bundle-DocURL: http://github.com/FasterXML/jackson-datatype-jdk8/
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Built-By: tatu
+Specification-Version: 2.6.2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -11,7 +11,6 @@
 		<!-- p2 repositories -->
 		<equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a</equinox-oxygen-repo.url>
 		<orbit-repo.url>http://repository.foodauthent.net/p2/orbit-R20180330011457</orbit-repo.url>
-		<jaxrs-connector-repo.url>http://hstaudacher.github.io/osgi-jax-rs-connector</jaxrs-connector-repo.url>
 
 		<!-- use UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,11 +25,6 @@
 		<repository>
 			<id>orbit-oxygen</id>
 			<url>${orbit-repo.url}</url>
-			<layout>p2</layout>
-		</repository>
-		<repository>
-			<id>jaxrs-connector</id>
-			<url>${jaxrs-connector-repo.url}</url>
 			<layout>p2</layout>
 		</repository>
 	</repositories>
@@ -107,8 +101,13 @@
 		</pluginManagement>
 	</build>
 	<modules>
+		<module>javax.validation.api</module>
 		<module>com.fasterxml.jackson.datatype.jackson-datatype-jdk8</module>
 		<module>com.fasterxml.jackson.datatype.jackson-datatype-jsr310</module>
+		<module>org.jvnet.mimepull</module>
+		<module>org.glassfish.jersey.media.jersey-media-multipart</module>
+		<module>com.eclipsesource.jaxrs.publisher</module>
+		<module>com.eclipsesource.jaxrs.consumer</module>
 		<module>foodauthent-dependencies-feature</module>
 		<module>foodauthent-dependencies-p2-site</module>
 	</modules>

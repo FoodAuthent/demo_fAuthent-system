@@ -5,11 +5,11 @@ Bundle-SymbolicName: org.foodauthent.rest
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .
-Import-Package: com.fasterxml.jackson.core;version="2.4.5",
+Import-Package: com.eclipsesource.jaxrs.publisher;version="5.3.1",
+ com.fasterxml.jackson.core;version="2.4.5",
  com.fasterxml.jackson.databind;version="2.4.5",
  com.fasterxml.jackson.datatype.jdk8;version="2.4.5",
  com.fasterxml.jackson.datatype.jsr310;version="2.4.5",
- io.swagger.annotations;version="[1.5.4,2.0.0)",
  javax.servlet;version="3.0.0",
  javax.servlet.http;version="3.0.0",
  javax.ws.rs;version="[2.0.0,3.0.0)",
@@ -21,7 +21,7 @@ Import-Package: com.fasterxml.jackson.core;version="2.4.5",
  org.foodauthent.model,
  org.foodauthent.model.json,
  org.foodauthent.model.json.mixin,
- org.glassfish.jersey.servlet;version="2.22.2",
+ org.glassfish.jersey.server;version="2.22.1",
  org.osgi.framework;version="[1.5.0,2.0.0)",
  org.osgi.service.cm;version="[1.2.0,2.0.0)",
  org.osgi.service.http;version="1.2.1",

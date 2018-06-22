@@ -21,31 +21,8 @@
    <feature url="features/org.eclipse.equinox.server.jetty_1.4.4.v20180322-2228.jar" id="org.eclipse.equinox.server.jetty" version="1.4.4.v20180322-2228">
       <category name="eclipse.equinox.oxygen"/>
    </feature>
-   <feature url="features/com.eclipsesource.jaxrs.connector.feature_5.3.1.201602281253.jar" id="com.eclipsesource.jaxrs.connector.feature" version="5.3.1.201602281253">
-      <category name="osgi-jax-rs-connector"/>
-   </feature>
-   <feature url="features/com.eclipsesource.jaxrs.jersey.runtime.feature_2.22.1.201602281253.jar" id="com.eclipsesource.jaxrs.jersey.runtime.feature" version="2.22.1.201602281253">
-      <category name="osgi-jax-rs-connector"/>
-   </feature>
-   <feature url="features/com.eclipsesource.jaxrs.provider.gson.feature_2.3.0.201602281253.jar" id="com.eclipsesource.jaxrs.provider.gson.feature" version="2.3.0.201602281253">
-      <category name="osgi-jax-rs-connector"/>
-   </feature>
-   <feature url="features/com.eclipsesource.jaxrs.provider.moxy.feature_2.2.0.201602281253.jar" id="com.eclipsesource.jaxrs.provider.moxy.feature" version="2.2.0.201602281253">
-      <category name="osgi-jax-rs-connector"/>
-   </feature>
-   <feature url="features/com.eclipsesource.jaxrs.provider.multipart.feature_2.2.0.201602281253.jar" id="com.eclipsesource.jaxrs.provider.multipart.feature" version="2.2.0.201602281253">
-      <category name="osgi-jax-rs-connector"/>
-   </feature>
-   <feature url="features/com.eclipsesource.jaxrs.provider.security.feature_2.2.0.201602281253.jar" id="com.eclipsesource.jaxrs.provider.security.feature" version="2.2.0.201602281253">
-      <category name="osgi-jax-rs-connector"/>
-   </feature>
-   <feature url="features/com.eclipsesource.jaxrs.provider.sse.feature_2.2.0.201602281253.jar" id="com.eclipsesource.jaxrs.provider.sse.feature" version="2.2.0.201602281253">
-      <category name="osgi-jax-rs-connector"/>
-   </feature>
-   <feature url="features/com.eclipsesource.jaxrs.provider.swagger.feature_1.1.1.201602281253.jar" id="com.eclipsesource.jaxrs.provider.swagger.feature" version="1.1.1.201602281253">
-      <category name="osgi-jax-rs-connector"/>
-   </feature>
    <category-def name="foodauthent.dependencies" label="FoodAuthent Additional Dependencies"/>
-   <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime"/>
-   <category-def name="osgi-jax-rs-connector" label="OSGi - JAX-RS 2.0 Connector"/>
+   <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime">
+      <category name="foodauthent.dependencies"/>
+   </category-def>
 </site>
