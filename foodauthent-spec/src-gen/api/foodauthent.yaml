@@ -122,7 +122,6 @@ paths:
             type: string
             format: uuid
         
-
   /fingerprints:
     get:
       tags:
@@ -196,41 +195,63 @@ paths:
           schema:
             $ref: "#/definitions/FingerprintSet"
  
-  /fingerprintdata:
+  /fingerprint/addrawdata/{fingerprint-id}:
     post:
       tags:
         - fingerprint
-      summary: Uploads the fingerprint dataset.
+      summary: Upload fingerprint raw data.
       description: TODO
-      operationId: uploadFingerprintDataset
+      operationId: addFingerprintRawData
       consumes:
-      # Should be
-      # - multipart/form-data
-      # but doesn't work, yet, with the code generation, open TODO
       - application/json 
       parameters:
-      - in: query
-        name: fingerprintset-id
-        description: The fingerprintset the data is associated with.
+      - in: path
+        name: fingerprint-id
+        description: The fingerprint the data is associated with.
         type: string
         format: uuid
+        required: true
       - in: body
         name: data
         required: true
+        description: The raw data.
         schema:
           type: string
           format: binary
-      #- in: formData
-      #  name: upfile
-      #  type: file
-      #  description: The file to upload 
-      #  required: true
       responses:
         200:
           description: Successful upload
         405:
           description: If there is no fingerprint with the given id.
- 
+          
+  /fingerprint/addmetadata/{fingerprint-id}:
+    post:
+      tags:
+        - fingerprint
+      summary: Upload fingerprint metadata.
+      description: TODO
+      operationId: addMetaData
+      consumes:
+      - application/json
+      parameters:
+      - in: path
+        name: fingerprint-id
+        description: The fingerprint the data is associated with.
+        type: string
+        format: uuid
+        required: true
+      - in: body
+        name: metadata
+        required: true
+        description: Metadata to add.
+        schema:
+          $ref: "#/definitions/MetadataEntries"
+      responses:
+        200:
+          description: Successful upload 
+        405:
+          description: If there is no fingerprint with the given id.
+        
   /product:
     post:
       tags:
@@ -295,7 +316,6 @@ paths:
             type: array
             items:
               $ref: "#/definitions/Prediction"
-
 
   /workflow:
     post:
@@ -446,8 +466,6 @@ paths:
         400:
           description: Invalid search query value    
  
- 
- 
   /workflow/prediction/job:
     post:
       tags:
@@ -497,7 +515,6 @@ paths:
             $ref: "#/definitions/PredictionJob"
        
     
-          
 definitions:
   SOP:
     type: object
@@ -521,9 +538,17 @@ definitions:
         type: string
         format: uuid
         example: ""
+        
+  MetadataEntries:
+    description: One or more metadata entries (key-value-pair)
+    type: object
+    additionalProperties:
+      type: string
+    example:
+      key: value      
 
   Fingerprint:
-    description: The raw fingerprint/sample metadata including, e.g., the meassurment meta data such as device info, processing info, etc.
+    description: A fingerprint object referencing metadata and raw data.
     type: object
     properties:
       fa-id:
@@ -531,7 +556,40 @@ definitions:
         type: string
         format: uuid
         example: ""
-
+      data:
+        $ref: "#/definitions/FingerprintRawData"
+      metadata:
+        $ref: "#/definitions/FingerprintMetadata"
+        
+  FingerprintRawData:
+    description: The fingerprint/sample raw data.
+    type: object
+    required:
+      - parent-id
+      - data
+    properties:
+      parent-id:
+        description: The ID of the fingerprint (parent) object.
+        type: string
+        format: uuid
+      data:
+        type: string
+        format: binary        
+        
+  FingerprintMetadata:
+    description:  The fingerprint/sample metadata including, e.g., the meassurment meta data such as device info, processing info, etc.
+    type: object
+    properties:
+      parent-id:
+        description: The ID of the fingerprint (parent) object.
+        type: string
+        format: uuid
+        example: ""
+    additionalProperties:
+      type: string
+    example:
+      key: value
+        
   FingerprintSet:
     description: A set of fingerprints with its own id.
     type: object
