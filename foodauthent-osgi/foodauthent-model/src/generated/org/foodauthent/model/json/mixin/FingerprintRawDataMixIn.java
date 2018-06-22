@@ -3,8 +3,6 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.json.mixin.FingerprintMetadataMixIn;
-import org.foodauthent.model.json.mixin.FingerprintRawDataMixIn;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,8 +14,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
 
-import org.foodauthent.model.Fingerprint;
-import org.foodauthent.model.Fingerprint.FingerprintBuilder;
+import org.foodauthent.model.FingerprintRawData;
+import org.foodauthent.model.FingerprintRawData.FingerprintRawDataBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -29,13 +27,13 @@ import org.foodauthent.model.Fingerprint.FingerprintBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = Fingerprint.class)
+    defaultImpl = FingerprintRawData.class)
 @JsonSubTypes({
-    @Type(value = Fingerprint.class, name="Fingerprint")
+    @Type(value = FingerprintRawData.class, name="FingerprintRawData")
 })
-@JsonDeserialize(builder=FingerprintBuilder.class)
+@JsonDeserialize(builder=FingerprintRawDataBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface FingerprintMixIn {
+public interface FingerprintRawDataMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -43,14 +41,11 @@ public interface FingerprintMixIn {
     @JsonIgnore
     public String getTypeID();
 
-    @JsonProperty("fa-id")
-    public java.util.UUID getFaId();
+    @JsonProperty("parent-id")
+    public java.util.UUID getParentId();
     
     @JsonProperty("data")
-    public FingerprintRawDataMixIn getData();
-    
-    @JsonProperty("metadata")
-    public FingerprintMetadataMixIn getMetadata();
+    public byte[] getData();
     
 
     /**
@@ -62,23 +57,20 @@ public interface FingerprintMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = FingerprintBuilder.class)
+        defaultImpl = FingerprintRawDataBuilder.class)
     @JsonSubTypes({
-        @Type(value = Fingerprint.FingerprintBuilder.class, name="Fingerprint")
+        @Type(value = FingerprintRawData.FingerprintRawDataBuilder.class, name="FingerprintRawData")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface FingerprintMixInBuilder {
+    public static interface FingerprintRawDataMixInBuilder {
     
-        public FingerprintMixIn build();
+        public FingerprintRawDataMixIn build();
     
-        @JsonProperty("fa-id")
-        public FingerprintMixInBuilder setFaId(final java.util.UUID faId);
+        @JsonProperty("parent-id")
+        public FingerprintRawDataMixInBuilder setParentId(final java.util.UUID parentId);
         
         @JsonProperty("data")
-        public FingerprintMixInBuilder setData(final FingerprintRawDataMixIn data);
-        
-        @JsonProperty("metadata")
-        public FingerprintMixInBuilder setMetadata(final FingerprintMetadataMixIn metadata);
+        public FingerprintRawDataMixInBuilder setData(final byte[] data);
         
     }
 

@@ -49,7 +49,7 @@ public interface WorkflowInputMixIn {
     public String getId();
     
     @JsonProperty("required")
-    public Boolean isRequired();
+    public Boolean Required();
     
     @JsonProperty("type")
     public TypeEnum getType();

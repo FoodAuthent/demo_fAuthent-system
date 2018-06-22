@@ -46,7 +46,7 @@ public interface WorkflowOutputMixIn {
     public java.util.UUID getFaId();
     
     @JsonProperty("required")
-    public Boolean isRequired();
+    public Boolean Required();
     
     @JsonProperty("type")
     public TypeEnum getType();

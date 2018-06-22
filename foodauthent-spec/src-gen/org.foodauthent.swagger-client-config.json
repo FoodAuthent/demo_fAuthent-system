@@ -1,7 +1,7 @@
 {
     "lang" : "org.foodauthent.codegen.FoodAuthentCodegen",
     "inputSpec" : "src-gen/api/foodauthent.yaml",
-    "outputDir" : "../foodauthent-swagger-client/",
+    "outputDir" : "../foodauthent-osgi/foodauthent-swagger-client/",
     "modelPackage" : "NOT GENERATED",
     "apiPackage"   : "NOT GENERATED",
     "fullJavaUtil" : true,

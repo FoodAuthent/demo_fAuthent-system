@@ -87,7 +87,7 @@ public class WorkflowOutput  extends FaModel {
         return faId;
     }
     
-  public Boolean isRequired() {
+  public Boolean Required() {
         return required;
     }
     

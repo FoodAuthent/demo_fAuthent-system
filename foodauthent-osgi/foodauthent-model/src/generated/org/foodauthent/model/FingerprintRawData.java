@@ -9,36 +9,38 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 
-import org.foodauthent.model.FingerprintMetadata;
-import org.foodauthent.model.FingerprintRawData;
 
 
 /**
- * A fingerprint object referencing metadata and raw data.
+ * The fingerprint/sample raw data.
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class Fingerprint  extends FaModel {
+public class FingerprintRawData  extends FaModel {
 
 
-  private java.util.UUID faId;
-  private FingerprintRawData data;
-  private FingerprintMetadata metadata;
+  private java.util.UUID parentId;
+  private byte[] data;
   
   public String getTypeID() {
-    return "Fingerprint";
+    return "FingerprintRawData";
   }
   
-  private Fingerprint(FingerprintBuilder builder) {
+  private FingerprintRawData(FingerprintRawDataBuilder builder) {
     
-    faId = immutable(builder.faId);
+    if(builder.parentId == null) {
+        throw new IllegalArgumentException("parentId must not be null.");
+    }
+    parentId = immutable(builder.parentId);
+    if(builder.data == null) {
+        throw new IllegalArgumentException("data must not be null.");
+    }
     data = immutable(builder.data);
-    metadata = immutable(builder.metadata);
     
-    faId = generateFaIdIfMissing(faId);
   }
   
    /**
@@ -55,59 +57,55 @@ public class Fingerprint  extends FaModel {
         if (getClass() != o.getClass()) {
             return false;
         }
-        Fingerprint ent = (Fingerprint)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(data, ent.data) && Objects.equals(metadata, ent.metadata);
+        FingerprintRawData ent = (FingerprintRawData)o;
+        return Objects.equals(parentId, ent.parentId) && Objects.equals(data, ent.data);
     }
 
 
-  public java.util.UUID getFaId() {
-        return faId;
+  public java.util.UUID getParentId() {
+        return parentId;
     }
     
-  public FingerprintRawData getData() {
+  public byte[] getData() {
         return data;
-    }
-    
-  public FingerprintMetadata getMetadata() {
-        return metadata;
     }
     
   
  	/**
   	 * @return a newly created builder
   	 */
-  	public static FingerprintBuilder builder() {
-  		return new FingerprintBuilder();
+  	public static FingerprintRawDataBuilder builder() {
+  		return new FingerprintRawDataBuilder();
   	}
   
-    public static class FingerprintBuilder {
+    public static class FingerprintRawDataBuilder {
     
-        private FingerprintBuilder(){
+        private FingerprintRawDataBuilder(){
             
         }
     
-        private java.util.UUID faId = null;
-        private FingerprintRawData data = null;
-        private FingerprintMetadata metadata = null;
+        private java.util.UUID parentId = null;
+        private byte[] data = null;
 
-        public FingerprintBuilder setFaId(java.util.UUID faId) {
-             this.faId = faId;
+        public FingerprintRawDataBuilder setParentId(java.util.UUID parentId) {
+             if(parentId == null) {
+                 throw new IllegalArgumentException("parentId must not be null.");
+             }
+             this.parentId = parentId;
              return this;
         }
 
-        public FingerprintBuilder setData(FingerprintRawData data) {
+        public FingerprintRawDataBuilder setData(byte[] data) {
+             if(data == null) {
+                 throw new IllegalArgumentException("data must not be null.");
+             }
              this.data = data;
              return this;
         }
 
-        public FingerprintBuilder setMetadata(FingerprintMetadata metadata) {
-             this.metadata = metadata;
-             return this;
-        }
-
         
-        public Fingerprint build() {
-            return new Fingerprint(this);
+        public FingerprintRawData build() {
+            return new FingerprintRawData(this);
         }
     
     }
@@ -131,6 +129,12 @@ public class Fingerprint  extends FaModel {
         } else {
             return obj;
         }
+    }
+
+    @Override
+    public UUID getFaId() {
+	// TODO Auto-generated method stub
+	return null;
     }
     
 

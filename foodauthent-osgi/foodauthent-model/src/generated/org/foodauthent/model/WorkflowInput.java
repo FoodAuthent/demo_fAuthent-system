@@ -95,7 +95,7 @@ public class WorkflowInput  extends FaModel {
         return id;
     }
     
-  public Boolean isRequired() {
+  public Boolean Required() {
         return required;
     }
     

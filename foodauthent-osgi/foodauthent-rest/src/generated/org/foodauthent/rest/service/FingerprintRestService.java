@@ -7,6 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.MetadataEntries;
 
 import org.foodauthent.api.FingerprintService;
 import org.foodauthent.api.ServiceRegistry;
@@ -26,6 +27,36 @@ public class FingerprintRestService{
 
 	private final FingerprintService service = ServiceRegistry.get(FingerprintService.class);
 
+
+    /**
+     * TODO
+     *
+     * @param fingerprintId The fingerprint the data is associated with.
+     * @param data The raw data.
+     * @return the response
+     */
+    @POST
+    @Path("/fingerprint/addrawdata/{fingerprint-id}")
+    @Consumes({ "application/json" })
+    public Response addFingerprintRawData(@PathParam("fingerprint-id") java.util.UUID fingerprintId, byte[] data) {
+	    service.addFingerprintRawData(fingerprintId, data);    
+    	return Response.ok().build();
+    }
+
+    /**
+     * TODO
+     *
+     * @param fingerprintId The fingerprint the data is associated with.
+     * @param metadata Metadata to add.
+     * @return the response
+     */
+    @POST
+    @Path("/fingerprint/addmetadata/{fingerprint-id}")
+    @Consumes({ "application/json" })
+    public Response addMetaData(@PathParam("fingerprint-id") java.util.UUID fingerprintId, MetadataEntries metadata) {
+	    service.addMetaData(fingerprintId, metadata);    
+    	return Response.ok().build();
+    }
 
     /**
      * TODO
@@ -68,21 +99,6 @@ public class FingerprintRestService{
     public Response getFingerprintSetById(@PathParam("fingerprintset-id") java.util.UUID fingerprintsetId) {
 	    Object res = service.getFingerprintSetById(fingerprintsetId);    
 	   	return Response.ok(res).build();
-    }
-
-    /**
-     * TODO
-     *
-     * @param data 
-     * @param fingerprintsetId The fingerprintset the data is associated with.
-     * @return the response
-     */
-    @POST
-    @Path("/fingerprintdata")
-    @Consumes({ "application/json" })
-    public Response uploadFingerprintDataset(byte[] data, @QueryParam("fingerprintset-id")java.util.UUID fingerprintsetId) {
-	    service.uploadFingerprintDataset(data, fingerprintsetId);    
-    	return Response.ok().build();
     }
 }
 

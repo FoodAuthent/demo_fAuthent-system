@@ -24,10 +24,16 @@ public class ModelUtil {
      */
     public static final void addModelMixIns(final ObjectMapper mapper) {
     
+        mapper.addMixIn(FingerprintMetadata.class, FingerprintMetadataMixIn.class);
+        mapper.addMixIn(FingerprintMetadata.FingerprintMetadataBuilder.class, FingerprintMetadataMixIn.FingerprintMetadataMixInBuilder.class);
         mapper.addMixIn(Fingerprint.class, FingerprintMixIn.class);
         mapper.addMixIn(Fingerprint.FingerprintBuilder.class, FingerprintMixIn.FingerprintMixInBuilder.class);
+        mapper.addMixIn(FingerprintRawData.class, FingerprintRawDataMixIn.class);
+        mapper.addMixIn(FingerprintRawData.FingerprintRawDataBuilder.class, FingerprintRawDataMixIn.FingerprintRawDataMixInBuilder.class);
         mapper.addMixIn(FingerprintSet.class, FingerprintSetMixIn.class);
         mapper.addMixIn(FingerprintSet.FingerprintSetBuilder.class, FingerprintSetMixIn.FingerprintSetMixInBuilder.class);
+        mapper.addMixIn(MetadataEntries.class, MetadataEntriesMixIn.class);
+        mapper.addMixIn(MetadataEntries.MetadataEntriesBuilder.class, MetadataEntriesMixIn.MetadataEntriesMixInBuilder.class);
         mapper.addMixIn(PredictionJob.class, PredictionJobMixIn.class);
         mapper.addMixIn(PredictionJob.PredictionJobBuilder.class, PredictionJobMixIn.PredictionJobMixInBuilder.class);
         mapper.addMixIn(Prediction.class, PredictionMixIn.class);

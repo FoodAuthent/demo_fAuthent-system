@@ -1,24 +1,24 @@
 {
     "lang" : "org.foodauthent.codegen.FoodAuthentCodegen",
     "inputSpec" : "src-gen/api/foodauthent.yaml",
-    "outputDir" : "../foodauthent-api/",
-    "modelPackage" : "org.foodauthent.model",
-    "apiPackage"   : "org.foodauthent.api",
+    "outputDir" : "../foodauthent-osgi/foodauthent-model/",
+    "modelPackage" : "org.foodauthent.model.json.mixin",
+    "apiPackage"   : "NOT GENERATED",
     "fullJavaUtil" : true,
     "dateLibrary" : "java8",
     "sourceFolder" : "src/generated",
     "templateDir" : "src-gen/templates",
     "additionalProperties" : {
-        "codegenName" : "api",
-        "apiTemplateFile" : "serviceInterface.mustache",
-        "apiNamePattern" : "##name##Service",
+        "codegenName" : "models",
+        "modelTemplateFile" : "json/mixIn.mustache",
+        "modelNamePattern" : "##name##MixIn",
         "modelPropertyNamePattern" : "##name##",
         "modelPropertyPackage" : "org.foodauthent.model",
         "supportingFiles" : [
             {
-                "templateFile": "serviceRegistry.mustache",
-                "package" : "org.foodauthent.api",
-                "destinationFileName" : "ServiceRegistry.java"
+                "templateFile": "json/modelUtil.mustache",
+                "package" : "org.foodauthent.model.json",
+                "destinationFileName" : "ModelUtil.java"
             }     
          ]
     }

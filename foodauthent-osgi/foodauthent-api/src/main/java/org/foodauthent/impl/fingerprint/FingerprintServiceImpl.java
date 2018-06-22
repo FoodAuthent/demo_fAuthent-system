@@ -8,6 +8,7 @@ import org.foodauthent.api.FingerprintService;
 import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.MetadataEntries;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,14 +34,6 @@ public class FingerprintServiceImpl implements FingerprintService {
     }
 
     @Override
-    public void uploadFingerprintDataset(final byte[] data, final UUID fingerprintsetId) {
-	final FingerprintSet fingerprintSet = persistenceService.getByUUID(fingerprintsetId);
-	if (logger.isWarnEnabled()) {
-	    logger.warn("NOT IMPLEMENTED (Got finger print set " + fingerprintSet + ")");
-	}
-    }
-
-    @Override
     public FingerprintSet getFingerprintSetById(UUID fingerprintsetId) {
 	return persistenceService.getByUUID(fingerprintsetId);
     }
@@ -52,5 +45,19 @@ public class FingerprintServiceImpl implements FingerprintService {
 	}
 	final List<FingerprintSet> result = persistenceService.findByKeywords(keywords, FingerprintSet.class);
 	return result.stream().map(e -> e.getFaId()).collect(Collectors.toList());
+    }
+
+    @Override
+    public void addFingerprintRawData(UUID fingerprintId, byte[] data) {
+	if (logger.isWarnEnabled()) {
+	    logger.warn("NOT IMPLEMENTED addFingerprintRawData(" + fingerprintId + ")");
+	}
+    }
+
+    @Override
+    public void addMetaData(UUID fingerprintId, MetadataEntries metadata) {
+	if (logger.isWarnEnabled()) {
+	    logger.warn("NOT IMPLEMENTED addMetaData(" + fingerprintId + ")");
+	}
     }
 }

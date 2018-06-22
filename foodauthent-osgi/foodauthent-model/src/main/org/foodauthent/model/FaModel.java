@@ -16,6 +16,8 @@ import java.util.UUID;
 public abstract class FaModel implements PersistenceIdProvider {
 
     private long persistenceId;
+    
+    protected String faId;
 
     /**
      * A global FoodAuthent-ID for every model in the system.

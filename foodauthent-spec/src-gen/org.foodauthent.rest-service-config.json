@@ -1,7 +1,7 @@
 {
     "lang" : "org.foodauthent.codegen.FoodAuthentCodegen",
     "inputSpec" : "src-gen/api/foodauthent.yaml",
-    "outputDir" : "../foodauthent-rest/",
+    "outputDir" : "../foodauthent-osgi/foodauthent-rest/",
     "modelPackage" : "org.foodauthent.model",
     "apiPackage"   : "org.foodauthent.rest.service",
     "fullJavaUtil" : true,
