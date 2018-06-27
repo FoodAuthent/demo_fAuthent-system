@@ -19,17 +19,17 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 
-public class FaModelJSONReader implements MessageBodyReader<FaModel>, Feature {
+public class JacksonJSONReader implements MessageBodyReader<Object>, Feature {
 
 	private final ObjectMapper mapper = ObjectMapperUtil.getObjectMapper();
 
 	@Override
 	public boolean isReadable(Class<?> arg0, Type arg1, Annotation[] arg2, MediaType arg3) {
-		return FaModel.class.isAssignableFrom(arg0);
+		return true;
 	}
 
 	@Override
-	public FaModel readFrom(final Class<FaModel> type, final Type genericType, final Annotation[] annotations,
+	public FaModel readFrom(final Class<Object> type, final Type genericType, final Annotation[] annotations,
 			final MediaType mediaType, final MultivaluedMap<String, String> httpHeaders, final InputStream entityStream)
 			throws IOException, WebApplicationException {
 		ObjectReader reader = mapper.readerFor(type);

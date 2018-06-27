@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.foodauthent.rest.json.CollectionJSONWriter;
-import org.foodauthent.rest.json.FaModelJSONReader;
-import org.foodauthent.rest.json.FaModelJSONWriter;
+import org.foodauthent.rest.json.JacksonJSONReader;
+import org.foodauthent.rest.json.JacksonJSONWriter;
 import org.glassfish.jersey.server.ServerProperties;
 
 import com.eclipsesource.jaxrs.publisher.ApplicationConfiguration;
@@ -31,9 +30,8 @@ public class RestApplicationConfiguration implements ApplicationConfiguration {
 	
     static List<Class<?>> getProviderClasses() {
         List<Class<?>> providers = new ArrayList<Class<?>>();
-        providers.add(FaModelJSONReader.class);
-        providers.add(FaModelJSONWriter.class);
-        providers.add(CollectionJSONWriter.class);
+        providers.add(JacksonJSONReader.class);
+        providers.add(JacksonJSONWriter.class);
         return providers;
     }
     
