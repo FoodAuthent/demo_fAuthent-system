@@ -36,7 +36,7 @@ public class Activator implements BundleActivator {
 		final ConfigurationAdmin configAdmin = context.getService(reference);
 		final Configuration configuration = configAdmin.getConfiguration("com.eclipsesource.jaxrs.connector", null);
 		final Dictionary<String, Object> properties = new Hashtable<>();
-		properties.put("root", "/services");
+		properties.put("root", "/");
 		configuration.update(properties);
 		context.ungetService(reference);
 	}

@@ -1,0 +1,811 @@
+swagger: "2.0"
+info:
+  description: "This is the FoodAuthent API Description [www.foodauthent.net]"
+  version: "1.0.0"
+  title: "FoodAuthent Swagger API"
+  termsOfService: "https://www.foodauthent.net/terms/"
+  contact:
+    email: "api@foodauthent.net"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+basePath: "/v0/foodauthent"
+tags:
+- name: sop
+  description: "All standard operating procedure endpoints."
+- name: product
+  description: "All product endpoints."
+- name: fingerprint
+  description: "All fingerprint/sample endpoints."
+- name: workflow
+  description: All workflow endpoints.
+- name: tag
+  description: All endpoints to deal with tags, i.e. query, delete, add, ...
+schemes:
+- "http"
+paths:
+  /sopfile/{sop-id}:
+    get:
+      tags:
+      - sop
+      summary: Download SOP.
+      description: TODO
+      operationId: getSOPFile
+      produces:
+        - application/pdf
+      parameters:
+      - in: path
+        name: sop-id
+        description: "TODO"
+        required: true
+        type: string
+        format: uuid
+      responses:
+        200:
+          description: TODO
+          # TODO, specify the right return schema
+          schema:
+            type: string
+            format: binary
+            
+  /sop/{sop-id}:
+    get:
+      tags:
+        - sop
+      summary: Get the sop an id.
+      description: TODO
+      operationId: getSOPById
+      produces:
+        - application/json
+      parameters:
+        - name: sop-id
+          in: path
+          required: true
+          type: string
+          format: uuid
+      responses:
+        200:
+          description: The SOP.    
+          schema:
+            $ref: "#/definitions/SOP"         
+          
+  /sop:
+    get:
+      tags:
+        - sop
+      summary: Finds SOPs by some key words or return all sop's.
+      description: 'Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
+      operationId: findSOPByKeyword
+      produces:
+        - application/json
+      parameters:
+        - name: keywords
+          in: query
+          description: Keywords to search for
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: array
+            items:
+              type: string
+              format: uuid
+        400:
+          description: Invalid tag value
+    post:
+      tags:
+        - sop
+      summary: Creates a new SOP.
+      description: TODO
+      operationId: createNewSOP
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: sop
+          description: TODO
+          required: true
+          schema:
+            $ref: "#/definitions/SOP"
+      responses:
+        201:
+          description: New sop created with the new sop-id returned.
+          schema:
+            type: string
+            format: uuid
+        
+  /fingerprints:
+    get:
+      tags:
+        - fingerprint
+      summary: Finds fingerprint sets by some key words or return all fingerprint sets.
+      description: 'Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
+      operationId: findFingerprintSetByKeyword
+      produces:
+        - application/json
+      parameters:
+        - name: keywords
+          in: query
+          description: Keywords to search for
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: array
+            items:
+              type: string
+              format: uuid
+        400:
+          description: Invalid tag value
+    post:
+      tags:
+        - fingerprint 
+      summary: Create a new fingerprint set.
+      description: TODO
+      operationId: createFingerprintSet
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: fingerprintSet
+        description: A fingerprint set containing fingerprint metadata.
+        required: true
+        schema:
+           $ref: "#/definitions/FingerprintSet"
+      responses:
+        201:
+          description: The new id of the fingerprint set in the fa-system (fingerprint-set id)
+          schema:
+            type: string
+            format: uuid
+            
+  /fingerprintset/{fingerprintset-id}:
+    get:
+      tags:
+        - fingerprint
+      summary: Get the fingerprintset by id.
+      description: TODO
+      operationId: getFingerprintSetById
+      produces:
+        - application/json
+      parameters:
+        - name: fingerprintset-id
+          in: path
+          required: true
+          type: string
+          format: uuid
+      responses:
+        200:
+          description: The fingerprint set.    
+          schema:
+            $ref: "#/definitions/FingerprintSet"
+ 
+  /fingerprint/addrawdata/{fingerprint-id}:
+    post:
+      tags:
+        - fingerprint
+      summary: Upload fingerprint raw data.
+      description: TODO
+      operationId: addFingerprintRawData
+      consumes:
+      - application/json 
+      parameters:
+      - in: path
+        name: fingerprint-id
+        description: The fingerprint the data is associated with.
+        type: string
+        format: uuid
+        required: true
+      - in: body
+        name: data
+        required: true
+        description: The raw data.
+        schema:
+          type: string
+          format: binary
+      responses:
+        200:
+          description: Successful upload
+        405:
+          description: If there is no fingerprint with the given id.
+          
+  /fingerprint/addmetadata/{fingerprint-id}:
+    post:
+      tags:
+        - fingerprint
+      summary: Upload fingerprint metadata.
+      description: TODO
+      operationId: addMetaData
+      consumes:
+      - application/json
+      parameters:
+      - in: path
+        name: fingerprint-id
+        description: The fingerprint the data is associated with.
+        type: string
+        format: uuid
+        required: true
+      - in: body
+        name: metadata
+        required: true
+        description: Metadata to add.
+        schema:
+          $ref: "#/definitions/MetadataEntries"
+      responses:
+        200:
+          description: Successful upload 
+        405:
+          description: If there is no fingerprint with the given id.
+        
+  /product:
+    post:
+      tags:
+        - product
+      summary: Create a new product entity. 
+      description: TODO
+      operationId: createProduct
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: product
+        description: TODO
+        schema:
+          $ref: "#/definitions/Product" 
+      responses:
+        201:
+          description: Product has been created successfully and the new fa-id of the product is returned.
+          schema:
+            type: string
+            format: uuid
+             
+  /product/findByGtin:
+    get:
+      tags:
+        - product
+      summary: Find product by gtin.
+      description: TODO
+      operationId: findProductByGtin
+      produces:
+      - application/json 
+      parameters:
+      - in: query
+        name: gtin
+        description: TODO
+        required: true
+        type: string
+      responses:
+        200:
+          description: The found product.
+          schema:
+            $ref: "#/definitions/Product"
+        404:
+          description: Not found.
+          
+  /prediction:
+    get:
+      tags:
+        - workflow
+      summary: Get a specific prediction result.
+      operationId: getPredictionResult
+      parameters:
+      - in: query
+        name: prediction-id
+        description: TODO
+        type: string
+        format: uuid
+      responses:
+        200:
+          description: List of predictions.
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Prediction"
+
+  /workflow:
+    post:
+      tags:
+        - workflow
+      summary: Creates/adds a new workflow.
+      description: TODO
+      operationId: createWorkflow
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: workflow
+        description: TODO
+        schema:
+          $ref: "#/definitions/Workflow" 
+      responses:
+        201:
+          description: Workflow has been created successfully and the new fa-id of the workflow is returned.
+          schema:
+            type: string
+            format: uuid      
+
+  /workflow/{workflow-id}:
+    get:
+      tags:
+        - workflow
+      summary: Get the workflow an id.
+      description: TODO
+      operationId: getWorkflowById
+      produces:
+        - application/json
+      parameters:
+        - name: workflow-id
+          in: path
+          required: true
+          type: string
+          format: uuid
+      responses:
+        200:
+          description: The workflow.    
+          schema:
+            $ref: "#/definitions/Workflow"
+
+  /workflow/training:
+    get:
+      tags:
+        - workflow
+      summary: Finds workflows by some key words or return all workflows suitable for training models.
+      description: 'Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
+      operationId: findTrainingWorkflows
+      produces:
+        - application/json
+      parameters:
+        - name: keywords
+          in: query
+          description: Keywords to search for
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      responses:
+        200:
+          description: successful search with a list of found workflow-ids
+          schema:
+            type: array
+            items:
+              type: string
+              format: uuid
+        400:
+          description: Invalid search query value    
+     
+  /workflow/training/job:
+    post:
+      tags:
+        - workflow
+      summary: Starts creating a model for a set of fingerprints.
+      operationId: createTrainingJob
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: workflow-id
+        description: TODO
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: fingerprintset-id
+        description: TODO
+        required: true
+        type: string
+        format: uuid
+      responses:
+        200:
+          description: The model training job.
+          schema:
+            $ref: "#/definitions/TrainingJob"
+            
+  /workflow/training/job/{job-id}:
+    get:
+      tags:
+        - workflow
+      summary: Lets one to ask for the status of a particular job.
+      operationId: getTrainingJob
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: job-id
+        description: TODO
+        required: true
+        type: string
+        format: uuid
+      responses:
+        200:
+          description: The training job.
+          schema:
+            $ref: "#/definitions/TrainingJob"
+ 
+  /workflow/prediction:
+    get:
+      tags:
+        - workflow
+      summary: Finds workflows by some key words or return all workflows suitable for prediction.
+      description: 'Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
+      operationId: findPredictionWorkflows
+      produces:
+        - application/json
+      parameters:
+        - name: keywords
+          in: query
+          description: Keywords to search for
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      responses:
+        200:
+          description: successful search with a list of found workflow-ids
+          schema:
+            type: array
+            items:
+              type: string
+              format: uuid
+        400:
+          description: Invalid search query value    
+ 
+  /workflow/prediction/job:
+    post:
+      tags:
+        - workflow
+      summary: Starts a prediction for a fingerprint.
+      operationId: createPredictionJob
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: workflow-id
+        description: TODO
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: fingerprint-id
+        description: TODO
+        required: true
+        type: string
+        format: uuid
+      responses:
+        200:
+          description: The prediction job.
+          schema:
+            $ref: "#/definitions/PredictionJob"  
+
+  /workflow/prediction/job/{job-id}:
+    get:
+      tags:
+        - workflow
+      summary: Lets one to ask for the status of a particular job.
+      operationId: getPredictionJob
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: job-id
+        description: TODO
+        required: true
+        type: string
+        format: uuid
+      responses:
+        200:
+          description: The prediction job.
+          schema:
+            $ref: "#/definitions/PredictionJob"
+       
+    
+definitions:
+  SOP:
+    type: object
+    properties:
+      fa-id:
+        description: A global id within the FoodAuthent-system.
+        type: string
+        format: uuid
+        example: ""
+      file-link:
+        description: The URL for downloading the actual SOP-file.
+        type: string
+      name:
+        description: A short SOP name
+        type: string
+      description:
+        description: A short description of the sop
+        type: string
+      product-id:
+        description: A reference to a product this sop is made for.
+        type: string
+        format: uuid
+        example: ""
+        
+  MetadataEntries:
+    description: One or more metadata entries (key-value-pair)
+    type: object
+    additionalProperties:
+      type: string
+    example:
+      key: value      
+
+  Fingerprint:
+    description: A fingerprint object referencing metadata and raw data.
+    type: object
+    properties:
+      fa-id:
+        description: A global id within the FoodAuthent-system.
+        type: string
+        format: uuid
+        example: ""
+      data:
+        $ref: "#/definitions/FingerprintRawData"
+      metadata:
+        $ref: "#/definitions/FingerprintMetadata"
+        
+  FingerprintRawData:
+    description: The fingerprint/sample raw data.
+    type: object
+    required:
+      - parent-id
+      - data
+    properties:
+      parent-id:
+        description: The ID of the fingerprint (parent) object.
+        type: string
+        format: uuid
+      data:
+        type: string
+        format: binary        
+        
+  FingerprintMetadata:
+    description:  The fingerprint/sample metadata including, e.g., the meassurment meta data such as device info, processing info, etc.
+    type: object
+    properties:
+      parent-id:
+        description: The ID of the fingerprint (parent) object.
+        type: string
+        format: uuid
+        example: ""
+    additionalProperties:
+      type: string
+    example:
+      key: value
+        
+  FingerprintSet:
+    description: A set of fingerprints with its own id.
+    type: object
+    properties:
+      fa-id:
+        description: A global id within the FoodAuthent-system.
+        type: string
+        format: uuid
+        example: "" 
+      product-id:
+        description: The fa-id of the product all fingerprints are associated with.
+        type: string
+        format: uuid
+        example: ""
+      fingerprints:
+        description: The fingerprints.
+        type: array
+        items:
+          $ref: "#/definitions/Fingerprint"
+      name:
+        description: A human-readable name of the fingerprint set.
+        type: string
+ 
+  Product: 
+    description: Global product metadata, e.g., country of origin, etc. There can be multiple fingerprints for one product.
+    type: object
+    properties:
+      fa-id:
+        description: A global id within the FoodAuthent-system.
+        type: string
+        format: uuid
+        example: ""
+      gtin:
+        type: string
+      brand:
+        type: string
+        
+  PredictionJob:
+    description: Represents prediction job.
+    type: object
+    properties:
+      fa-id:
+        description: A global id within the FoodAuthent-system.
+        type: string
+        format: uuid
+        example: ""
+      worklfow-id:
+        type: string
+        format: uuid
+        example: ""
+      fingerprint-id:
+        type: string
+        format: uuid
+        example: ""
+      prediction-id:
+        description: The id of the prediction if the job has completed successfully.
+        type: string
+        format: uuid
+        example: ""
+      status:
+        type: string
+        enum: [running, success, failed]
+  
+  Prediction:
+    type: object
+    properties:
+     fa-id:
+        description: A global id within the FoodAuthent-system.
+        type: string
+        format: uuid
+        example: ""
+     confidence:
+        description: The confidence for the prediction result.
+        type: number
+        format: float
+        maximum: 1
+        minimum: 0
+     workflow-id:
+        type: string
+        format: uuid
+        example: ""
+     fingerprint-id:
+        type: string
+        format: uuid
+        example: ""
+        
+  TrainingJob:
+    description: Represents model training job.
+    type: object
+    properties:
+      fa-id:
+        description: A global id within the FoodAuthent-system.
+        type: string
+        format: uuid
+        example: ""
+      worklfow-id:
+        type: string
+        format: uuid
+        example: ""
+      fingerprintset-id:
+        type: string
+        format: uuid
+        example: ""
+      prediction-workflow-id:
+        description: id of the newly created workflow that can be used to use the trained model for prediction
+        type: string
+        format: uuid 
+        example: ""
+      status:
+        type: string
+        enum: [running, success, failed]
+    
+        
+  Tag:
+    description: A tag/label for objects.
+    type: object
+    properties:
+        fa-id:
+         description: A global id within the FoodAuthent-system.
+         type: string
+         format: uuid
+         example: ""
+        name:
+          description: A human-readable name
+          type: string
+        description:
+          description: A more verbose description.
+          type: string
+        type:
+          description: The type of the tag, e.g. whether it's a tag for a workflow, a model or a fingerprint.
+          type: string
+          enum: [workflow, model, fingerprint, sop]
+
+  WorkflowInput:
+      type: object
+      properties:
+        fa-id:
+         description: A global id within the FoodAuthent-system.
+         type: string
+         format: uuid
+         example: ""
+        id:
+          description: an identifier for the input
+          type: string
+        required:
+          description: whether the input is required
+          type: boolean
+        type:
+          description: the input type
+          type: string
+          enum: [string, integer, model, bruker_file, processed_bruker_file]
+
+  WorkflowOutput:
+      type: object
+      properties:
+        fa-id:
+         description: A global id within the FoodAuthent-system.
+         type: string
+         format: uuid
+         example: ""
+        required:
+          description: Whether the output is required.
+          type: boolean
+        type:
+          description: The outputs type.
+          type: string
+          enum: [string, integer, model, prediction]
+          
+  Workflow:
+    type: "object"
+    description: A workflow for a certain task.
+    properties:
+      fa-id:
+        description: A global id within the FoodAuthent-system.
+        type: string
+        format: uuid
+        example: ""
+      name:
+        description: A name for the workflow.
+        type: string
+      description:
+        description: A more verbose description of the workflow.
+        type: string
+      author:
+        description: The authors name (TODO - could reference a user in the future).
+        type: string
+      date:
+        description: The creation date.
+        type: string
+        format: date
+      version:
+        description: The workflow's version.
+        type: integer
+      representation:
+        description: The workflow representation, e.g. represented by a scripting language, cwl or a KNIME-workflow.
+        type: string
+        enum: [cwl, r, python, knime]
+      type:
+        description: The type of the workflow, e.g. a generic one, a model etc. The type might also determine the what inputs/outputs to be expected.
+        type: string
+        enum: [prediction, training, processing]
+      file-link:
+        description: Link to the actual workflow object file.
+        type: string 
+      inputs:
+        description: The inputs of the workflow, TODO - should maybe be a map.
+        type: array
+        items:
+          $ref: "#/definitions/WorkflowInput" 
+      outputs:
+        description: The outputs of the workflow, TODO - should maybe be a map.
+        type: array
+        items:
+          $ref: "#/definitions/WorkflowOutput"
+      tags:
+        description: Descriptive tags/annotations for the workflow.
+        type: array
+        items:
+          $ref: "#/definitions/Tag"
+      

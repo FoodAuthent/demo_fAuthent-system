@@ -19,22 +19,40 @@ public class ResourceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		final String uri = req.getRequestURI();
 		final String requestedResource = uri.substring(uri.lastIndexOf("/") + 1);
-		final URL resourceUrl = getClass().getResource(
-				"/META-INF/resources/" + requestedResource + (requestedResource.endsWith(".png") ? "" : ".gz"));
-		final String acceptEncoding = req.getHeader("Accept-Encoding");
-		final boolean clientSupportsGzip = acceptEncoding != null && acceptEncoding.toLowerCase().contains("gzip");
+		final URL resourceUrl = findResource(requestedResource);
 		if (resourceUrl != null) {
-			if (requestedResource.endsWith(".png") || clientSupportsGzip) {
-				if (!requestedResource.endsWith(".png")) {
+			if (isGzipResource(resourceUrl)) {
+				if (clientSupportsGzip(req)) {
 					resp.setHeader("Content-Encoding", "gzip");
+					ByteStreams.copy(resourceUrl.openStream(), resp.getOutputStream());
+				} else {
+					ByteStreams.copy(new GZIPInputStream(resourceUrl.openStream()), resp.getOutputStream());
 				}
-				ByteStreams.copy(resourceUrl.openStream(), resp.getOutputStream());
 			} else {
-				ByteStreams.copy(new GZIPInputStream(resourceUrl.openStream()), resp.getOutputStream());
+				ByteStreams.copy(resourceUrl.openStream(), resp.getOutputStream());
 			}
 		} else {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
 	}
 
+	private final URL findResource(final String requestedResource) {
+		final String resource = String.join("", "/META-INF/resources/", requestedResource);
+		URL url = getClass().getResource(resource);
+		// use gzip resource if not found
+		if (url == null) {
+			url = getClass().getResource(String.join("", resource, ".gz"));
+		}
+		return url;
+	}
+
+	private final boolean isGzipResource(URL url) {
+		final String resource = url.toExternalForm();
+		return resource.endsWith(".gz");
+	}
+
+	private final boolean clientSupportsGzip(final HttpServletRequest req) {
+		final String acceptEncoding = req.getHeader("Accept-Encoding");
+		return acceptEncoding != null && acceptEncoding.toLowerCase().contains("gzip");
+	}
 }
