@@ -160,5 +160,6 @@
 		<module>foodauthent-api</module>
 		<module>foodauthent-api-internal</module>
 		<module>foodauthent-rest</module>
+		<module>foodauthent-swaggerui</module>
 	</modules>
 </project>
