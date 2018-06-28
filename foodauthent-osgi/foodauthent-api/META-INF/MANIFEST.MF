@@ -14,3 +14,4 @@ Import-Package: org.foodauthent.api.internal.exeption,
  org.foodauthent.internal.api.persistence,
  org.foodauthent.model,
  org.slf4j;version="1.7.10"
+Bundle-ClassPath: .

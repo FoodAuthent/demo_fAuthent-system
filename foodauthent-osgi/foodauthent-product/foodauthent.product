@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product uid="org.foodauthent.runtime" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <programArgs>-consoleLog -console
+      </programArgs>
+      <vmArgs>-Xms128m -Xmx2g -Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dorg.osgi.service.http.port=9090 -Dorg.eclipse.equinox.http.jetty.http.host=0.0.0.0 -Dosgi.console=9023
+      </vmArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
+   </launcherArgs>
+
+   <windowImages/>
+
+   <launcher name="foodauthent-api">
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+   <vm>
+      <macos include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</macos>
+   </vm>
+
+   <plugins>
+   </plugins>
+
+   <features>
+      <feature id="org.foodauthent.feature" version="1.0.0.qualifier"/>
+      <feature id="org.eclipse.core.runtime.feature" version="1.2.2.v20180210-1608"/>
+      <feature id="org.eclipse.equinox.compendium.sdk" version="3.13.1.v20170811-1407"/>
+      <feature id="org.eclipse.equinox.core.feature" version="1.4.2.v20180210-1608"/>
+      <feature id="org.eclipse.equinox.executable" version="3.7.2.v20171108-1834"/>
+      <feature id="org.eclipse.equinox.server.core" version="1.5.3.v20180210-1608"/>
+      <feature id="org.eclipse.equinox.server.jetty" version="1.4.4.v20180322-2228"/>
+   </features>
+
+   <configurations>
+      <plugin id="com.eclipsesource.jaxrs.publisher" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.cm" autoStart="true" startLevel="3" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="1" />
+      <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.http.jetty" autoStart="true" startLevel="3" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+      <plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1" />
+      <plugin id="org.foodauthent.rest" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.swaggerui" autoStart="true" startLevel="0" />
+   </configurations>
+
+</product>

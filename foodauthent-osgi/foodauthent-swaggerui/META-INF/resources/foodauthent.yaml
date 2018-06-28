@@ -22,7 +22,8 @@ tags:
 - name: tag
   description: All endpoints to deal with tags, i.e. query, delete, add, ...
 schemes:
-- "http"
+- https
+- http
 paths:
   /sopfile/{sop-id}:
     get:
