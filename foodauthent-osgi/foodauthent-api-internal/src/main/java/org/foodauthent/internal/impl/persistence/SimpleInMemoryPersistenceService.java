@@ -115,14 +115,18 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T extends FaModel> T getByUUID(final UUID uuid) throws NoSuchElementException {
-	try {
-	    final long entityId = idMapper.getPersistenceId(uuid);
-	    return (T) entities.get(entityId);
-	} catch (final NoSuchIDException e) {
-	    throw new NoSuchElementException(e.getLocalizedMessage());
-	}
+    public <T extends FaModel> T getFaModelByUUID(final UUID uuid) throws NoSuchElementException {
+    	return getByUUID(uuid);
     }
+    
+	private <T> T getByUUID(final UUID uuid) {
+		try {
+			final long entityId = idMapper.getPersistenceId(uuid);
+			return (T) entities.get(entityId);
+		} catch (final NoSuchIDException e) {
+			throw new NoSuchElementException(e.getLocalizedMessage());
+		}
+	}
 
     /**
      * Returns the last used entity ID.
@@ -135,23 +139,27 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 
     @Override
     public long save(final Blob blob) {
-	return save((PersistenceIdProvider) blob);
+	return save(blob, blob.getFaId());
     }
 
     @Override
     public long save(final FaModel entity) {
-	final long currentId = save((PersistenceIdProvider) entity);
-	idMapper.addMapping(entity.getFaId(), entity.getPersistenceId());
-	return currentId;
+	return save(entity, entity.getFaId());
     }
-
-    public long save(final PersistenceIdProvider entity) {
+    
+    private long save(final PersistenceIdProvider entity, UUID faId) {
 	final long currentId = entityIdCounter++;
 	final Object oldVal = entities.put(currentId, entity);
 	if (oldVal != null && logger.isWarnEnabled()) {
 	    logger.warn(oldVal + " replaced");
 	}
 	entity.setPersisenceId(currentId);
+	idMapper.addMapping(faId, entity.getPersistenceId());
 	return currentId;
     }
+
+	@Override
+	public Blob getBlobByUUID(UUID uuid) {
+		return getByUUID(uuid);
+	}
 }

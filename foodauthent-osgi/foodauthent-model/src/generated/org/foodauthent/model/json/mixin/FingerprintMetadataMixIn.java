@@ -41,6 +41,9 @@ public interface FingerprintMetadataMixIn {
     @JsonIgnore
     public String getTypeID();
 
+    @JsonProperty("fa-id")
+    public java.util.UUID getFaId();
+    
     @JsonProperty("parent-id")
     public java.util.UUID getParentId();
     
@@ -63,6 +66,9 @@ public interface FingerprintMetadataMixIn {
     
         public FingerprintMetadataMixIn build();
     
+        @JsonProperty("fa-id")
+        public FingerprintMetadataMixInBuilder setFaId(final java.util.UUID faId);
+        
         @JsonProperty("parent-id")
         public FingerprintMetadataMixInBuilder setParentId(final java.util.UUID parentId);
         

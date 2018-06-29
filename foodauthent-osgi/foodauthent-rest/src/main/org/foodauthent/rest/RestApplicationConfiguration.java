@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.foodauthent.rest.json.JacksonJSONReader;
 import org.foodauthent.rest.json.JacksonJSONWriter;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ServerProperties;
 
 import com.eclipsesource.jaxrs.publisher.ApplicationConfiguration;
@@ -25,6 +26,7 @@ public class RestApplicationConfiguration implements ApplicationConfiguration {
 		properties.put(ServerProperties.PROVIDER_CLASSNAMES, getProviderClassNames());
 		// Makes sure that the writer is used by somehow changing the order of providers
 		properties.put("jersey.config.workers.legacyOrdering", true);
+		
 		return properties;
 	}
 	
@@ -32,6 +34,7 @@ public class RestApplicationConfiguration implements ApplicationConfiguration {
         List<Class<?>> providers = new ArrayList<Class<?>>();
         providers.add(JacksonJSONReader.class);
         providers.add(JacksonJSONWriter.class);
+        providers.add(MultiPartFeature.class);
         return providers;
     }
     

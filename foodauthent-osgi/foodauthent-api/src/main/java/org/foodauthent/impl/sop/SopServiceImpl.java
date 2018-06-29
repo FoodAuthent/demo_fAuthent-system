@@ -43,7 +43,7 @@ public class SopServiceImpl implements SopService {
 
     @Override
     public byte[] getSOPFile(final UUID sopId) {
-	final SOP sop = persistenceService.getByUUID(sopId);
+	final SOP sop = persistenceService.getFaModelByUUID(sopId);
 	if (logger.isWarnEnabled()) {
 	    logger.warn("NOT IMPLEMENTED (Got sop " + sop + ")");
 	}
@@ -52,7 +52,7 @@ public class SopServiceImpl implements SopService {
 
     @Override
     public SOP getSOPById(final UUID sopId) {
-	return persistenceService.getByUUID(sopId);
+	return persistenceService.getFaModelByUUID(sopId);
     }
 
 }

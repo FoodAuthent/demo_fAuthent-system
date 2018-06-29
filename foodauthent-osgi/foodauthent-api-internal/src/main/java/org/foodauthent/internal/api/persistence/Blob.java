@@ -1,5 +1,10 @@
 package org.foodauthent.internal.api.persistence;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.UUID;
+
 import org.foodauthent.model.PersistenceIdProvider;
 
 /**
@@ -12,17 +17,25 @@ public class Blob implements PersistenceIdProvider {
     private final DataMetaData metadata;
 
     private byte[] data;
-
+    
     private long persistenceId;
 
-    public Blob(final DataMetaData metadata) {
-	this(metadata, null);
+	private UUID faId;
+
+    public Blob(UUID faId, final DataMetaData metadata) {
+	this(faId, metadata, null);
+	this.faId = faId;
     }
 
-    public Blob(final DataMetaData metadata, final byte[] data) {
+    public Blob(UUID faId, final DataMetaData metadata, final byte[] data) {
 	super();
+	this.faId = faId;
 	this.metadata = metadata;
 	this.data = data;
+    }
+    
+    public UUID getFaId() {
+    	return faId;
     }
 
     public byte[] getData() {

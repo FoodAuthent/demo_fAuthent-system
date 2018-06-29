@@ -7,8 +7,14 @@ package org.foodauthent.internal.api.persistence;
  */
 public class DataMetaData {
 
-    public DataMetaData() {
+    private final String fileName;
 
+	public DataMetaData(String fileName) {
+		this.fileName = fileName;
     }
+	
+	public String getFileName() {
+		return fileName;
+	}
 
 }

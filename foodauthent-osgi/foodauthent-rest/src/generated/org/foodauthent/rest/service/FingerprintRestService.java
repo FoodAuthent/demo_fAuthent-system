@@ -38,7 +38,9 @@ public class FingerprintRestService{
     @POST
     @Path("/fingerprint/addrawdata/{fingerprint-id}")
     @Consumes({ "application/json" })
-    public Response addFingerprintRawData(@PathParam("fingerprint-id") java.util.UUID fingerprintId, byte[] data) {
+    public Response addFingerprintRawData(@PathParam("fingerprint-id") java.util.UUID fingerprintId
+, byte[] data
+) {
 	    service.addFingerprintRawData(fingerprintId, data);    
     	return Response.ok().build();
     }
@@ -53,7 +55,9 @@ public class FingerprintRestService{
     @POST
     @Path("/fingerprint/addmetadata/{fingerprint-id}")
     @Consumes({ "application/json" })
-    public Response addMetaData(@PathParam("fingerprint-id") java.util.UUID fingerprintId, MetadataEntries metadata) {
+    public Response addMetaData(@PathParam("fingerprint-id") java.util.UUID fingerprintId
+, MetadataEntries metadata
+) {
 	    service.addMetaData(fingerprintId, metadata);    
     	return Response.ok().build();
     }
@@ -68,7 +72,8 @@ public class FingerprintRestService{
     @Path("/fingerprints")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    public Response createFingerprintSet(FingerprintSet fingerprintSet) {
+    public Response createFingerprintSet(FingerprintSet fingerprintSet
+) {
 	    Object res = service.createFingerprintSet(fingerprintSet);    
 	   	return Response.ok(res).build();
     }
@@ -82,7 +87,8 @@ public class FingerprintRestService{
     @GET
     @Path("/fingerprints")
     @Produces({ "application/json" })
-    public Response findFingerprintSetByKeyword(@QueryParam("keywords")java.util.List<String> keywords) {
+    public Response findFingerprintSetByKeyword(@QueryParam("keywords")java.util.List<String> keywords
+) {
 	    Object res = service.findFingerprintSetByKeyword(keywords);    
 	   	return Response.ok(res).build();
     }
@@ -96,7 +102,8 @@ public class FingerprintRestService{
     @GET
     @Path("/fingerprintset/{fingerprintset-id}")
     @Produces({ "application/json" })
-    public Response getFingerprintSetById(@PathParam("fingerprintset-id") java.util.UUID fingerprintsetId) {
+    public Response getFingerprintSetById(@PathParam("fingerprintset-id") java.util.UUID fingerprintsetId
+) {
 	    Object res = service.getFingerprintSetById(fingerprintsetId);    
 	   	return Response.ok(res).build();
     }

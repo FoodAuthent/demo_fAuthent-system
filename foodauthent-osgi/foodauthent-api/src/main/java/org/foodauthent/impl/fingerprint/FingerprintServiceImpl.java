@@ -35,7 +35,7 @@ public class FingerprintServiceImpl implements FingerprintService {
 
     @Override
     public FingerprintSet getFingerprintSetById(UUID fingerprintsetId) {
-	return persistenceService.getByUUID(fingerprintsetId);
+	return persistenceService.getFaModelByUUID(fingerprintsetId);
     }
 
     @Override

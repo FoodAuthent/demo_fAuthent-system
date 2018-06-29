@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 
 
@@ -20,17 +19,20 @@ import java.util.UUID;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class MetadataEntries extends FaModel {
+public class MetadataEntries  extends FaModel {
 
 
+  private java.util.UUID faId;
   
   public String getTypeID() {
     return "MetadataEntries";
   }
   
   private MetadataEntries(MetadataEntriesBuilder builder) {
-    super();
     
+    faId = immutable(builder.faId);
+    
+    faId = generateFaIdIfMissing(faId);
   }
   
    /**
@@ -48,10 +50,14 @@ public class MetadataEntries extends FaModel {
             return false;
         }
         MetadataEntries ent = (MetadataEntries)o;
-        return false;
+        return Objects.equals(faId, ent.faId);
     }
 
 
+  public java.util.UUID getFaId() {
+        return faId;
+    }
+    
   
  	/**
   	 * @return a newly created builder
@@ -63,9 +69,15 @@ public class MetadataEntries extends FaModel {
     public static class MetadataEntriesBuilder {
     
         private MetadataEntriesBuilder(){
-            super();
+            
         }
     
+        private java.util.UUID faId = null;
+
+        public MetadataEntriesBuilder setFaId(java.util.UUID faId) {
+             this.faId = faId;
+             return this;
+        }
 
         
         public MetadataEntries build() {
@@ -93,12 +105,6 @@ public class MetadataEntries extends FaModel {
         } else {
             return obj;
         }
-    }
-
-    @Override
-    public UUID getFaId() {
-	// TODO Auto-generated method stub
-	return null;
     }
     
 

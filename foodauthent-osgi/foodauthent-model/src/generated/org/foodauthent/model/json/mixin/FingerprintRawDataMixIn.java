@@ -41,6 +41,9 @@ public interface FingerprintRawDataMixIn {
     @JsonIgnore
     public String getTypeID();
 
+    @JsonProperty("fa-id")
+    public java.util.UUID getFaId();
+    
     @JsonProperty("parent-id")
     public java.util.UUID getParentId();
     
@@ -66,6 +69,9 @@ public interface FingerprintRawDataMixIn {
     
         public FingerprintRawDataMixIn build();
     
+        @JsonProperty("fa-id")
+        public FingerprintRawDataMixInBuilder setFaId(final java.util.UUID faId);
+        
         @JsonProperty("parent-id")
         public FingerprintRawDataMixInBuilder setParentId(final java.util.UUID parentId);
         

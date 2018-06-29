@@ -40,8 +40,10 @@ public interface PersistenceService {
      */
     Product findProductByGtin(String gtin);
 
-    <T extends FaModel> T getByUUID(UUID uuid);
+    <T extends FaModel> T getFaModelByUUID(UUID uuid);
 
     <T extends FaModel> List<T> findByKeywords(Collection<String> keywords, Class<T> modelType);
+
+    Blob getBlobByUUID(UUID uuid);
 
 }

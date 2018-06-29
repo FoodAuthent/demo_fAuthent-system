@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 
 
@@ -23,6 +22,7 @@ import java.util.UUID;
 public class FingerprintRawData  extends FaModel {
 
 
+  private java.util.UUID faId;
   private java.util.UUID parentId;
   private byte[] data;
   
@@ -32,6 +32,7 @@ public class FingerprintRawData  extends FaModel {
   
   private FingerprintRawData(FingerprintRawDataBuilder builder) {
     
+    faId = immutable(builder.faId);
     if(builder.parentId == null) {
         throw new IllegalArgumentException("parentId must not be null.");
     }
@@ -41,6 +42,7 @@ public class FingerprintRawData  extends FaModel {
     }
     data = immutable(builder.data);
     
+    faId = generateFaIdIfMissing(faId);
   }
   
    /**
@@ -58,10 +60,14 @@ public class FingerprintRawData  extends FaModel {
             return false;
         }
         FingerprintRawData ent = (FingerprintRawData)o;
-        return Objects.equals(parentId, ent.parentId) && Objects.equals(data, ent.data);
+        return Objects.equals(faId, ent.faId) && Objects.equals(parentId, ent.parentId) && Objects.equals(data, ent.data);
     }
 
 
+  public java.util.UUID getFaId() {
+        return faId;
+    }
+    
   public java.util.UUID getParentId() {
         return parentId;
     }
@@ -84,8 +90,14 @@ public class FingerprintRawData  extends FaModel {
             
         }
     
+        private java.util.UUID faId = null;
         private java.util.UUID parentId = null;
         private byte[] data = null;
+
+        public FingerprintRawDataBuilder setFaId(java.util.UUID faId) {
+             this.faId = faId;
+             return this;
+        }
 
         public FingerprintRawDataBuilder setParentId(java.util.UUID parentId) {
              if(parentId == null) {
@@ -129,12 +141,6 @@ public class FingerprintRawData  extends FaModel {
         } else {
             return obj;
         }
-    }
-
-    @Override
-    public UUID getFaId() {
-	// TODO Auto-generated method stub
-	return null;
     }
     
 

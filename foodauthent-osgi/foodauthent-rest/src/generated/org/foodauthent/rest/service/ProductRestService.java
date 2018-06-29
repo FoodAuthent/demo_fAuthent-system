@@ -36,7 +36,8 @@ public class ProductRestService{
     @POST
     @Path("/product")
     @Consumes({ "application/json" })
-    public Response createProduct(Product product) {
+    public Response createProduct(Product product
+) {
 	    Object res = service.createProduct(product);    
 	   	return Response.ok(res).build();
     }
@@ -50,7 +51,8 @@ public class ProductRestService{
     @GET
     @Path("/product/findByGtin")
     @Produces({ "application/json" })
-    public Response findProductByGtin(@QueryParam("gtin")String gtin) {
+    public Response findProductByGtin(@QueryParam("gtin")String gtin
+) {
 	    Object res = service.findProductByGtin(gtin);    
 	   	return Response.ok(res).build();
     }

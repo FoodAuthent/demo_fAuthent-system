@@ -1,1 +1,1 @@
-{{#isFormParam}}{{#notFile}}{{{dataType}}} {{paramName}}{{/notFile}}{{#isFile}}InputStream {{paramName}}InputStream, FormDataContentDisposition {{paramName}}Detail{{/isFile}}{{/isFormParam}}
+{{#isFormParam}}{{#notFile}}{{{dataType}}} {{paramName}}{{/notFile}}{{#isFile}}java.io.InputStream {{paramName}}, org.glassfish.jersey.media.multipart.FormDataContentDisposition {{paramName}}Detail{{/isFile}}{{/isFormParam}}

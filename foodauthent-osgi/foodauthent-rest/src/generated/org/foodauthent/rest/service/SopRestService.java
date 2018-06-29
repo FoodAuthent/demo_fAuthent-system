@@ -37,7 +37,8 @@ public class SopRestService{
     @Path("/sop")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    public Response createNewSOP(SOP sop) {
+    public Response createNewSOP(SOP sop
+) {
 	    Object res = service.createNewSOP(sop);    
 	   	return Response.ok(res).build();
     }
@@ -51,7 +52,8 @@ public class SopRestService{
     @GET
     @Path("/sop")
     @Produces({ "application/json" })
-    public Response findSOPByKeyword(@QueryParam("keywords")java.util.List<String> keywords) {
+    public Response findSOPByKeyword(@QueryParam("keywords")java.util.List<String> keywords
+) {
 	    Object res = service.findSOPByKeyword(keywords);    
 	   	return Response.ok(res).build();
     }
@@ -65,7 +67,8 @@ public class SopRestService{
     @GET
     @Path("/sop/{sop-id}")
     @Produces({ "application/json" })
-    public Response getSOPById(@PathParam("sop-id") java.util.UUID sopId) {
+    public Response getSOPById(@PathParam("sop-id") java.util.UUID sopId
+) {
 	    Object res = service.getSOPById(sopId);    
 	   	return Response.ok(res).build();
     }
@@ -79,7 +82,8 @@ public class SopRestService{
     @GET
     @Path("/sopfile/{sop-id}")
     @Produces({ "application/pdf" })
-    public Response getSOPFile(@PathParam("sop-id") java.util.UUID sopId) {
+    public Response getSOPFile(@PathParam("sop-id") java.util.UUID sopId
+) {
 	    Object res = service.getSOPFile(sopId);    
 	   	return Response.ok(res).build();
     }

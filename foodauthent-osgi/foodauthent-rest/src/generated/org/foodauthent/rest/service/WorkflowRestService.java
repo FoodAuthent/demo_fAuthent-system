@@ -6,6 +6,7 @@ package org.foodauthent.rest.service;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
+import java.io.File;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.TrainingJob;
@@ -39,7 +40,9 @@ public class WorkflowRestService{
     @POST
     @Path("/workflow/prediction/job")
     @Produces({ "application/json" })
-    public Response createPredictionJob(@QueryParam("workflow-id")java.util.UUID workflowId, @QueryParam("fingerprint-id")java.util.UUID fingerprintId) {
+    public Response createPredictionJob(@QueryParam("workflow-id")java.util.UUID workflowId
+, @QueryParam("fingerprint-id")java.util.UUID fingerprintId
+) {
 	    Object res = service.createPredictionJob(workflowId, fingerprintId);    
 	   	return Response.ok(res).build();
     }
@@ -53,7 +56,9 @@ public class WorkflowRestService{
     @POST
     @Path("/workflow/training/job")
     @Produces({ "application/json" })
-    public Response createTrainingJob(@QueryParam("workflow-id")java.util.UUID workflowId, @QueryParam("fingerprintset-id")java.util.UUID fingerprintsetId) {
+    public Response createTrainingJob(@QueryParam("workflow-id")java.util.UUID workflowId
+, @QueryParam("fingerprintset-id")java.util.UUID fingerprintsetId
+) {
 	    Object res = service.createTrainingJob(workflowId, fingerprintsetId);    
 	   	return Response.ok(res).build();
     }
@@ -67,7 +72,8 @@ public class WorkflowRestService{
     @POST
     @Path("/workflow")
     @Consumes({ "application/json" })
-    public Response createWorkflow(Workflow workflow) {
+    public Response createWorkflow(Workflow workflow
+) {
 	    Object res = service.createWorkflow(workflow);    
 	   	return Response.ok(res).build();
     }
@@ -81,7 +87,8 @@ public class WorkflowRestService{
     @GET
     @Path("/workflow/prediction")
     @Produces({ "application/json" })
-    public Response findPredictionWorkflows(@QueryParam("keywords")java.util.List<String> keywords) {
+    public Response findPredictionWorkflows(@QueryParam("keywords")java.util.List<String> keywords
+) {
 	    Object res = service.findPredictionWorkflows(keywords);    
 	   	return Response.ok(res).build();
     }
@@ -95,7 +102,8 @@ public class WorkflowRestService{
     @GET
     @Path("/workflow/training")
     @Produces({ "application/json" })
-    public Response findTrainingWorkflows(@QueryParam("keywords")java.util.List<String> keywords) {
+    public Response findTrainingWorkflows(@QueryParam("keywords")java.util.List<String> keywords
+) {
 	    Object res = service.findTrainingWorkflows(keywords);    
 	   	return Response.ok(res).build();
     }
@@ -108,7 +116,8 @@ public class WorkflowRestService{
     @GET
     @Path("/workflow/prediction/job/{job-id}")
     @Produces({ "application/json" })
-    public Response getPredictionJob(@PathParam("job-id") java.util.UUID jobId) {
+    public Response getPredictionJob(@PathParam("job-id") java.util.UUID jobId
+) {
 	    Object res = service.getPredictionJob(jobId);    
 	   	return Response.ok(res).build();
     }
@@ -120,7 +129,8 @@ public class WorkflowRestService{
      */
     @GET
     @Path("/prediction")
-    public Response getPredictionResult(@QueryParam("prediction-id")java.util.UUID predictionId) {
+    public Response getPredictionResult(@QueryParam("prediction-id")java.util.UUID predictionId
+) {
 	    Object res = service.getPredictionResult(predictionId);    
 	   	return Response.ok(res).build();
     }
@@ -133,7 +143,8 @@ public class WorkflowRestService{
     @GET
     @Path("/workflow/training/job/{job-id}")
     @Produces({ "application/json" })
-    public Response getTrainingJob(@PathParam("job-id") java.util.UUID jobId) {
+    public Response getTrainingJob(@PathParam("job-id") java.util.UUID jobId
+) {
 	    Object res = service.getTrainingJob(jobId);    
 	   	return Response.ok(res).build();
     }
@@ -147,8 +158,28 @@ public class WorkflowRestService{
     @GET
     @Path("/workflow/{workflow-id}")
     @Produces({ "application/json" })
-    public Response getWorkflowById(@PathParam("workflow-id") java.util.UUID workflowId) {
+    public Response getWorkflowById(@PathParam("workflow-id") java.util.UUID workflowId
+) {
 	    Object res = service.getWorkflowById(workflowId);    
+	   	return Response.ok(res).build();
+    }
+
+    /**
+     * TODO
+     *
+     * @param workflowId 
+     * @param upfile The file to upload.
+     * @return the response
+     */
+    @PUT
+    @Path("/workflow/{workflow-id}/file")
+    @Consumes({ "multipart/form-data" })
+    public Response saveWorkflowFile(@PathParam("workflow-id") java.util.UUID workflowId
+, 
+            @org.glassfish.jersey.media.multipart.FormDataParam("upfile") java.io.InputStream upfile,
+            @org.glassfish.jersey.media.multipart.FormDataParam("upfile") org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail
+) {
+	    Object res = service.saveWorkflowFile(workflowId, upfile, upfileDetail);    
 	   	return Response.ok(res).build();
     }
 }

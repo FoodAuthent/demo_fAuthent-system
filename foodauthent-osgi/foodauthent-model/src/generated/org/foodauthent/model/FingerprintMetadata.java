@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 
 
@@ -20,9 +19,10 @@ import java.util.UUID;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class FingerprintMetadata extends FaModel {
+public class FingerprintMetadata  extends FaModel {
 
 
+  private java.util.UUID faId;
   private java.util.UUID parentId;
   
   public String getTypeID() {
@@ -30,9 +30,11 @@ public class FingerprintMetadata extends FaModel {
   }
   
   private FingerprintMetadata(FingerprintMetadataBuilder builder) {
-    super();
+    
+    faId = immutable(builder.faId);
     parentId = immutable(builder.parentId);
     
+    faId = generateFaIdIfMissing(faId);
   }
   
    /**
@@ -50,10 +52,14 @@ public class FingerprintMetadata extends FaModel {
             return false;
         }
         FingerprintMetadata ent = (FingerprintMetadata)o;
-        return Objects.equals(parentId, ent.parentId);
+        return Objects.equals(faId, ent.faId) && Objects.equals(parentId, ent.parentId);
     }
 
 
+  public java.util.UUID getFaId() {
+        return faId;
+    }
+    
   public java.util.UUID getParentId() {
         return parentId;
     }
@@ -69,10 +75,16 @@ public class FingerprintMetadata extends FaModel {
     public static class FingerprintMetadataBuilder {
     
         private FingerprintMetadataBuilder(){
-            super();
+            
         }
     
+        private java.util.UUID faId = null;
         private java.util.UUID parentId = null;
+
+        public FingerprintMetadataBuilder setFaId(java.util.UUID faId) {
+             this.faId = faId;
+             return this;
+        }
 
         public FingerprintMetadataBuilder setParentId(java.util.UUID parentId) {
              this.parentId = parentId;
@@ -105,12 +117,6 @@ public class FingerprintMetadata extends FaModel {
         } else {
             return obj;
         }
-    }
-
-    @Override
-    public UUID getFaId() {
-	// TODO Auto-generated method stub
-	return null;
     }
     
 

@@ -3,6 +3,7 @@
  */
 package org.foodauthent.api;
 
+import java.io.File;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.TrainingJob;
@@ -98,5 +99,15 @@ public interface WorkflowService {
      * @return the result
      */
     Workflow getWorkflowById(java.util.UUID workflowId);
+        
+    /**
+     * TODO
+     *
+     * @param workflowId 
+     * @param upfile The file to upload.
+     *
+     * @return the result
+     */
+    java.util.UUID saveWorkflowFile(java.util.UUID workflowId, java.io.InputStream upfile, org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail);
         
 }

@@ -9,6 +9,7 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:9090"
 basePath: "/v0/foodauthent"
 tags:
 - name: sop
@@ -359,6 +360,33 @@ paths:
           description: The workflow.    
           schema:
             $ref: "#/definitions/Workflow"
+            
+  /workflow/{workflow-id}/file:
+    put:
+      tags:
+        - workflow
+      summary: Uploads (and replaces) the file associated with the workflow of the given workflow-id. 
+      description: TODO
+      operationId: saveWorkflowFile
+      consumes:
+      - multipart/form-data
+      parameters:
+        - name: workflow-id
+          in: path
+          required: true
+          type: string
+          format: uuid
+        - name: upfile
+          in: formData
+          type: file
+          description: The file to upload.
+      responses:
+        200:
+          description: Workflow has been uploaded successfully.
+          schema:
+            type: string
+            format: uuid      
+
 
   /workflow/training:
     get:
@@ -542,8 +570,15 @@ definitions:
   MetadataEntries:
     description: One or more metadata entries (key-value-pair)
     type: object
-    additionalProperties:
-      type: string
+    properties:
+      fa-id:
+        description: A global id within the FoodAuthent-system.
+        type: string
+        format: uuid
+        example: ""
+      
+#    additionalProperties:
+#      type: string
     example:
       key: value      
 
@@ -568,6 +603,11 @@ definitions:
       - parent-id
       - data
     properties:
+      fa-id:
+        description: A global id within the FoodAuthent-system.
+        type: string
+        format: uuid
+        example: ""
       parent-id:
         description: The ID of the fingerprint (parent) object.
         type: string
@@ -580,13 +620,19 @@ definitions:
     description:  The fingerprint/sample metadata including, e.g., the meassurment meta data such as device info, processing info, etc.
     type: object
     properties:
+      fa-id:
+        description: A global id within the FoodAuthent-system.
+        type: string
+        format: uuid
+        example: ""
+      
       parent-id:
         description: The ID of the fingerprint (parent) object.
         type: string
         format: uuid
         example: ""
-    additionalProperties:
-      type: string
+#    additionalProperties:
+#      type: string
     example:
       key: value
         

@@ -41,6 +41,9 @@ public interface MetadataEntriesMixIn {
     @JsonIgnore
     public String getTypeID();
 
+    @JsonProperty("fa-id")
+    public java.util.UUID getFaId();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -60,6 +63,9 @@ public interface MetadataEntriesMixIn {
     
         public MetadataEntriesMixIn build();
     
+        @JsonProperty("fa-id")
+        public MetadataEntriesMixInBuilder setFaId(final java.util.UUID faId);
+        
     }
 
 

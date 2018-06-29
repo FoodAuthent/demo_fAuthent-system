@@ -56,7 +56,7 @@ public class {{classname}}{
     @Produces({ {{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}} })
 {{/hasProduces}}
     public Response {{nickname}}({{#allParams}}{{>rest/queryParams}}{{>rest/pathParams}}{{>rest/headerParams}}{{>rest/bodyParams}}{{>rest/formParams}}{{#hasMore}}, {{/hasMore}}{{/allParams}}) {
-	    {{#returnType}}Object res = {{/returnType}}service.{{nickname}}({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});    
+	    {{#returnType}}Object res = {{/returnType}}service.{{nickname}}({{>rest/paramNames}});    
 	  	{{#returnType}}
 	   	return Response.ok(res).build();
 	   	{{/returnType}}
