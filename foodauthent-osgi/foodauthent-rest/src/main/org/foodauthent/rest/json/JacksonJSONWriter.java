@@ -33,7 +33,7 @@ public class JacksonJSONWriter implements MessageBodyWriter<Object>, Feature {
 	@Override
 	public boolean isWriteable(final Class<?> type, final Type genericType, final Annotation[] annotations,
 			final MediaType mediaType) {
-		return true;
+		return mediaType.isCompatible(MediaType.APPLICATION_JSON_TYPE);
 	}
 
 	@Override
