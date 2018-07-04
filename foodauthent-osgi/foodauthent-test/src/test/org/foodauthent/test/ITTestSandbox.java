@@ -1,5 +1,7 @@
 package org.foodauthent.test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,13 +15,17 @@ import org.foodauthent.model.SOP;
 import org.foodauthent.model.Workflow;
 import org.foodauthent.rest.json.JacksonJSONReader;
 import org.foodauthent.rest.json.JacksonJSONWriter;
+import org.glassfish.jersey.media.multipart.MultiPart;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
+import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
 import org.junit.Test;
 
 public class ITTestSandbox {
 
 	@Test
-	public void test() {
-		Client client = ClientBuilder.newClient().register(JacksonJSONWriter.class).register(JacksonJSONReader.class);
+	public void test() throws FileNotFoundException {
+		Client client = ClientBuilder.newClient().register(JacksonJSONWriter.class).register(JacksonJSONReader.class)
+				.register(MultiPartFeature.class);
 		WebTarget wt = client.target("http://localhost:9090/v0/foodauthent");
 
 		SOP sop = SOP.builder().setName("sopname").setProductId(UUID.randomUUID()).setDescription("sop_desc").build();
@@ -29,9 +35,20 @@ public class ITTestSandbox {
 				.get(List.class);
 		SOP newSop = wt.path("sop/" + sopIds.get(0)).request(MediaType.APPLICATION_JSON).get(SOP.class);
 
+		// workflow upload and execution
 		Workflow wf = Workflow.builder().setName("name").build();
 		UUID wfId = wt.path("workflow").request(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(wf, MediaType.APPLICATION_JSON), UUID.class);
+
+		MultiPart multiPart = new MultiPart();
+		multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
+		
+		FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("/home/hornm/test.file"),
+				MediaType.APPLICATION_OCTET_STREAM_TYPE);
+		multiPart.bodyPart(filePart);
+
+		wt.path("workflow/" + wfId + "/file").request()
+				.put(Entity.entity(multiPart, multiPart.getMediaType()), UUID.class);
 	}
 
 }

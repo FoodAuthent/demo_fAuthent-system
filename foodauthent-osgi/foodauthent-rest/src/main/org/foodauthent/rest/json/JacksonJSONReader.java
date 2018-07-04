@@ -24,7 +24,7 @@ public class JacksonJSONReader implements MessageBodyReader<Object>, Feature {
 
 	@Override
 	public boolean isReadable(Class<?> arg0, Type arg1, Annotation[] arg2, MediaType arg3) {
-		return true;
+		return arg3.isCompatible(MediaType.APPLICATION_JSON_TYPE);
 	}
 
 	@Override
