@@ -12,7 +12,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 
-import org.foodauthent.model.FaModel;
 import org.foodauthent.model.json.ObjectMapperUtil;
 
 import com.fasterxml.jackson.core.JsonParser;
@@ -29,7 +28,7 @@ public class JacksonJSONReader implements MessageBodyReader<Object>, Feature {
 	}
 
 	@Override
-	public FaModel readFrom(final Class<Object> type, final Type genericType, final Annotation[] annotations,
+	public Object readFrom(final Class<Object> type, final Type genericType, final Annotation[] annotations,
 			final MediaType mediaType, final MultivaluedMap<String, String> httpHeaders, final InputStream entityStream)
 			throws IOException, WebApplicationException {
 		ObjectReader reader = mapper.readerFor(type);

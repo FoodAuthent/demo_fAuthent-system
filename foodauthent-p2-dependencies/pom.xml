@@ -9,7 +9,7 @@
 		<!-- Plugin Versions -->
 		<tycho.version>1.2.0</tycho.version>
 		<!-- p2 repositories -->
-		<equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a</equinox-oxygen-repo.url>
+		<equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Neon.1</equinox-oxygen-repo.url>
 		<p2-maven-repo.url>file:p2-maven/target/repository</p2-maven-repo.url>
 
 		<!-- use UTF-8 -->

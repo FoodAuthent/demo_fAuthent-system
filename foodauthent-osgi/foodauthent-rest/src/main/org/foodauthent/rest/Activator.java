@@ -6,7 +6,6 @@ import java.util.Hashtable;
 import java.util.List;
 
 import org.foodauthent.rest.service.ServiceUtil;
-import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;

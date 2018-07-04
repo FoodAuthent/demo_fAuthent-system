@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?><target name="FoodAuthent Equinox-Oxygen" sequenceNumber="29">
+<locations>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="org.knime.features.base.feature.group" version="3.5.4.v201806111433"/>
+<repository location="http://update.knime.org/analytics-platform/3.5/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="org.eclipse.core.runtime.feature.feature.group" version="1.1.201.v20160830-1617"/>
+<unit id="org.eclipse.equinox.compendium.sdk.feature.group" version="3.12.0.v20160815-1406"/>
+<unit id="org.eclipse.equinox.core.feature.feature.group" version="1.3.1.v20160829-1338"/>
+<unit id="org.eclipse.equinox.executable.feature.group" version="3.6.300.v20160525-1303"/>
+<unit id="org.eclipse.equinox.server.core.feature.group" version="1.4.1.v20160829-1338"/>
+<unit id="org.eclipse.equinox.server.jetty.feature.group" version="1.3.1.v20160829-1338"/>
+<unit id="org.foodauthent.dependencies.feature.feature.group" version="1.0.0.201807041308"/>
+<repository location="http://repository.foodauthent.net/p2/foodauthent-dependencies-snapshot/"/>
+</location>
+</locations>
+</target>
