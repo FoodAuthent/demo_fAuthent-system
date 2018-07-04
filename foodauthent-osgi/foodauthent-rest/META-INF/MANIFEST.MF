@@ -28,3 +28,4 @@ Import-Package: com.eclipsesource.jaxrs.publisher;version="5.3.1",
  org.osgi.service.http;version="1.2.1",
  org.slf4j;version="1.7.10"
 Bundle-Activator: org.foodauthent.rest.Activator
+Automatic-Module-Name: org.foodauthent.rest

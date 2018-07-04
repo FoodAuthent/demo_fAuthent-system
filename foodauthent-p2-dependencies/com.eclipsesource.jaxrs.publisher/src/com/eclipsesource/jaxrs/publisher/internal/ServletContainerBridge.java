@@ -57,6 +57,9 @@ public class ServletContainerBridge extends HttpServlet implements Runnable {
         }
       } catch( ServletException e ) {
         throw new RuntimeException( e );
+      } catch( IllegalStateException e ) {
+    	  e.printStackTrace();
+          throw new RuntimeException( e );
       } finally {
         Thread.currentThread().setContextClassLoader( original );
       }

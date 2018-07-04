@@ -7,10 +7,10 @@
 	<packaging>pom</packaging>
 	<properties>
 		<!-- Plugin Versions -->
-		<tycho.version>1.1.0</tycho.version>
+		<tycho.version>1.2.0</tycho.version>
 		<!-- p2 repositories -->
 		<equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a</equinox-oxygen-repo.url>
-		<orbit-repo.url>http://repository.foodauthent.net/p2/orbit-R20180330011457</orbit-repo.url>
+		<p2-maven-repo.url>file:p2-maven/target/repository</p2-maven-repo.url>
 
 		<!-- use UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,8 +23,8 @@
 			<layout>p2</layout>
 		</repository>
 		<repository>
-			<id>orbit-oxygen</id>
-			<url>${orbit-repo.url}</url>
+			<id>p2-maven</id>
+			<url>${p2-maven-repo.url}</url>
 			<layout>p2</layout>
 		</repository>
 	</repositories>
@@ -101,11 +101,6 @@
 		</pluginManagement>
 	</build>
 	<modules>
-		<module>javax.validation.api</module>
-		<module>com.fasterxml.jackson.datatype.jackson-datatype-jdk8</module>
-		<module>com.fasterxml.jackson.datatype.jackson-datatype-jsr310</module>
-		<module>org.jvnet.mimepull</module>
-		<module>org.glassfish.jersey.media.jersey-media-multipart</module>
 		<module>com.eclipsesource.jaxrs.publisher</module>
 		<module>com.eclipsesource.jaxrs.consumer</module>
 		<module>foodauthent-dependencies-feature</module>
