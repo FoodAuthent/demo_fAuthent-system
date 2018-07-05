@@ -89,7 +89,6 @@ public class Activator implements BundleActivator {
 	}
 
 	private void register() throws InvalidSyntaxException {
-		registration = context.registerService(JerseyReadyTracker.class, new JerseyReadyTrackerImpl(), null);
 		jaxRsConnector = new JAXRSConnector(context);
 		registerConfiguration(context);
 		connectorRegistration = context.registerService(JAXRSConnector.class.getName(), jaxRsConnector, null);
@@ -97,14 +96,15 @@ public class Activator implements BundleActivator {
 		openServletConfigurationTracker(context);
 		openApplicationConfigurationTracker(context);
 		openAllServiceTracker(context);
+		registration = context.registerService(JerseyReadyTracker.class, new JerseyReadyTrackerImpl(), null);
 	}
 
-	Stream<Bundle> jerseyBundles() {
+	private Stream<Bundle> jerseyBundles() {
 		return Arrays.stream(context.getBundles()).filter(b -> b.getSymbolicName().startsWith("org.glassfish.jersey")
 				&& b.getState() != Bundle.INSTALLED && b.getState() != Bundle.UNINSTALLED);
 	}
 
-	Stream<Bundle> hk2Bundles() {
+	private Stream<Bundle> hk2Bundles() {
 		return Stream.of(FrameworkUtil.getBundle(ServiceLoader.class));
 	}
 
