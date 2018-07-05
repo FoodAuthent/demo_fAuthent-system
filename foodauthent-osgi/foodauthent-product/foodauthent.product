@@ -32,12 +32,12 @@
 
    <features>
       <feature id="org.foodauthent.feature" version="1.0.0.qualifier"/>
-      <feature id="org.eclipse.core.runtime.feature" version="1.2.2.v20180210-1608"/>
-      <feature id="org.eclipse.equinox.compendium.sdk" version="3.13.1.v20170811-1407"/>
-      <feature id="org.eclipse.equinox.core.feature" version="1.4.2.v20180210-1608"/>
-      <feature id="org.eclipse.equinox.executable" version="3.7.2.v20171108-1834"/>
-      <feature id="org.eclipse.equinox.server.core" version="1.5.3.v20180210-1608"/>
-      <feature id="org.eclipse.equinox.server.jetty" version="1.4.4.v20180322-2228"/>
+      <feature id="org.eclipse.core.runtime.feature"/>
+      <feature id="org.eclipse.equinox.compendium.sdk"/>
+      <feature id="org.eclipse.equinox.core.feature"/>
+      <feature id="org.eclipse.equinox.executable"/>
+      <feature id="org.eclipse.equinox.server.core"/>
+      <feature id="org.eclipse.equinox.server.jetty"/>
    </features>
 
    <configurations>

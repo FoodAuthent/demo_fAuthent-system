@@ -1,0 +1,1153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.foodauthent.knime.feature"
+      label="Foodauthent-knime-feature"
+      version="1.0.0.qualifier"
+      provider-name="KNIME">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <includes
+         id="org.foodauthent.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.gef"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.rcp"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.platform"
+         version="0.0.0"/>
+
+   <requires>
+      <import plugin="org.knime.core" version="3.2.1" match="compatible"/>
+      <import plugin="org.apache.commons.math" version="2.1.0" match="equivalent"/>
+      <import plugin="org.apache.commons.httpclient" version="3.1.0" match="equivalent"/>
+      <import plugin="org.apache.commons.lang" version="2.6.0" match="equivalent"/>
+      <import plugin="org.apache.commons.math3" version="3.2.0" match="compatible"/>
+      <import plugin="javax.mail.glassfish" version="1.4.1" match="compatible"/>
+      <import plugin="org.knime.workbench.repository" version="3.5.0" match="compatible"/>
+      <import plugin="com.fifesoft.rsyntaxtextarea" version="2.5.8" match="greaterOrEqual"/>
+      <import plugin="org.knime.core.pmml" version="3.2.0" match="compatible"/>
+      <import plugin="com.fasterxml.jackson.core.jackson-annotations" version="2.7.1" match="compatible"/>
+      <import plugin="gov.nist.math.jama" version="1.0.3" match="greaterOrEqual"/>
+      <import plugin="org.knime.base" version="3.0.0" match="compatible"/>
+      <import plugin="org.apache.commons.math3" version="3.4.1" match="equivalent"/>
+      <import plugin="com.google.guava" version="19.0.0" match="compatible"/>
+      <import plugin="org.apache.commons.lang3" version="3.2.1" match="compatible"/>
+      <import plugin="org.apache.commons.math" version="2.1.0" match="compatible"/>
+      <import plugin="org.knime.ensembles" version="3.0.0" match="compatible"/>
+      <import plugin="org.knime.distmatrix" version="3.2.0" match="compatible"/>
+      <import plugin="org.eclipse.osgi" version="3.10.0" match="compatible"/>
+      <import plugin="org.apache.xmlbeans" version="2.6.0" match="compatible"/>
+      <import plugin="org.apache.log4j" version="1.2.15" match="equivalent"/>
+      <import plugin="org.knime.core.util" version="5.4.0" match="compatible"/>
+      <import plugin="org.apache.xerces" version="2.9.0" match="compatible"/>
+      <import plugin="org.apache.xalan" version="2.7.1" match="equivalent"/>
+      <import plugin="org.knime.core.pmml" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.swt" version="3.100.0" match="compatible"/>
+      <import plugin="org.apache.commons.codec" version="1.3.0" match="compatible"/>
+      <import plugin="com.fasterxml.jackson.core.jackson-annotations" version="2.4.3" match="compatible"/>
+      <import plugin="com.fasterxml.jackson.core.jackson-core" version="2.4.3" match="compatible"/>
+      <import plugin="com.sun.jna" version="3.5.2"/>
+      <import plugin="org.glassfish.javax.json" version="1.0.4" match="compatible"/>
+      <import plugin="org.eclipse.ui.workbench" version="3.108.1" match="compatible"/>
+      <import plugin="com.toedter.jcalendar" version="1.4.0" match="equivalent"/>
+      <import plugin="org.knime.core" version="3.0.0" match="compatible"/>
+      <import plugin="org.apache.xmlbeans" version="2.5.0" match="compatible"/>
+      <import plugin="org.apache.log4j" version="1.2.15" match="compatible"/>
+      <import plugin="org.knime.core.util" version="5.4.1" match="compatible"/>
+      <import plugin="org.junit" version="4.12.0" match="compatible"/>
+      <import plugin="org.eclipse.core.runtime" version="3.12.0" match="compatible"/>
+      <import plugin="org.knime.core" version="3.5.0" match="compatible"/>
+      <import plugin="org.apache.commons.io" version="2.4.0" match="compatible"/>
+      <import plugin="org.apache.xalan" version="2.7.1" match="compatible"/>
+      <import plugin="com.fasterxml.jackson.core.jackson-databind" version="2.7.1" match="compatible"/>
+      <import plugin="com.fasterxml.jackson.datatype.jackson-datatype-jdk8" version="2.7.1" match="compatible"/>
+      <import plugin="com.fasterxml.jackson.core.jackson-annotations" version="2.7.1" match="greaterOrEqual"/>
+      <import plugin="com.fasterxml.jackson.core.jackson-core" version="2.7.1" match="greaterOrEqual"/>
+      <import plugin="org.apache.commons.logging" version="1.1.1" match="compatible"/>
+      <import plugin="org.eclipse.core.runtime" version="3.12.0" match="greaterOrEqual"/>
+      <import plugin="org.knime.core" version="3.4.0" match="compatible"/>
+      <import plugin="org.knime.js.core" version="3.4.0" match="compatible"/>
+      <import plugin="com.fasterxml.jackson.core.jackson-core" version="2.7.1" match="compatible"/>
+      <import plugin="org.knime.base" version="2.6.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.runtime" version="3.6.0" match="compatible"/>
+      <import plugin="org.knime.base" version="3.4.0" match="compatible"/>
+      <import plugin="org.knime.js.core" version="3.5.0" match="compatible"/>
+      <import plugin="org.knime.ext.svg" version="3.5.0" match="compatible"/>
+      <import plugin="org.knime.workbench.core" version="3.4.0" match="compatible"/>
+      <import plugin="org.knime.workbench.repository" version="3.4.0" match="compatible"/>
+      <import plugin="org.apache.commons.lang" version="2.6.0" match="compatible"/>
+      <import plugin="org.knime.jsnippets" version="3.0.0" match="compatible"/>
+      <import plugin="com.fasterxml.jackson.core.jackson-databind" version="2.4.3" match="compatible"/>
+      <import plugin="com.fifesoft.autocomplete" version="2.5.7" match="compatible"/>
+      <import plugin="com.fifesoft.languagesupport" version="2.5.7" match="compatible"/>
+      <import plugin="com.fifesoft.rstaui" version="2.5.7" match="compatible"/>
+      <import plugin="com.fifesoft.rsyntaxtextarea" version="2.5.7" match="compatible"/>
+      <import plugin="com.fifesoft.spellchecker" version="2.5.7" match="compatible"/>
+      <import plugin="org.knime.workbench.repository" version="3.0.0" match="compatible"/>
+      <import plugin="org.knime.base.treeensembles2" version="3.5.0" match="compatible"/>
+      <import plugin="org.openqa.selenium" version="3.4.0" match="compatible"/>
+      <import plugin="org.eclipse.jdt.core" version="3.6.1" match="compatible"/>
+      <import plugin="org.eclipse.core.runtime" version="3.4.0" match="compatible"/>
+      <import plugin="org.w3c.css.sac" version="1.3.0" match="equivalent"/>
+      <import plugin="org.w3c.dom.smil" version="1.0.1" match="compatible"/>
+      <import plugin="org.w3c.dom.svg" version="1.1.0" match="equivalent"/>
+      <import plugin="org.w3c.sac" version="1.3.0" match="equivalent"/>
+      <import plugin="org.apache.xerces" version="2.9.0" match="equivalent"/>
+      <import plugin="org.apache.batik.bridge" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.css" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.dom" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.dom.svg" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.ext.awt" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.parser" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.swing" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.transcoder" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.util" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.util.gui" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.xml" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.svggen" version="1.6.0" match="equivalent"/>
+      <import plugin="org.eclipse.core.runtime" version="3.7.0" match="compatible"/>
+      <import plugin="org.eclipse.ui" version="3.7.0" match="compatible"/>
+      <import plugin="org.knime.time" version="3.3.0" match="compatible"/>
+      <import plugin="org.knime.ext.svg" version="3.0.0" match="compatible"/>
+      <import plugin="org.openqa.selenium" version="3.0.0" match="compatible"/>
+      <import plugin="org.knime.ext.phantomjs" version="3.3.0" match="compatible"/>
+      <import plugin="com.google.guava" version="19.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources" version="3.6.0" match="compatible"/>
+      <import plugin="org.knime.core" version="3.0.1" match="compatible"/>
+      <import plugin="org.knime.ext.sun" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ui" version="3.6.1" match="compatible"/>
+      <import plugin="org.eclipse.ui.ide" version="3.6.1" match="compatible"/>
+      <import plugin="org.knime.workbench" version="3.0.0" match="compatible"/>
+      <import plugin="org.knime.workbench.core" version="3.0.0" match="compatible"/>
+      <import plugin="org.knime.workbench.editor" version="3.0.0" match="compatible"/>
+      <import plugin="org.knime.workbench.ui" version="3.0.0" match="compatible"/>
+      <import plugin="org.knime.workbench.explorer.view" version="8.0.0" match="compatible"/>
+      <import plugin="org.eclipse.swt" version="3.6.1" match="compatible"/>
+      <import plugin="org.eclipse.jface" version="3.6.1" match="compatible"/>
+      <import plugin="org.eclipse.ui.intro" version="3.4.0" match="compatible"/>
+      <import plugin="org.eclipse.core.net" version="1.2.100" match="compatible"/>
+      <import plugin="org.eclipse.ui.net" version="1.2.100" match="compatible"/>
+      <import plugin="org.eclipse.ui.console" version="3.5.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.browser" version="3.3.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.forms" version="3.5.2" match="compatible"/>
+      <import plugin="org.eclipse.equinox.p2.core" version="2.0.0" match="compatible"/>
+      <import plugin="org.eclipse.equinox.p2.operations" version="2.0.0" match="compatible"/>
+      <import plugin="org.eclipse.equinox.p2.ui" version="2.0.0" match="compatible"/>
+      <import plugin="org.eclipse.equinox.p2.engine" version="2.0.0" match="compatible"/>
+      <import plugin="org.eclipse.core.filesystem" version="1.3.100" match="compatible"/>
+      <import plugin="org.eclipse.equinox.p2.repository" version="2.1.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.equinox.p2.metadata" version="2.1.0" match="greaterOrEqual"/>
+      <import plugin="org.apache.httpcomponents.httpclient" version="4.1.2" match="compatible"/>
+      <import plugin="org.apache.httpcomponents.httpcore" version="4.1.4" match="compatible"/>
+      <import plugin="org.eclipse.equinox.p2.ui.sdk.scheduler" version="1.0.100" match="compatible"/>
+      <import plugin="org.eclipse.e4.ui.css.swt.theme" version="0.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.e4.ui.css.swt" version="0.12.0" match="greaterOrEqual"/>
+      <import plugin="org.apache.commons.compress" version="1.5.0" match="compatible"/>
+      <import plugin="org.eclipse.ui" version="3.6.0" match="compatible"/>
+      <import plugin="org.apache.commons.math3" version="3.2.0" match="greaterOrEqual"/>
+      <import plugin="org.knime.base" version="3.3.0" match="compatible"/>
+      <import plugin="org.eclipse.core.runtime" version="3.3.0" match="compatible"/>
+      <import plugin="org.eclipse.core.filesystem" version="1.3.1" match="compatible"/>
+      <import plugin="org.eclipse.gef" version="3.6.1" match="compatible"/>
+      <import plugin="org.eclipse.draw2d" version="3.6.1" match="compatible"/>
+      <import plugin="org.eclipse.ui.views" version="3.5.0" match="compatible"/>
+      <import plugin="org.knime.workbench.help" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.e4.ui.workbench" version="1.3.0" match="compatible"/>
+      <import plugin="org.knime.js.core" version="3.1.0" match="compatible"/>
+      <import plugin="org.knime.core.wizard" version="3.4.0" match="compatible"/>
+      <import plugin="com.fifesoft.rsyntaxtextarea" version="2.5.8" match="compatible"/>
+      <import plugin="com.fasterxml.jackson.core.jackson-core" version="2.5.2" match="compatible"/>
+      <import plugin="com.fasterxml.jackson.core.jackson-databind" version="2.5.2" match="compatible"/>
+      <import plugin="com.fasterxml.jackson.core.jackson-annotations" version="2.5.2" match="compatible"/>
+      <import plugin="org.eclipse.equinox.p2.ui" version="2.4.0" match="compatible"/>
+      <import plugin="org.eclipse.equinox.p2.core" version="2.4.0" match="compatible"/>
+      <import plugin="org.eclipse.equinox.p2.metadata" version="2.3.0" match="compatible"/>
+      <import plugin="org.eclipse.equinox.p2.operations" version="2.4.100" match="compatible"/>
+      <import plugin="org.eclipse.equinox.p2.repository" version="2.3.100" match="compatible"/>
+      <import plugin="org.knime.core.ui" version="3.5.0" match="compatible"/>
+      <import plugin="org.eclipse.ui" version="3.106.0" match="compatible"/>
+      <import plugin="org.eclipse.core.resources" version="3.9.1" match="compatible"/>
+      <import plugin="org.eclipse.ui.navigator" version="3.5.0" match="compatible"/>
+      <import plugin="org.eclipse.core.filesystem" version="1.4.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.ide" version="3.10.0" match="compatible"/>
+      <import plugin="org.eclipse.ecf.filetransfer" version="5.0.0" match="compatible"/>
+      <import plugin="org.apache.httpcomponents.httpclient" version="4.3.6" match="compatible"/>
+      <import plugin="org.eclipse.core.runtime" version="3.10.0" match="compatible"/>
+      <import plugin="org.eclipse.help" version="2.6.0"/>
+      <import plugin="org.eclipse.help.base" version="4.0.0" match="compatible"/>
+      <import plugin="org.eclipse.help.ui" version="4.0.0" match="compatible"/>
+      <import plugin="javax.servlet" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.jetty.util" version="9.0.0" match="compatible"/>
+      <import plugin="org.eclipse.jetty.server" version="9.0.0" match="compatible"/>
+      <import plugin="org.eclipse.jetty.http" version="9.0.0" match="compatible"/>
+      <import plugin="org.eclipse.jetty.io" version="9.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.ide" version="3.4.2" match="compatible"/>
+      <import plugin="org.eclipse.ui.editors" version="3.6.0" match="compatible"/>
+      <import plugin="org.eclipse.equinox.p2.metadata" version="2.0.0" match="compatible"/>
+      <import plugin="org.eclipse.jface" version="3.11.0" match="compatible"/>
+      <import plugin="org.knime.core" version="3.2.0" match="compatible"/>
+      <import plugin="org.knime.workbench.editor" version="3.2.0" match="compatible"/>
+      <import plugin="org.eclipse.gef" version="3.10.0" match="compatible"/>
+      <import plugin="org.knime.workbench.core" version="3.2.0" match="compatible"/>
+      <import plugin="org.apache.commons.lang3" version="3.2.0" match="compatible"/>
+      <import plugin="org.knime.workbench.ui" version="3.2.0" match="compatible"/>
+      <import plugin="org.eclipse.core.jobs" version="3.7.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.forms" version="3.6.0" match="compatible"/>
+      <import plugin="org.knime.workbench.repository" version="3.2.0" match="compatible"/>
+      <import plugin="org.apache.commons.math3" version="3.4.1" match="compatible"/>
+      <import plugin="org.apache.commons.httpclient" version="3.1.0" match="compatible"/>
+      <import plugin="org.w3c.dom.svg" version="1.1.0"/>
+      <import plugin="org.w3c.dom.smil" version="1.0.0" match="equivalent"/>
+      <import plugin="org.apache.batik.util.gui" version="1.7.0" match="equivalent"/>
+      <import plugin="org.apache.xml.serializer" version="2.7.1" match="compatible"/>
+      <import plugin="javax.xml" version="1.3.4" match="compatible"/>
+      <import plugin="org.apache.xml.resolver" version="1.2.0" match="compatible"/>
+      <import plugin="org.apache.ant" version="1.9.4" match="compatible"/>
+      <import plugin="org.apache.commons.codec" version="1.10.0" match="compatible"/>
+      <import plugin="org.apache.commons.io" version="2.5.0" match="compatible"/>
+      <import plugin="org.hamcrest.core" version="1.3.0" match="compatible"/>
+      <import plugin="javax.servlet" version="3.1.0" match="compatible"/>
+      <import plugin="org.w3c.css.sac" version="1.3.1" match="compatible"/>
+   </requires>
+
+   <plugin
+         id="org.knime.base"
+         download-size="0"
+         install-size="0"
+         version="3.5.4.v201806111433"/>
+
+   <plugin
+         id="org.knime.base.logisticregression"
+         download-size="0"
+         install-size="0"
+         version="3.5.4.v201806111418"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.base.logisticregression.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.4.v201806111418"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.base.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.4.v201806111433"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.base.treeensembles"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.base.treeensembles.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.base.treeensembles2"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711281714"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.base.treeensembles2.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711281714"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.core"
+         download-size="0"
+         install-size="0"
+         version="3.5.4.v201806111433"/>
+
+   <plugin
+         id="org.knime.core.data.uritype"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.core.data.uritype.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.core.pmml"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201712011135"/>
+
+   <plugin
+         id="org.knime.core.pmml.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201712011135"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.core.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.4.v201806111433"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.core.ui"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201802051349"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.core.ui.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201802051349"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.core.util"
+         download-size="0"
+         install-size="0"
+         version="5.8.1.v201806111130"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.core.util.source"
+         download-size="0"
+         install-size="0"
+         version="5.8.1.v201806111130"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.core.wizard"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.core.wizard.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.deprecated"
+         download-size="0"
+         install-size="0"
+         version="2.9.2.v201711021634"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.deprecated.source"
+         download-size="0"
+         install-size="0"
+         version="2.9.2.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.distmatrix"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711171351"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.distmatrix.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711171351"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.ensembles"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711151559"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.ensembles.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711151559"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.ext.phantomjs"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021643"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.ext.phantomjs.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021643"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.ext.sun"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.ext.sun.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.ext.svg"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021650"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.ext.svg.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021650"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.js.core"
+         download-size="0"
+         install-size="0"
+         version="3.5.2.v201802051356"/>
+
+   <plugin
+         id="org.knime.js.core.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.2.v201802051356"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.jsnippets"
+         download-size="0"
+         install-size="0"
+         version="3.5.4.v201806111418"/>
+
+   <plugin
+         id="org.knime.jsnippets.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.4.v201806111418"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.product"
+         download-size="0"
+         install-size="0"
+         version="3.5.3.v201804031105"/>
+
+   <plugin
+         id="org.knime.product.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.3.v201804031105"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.startup.macosx"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.startup.macosx.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.stats"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711131423"/>
+
+   <plugin
+         id="org.knime.stats.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711131423"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.time"
+         download-size="0"
+         install-size="0"
+         version="3.5.3.v201804031105"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.time.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.3.v201804031105"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.timeseries"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.timeseries.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.core"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.core.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.editor"
+         download-size="0"
+         install-size="0"
+         version="3.5.3.v201804031105"/>
+
+   <plugin
+         id="org.knime.workbench.editor.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.3.v201804031105"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.editor.svgexport.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021650"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.explorer.view"
+         download-size="0"
+         install-size="0"
+         version="8.1.0.v201711021641"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.explorer.view.source"
+         download-size="0"
+         install-size="0"
+         version="8.1.0.v201711021641"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.help"
+         download-size="0"
+         install-size="0"
+         version="3.5.3.v201804031105"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.help.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.3.v201804031105"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.repository"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"/>
+
+   <plugin
+         id="org.knime.workbench.repository.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.ui"
+         download-size="0"
+         install-size="0"
+         version="3.5.2.v201802051349"/>
+
+   <plugin
+         id="org.knime.workbench.ui.layout"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.ui.layout.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021634"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.ui.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.2.v201802051349"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.workflowcoach"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711291015"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.workflowcoach.local.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711021645"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.workbench.workflowcoach.source"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v201711291015"
+         unpack="false"/>
+
+   <plugin
+         id="com.carrotsearch.hppc"
+         download-size="0"
+         install-size="0"
+         version="0.7.1"
+         unpack="false"/>
+
+   <plugin
+         id="com.fifesoft.autocomplete"
+         download-size="0"
+         install-size="0"
+         version="2.6.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.fifesoft.languagesupport"
+         download-size="0"
+         install-size="0"
+         version="2.6.0.v20171114-knime"
+         unpack="false"/>
+
+   <plugin
+         id="com.fifesoft.rstaui"
+         download-size="0"
+         install-size="0"
+         version="2.6.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.fifesoft.rsyntaxtextarea"
+         download-size="0"
+         install-size="0"
+         version="2.6.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.fifesoft.spellchecker"
+         download-size="0"
+         install-size="0"
+         version="2.6.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.github.spullara.mustache.java.compiler"
+         download-size="0"
+         install-size="0"
+         version="0.9.3"
+         unpack="false"/>
+
+   <plugin
+         id="com.ibm.icu"
+         download-size="0"
+         install-size="0"
+         version="56.1.0.v201601250100"
+         unpack="false"/>
+
+   <plugin
+         id="com.jcraft.jsch"
+         download-size="0"
+         install-size="0"
+         version="0.1.53.v201508180515"
+         unpack="false"/>
+
+   <plugin
+         id="com.sun.el"
+         download-size="0"
+         install-size="0"
+         version="2.2.0.v201303151357"
+         unpack="false"/>
+
+   <plugin
+         id="com.sun.jna"
+         download-size="0"
+         install-size="0"
+         version="4.5.1"
+         unpack="false"/>
+
+   <plugin
+         id="com.tdunning.t-digest"
+         download-size="0"
+         install-size="0"
+         version="3.2.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.toedter.jcalendar"
+         download-size="0"
+         install-size="0"
+         version="1.4.0"
+         unpack="false"/>
+
+   <plugin
+         id="gov.nist.math.jama"
+         download-size="0"
+         install-size="0"
+         version="1.0.3"
+         unpack="false"/>
+
+   <plugin
+         id="io.netty.buffer"
+         download-size="0"
+         install-size="0"
+         version="4.1.16.Final"
+         unpack="false"/>
+
+   <plugin
+         id="io.netty.codec"
+         download-size="0"
+         install-size="0"
+         version="4.1.16.Final"
+         unpack="false"/>
+
+   <plugin
+         id="io.netty.codec-http"
+         download-size="0"
+         install-size="0"
+         version="4.1.16.Final"
+         unpack="false"/>
+
+   <plugin
+         id="io.netty.common"
+         download-size="0"
+         install-size="0"
+         version="4.1.16.Final"
+         unpack="false"/>
+
+   <plugin
+         id="io.netty.handler"
+         download-size="0"
+         install-size="0"
+         version="4.1.16.Final"
+         unpack="false"/>
+
+   <plugin
+         id="io.netty.resolver"
+         download-size="0"
+         install-size="0"
+         version="4.1.16.Final"
+         unpack="false"/>
+
+   <plugin
+         id="io.netty.transport"
+         download-size="0"
+         install-size="0"
+         version="4.1.16.Final"
+         unpack="false"/>
+
+   <plugin
+         id="javassist"
+         download-size="0"
+         install-size="0"
+         version="3.22.0.CR2"
+         unpack="false"/>
+
+   <plugin
+         id="javax.activation"
+         download-size="0"
+         install-size="0"
+         version="1.1.0.v201211130549"
+         unpack="false"/>
+
+   <plugin
+         id="javax.annotation"
+         download-size="0"
+         install-size="0"
+         version="1.2.0.v201602091430"
+         unpack="false"/>
+
+   <plugin
+         id="javax.el"
+         download-size="0"
+         install-size="0"
+         version="2.2.0.v201303151357"
+         unpack="false"/>
+
+   <plugin
+         id="javax.mail.glassfish"
+         download-size="0"
+         install-size="0"
+         version="1.4.1.v201108011116"
+         unpack="false"/>
+
+   <plugin
+         id="javax.xml"
+         download-size="0"
+         install-size="0"
+         version="1.3.4.v201005080400"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.ant"
+         download-size="0"
+         install-size="0"
+         version="1.9.6.v201510161327"/>
+
+   <plugin
+         id="org.apache.batik.bridge"
+         download-size="0"
+         install-size="0"
+         version="1.6.0.v201011041432"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.css"
+         download-size="0"
+         install-size="0"
+         version="1.6.0.v201011041432"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.dom"
+         download-size="0"
+         install-size="0"
+         version="1.6.1.v201505192100"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.dom.svg"
+         download-size="0"
+         install-size="0"
+         version="1.6.0.v201011041432"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.ext.awt"
+         download-size="0"
+         install-size="0"
+         version="1.6.0.v201011041432"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.parser"
+         download-size="0"
+         install-size="0"
+         version="1.6.0.v201011041432"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.svggen"
+         download-size="0"
+         install-size="0"
+         version="1.6.0.v201011041432"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.swing"
+         download-size="0"
+         install-size="0"
+         version="1.6.0.v201011041432"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.transcoder"
+         download-size="0"
+         install-size="0"
+         version="1.6.0.v201011041432"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.util"
+         download-size="0"
+         install-size="0"
+         version="1.6.0.v201011041432"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.util.gui"
+         download-size="0"
+         install-size="0"
+         version="1.6.0.v201011041432"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.xml"
+         download-size="0"
+         install-size="0"
+         version="1.6.0.v201011041432"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.ant.source"
+         download-size="0"
+         install-size="0"
+         version="1.9.6.v201510161327"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.codec"
+         download-size="0"
+         install-size="0"
+         version="1.10.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.codec"
+         download-size="0"
+         install-size="0"
+         version="1.10.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.compress"
+         download-size="0"
+         install-size="0"
+         version="1.12.0"/>
+
+   <plugin
+         id="org.apache.commons.httpclient"
+         download-size="0"
+         install-size="0"
+         version="3.1.0.v201012070820"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.io"
+         download-size="0"
+         install-size="0"
+         version="2.5.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.jxpath"
+         download-size="0"
+         install-size="0"
+         version="1.3.0.v200911051830"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.lang"
+         download-size="0"
+         install-size="0"
+         version="2.6.0.v201404270220"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.lang3"
+         download-size="0"
+         install-size="0"
+         version="3.2.1"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.math"
+         download-size="0"
+         install-size="0"
+         version="2.1.0.v201105210652"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.math3"
+         download-size="0"
+         install-size="0"
+         version="3.4.1"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.xalan"
+         download-size="0"
+         install-size="0"
+         version="2.7.1.v201005080400"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.xerces"
+         download-size="0"
+         install-size="0"
+         version="2.9.0.v201101211617"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.xml.resolver"
+         download-size="0"
+         install-size="0"
+         version="1.2.0.v201005080400"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.xml.serializer"
+         download-size="0"
+         install-size="0"
+         version="2.7.1.v201005080400"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.xmlbeans"
+         download-size="0"
+         install-size="0"
+         version="2.6.0.v201711021649"/>
+
+   <plugin
+         id="org.apache.xmlbeans.source"
+         download-size="0"
+         install-size="0"
+         version="2.6.0.v201711021649"
+         unpack="false"/>
+
+   <plugin
+         id="org.openqa.selenium"
+         download-size="0"
+         install-size="0"
+         version="3.4.0.v201711021705"/>
+
+   <plugin
+         id="org.apache.commons.logging"
+         download-size="0"
+         install-size="0"
+         version="1.2.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.jdt.core"
+         download-size="0"
+         install-size="0"
+         version="3.12.1.v20160829-0950"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.log4j"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.glassfish.javax.json"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.junit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.hamcrest.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.w3c.css.sac"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.w3c.dom.events"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.w3c.dom.smil"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.w3c.dom.svg"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.w3c.sac"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+</feature>
