@@ -198,10 +198,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>org.slf4j:slf4j-ext:jar:1.7.25</id>
-											<source>true</source>
-										</artifact>
-										<artifact>
 											<id>org.slf4j:slf4j-jcl:jar:1.7.25</id>
 											<source>true</source>
 										</artifact>

@@ -10,7 +10,7 @@
 		<tycho.version>1.2.0</tycho.version>
 		<!-- p2 repositories -->
 		<equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Neon.1</equinox-oxygen-repo.url>
-		<p2-maven-repo.url>file:p2-maven/target/repository</p2-maven-repo.url>
+		<p2-maven-repo.url>http://repository.foodauthent.net/p2/p2-maven-1.0.0-SNAPSHOT</p2-maven-repo.url>
 
 		<!-- use UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
