@@ -103,6 +103,7 @@
 	<modules>
 		<module>com.eclipsesource.jaxrs.publisher</module>
 		<module>com.eclipsesource.jaxrs.consumer</module>
+		<module>com.eclipsesource.jaxrs.feature</module>
 		<module>foodauthent-dependencies-feature</module>
 		<module>foodauthent-dependencies</module>
 	</modules>

@@ -45,6 +45,9 @@
    <feature url="features/org.slf4j.feature.source_1.7.25.20180706113348.jar" id="org.slf4j.feature.source" version="1.7.25.20180706113348">
       <category name="org.foodauthent.maven"/>
    </feature>
+   <feature url="features/com.eclipsesource.jaxrs.feature_1.0.0.qualifier.jar" id="com.eclipsesource.jaxrs.feature" version="1.0.0.qualifier">
+      <category name="foodauthent.dependencies"/>
+   </feature>
    <category-def name="foodauthent.dependencies" label="FoodAuthent Additional Dependencies"/>
    <category-def name="org.foodauthent.maven" label="FoodAuthent Maven Dependencies">
       <category name="foodauthent.dependencies"/>
