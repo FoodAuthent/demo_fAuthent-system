@@ -34,9 +34,9 @@ public class SimpleJobService implements JobService {
     }
 
     @Override
-    public PredictionJob createNewPredictionJob(final Workflow workflow, final Fingerprint fingerprint) {
+    public PredictionJob createNewPredictionJob(final Workflow workflow, final FingerprintSet fingerprintSet) {
 	final UUID predictionId = UUID.randomUUID();
-	final PredictionJob job = PredictionJob.builder().setFingerprintId(fingerprint.getFaId())
+	final PredictionJob job = PredictionJob.builder().setFingerprintSetId(fingerprintSet.getFaId())
 		.setWorklfowId(workflow.getFaId()).setStatus(StatusEnum.SUCCESS).setPredictionId(predictionId).build();
 	final long jobPersistenceId = persistenceService.save(job);
 	job.setPersisenceId(jobPersistenceId);

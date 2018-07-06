@@ -21,11 +21,11 @@ public interface WorkflowService {
      * 
      *
      * @param workflowId TODO
-     * @param fingerprintId TODO
+     * @param fingerprintsetId TODO
      *
      * @return the result
      */
-    PredictionJob createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintId);
+    PredictionJob createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId);
         
     /**
      * 

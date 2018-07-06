@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
+import org.foodauthent.api.internal.exeption.EntityExistsException;
 import org.foodauthent.api.internal.exeption.NoSuchIDException;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.PersistenceService;
@@ -41,17 +42,20 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
     /**
      * The class should be a singleton anyways, therefore this is not static.
      */
-    private long entityIdCounter = 1;
+    private long persistenceIdCounter = 1;
 
     /**
      * Mimics a database and/ or a file system.
      */
-    private final Map<Long, Object> entities;
+    private final Map<Long, FaModel> entities;
+    
+    private final Map<Long, Blob> blobs;
 
     private final UUIDPersistenceIDMapper idMapper;
 
     public SimpleInMemoryPersistenceService() {
 	this.entities = new LinkedHashMap<>();
+	this.blobs = new LinkedHashMap<Long, Blob>();
 	this.idMapper = UUIDEntityIDMapperProvider.getInstance().getEntityMapper();
     }
 
@@ -113,53 +117,71 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	throw new NoSuchElementException("No product found for " + gtin);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T extends FaModel> T getFaModelByUUID(final UUID uuid) throws NoSuchElementException {
-    	return getByUUID(uuid);
-    }
-    
-	private <T> T getByUUID(final UUID uuid) {
-		try {
+    	try {
 			final long entityId = idMapper.getPersistenceId(uuid);
 			return (T) entities.get(entityId);
 		} catch (final NoSuchIDException e) {
 			throw new NoSuchElementException(e.getLocalizedMessage());
 		}
-	}
+    }
+  
 
     /**
      * Returns the last used entity ID.
      *
      * @return the last used entity ID
      */
-    protected long getLastEntityId() {
-	return entityIdCounter;
+    protected long getLastPersistenceId() {
+	return persistenceIdCounter;
     }
 
     @Override
-    public long save(final Blob blob) {
+    public long save(final Blob blob) throws EntityExistsException {
 	return save(blob, blob.getFaId());
     }
 
     @Override
-    public long save(final FaModel entity) {
+    public long save(final FaModel entity) throws EntityExistsException {
 	return save(entity, entity.getFaId());
     }
     
-    private long save(final PersistenceIdProvider entity, UUID faId) {
-	final long currentId = entityIdCounter++;
-	final Object oldVal = entities.put(currentId, entity);
-	if (oldVal != null && logger.isWarnEnabled()) {
-	    logger.warn(oldVal + " replaced");
+	private long save(final PersistenceIdProvider obj, UUID faId) throws EntityExistsException {
+		if (idMapper.containsUUID(faId)) {
+			throw new EntityExistsException("An entity with the given id already exists.");
+		}
+		final long currentId = persistenceIdCounter++;
+		if (obj instanceof FaModel) {
+			entities.put(currentId, (FaModel) obj);
+		} else if (obj instanceof Blob) {
+			blobs.put(currentId, (Blob) obj);
+		} else {
+			throw new IllegalArgumentException("Objects of type '" + obj.getClass().getSimpleName()
+					+ "' + not supported by the persistence service.");
+		}
+		obj.setPersisenceId(currentId);
+		idMapper.addMapping(faId, obj.getPersistenceId());
+		return currentId;
 	}
-	entity.setPersisenceId(currentId);
-	idMapper.addMapping(faId, entity.getPersistenceId());
-	return currentId;
-    }
+	
+	@Override
+	public long replace(FaModel entity) throws NoSuchElementException {
+		if (!idMapper.containsUUID(entity.getFaId())) {
+			throw new NoSuchElementException("No entity to replace for the given fa-id.");
+		}
+		long persistenceId = idMapper.getPersistenceId(entity.getFaId());
+		entities.replace(persistenceId, entity);
+		return persistenceId;
+	}
 
 	@Override
 	public Blob getBlobByUUID(UUID uuid) {
-		return getByUUID(uuid);
+		try {
+			final long blobId = idMapper.getPersistenceId(uuid);
+			return blobs.get(blobId);
+		} catch (final NoSuchIDException e) {
+			throw new NoSuchElementException(e.getLocalizedMessage());
+		}
 	}
 }

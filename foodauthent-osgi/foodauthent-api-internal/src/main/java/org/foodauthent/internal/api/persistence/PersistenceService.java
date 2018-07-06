@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
+import org.foodauthent.api.internal.exeption.EntityExistsException;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
 
@@ -19,15 +20,26 @@ import org.foodauthent.model.Product;
 public interface PersistenceService {
 
     /**
-     * Save given entity.
-     *
-     * @param entity
-     *            Entity to save
-     * @return the database Id
-     */
-    long save(FaModel entity);
+	 * Save given entity.
+	 *
+	 * @param entity
+	 *            Entity to save
+	 * @return the database Id
+	 * @throws EntityExistsException
+	 *             if an entity with the same fa-id already exists
+	 */
+	long save(FaModel entity) throws EntityExistsException;
 
-    long save(Blob blob);
+	   /**
+     * Replaces an existing entity with the passed one.
+     * 
+     * @param entity the new entity
+     * @return the database id
+     * @throws NoSuchElementException if there is no entity with the same fa-id to replace
+     */
+    long replace(FaModel entity) throws NoSuchElementException;
+
+    long save(Blob blob) throws EntityExistsException;
 
     /**
      * Returns a {@link Product} that is associated to given GTIN.

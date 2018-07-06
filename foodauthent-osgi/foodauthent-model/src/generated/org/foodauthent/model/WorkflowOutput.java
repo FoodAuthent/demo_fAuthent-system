@@ -102,6 +102,23 @@ public class WorkflowOutput  extends FaModel {
   	public static WorkflowOutputBuilder builder() {
   		return new WorkflowOutputBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static WorkflowOutputBuilder builder(WorkflowOutput entity) {
+		WorkflowOutputBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.required = entity.required;
+        builder.type = entity.type;
+ 		return builder;
+  	}
+  	
   
     public static class WorkflowOutputBuilder {
     

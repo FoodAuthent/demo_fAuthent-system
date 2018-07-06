@@ -37,9 +37,10 @@ public class LocalKnimeJobService implements JobService {
 	}
 
 	@Override
-	public PredictionJob createNewPredictionJob(Workflow workflow, Fingerprint fingerprint) {
-		Blob wfFile = persistenceService.getBlobByUUID(workflow.getFaId());
+	public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet) {
+		Blob wfFile = persistenceService.getBlobByUUID(workflow.getWorkflowfileId());
 		//extract workflow to a temporary location
+		
 		
 		//load workflow
 		

@@ -34,16 +34,16 @@ public class WorkflowRestService{
     /**
      *
      * @param workflowId TODO
-     * @param fingerprintId TODO
+     * @param fingerprintsetId TODO
      * @return the response
      */
     @POST
     @Path("/workflow/prediction/job")
     @Produces({ "application/json" })
     public Response createPredictionJob(@QueryParam("workflow-id")java.util.UUID workflowId
-, @QueryParam("fingerprint-id")java.util.UUID fingerprintId
+, @QueryParam("fingerprintset-id")java.util.UUID fingerprintsetId
 ) {
-	    Object res = service.createPredictionJob(workflowId, fingerprintId);    
+	    Object res = service.createPredictionJob(workflowId, fingerprintsetId);    
 	   	return Response.ok(res).build();
     }
 

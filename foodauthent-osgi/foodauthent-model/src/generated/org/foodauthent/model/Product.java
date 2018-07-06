@@ -77,6 +77,23 @@ public class Product  extends FaModel {
   	public static ProductBuilder builder() {
   		return new ProductBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static ProductBuilder builder(Product entity) {
+		ProductBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.gtin = entity.gtin;
+        builder.brand = entity.brand;
+ 		return builder;
+  	}
+  	
   
     public static class ProductBuilder {
     

@@ -47,7 +47,7 @@ public class PredictionJob  extends FaModel {
 
   private java.util.UUID faId;
   private java.util.UUID worklfowId;
-  private java.util.UUID fingerprintId;
+  private java.util.UUID fingerprintSetId;
   private java.util.UUID predictionId;
   private StatusEnum status;
   
@@ -59,7 +59,7 @@ public class PredictionJob  extends FaModel {
     
     faId = immutable(builder.faId);
     worklfowId = immutable(builder.worklfowId);
-    fingerprintId = immutable(builder.fingerprintId);
+    fingerprintSetId = immutable(builder.fingerprintSetId);
     predictionId = immutable(builder.predictionId);
     status = immutable(builder.status);
     
@@ -81,7 +81,7 @@ public class PredictionJob  extends FaModel {
             return false;
         }
         PredictionJob ent = (PredictionJob)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(worklfowId, ent.worklfowId) && Objects.equals(fingerprintId, ent.fingerprintId) && Objects.equals(predictionId, ent.predictionId) && Objects.equals(status, ent.status);
+        return Objects.equals(faId, ent.faId) && Objects.equals(worklfowId, ent.worklfowId) && Objects.equals(fingerprintSetId, ent.fingerprintSetId) && Objects.equals(predictionId, ent.predictionId) && Objects.equals(status, ent.status);
     }
 
 
@@ -93,8 +93,8 @@ public class PredictionJob  extends FaModel {
         return worklfowId;
     }
     
-  public java.util.UUID getFingerprintId() {
-        return fingerprintId;
+  public java.util.UUID getFingerprintSetId() {
+        return fingerprintSetId;
     }
     
   public java.util.UUID getPredictionId() {
@@ -112,6 +112,25 @@ public class PredictionJob  extends FaModel {
   	public static PredictionJobBuilder builder() {
   		return new PredictionJobBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static PredictionJobBuilder builder(PredictionJob entity) {
+		PredictionJobBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.worklfowId = entity.worklfowId;
+        builder.fingerprintSetId = entity.fingerprintSetId;
+        builder.predictionId = entity.predictionId;
+        builder.status = entity.status;
+ 		return builder;
+  	}
+  	
   
     public static class PredictionJobBuilder {
     
@@ -121,7 +140,7 @@ public class PredictionJob  extends FaModel {
     
         private java.util.UUID faId = null;
         private java.util.UUID worklfowId = null;
-        private java.util.UUID fingerprintId = null;
+        private java.util.UUID fingerprintSetId = null;
         private java.util.UUID predictionId = null;
         private StatusEnum status = null;
 
@@ -135,8 +154,8 @@ public class PredictionJob  extends FaModel {
              return this;
         }
 
-        public PredictionJobBuilder setFingerprintId(java.util.UUID fingerprintId) {
-             this.fingerprintId = fingerprintId;
+        public PredictionJobBuilder setFingerprintSetId(java.util.UUID fingerprintSetId) {
+             this.fingerprintSetId = fingerprintSetId;
              return this;
         }
 

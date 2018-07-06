@@ -86,6 +86,7 @@ public class Workflow  extends FaModel {
   private java.util.List<WorkflowInput> inputs;
   private java.util.List<WorkflowOutput> outputs;
   private java.util.List<Tag> tags;
+  private java.util.UUID workflowfileId;
   
   public String getTypeID() {
     return "Workflow";
@@ -105,6 +106,7 @@ public class Workflow  extends FaModel {
     inputs = immutable(builder.inputs);
     outputs = immutable(builder.outputs);
     tags = immutable(builder.tags);
+    workflowfileId = immutable(builder.workflowfileId);
     
     faId = generateFaIdIfMissing(faId);
   }
@@ -124,7 +126,7 @@ public class Workflow  extends FaModel {
             return false;
         }
         Workflow ent = (Workflow)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(representation, ent.representation) && Objects.equals(type, ent.type) && Objects.equals(fileLink, ent.fileLink) && Objects.equals(inputs, ent.inputs) && Objects.equals(outputs, ent.outputs) && Objects.equals(tags, ent.tags);
+        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(representation, ent.representation) && Objects.equals(type, ent.type) && Objects.equals(fileLink, ent.fileLink) && Objects.equals(inputs, ent.inputs) && Objects.equals(outputs, ent.outputs) && Objects.equals(tags, ent.tags) && Objects.equals(workflowfileId, ent.workflowfileId);
     }
 
 
@@ -176,6 +178,10 @@ public class Workflow  extends FaModel {
         return tags;
     }
     
+  public java.util.UUID getWorkflowfileId() {
+        return workflowfileId;
+    }
+    
   
  	/**
   	 * @return a newly created builder
@@ -183,6 +189,33 @@ public class Workflow  extends FaModel {
   	public static WorkflowBuilder builder() {
   		return new WorkflowBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static WorkflowBuilder builder(Workflow entity) {
+		WorkflowBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.name = entity.name;
+        builder.description = entity.description;
+        builder.author = entity.author;
+        builder.date = entity.date;
+        builder.version = entity.version;
+        builder.representation = entity.representation;
+        builder.type = entity.type;
+        builder.fileLink = entity.fileLink;
+        builder.inputs = entity.inputs;
+        builder.outputs = entity.outputs;
+        builder.tags = entity.tags;
+        builder.workflowfileId = entity.workflowfileId;
+ 		return builder;
+  	}
+  	
   
     public static class WorkflowBuilder {
     
@@ -202,6 +235,7 @@ public class Workflow  extends FaModel {
         private java.util.List<WorkflowInput> inputs = new java.util.ArrayList<>();
         private java.util.List<WorkflowOutput> outputs = new java.util.ArrayList<>();
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
+        private java.util.UUID workflowfileId = null;
 
         public WorkflowBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
@@ -260,6 +294,11 @@ public class Workflow  extends FaModel {
 
         public WorkflowBuilder setTags(java.util.List<Tag> tags) {
              this.tags = tags;
+             return this;
+        }
+
+        public WorkflowBuilder setWorkflowfileId(java.util.UUID workflowfileId) {
+             this.workflowfileId = workflowfileId;
              return this;
         }
 

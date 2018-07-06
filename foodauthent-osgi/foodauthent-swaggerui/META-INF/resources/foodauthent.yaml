@@ -381,7 +381,7 @@ paths:
           description: The file to upload.
       responses:
         200:
-          description: Workflow has been uploaded successfully.
+          description: Workflow file has been uploaded successfully. Returns the fa-id of the workflow file (which is different from the workflow-id!)
           schema:
             type: string
             format: uuid      
@@ -509,7 +509,7 @@ paths:
         type: string
         format: uuid
       - in: query
-        name: fingerprint-id
+        name: fingerprintset-id
         description: TODO
         required: true
         type: string
@@ -590,10 +590,9 @@ definitions:
         type: string
         format: uuid
         example: ""
-      data:
-        $ref: "#/definitions/FingerprintRawData"
       metadata:
-        $ref: "#/definitions/FingerprintMetadata"
+        description: Placeholder for the actual metadata.
+        type: string
         
   FingerprintRawData:
     description: The fingerprint/sample raw data.
@@ -685,7 +684,7 @@ definitions:
         type: string
         format: uuid
         example: ""
-      fingerprint-id:
+      fingerprintSet-id:
         type: string
         format: uuid
         example: ""
@@ -854,4 +853,8 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Tag"
+      workflowfile-id:
+        description: id referencing the workflow file.
+        type: string
+        format: uuid
       

@@ -112,6 +112,25 @@ public class TrainingJob  extends FaModel {
   	public static TrainingJobBuilder builder() {
   		return new TrainingJobBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static TrainingJobBuilder builder(TrainingJob entity) {
+		TrainingJobBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.worklfowId = entity.worklfowId;
+        builder.fingerprintsetId = entity.fingerprintsetId;
+        builder.predictionWorkflowId = entity.predictionWorkflowId;
+        builder.status = entity.status;
+ 		return builder;
+  	}
+  	
   
     public static class TrainingJobBuilder {
     

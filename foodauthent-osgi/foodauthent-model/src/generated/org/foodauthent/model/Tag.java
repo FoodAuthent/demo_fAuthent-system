@@ -108,6 +108,24 @@ public class Tag  extends FaModel {
   	public static TagBuilder builder() {
   		return new TagBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static TagBuilder builder(Tag entity) {
+		TagBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.name = entity.name;
+        builder.description = entity.description;
+        builder.type = entity.type;
+ 		return builder;
+  	}
+  	
   
     public static class TagBuilder {
     

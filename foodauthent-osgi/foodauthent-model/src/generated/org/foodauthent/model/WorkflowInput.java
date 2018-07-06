@@ -110,6 +110,24 @@ public class WorkflowInput  extends FaModel {
   	public static WorkflowInputBuilder builder() {
   		return new WorkflowInputBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static WorkflowInputBuilder builder(WorkflowInput entity) {
+		WorkflowInputBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.id = entity.id;
+        builder.required = entity.required;
+        builder.type = entity.type;
+ 		return builder;
+  	}
+  	
   
     public static class WorkflowInputBuilder {
     

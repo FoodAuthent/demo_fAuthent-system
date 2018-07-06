@@ -1,6 +1,6 @@
 package org.foodauthent.internal.api.job;
 
-import org.foodauthent.internal.impl.job.SimpleJobService;
+import org.foodauthent.internal.impl.job.knime.LocalKnimeJobService;
 
 /**
  * A global static venue to retrieve a singleton instance of {@link JobService}.
@@ -24,7 +24,7 @@ public class JobServiceProvider {
     private final JobService jobService;
 
     private JobServiceProvider() {
-	this.jobService = new SimpleJobService();
+	this.jobService = new LocalKnimeJobService();
     }
 
     public JobService getService() {

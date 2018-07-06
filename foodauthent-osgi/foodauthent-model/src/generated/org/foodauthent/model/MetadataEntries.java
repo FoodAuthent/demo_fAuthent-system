@@ -65,6 +65,21 @@ public class MetadataEntries  extends FaModel {
   	public static MetadataEntriesBuilder builder() {
   		return new MetadataEntriesBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static MetadataEntriesBuilder builder(MetadataEntries entity) {
+		MetadataEntriesBuilder builder = builder();
+        builder.faId = entity.faId;
+ 		return builder;
+  	}
+  	
   
     public static class MetadataEntriesBuilder {
     

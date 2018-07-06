@@ -89,6 +89,25 @@ public class SOP  extends FaModel {
   	public static SOPBuilder builder() {
   		return new SOPBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static SOPBuilder builder(SOP entity) {
+		SOPBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.fileLink = entity.fileLink;
+        builder.name = entity.name;
+        builder.description = entity.description;
+        builder.productId = entity.productId;
+ 		return builder;
+  	}
+  	
   
     public static class SOPBuilder {
     

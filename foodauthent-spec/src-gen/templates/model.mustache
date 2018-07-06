@@ -93,6 +93,23 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} extends Fa
   	public static {{classname}}Builder builder() {
   		return new {{classname}}Builder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static {{classname}}Builder builder({{classname}} entity) {
+		{{classname}}Builder builder = builder();
+    	{{#allVars}}
+        builder.{{name}} = entity.{{name}};
+    	{{/allVars}}
+ 		return builder;
+  	}
+  	
   
     public static class {{classname}}Builder {
     

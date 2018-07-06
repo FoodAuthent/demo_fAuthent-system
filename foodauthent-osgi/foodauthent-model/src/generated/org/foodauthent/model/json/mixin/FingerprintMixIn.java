@@ -3,8 +3,6 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.json.mixin.FingerprintMetadataMixIn;
-import org.foodauthent.model.json.mixin.FingerprintRawDataMixIn;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -46,11 +44,8 @@ public interface FingerprintMixIn {
     @JsonProperty("fa-id")
     public java.util.UUID getFaId();
     
-    @JsonProperty("data")
-    public FingerprintRawDataMixIn getData();
-    
     @JsonProperty("metadata")
-    public FingerprintMetadataMixIn getMetadata();
+    public String getMetadata();
     
 
     /**
@@ -74,11 +69,8 @@ public interface FingerprintMixIn {
         @JsonProperty("fa-id")
         public FingerprintMixInBuilder setFaId(final java.util.UUID faId);
         
-        @JsonProperty("data")
-        public FingerprintMixInBuilder setData(final FingerprintRawDataMixIn data);
-        
         @JsonProperty("metadata")
-        public FingerprintMixInBuilder setMetadata(final FingerprintMetadataMixIn metadata);
+        public FingerprintMixInBuilder setMetadata(final String metadata);
         
     }
 

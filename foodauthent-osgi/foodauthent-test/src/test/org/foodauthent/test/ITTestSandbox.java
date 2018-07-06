@@ -28,28 +28,12 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.FrameworkUtil;
 
-public class ITTestSandbox {
-
-	@BeforeClass
-	public static void setup() throws BundleException {
-		Bundle bundle = FrameworkUtil.getBundle(ServiceLoader.class);
-		if (bundle.getState() != Bundle.ACTIVE) {
-			bundle.start();
-		}
-		List<Bundle> jerseyBundles = Arrays.stream(bundle.getBundleContext().getBundles())
-				.filter(b -> b.getSymbolicName().startsWith("org.glassfish.jersey") && b.getState() != Bundle.INSTALLED
-						&& b.getState() != Bundle.UNINSTALLED && b.getState() != Bundle.ACTIVE).collect(Collectors.toList());
-		for (Bundle b : jerseyBundles) {
-			b.start();
-		}
-	}
+public class ITTestSandbox extends AbstractITTest {
 
 
 	@Test
 	public void test() throws FileNotFoundException, BundleException, InterruptedException {
-		Client client = ClientBuilder.newClient().register(JacksonJSONWriter.class).register(JacksonJSONReader.class)
-				.register(MultiPartFeature.class);
-		WebTarget wt = client.target("http://localhost:9090/v0/foodauthent");
+		WebTarget wt = webTarget();
 
 		SOP sop = SOP.builder().setName("sopname").setProductId(UUID.randomUUID()).setDescription("sop_desc").build();
 		UUID sopId = wt.path("sop").request(MediaType.APPLICATION_JSON)
@@ -70,8 +54,7 @@ public class ITTestSandbox {
 				MediaType.APPLICATION_OCTET_STREAM_TYPE);
 		multiPart.bodyPart(filePart);
 
-		wt.path("workflow/" + wfId + "/file").request().put(Entity.entity(multiPart, multiPart.getMediaType()),
-				UUID.class);
+		wt.path("workflow/" + wfId + "/file").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
 	}
 
 }

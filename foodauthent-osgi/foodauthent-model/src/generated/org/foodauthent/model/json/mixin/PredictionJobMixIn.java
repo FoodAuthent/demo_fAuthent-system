@@ -48,8 +48,8 @@ public interface PredictionJobMixIn {
     @JsonProperty("worklfow-id")
     public java.util.UUID getWorklfowId();
     
-    @JsonProperty("fingerprint-id")
-    public java.util.UUID getFingerprintId();
+    @JsonProperty("fingerprintSet-id")
+    public java.util.UUID getFingerprintSetId();
     
     @JsonProperty("prediction-id")
     public java.util.UUID getPredictionId();
@@ -82,8 +82,8 @@ public interface PredictionJobMixIn {
         @JsonProperty("worklfow-id")
         public PredictionJobMixInBuilder setWorklfowId(final java.util.UUID worklfowId);
         
-        @JsonProperty("fingerprint-id")
-        public PredictionJobMixInBuilder setFingerprintId(final java.util.UUID fingerprintId);
+        @JsonProperty("fingerprintSet-id")
+        public PredictionJobMixInBuilder setFingerprintSetId(final java.util.UUID fingerprintSetId);
         
         @JsonProperty("prediction-id")
         public PredictionJobMixInBuilder setPredictionId(final java.util.UUID predictionId);

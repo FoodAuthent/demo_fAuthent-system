@@ -83,6 +83,24 @@ public class Prediction  extends FaModel {
   	public static PredictionBuilder builder() {
   		return new PredictionBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static PredictionBuilder builder(Prediction entity) {
+		PredictionBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.confidence = entity.confidence;
+        builder.workflowId = entity.workflowId;
+        builder.fingerprintId = entity.fingerprintId;
+ 		return builder;
+  	}
+  	
   
     public static class PredictionBuilder {
     

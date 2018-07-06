@@ -83,6 +83,23 @@ public class FingerprintRawData  extends FaModel {
   	public static FingerprintRawDataBuilder builder() {
   		return new FingerprintRawDataBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static FingerprintRawDataBuilder builder(FingerprintRawData entity) {
+		FingerprintRawDataBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.parentId = entity.parentId;
+        builder.data = entity.data;
+ 		return builder;
+  	}
+  	
   
     public static class FingerprintRawDataBuilder {
     

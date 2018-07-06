@@ -83,6 +83,9 @@ public interface WorkflowMixIn {
     @JsonProperty("tags")
     public java.util.List<TagMixIn> getTags();
     
+    @JsonProperty("workflowfile-id")
+    public java.util.UUID getWorkflowfileId();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -137,6 +140,9 @@ public interface WorkflowMixIn {
         
         @JsonProperty("tags")
         public WorkflowMixInBuilder setTags(final java.util.List<TagMixIn> tags);
+        
+        @JsonProperty("workflowfile-id")
+        public WorkflowMixInBuilder setWorkflowfileId(final java.util.UUID workflowfileId);
         
     }
 

@@ -71,6 +71,22 @@ public class FingerprintMetadata  extends FaModel {
   	public static FingerprintMetadataBuilder builder() {
   		return new FingerprintMetadataBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static FingerprintMetadataBuilder builder(FingerprintMetadata entity) {
+		FingerprintMetadataBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.parentId = entity.parentId;
+ 		return builder;
+  	}
+  	
   
     public static class FingerprintMetadataBuilder {
     

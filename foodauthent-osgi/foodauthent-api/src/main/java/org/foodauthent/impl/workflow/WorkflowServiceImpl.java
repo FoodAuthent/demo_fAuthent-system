@@ -44,9 +44,9 @@ public class WorkflowServiceImpl implements WorkflowService {
     }
 
     @Override
-    public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintId) {
+    public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId) {
 	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId);
-	final Fingerprint fingerprint = persistenceService.getFaModelByUUID(fingerprintId);
+	final FingerprintSet fingerprint = persistenceService.getFaModelByUUID(fingerprintSetId);
 	final PredictionJob job = jobService.createNewPredictionJob(workflow, fingerprint);
 	return job;
     }
@@ -101,9 +101,17 @@ public class WorkflowServiceImpl implements WorkflowService {
     public UUID saveWorkflowFile(UUID workflowId, InputStream upfile, FormDataContentDisposition upfileDetail) {
     	//TODO check whether there is already a workflow-model entry for the workflow id - otherwise refuse the request
     	//TODO it should be possible to store multiple files per UUID, e.g. multiple versions or a data set
+    	
+    	//new uuid for the blob
+    	UUID blobId = UUID.randomUUID();
 		try {
 			persistenceService
-					.save(new Blob(workflowId, new DataMetaData(upfileDetail.getFileName()), toByteArray(upfile)));
+					.save(new Blob(blobId, new DataMetaData(upfileDetail.getFileName()), toByteArray(upfile)));
+			
+			//get workflow metadata, set blobid and override it
+			Workflow wf = persistenceService.getFaModelByUUID(workflowId);
+			Workflow newWf = Workflow.builder(wf).setWorkflowfileId(blobId).build();
+			persistenceService.replace(newWf);
 		} catch (IOException e) {
 			// TODO throw appropriate exception
 			throw new RuntimeException(e);

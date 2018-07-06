@@ -11,8 +11,6 @@ import java.util.Map;
 import java.util.Objects;
 
 
-import org.foodauthent.model.FingerprintMetadata;
-import org.foodauthent.model.FingerprintRawData;
 
 
 /**
@@ -25,8 +23,7 @@ public class Fingerprint  extends FaModel {
 
 
   private java.util.UUID faId;
-  private FingerprintRawData data;
-  private FingerprintMetadata metadata;
+  private String metadata;
   
   public String getTypeID() {
     return "Fingerprint";
@@ -35,7 +32,6 @@ public class Fingerprint  extends FaModel {
   private Fingerprint(FingerprintBuilder builder) {
     
     faId = immutable(builder.faId);
-    data = immutable(builder.data);
     metadata = immutable(builder.metadata);
     
     faId = generateFaIdIfMissing(faId);
@@ -56,7 +52,7 @@ public class Fingerprint  extends FaModel {
             return false;
         }
         Fingerprint ent = (Fingerprint)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(data, ent.data) && Objects.equals(metadata, ent.metadata);
+        return Objects.equals(faId, ent.faId) && Objects.equals(metadata, ent.metadata);
     }
 
 
@@ -64,11 +60,7 @@ public class Fingerprint  extends FaModel {
         return faId;
     }
     
-  public FingerprintRawData getData() {
-        return data;
-    }
-    
-  public FingerprintMetadata getMetadata() {
+  public String getMetadata() {
         return metadata;
     }
     
@@ -79,6 +71,22 @@ public class Fingerprint  extends FaModel {
   	public static FingerprintBuilder builder() {
   		return new FingerprintBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static FingerprintBuilder builder(Fingerprint entity) {
+		FingerprintBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.metadata = entity.metadata;
+ 		return builder;
+  	}
+  	
   
     public static class FingerprintBuilder {
     
@@ -87,20 +95,14 @@ public class Fingerprint  extends FaModel {
         }
     
         private java.util.UUID faId = null;
-        private FingerprintRawData data = null;
-        private FingerprintMetadata metadata = null;
+        private String metadata = null;
 
         public FingerprintBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
-        public FingerprintBuilder setData(FingerprintRawData data) {
-             this.data = data;
-             return this;
-        }
-
-        public FingerprintBuilder setMetadata(FingerprintMetadata metadata) {
+        public FingerprintBuilder setMetadata(String metadata) {
              this.metadata = metadata;
              return this;
         }

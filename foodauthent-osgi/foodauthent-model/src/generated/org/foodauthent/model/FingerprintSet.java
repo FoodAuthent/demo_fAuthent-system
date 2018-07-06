@@ -84,6 +84,24 @@ public class FingerprintSet  extends FaModel {
   	public static FingerprintSetBuilder builder() {
   		return new FingerprintSetBuilder();
   	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static FingerprintSetBuilder builder(FingerprintSet entity) {
+		FingerprintSetBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.productId = entity.productId;
+        builder.fingerprints = entity.fingerprints;
+        builder.name = entity.name;
+ 		return builder;
+  	}
+  	
   
     public static class FingerprintSetBuilder {
     
