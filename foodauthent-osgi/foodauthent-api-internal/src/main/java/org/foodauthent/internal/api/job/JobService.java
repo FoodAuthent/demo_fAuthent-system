@@ -7,7 +7,7 @@ import org.foodauthent.model.Workflow;
 
 public interface JobService {
 
-    PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprint);
+    PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet);
 
     TrainingJob createNewTrainingJob(Workflow workflow, FingerprintSet fingerprintSet);
 

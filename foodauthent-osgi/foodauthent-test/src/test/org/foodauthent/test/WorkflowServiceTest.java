@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.Workflow;
 import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.glassfish.jersey.media.multipart.MultiPart;
@@ -51,8 +52,9 @@ public class WorkflowServiceTest extends AbstractITTest {
 		.post(Entity.entity(fps, MediaType.APPLICATION_JSON), UUID.class);
 
 	/* run prediction workflow */
-	wt.path("workflow/prediction/job").queryParam("workflow-id", wfId).queryParam("fingerprintset-id", fpsId)
-		.request(MediaType.APPLICATION_JSON).post(null);
+	PredictionJob predictionJob = wt.path("workflow/prediction/job").queryParam("workflow-id", wfId).queryParam("fingerprintset-id", fpsId)
+		.request(MediaType.APPLICATION_JSON).post(null, PredictionJob.class);
+	System.out.println();
     }
 
 }

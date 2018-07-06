@@ -12,6 +12,8 @@ import org.foodauthent.model.Product;
 /**
  * Persistence Service. Implementations persist entities to a database, for
  * example.
+ * 
+ * NOTE: implementations need to be thread-safe!
  *
  *
  * @author Alexander Kerner

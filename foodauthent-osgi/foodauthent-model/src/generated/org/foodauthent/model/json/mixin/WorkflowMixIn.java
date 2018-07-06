@@ -86,7 +86,7 @@ public interface WorkflowMixIn {
     public static interface WorkflowMixInBuilder {
 
 	public WorkflowMixIn build();
-
+	
 	@JsonProperty("fa-id")
 	public WorkflowMixInBuilder setFaId(final java.util.UUID faId);
 

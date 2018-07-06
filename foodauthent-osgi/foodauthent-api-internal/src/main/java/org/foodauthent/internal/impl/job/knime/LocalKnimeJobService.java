@@ -1,7 +1,12 @@
 package org.foodauthent.internal.impl.job.knime;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.zip.ZipInputStream;
 
 import org.foodauthent.internal.api.job.JobService;
 import org.foodauthent.internal.api.persistence.Blob;
@@ -9,11 +14,14 @@ import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.PredictionJob;
+import org.foodauthent.model.PredictionJob.PredictionJobBuilder;
+import org.foodauthent.model.PredictionJob.StatusEnum;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
+import org.knime.core.node.KNIMEConstants;
 import org.knime.core.node.workflow.FileWorkflowPersistor.LoadVersion;
 import org.knime.core.node.workflow.UnsupportedWorkflowVersionException;
 import org.knime.core.node.workflow.WorkflowContext;
@@ -21,6 +29,7 @@ import org.knime.core.node.workflow.WorkflowLoadHelper;
 import org.knime.core.node.workflow.WorkflowManager;
 import org.knime.core.node.workflow.WorkflowPersistor.LoadResultEntry.LoadResultEntryType;
 import org.knime.core.node.workflow.WorkflowPersistor.WorkflowLoadResult;
+import org.knime.core.util.FileUtil;
 import org.knime.core.util.LockFailedException;
 import org.knime.core.util.Version;
 
@@ -31,19 +40,45 @@ public class LocalKnimeJobService implements JobService {
 
     private PersistenceService persistenceService;
 
+    private ExecutorService executionService;
+
     public LocalKnimeJobService() {
 	persistenceService = PersistenceServiceProvider.getInstance().getService();
+	executionService = Executors.newCachedThreadPool();
     }
 
     @Override
     public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet) {
 	Blob wfFile = persistenceService.getBlobByUUID(workflow.getWorkflowfileId());
-	// extract workflow to a temporary location
 
-	// load workflow
+	try {
+	    // extract workflow to a temporary location
+	    File wfDir = unzipToTempDir(wfFile.getData(), wfFile.getFaId());
 
-	// run workflow
-	return null;
+	    // load workflow
+	    WorkflowManager wfm = loadWorkflow(wfDir, null);
+
+	    // create prediction job
+	    PredictionJobBuilder predictionJobBuilder = PredictionJob.builder()
+		    .setFingerprintSetId(fingerprintSet.getFaId())
+		    .setPredictionId(UUID.randomUUID())
+		    .setWorklfowId(workflow.getFaId())
+		    .setStatus(StatusEnum.RUNNING);
+	    PredictionJob predictionJob = predictionJobBuilder.build();
+	    persistenceService.save(predictionJob);
+
+	    // start actual prediction job
+	    executionService.submit(() -> {
+		wfm.executeAllAndWaitUntilDone();
+		// change the status of the prediction job and write prediction result to the DB
+		persistenceService.replace(predictionJobBuilder.setStatus(StatusEnum.SUCCESS).build());
+	    });
+	    return predictionJob;
+	} catch (IOException | InvalidSettingsException | CanceledExecutionException
+		| UnsupportedWorkflowVersionException | LockFailedException e) {
+	    // TODO Auto-generated catch block
+	    throw new RuntimeException(e);
+	}
     }
 
     @Override
@@ -85,6 +120,15 @@ public class LocalKnimeJobService implements JobService {
 	    throw new RuntimeException("Loading workflow failed!");
 	}
 	return loadRes.getWorkflowManager();
+    }
+
+    public static File unzipToTempDir(final byte[] workflowBlob, UUID blobId) throws IOException {
+	ZipInputStream zipStream = new ZipInputStream(new ByteArrayInputStream(workflowBlob));
+	File destDir = new File(KNIMEConstants.getKNIMETempPath().toFile(), "fa_worklfow_" + blobId.toString());
+	FileUtil.unzip(zipStream, destDir, 0);
+	// go to workflow level
+	destDir = new File(destDir, destDir.list()[0]);
+	return destDir;
     }
 
 }
