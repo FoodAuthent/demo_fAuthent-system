@@ -20,22 +20,24 @@ import org.foodauthent.model.Product;
 public interface PersistenceService {
 
     /**
-	 * Save given entity.
-	 *
-	 * @param entity
-	 *            Entity to save
-	 * @return the database Id
-	 * @throws EntityExistsException
-	 *             if an entity with the same fa-id already exists
-	 */
-	long save(FaModel entity) throws EntityExistsException;
+     * Save given entity.
+     *
+     * @param entity
+     *            Entity to save
+     * @return the database Id
+     * @throws EntityExistsException
+     *             if an entity with the same fa-id already exists
+     */
+    long save(FaModel entity) throws EntityExistsException;
 
-	   /**
+    /**
      * Replaces an existing entity with the passed one.
      * 
-     * @param entity the new entity
+     * @param entity
+     *            the new entity
      * @return the database id
-     * @throws NoSuchElementException if there is no entity with the same fa-id to replace
+     * @throws NoSuchElementException
+     *             if there is no entity with the same fa-id to replace
      */
     long replace(FaModel entity) throws NoSuchElementException;
 

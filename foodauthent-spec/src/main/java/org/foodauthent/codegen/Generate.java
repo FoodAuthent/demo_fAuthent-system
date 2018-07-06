@@ -62,19 +62,19 @@ import io.swagger.codegen.config.CodegenConfigurator;
  * "-config.json" and uses them to configure the code generators.
  */
 public class Generate {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Generate.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Generate.class);
 
-	public static void main(final String[] args) throws IOException {
-		// attempt to read from config files
-		Files.list(Paths.get("src-gen")).filter(p -> p.toString().endsWith("-config.json")).forEach(p -> {
-			CodegenConfigurator configurator = CodegenConfigurator.fromFile(p.toString());
-			if (!new File(configurator.getOutputDir()).exists()) {
-				LOGGER.warn("Project " + configurator.getOutputDir()
-						+ " doesn't exists and code generation will be skipped here!");
-			} else {
-				new DefaultGenerator().opts(configurator.toClientOptInput()).generate();
-			}
-		});
+    public static void main(final String[] args) throws IOException {
+	// attempt to read from config files
+	Files.list(Paths.get("src-gen")).filter(p -> p.toString().endsWith("-config.json")).forEach(p -> {
+	    CodegenConfigurator configurator = CodegenConfigurator.fromFile(p.toString());
+	    if (!new File(configurator.getOutputDir()).exists()) {
+		LOGGER.warn("Project " + configurator.getOutputDir()
+			+ " doesn't exists and code generation will be skipped here!");
+	    } else {
+		new DefaultGenerator().opts(configurator.toClientOptInput()).generate();
+	    }
+	});
 
-	}
+    }
 }

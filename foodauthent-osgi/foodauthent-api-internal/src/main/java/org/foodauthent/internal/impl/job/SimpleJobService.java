@@ -6,7 +6,6 @@ import java.util.UUID;
 import org.foodauthent.internal.api.job.JobService;
 import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
-import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;

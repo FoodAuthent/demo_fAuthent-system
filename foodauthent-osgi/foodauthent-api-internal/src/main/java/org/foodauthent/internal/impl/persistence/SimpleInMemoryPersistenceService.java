@@ -48,7 +48,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
      * Mimics a database and/ or a file system.
      */
     private final Map<Long, FaModel> entities;
-    
+
     private final Map<Long, Blob> blobs;
 
     private final UUIDPersistenceIDMapper idMapper;
@@ -119,14 +119,13 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 
     @Override
     public <T extends FaModel> T getFaModelByUUID(final UUID uuid) throws NoSuchElementException {
-    	try {
-			final long entityId = idMapper.getPersistenceId(uuid);
-			return (T) entities.get(entityId);
-		} catch (final NoSuchIDException e) {
-			throw new NoSuchElementException(e.getLocalizedMessage());
-		}
+	try {
+	    final long entityId = idMapper.getPersistenceId(uuid);
+	    return (T) entities.get(entityId);
+	} catch (final NoSuchIDException e) {
+	    throw new NoSuchElementException(e.getLocalizedMessage());
+	}
     }
-  
 
     /**
      * Returns the last used entity ID.
@@ -146,42 +145,42 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
     public long save(final FaModel entity) throws EntityExistsException {
 	return save(entity, entity.getFaId());
     }
-    
-	private long save(final PersistenceIdProvider obj, UUID faId) throws EntityExistsException {
-		if (idMapper.containsUUID(faId)) {
-			throw new EntityExistsException("An entity with the given id already exists.");
-		}
-		final long currentId = persistenceIdCounter++;
-		if (obj instanceof FaModel) {
-			entities.put(currentId, (FaModel) obj);
-		} else if (obj instanceof Blob) {
-			blobs.put(currentId, (Blob) obj);
-		} else {
-			throw new IllegalArgumentException("Objects of type '" + obj.getClass().getSimpleName()
-					+ "' + not supported by the persistence service.");
-		}
-		obj.setPersisenceId(currentId);
-		idMapper.addMapping(faId, obj.getPersistenceId());
-		return currentId;
-	}
-	
-	@Override
-	public long replace(FaModel entity) throws NoSuchElementException {
-		if (!idMapper.containsUUID(entity.getFaId())) {
-			throw new NoSuchElementException("No entity to replace for the given fa-id.");
-		}
-		long persistenceId = idMapper.getPersistenceId(entity.getFaId());
-		entities.replace(persistenceId, entity);
-		return persistenceId;
-	}
 
-	@Override
-	public Blob getBlobByUUID(UUID uuid) {
-		try {
-			final long blobId = idMapper.getPersistenceId(uuid);
-			return blobs.get(blobId);
-		} catch (final NoSuchIDException e) {
-			throw new NoSuchElementException(e.getLocalizedMessage());
-		}
+    private long save(final PersistenceIdProvider obj, UUID faId) throws EntityExistsException {
+	if (idMapper.containsUUID(faId)) {
+	    throw new EntityExistsException("An entity with the given id already exists.");
 	}
+	final long currentId = persistenceIdCounter++;
+	if (obj instanceof FaModel) {
+	    entities.put(currentId, (FaModel) obj);
+	} else if (obj instanceof Blob) {
+	    blobs.put(currentId, (Blob) obj);
+	} else {
+	    throw new IllegalArgumentException("Objects of type '" + obj.getClass().getSimpleName()
+		    + "' + not supported by the persistence service.");
+	}
+	obj.setPersisenceId(currentId);
+	idMapper.addMapping(faId, obj.getPersistenceId());
+	return currentId;
+    }
+
+    @Override
+    public long replace(FaModel entity) throws NoSuchElementException {
+	if (!idMapper.containsUUID(entity.getFaId())) {
+	    throw new NoSuchElementException("No entity to replace for the given fa-id.");
+	}
+	long persistenceId = idMapper.getPersistenceId(entity.getFaId());
+	entities.replace(persistenceId, entity);
+	return persistenceId;
+    }
+
+    @Override
+    public Blob getBlobByUUID(UUID uuid) {
+	try {
+	    final long blobId = idMapper.getPersistenceId(uuid);
+	    return blobs.get(blobId);
+	} catch (final NoSuchIDException e) {
+	    throw new NoSuchElementException(e.getLocalizedMessage());
+	}
+    }
 }

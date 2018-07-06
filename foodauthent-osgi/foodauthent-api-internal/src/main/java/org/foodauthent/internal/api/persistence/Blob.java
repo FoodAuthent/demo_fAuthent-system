@@ -14,10 +14,10 @@ public class Blob implements PersistenceIdProvider {
     private final DataMetaData metadata;
 
     private byte[] data;
-    
+
     private long persistenceId;
 
-	private UUID faId;
+    private UUID faId;
 
     public Blob(UUID faId, final DataMetaData metadata) {
 	this(faId, metadata, null);
@@ -30,9 +30,9 @@ public class Blob implements PersistenceIdProvider {
 	this.metadata = metadata;
 	this.data = data;
     }
-    
+
     public UUID getFaId() {
-    	return faId;
+	return faId;
     }
 
     public byte[] getData() {

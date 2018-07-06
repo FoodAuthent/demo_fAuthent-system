@@ -18,33 +18,32 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JacksonJSONWriter implements MessageBodyWriter<Object>, Feature {
-	private final ObjectMapper mapper = ObjectMapperUtil.getObjectMapper();
+    private final ObjectMapper mapper = ObjectMapperUtil.getObjectMapper();
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public long getSize(final Object value, final Class<?> type, final Type genericType,
-			final Annotation[] annotations, final MediaType mediaType) {
-		return -1; // no idea how many byte we will write
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public long getSize(final Object value, final Class<?> type, final Type genericType, final Annotation[] annotations,
+	    final MediaType mediaType) {
+	return -1; // no idea how many byte we will write
+    }
 
-	@Override
-	public boolean isWriteable(final Class<?> type, final Type genericType, final Annotation[] annotations,
-			final MediaType mediaType) {
-		return mediaType.isCompatible(MediaType.APPLICATION_JSON_TYPE);
-	}
+    @Override
+    public boolean isWriteable(final Class<?> type, final Type genericType, final Annotation[] annotations,
+	    final MediaType mediaType) {
+	return mediaType.isCompatible(MediaType.APPLICATION_JSON_TYPE);
+    }
 
-	@Override
-	public void writeTo(final Object value, final Class<?> type, final Type genericType,
-			final Annotation[] annotations, final MediaType mediaType,
-			final MultivaluedMap<java.lang.String, java.lang.Object> httpHeaders, final OutputStream entityStream)
-			throws JsonGenerationException, JsonMappingException, IOException {
-		mapper.writeValue(entityStream, value);
-	}
+    @Override
+    public void writeTo(final Object value, final Class<?> type, final Type genericType, final Annotation[] annotations,
+	    final MediaType mediaType, final MultivaluedMap<java.lang.String, java.lang.Object> httpHeaders,
+	    final OutputStream entityStream) throws JsonGenerationException, JsonMappingException, IOException {
+	mapper.writeValue(entityStream, value);
+    }
 
-	@Override
-	public boolean configure(FeatureContext context) {
-		return true;
-	}
+    @Override
+    public boolean configure(FeatureContext context) {
+	return true;
+    }
 }

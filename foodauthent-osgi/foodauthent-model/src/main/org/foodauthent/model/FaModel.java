@@ -16,7 +16,7 @@ import java.util.UUID;
 public abstract class FaModel implements PersistenceIdProvider {
 
     private long persistenceId;
-    
+
     protected String faId;
 
     /**

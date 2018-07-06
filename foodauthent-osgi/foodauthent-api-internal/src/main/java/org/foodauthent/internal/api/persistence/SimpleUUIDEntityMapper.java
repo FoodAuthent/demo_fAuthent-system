@@ -24,7 +24,7 @@ public class SimpleUUIDEntityMapper implements UUIDPersistenceIDMapper {
 
     @Override
     public void addMapping(final UUID uuid, final long persistenceId) {
-    assert !uuid2PersistenceId.containsKey(uuid);
+	assert !uuid2PersistenceId.containsKey(uuid);
 	persistenceId2Uuid.put(persistenceId, uuid);
 	uuid2PersistenceId.put(uuid, persistenceId);
     }
@@ -46,10 +46,10 @@ public class SimpleUUIDEntityMapper implements UUIDPersistenceIDMapper {
 	}
 	return uuid;
     }
-    
+
     @Override
     public boolean containsUUID(UUID uuid) {
-    	return uuid2PersistenceId.containsKey(uuid);
+	return uuid2PersistenceId.containsKey(uuid);
     }
 
 }

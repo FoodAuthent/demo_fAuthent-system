@@ -20,24 +20,24 @@ import com.fasterxml.jackson.databind.ObjectReader;
 
 public class JacksonJSONReader implements MessageBodyReader<Object>, Feature {
 
-	private final ObjectMapper mapper = ObjectMapperUtil.getObjectMapper();
+    private final ObjectMapper mapper = ObjectMapperUtil.getObjectMapper();
 
-	@Override
-	public boolean isReadable(Class<?> arg0, Type arg1, Annotation[] arg2, MediaType arg3) {
-		return arg3.isCompatible(MediaType.APPLICATION_JSON_TYPE);
-	}
+    @Override
+    public boolean isReadable(Class<?> arg0, Type arg1, Annotation[] arg2, MediaType arg3) {
+	return arg3.isCompatible(MediaType.APPLICATION_JSON_TYPE);
+    }
 
-	@Override
-	public Object readFrom(final Class<Object> type, final Type genericType, final Annotation[] annotations,
-			final MediaType mediaType, final MultivaluedMap<String, String> httpHeaders, final InputStream entityStream)
-			throws IOException, WebApplicationException {
-		ObjectReader reader = mapper.readerFor(type);
-		JsonParser jp = reader.getFactory().createParser(entityStream);
-		return reader.readValue(jp);
-	}
+    @Override
+    public Object readFrom(final Class<Object> type, final Type genericType, final Annotation[] annotations,
+	    final MediaType mediaType, final MultivaluedMap<String, String> httpHeaders, final InputStream entityStream)
+	    throws IOException, WebApplicationException {
+	ObjectReader reader = mapper.readerFor(type);
+	JsonParser jp = reader.getFactory().createParser(entityStream);
+	return reader.readValue(jp);
+    }
 
-	@Override
-	public boolean configure(FeatureContext context) {
-		return true;
-	}
+    @Override
+    public boolean configure(FeatureContext context) {
+	return true;
+    }
 }

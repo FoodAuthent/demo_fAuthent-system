@@ -9,12 +9,12 @@ public class DataMetaData {
 
     private final String fileName;
 
-	public DataMetaData(String fileName) {
-		this.fileName = fileName;
+    public DataMetaData(String fileName) {
+	this.fileName = fileName;
     }
-	
-	public String getFileName() {
-		return fileName;
-	}
+
+    public String getFileName() {
+	return fileName;
+    }
 
 }
