@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 import java.util.zip.ZipInputStream;
 
 import org.foodauthent.internal.api.job.JobService;
@@ -13,16 +14,19 @@ import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJob.PredictionJobBuilder;
 import org.foodauthent.model.PredictionJob.StatusEnum;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
+import org.foodauthent.model.Prediction.PredictionBuilder;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
 import org.knime.core.node.KNIMEConstants;
 import org.knime.core.node.workflow.FileWorkflowPersistor.LoadVersion;
+import org.knime.core.node.workflow.NodeMessage.Type;
 import org.knime.core.node.workflow.UnsupportedWorkflowVersionException;
 import org.knime.core.node.workflow.WorkflowContext;
 import org.knime.core.node.workflow.WorkflowLoadHelper;
@@ -49,7 +53,7 @@ public class LocalKnimeJobService implements JobService {
 
     @Override
     public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet) {
-	Blob wfFile = persistenceService.getBlobByUUID(workflow.getWorkflowfileId());
+	Blob wfFile = persistenceService.getBlobByUUID(workflow.getWorkflowFileId());
 
 	try {
 	    // extract workflow to a temporary location
@@ -69,9 +73,27 @@ public class LocalKnimeJobService implements JobService {
 
 	    // start actual prediction job
 	    executionService.submit(() -> {
-		wfm.executeAllAndWaitUntilDone();
-		// change the status of the prediction job and write prediction result to the DB
-		persistenceService.replace(predictionJobBuilder.setStatus(StatusEnum.SUCCESS).build());
+		StatusEnum status;
+		if (wfm.executeAllAndWaitUntilDone()) {
+		    status = StatusEnum.SUCCESS;
+		} else {
+		    status = StatusEnum.FAILED;
+		}
+		
+		String statusMessage = wfm.getNodeMessages(Type.ERROR, Type.WARNING).stream()
+			.map(p -> p.getSecond().getMessage()).collect(Collectors.joining("\n"));
+
+		// change the status of the prediction job and replace prediction job in DB
+		persistenceService
+			.replace(predictionJobBuilder.setStatus(status).setStatusMessage(statusMessage).build());
+
+		// TODO write prediction result to DB
+		if (status == StatusEnum.SUCCESS) {
+
+		}
+
+		// TODO delete the workflow from the temp-dir
+	
 	    });
 	    return predictionJob;
 	} catch (IOException | InvalidSettingsException | CanceledExecutionException

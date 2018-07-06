@@ -54,7 +54,6 @@ public class WorkflowServiceTest extends AbstractITTest {
 	/* run prediction workflow */
 	PredictionJob predictionJob = wt.path("workflow/prediction/job").queryParam("workflow-id", wfId).queryParam("fingerprintset-id", fpsId)
 		.request(MediaType.APPLICATION_JSON).post(null, PredictionJob.class);
-	System.out.println();
     }
 
 }

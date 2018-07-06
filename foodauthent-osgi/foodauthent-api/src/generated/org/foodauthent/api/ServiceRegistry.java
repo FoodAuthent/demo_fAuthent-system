@@ -1,9 +1,9 @@
 package org.foodauthent.api;
 
-import org.foodauthent.impl.fingerprint.FingerprintServiceImpl;
-import org.foodauthent.impl.product.ProductServiceImpl;
 import org.foodauthent.impl.sop.SopServiceImpl;
 import org.foodauthent.impl.workflow.WorkflowServiceImpl;
+import org.foodauthent.impl.fingerprint.FingerprintServiceImpl;
+import org.foodauthent.impl.product.ProductServiceImpl;
 
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public class ServiceRegistry {

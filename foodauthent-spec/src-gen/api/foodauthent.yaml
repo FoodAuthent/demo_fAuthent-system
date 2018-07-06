@@ -696,6 +696,9 @@ definitions:
       status:
         type: string
         enum: [running, success, failed]
+      status-message:
+        description: A message, e.g., in case the workflow failed.
+        type: string
   
   Prediction:
     type: object
@@ -853,7 +856,7 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Tag"
-      workflowfile-id:
+      workflow-file-id:
         description: id referencing the workflow file.
         type: string
         format: uuid

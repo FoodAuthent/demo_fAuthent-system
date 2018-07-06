@@ -3,6 +3,7 @@
  */
 package org.foodauthent.api;
 
+import java.io.File;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.TrainingJob;

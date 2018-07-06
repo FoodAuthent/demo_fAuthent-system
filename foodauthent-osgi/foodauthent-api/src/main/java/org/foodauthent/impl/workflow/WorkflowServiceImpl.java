@@ -98,37 +98,39 @@ public class WorkflowServiceImpl implements WorkflowService {
     
     @Override
     public UUID saveWorkflowFile(UUID workflowId, InputStream upfile, FormDataContentDisposition upfileDetail) {
-    	//TODO check whether there is already a workflow-model entry for the workflow id - otherwise refuse the request
-    	//TODO it should be possible to store multiple files per UUID, e.g. multiple versions or a data set
-    	
-    	//new uuid for the blob
-    	UUID blobId = UUID.randomUUID();
-		try {
-			persistenceService
-					.save(new Blob(blobId, new DataMetaData(upfileDetail.getFileName()), toByteArray(upfile)));
-			
-			//get workflow metadata, set blobid and override it
-			Workflow wf = persistenceService.getFaModelByUUID(workflowId);
-			Workflow newWf = Workflow.builder(wf).setWorkflowfileId(blobId).build();
-			persistenceService.replace(newWf);
-		} catch (IOException e) {
-			// TODO throw appropriate exception
-			throw new RuntimeException(e);
-		}
-	   	return workflowId;
-    }
-    
-    private static byte[] toByteArray(InputStream in) throws IOException {
-		// would be cool to be able to use apache's IOUtils
-		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-		int nRead;
-		byte[] data = new byte[1024];
-		while ((nRead = in.read(data, 0, data.length)) != -1) {
-			buffer.write(data, 0, nRead);
-		}
+	// TODO check whether there is already a workflow-model entry for the workflow
+	// id - otherwise refuse the request
+	// TODO it should be possible to store multiple files per UUID, e.g. multiple
+	// versions or a data set
 
-		buffer.flush();
-		return buffer.toByteArray();
+	// new uuid for the blob
+	UUID blobId = UUID.randomUUID();
+	try {
+	    persistenceService
+		    .save(new Blob(blobId, new DataMetaData(upfileDetail.getFileName()), toByteArray(upfile)));
+
+	    // get workflow metadata, set blobid and override it
+	    Workflow wf = persistenceService.getFaModelByUUID(workflowId);
+	    Workflow newWf = Workflow.builder(wf).setWorkflowFileId(blobId).build();
+	    persistenceService.replace(newWf);
+	} catch (IOException e) {
+	    // TODO throw appropriate exception
+	    throw new RuntimeException(e);
 	}
+	return workflowId;
+    }
+
+    private static byte[] toByteArray(InputStream in) throws IOException {
+	// would be cool to be able to use apache's IOUtils
+	ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+	int nRead;
+	byte[] data = new byte[1024];
+	while ((nRead = in.read(data, 0, data.length)) != -1) {
+	    buffer.write(data, 0, nRead);
+	}
+
+	buffer.flush();
+	return buffer.toByteArray();
+    }
 
 }

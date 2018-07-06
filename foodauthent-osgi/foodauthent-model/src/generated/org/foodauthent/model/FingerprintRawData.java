@@ -10,147 +10,155 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+
+
+
 /**
  * The fingerprint/sample raw data.
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class FingerprintRawData extends FaModel {
+public class FingerprintRawData  extends FaModel {
 
-    private java.util.UUID faId;
-    private java.util.UUID parentId;
-    private byte[] data;
 
-    public String getTypeID() {
-	return "FingerprintRawData";
+  private java.util.UUID faId;
+  private java.util.UUID parentId;
+  private byte[] data;
+  
+  public String getTypeID() {
+    return "FingerprintRawData";
+  }
+  
+  private FingerprintRawData(FingerprintRawDataBuilder builder) {
+    
+    faId = immutable(builder.faId);
+    if(builder.parentId == null) {
+        throw new IllegalArgumentException("parentId must not be null.");
     }
-
-    private FingerprintRawData(FingerprintRawDataBuilder builder) {
-
-	faId = immutable(builder.faId);
-	if (builder.parentId == null) {
-	    throw new IllegalArgumentException("parentId must not be null.");
-	}
-	parentId = immutable(builder.parentId);
-	if (builder.data == null) {
-	    throw new IllegalArgumentException("data must not be null.");
-	}
-	data = immutable(builder.data);
-
-	faId = generateFaIdIfMissing(faId);
+    parentId = immutable(builder.parentId);
+    if(builder.data == null) {
+        throw new IllegalArgumentException("data must not be null.");
     }
-
-    /**
+    data = immutable(builder.data);
+    
+    faId = generateFaIdIfMissing(faId);
+  }
+  
+   /**
      * {@inheritDoc}
      */
     @Override
     public boolean equals(final Object o) {
-	if (this == o) {
-	    return true;
-	}
-	if (o == null) {
-	    return false;
-	}
-	if (getClass() != o.getClass()) {
-	    return false;
-	}
-	FingerprintRawData ent = (FingerprintRawData) o;
-	return Objects.equals(faId, ent.faId) && Objects.equals(parentId, ent.parentId)
-		&& Objects.equals(data, ent.data);
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+        FingerprintRawData ent = (FingerprintRawData)o;
+        return Objects.equals(faId, ent.faId) && Objects.equals(parentId, ent.parentId) && Objects.equals(data, ent.data);
     }
 
-    public java.util.UUID getFaId() {
-	return faId;
-    }
 
-    public java.util.UUID getParentId() {
-	return parentId;
+  public java.util.UUID getFaId() {
+        return faId;
     }
-
-    public byte[] getData() {
-	return data;
+    
+  public java.util.UUID getParentId() {
+        return parentId;
     }
-
-    /**
-     * @return a newly created builder
-     */
-    public static FingerprintRawDataBuilder builder() {
-	return new FingerprintRawDataBuilder();
+    
+  public byte[] getData() {
+        return data;
     }
-
-    /**
-     * Copy-builder, i.e. creates a new builder with all properties of the passed
-     * entity pre-set.
-     * 
-     * @param entity
-     *            entity to copy the properties from
-     * @return a new builder with the properties set
-     */
-    public static FingerprintRawDataBuilder builder(FingerprintRawData entity) {
-	FingerprintRawDataBuilder builder = builder();
-	builder.faId = entity.faId;
-	builder.parentId = entity.parentId;
-	builder.data = entity.data;
-	return builder;
-    }
-
+    
+  
+ 	/**
+  	 * @return a newly created builder
+  	 */
+  	public static FingerprintRawDataBuilder builder() {
+  		return new FingerprintRawDataBuilder();
+  	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static FingerprintRawDataBuilder builder(FingerprintRawData entity) {
+		FingerprintRawDataBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.parentId = entity.parentId;
+        builder.data = entity.data;
+ 		return builder;
+  	}
+  	
+  
     public static class FingerprintRawDataBuilder {
+    
+        private FingerprintRawDataBuilder(){
+            
+        }
+    
+        private java.util.UUID faId = null;
+        private java.util.UUID parentId = null;
+        private byte[] data = null;
 
-	private FingerprintRawDataBuilder() {
+        public FingerprintRawDataBuilder setFaId(java.util.UUID faId) {
+             this.faId = faId;
+             return this;
+        }
 
-	}
+        public FingerprintRawDataBuilder setParentId(java.util.UUID parentId) {
+             if(parentId == null) {
+                 throw new IllegalArgumentException("parentId must not be null.");
+             }
+             this.parentId = parentId;
+             return this;
+        }
 
-	private java.util.UUID faId = null;
-	private java.util.UUID parentId = null;
-	private byte[] data = null;
+        public FingerprintRawDataBuilder setData(byte[] data) {
+             if(data == null) {
+                 throw new IllegalArgumentException("data must not be null.");
+             }
+             this.data = data;
+             return this;
+        }
 
-	public FingerprintRawDataBuilder setFaId(java.util.UUID faId) {
-	    this.faId = faId;
-	    return this;
-	}
-
-	public FingerprintRawDataBuilder setParentId(java.util.UUID parentId) {
-	    if (parentId == null) {
-		throw new IllegalArgumentException("parentId must not be null.");
-	    }
-	    this.parentId = parentId;
-	    return this;
-	}
-
-	public FingerprintRawDataBuilder setData(byte[] data) {
-	    if (data == null) {
-		throw new IllegalArgumentException("data must not be null.");
-	    }
-	    this.data = data;
-	    return this;
-	}
-
-	public FingerprintRawData build() {
-	    return new FingerprintRawData(this);
-	}
-
+        
+        public FingerprintRawData build() {
+            return new FingerprintRawData(this);
+        }
+    
     }
-
+    
+    
     /**
-     * Turns an object into an immutable one (if not already). TODO move it
-     * somewhere else
+     * Turns an object into an immutable one (if not already).
+     * TODO move it somewhere else
      *
-     * @param obj
-     *            the object to treat
+     * @param obj the object to treat
      * @return the object itself or a immutable copy
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public static <T> T immutable(final T obj) {
-	if (obj == null) {
-	    return null;
-	} else if (obj instanceof Map) {
-	    return (T) Collections.unmodifiableMap(new HashMap((Map) obj));
-	} else if (obj instanceof List) {
-	    return (T) Collections.unmodifiableList(new ArrayList((List) obj));
-	} else {
-	    return obj;
-	}
+        if (obj == null) {
+            return null;
+        } else if (obj instanceof Map) {
+            return (T)Collections.unmodifiableMap(new HashMap((Map)obj));
+        } else if (obj instanceof List) {
+            return (T)Collections.unmodifiableList(new ArrayList((List)obj));
+        } else {
+            return obj;
+        }
     }
+    
 
 }

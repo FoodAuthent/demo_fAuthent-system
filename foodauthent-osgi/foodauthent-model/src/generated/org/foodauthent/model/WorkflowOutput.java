@@ -10,160 +10,168 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+
+
+
 /**
  * WorkflowOutput
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class WorkflowOutput extends FaModel {
+public class WorkflowOutput  extends FaModel {
 
-    /**
-     * The outputs type.
-     */
-    public enum TypeEnum {
-	STRING("string"),
+  /**
+   * The outputs type.
+   */
+  public enum TypeEnum {
+    STRING("string"),
+    
+    INTEGER("integer"),
+    
+    MODEL("model"),
+    
+    PREDICTION("prediction");
 
-	INTEGER("integer"),
+    private String value;
 
-	MODEL("model"),
-
-	PREDICTION("prediction");
-
-	private String value;
-
-	TypeEnum(String value) {
-	    this.value = value;
-	}
-
-	@Override
-	public String toString() {
-	    return String.valueOf(value);
-	}
-
+    TypeEnum(String value) {
+      this.value = value;
     }
 
-    private java.util.UUID faId;
-    private Boolean required;
-    private TypeEnum type;
-
-    public String getTypeID() {
-	return "WorkflowOutput";
+    @Override
+    public String toString() {
+      return String.valueOf(value);
     }
 
-    private WorkflowOutput(WorkflowOutputBuilder builder) {
+  }
 
-	faId = immutable(builder.faId);
-	required = immutable(builder.required);
-	type = immutable(builder.type);
 
-	faId = generateFaIdIfMissing(faId);
-    }
-
-    /**
+  private java.util.UUID faId;
+  private Boolean required;
+  private TypeEnum type;
+  
+  public String getTypeID() {
+    return "WorkflowOutput";
+  }
+  
+  private WorkflowOutput(WorkflowOutputBuilder builder) {
+    
+    faId = immutable(builder.faId);
+    required = immutable(builder.required);
+    type = immutable(builder.type);
+    
+    faId = generateFaIdIfMissing(faId);
+  }
+  
+   /**
      * {@inheritDoc}
      */
     @Override
     public boolean equals(final Object o) {
-	if (this == o) {
-	    return true;
-	}
-	if (o == null) {
-	    return false;
-	}
-	if (getClass() != o.getClass()) {
-	    return false;
-	}
-	WorkflowOutput ent = (WorkflowOutput) o;
-	return Objects.equals(faId, ent.faId) && Objects.equals(required, ent.required)
-		&& Objects.equals(type, ent.type);
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+        WorkflowOutput ent = (WorkflowOutput)o;
+        return Objects.equals(faId, ent.faId) && Objects.equals(required, ent.required) && Objects.equals(type, ent.type);
     }
 
-    public java.util.UUID getFaId() {
-	return faId;
-    }
 
-    public Boolean Required() {
-	return required;
+  public java.util.UUID getFaId() {
+        return faId;
     }
-
-    public TypeEnum getType() {
-	return type;
+    
+  public Boolean Required() {
+        return required;
     }
-
-    /**
-     * @return a newly created builder
-     */
-    public static WorkflowOutputBuilder builder() {
-	return new WorkflowOutputBuilder();
+    
+  public TypeEnum getType() {
+        return type;
     }
-
-    /**
-     * Copy-builder, i.e. creates a new builder with all properties of the passed
-     * entity pre-set.
-     * 
-     * @param entity
-     *            entity to copy the properties from
-     * @return a new builder with the properties set
-     */
-    public static WorkflowOutputBuilder builder(WorkflowOutput entity) {
-	WorkflowOutputBuilder builder = builder();
-	builder.faId = entity.faId;
-	builder.required = entity.required;
-	builder.type = entity.type;
-	return builder;
-    }
-
+    
+  
+ 	/**
+  	 * @return a newly created builder
+  	 */
+  	public static WorkflowOutputBuilder builder() {
+  		return new WorkflowOutputBuilder();
+  	}
+  	
+  	/**
+	 * Copy-builder, i.e. creates a new builder with all properties of the passed
+	 * entity pre-set.
+	 * 
+	 * @param entity
+	 *            entity to copy the properties from
+	 * @return a new builder with the properties set
+	 */
+	public static WorkflowOutputBuilder builder(WorkflowOutput entity) {
+		WorkflowOutputBuilder builder = builder();
+        builder.faId = entity.faId;
+        builder.required = entity.required;
+        builder.type = entity.type;
+ 		return builder;
+  	}
+  	
+  
     public static class WorkflowOutputBuilder {
+    
+        private WorkflowOutputBuilder(){
+            
+        }
+    
+        private java.util.UUID faId = null;
+        private Boolean required = null;
+        private TypeEnum type = null;
 
-	private WorkflowOutputBuilder() {
+        public WorkflowOutputBuilder setFaId(java.util.UUID faId) {
+             this.faId = faId;
+             return this;
+        }
 
-	}
+        public WorkflowOutputBuilder setRequired(Boolean required) {
+             this.required = required;
+             return this;
+        }
 
-	private java.util.UUID faId = null;
-	private Boolean required = null;
-	private TypeEnum type = null;
+        public WorkflowOutputBuilder setType(TypeEnum type) {
+             this.type = type;
+             return this;
+        }
 
-	public WorkflowOutputBuilder setFaId(java.util.UUID faId) {
-	    this.faId = faId;
-	    return this;
-	}
-
-	public WorkflowOutputBuilder setRequired(Boolean required) {
-	    this.required = required;
-	    return this;
-	}
-
-	public WorkflowOutputBuilder setType(TypeEnum type) {
-	    this.type = type;
-	    return this;
-	}
-
-	public WorkflowOutput build() {
-	    return new WorkflowOutput(this);
-	}
-
+        
+        public WorkflowOutput build() {
+            return new WorkflowOutput(this);
+        }
+    
     }
-
+    
+    
     /**
-     * Turns an object into an immutable one (if not already). TODO move it
-     * somewhere else
+     * Turns an object into an immutable one (if not already).
+     * TODO move it somewhere else
      *
-     * @param obj
-     *            the object to treat
+     * @param obj the object to treat
      * @return the object itself or a immutable copy
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public static <T> T immutable(final T obj) {
-	if (obj == null) {
-	    return null;
-	} else if (obj instanceof Map) {
-	    return (T) Collections.unmodifiableMap(new HashMap((Map) obj));
-	} else if (obj instanceof List) {
-	    return (T) Collections.unmodifiableList(new ArrayList((List) obj));
-	} else {
-	    return obj;
-	}
+        if (obj == null) {
+            return null;
+        } else if (obj instanceof Map) {
+            return (T)Collections.unmodifiableMap(new HashMap((Map)obj));
+        } else if (obj instanceof List) {
+            return (T)Collections.unmodifiableList(new ArrayList((List)obj));
+        } else {
+            return obj;
+        }
     }
+    
 
 }
