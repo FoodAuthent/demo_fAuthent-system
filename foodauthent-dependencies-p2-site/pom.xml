@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.foodauthent.p2</groupId>
-	<artifactId>foodauthent-dependencies</artifactId>
+	<artifactId>foodauthent-dependencies-p2-site</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
@@ -44,7 +44,7 @@
 					<target>
 						<artifact>
 							<groupId>org.foodauthent.p2</groupId>
-							<artifactId>foodauthent-dependencies-p2-site</artifactId>
+							<artifactId>foodauthent-dependencies</artifactId>
 							<version>1.0.0-SNAPSHOT</version>
 						</artifact>
 					</target>
@@ -104,6 +104,6 @@
 		<module>com.eclipsesource.jaxrs.publisher</module>
 		<module>com.eclipsesource.jaxrs.consumer</module>
 		<module>foodauthent-dependencies-feature</module>
-		<module>foodauthent-dependencies-p2-site</module>
+		<module>foodauthent-dependencies</module>
 	</modules>
 </project>

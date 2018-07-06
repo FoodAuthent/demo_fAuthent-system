@@ -8,7 +8,7 @@
 	<packaging>eclipse-plugin</packaging>
 	<parent>
 		<groupId>org.foodauthent.p2</groupId>
-		<artifactId>foodauthent-dependencies</artifactId>
+		<artifactId>foodauthent-dependencies-p2-site</artifactId>
 		<relativePath>../pom.xml</relativePath>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
