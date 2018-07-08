@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 
 
@@ -31,6 +32,8 @@ public class SOP  extends FaModel {
   public String getTypeID() {
     return "SOP";
   }
+  
+
   
   private SOP(SOPBuilder builder) {
     

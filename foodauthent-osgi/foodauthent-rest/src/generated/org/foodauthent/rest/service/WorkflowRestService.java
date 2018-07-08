@@ -64,7 +64,7 @@ public class WorkflowRestService{
     }
 
     /**
-     * TODO
+     * Creates/adds a new workflow.
      *
      * @param workflow TODO
      * @return the response
@@ -128,8 +128,8 @@ public class WorkflowRestService{
      * @return the response
      */
     @GET
-    @Path("/prediction")
-    public Response getPredictionResult(@QueryParam("prediction-id")java.util.UUID predictionId
+    @Path("/prediction/{prediction-id}")
+    public Response getPredictionResult(@PathParam("prediction-id") java.util.UUID predictionId
 ) {
 	    Object res = service.getPredictionResult(predictionId);    
 	   	return Response.ok(res).build();
@@ -165,7 +165,7 @@ public class WorkflowRestService{
     }
 
     /**
-     * TODO
+     * Uplloads the workflow file associated with the workflow of the given workflow-id. Upon upload, the workflow will be validated in order to make sure that it complies with the respective workflow inputs and outputs (as determined by the workflow&#39;s type parameter)
      *
      * @param workflowId 
      * @param upfile The file to upload.

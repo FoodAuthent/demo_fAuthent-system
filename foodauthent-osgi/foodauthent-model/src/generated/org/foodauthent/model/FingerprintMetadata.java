@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 
 
@@ -28,6 +29,8 @@ public class FingerprintMetadata  extends FaModel {
   public String getTypeID() {
     return "FingerprintMetadata";
   }
+  
+
   
   private FingerprintMetadata(FingerprintMetadataBuilder builder) {
     

@@ -297,16 +297,17 @@ paths:
         404:
           description: Not found.
           
-  /prediction:
+  /prediction/{prediction-id}:
     get:
       tags:
         - workflow
       summary: Get a specific prediction result.
       operationId: getPredictionResult
       parameters:
-      - in: query
+      - in: path
         name: prediction-id
         description: TODO
+        required: true
         type: string
         format: uuid
       responses:
@@ -322,7 +323,7 @@ paths:
       tags:
         - workflow
       summary: Creates/adds a new workflow.
-      description: TODO
+      description: Creates/adds a new workflow.
       operationId: createWorkflow
       consumes:
       - application/json
@@ -365,7 +366,7 @@ paths:
       tags:
         - workflow
       summary: Uploads (and replaces) the file associated with the workflow of the given workflow-id. 
-      description: TODO
+      description: Uplloads the workflow file associated with the workflow of the given workflow-id. Upon upload, the workflow will be validated in order to make sure that it complies with the respective workflow inputs and outputs (as determined by the workflow's type parameter)
       operationId: saveWorkflowFile
       consumes:
       - multipart/form-data
@@ -722,6 +723,38 @@ definitions:
         type: string
         format: uuid
         example: ""
+  
+  # Not used by any endpoint but as entity directly!
+  PredictionWorkflowInput:
+    description: Describes the input required by a prediction workflow.
+    type: object
+    x-no-faid: true
+    properties:
+      parameters:
+        description: The workflow parameters as given provided by the Workflow-entity.
+        type: array
+        items:
+          $ref: "#/definitions/WorkflowParameter"
+      fingerprintSetURI:
+        description: URI pointing to the resource containg the fingerprints to predict the labels for. 
+        type: string
+        format: uri
+      modelURI:
+        description: optional model uri (if required by the workflow) pointing to the model to use
+        type: string
+        format: uri
+  
+  # Not used by any endpoint but as entity directly!
+  PredictionWorkflowOutput:
+    description:  Describes the outputs delivered by a prediction workflow.
+    type: object
+    x-no-faid: true
+    properties:
+      prediction-results:
+        description: Prediction results per fingerprint
+        type: array
+        items:
+          $ref: "#/definitions/Prediction"
         
   TrainingJob:
     description: Represents model training job.
@@ -770,41 +803,6 @@ definitions:
           type: string
           enum: [workflow, model, fingerprint, sop]
 
-  WorkflowInput:
-      type: object
-      properties:
-        fa-id:
-         description: A global id within the FoodAuthent-system.
-         type: string
-         format: uuid
-         example: ""
-        id:
-          description: an identifier for the input
-          type: string
-        required:
-          description: whether the input is required
-          type: boolean
-        type:
-          description: the input type
-          type: string
-          enum: [string, integer, model, bruker_file, processed_bruker_file]
-
-  WorkflowOutput:
-      type: object
-      properties:
-        fa-id:
-         description: A global id within the FoodAuthent-system.
-         type: string
-         format: uuid
-         example: ""
-        required:
-          description: Whether the output is required.
-          type: boolean
-        type:
-          description: The outputs type.
-          type: string
-          enum: [string, integer, model, prediction]
-          
   Workflow:
     type: "object"
     description: A workflow for a certain task.
@@ -835,22 +833,14 @@ definitions:
         type: string
         enum: [cwl, r, python, knime]
       type:
-        description: The type of the workflow, e.g. a generic one, a model etc. The type might also determine the what inputs/outputs to be expected.
+        description: "The type of the workflow. IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity."
         type: string
-        enum: [prediction, training, processing]
-      file-link:
-        description: Link to the actual workflow object file.
-        type: string 
-      inputs:
-        description: The inputs of the workflow, TODO - should maybe be a map.
+        enum: [prediction, training]
+      parameters:
+        description: The parameters of the workflow, TODO - should maybe be a map.
         type: array
         items:
-          $ref: "#/definitions/WorkflowInput" 
-      outputs:
-        description: The outputs of the workflow, TODO - should maybe be a map.
-        type: array
-        items:
-          $ref: "#/definitions/WorkflowOutput"
+         $ref: "#/definitions/WorkflowParameter"
       tags:
         description: Descriptive tags/annotations for the workflow.
         type: array
@@ -860,4 +850,19 @@ definitions:
         description: id referencing the workflow file.
         type: string
         format: uuid
-      
+        
+  WorkflowParameter:
+    type: object
+    description: Represents a workflow parameter.
+    x-no-faid: true
+    properties:
+      name:
+        description: the parameter name
+        type: string
+      required:
+        description: whether the parameter is required
+        type: boolean
+      type:
+        description: the parameter type
+        type: string
+        enum: [string, number]

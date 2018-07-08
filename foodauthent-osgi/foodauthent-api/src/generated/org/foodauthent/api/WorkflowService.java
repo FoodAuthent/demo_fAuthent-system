@@ -38,7 +38,7 @@ public interface WorkflowService {
     TrainingJob createTrainingJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId);
         
     /**
-     * TODO
+     * Creates/adds a new workflow.
      *
      * @param workflow TODO
      *
@@ -101,7 +101,7 @@ public interface WorkflowService {
     Workflow getWorkflowById(java.util.UUID workflowId);
         
     /**
-     * TODO
+     * Uplloads the workflow file associated with the workflow of the given workflow-id. Upon upload, the workflow will be validated in order to make sure that it complies with the respective workflow inputs and outputs (as determined by the workflow&#39;s type parameter)
      *
      * @param workflowId 
      * @param upfile The file to upload.

@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 
 import org.foodauthent.model.Fingerprint;
@@ -31,6 +32,8 @@ public class FingerprintSet  extends FaModel {
   public String getTypeID() {
     return "FingerprintSet";
   }
+  
+
   
   private FingerprintSet(FingerprintSetBuilder builder) {
     

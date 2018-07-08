@@ -38,6 +38,10 @@ public class ModelUtil {
         mapper.addMixIn(PredictionJob.PredictionJobBuilder.class, PredictionJobMixIn.PredictionJobMixInBuilder.class);
         mapper.addMixIn(Prediction.class, PredictionMixIn.class);
         mapper.addMixIn(Prediction.PredictionBuilder.class, PredictionMixIn.PredictionMixInBuilder.class);
+        mapper.addMixIn(PredictionWorkflowInput.class, PredictionWorkflowInputMixIn.class);
+        mapper.addMixIn(PredictionWorkflowInput.PredictionWorkflowInputBuilder.class, PredictionWorkflowInputMixIn.PredictionWorkflowInputMixInBuilder.class);
+        mapper.addMixIn(PredictionWorkflowOutput.class, PredictionWorkflowOutputMixIn.class);
+        mapper.addMixIn(PredictionWorkflowOutput.PredictionWorkflowOutputBuilder.class, PredictionWorkflowOutputMixIn.PredictionWorkflowOutputMixInBuilder.class);
         mapper.addMixIn(Product.class, ProductMixIn.class);
         mapper.addMixIn(Product.ProductBuilder.class, ProductMixIn.ProductMixInBuilder.class);
         mapper.addMixIn(SOP.class, SOPMixIn.class);
@@ -46,12 +50,10 @@ public class ModelUtil {
         mapper.addMixIn(Tag.TagBuilder.class, TagMixIn.TagMixInBuilder.class);
         mapper.addMixIn(TrainingJob.class, TrainingJobMixIn.class);
         mapper.addMixIn(TrainingJob.TrainingJobBuilder.class, TrainingJobMixIn.TrainingJobMixInBuilder.class);
-        mapper.addMixIn(WorkflowInput.class, WorkflowInputMixIn.class);
-        mapper.addMixIn(WorkflowInput.WorkflowInputBuilder.class, WorkflowInputMixIn.WorkflowInputMixInBuilder.class);
         mapper.addMixIn(Workflow.class, WorkflowMixIn.class);
         mapper.addMixIn(Workflow.WorkflowBuilder.class, WorkflowMixIn.WorkflowMixInBuilder.class);
-        mapper.addMixIn(WorkflowOutput.class, WorkflowOutputMixIn.class);
-        mapper.addMixIn(WorkflowOutput.WorkflowOutputBuilder.class, WorkflowOutputMixIn.WorkflowOutputMixInBuilder.class);
+        mapper.addMixIn(WorkflowParameter.class, WorkflowParameterMixIn.class);
+        mapper.addMixIn(WorkflowParameter.WorkflowParameterBuilder.class, WorkflowParameterMixIn.WorkflowParameterMixInBuilder.class);
     	
     }
 }

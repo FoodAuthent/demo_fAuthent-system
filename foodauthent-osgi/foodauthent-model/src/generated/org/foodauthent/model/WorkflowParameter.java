@@ -9,29 +9,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 
 
 
 /**
- * WorkflowOutput
+ * Represents a workflow parameter.
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class WorkflowOutput  extends FaModel {
+public class WorkflowParameter  extends FaModel {
 
   /**
-   * The outputs type.
+   * the parameter type
    */
   public enum TypeEnum {
     STRING("string"),
     
-    INTEGER("integer"),
-    
-    MODEL("model"),
-    
-    PREDICTION("prediction");
+    NUMBER("number");
 
     private String value;
 
@@ -47,21 +44,26 @@ public class WorkflowOutput  extends FaModel {
   }
 
 
-  private java.util.UUID faId;
+  private String name;
   private Boolean required;
   private TypeEnum type;
   
   public String getTypeID() {
-    return "WorkflowOutput";
+    return "WorkflowParameter";
   }
   
-  private WorkflowOutput(WorkflowOutputBuilder builder) {
+
+  @Override
+  public UUID getFaId() {
+	throw new UnsupportedOperationException("The entity 'WorkflowParameter' doesn't provide a fa-id.");
+  }
+  
+  private WorkflowParameter(WorkflowParameterBuilder builder) {
     
-    faId = immutable(builder.faId);
+    name = immutable(builder.name);
     required = immutable(builder.required);
     type = immutable(builder.type);
     
-    faId = generateFaIdIfMissing(faId);
   }
   
    /**
@@ -78,13 +80,13 @@ public class WorkflowOutput  extends FaModel {
         if (getClass() != o.getClass()) {
             return false;
         }
-        WorkflowOutput ent = (WorkflowOutput)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(required, ent.required) && Objects.equals(type, ent.type);
+        WorkflowParameter ent = (WorkflowParameter)o;
+        return Objects.equals(name, ent.name) && Objects.equals(required, ent.required) && Objects.equals(type, ent.type);
     }
 
 
-  public java.util.UUID getFaId() {
-        return faId;
+  public String getName() {
+        return name;
     }
     
   public Boolean Required() {
@@ -99,8 +101,8 @@ public class WorkflowOutput  extends FaModel {
  	/**
   	 * @return a newly created builder
   	 */
-  	public static WorkflowOutputBuilder builder() {
-  		return new WorkflowOutputBuilder();
+  	public static WorkflowParameterBuilder builder() {
+  		return new WorkflowParameterBuilder();
   	}
   	
   	/**
@@ -111,43 +113,43 @@ public class WorkflowOutput  extends FaModel {
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
 	 */
-	public static WorkflowOutputBuilder builder(WorkflowOutput entity) {
-		WorkflowOutputBuilder builder = builder();
-        builder.faId = entity.faId;
+	public static WorkflowParameterBuilder builder(WorkflowParameter entity) {
+		WorkflowParameterBuilder builder = builder();
+        builder.name = entity.name;
         builder.required = entity.required;
         builder.type = entity.type;
  		return builder;
   	}
   	
   
-    public static class WorkflowOutputBuilder {
+    public static class WorkflowParameterBuilder {
     
-        private WorkflowOutputBuilder(){
+        private WorkflowParameterBuilder(){
             
         }
     
-        private java.util.UUID faId = null;
+        private String name = null;
         private Boolean required = null;
         private TypeEnum type = null;
 
-        public WorkflowOutputBuilder setFaId(java.util.UUID faId) {
-             this.faId = faId;
+        public WorkflowParameterBuilder setName(String name) {
+             this.name = name;
              return this;
         }
 
-        public WorkflowOutputBuilder setRequired(Boolean required) {
+        public WorkflowParameterBuilder setRequired(Boolean required) {
              this.required = required;
              return this;
         }
 
-        public WorkflowOutputBuilder setType(TypeEnum type) {
+        public WorkflowParameterBuilder setType(TypeEnum type) {
              this.type = type;
              return this;
         }
 
         
-        public WorkflowOutput build() {
-            return new WorkflowOutput(this);
+        public WorkflowParameter build() {
+            return new WorkflowParameter(this);
         }
     
     }

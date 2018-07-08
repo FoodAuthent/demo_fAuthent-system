@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 
 {{#imports}}
@@ -47,6 +48,14 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} extends Fa
     return "{{name}}";
   }
   
+
+  {{#vendorExtensions.x-no-faid}}
+  @Override
+  public UUID getFaId() {
+	throw new UnsupportedOperationException("The entity '{{classname}}' doesn't provide a fa-id.");
+  }
+  {{/vendorExtensions.x-no-faid}}
+  
   private {{classname}}({{classname}}Builder builder) {
     {{#parent}}super();{{/parent}}
     {{#allVars}}
@@ -58,7 +67,9 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} extends Fa
     {{name}} = immutable(builder.{{name}});
     {{/allVars}}
     
+    {{^vendorExtensions.x-no-faid}}
     faId = generateFaIdIfMissing(faId);
+    {{/vendorExtensions.x-no-faid}}
   }
   
    /**

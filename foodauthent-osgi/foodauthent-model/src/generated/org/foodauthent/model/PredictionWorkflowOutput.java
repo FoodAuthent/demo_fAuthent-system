@@ -12,34 +12,34 @@ import java.util.Objects;
 import java.util.UUID;
 
 
+import org.foodauthent.model.Prediction;
 
 
 /**
- * Global product metadata, e.g., country of origin, etc. There can be multiple fingerprints for one product.
+ * Describes the outputs delivered by a prediction workflow.
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class Product  extends FaModel {
+public class PredictionWorkflowOutput  extends FaModel {
 
 
-  private java.util.UUID faId;
-  private String gtin;
-  private String brand;
+  private java.util.List<Prediction> predictionResults;
   
   public String getTypeID() {
-    return "Product";
+    return "PredictionWorkflowOutput";
   }
   
 
+  @Override
+  public UUID getFaId() {
+	throw new UnsupportedOperationException("The entity 'PredictionWorkflowOutput' doesn't provide a fa-id.");
+  }
   
-  private Product(ProductBuilder builder) {
+  private PredictionWorkflowOutput(PredictionWorkflowOutputBuilder builder) {
     
-    faId = immutable(builder.faId);
-    gtin = immutable(builder.gtin);
-    brand = immutable(builder.brand);
+    predictionResults = immutable(builder.predictionResults);
     
-    faId = generateFaIdIfMissing(faId);
   }
   
    /**
@@ -56,29 +56,21 @@ public class Product  extends FaModel {
         if (getClass() != o.getClass()) {
             return false;
         }
-        Product ent = (Product)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(gtin, ent.gtin) && Objects.equals(brand, ent.brand);
+        PredictionWorkflowOutput ent = (PredictionWorkflowOutput)o;
+        return Objects.equals(predictionResults, ent.predictionResults);
     }
 
 
-  public java.util.UUID getFaId() {
-        return faId;
-    }
-    
-  public String getGtin() {
-        return gtin;
-    }
-    
-  public String getBrand() {
-        return brand;
+  public java.util.List<Prediction> getPredictionResults() {
+        return predictionResults;
     }
     
   
  	/**
   	 * @return a newly created builder
   	 */
-  	public static ProductBuilder builder() {
-  		return new ProductBuilder();
+  	public static PredictionWorkflowOutputBuilder builder() {
+  		return new PredictionWorkflowOutputBuilder();
   	}
   	
   	/**
@@ -89,43 +81,29 @@ public class Product  extends FaModel {
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
 	 */
-	public static ProductBuilder builder(Product entity) {
-		ProductBuilder builder = builder();
-        builder.faId = entity.faId;
-        builder.gtin = entity.gtin;
-        builder.brand = entity.brand;
+	public static PredictionWorkflowOutputBuilder builder(PredictionWorkflowOutput entity) {
+		PredictionWorkflowOutputBuilder builder = builder();
+        builder.predictionResults = entity.predictionResults;
  		return builder;
   	}
   	
   
-    public static class ProductBuilder {
+    public static class PredictionWorkflowOutputBuilder {
     
-        private ProductBuilder(){
+        private PredictionWorkflowOutputBuilder(){
             
         }
     
-        private java.util.UUID faId = null;
-        private String gtin = null;
-        private String brand = null;
+        private java.util.List<Prediction> predictionResults = new java.util.ArrayList<>();
 
-        public ProductBuilder setFaId(java.util.UUID faId) {
-             this.faId = faId;
-             return this;
-        }
-
-        public ProductBuilder setGtin(String gtin) {
-             this.gtin = gtin;
-             return this;
-        }
-
-        public ProductBuilder setBrand(String brand) {
-             this.brand = brand;
+        public PredictionWorkflowOutputBuilder setPredictionResults(java.util.List<Prediction> predictionResults) {
+             this.predictionResults = predictionResults;
              return this;
         }
 
         
-        public Product build() {
-            return new Product(this);
+        public PredictionWorkflowOutput build() {
+            return new PredictionWorkflowOutput(this);
         }
     
     }

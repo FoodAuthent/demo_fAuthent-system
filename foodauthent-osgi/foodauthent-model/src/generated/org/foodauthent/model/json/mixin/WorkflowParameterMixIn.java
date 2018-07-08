@@ -12,11 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import org.foodauthent.model.WorkflowOutput.TypeEnum;
+import org.foodauthent.model.WorkflowParameter.TypeEnum;
 
 
-import org.foodauthent.model.WorkflowOutput;
-import org.foodauthent.model.WorkflowOutput.WorkflowOutputBuilder;
+import org.foodauthent.model.WorkflowParameter;
+import org.foodauthent.model.WorkflowParameter.WorkflowParameterBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -28,13 +28,13 @@ import org.foodauthent.model.WorkflowOutput.WorkflowOutputBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = WorkflowOutput.class)
+    defaultImpl = WorkflowParameter.class)
 @JsonSubTypes({
-    @Type(value = WorkflowOutput.class, name="WorkflowOutput")
+    @Type(value = WorkflowParameter.class, name="WorkflowParameter")
 })
-@JsonDeserialize(builder=WorkflowOutputBuilder.class)
+@JsonDeserialize(builder=WorkflowParameterBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface WorkflowOutputMixIn {
+public interface WorkflowParameterMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -42,8 +42,8 @@ public interface WorkflowOutputMixIn {
     @JsonIgnore
     public String getTypeID();
 
-    @JsonProperty("fa-id")
-    public java.util.UUID getFaId();
+    @JsonProperty("name")
+    public String getName();
     
     @JsonProperty("required")
     public Boolean Required();
@@ -61,23 +61,23 @@ public interface WorkflowOutputMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = WorkflowOutputBuilder.class)
+        defaultImpl = WorkflowParameterBuilder.class)
     @JsonSubTypes({
-        @Type(value = WorkflowOutput.WorkflowOutputBuilder.class, name="WorkflowOutput")
+        @Type(value = WorkflowParameter.WorkflowParameterBuilder.class, name="WorkflowParameter")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface WorkflowOutputMixInBuilder {
+    public static interface WorkflowParameterMixInBuilder {
     
-        public WorkflowOutputMixIn build();
+        public WorkflowParameterMixIn build();
     
-        @JsonProperty("fa-id")
-        public WorkflowOutputMixInBuilder setFaId(final java.util.UUID faId);
+        @JsonProperty("name")
+        public WorkflowParameterMixInBuilder setName(final String name);
         
         @JsonProperty("required")
-        public WorkflowOutputMixInBuilder setRequired(final Boolean required);
+        public WorkflowParameterMixInBuilder setRequired(final Boolean required);
         
         @JsonProperty("type")
-        public WorkflowOutputMixInBuilder setType(final TypeEnum type);
+        public WorkflowParameterMixInBuilder setType(final TypeEnum type);
         
     }
 

@@ -3,6 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
+import org.foodauthent.model.json.mixin.PredictionMixIn;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,11 +13,10 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import org.foodauthent.model.WorkflowInput.TypeEnum;
 
 
-import org.foodauthent.model.WorkflowInput;
-import org.foodauthent.model.WorkflowInput.WorkflowInputBuilder;
+import org.foodauthent.model.PredictionWorkflowOutput;
+import org.foodauthent.model.PredictionWorkflowOutput.PredictionWorkflowOutputBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -28,13 +28,13 @@ import org.foodauthent.model.WorkflowInput.WorkflowInputBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = WorkflowInput.class)
+    defaultImpl = PredictionWorkflowOutput.class)
 @JsonSubTypes({
-    @Type(value = WorkflowInput.class, name="WorkflowInput")
+    @Type(value = PredictionWorkflowOutput.class, name="PredictionWorkflowOutput")
 })
-@JsonDeserialize(builder=WorkflowInputBuilder.class)
+@JsonDeserialize(builder=PredictionWorkflowOutputBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface WorkflowInputMixIn {
+public interface PredictionWorkflowOutputMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -42,17 +42,8 @@ public interface WorkflowInputMixIn {
     @JsonIgnore
     public String getTypeID();
 
-    @JsonProperty("fa-id")
-    public java.util.UUID getFaId();
-    
-    @JsonProperty("id")
-    public String getId();
-    
-    @JsonProperty("required")
-    public Boolean Required();
-    
-    @JsonProperty("type")
-    public TypeEnum getType();
+    @JsonProperty("prediction-results")
+    public java.util.List<PredictionMixIn> getPredictionResults();
     
 
     /**
@@ -64,26 +55,17 @@ public interface WorkflowInputMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = WorkflowInputBuilder.class)
+        defaultImpl = PredictionWorkflowOutputBuilder.class)
     @JsonSubTypes({
-        @Type(value = WorkflowInput.WorkflowInputBuilder.class, name="WorkflowInput")
+        @Type(value = PredictionWorkflowOutput.PredictionWorkflowOutputBuilder.class, name="PredictionWorkflowOutput")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface WorkflowInputMixInBuilder {
+    public static interface PredictionWorkflowOutputMixInBuilder {
     
-        public WorkflowInputMixIn build();
+        public PredictionWorkflowOutputMixIn build();
     
-        @JsonProperty("fa-id")
-        public WorkflowInputMixInBuilder setFaId(final java.util.UUID faId);
-        
-        @JsonProperty("id")
-        public WorkflowInputMixInBuilder setId(final String id);
-        
-        @JsonProperty("required")
-        public WorkflowInputMixInBuilder setRequired(final Boolean required);
-        
-        @JsonProperty("type")
-        public WorkflowInputMixInBuilder setType(final TypeEnum type);
+        @JsonProperty("prediction-results")
+        public PredictionWorkflowOutputMixInBuilder setPredictionResults(final java.util.List<PredictionMixIn> predictionResults);
         
     }
 

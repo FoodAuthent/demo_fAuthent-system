@@ -5,8 +5,7 @@ package org.foodauthent.model.json.mixin;
 
 import java.time.LocalDate;
 import org.foodauthent.model.json.mixin.TagMixIn;
-import org.foodauthent.model.json.mixin.WorkflowInputMixIn;
-import org.foodauthent.model.json.mixin.WorkflowOutputMixIn;
+import org.foodauthent.model.json.mixin.WorkflowParameterMixIn;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -71,14 +70,8 @@ public interface WorkflowMixIn {
     @JsonProperty("type")
     public TypeEnum getType();
     
-    @JsonProperty("file-link")
-    public String getFileLink();
-    
-    @JsonProperty("inputs")
-    public java.util.List<WorkflowInputMixIn> getInputs();
-    
-    @JsonProperty("outputs")
-    public java.util.List<WorkflowOutputMixIn> getOutputs();
+    @JsonProperty("parameters")
+    public java.util.List<WorkflowParameterMixIn> getParameters();
     
     @JsonProperty("tags")
     public java.util.List<TagMixIn> getTags();
@@ -129,14 +122,8 @@ public interface WorkflowMixIn {
         @JsonProperty("type")
         public WorkflowMixInBuilder setType(final TypeEnum type);
         
-        @JsonProperty("file-link")
-        public WorkflowMixInBuilder setFileLink(final String fileLink);
-        
-        @JsonProperty("inputs")
-        public WorkflowMixInBuilder setInputs(final java.util.List<WorkflowInputMixIn> inputs);
-        
-        @JsonProperty("outputs")
-        public WorkflowMixInBuilder setOutputs(final java.util.List<WorkflowOutputMixIn> outputs);
+        @JsonProperty("parameters")
+        public WorkflowMixInBuilder setParameters(final java.util.List<WorkflowParameterMixIn> parameters);
         
         @JsonProperty("tags")
         public WorkflowMixInBuilder setTags(final java.util.List<TagMixIn> tags);

@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 
 import java.time.LocalDate;
 import org.foodauthent.model.Tag;
-import org.foodauthent.model.WorkflowInput;
-import org.foodauthent.model.WorkflowOutput;
+import org.foodauthent.model.WorkflowParameter;
 
 
 /**
@@ -51,14 +51,12 @@ public class Workflow  extends FaModel {
   }
 
   /**
-   * The type of the workflow, e.g. a generic one, a model etc. The type might also determine the what inputs/outputs to be expected.
+   * The type of the workflow. IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity.
    */
   public enum TypeEnum {
     PREDICTION("prediction"),
     
-    TRAINING("training"),
-    
-    PROCESSING("processing");
+    TRAINING("training");
 
     private String value;
 
@@ -82,15 +80,15 @@ public class Workflow  extends FaModel {
   private Integer version;
   private RepresentationEnum representation;
   private TypeEnum type;
-  private String fileLink;
-  private java.util.List<WorkflowInput> inputs;
-  private java.util.List<WorkflowOutput> outputs;
+  private java.util.List<WorkflowParameter> parameters;
   private java.util.List<Tag> tags;
   private java.util.UUID workflowFileId;
   
   public String getTypeID() {
     return "Workflow";
   }
+  
+
   
   private Workflow(WorkflowBuilder builder) {
     
@@ -102,9 +100,7 @@ public class Workflow  extends FaModel {
     version = immutable(builder.version);
     representation = immutable(builder.representation);
     type = immutable(builder.type);
-    fileLink = immutable(builder.fileLink);
-    inputs = immutable(builder.inputs);
-    outputs = immutable(builder.outputs);
+    parameters = immutable(builder.parameters);
     tags = immutable(builder.tags);
     workflowFileId = immutable(builder.workflowFileId);
     
@@ -126,7 +122,7 @@ public class Workflow  extends FaModel {
             return false;
         }
         Workflow ent = (Workflow)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(representation, ent.representation) && Objects.equals(type, ent.type) && Objects.equals(fileLink, ent.fileLink) && Objects.equals(inputs, ent.inputs) && Objects.equals(outputs, ent.outputs) && Objects.equals(tags, ent.tags) && Objects.equals(workflowFileId, ent.workflowFileId);
+        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(representation, ent.representation) && Objects.equals(type, ent.type) && Objects.equals(parameters, ent.parameters) && Objects.equals(tags, ent.tags) && Objects.equals(workflowFileId, ent.workflowFileId);
     }
 
 
@@ -162,16 +158,8 @@ public class Workflow  extends FaModel {
         return type;
     }
     
-  public String getFileLink() {
-        return fileLink;
-    }
-    
-  public java.util.List<WorkflowInput> getInputs() {
-        return inputs;
-    }
-    
-  public java.util.List<WorkflowOutput> getOutputs() {
-        return outputs;
+  public java.util.List<WorkflowParameter> getParameters() {
+        return parameters;
     }
     
   public java.util.List<Tag> getTags() {
@@ -208,9 +196,7 @@ public class Workflow  extends FaModel {
         builder.version = entity.version;
         builder.representation = entity.representation;
         builder.type = entity.type;
-        builder.fileLink = entity.fileLink;
-        builder.inputs = entity.inputs;
-        builder.outputs = entity.outputs;
+        builder.parameters = entity.parameters;
         builder.tags = entity.tags;
         builder.workflowFileId = entity.workflowFileId;
  		return builder;
@@ -231,9 +217,7 @@ public class Workflow  extends FaModel {
         private Integer version = null;
         private RepresentationEnum representation = null;
         private TypeEnum type = null;
-        private String fileLink = null;
-        private java.util.List<WorkflowInput> inputs = new java.util.ArrayList<>();
-        private java.util.List<WorkflowOutput> outputs = new java.util.ArrayList<>();
+        private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
         private java.util.UUID workflowFileId = null;
 
@@ -277,18 +261,8 @@ public class Workflow  extends FaModel {
              return this;
         }
 
-        public WorkflowBuilder setFileLink(String fileLink) {
-             this.fileLink = fileLink;
-             return this;
-        }
-
-        public WorkflowBuilder setInputs(java.util.List<WorkflowInput> inputs) {
-             this.inputs = inputs;
-             return this;
-        }
-
-        public WorkflowBuilder setOutputs(java.util.List<WorkflowOutput> outputs) {
-             this.outputs = outputs;
+        public WorkflowBuilder setParameters(java.util.List<WorkflowParameter> parameters) {
+             this.parameters = parameters;
              return this;
         }
 
