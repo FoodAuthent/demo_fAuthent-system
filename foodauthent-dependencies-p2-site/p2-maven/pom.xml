@@ -34,21 +34,12 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 									<version>6.3.0.qualifier</version>
 									<label>Elasticsearch 6.3.0 Feature</label>
 									<providerName>elastic.co</providerName>
-									<description>${project.description}</description>
 									<copyright>elastic.co</copyright>
 									<license>Elastic License</license>
 									<generateSourceFeature>true</generateSourceFeature>
 									<artifacts>
 										<artifact>
-											<id>org.elasticsearch:elasticsearch:jar:6.3.0</id>
-											<source>true</source>
-										</artifact>
-										<artifact>
 											<id>org.elasticsearch.client:elasticsearch-rest-high-level-client:jar:6.3.0</id>
-											<source>true</source>
-										</artifact>
-										<artifact>
-											<id>org.elasticsearch.client:transport:jar:6.3.0</id>
 											<source>true</source>
 										</artifact>
 									</artifacts>
@@ -58,7 +49,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 									<version>2.8.10.qualifier</version>
 									<label>FasterXML Jackson 2.8.10 Feature</label>
 									<providerName>fasterxml.com</providerName>
-									<description>${project.description}</description>
 									<copyright>fasterxml.com</copyright>
 									<license>The Apache Software License, Version 2.0</license>
 									<generateSourceFeature>true</generateSourceFeature>
@@ -102,7 +92,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 									<version>2.27.0.qualifier</version>
 									<label>GlassFish Jersey 2.27 Feature</label>
 									<providerName>jersey.github.io</providerName>
-									<description>${project.description}</description>
 									<copyright>Oracle Corporation</copyright>
 									<license>
 										Common Development and Distribution License (CDDL)
@@ -160,7 +149,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 									<version>1.7.25.qualifier</version>
 									<label>SLF4J 1.7.25 Feature</label>
 									<providerName>slf4j.org</providerName>
-									<description>${project.description}</description>
 									<copyright>slf4j.org</copyright>
 									<license>MIT License</license>
 									<generateSourceFeature>true</generateSourceFeature>
@@ -207,6 +195,25 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 										</artifact>
 										<artifact>
 											<id>org.slf4j:osgi-over-slf4j:jar:1.7.25</id>
+											<source>true</source>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>org.scala-lang.feature</id>
+									<version>2.12.3.qualifier</version>
+									<label>Scala 2.12.3 Feature</label>
+									<providerName>org.scala-lang</providerName>
+									<copyright>https://www.scala-lang.org</copyright>
+									<license>BSD-3 Clause</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>org.scala-lang:scala-library:jar:2.12.3</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>org.json4s:json4s-jackson_2.12:jar:3.5.4</id>
 											<source>true</source>
 										</artifact>
 									</artifacts>
