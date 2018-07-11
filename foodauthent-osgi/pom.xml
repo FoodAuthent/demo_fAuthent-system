@@ -12,10 +12,13 @@
 
 		<!-- Plugin Versions -->
 		<tycho.version>1.2.0</tycho.version>
+		<maven-scala-plugin.version>2.15.2</maven-scala-plugin.version>
+		<scala.version>2.12.3</scala.version>
+
+
 		<!-- p2 repositories -->
 		<foodauthent-dependencies.url>http://repository.foodauthent.net/p2/foodauthent-dependencies-1.0.0-SNAPSHOT/</foodauthent-dependencies.url>
-		<!-- 
-			<equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a/</equinox-oxygen-repo.url> 
+		<!-- <equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a/</equinox-oxygen-repo.url> 
 			<knime-analytics-platform.url>http://update.knime.org/analytics-platform/nightly/</knime-analytics-platform.url> -->
 		<!-- use UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,19 +31,18 @@
 			<url>${foodauthent-dependencies.url}</url>
 			<layout>p2</layout>
 		</repository>
-		<!-- 
-		<repository>
-			<id>equinox-oxygen</id>
-			<url>${equinox-oxygen-repo.url}</url>
-			<layout>p2</layout>
-		</repository>
-		<repository>
-			<id>knime-analytics-platform</id>
-			<url>${knime-analytics-platform.url}</url>
-			<layout>p2</layout>
-		</repository>
-		 -->
+		<!-- <repository> <id>equinox-oxygen</id> <url>${equinox-oxygen-repo.url}</url> 
+			<layout>p2</layout> </repository> <repository> <id>knime-analytics-platform</id> 
+			<url>${knime-analytics-platform.url}</url> <layout>p2</layout> </repository> -->
 	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>${scala.version}</version>
+		</dependency>
+	</dependencies>
+	
 	<profiles>
 		<profile>
 			<id>macOS</id>
@@ -156,6 +158,16 @@
 					<includeAllDependencies>true</includeAllDependencies>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<excludeResources>
+						<excludeResource>**/*.scala</excludeResource>
+					</excludeResources>
+				</configuration>
+			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
@@ -179,6 +191,7 @@
 		<module>foodauthent-api-knime</module>
 		<module>foodauthent-rest</module>
 		<module>foodauthent-swaggerui</module>
+		<module>foodauthent-elasticsearch</module>
 		<module>foodauthent-feature</module>
 		<module>foodauthent-knime-feature</module>
 		<module>foodauthent-product</module>

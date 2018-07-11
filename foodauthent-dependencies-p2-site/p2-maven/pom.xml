@@ -6,7 +6,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<groupId>org.foodauthent.repository</groupId>
 	<artifactId>p2-maven</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0-ES</version>
 
 	<packaging>pom</packaging>
 
@@ -31,15 +31,26 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 							<featureDefinitions>
 								<feature>
 									<id>org.elasticsearch.feature</id>
-									<version>6.3.0.qualifier</version>
-									<label>Elasticsearch 6.3.0 Feature</label>
+									<version>6.3.1.qualifier</version>
+									<label>Elasticsearch 6.3.1 Feature</label>
 									<providerName>elastic.co</providerName>
 									<copyright>elastic.co</copyright>
 									<license>Elastic License</license>
 									<generateSourceFeature>true</generateSourceFeature>
 									<artifacts>
 										<artifact>
-											<id>org.elasticsearch.client:elasticsearch-rest-high-level-client:jar:6.3.0</id>
+											<id>org.elasticsearch:elasticsearch:jar:6.3.1</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>org.elasticsearch:elasticsearch-x-content:jar:6.3.1</id>
+											<instructions>
+												<Fragment-Host>org.elasticsearch</Fragment-Host>
+											</instructions>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>org.elasticsearch.client:elasticsearch-rest-high-level-client:jar:6.3.1</id>
 											<source>true</source>
 										</artifact>
 									</artifacts>
