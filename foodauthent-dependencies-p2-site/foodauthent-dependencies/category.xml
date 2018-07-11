@@ -54,8 +54,15 @@
    <feature url="features/org.slf4j.feature.source_1.7.25.20180710004005.jar" id="org.slf4j.feature.source" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
+   <feature url="features/org.scala-lang.feature_2.12.3.20180711213428.jar" id="org.scala-lang.feature" version="2.12.3.20180711213428">
+      <category name="org.scala-lang"/>
+   </feature>
+   <feature url="features/org.scala-lang.feature.source_2.12.3.20180711213428.jar" id="org.scala-lang.feature.source" version="2.12.3.20180711213428">
+      <category name="org.scala-lang"/>
+   </feature>
    <category-def name="org.foodauthent.custom" label="FoodAuthent Custom Dependencies"/>
    <category-def name="org.foodauthent.maven" label="FoodAuthent Maven Dependencies"/>
    <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime"/>
    <category-def name="org.knime.platform" label="KNIME Analytics Platform"/>
+   <category-def name="org.scala-lang" label="Scala Library"/>
 </site>
