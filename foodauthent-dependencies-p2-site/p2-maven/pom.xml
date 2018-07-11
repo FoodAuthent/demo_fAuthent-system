@@ -41,12 +41,12 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 										<artifact>
 											<id>org.elasticsearch:elasticsearch:jar:6.3.1</id>
 											<source>true</source>
+											<instructions>
+												<Require-Bundle>org.elasticsearch.x-content</Require-Bundle>
+											</instructions>
 										</artifact>
 										<artifact>
 											<id>org.elasticsearch:elasticsearch-x-content:jar:6.3.1</id>
-											<instructions>
-												<Fragment-Host>org.elasticsearch</Fragment-Host>
-											</instructions>
 											<source>true</source>
 										</artifact>
 										<artifact>
