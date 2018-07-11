@@ -34,10 +34,12 @@ import org.knime.core.node.workflow.WorkflowPersistor.WorkflowLoadResult;
 import org.knime.core.util.FileUtil;
 import org.knime.core.util.LockFailedException;
 import org.knime.core.util.Version;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Martin Horn, University of Konstanz
  */
+@Component(service=JobService.class)
 public class LocalKnimeJobService implements JobService {
 
 	private PersistenceService persistenceService;

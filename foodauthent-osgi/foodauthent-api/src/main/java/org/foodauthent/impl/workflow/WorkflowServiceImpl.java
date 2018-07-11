@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import org.foodauthent.api.WorkflowService;
 import org.foodauthent.internal.api.job.JobService;
-import org.foodauthent.internal.api.job.JobServiceProvider;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.DataMetaData;
 import org.foodauthent.internal.api.persistence.PersistenceService;
@@ -20,6 +19,8 @@ import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +29,7 @@ import org.slf4j.LoggerFactory;
  * @author Alexander Kerner, Lablicate GmbH
  *
  */
+@Component(service=WorkflowService.class)
 public class WorkflowServiceImpl implements WorkflowService {
 
     @SuppressWarnings("unused")
@@ -35,11 +37,15 @@ public class WorkflowServiceImpl implements WorkflowService {
 
     private final PersistenceService persistenceService;
 
-    private final JobService jobService;
+    private JobService jobService;
 
     public WorkflowServiceImpl() {
 	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
-	this.jobService = JobServiceProvider.getInstance().getService();
+    }
+
+    @Reference
+    void bindJobService(JobService jobService) {
+        this.jobService = jobService;
     }
 
     @Override

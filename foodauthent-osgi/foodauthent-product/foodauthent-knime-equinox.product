@@ -320,6 +320,7 @@
       <plugin id="org.eclipse.ui.workbench" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.api" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.api.internal" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.api.knime" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.common" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.model" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.rest" autoStart="true" startLevel="0" />
