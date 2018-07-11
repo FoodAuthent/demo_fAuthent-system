@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.foodauthent</groupId>
@@ -7,23 +8,38 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
-		 <foodauthent.release.version>1.0.0</foodauthent.release.version>
-	
+		<foodauthent.release.version>1.0.0</foodauthent.release.version>
+
 		<!-- Plugin Versions -->
 		<tycho.version>1.2.0</tycho.version>
 		<!-- p2 repositories -->
-		<foodauthent-dependencies.url>http://repository.foodauthent.net/p2/foodauthent-dependencies</foodauthent-dependencies.url>
-
+		<foodauthent-dependencies.url>http://repository.foodauthent.net/p2/foodauthent-dependencies-1.0.0-SNAPSHOT/</foodauthent-dependencies.url>
+		<!-- 
+			<equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a/</equinox-oxygen-repo.url> 
+			<knime-analytics-platform.url>http://update.knime.org/analytics-platform/nightly/</knime-analytics-platform.url> -->
 		<!-- use UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
+
 	<repositories>
 		<repository>
 			<id>foodauthent-dependencies</id>
 			<url>${foodauthent-dependencies.url}</url>
 			<layout>p2</layout>
 		</repository>
+		<!-- 
+		<repository>
+			<id>equinox-oxygen</id>
+			<url>${equinox-oxygen-repo.url}</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>knime-analytics-platform</id>
+			<url>${knime-analytics-platform.url}</url>
+			<layout>p2</layout>
+		</repository>
+		 -->
 	</repositories>
 	<profiles>
 		<profile>
@@ -37,8 +53,8 @@
 						<configuration>
 							<target>
 								<artifact>
-									<groupId>org.gs1.epcis</groupId>
-									<artifactId>equinox-kepler</artifactId>
+									<groupId>org.foodauthent</groupId>
+									<artifactId>foodauthent-osgi</artifactId>
 									<version>1.0.0-SNAPSHOT</version>
 								</artifact>
 							</target>

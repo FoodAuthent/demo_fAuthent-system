@@ -9,8 +9,9 @@
 		<!-- Plugin Versions -->
 		<tycho.version>1.2.0</tycho.version>
 		<!-- p2 repositories -->
-		<equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Neon.1</equinox-oxygen-repo.url>
+		<equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a</equinox-oxygen-repo.url>
 		<p2-maven-repo.url>http://repository.foodauthent.net/p2/p2-maven-1.0.0-SNAPSHOT</p2-maven-repo.url>
+		<knime-analytics-platform.url>http://update.knime.org/analytics-platform/nightly/</knime-analytics-platform.url>
 
 		<!-- use UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,6 +28,11 @@
 			<url>${p2-maven-repo.url}</url>
 			<layout>p2</layout>
 		</repository>
+		<repository>
+			<id>knime-analytics-platform</id>
+			<url>${knime-analytics-platform.url}</url>
+			<layout>p2</layout>
+		</repository>		
 	</repositories>
 	<build>
 		<plugins>
