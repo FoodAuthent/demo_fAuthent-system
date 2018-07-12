@@ -84,6 +84,18 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<id>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.10</id>
 											<source>true</source>
 										</artifact>
+										<artifact>
+											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.8.10</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:jar:2.8.10</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-smile:jar:2.8.10</id>
+											<source>true</source>
+										</artifact>										
 									</artifacts>
 								</feature>
 								<feature>
