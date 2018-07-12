@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.foodauthent.internal.impl.job.knime.LocalKnimeJobService">
-   <service>
-      <provide interface="org.foodauthent.internal.api.job.JobService"/>
-   </service>
-   <implementation class="org.foodauthent.internal.impl.job.knime.LocalKnimeJobService"/>
-</scr:component>
