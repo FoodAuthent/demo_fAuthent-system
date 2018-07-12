@@ -10,7 +10,13 @@ Export-Package: org.foodauthent.internal.api.job,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: org.foodauthent.api.internal.exeption,
  org.foodauthent.model,
+ org.osgi.service.component.annotations;version="[1.2.0,2.0.0)";resolution:=optional,
  org.slf4j;version="1.7.10"
 Bundle-ClassPath: .
 Automatic-Module-Name: org.foodauthent.api.internal
 Require-Bundle: org.knime.core;bundle-version="[3.5.0,4.0.0)"
+Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/org.foodauthent.internal.impl.persistence.SimpleInMemoryPersistenceService.xml,
+ OSGI-INF/org.foodauthent.internal.api.persistence.SimpleUUIDEntityMapper.xml
+Require-Capability: osgi.extender;
+ filter:="(&(osgi.extender=osgi.component)(version>=1.2)(!(version>=2.0)))"

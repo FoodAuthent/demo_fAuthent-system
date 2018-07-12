@@ -12,7 +12,6 @@ import org.foodauthent.api.internal.exeption.EntityExistsException;
 import org.foodauthent.api.internal.exeption.NoSuchIDException;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.PersistenceService;
-import org.foodauthent.internal.api.persistence.UUIDEntityIDMapperProvider;
 import org.foodauthent.internal.api.persistence.UUIDPersistenceIDMapper;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.FingerprintSet;
@@ -20,6 +19,8 @@ import org.foodauthent.model.PersistenceIdProvider;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.SOP;
 import org.foodauthent.model.Workflow;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +36,7 @@ import org.slf4j.LoggerFactory;
  * @author Alexander Kerner
  *
  */
+@Component(service=PersistenceService.class)
 public class SimpleInMemoryPersistenceService implements PersistenceService {
 
     private static final Logger logger = LoggerFactory.getLogger(SimpleInMemoryPersistenceService.class);
@@ -51,12 +53,16 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 
     private final Map<Long, Blob> blobs;
 
-    private final UUIDPersistenceIDMapper idMapper;
+    private static UUIDPersistenceIDMapper idMapper;
 
     public SimpleInMemoryPersistenceService() {
 	this.entities = new LinkedHashMap<>();
 	this.blobs = new LinkedHashMap<Long, Blob>();
-	this.idMapper = UUIDEntityIDMapperProvider.getInstance().getEntityMapper();
+    }
+    
+    @Reference
+    void bindPersistenceService(UUIDPersistenceIDMapper idMapper) {
+        this.idMapper = idMapper;
     }
 
     @SuppressWarnings("unchecked")

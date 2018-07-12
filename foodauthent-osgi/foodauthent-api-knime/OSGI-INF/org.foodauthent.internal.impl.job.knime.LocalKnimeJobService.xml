@@ -3,5 +3,6 @@
    <service>
       <provide interface="org.foodauthent.internal.api.job.JobService"/>
    </service>
+   <reference bind="bindPersistenceService" interface="org.foodauthent.internal.api.persistence.PersistenceService" name="PersistenceService"/>
    <implementation class="org.foodauthent.internal.impl.job.knime.LocalKnimeJobService"/>
 </scr:component>

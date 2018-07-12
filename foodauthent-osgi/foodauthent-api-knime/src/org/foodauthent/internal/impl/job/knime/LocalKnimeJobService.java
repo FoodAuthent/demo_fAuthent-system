@@ -12,7 +12,6 @@ import java.util.zip.ZipInputStream;
 import org.foodauthent.internal.api.job.JobService;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.PersistenceService;
-import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJob.PredictionJobBuilder;
@@ -35,6 +34,7 @@ import org.knime.core.util.FileUtil;
 import org.knime.core.util.LockFailedException;
 import org.knime.core.util.Version;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Martin Horn, University of Konstanz
@@ -42,14 +42,19 @@ import org.osgi.service.component.annotations.Component;
 @Component(service=JobService.class)
 public class LocalKnimeJobService implements JobService {
 
-	private PersistenceService persistenceService;
+	private static PersistenceService persistenceService;
 
 	private ExecutorService executionService;
 
 	public LocalKnimeJobService() {
-		persistenceService = PersistenceServiceProvider.getInstance().getService();
+//		persistenceService = PersistenceServiceProvider.getInstance().getService();
 		executionService = Executors.newCachedThreadPool();
 	}
+	
+    @Reference
+    void bindPersistenceService(PersistenceService persistenceService) {
+        this.persistenceService = persistenceService;
+    }
 
 	@Override
 	public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet) {
@@ -104,7 +109,6 @@ public class LocalKnimeJobService implements JobService {
 	@Override
 	public TrainingJob createNewTrainingJob(Workflow workflow, FingerprintSet fingerprintSet) {
 		// TODO Auto-generated method stub
-		System.out.println("### createNewTrainingJob ### ");
 		return null;
 	}
 

@@ -12,7 +12,6 @@ import org.foodauthent.internal.api.job.JobService;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.DataMetaData;
 import org.foodauthent.internal.api.persistence.PersistenceService;
-import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
@@ -35,18 +34,21 @@ public class WorkflowServiceImpl implements WorkflowService {
     @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(WorkflowServiceImpl.class);
 
-    private final PersistenceService persistenceService;
+    private static PersistenceService persistenceService;
 
-    private JobService jobService;
-
-    public WorkflowServiceImpl() {
-	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
-    }
+    private static JobService jobService;
+    
 
     @Reference
     void bindJobService(JobService jobService) {
         this.jobService = jobService;
     }
+    
+    @Reference
+    void bindPersistenceService(PersistenceService persistenceService) {
+        this.persistenceService = persistenceService;
+    }
+    
 
     @Override
     public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId) {
