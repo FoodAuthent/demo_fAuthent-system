@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="36">
+<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="40">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.2.2.v20180210-1608"/>
@@ -15,16 +15,15 @@
 <repository location="http://update.knime.org/analytics-platform/nightly"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="com.fasterxml.jackson.feature.feature.group" version="2.8.10.20180711235446"/>
-<unit id="com.fasterxml.jackson.feature.source.feature.group" version="2.8.10.20180711235446"/>
-<unit id="org.elasticsearch.feature.feature.group" version="6.3.1.20180711235446"/>
-<unit id="org.elasticsearch.feature.source.feature.group" version="6.3.1.20180711235446"/>
-<unit id="org.glassfish.jersey.feature.feature.group" version="2.27.0.20180711235446"/>
-<unit id="org.glassfish.jersey.feature.source.feature.group" version="2.27.0.20180711235446"/>
-<unit id="org.scala-lang.feature.feature.group" version="2.12.3.20180711235446"/>
-<unit id="org.scala-lang.feature.source.feature.group" version="2.12.3.20180711235446"/>
-<unit id="org.slf4j.feature.feature.group" version="1.7.25.20180711235446"/>
-<unit id="org.slf4j.feature.source.feature.group" version="1.7.25.20180711235446"/>
+<unit id="com.fasterxml.jackson.feature.feature.group" version="2.8.10.20180712132751"/>
+<unit id="com.fasterxml.jackson.feature.source.feature.group" version="2.8.10.20180712132751"/>
+<unit id="org.elasticsearch.client.feature.feature.group" version="6.3.1.20180712132751"/>
+<unit id="org.glassfish.jersey.feature.feature.group" version="2.27.0.20180712132751"/>
+<unit id="org.glassfish.jersey.feature.source.feature.group" version="2.27.0.20180712132751"/>
+<unit id="org.scala-lang.feature.feature.group" version="2.12.3.20180712132751"/>
+<unit id="org.scala-lang.feature.source.feature.group" version="2.12.3.20180712132751"/>
+<unit id="org.slf4j.feature.feature.group" version="1.7.25.20180712132751"/>
+<unit id="org.slf4j.feature.source.feature.group" version="1.7.25.20180712132751"/>
 <repository location="http://repository.foodauthent.net/p2/p2-maven-1.0.0-ES/"/>
 </location>
 </locations>

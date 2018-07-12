@@ -36,12 +36,6 @@
    <feature url="features/com.fasterxml.jackson.feature.source_2.8.10.20180710004005.jar" id="com.fasterxml.jackson.feature.source" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
-   <feature url="features/org.elasticsearch.feature_6.3.0.20180710004005.jar" id="org.elasticsearch.feature" version="0.0.0">
-      <category name="org.foodauthent.maven"/>
-   </feature>
-   <feature url="features/org.elasticsearch.feature.source_6.3.0.20180710004005.jar" id="org.elasticsearch.feature.source" version="0.0.0">
-      <category name="org.foodauthent.maven"/>
-   </feature>
    <feature url="features/org.glassfish.jersey.feature_2.27.0.20180710004005.jar" id="org.glassfish.jersey.feature" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>

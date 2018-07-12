@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="FoodAuthent Equinox-Oxygen" sequenceNumber="51">
+<?pde version="3.8"?><target name="FoodAuthent Equinox-Oxygen" sequenceNumber="60">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="com.eclipsesource.jaxrs.feature.feature.group" version="1.0.0.201807111942"/>
-<unit id="com.fasterxml.jackson.feature.feature.group" version="2.8.10.20180711213428"/>
-<unit id="com.fasterxml.jackson.feature.source.feature.group" version="2.8.10.20180711213428"/>
+<unit id="com.eclipsesource.jaxrs.feature.feature.group" version="1.0.0.201807112157"/>
+<unit id="com.fasterxml.jackson.feature.feature.group" version="2.8.10.20180711235446"/>
+<unit id="com.fasterxml.jackson.feature.source.feature.group" version="2.8.10.20180711235446"/>
 <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.2.2.v20180210-1608"/>
 <unit id="org.eclipse.equinox.compendium.sdk.feature.group" version="3.13.1.v20170811-1407"/>
 <unit id="org.eclipse.equinox.core.feature.feature.group" version="1.4.2.v20180210-1608"/>
 <unit id="org.eclipse.equinox.executable.feature.group" version="3.7.2.v20171108-1834"/>
 <unit id="org.eclipse.equinox.server.core.feature.group" version="1.5.3.v20180210-1608"/>
 <unit id="org.eclipse.equinox.server.jetty.feature.group" version="1.4.4.v20180322-2228"/>
-<unit id="org.elasticsearch.feature.feature.group" version="6.3.0.20180711213428"/>
-<unit id="org.elasticsearch.feature.source.feature.group" version="6.3.0.20180711213428"/>
-<unit id="org.foodauthent.dependencies.feature.feature.group" version="1.0.0.201807111942"/>
-<unit id="org.glassfish.jersey.feature.feature.group" version="2.27.0.20180711213428"/>
-<unit id="org.glassfish.jersey.feature.source.feature.group" version="2.27.0.20180711213428"/>
+<unit id="org.elasticsearch.feature.feature.group" version="6.3.1.20180711235446"/>
+<unit id="org.elasticsearch.feature.source.feature.group" version="6.3.1.20180711235446"/>
+<unit id="org.foodauthent.dependencies.feature.feature.group" version="1.0.0.201807112157"/>
+<unit id="org.glassfish.jersey.feature.feature.group" version="2.27.0.20180711235446"/>
+<unit id="org.glassfish.jersey.feature.source.feature.group" version="2.27.0.20180711235446"/>
 <unit id="org.knime.features.base.feature.group" version="3.6.0.v201807100939"/>
 <unit id="org.knime.features.base.source.feature.group" version="3.6.0.v201807100939"/>
-<unit id="org.scala-lang.feature.feature.group" version="2.12.3.20180711213428"/>
-<unit id="org.scala-lang.feature.source.feature.group" version="2.12.3.20180711213428"/>
-<unit id="org.slf4j.feature.feature.group" version="1.7.25.20180711213428"/>
-<unit id="org.slf4j.feature.source.feature.group" version="1.7.25.20180711213428"/>
-<repository location="http://repository.foodauthent.net/p2/foodauthent-dependencies-1.0.0-SNAPSHOT/"/>
+<unit id="org.scala-lang.feature.feature.group" version="2.12.3.20180711235446"/>
+<unit id="org.scala-lang.feature.source.feature.group" version="2.12.3.20180711235446"/>
+<unit id="org.slf4j.feature.feature.group" version="1.7.25.20180711235446"/>
+<unit id="org.slf4j.feature.source.feature.group" version="1.7.25.20180711235446"/>
+<repository location="http://repository.foodauthent.net/p2/foodauthent-dependencies-1.0.0.v20180711/"/>
 </location>
 </locations>
 </target>
