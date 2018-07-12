@@ -30,31 +30,19 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 						<configuration>
 							<featureDefinitions>
 								<feature>
-									<id>org.elasticsearch.feature</id>
+									<id>org.elasticsearch.client.feature</id>
 									<version>6.3.1.qualifier</version>
-									<label>Elasticsearch 6.3.1 Feature</label>
+									<label>Elasticsearch 6.3.1 Client Feature</label>
 									<providerName>elastic.co</providerName>
 									<copyright>elastic.co</copyright>
 									<license>Elastic License</license>
-									<generateSourceFeature>true</generateSourceFeature>
 									<artifacts>
 										<artifact>
-											<id>org.elasticsearch:elasticsearch:jar:6.3.1</id>
-											<source>true</source>
-											<instructions>
-												<Require-Bundle>org.elasticsearch.x-content</Require-Bundle>
-											</instructions>
-										</artifact>
-										<artifact>
-											<id>org.elasticsearch:elasticsearch-x-content:jar:6.3.1</id>
-											<source>true</source>
-										</artifact>
-										<artifact>
-											<id>org.elasticsearch.client:elasticsearch-rest-high-level-client:jar:6.3.1</id>
-											<source>true</source>
+											<id>org.foodauthent:org.elasticsearch.client.rest:jar:6.3.1</id>
+											<transitive>false</transitive>
 										</artifact>
 									</artifacts>
-								</feature>
+								</feature>							
 								<feature>
 									<id>com.fasterxml.jackson.feature</id>
 									<version>2.8.10.qualifier</version>
@@ -270,7 +258,9 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 					</execution>
 				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
+	<modules>
+		<module>org.elasticsearch.client.rest</module>
+	</modules>
 </project>
