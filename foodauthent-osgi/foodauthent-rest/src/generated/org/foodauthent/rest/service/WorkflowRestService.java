@@ -44,7 +44,13 @@ public class WorkflowRestService{
 , @QueryParam("fingerprintset-id")java.util.UUID fingerprintsetId
 ) {
 	    Object res = service.createPredictionJob(workflowId, fingerprintsetId);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -60,7 +66,13 @@ public class WorkflowRestService{
 , @QueryParam("fingerprintset-id")java.util.UUID fingerprintsetId
 ) {
 	    Object res = service.createTrainingJob(workflowId, fingerprintsetId);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -75,7 +87,13 @@ public class WorkflowRestService{
     public Response createWorkflow(Workflow workflow
 ) {
 	    Object res = service.createWorkflow(workflow);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -90,7 +108,13 @@ public class WorkflowRestService{
     public Response findPredictionWorkflows(@QueryParam("keywords")java.util.List<String> keywords
 ) {
 	    Object res = service.findPredictionWorkflows(keywords);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -105,7 +129,13 @@ public class WorkflowRestService{
     public Response findTrainingWorkflows(@QueryParam("keywords")java.util.List<String> keywords
 ) {
 	    Object res = service.findTrainingWorkflows(keywords);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -119,7 +149,13 @@ public class WorkflowRestService{
     public Response getPredictionJob(@PathParam("job-id") java.util.UUID jobId
 ) {
 	    Object res = service.getPredictionJob(jobId);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -132,7 +168,13 @@ public class WorkflowRestService{
     public Response getPredictionResult(@PathParam("prediction-id") java.util.UUID predictionId
 ) {
 	    Object res = service.getPredictionResult(predictionId);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -146,7 +188,13 @@ public class WorkflowRestService{
     public Response getTrainingJob(@PathParam("job-id") java.util.UUID jobId
 ) {
 	    Object res = service.getTrainingJob(jobId);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -161,7 +209,13 @@ public class WorkflowRestService{
     public Response getWorkflowById(@PathParam("workflow-id") java.util.UUID workflowId
 ) {
 	    Object res = service.getWorkflowById(workflowId);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -180,7 +234,13 @@ public class WorkflowRestService{
             @org.glassfish.jersey.media.multipart.FormDataParam("upfile") org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail
 ) {
 	    Object res = service.saveWorkflowFile(workflowId, upfile, upfileDetail);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 }
 

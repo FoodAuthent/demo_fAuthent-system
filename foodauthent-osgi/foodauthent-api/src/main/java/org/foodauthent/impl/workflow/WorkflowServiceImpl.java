@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.foodauthent.api.WorkflowService;
 import org.foodauthent.internal.api.job.JobService;
+import org.foodauthent.internal.api.job.JobServiceProvider;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.DataMetaData;
 import org.foodauthent.internal.api.persistence.PersistenceService;
@@ -41,6 +42,8 @@ public class WorkflowServiceImpl implements WorkflowService {
 
     public WorkflowServiceImpl() {
 	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
+	//TODO remove
+	this.jobService = JobServiceProvider.getInstance().getService();
     }
 
     @Reference

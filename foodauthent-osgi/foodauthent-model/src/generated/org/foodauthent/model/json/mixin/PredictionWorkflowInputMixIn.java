@@ -3,8 +3,10 @@
  */
 package org.foodauthent.model.json.mixin;
 
+import org.foodauthent.model.json.mixin.FingerprintSetMixIn;
 import org.foodauthent.model.json.mixin.WorkflowParameterMixIn;
 
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,12 +40,19 @@ public interface PredictionWorkflowInputMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
-
+	
     @JsonIgnore
     public String getTypeID();
+    
+   	@JsonIgnore
+  	public UUID getFaId();
+    
 
     @JsonProperty("parameters")
     public java.util.List<WorkflowParameterMixIn> getParameters();
+    
+    @JsonProperty("fingerprintSetMetadata")
+    public FingerprintSetMixIn getFingerprintSetMetadata();
     
     @JsonProperty("fingerprintSetURI")
     public String getFingerprintSetURI();
@@ -72,6 +81,9 @@ public interface PredictionWorkflowInputMixIn {
     
         @JsonProperty("parameters")
         public PredictionWorkflowInputMixInBuilder setParameters(final java.util.List<WorkflowParameterMixIn> parameters);
+        
+        @JsonProperty("fingerprintSetMetadata")
+        public PredictionWorkflowInputMixInBuilder setFingerprintSetMetadata(final FingerprintSetMixIn fingerprintSetMetadata);
         
         @JsonProperty("fingerprintSetURI")
         public PredictionWorkflowInputMixInBuilder setFingerprintSetURI(final String fingerprintSetURI);

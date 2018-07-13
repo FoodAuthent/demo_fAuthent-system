@@ -39,7 +39,13 @@ public class ProductRestService{
     public Response createProduct(Product product
 ) {
 	    Object res = service.createProduct(product);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -54,7 +60,13 @@ public class ProductRestService{
     public Response findProductByGtin(@QueryParam("gtin")String gtin
 ) {
 	    Object res = service.findProductByGtin(gtin);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 }
 

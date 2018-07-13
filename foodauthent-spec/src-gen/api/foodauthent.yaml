@@ -685,15 +685,17 @@ definitions:
         type: string
         format: uuid
         example: ""
-      fingerprintSet-id:
+      fingerprint-set-id:
         type: string
         format: uuid
         example: ""
       prediction-id:
-        description: The id of the prediction if the job has completed successfully.
-        type: string
-        format: uuid
-        example: ""
+        description: The ids of the predictions if the job has completed successfully.
+        type: array
+        items:
+          type: string
+          format: uuid
+          example: ""
       status:
         type: string
         enum: [running, success, failed]
@@ -701,6 +703,7 @@ definitions:
         description: A message, e.g., in case the workflow failed.
         type: string
   
+  #TODO prediction per fingerprint or fingerprint set??
   Prediction:
     type: object
     properties:
@@ -719,12 +722,13 @@ definitions:
         type: string
         format: uuid
         example: ""
-     fingerprint-id:
+     fingerprint-set-id:
         type: string
         format: uuid
         example: ""
   
   # Not used by any endpoint but as entity directly!
+  # Changes here might cause (test) workflows to not work anymore.
   PredictionWorkflowInput:
     description: Describes the input required by a prediction workflow.
     type: object
@@ -735,6 +739,9 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/WorkflowParameter"
+      fingerprintSetMetadata:
+        description: The fingerprint set metadata.
+        $ref: "#/definitions/FingerprintSet"
       fingerprintSetURI:
         description: URI pointing to the resource containg the fingerprints to predict the labels for. 
         type: string
@@ -866,3 +873,6 @@ definitions:
         description: the parameter type
         type: string
         enum: [string, number]
+      value:
+        description: the parameter value
+        type: string

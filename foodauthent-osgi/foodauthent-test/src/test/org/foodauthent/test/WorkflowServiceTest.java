@@ -13,6 +13,8 @@ import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.Workflow;
 import org.foodauthent.model.Workflow.RepresentationEnum;
+import org.foodauthent.model.WorkflowParameter;
+import org.foodauthent.model.WorkflowParameter.TypeEnum;
 import org.glassfish.jersey.media.multipart.MultiPart;
 import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
 import org.junit.Test;
@@ -32,7 +34,19 @@ public class WorkflowServiceTest extends AbstractITTest {
 	/* upload workflow */
 
 	// upload workflow metadata
-	Workflow wf = Workflow.builder().setName("name").setDescription("desc")
+	WorkflowParameter wfp1 = WorkflowParameter.builder()
+		.setName("param1")
+		.setRequired(false)
+		.setValue("paramValue1")
+		.setType(TypeEnum.NUMBER).build();
+	WorkflowParameter wfp2 = WorkflowParameter.builder()
+		.setName("param2")
+		.setRequired(true)
+		.setValue("paramValue2")
+		.setType(TypeEnum.STRING).build();
+	Workflow wf = Workflow.builder().setName("name")
+		.setDescription("desc")
+		.setParameters(Arrays.asList(wfp1, wfp2))
 		.setRepresentation(RepresentationEnum.KNIME).build(); // TODO set more (or even all) properties
 	UUID wfId = wt.path("workflow").request(MediaType.APPLICATION_JSON)
 		.post(Entity.entity(wf, MediaType.APPLICATION_JSON), UUID.class);

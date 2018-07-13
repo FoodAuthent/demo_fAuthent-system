@@ -5,6 +5,7 @@ package org.foodauthent.model.json.mixin;
 
 import org.foodauthent.model.json.mixin.PredictionMixIn;
 
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,9 +39,13 @@ public interface PredictionWorkflowOutputMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
-
+	
     @JsonIgnore
     public String getTypeID();
+    
+   	@JsonIgnore
+  	public UUID getFaId();
+    
 
     @JsonProperty("prediction-results")
     public java.util.List<PredictionMixIn> getPredictionResults();

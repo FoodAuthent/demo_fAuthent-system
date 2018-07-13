@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import org.foodauthent.model.json.mixin.TagMixIn;
 import org.foodauthent.model.json.mixin.WorkflowParameterMixIn;
 
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -42,9 +43,11 @@ public interface WorkflowMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
-
+	
     @JsonIgnore
     public String getTypeID();
+    
+    
 
     @JsonProperty("fa-id")
     public java.util.UUID getFaId();

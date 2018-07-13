@@ -1,6 +1,7 @@
 package org.foodauthent.internal.impl.job;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.UUID;
 
 import org.foodauthent.internal.api.job.JobService;
@@ -36,7 +37,8 @@ public class SimpleJobService implements JobService {
     public PredictionJob createNewPredictionJob(final Workflow workflow, final FingerprintSet fingerprintSet) {
 	final UUID predictionId = UUID.randomUUID();
 	final PredictionJob job = PredictionJob.builder().setFingerprintSetId(fingerprintSet.getFaId())
-		.setWorklfowId(workflow.getFaId()).setStatus(StatusEnum.SUCCESS).setPredictionId(predictionId).build();
+		.setWorklfowId(workflow.getFaId()).setStatus(StatusEnum.SUCCESS)
+		.setPredictionIds(Arrays.asList(predictionId)).build();
 	final long jobPersistenceId = persistenceService.save(job);
 	job.setPersisenceId(jobPersistenceId);
 	if (logger.isDebugEnabled()) {

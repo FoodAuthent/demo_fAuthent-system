@@ -4,6 +4,7 @@
 package org.foodauthent.model.json.mixin;
 
 
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,9 +39,13 @@ public interface WorkflowParameterMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
-
+	
     @JsonIgnore
     public String getTypeID();
+    
+   	@JsonIgnore
+  	public UUID getFaId();
+    
 
     @JsonProperty("name")
     public String getName();
@@ -50,6 +55,9 @@ public interface WorkflowParameterMixIn {
     
     @JsonProperty("type")
     public TypeEnum getType();
+    
+    @JsonProperty("value")
+    public String getValue();
     
 
     /**
@@ -78,6 +86,9 @@ public interface WorkflowParameterMixIn {
         
         @JsonProperty("type")
         public WorkflowParameterMixInBuilder setType(final TypeEnum type);
+        
+        @JsonProperty("value")
+        public WorkflowParameterMixInBuilder setValue(final String value);
         
     }
 

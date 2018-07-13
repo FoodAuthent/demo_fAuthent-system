@@ -58,10 +58,22 @@ public class {{classname}}{
     public Response {{nickname}}({{#allParams}}{{>rest/queryParams}}{{>rest/pathParams}}{{>rest/headerParams}}{{>rest/bodyParams}}{{>rest/formParams}}{{#hasMore}}, {{/hasMore}}{{/allParams}}) {
 	    {{#returnType}}Object res = {{/returnType}}service.{{nickname}}({{>rest/paramNames}});    
 	  	{{#returnType}}
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
 	   	{{/returnType}}
     	{{^returnType}}
-    	return Response.ok().build();
+    	try {
+    		return Response.ok().build();
+    	} catch(Exception e) {
+    		//TODO
+    		e.printStackTrace();
+    		throw e;
+    	}
     	{{/returnType}}
     }
 {{/operation}}

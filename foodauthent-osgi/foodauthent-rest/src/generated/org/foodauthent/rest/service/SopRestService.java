@@ -40,7 +40,13 @@ public class SopRestService{
     public Response createNewSOP(SOP sop
 ) {
 	    Object res = service.createNewSOP(sop);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -55,7 +61,13 @@ public class SopRestService{
     public Response findSOPByKeyword(@QueryParam("keywords")java.util.List<String> keywords
 ) {
 	    Object res = service.findSOPByKeyword(keywords);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -70,7 +82,13 @@ public class SopRestService{
     public Response getSOPById(@PathParam("sop-id") java.util.UUID sopId
 ) {
 	    Object res = service.getSOPById(sopId);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -85,7 +103,13 @@ public class SopRestService{
     public Response getSOPFile(@PathParam("sop-id") java.util.UUID sopId
 ) {
 	    Object res = service.getSOPFile(sopId);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 }
 

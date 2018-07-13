@@ -1,13 +1,22 @@
 package org.foodauthent.internal.impl.job.knime;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 import java.util.zip.ZipInputStream;
+
+import javax.json.Json;
+import javax.json.JsonValue;
 
 import org.foodauthent.internal.api.job.JobService;
 import org.foodauthent.internal.api.persistence.Blob;
@@ -16,15 +25,16 @@ import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
-import org.foodauthent.model.PredictionJob.PredictionJobBuilder;
 import org.foodauthent.model.PredictionJob.StatusEnum;
+import org.foodauthent.model.PredictionWorkflowInput;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
-import org.foodauthent.model.Prediction.PredictionBuilder;
+import org.foodauthent.model.json.ObjectMapperUtil;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
 import org.knime.core.node.KNIMEConstants;
+import org.knime.core.node.dialog.ExternalNodeData;
 import org.knime.core.node.workflow.FileWorkflowPersistor.LoadVersion;
 import org.knime.core.node.workflow.NodeMessage.Type;
 import org.knime.core.node.workflow.UnsupportedWorkflowVersionException;
@@ -59,42 +69,76 @@ public class LocalKnimeJobService implements JobService {
 	    // extract workflow to a temporary location
 	    File wfDir = unzipToTempDir(wfFile.getData(), wfFile.getFaId());
 
+	    // assemble workflow input
+	    PredictionWorkflowInput workflowInput = PredictionWorkflowInput.builder()
+		    .setFingerprintSetURI("TODO:fingerprintURI").setModelURI("TODO:optional_modelURI")
+		    .setFingerprintSetMetadata(fingerprintSet).setParameters(workflow.getParameters()).build();
+	    // TODO doesn't work, but should
+	    // JsonValue jsonInput =
+	    // ObjectMapperUtil.getObjectMapper().convertValue(workflowInput,
+	    // JsonValue.class);
+	    String jsonString = ObjectMapperUtil.getObjectMapper().writerWithDefaultPrettyPrinter()
+		    .writeValueAsString(workflowInput);
+	    JsonValue jsonInput = Json.createReader(new StringReader(jsonString)).readObject();
+	    ExternalNodeData data = ExternalNodeData.builder("predictionWorkflowInput").jsonValue(jsonInput).build();
+	    Map<String, ExternalNodeData> inputMap = new HashMap<String, ExternalNodeData>();
+	    inputMap.put(data.getID(), data);
+
 	    // load workflow
 	    WorkflowManager wfm = loadWorkflow(wfDir, null);
-
-	    // create prediction job
-	    PredictionJobBuilder predictionJobBuilder = PredictionJob.builder()
-		    .setFingerprintSetId(fingerprintSet.getFaId())
-		    .setPredictionId(UUID.randomUUID())
-		    .setWorklfowId(workflow.getFaId())
-		    .setStatus(StatusEnum.RUNNING);
-	    PredictionJob predictionJob = predictionJobBuilder.build();
-	    persistenceService.save(predictionJob);
+	    wfm.setInputNodes(inputMap);
 
 	    // start actual prediction job
-	    executionService.submit(() -> {
-		StatusEnum status;
-		if (wfm.executeAllAndWaitUntilDone()) {
-		    status = StatusEnum.SUCCESS;
-		} else {
-		    status = StatusEnum.FAILED;
-		}
-		
-		String statusMessage = wfm.getNodeMessages(Type.ERROR, Type.WARNING).stream()
-			.map(p -> p.getSecond().getMessage()).collect(Collectors.joining("\n"));
+	    PredictionJob predictionJob = PredictionJob.builder().setFingerprintSetId(fingerprintSet.getFaId())
+		    .setWorklfowId(workflow.getFaId()).setStatus(StatusEnum.RUNNING).build();
+	    try {
+		executionService.submit(() -> {
+		    StatusEnum status;
+		    if (wfm.executeAllAndWaitUntilDone()) {
+			status = StatusEnum.SUCCESS;
+		    } else {
+			status = StatusEnum.FAILED;
+		    }
 
-		// change the status of the prediction job and replace prediction job in DB
-		persistenceService
-			.replace(predictionJobBuilder.setStatus(status).setStatusMessage(statusMessage).build());
+		    String statusMessage = wfm.getNodeMessages(Type.ERROR, Type.WARNING).stream()
+			    .map(p -> p.getSecond().getMessage()).collect(Collectors.joining("\n"));
 
-		// TODO write prediction result to DB
-		if (status == StatusEnum.SUCCESS) {
+		    // get prediction result and write to DB
+		    if (status == StatusEnum.SUCCESS) {
+			JsonValue jsonOutput = wfm.getExternalOutputs().values().stream()
+				.filter(o -> o.getID().equals("predictionWorkflowOutput")).findFirst().get()
+				.getJSONValue();
+			// TODO use objectMapper.convertValue instead
+			try {
+			    List<Prediction> predictions = ObjectMapperUtil.getObjectMapper()
+				    .readValue(jsonOutput.toString(), new TypeReference<List<Prediction>>() {
+				    });
+			    predictions.forEach(p -> persistenceService.save(p));
 
-		}
+			    // change the status of the prediction job and replace prediction job in DB
+			    persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(status)
+				    .setStatusMessage(statusMessage)
+				    .setPredictionIds(
+					    predictions.stream().map(p -> p.getFaId()).collect(Collectors.toList()))
+				    .build());
 
-		// TODO delete the workflow from the temp-dir
-	
-	    });
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
+		    } else {
+			// write fail status to DB
+			persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(status)
+				.setStatusMessage(statusMessage).build());
+		    }
+
+		    // TODO delete the workflow from the temp-dir
+		}).get();
+	    } catch (InterruptedException | ExecutionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
+	    // create prediction job
+	    persistenceService.save(predictionJob);
 	    return predictionJob;
 	} catch (IOException | InvalidSettingsException | CanceledExecutionException
 		| UnsupportedWorkflowVersionException | LockFailedException e) {
@@ -139,7 +183,7 @@ public class LocalKnimeJobService implements JobService {
 		|| ((loadRes.getType() == LoadResultEntryType.DataLoadError)
 			&& loadRes.getGUIMustReportDataLoadErrors())) {
 	    // TODO
-	    throw new RuntimeException("Loading workflow failed!");
+	    throw new RuntimeException("Loading workflow failed: " + loadRes.getMessage());
 	}
 	return loadRes.getWorkflowManager();
     }

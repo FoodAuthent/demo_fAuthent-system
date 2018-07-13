@@ -19,6 +19,7 @@ public class ObjectMapperUtil {
 	    MAPPER = new ObjectMapper();
 	    MAPPER.registerModule(new Jdk8Module());
 	    MAPPER.registerModule(new JavaTimeModule());
+	    //MAPPER.registerModule(new JSR353Module());
 	    MAPPER.enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
 	    MAPPER.enable(DeserializationFeature.READ_ENUMS_USING_TO_STRING);
 	    ModelUtil.addModelMixIns(MAPPER);

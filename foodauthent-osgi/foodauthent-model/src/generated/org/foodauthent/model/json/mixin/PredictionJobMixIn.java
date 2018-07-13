@@ -4,6 +4,7 @@
 package org.foodauthent.model.json.mixin;
 
 
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,9 +39,11 @@ public interface PredictionJobMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
-
+	
     @JsonIgnore
     public String getTypeID();
+    
+    
 
     @JsonProperty("fa-id")
     public java.util.UUID getFaId();
@@ -51,8 +54,8 @@ public interface PredictionJobMixIn {
     @JsonProperty("fingerprintSet-id")
     public java.util.UUID getFingerprintSetId();
     
-    @JsonProperty("prediction-id")
-    public java.util.UUID getPredictionId();
+    @JsonProperty("prediction-ids")
+    public java.util.List<java.util.UUID> getPredictionIds();
     
     @JsonProperty("status")
     public StatusEnum getStatus();
@@ -88,8 +91,8 @@ public interface PredictionJobMixIn {
         @JsonProperty("fingerprintSet-id")
         public PredictionJobMixInBuilder setFingerprintSetId(final java.util.UUID fingerprintSetId);
         
-        @JsonProperty("prediction-id")
-        public PredictionJobMixInBuilder setPredictionId(final java.util.UUID predictionId);
+        @JsonProperty("prediction-ids")
+        public PredictionJobMixInBuilder setPredictionIds(final java.util.List<java.util.UUID> predictionIds);
         
         @JsonProperty("status")
         public PredictionJobMixInBuilder setStatus(final StatusEnum status);

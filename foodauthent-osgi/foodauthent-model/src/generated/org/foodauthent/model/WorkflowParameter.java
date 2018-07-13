@@ -47,6 +47,7 @@ public class WorkflowParameter  extends FaModel {
   private String name;
   private Boolean required;
   private TypeEnum type;
+  private String value;
   
   public String getTypeID() {
     return "WorkflowParameter";
@@ -63,6 +64,7 @@ public class WorkflowParameter  extends FaModel {
     name = immutable(builder.name);
     required = immutable(builder.required);
     type = immutable(builder.type);
+    value = immutable(builder.value);
     
   }
   
@@ -81,7 +83,7 @@ public class WorkflowParameter  extends FaModel {
             return false;
         }
         WorkflowParameter ent = (WorkflowParameter)o;
-        return Objects.equals(name, ent.name) && Objects.equals(required, ent.required) && Objects.equals(type, ent.type);
+        return Objects.equals(name, ent.name) && Objects.equals(required, ent.required) && Objects.equals(type, ent.type) && Objects.equals(value, ent.value);
     }
 
 
@@ -95,6 +97,10 @@ public class WorkflowParameter  extends FaModel {
     
   public TypeEnum getType() {
         return type;
+    }
+    
+  public String getValue() {
+        return value;
     }
     
   
@@ -118,6 +124,7 @@ public class WorkflowParameter  extends FaModel {
         builder.name = entity.name;
         builder.required = entity.required;
         builder.type = entity.type;
+        builder.value = entity.value;
  		return builder;
   	}
   	
@@ -131,6 +138,7 @@ public class WorkflowParameter  extends FaModel {
         private String name = null;
         private Boolean required = null;
         private TypeEnum type = null;
+        private String value = null;
 
         public WorkflowParameterBuilder setName(String name) {
              this.name = name;
@@ -144,6 +152,11 @@ public class WorkflowParameter  extends FaModel {
 
         public WorkflowParameterBuilder setType(TypeEnum type) {
              this.type = type;
+             return this;
+        }
+
+        public WorkflowParameterBuilder setValue(String value) {
+             this.value = value;
              return this;
         }
 

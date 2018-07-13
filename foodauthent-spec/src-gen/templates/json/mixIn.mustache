@@ -5,6 +5,7 @@ package {{package}};
 import {{import}};
 {{/imports}}
 
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -52,9 +53,15 @@ public interface {{classname}} {
 
 	@JsonIgnore
 	public long getPersistenceId();
-
+	
     @JsonIgnore
     public String getTypeID();
+    
+   	{{#vendorExtensions.x-no-faid}}
+   	@JsonIgnore
+  	public UUID getFaId();
+  	{{/vendorExtensions.x-no-faid}}
+    
 
 {{#allVars}}
     @JsonProperty("{{baseName}}")

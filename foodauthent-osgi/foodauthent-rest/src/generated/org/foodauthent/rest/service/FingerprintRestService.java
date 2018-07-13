@@ -42,7 +42,13 @@ public class FingerprintRestService{
 , byte[] data
 ) {
 	    service.addFingerprintRawData(fingerprintId, data);    
-    	return Response.ok().build();
+    	try {
+    		return Response.ok().build();
+    	} catch(Exception e) {
+    		//TODO
+    		e.printStackTrace();
+    		throw e;
+    	}
     }
 
     /**
@@ -59,7 +65,13 @@ public class FingerprintRestService{
 , MetadataEntries metadata
 ) {
 	    service.addMetaData(fingerprintId, metadata);    
-    	return Response.ok().build();
+    	try {
+    		return Response.ok().build();
+    	} catch(Exception e) {
+    		//TODO
+    		e.printStackTrace();
+    		throw e;
+    	}
     }
 
     /**
@@ -75,7 +87,13 @@ public class FingerprintRestService{
     public Response createFingerprintSet(FingerprintSet fingerprintSet
 ) {
 	    Object res = service.createFingerprintSet(fingerprintSet);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -90,7 +108,13 @@ public class FingerprintRestService{
     public Response findFingerprintSetByKeyword(@QueryParam("keywords")java.util.List<String> keywords
 ) {
 	    Object res = service.findFingerprintSetByKeyword(keywords);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 
     /**
@@ -105,7 +129,13 @@ public class FingerprintRestService{
     public Response getFingerprintSetById(@PathParam("fingerprintset-id") java.util.UUID fingerprintsetId
 ) {
 	    Object res = service.getFingerprintSetById(fingerprintsetId);    
-	   	return Response.ok(res).build();
+	  	try {
+	   		return Response.ok(res).build();
+	   	} catch(Exception e) {
+	   		//TODO
+	   		e.printStackTrace();
+	   		throw e;
+	   	}
     }
 }
 
