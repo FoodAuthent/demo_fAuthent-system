@@ -60,6 +60,18 @@
    <feature url="features/org.scala-lang.feature.source_2.12.3.20180711213428.jar" id="org.scala-lang.feature.source" version="0.0.0">
       <category name="org.scala-lang"/>
    </feature>
+   <feature url="features/org.knime.features.json_3.6.0.v201807061527.jar" id="org.knime.features.json" version="0.0.0">
+      <category name="org.knime.platform"/>
+   </feature>
+   <feature url="features/org.knime.features.json.source_3.6.0.v201807061527.jar" id="org.knime.features.json.source" version="0.0.0">
+      <category name="org.knime.platform"/>
+   </feature>
+   <feature url="features/org.knime.features.python2_3.6.0.v201807061638.jar" id="org.knime.features.python2" version="0.0.0">
+      <category name="org.knime.platform"/>
+   </feature>
+   <feature url="features/org.knime.features.python2.source_3.6.0.v201807061638.jar" id="org.knime.features.python2.source" version="0.0.0">
+      <category name="org.knime.platform"/>
+   </feature>
    <category-def name="org.foodauthent.custom" label="FoodAuthent Custom Dependencies"/>
    <category-def name="org.foodauthent.maven" label="FoodAuthent Maven Dependencies"/>
    <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime"/>
