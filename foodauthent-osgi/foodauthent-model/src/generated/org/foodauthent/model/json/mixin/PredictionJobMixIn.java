@@ -51,11 +51,11 @@ public interface PredictionJobMixIn {
     @JsonProperty("worklfow-id")
     public java.util.UUID getWorklfowId();
     
-    @JsonProperty("fingerprintSet-id")
+    @JsonProperty("fingerprint-set-id")
     public java.util.UUID getFingerprintSetId();
     
-    @JsonProperty("prediction-ids")
-    public java.util.List<java.util.UUID> getPredictionIds();
+    @JsonProperty("prediction-id")
+    public java.util.UUID getPredictionId();
     
     @JsonProperty("status")
     public StatusEnum getStatus();
@@ -88,11 +88,11 @@ public interface PredictionJobMixIn {
         @JsonProperty("worklfow-id")
         public PredictionJobMixInBuilder setWorklfowId(final java.util.UUID worklfowId);
         
-        @JsonProperty("fingerprintSet-id")
+        @JsonProperty("fingerprint-set-id")
         public PredictionJobMixInBuilder setFingerprintSetId(final java.util.UUID fingerprintSetId);
         
-        @JsonProperty("prediction-ids")
-        public PredictionJobMixInBuilder setPredictionIds(final java.util.List<java.util.UUID> predictionIds);
+        @JsonProperty("prediction-id")
+        public PredictionJobMixInBuilder setPredictionId(final java.util.UUID predictionId);
         
         @JsonProperty("status")
         public PredictionJobMixInBuilder setStatus(final StatusEnum status);

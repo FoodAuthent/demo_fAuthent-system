@@ -1,5 +1,7 @@
 package org.foodauthent.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.UUID;
@@ -10,13 +12,16 @@ import javax.ws.rs.core.MediaType;
 
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.Workflow;
 import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.WorkflowParameter;
+import org.foodauthent.model.PredictionJob.StatusEnum;
 import org.foodauthent.model.WorkflowParameter.TypeEnum;
 import org.glassfish.jersey.media.multipart.MultiPart;
 import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -27,7 +32,7 @@ import org.junit.Test;
 public class WorkflowServiceTest extends AbstractITTest {
 
     @Test
-    public void testUploadAndRunPredictionWorkflow() {
+    public void testUploadAndRunPredictionWorkflow() throws InterruptedException {
 
 	WebTarget wt = webTarget();
 
@@ -68,6 +73,17 @@ public class WorkflowServiceTest extends AbstractITTest {
 	/* run prediction workflow */
 	PredictionJob predictionJob = wt.path("workflow/prediction/job").queryParam("workflow-id", wfId).queryParam("fingerprintset-id", fpsId)
 		.request(MediaType.APPLICATION_JSON).post(null, PredictionJob.class);
+	assertEquals(predictionJob.getStatus(), StatusEnum.RUNNING);
+	//let the job finish the prediction
+	Thread.sleep(1000);
+	
+	/* retrieve prediction result */
+	predictionJob = wt.path("workflow/prediction/job/" + predictionJob.getFaId())
+		.request(MediaType.APPLICATION_JSON).get(PredictionJob.class);
+	assertEquals(predictionJob.getStatus(), StatusEnum.SUCCESS);
+	Prediction prediction = wt.path("prediction/" + predictionJob.getPredictionId()).request(MediaType.APPLICATION_JSON).get(Prediction.class);
+	assertEquals(prediction.getConfidenceMap().size(), 1);
+
     }
 
 }

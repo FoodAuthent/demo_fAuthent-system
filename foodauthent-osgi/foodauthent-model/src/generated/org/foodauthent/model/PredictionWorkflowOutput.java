@@ -12,7 +12,6 @@ import java.util.Objects;
 import java.util.UUID;
 
 
-import org.foodauthent.model.Prediction;
 
 
 /**
@@ -24,7 +23,7 @@ import org.foodauthent.model.Prediction;
 public class PredictionWorkflowOutput  extends FaModel {
 
 
-  private java.util.List<Prediction> predictionResults;
+  private java.util.Map<String, Float> confidenceMap;
   
   public String getTypeID() {
     return "PredictionWorkflowOutput";
@@ -38,7 +37,7 @@ public class PredictionWorkflowOutput  extends FaModel {
   
   private PredictionWorkflowOutput(PredictionWorkflowOutputBuilder builder) {
     
-    predictionResults = immutable(builder.predictionResults);
+    confidenceMap = immutable(builder.confidenceMap);
     
   }
   
@@ -57,12 +56,12 @@ public class PredictionWorkflowOutput  extends FaModel {
             return false;
         }
         PredictionWorkflowOutput ent = (PredictionWorkflowOutput)o;
-        return Objects.equals(predictionResults, ent.predictionResults);
+        return Objects.equals(confidenceMap, ent.confidenceMap);
     }
 
 
-  public java.util.List<Prediction> getPredictionResults() {
-        return predictionResults;
+  public java.util.Map<String, Float> getConfidenceMap() {
+        return confidenceMap;
     }
     
   
@@ -83,7 +82,7 @@ public class PredictionWorkflowOutput  extends FaModel {
 	 */
 	public static PredictionWorkflowOutputBuilder builder(PredictionWorkflowOutput entity) {
 		PredictionWorkflowOutputBuilder builder = builder();
-        builder.predictionResults = entity.predictionResults;
+        builder.confidenceMap = entity.confidenceMap;
  		return builder;
   	}
   	
@@ -94,10 +93,10 @@ public class PredictionWorkflowOutput  extends FaModel {
             
         }
     
-        private java.util.List<Prediction> predictionResults = new java.util.ArrayList<>();
+        private java.util.Map<String, Float> confidenceMap = new java.util.HashMap<>();
 
-        public PredictionWorkflowOutputBuilder setPredictionResults(java.util.List<Prediction> predictionResults) {
-             this.predictionResults = predictionResults;
+        public PredictionWorkflowOutputBuilder setConfidenceMap(java.util.Map<String, Float> confidenceMap) {
+             this.confidenceMap = confidenceMap;
              return this;
         }
 

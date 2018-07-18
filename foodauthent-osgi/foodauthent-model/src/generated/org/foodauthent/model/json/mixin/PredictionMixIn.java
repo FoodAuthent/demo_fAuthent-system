@@ -47,14 +47,14 @@ public interface PredictionMixIn {
     @JsonProperty("fa-id")
     public java.util.UUID getFaId();
     
-    @JsonProperty("confidence")
-    public Float getConfidence();
+    @JsonProperty("confidence-map")
+    public java.util.Map<String, Float> getConfidenceMap();
     
     @JsonProperty("workflow-id")
     public java.util.UUID getWorkflowId();
     
-    @JsonProperty("fingerprint-id")
-    public java.util.UUID getFingerprintId();
+    @JsonProperty("fingerprint-set-id")
+    public java.util.UUID getFingerprintSetId();
     
 
     /**
@@ -78,14 +78,14 @@ public interface PredictionMixIn {
         @JsonProperty("fa-id")
         public PredictionMixInBuilder setFaId(final java.util.UUID faId);
         
-        @JsonProperty("confidence")
-        public PredictionMixInBuilder setConfidence(final Float confidence);
+        @JsonProperty("confidence-map")
+        public PredictionMixInBuilder setConfidenceMap(final java.util.Map<String, Float> confidenceMap);
         
         @JsonProperty("workflow-id")
         public PredictionMixInBuilder setWorkflowId(final java.util.UUID workflowId);
         
-        @JsonProperty("fingerprint-id")
-        public PredictionMixInBuilder setFingerprintId(final java.util.UUID fingerprintId);
+        @JsonProperty("fingerprint-set-id")
+        public PredictionMixInBuilder setFingerprintSetId(final java.util.UUID fingerprintSetId);
         
     }
 

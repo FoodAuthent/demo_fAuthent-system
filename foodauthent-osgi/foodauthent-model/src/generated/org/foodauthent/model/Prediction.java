@@ -24,9 +24,9 @@ public class Prediction  extends FaModel {
 
 
   private java.util.UUID faId;
-  private Float confidence;
+  private java.util.Map<String, Float> confidenceMap;
   private java.util.UUID workflowId;
-  private java.util.UUID fingerprintId;
+  private java.util.UUID fingerprintSetId;
   
   public String getTypeID() {
     return "Prediction";
@@ -37,9 +37,9 @@ public class Prediction  extends FaModel {
   private Prediction(PredictionBuilder builder) {
     
     faId = immutable(builder.faId);
-    confidence = immutable(builder.confidence);
+    confidenceMap = immutable(builder.confidenceMap);
     workflowId = immutable(builder.workflowId);
-    fingerprintId = immutable(builder.fingerprintId);
+    fingerprintSetId = immutable(builder.fingerprintSetId);
     
     faId = generateFaIdIfMissing(faId);
   }
@@ -59,7 +59,7 @@ public class Prediction  extends FaModel {
             return false;
         }
         Prediction ent = (Prediction)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(confidence, ent.confidence) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintId, ent.fingerprintId);
+        return Objects.equals(faId, ent.faId) && Objects.equals(confidenceMap, ent.confidenceMap) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintSetId, ent.fingerprintSetId);
     }
 
 
@@ -67,16 +67,16 @@ public class Prediction  extends FaModel {
         return faId;
     }
     
-  public Float getConfidence() {
-        return confidence;
+  public java.util.Map<String, Float> getConfidenceMap() {
+        return confidenceMap;
     }
     
   public java.util.UUID getWorkflowId() {
         return workflowId;
     }
     
-  public java.util.UUID getFingerprintId() {
-        return fingerprintId;
+  public java.util.UUID getFingerprintSetId() {
+        return fingerprintSetId;
     }
     
   
@@ -98,9 +98,9 @@ public class Prediction  extends FaModel {
 	public static PredictionBuilder builder(Prediction entity) {
 		PredictionBuilder builder = builder();
         builder.faId = entity.faId;
-        builder.confidence = entity.confidence;
+        builder.confidenceMap = entity.confidenceMap;
         builder.workflowId = entity.workflowId;
-        builder.fingerprintId = entity.fingerprintId;
+        builder.fingerprintSetId = entity.fingerprintSetId;
  		return builder;
   	}
   	
@@ -112,17 +112,17 @@ public class Prediction  extends FaModel {
         }
     
         private java.util.UUID faId = null;
-        private Float confidence = null;
+        private java.util.Map<String, Float> confidenceMap = new java.util.HashMap<>();
         private java.util.UUID workflowId = null;
-        private java.util.UUID fingerprintId = null;
+        private java.util.UUID fingerprintSetId = null;
 
         public PredictionBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
-        public PredictionBuilder setConfidence(Float confidence) {
-             this.confidence = confidence;
+        public PredictionBuilder setConfidenceMap(java.util.Map<String, Float> confidenceMap) {
+             this.confidenceMap = confidenceMap;
              return this;
         }
 
@@ -131,8 +131,8 @@ public class Prediction  extends FaModel {
              return this;
         }
 
-        public PredictionBuilder setFingerprintId(java.util.UUID fingerprintId) {
-             this.fingerprintId = fingerprintId;
+        public PredictionBuilder setFingerprintSetId(java.util.UUID fingerprintSetId) {
+             this.fingerprintSetId = fingerprintSetId;
              return this;
         }
 

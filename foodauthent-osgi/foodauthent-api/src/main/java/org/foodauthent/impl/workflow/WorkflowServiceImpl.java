@@ -85,7 +85,7 @@ public class WorkflowServiceImpl implements WorkflowService {
     }
 
     @Override
-    public List<Prediction> getPredictionResult(final UUID predictionId) {
+    public Prediction getPredictionResult(final UUID predictionId) {
 	return persistenceService.getFaModelByUUID(predictionId);
     }
 

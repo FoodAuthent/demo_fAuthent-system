@@ -314,9 +314,7 @@ paths:
         200:
           description: List of predictions.
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Prediction"
+            $ref: "#/definitions/Prediction"
 
   /workflow:
     post:
@@ -576,12 +574,12 @@ definitions:
         type: string
         format: uuid
         example: ""
-      
 #    additionalProperties:
 #      type: string
     example:
       key: value      
 
+  # should always be part of a fingerprint set
   Fingerprint:
     description: A fingerprint object referencing metadata and raw data.
     type: object
@@ -682,27 +680,29 @@ definitions:
         format: uuid
         example: ""
       worklfow-id:
+        description: The workflow used for the prediction.
         type: string
         format: uuid
         example: ""
-      fingerprintSet-id:
+      fingerprint-set-id:
+        description: The fingerprint set the prediction is done for.
         type: string
         format: uuid
         example: ""
-      prediction-ids:
-        description: The ids of the predictions if the job has completed successfully.
-        type: array
-        items:
-          type: string
-          format: uuid
-          example: ""
+      prediction-id:
+        description: The id of the prediction result if the job has completed successfully.
+        type: string
+        format: uuid
+        example: ""
       status:
+        description: The current status of the prediction job.
         type: string
         enum: [running, success, failed]
       status-message:
         description: A message, e.g., in case the workflow failed.
         type: string
   
+  #predictions per fingerprint set!!
   Prediction:
     type: object
     properties:
@@ -711,17 +711,22 @@ definitions:
         type: string
         format: uuid
         example: ""
-     confidence:
-        description: The confidence for the prediction result.
-        type: number
-        format: float
-        maximum: 1
-        minimum: 0
+     confidence-map:
+        description: The confidences for each fingerprint, mapped from the fingerprint-id.
+        type: object
+        #map from fa-id to confidence
+        additionalProperties:
+          type: number
+          format: float
+          maximum: 1
+          minimum: 0
      workflow-id:
+        description: Workflow used for the prediction.
         type: string
         format: uuid
         example: ""
-     fingerprint-id:
+     fingerprint-set-id:
+        description: Id of the set the prediction has been done for.
         type: string
         format: uuid
         example: ""
@@ -756,11 +761,15 @@ definitions:
     type: object
     x-no-faid: true
     properties:
-      prediction-results:
-        description: Prediction results per fingerprint
-        type: array
-        items:
-          $ref: "#/definitions/Prediction"
+      confidence-map:
+        description: The confidences for each fingerprint, mapped from the fingerprint-id.
+        type: object
+        #map from fa-id to confidence
+        additionalProperties:
+          type: number
+          format: float
+          maximum: 1
+          minimum: 0
         
   TrainingJob:
     description: Represents model training job.

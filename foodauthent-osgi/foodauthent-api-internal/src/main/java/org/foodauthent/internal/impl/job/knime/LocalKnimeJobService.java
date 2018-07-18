@@ -27,6 +27,7 @@ import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJob.StatusEnum;
 import org.foodauthent.model.PredictionWorkflowInput;
+import org.foodauthent.model.PredictionWorkflowOutput;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
 import org.foodauthent.model.json.ObjectMapperUtil;
@@ -46,6 +47,7 @@ import org.knime.core.node.workflow.WorkflowPersistor.WorkflowLoadResult;
 import org.knime.core.util.FileUtil;
 import org.knime.core.util.LockFailedException;
 import org.knime.core.util.Version;
+import org.knime.core.util.binning.auto.PrecisionMode;
 
 /**
  * @author Martin Horn, University of Konstanz
@@ -88,55 +90,48 @@ public class LocalKnimeJobService implements JobService {
 	    WorkflowManager wfm = loadWorkflow(wfDir, null);
 	    wfm.setInputNodes(inputMap);
 
-	    // start actual prediction job
+	    // start and save actual prediction job
 	    PredictionJob predictionJob = PredictionJob.builder().setFingerprintSetId(fingerprintSet.getFaId())
 		    .setWorklfowId(workflow.getFaId()).setStatus(StatusEnum.RUNNING).build();
-	    try {
-		executionService.submit(() -> {
-		    StatusEnum status;
-		    if (wfm.executeAllAndWaitUntilDone()) {
-			status = StatusEnum.SUCCESS;
-		    } else {
-			status = StatusEnum.FAILED;
-		    }
+	    executionService.submit(() -> {
+		StatusEnum status;
+		if (wfm.executeAllAndWaitUntilDone()) {
+		    status = StatusEnum.SUCCESS;
+		} else {
+		    status = StatusEnum.FAILED;
+		}
 
-		    String statusMessage = wfm.getNodeMessages(Type.ERROR, Type.WARNING).stream()
-			    .map(p -> p.getSecond().getMessage()).collect(Collectors.joining("\n"));
+		String statusMessage = wfm.getNodeMessages(Type.ERROR, Type.WARNING).stream()
+			.map(p -> p.getSecond().getMessage()).collect(Collectors.joining("\n"));
 
-		    // get prediction result and write to DB
-		    if (status == StatusEnum.SUCCESS) {
-			JsonValue jsonOutput = wfm.getExternalOutputs().values().stream()
-				.filter(o -> o.getID().equals("predictionWorkflowOutput")).findFirst().get()
-				.getJSONValue();
-			// TODO use objectMapper.convertValue instead
-			try {
-			    List<Prediction> predictions = ObjectMapperUtil.getObjectMapper()
-				    .readValue(jsonOutput.toString(), new TypeReference<List<Prediction>>() {
-				    });
-			    predictions.forEach(p -> persistenceService.save(p));
+		// get prediction result and write to DB
+		if (status == StatusEnum.SUCCESS) {
+		    JsonValue jsonOutput = wfm.getExternalOutputs().values().stream()
+			    .filter(o -> o.getID().equals("predictionWorkflowOutput")).findFirst().get().getJSONValue();
+		    // TODO use objectMapper.convertValue instead
+		    try {
+			PredictionWorkflowOutput predictionOutput = ObjectMapperUtil.getObjectMapper()
+				.readValue(jsonOutput.toString(), PredictionWorkflowOutput.class);
+			Prediction prediction = Prediction.builder().setFingerprintSetId(fingerprintSet.getFaId())
+				.setWorkflowId(workflow.getFaId()).setConfidenceMap(predictionOutput.getConfidenceMap())
+				.build();
+			persistenceService.save(prediction);
 
-			    // change the status of the prediction job and replace prediction job in DB
-			    persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(status)
-				    .setStatusMessage(statusMessage)
-				    .setPredictionIds(
-					    predictions.stream().map(p -> p.getFaId()).collect(Collectors.toList()))
-				    .build());
-
-			} catch (IOException e) {
-			    e.printStackTrace();
-			}
-		    } else {
-			// write fail status to DB
+			// change the status and prediction id of the prediction job and replace
+			// prediction job in DB
 			persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(status)
-				.setStatusMessage(statusMessage).build());
+				.setStatusMessage(statusMessage).setPredictionId(prediction.getFaId()).build());
+		    } catch (IOException e) {
+			e.printStackTrace();
 		    }
+		} else {
+		    // write fail status to DB
+		    persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(status)
+			    .setStatusMessage(statusMessage).build());
+		}
 
-		    // TODO delete the workflow from the temp-dir
-		}).get();
-	    } catch (InterruptedException | ExecutionException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
+		// TODO delete the workflow from the temp-dir
+	    });
 	    // create prediction job
 	    persistenceService.save(predictionJob);
 	    return predictionJob;

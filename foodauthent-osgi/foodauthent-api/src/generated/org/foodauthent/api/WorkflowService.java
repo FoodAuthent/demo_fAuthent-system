@@ -80,7 +80,7 @@ public interface WorkflowService {
      *
      * @return the result
      */
-    java.util.List<Prediction> getPredictionResult(java.util.UUID predictionId);
+    Prediction getPredictionResult(java.util.UUID predictionId);
         
     /**
      * 
