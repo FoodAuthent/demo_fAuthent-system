@@ -6,10 +6,12 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .
 Import-Package: com.eclipsesource.jaxrs.publisher;version="5.3.1",
- com.fasterxml.jackson.core;version="2.4.5",
- com.fasterxml.jackson.databind;version="2.4.5",
- com.fasterxml.jackson.datatype.jdk8;version="2.4.5",
- com.fasterxml.jackson.datatype.jsr310;version="2.4.5",
+ com.fasterxml.jackson.core;version="2.8.10",
+ com.fasterxml.jackson.databind;version="2.8.10",
+ com.fasterxml.jackson.databind.ser;version="2.8.10",
+ com.fasterxml.jackson.databind.ser.impl;version="2.8.10",
+ com.fasterxml.jackson.datatype.jdk8;version="2.8.10",
+ com.fasterxml.jackson.datatype.jsr310;version="2.8.10",
  javax.servlet;version="3.0.0",
  javax.servlet.http;version="3.0.0",
  javax.ws.rs;version="[2.0.0,3.0.0)",
