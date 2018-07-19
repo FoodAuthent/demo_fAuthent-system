@@ -1,7 +1,7 @@
 package org.foodauthent.impl.workflow;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import static org.foodauthent.impl.fingerprint.util.PersistenceUtil.saveBlob;
+
 import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
@@ -10,11 +10,10 @@ import java.util.stream.Collectors;
 import org.foodauthent.api.WorkflowService;
 import org.foodauthent.internal.api.job.JobService;
 import org.foodauthent.internal.api.job.JobServiceProvider;
-import org.foodauthent.internal.api.persistence.Blob;
-import org.foodauthent.internal.api.persistence.DataMetaData;
 import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.Model;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.TrainingJob;
@@ -52,10 +51,11 @@ public class WorkflowServiceImpl implements WorkflowService {
     }
 
     @Override
-    public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId) {
+    public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId, UUID modelId) {
 	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId);
 	final FingerprintSet fingerprint = persistenceService.getFaModelByUUID(fingerprintSetId);
-	final PredictionJob job = jobService.createNewPredictionJob(workflow, fingerprint);
+	final Model model = persistenceService.getFaModelByUUID(modelId);
+	final PredictionJob job = jobService.createNewPredictionJob(workflow, fingerprint, model);
 	return job;
     }
 
@@ -107,39 +107,34 @@ public class WorkflowServiceImpl implements WorkflowService {
     
     @Override
     public UUID saveWorkflowFile(UUID workflowId, InputStream upfile, FormDataContentDisposition upfileDetail) {
-	// TODO check whether there is already a workflow-model entry for the workflow
-	// id - otherwise refuse the request
-	// TODO it should be possible to store multiple files per UUID, e.g. multiple
-	// versions or a data set
-
-	// new uuid for the blob
-	UUID blobId = UUID.randomUUID();
-	try {
-	    persistenceService
-		    .save(new Blob(blobId, new DataMetaData(upfileDetail.getFileName()), toByteArray(upfile)));
-
-	    // get workflow metadata, set blobid and override it
-	    Workflow wf = persistenceService.getFaModelByUUID(workflowId);
-	    Workflow newWf = Workflow.builder(wf).setWorkflowFileId(blobId).build();
-	    persistenceService.replace(newWf);
-	} catch (IOException e) {
-	    // TODO throw appropriate exception
-	    throw new RuntimeException(e);
-	}
-	return workflowId;
+	UUID blobId = saveBlob(upfile, upfileDetail, persistenceService);
+	
+	// get workflow metadata, set blobid and override it
+	Workflow wf = persistenceService.getFaModelByUUID(workflowId);
+	Workflow newWf = Workflow.builder(wf).setWorkflowFileId(blobId).build();
+	persistenceService.replace(newWf);
+	return blobId;
     }
-
-    private static byte[] toByteArray(InputStream in) throws IOException {
-	// would be cool to be able to use apache's IOUtils
-	ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-	int nRead;
-	byte[] data = new byte[1024];
-	while ((nRead = in.read(data, 0, data.length)) != -1) {
-	    buffer.write(data, 0, nRead);
-	}
-
-	buffer.flush();
-	return buffer.toByteArray();
+    
+    @Override
+    public UUID createWorkflowModule(Workflow module) {
+	persistenceService.save(module);
+        return module.getFaId();
     }
-
+    
+    @Override
+    public Workflow getWorkflowModuleById(UUID moduleId) {
+	return persistenceService.getFaModelByUUID(moduleId);
+    }
+    
+    @Override
+    public UUID saveWorkflowModuleFile(UUID moduleId, InputStream upfile, FormDataContentDisposition upfileDetail) {
+	UUID blobId = saveBlob(upfile, upfileDetail, persistenceService);
+	
+	// get workflow metadata, set blobid and override it
+	Workflow wf = persistenceService.getFaModelByUUID(moduleId);
+	Workflow newWf = Workflow.builder(wf).setWorkflowFileId(blobId).build();
+	persistenceService.replace(newWf);
+	return blobId;
+    }
 }

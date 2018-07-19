@@ -5,8 +5,6 @@ package org.foodauthent.model.json.mixin;
 
 import java.time.LocalDate;
 import org.foodauthent.model.json.mixin.TagMixIn;
-import org.foodauthent.model.json.mixin.WorkflowModuleMixIn;
-import org.foodauthent.model.json.mixin.WorkflowParameterMixIn;
 
 import java.util.UUID;
 
@@ -17,12 +15,12 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import org.foodauthent.model.Workflow.RepresentationEnum;
-import org.foodauthent.model.Workflow.TypeEnum;
+import org.foodauthent.model.Model.TypeEnum;
+import org.foodauthent.model.Model.WorkflowTypeEnum;
 
 
-import org.foodauthent.model.Workflow;
-import org.foodauthent.model.Workflow.WorkflowBuilder;
+import org.foodauthent.model.Model;
+import org.foodauthent.model.Model.ModelBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -34,13 +32,13 @@ import org.foodauthent.model.Workflow.WorkflowBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = Workflow.class)
+    defaultImpl = Model.class)
 @JsonSubTypes({
-    @Type(value = Workflow.class, name="Workflow")
+    @Type(value = Model.class, name="Model")
 })
-@JsonDeserialize(builder=WorkflowBuilder.class)
+@JsonDeserialize(builder=ModelBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface WorkflowMixIn {
+public interface ModelMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -68,23 +66,17 @@ public interface WorkflowMixIn {
     @JsonProperty("version")
     public Integer getVersion();
     
-    @JsonProperty("representation")
-    public RepresentationEnum getRepresentation();
-    
     @JsonProperty("type")
     public TypeEnum getType();
     
-    @JsonProperty("parameters")
-    public java.util.List<WorkflowParameterMixIn> getParameters();
+    @JsonProperty("workflow-type")
+    public WorkflowTypeEnum getWorkflowType();
     
     @JsonProperty("tags")
     public java.util.List<TagMixIn> getTags();
     
-    @JsonProperty("workflow-file-id")
-    public java.util.UUID getWorkflowFileId();
-    
-    @JsonProperty("modules")
-    public java.util.List<WorkflowModuleMixIn> getModules();
+    @JsonProperty("model-file-id")
+    public java.util.UUID getModelFileId();
     
 
     /**
@@ -96,50 +88,44 @@ public interface WorkflowMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = WorkflowBuilder.class)
+        defaultImpl = ModelBuilder.class)
     @JsonSubTypes({
-        @Type(value = Workflow.WorkflowBuilder.class, name="Workflow")
+        @Type(value = Model.ModelBuilder.class, name="Model")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface WorkflowMixInBuilder {
+    public static interface ModelMixInBuilder {
     
-        public WorkflowMixIn build();
+        public ModelMixIn build();
     
         @JsonProperty("fa-id")
-        public WorkflowMixInBuilder setFaId(final java.util.UUID faId);
+        public ModelMixInBuilder setFaId(final java.util.UUID faId);
         
         @JsonProperty("name")
-        public WorkflowMixInBuilder setName(final String name);
+        public ModelMixInBuilder setName(final String name);
         
         @JsonProperty("description")
-        public WorkflowMixInBuilder setDescription(final String description);
+        public ModelMixInBuilder setDescription(final String description);
         
         @JsonProperty("author")
-        public WorkflowMixInBuilder setAuthor(final String author);
+        public ModelMixInBuilder setAuthor(final String author);
         
         @JsonProperty("date")
-        public WorkflowMixInBuilder setDate(final LocalDate date);
+        public ModelMixInBuilder setDate(final LocalDate date);
         
         @JsonProperty("version")
-        public WorkflowMixInBuilder setVersion(final Integer version);
-        
-        @JsonProperty("representation")
-        public WorkflowMixInBuilder setRepresentation(final RepresentationEnum representation);
+        public ModelMixInBuilder setVersion(final Integer version);
         
         @JsonProperty("type")
-        public WorkflowMixInBuilder setType(final TypeEnum type);
+        public ModelMixInBuilder setType(final TypeEnum type);
         
-        @JsonProperty("parameters")
-        public WorkflowMixInBuilder setParameters(final java.util.List<WorkflowParameterMixIn> parameters);
+        @JsonProperty("workflow-type")
+        public ModelMixInBuilder setWorkflowType(final WorkflowTypeEnum workflowType);
         
         @JsonProperty("tags")
-        public WorkflowMixInBuilder setTags(final java.util.List<TagMixIn> tags);
+        public ModelMixInBuilder setTags(final java.util.List<TagMixIn> tags);
         
-        @JsonProperty("workflow-file-id")
-        public WorkflowMixInBuilder setWorkflowFileId(final java.util.UUID workflowFileId);
-        
-        @JsonProperty("modules")
-        public WorkflowMixInBuilder setModules(final java.util.List<WorkflowModuleMixIn> modules);
+        @JsonProperty("model-file-id")
+        public ModelMixInBuilder setModelFileId(final java.util.UUID modelFileId);
         
     }
 

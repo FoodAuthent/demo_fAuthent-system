@@ -34,6 +34,8 @@ public class ModelUtil {
         mapper.addMixIn(FingerprintSet.FingerprintSetBuilder.class, FingerprintSetMixIn.FingerprintSetMixInBuilder.class);
         mapper.addMixIn(MetadataEntries.class, MetadataEntriesMixIn.class);
         mapper.addMixIn(MetadataEntries.MetadataEntriesBuilder.class, MetadataEntriesMixIn.MetadataEntriesMixInBuilder.class);
+        mapper.addMixIn(Model.class, ModelMixIn.class);
+        mapper.addMixIn(Model.ModelBuilder.class, ModelMixIn.ModelMixInBuilder.class);
         mapper.addMixIn(PredictionJob.class, PredictionJobMixIn.class);
         mapper.addMixIn(PredictionJob.PredictionJobBuilder.class, PredictionJobMixIn.PredictionJobMixInBuilder.class);
         mapper.addMixIn(Prediction.class, PredictionMixIn.class);
@@ -52,6 +54,8 @@ public class ModelUtil {
         mapper.addMixIn(TrainingJob.TrainingJobBuilder.class, TrainingJobMixIn.TrainingJobMixInBuilder.class);
         mapper.addMixIn(Workflow.class, WorkflowMixIn.class);
         mapper.addMixIn(Workflow.WorkflowBuilder.class, WorkflowMixIn.WorkflowMixInBuilder.class);
+        mapper.addMixIn(WorkflowModule.class, WorkflowModuleMixIn.class);
+        mapper.addMixIn(WorkflowModule.WorkflowModuleBuilder.class, WorkflowModuleMixIn.WorkflowModuleMixInBuilder.class);
         mapper.addMixIn(WorkflowParameter.class, WorkflowParameterMixIn.class);
         mapper.addMixIn(WorkflowParameter.WorkflowParameterBuilder.class, WorkflowParameterMixIn.WorkflowParameterMixInBuilder.class);
     	

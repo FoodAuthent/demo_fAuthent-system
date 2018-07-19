@@ -19,6 +19,8 @@ tags:
   description: "All fingerprint/sample endpoints."
 - name: workflow
   description: All workflow endpoints.
+- name: model
+  description: All model endpoints.
 - name: tag
   description: All endpoints to deal with tags, i.e. query, delete, add, ...
 schemes:
@@ -316,6 +318,75 @@ paths:
           schema:
             $ref: "#/definitions/Prediction"
 
+  /model:
+    post:
+      tags:
+        - model
+      summary: Creates/adds a new model.
+      description: Creates/adds a new model.
+      operationId: createModel
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: model
+        description: TODO
+        schema:
+          $ref: "#/definitions/Model" 
+      responses:
+        201:
+          description: Model has been created successfully and the new fa-id of the model (model-id) is returned.
+          schema:
+            type: string
+            format: uuid      
+
+  /model/{model-id}:
+    get:
+      tags:
+        - model
+      summary: Get the model by id.
+      description: TODO
+      operationId: getModelById
+      produces:
+        - application/json
+      parameters:
+        - name: model-id
+          in: path
+          required: true
+          type: string
+          format: uuid
+      responses:
+        200:
+          description: The model.
+          schema:
+            $ref: "#/definitions/Model"
+            
+  /model/{model-id}/file:
+    put:
+      tags:
+        - model
+      summary: Uploads (and replaces) the file associated with the model of the given model-id. 
+      description: Uploads the model file associated with the model of the given model-id.
+      operationId: saveModelFile
+      consumes:
+      - multipart/form-data
+      parameters:
+        - name: model-id
+          in: path
+          required: true
+          type: string
+          format: uuid
+        - name: upfile
+          in: formData
+          type: file
+          description: The file to upload.
+      responses:
+        200:
+          description: Model file has been uploaded successfully. Returns the fa-id of the model file (which is different from the model-id!)
+          schema:
+            type: string
+            format: uuid    
+            
   /workflow:
     post:
       tags:
@@ -364,7 +435,7 @@ paths:
       tags:
         - workflow
       summary: Uploads (and replaces) the file associated with the workflow of the given workflow-id. 
-      description: Uplloads the workflow file associated with the workflow of the given workflow-id. Upon upload, the workflow will be validated in order to make sure that it complies with the respective workflow inputs and outputs (as determined by the workflow's type parameter)
+      description: Uploads the workflow file associated with the workflow of the given workflow-id. Upon upload, the workflow will be validated in order to make sure that it complies with the respective workflow inputs and outputs (as determined by the workflow's type parameter)
       operationId: saveWorkflowFile
       consumes:
       - multipart/form-data
@@ -384,7 +455,77 @@ paths:
           schema:
             type: string
             format: uuid      
+            
 
+  /workflow/module:
+    post:
+      tags:
+        - workflow
+      summary: Creates/adds a new workflow module.
+      description: Creates/adds a new workflow module.
+      operationId: createWorkflowModule
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: module
+        description: TODO
+        schema:
+          $ref: "#/definitions/Workflow" 
+      responses:
+        201:
+          description: Workflow module has been created successfully and the new fa-id of the workflow module (module-id) is returned.
+          schema:
+            type: string
+            format: uuid      
+
+  /workflow/module/{module-id}:
+    get:
+      tags:
+        - workflow
+      summary: Get the workflow module by id.
+      description: TODO
+      operationId: getWorkflowModuleById
+      produces:
+        - application/json
+      parameters:
+        - name: module-id
+          in: path
+          required: true
+          type: string
+          format: uuid
+      responses:
+        200:
+          description: The workflow module.
+          schema:
+            $ref: "#/definitions/Workflow"
+            
+  /workflow/module/{module-id}/file:
+    put:
+      tags:
+        - workflow
+      summary: Uploads (and replaces) the file associated with the workflow module of the given module-id. 
+      description: Uploads the workflow file associated with the workflow module of the given module-id. Upon upload, the workflow module will be validated in order to make sure that it complies with the respective workflow inputs and outputs (as determined by the workflow's type parameter)
+      operationId: saveWorkflowModuleFile
+      consumes:
+      - multipart/form-data
+      parameters:
+        - name: module-id
+          in: path
+          required: true
+          type: string
+          format: uuid
+        - name: upfile
+          in: formData
+          type: file
+          description: The file to upload.
+      responses:
+        200:
+          description: Workflow module file has been uploaded successfully. Returns the fa-id of the workflow file (which is different from the workflow-id!)
+          schema:
+            type: string
+            format: uuid      
+ 
 
   /workflow/training:
     get:
@@ -510,6 +651,12 @@ paths:
       - in: query
         name: fingerprintset-id
         description: TODO
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: model-id
+        description: "The model to be used for prediction. Needs to be compatible with the selected workflow!!"
         required: true
         type: string
         format: uuid
@@ -655,6 +802,51 @@ definitions:
       name:
         description: A human-readable name of the fingerprint set.
         type: string
+        
+  Model:
+    description: A model created via training and used for prediction. Can also be a workflow.
+    type: object
+    properties:
+      fa-id:
+        description: A global id within the FoodAuthent-system.
+        type: string
+        format: uuid
+        example: "" 
+      name:
+        description: A name for the model.
+        type: string
+      description:
+        description: A more verbose description of the model.
+        type: string
+      author:
+        description: The authors name (TODO - could reference a user in the future).
+        type: string
+      date:
+        description: The creation date.
+        type: string
+        format: date
+      version:
+        description: The model's version.
+        type: integer
+      type:
+        #TODO allow custom types that are not predefined
+        description: The type of the model. More for informational purpose.
+        type: string
+        enum: [knime_workflow, knime_generic_model, knime_python_model, pmml_model]
+      workflow-type:
+        #TODO allow custom types that are not predefined
+        description: "Workflows of this type must be able to work with this model! See workflow's type property."
+        type: string
+        enum: [prediction_workflow]
+      tags:
+        description: Descriptive tags/annotations for the model.
+        type: array
+        items:
+          $ref: "#/definitions/Tag"
+      model-file-id:
+        description: id referencing the model file.
+        type: string
+        format: uuid
  
   Product: 
     description: Global product metadata, e.g., country of origin, etc. There can be multiple fingerprints for one product.
@@ -676,16 +868,6 @@ definitions:
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.
-        type: string
-        format: uuid
-        example: ""
-      worklfow-id:
-        description: The workflow used for the prediction.
-        type: string
-        format: uuid
-        example: ""
-      fingerprint-set-id:
-        description: The fingerprint set the prediction is done for.
         type: string
         format: uuid
         example: ""
@@ -730,46 +912,11 @@ definitions:
         type: string
         format: uuid
         example: ""
-  
-  # Not used by any endpoint but as entity directly!
-  # Changes here might cause (test) workflows to not work anymore.
-  PredictionWorkflowInput:
-    description: Describes the input required by a prediction workflow.
-    type: object
-    x-no-faid: true
-    properties:
-      parameters:
-        description: The workflow parameters as given provided by the Workflow-entity.
-        type: array
-        items:
-          $ref: "#/definitions/WorkflowParameter"
-      fingerprintSetMetadata:
-        description: The fingerprint set metadata.
-        $ref: "#/definitions/FingerprintSet"
-      fingerprintSetURI:
-        description: URI pointing to the resource containg the fingerprints to predict the labels for. 
+     model-id:
+        description: The model that has been used for the prediction.
         type: string
-        format: uri
-      modelURI:
-        description: optional model uri (if required by the workflow) pointing to the model to use
-        type: string
-        format: uri
-  
-  # Not used by any endpoint but as entity directly!
-  PredictionWorkflowOutput:
-    description:  Describes the outputs delivered by a prediction workflow.
-    type: object
-    x-no-faid: true
-    properties:
-      confidence-map:
-        description: The confidences for each fingerprint, mapped from the fingerprint-id.
-        type: object
-        #map from fa-id to confidence
-        additionalProperties:
-          type: number
-          format: float
-          maximum: 1
-          minimum: 0
+        format: uuid
+        example: ""
         
   TrainingJob:
     description: Represents model training job.
@@ -848,9 +995,10 @@ definitions:
         type: string
         enum: [cwl, r, python, knime]
       type:
+        #TODO allow custom types that are not predefined
         description: "The type of the workflow. IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity."
         type: string
-        enum: [prediction, training]
+        enum: [prediction_workflow, training_workflow, read_module, binning_module, transformsignal_module, transformsample_module]
       parameters:
         description: The parameters of the workflow, TODO - should maybe be a map.
         type: array
@@ -865,7 +1013,30 @@ definitions:
         description: id referencing the workflow file.
         type: string
         format: uuid
-        
+      modules:
+        description: The workflow modules (including their parameters) required by this workflow or empty (or null) if none required.
+        type: array
+        items:
+          $ref: "#/definitions/WorkflowModule"
+          
+  WorkflowModule:
+    description: A workflow module used by other workflows (i.e. like a sub-workflow).
+    type: object
+    x-no-faid: true
+    properties:
+      module-id:
+        description: The module-id referenced.
+        type: string
+        format: uuid
+      module-type:
+        description: The type of the module. Optional, mainly for transparency and in order to be able to verify that referenced module is of the desired type.
+        type: string
+      module-parameters:
+        description: The parameters required for the module.
+        type: array
+        items:
+          $ref: "#/definitions/WorkflowParameter" 
+      
   WorkflowParameter:
     type: object
     description: Represents a workflow parameter.
@@ -884,3 +1055,50 @@ definitions:
       value:
         description: the parameter value
         type: string
+        
+        
+# Inputs and outputs for different workflow (and workflow module) types (see type-property of the workflow entity).
+# Not used by any endpoint but as entity directly!
+# Changes here might cause (test) workflows to not work anymore.
+
+  PredictionWorkflowInput:
+    description: Describes the input required by a prediction workflow.
+    type: object
+    x-no-faid: true
+    properties:
+      parameters:
+        description: The workflow parameters as given provided by the Workflow-entity.
+        type: array
+        items:
+          $ref: "#/definitions/WorkflowParameter"
+      fingerprintSetMetadata:
+        description: The fingerprint set metadata.
+        $ref: "#/definitions/FingerprintSet"
+      fingerprintSetURI:
+        description: URI pointing to the resource containg the fingerprints to predict the labels for. 
+        type: string
+        format: uri
+      modelURI:
+        description: optional model uri (if required by the workflow) pointing to the model to use
+        type: string
+        format: uri
+      modules:
+        description: optional list of modules used within the prediction workfow.
+        type: array
+        items:
+          $ref: "#/definitions/WorkflowModule"
+  
+  PredictionWorkflowOutput:
+    description:  Describes the outputs delivered by a prediction workflow.
+    type: object
+    x-no-faid: true
+    properties:
+      confidence-map:
+        description: The confidences for each fingerprint, mapped from the fingerprint-id.
+        type: object
+        #map from fa-id to confidence
+        additionalProperties:
+          type: number
+          format: float
+          maximum: 1
+          minimum: 0

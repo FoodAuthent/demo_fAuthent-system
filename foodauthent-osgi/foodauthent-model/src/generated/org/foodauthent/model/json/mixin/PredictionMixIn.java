@@ -56,6 +56,9 @@ public interface PredictionMixIn {
     @JsonProperty("fingerprint-set-id")
     public java.util.UUID getFingerprintSetId();
     
+    @JsonProperty("model-id")
+    public java.util.UUID getModelId();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -86,6 +89,9 @@ public interface PredictionMixIn {
         
         @JsonProperty("fingerprint-set-id")
         public PredictionMixInBuilder setFingerprintSetId(final java.util.UUID fingerprintSetId);
+        
+        @JsonProperty("model-id")
+        public PredictionMixInBuilder setModelId(final java.util.UUID modelId);
         
     }
 

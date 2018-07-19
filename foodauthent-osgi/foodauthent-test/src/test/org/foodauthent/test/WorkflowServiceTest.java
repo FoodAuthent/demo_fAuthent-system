@@ -12,6 +12,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.Model;
+import org.foodauthent.model.Model.WorkflowTypeEnum;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.Workflow;
@@ -52,6 +54,7 @@ public class WorkflowServiceTest extends AbstractITTest {
 	Workflow wf = Workflow.builder().setName("name")
 		.setDescription("desc")
 		.setParameters(Arrays.asList(wfp1, wfp2))
+		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW)
 		.setRepresentation(RepresentationEnum.KNIME).build(); // TODO set more (or even all) properties
 	UUID wfId = wt.path("workflow").request(MediaType.APPLICATION_JSON)
 		.post(Entity.entity(wf, MediaType.APPLICATION_JSON), UUID.class);
@@ -69,9 +72,18 @@ public class WorkflowServiceTest extends AbstractITTest {
 	FingerprintSet fps = FingerprintSet.builder().setName("myset").setFingerprints(Arrays.asList(fp)).build();
 	UUID fpsId = wt.path("fingerprints").request(MediaType.APPLICATION_JSON)
 		.post(Entity.entity(fps, MediaType.APPLICATION_JSON), UUID.class);
+	//TODO upload fingerprint set file
+	
+	/* upload model */ 
+	Model m = Model.builder().setName("mymodel").setType(org.foodauthent.model.Model.TypeEnum.KNIME_GENERIC_MODEL)
+		.setWorkflowType(WorkflowTypeEnum.WORKFLOW).build();
+	UUID modelId = wt.path("model").request(MediaType.APPLICATION_JSON)
+		.post(Entity.entity(m, MediaType.APPLICATION_JSON), UUID.class);
+	//TODO upload model file
 
 	/* run prediction workflow */
-	PredictionJob predictionJob = wt.path("workflow/prediction/job").queryParam("workflow-id", wfId).queryParam("fingerprintset-id", fpsId)
+	PredictionJob predictionJob = wt.path("workflow/prediction/job").queryParam("workflow-id", wfId)
+		.queryParam("fingerprintset-id", fpsId).queryParam("model-id", modelId)
 		.request(MediaType.APPLICATION_JSON).post(null, PredictionJob.class);
 	assertEquals(predictionJob.getStatus(), StatusEnum.RUNNING);
 	//let the job finish the prediction

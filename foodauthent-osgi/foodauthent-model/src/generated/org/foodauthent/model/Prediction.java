@@ -27,6 +27,7 @@ public class Prediction  extends FaModel {
   private java.util.Map<String, Float> confidenceMap;
   private java.util.UUID workflowId;
   private java.util.UUID fingerprintSetId;
+  private java.util.UUID modelId;
   
   public String getTypeID() {
     return "Prediction";
@@ -40,6 +41,7 @@ public class Prediction  extends FaModel {
     confidenceMap = immutable(builder.confidenceMap);
     workflowId = immutable(builder.workflowId);
     fingerprintSetId = immutable(builder.fingerprintSetId);
+    modelId = immutable(builder.modelId);
     
     faId = generateFaIdIfMissing(faId);
   }
@@ -59,7 +61,7 @@ public class Prediction  extends FaModel {
             return false;
         }
         Prediction ent = (Prediction)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(confidenceMap, ent.confidenceMap) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintSetId, ent.fingerprintSetId);
+        return Objects.equals(faId, ent.faId) && Objects.equals(confidenceMap, ent.confidenceMap) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintSetId, ent.fingerprintSetId) && Objects.equals(modelId, ent.modelId);
     }
 
 
@@ -77,6 +79,10 @@ public class Prediction  extends FaModel {
     
   public java.util.UUID getFingerprintSetId() {
         return fingerprintSetId;
+    }
+    
+  public java.util.UUID getModelId() {
+        return modelId;
     }
     
   
@@ -101,6 +107,7 @@ public class Prediction  extends FaModel {
         builder.confidenceMap = entity.confidenceMap;
         builder.workflowId = entity.workflowId;
         builder.fingerprintSetId = entity.fingerprintSetId;
+        builder.modelId = entity.modelId;
  		return builder;
   	}
   	
@@ -115,6 +122,7 @@ public class Prediction  extends FaModel {
         private java.util.Map<String, Float> confidenceMap = new java.util.HashMap<>();
         private java.util.UUID workflowId = null;
         private java.util.UUID fingerprintSetId = null;
+        private java.util.UUID modelId = null;
 
         public PredictionBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
@@ -133,6 +141,11 @@ public class Prediction  extends FaModel {
 
         public PredictionBuilder setFingerprintSetId(java.util.UUID fingerprintSetId) {
              this.fingerprintSetId = fingerprintSetId;
+             return this;
+        }
+
+        public PredictionBuilder setModelId(java.util.UUID modelId) {
+             this.modelId = modelId;
              return this;
         }
 

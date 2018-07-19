@@ -14,33 +14,31 @@ import java.util.UUID;
 
 import java.time.LocalDate;
 import org.foodauthent.model.Tag;
-import org.foodauthent.model.WorkflowModule;
-import org.foodauthent.model.WorkflowParameter;
 
 
 /**
- * A workflow for a certain task.
+ * A model created via training and used for prediction. Can also be a workflow.
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class Workflow  extends FaModel {
+public class Model  extends FaModel {
 
   /**
-   * The workflow representation, e.g. represented by a scripting language, cwl or a KNIME-workflow.
+   * The type of the model. More for informational purpose.
    */
-  public enum RepresentationEnum {
-    CWL("cwl"),
+  public enum TypeEnum {
+    KNIME_WORKFLOW("knime_workflow"),
     
-    R("r"),
+    KNIME_GENERIC_MODEL("knime_generic_model"),
     
-    PYTHON("python"),
+    KNIME_PYTHON_MODEL("knime_python_model"),
     
-    KNIME("knime");
+    PMML_MODEL("pmml_model");
 
     private String value;
 
-    RepresentationEnum(String value) {
+    TypeEnum(String value) {
       this.value = value;
     }
 
@@ -52,24 +50,14 @@ public class Workflow  extends FaModel {
   }
 
   /**
-   * The type of the workflow. IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity.
+   * Workflows of this type must be able to work with this model! See workflow&#39;s type property.
    */
-  public enum TypeEnum {
-    PREDICTION_WORKFLOW("prediction_workflow"),
-    
-    TRAINING_WORKFLOW("training_workflow"),
-    
-    READ_MODULE("read_module"),
-    
-    BINNING_MODULE("binning_module"),
-    
-    TRANSFORMSIGNAL_MODULE("transformsignal_module"),
-    
-    TRANSFORMSAMPLE_MODULE("transformsample_module");
+  public enum WorkflowTypeEnum {
+    WORKFLOW("prediction_workflow");
 
     private String value;
 
-    TypeEnum(String value) {
+    WorkflowTypeEnum(String value) {
       this.value = value;
     }
 
@@ -87,20 +75,18 @@ public class Workflow  extends FaModel {
   private String author;
   private LocalDate date;
   private Integer version;
-  private RepresentationEnum representation;
   private TypeEnum type;
-  private java.util.List<WorkflowParameter> parameters;
+  private WorkflowTypeEnum workflowType;
   private java.util.List<Tag> tags;
-  private java.util.UUID workflowFileId;
-  private java.util.List<WorkflowModule> modules;
+  private java.util.UUID modelFileId;
   
   public String getTypeID() {
-    return "Workflow";
+    return "Model";
   }
   
 
   
-  private Workflow(WorkflowBuilder builder) {
+  private Model(ModelBuilder builder) {
     
     faId = immutable(builder.faId);
     name = immutable(builder.name);
@@ -108,12 +94,10 @@ public class Workflow  extends FaModel {
     author = immutable(builder.author);
     date = immutable(builder.date);
     version = immutable(builder.version);
-    representation = immutable(builder.representation);
     type = immutable(builder.type);
-    parameters = immutable(builder.parameters);
+    workflowType = immutable(builder.workflowType);
     tags = immutable(builder.tags);
-    workflowFileId = immutable(builder.workflowFileId);
-    modules = immutable(builder.modules);
+    modelFileId = immutable(builder.modelFileId);
     
     faId = generateFaIdIfMissing(faId);
   }
@@ -132,8 +116,8 @@ public class Workflow  extends FaModel {
         if (getClass() != o.getClass()) {
             return false;
         }
-        Workflow ent = (Workflow)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(representation, ent.representation) && Objects.equals(type, ent.type) && Objects.equals(parameters, ent.parameters) && Objects.equals(tags, ent.tags) && Objects.equals(workflowFileId, ent.workflowFileId) && Objects.equals(modules, ent.modules);
+        Model ent = (Model)o;
+        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(workflowType, ent.workflowType) && Objects.equals(tags, ent.tags) && Objects.equals(modelFileId, ent.modelFileId);
     }
 
 
@@ -161,36 +145,28 @@ public class Workflow  extends FaModel {
         return version;
     }
     
-  public RepresentationEnum getRepresentation() {
-        return representation;
-    }
-    
   public TypeEnum getType() {
         return type;
     }
     
-  public java.util.List<WorkflowParameter> getParameters() {
-        return parameters;
+  public WorkflowTypeEnum getWorkflowType() {
+        return workflowType;
     }
     
   public java.util.List<Tag> getTags() {
         return tags;
     }
     
-  public java.util.UUID getWorkflowFileId() {
-        return workflowFileId;
-    }
-    
-  public java.util.List<WorkflowModule> getModules() {
-        return modules;
+  public java.util.UUID getModelFileId() {
+        return modelFileId;
     }
     
   
  	/**
   	 * @return a newly created builder
   	 */
-  	public static WorkflowBuilder builder() {
-  		return new WorkflowBuilder();
+  	public static ModelBuilder builder() {
+  		return new ModelBuilder();
   	}
   	
   	/**
@@ -201,27 +177,25 @@ public class Workflow  extends FaModel {
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
 	 */
-	public static WorkflowBuilder builder(Workflow entity) {
-		WorkflowBuilder builder = builder();
+	public static ModelBuilder builder(Model entity) {
+		ModelBuilder builder = builder();
         builder.faId = entity.faId;
         builder.name = entity.name;
         builder.description = entity.description;
         builder.author = entity.author;
         builder.date = entity.date;
         builder.version = entity.version;
-        builder.representation = entity.representation;
         builder.type = entity.type;
-        builder.parameters = entity.parameters;
+        builder.workflowType = entity.workflowType;
         builder.tags = entity.tags;
-        builder.workflowFileId = entity.workflowFileId;
-        builder.modules = entity.modules;
+        builder.modelFileId = entity.modelFileId;
  		return builder;
   	}
   	
   
-    public static class WorkflowBuilder {
+    public static class ModelBuilder {
     
-        private WorkflowBuilder(){
+        private ModelBuilder(){
             
         }
     
@@ -231,76 +205,64 @@ public class Workflow  extends FaModel {
         private String author = null;
         private LocalDate date = null;
         private Integer version = null;
-        private RepresentationEnum representation = null;
         private TypeEnum type = null;
-        private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
+        private WorkflowTypeEnum workflowType = null;
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
-        private java.util.UUID workflowFileId = null;
-        private java.util.List<WorkflowModule> modules = new java.util.ArrayList<>();
+        private java.util.UUID modelFileId = null;
 
-        public WorkflowBuilder setFaId(java.util.UUID faId) {
+        public ModelBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
-        public WorkflowBuilder setName(String name) {
+        public ModelBuilder setName(String name) {
              this.name = name;
              return this;
         }
 
-        public WorkflowBuilder setDescription(String description) {
+        public ModelBuilder setDescription(String description) {
              this.description = description;
              return this;
         }
 
-        public WorkflowBuilder setAuthor(String author) {
+        public ModelBuilder setAuthor(String author) {
              this.author = author;
              return this;
         }
 
-        public WorkflowBuilder setDate(LocalDate date) {
+        public ModelBuilder setDate(LocalDate date) {
              this.date = date;
              return this;
         }
 
-        public WorkflowBuilder setVersion(Integer version) {
+        public ModelBuilder setVersion(Integer version) {
              this.version = version;
              return this;
         }
 
-        public WorkflowBuilder setRepresentation(RepresentationEnum representation) {
-             this.representation = representation;
-             return this;
-        }
-
-        public WorkflowBuilder setType(TypeEnum type) {
+        public ModelBuilder setType(TypeEnum type) {
              this.type = type;
              return this;
         }
 
-        public WorkflowBuilder setParameters(java.util.List<WorkflowParameter> parameters) {
-             this.parameters = parameters;
+        public ModelBuilder setWorkflowType(WorkflowTypeEnum workflowType) {
+             this.workflowType = workflowType;
              return this;
         }
 
-        public WorkflowBuilder setTags(java.util.List<Tag> tags) {
+        public ModelBuilder setTags(java.util.List<Tag> tags) {
              this.tags = tags;
              return this;
         }
 
-        public WorkflowBuilder setWorkflowFileId(java.util.UUID workflowFileId) {
-             this.workflowFileId = workflowFileId;
-             return this;
-        }
-
-        public WorkflowBuilder setModules(java.util.List<WorkflowModule> modules) {
-             this.modules = modules;
+        public ModelBuilder setModelFileId(java.util.UUID modelFileId) {
+             this.modelFileId = modelFileId;
              return this;
         }
 
         
-        public Workflow build() {
-            return new Workflow(this);
+        public Model build() {
+            return new Model(this);
         }
     
     }

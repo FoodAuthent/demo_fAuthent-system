@@ -13,6 +13,7 @@ import java.util.UUID;
 
 
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.WorkflowModule;
 import org.foodauthent.model.WorkflowParameter;
 
 
@@ -29,6 +30,7 @@ public class PredictionWorkflowInput  extends FaModel {
   private FingerprintSet fingerprintSetMetadata;
   private String fingerprintSetURI;
   private String modelURI;
+  private java.util.List<WorkflowModule> modules;
   
   public String getTypeID() {
     return "PredictionWorkflowInput";
@@ -46,6 +48,7 @@ public class PredictionWorkflowInput  extends FaModel {
     fingerprintSetMetadata = immutable(builder.fingerprintSetMetadata);
     fingerprintSetURI = immutable(builder.fingerprintSetURI);
     modelURI = immutable(builder.modelURI);
+    modules = immutable(builder.modules);
     
   }
   
@@ -64,7 +67,7 @@ public class PredictionWorkflowInput  extends FaModel {
             return false;
         }
         PredictionWorkflowInput ent = (PredictionWorkflowInput)o;
-        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprintSetMetadata, ent.fingerprintSetMetadata) && Objects.equals(fingerprintSetURI, ent.fingerprintSetURI) && Objects.equals(modelURI, ent.modelURI);
+        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprintSetMetadata, ent.fingerprintSetMetadata) && Objects.equals(fingerprintSetURI, ent.fingerprintSetURI) && Objects.equals(modelURI, ent.modelURI) && Objects.equals(modules, ent.modules);
     }
 
 
@@ -82,6 +85,10 @@ public class PredictionWorkflowInput  extends FaModel {
     
   public String getModelURI() {
         return modelURI;
+    }
+    
+  public java.util.List<WorkflowModule> getModules() {
+        return modules;
     }
     
   
@@ -106,6 +113,7 @@ public class PredictionWorkflowInput  extends FaModel {
         builder.fingerprintSetMetadata = entity.fingerprintSetMetadata;
         builder.fingerprintSetURI = entity.fingerprintSetURI;
         builder.modelURI = entity.modelURI;
+        builder.modules = entity.modules;
  		return builder;
   	}
   	
@@ -120,6 +128,7 @@ public class PredictionWorkflowInput  extends FaModel {
         private FingerprintSet fingerprintSetMetadata = null;
         private String fingerprintSetURI = null;
         private String modelURI = null;
+        private java.util.List<WorkflowModule> modules = new java.util.ArrayList<>();
 
         public PredictionWorkflowInputBuilder setParameters(java.util.List<WorkflowParameter> parameters) {
              this.parameters = parameters;
@@ -138,6 +147,11 @@ public class PredictionWorkflowInput  extends FaModel {
 
         public PredictionWorkflowInputBuilder setModelURI(String modelURI) {
              this.modelURI = modelURI;
+             return this;
+        }
+
+        public PredictionWorkflowInputBuilder setModules(java.util.List<WorkflowModule> modules) {
+             this.modules = modules;
              return this;
         }
 

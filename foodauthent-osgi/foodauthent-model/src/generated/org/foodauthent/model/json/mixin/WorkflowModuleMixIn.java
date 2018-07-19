@@ -3,6 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
+import org.foodauthent.model.json.mixin.WorkflowParameterMixIn;
 
 import java.util.UUID;
 
@@ -13,11 +14,10 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import org.foodauthent.model.PredictionJob.StatusEnum;
 
 
-import org.foodauthent.model.PredictionJob;
-import org.foodauthent.model.PredictionJob.PredictionJobBuilder;
+import org.foodauthent.model.WorkflowModule;
+import org.foodauthent.model.WorkflowModule.WorkflowModuleBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -29,13 +29,13 @@ import org.foodauthent.model.PredictionJob.PredictionJobBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = PredictionJob.class)
+    defaultImpl = WorkflowModule.class)
 @JsonSubTypes({
-    @Type(value = PredictionJob.class, name="PredictionJob")
+    @Type(value = WorkflowModule.class, name="WorkflowModule")
 })
-@JsonDeserialize(builder=PredictionJobBuilder.class)
+@JsonDeserialize(builder=WorkflowModuleBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface PredictionJobMixIn {
+public interface WorkflowModuleMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -43,19 +43,18 @@ public interface PredictionJobMixIn {
     @JsonIgnore
     public String getTypeID();
     
+   	@JsonIgnore
+  	public UUID getFaId();
     
 
-    @JsonProperty("fa-id")
-    public java.util.UUID getFaId();
+    @JsonProperty("module-id")
+    public java.util.UUID getModuleId();
     
-    @JsonProperty("prediction-id")
-    public java.util.UUID getPredictionId();
+    @JsonProperty("module-type")
+    public String getModuleType();
     
-    @JsonProperty("status")
-    public StatusEnum getStatus();
-    
-    @JsonProperty("status-message")
-    public String getStatusMessage();
+    @JsonProperty("module-parameters")
+    public java.util.List<WorkflowParameterMixIn> getModuleParameters();
     
 
     /**
@@ -67,26 +66,23 @@ public interface PredictionJobMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = PredictionJobBuilder.class)
+        defaultImpl = WorkflowModuleBuilder.class)
     @JsonSubTypes({
-        @Type(value = PredictionJob.PredictionJobBuilder.class, name="PredictionJob")
+        @Type(value = WorkflowModule.WorkflowModuleBuilder.class, name="WorkflowModule")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface PredictionJobMixInBuilder {
+    public static interface WorkflowModuleMixInBuilder {
     
-        public PredictionJobMixIn build();
+        public WorkflowModuleMixIn build();
     
-        @JsonProperty("fa-id")
-        public PredictionJobMixInBuilder setFaId(final java.util.UUID faId);
+        @JsonProperty("module-id")
+        public WorkflowModuleMixInBuilder setModuleId(final java.util.UUID moduleId);
         
-        @JsonProperty("prediction-id")
-        public PredictionJobMixInBuilder setPredictionId(final java.util.UUID predictionId);
+        @JsonProperty("module-type")
+        public WorkflowModuleMixInBuilder setModuleType(final String moduleType);
         
-        @JsonProperty("status")
-        public PredictionJobMixInBuilder setStatus(final StatusEnum status);
-        
-        @JsonProperty("status-message")
-        public PredictionJobMixInBuilder setStatusMessage(final String statusMessage);
+        @JsonProperty("module-parameters")
+        public WorkflowModuleMixInBuilder setModuleParameters(final java.util.List<WorkflowParameterMixIn> moduleParameters);
         
     }
 

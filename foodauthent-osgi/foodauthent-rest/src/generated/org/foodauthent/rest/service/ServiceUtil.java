@@ -23,6 +23,7 @@ public class ServiceUtil {
 		res.add(WorkflowRestService.class);
 		res.add(FingerprintRestService.class);
 		res.add(ProductRestService.class);
+		res.add(ModelRestService.class);
 		return res;
 	}
 }

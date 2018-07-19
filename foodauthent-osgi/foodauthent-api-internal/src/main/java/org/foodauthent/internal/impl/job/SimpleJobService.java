@@ -9,6 +9,7 @@ import org.foodauthent.internal.api.job.JobService;
 import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.Model;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJob.StatusEnum;
@@ -35,11 +36,10 @@ public class SimpleJobService implements JobService {
     }
 
     @Override
-    public PredictionJob createNewPredictionJob(final Workflow workflow, final FingerprintSet fingerprintSet) {
+    public PredictionJob createNewPredictionJob(final Workflow workflow, final FingerprintSet fingerprintSet, Model model) {
 	final UUID predictionId = UUID.randomUUID();
-	final PredictionJob job = PredictionJob.builder().setFingerprintSetId(fingerprintSet.getFaId())
-		.setWorklfowId(workflow.getFaId()).setStatus(StatusEnum.SUCCESS)
-		.setPredictionId(predictionId).build();
+	final PredictionJob job = PredictionJob.builder().setStatus(StatusEnum.SUCCESS).setPredictionId(predictionId)
+		.build();
 	final long jobPersistenceId = persistenceService.save(job);
 	job.setPersisenceId(jobPersistenceId);
 	if (logger.isDebugEnabled()) {

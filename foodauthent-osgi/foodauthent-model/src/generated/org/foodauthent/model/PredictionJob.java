@@ -47,8 +47,6 @@ public class PredictionJob  extends FaModel {
 
 
   private java.util.UUID faId;
-  private java.util.UUID worklfowId;
-  private java.util.UUID fingerprintSetId;
   private java.util.UUID predictionId;
   private StatusEnum status;
   private String statusMessage;
@@ -62,8 +60,6 @@ public class PredictionJob  extends FaModel {
   private PredictionJob(PredictionJobBuilder builder) {
     
     faId = immutable(builder.faId);
-    worklfowId = immutable(builder.worklfowId);
-    fingerprintSetId = immutable(builder.fingerprintSetId);
     predictionId = immutable(builder.predictionId);
     status = immutable(builder.status);
     statusMessage = immutable(builder.statusMessage);
@@ -86,20 +82,12 @@ public class PredictionJob  extends FaModel {
             return false;
         }
         PredictionJob ent = (PredictionJob)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(worklfowId, ent.worklfowId) && Objects.equals(fingerprintSetId, ent.fingerprintSetId) && Objects.equals(predictionId, ent.predictionId) && Objects.equals(status, ent.status) && Objects.equals(statusMessage, ent.statusMessage);
+        return Objects.equals(faId, ent.faId) && Objects.equals(predictionId, ent.predictionId) && Objects.equals(status, ent.status) && Objects.equals(statusMessage, ent.statusMessage);
     }
 
 
   public java.util.UUID getFaId() {
         return faId;
-    }
-    
-  public java.util.UUID getWorklfowId() {
-        return worklfowId;
-    }
-    
-  public java.util.UUID getFingerprintSetId() {
-        return fingerprintSetId;
     }
     
   public java.util.UUID getPredictionId() {
@@ -133,8 +121,6 @@ public class PredictionJob  extends FaModel {
 	public static PredictionJobBuilder builder(PredictionJob entity) {
 		PredictionJobBuilder builder = builder();
         builder.faId = entity.faId;
-        builder.worklfowId = entity.worklfowId;
-        builder.fingerprintSetId = entity.fingerprintSetId;
         builder.predictionId = entity.predictionId;
         builder.status = entity.status;
         builder.statusMessage = entity.statusMessage;
@@ -149,24 +135,12 @@ public class PredictionJob  extends FaModel {
         }
     
         private java.util.UUID faId = null;
-        private java.util.UUID worklfowId = null;
-        private java.util.UUID fingerprintSetId = null;
         private java.util.UUID predictionId = null;
         private StatusEnum status = null;
         private String statusMessage = null;
 
         public PredictionJobBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
-             return this;
-        }
-
-        public PredictionJobBuilder setWorklfowId(java.util.UUID worklfowId) {
-             this.worklfowId = worklfowId;
-             return this;
-        }
-
-        public PredictionJobBuilder setFingerprintSetId(java.util.UUID fingerprintSetId) {
-             this.fingerprintSetId = fingerprintSetId;
              return this;
         }
 

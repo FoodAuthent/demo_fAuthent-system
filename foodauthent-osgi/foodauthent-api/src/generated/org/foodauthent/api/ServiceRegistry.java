@@ -4,6 +4,7 @@ import org.foodauthent.impl.sop.SopServiceImpl;
 import org.foodauthent.impl.workflow.WorkflowServiceImpl;
 import org.foodauthent.impl.fingerprint.FingerprintServiceImpl;
 import org.foodauthent.impl.product.ProductServiceImpl;
+import org.foodauthent.impl.model.ModelServiceImpl;
 
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public class ServiceRegistry {
@@ -20,6 +21,9 @@ public class ServiceRegistry {
 		} 
 		if(serviceClass == ProductService.class) {
 			return (S) new ProductServiceImpl();
+		} 
+		if(serviceClass == ModelService.class) {
+			return (S) new ModelServiceImpl();
 		} 
 		throw new IllegalArgumentException(
 			"No implementation available for service " + serviceClass.getSimpleName());

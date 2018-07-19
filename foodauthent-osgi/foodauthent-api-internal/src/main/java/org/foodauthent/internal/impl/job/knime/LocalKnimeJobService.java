@@ -1,15 +1,12 @@
 package org.foodauthent.internal.impl.job.knime;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
@@ -23,6 +20,7 @@ import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.Model;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJob.StatusEnum;
@@ -47,7 +45,6 @@ import org.knime.core.node.workflow.WorkflowPersistor.WorkflowLoadResult;
 import org.knime.core.util.FileUtil;
 import org.knime.core.util.LockFailedException;
 import org.knime.core.util.Version;
-import org.knime.core.util.binning.auto.PrecisionMode;
 
 /**
  * @author Martin Horn, University of Konstanz
@@ -64,17 +61,28 @@ public class LocalKnimeJobService implements JobService {
     }
 
     @Override
-    public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet) {
+    public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model) {
 	Blob wfFile = persistenceService.getBlobByUUID(workflow.getWorkflowFileId());
 
 	try {
 	    // extract workflow to a temporary location
-	    File wfDir = unzipToTempDir(wfFile.getData(), wfFile.getFaId());
+	    File wfDir = unzipToTempDir(wfFile.getData(), wfFile.getFaId(), "fa_workflow");
+	    
+	    //TODO get fingerprint set file(s)
+	    
+	    //check whether the model is compatible with the workflow
+	    assert workflow.getType().toString().equals(model.getWorkflowType().toString());
+	    //TODO otherwise throw proper exception
+	    
+	    //TODO get actual model file
+	    //persistenceService.getBlobByUUID(model.getModelFileId());
 
 	    // assemble workflow input
 	    PredictionWorkflowInput workflowInput = PredictionWorkflowInput.builder()
-		    .setFingerprintSetURI("TODO:fingerprintURI").setModelURI("TODO:optional_modelURI")
-		    .setFingerprintSetMetadata(fingerprintSet).setParameters(workflow.getParameters()).build();
+		    .setFingerprintSetURI("TODO:fingerprintURI").setModelURI("TODO:modelURI")
+		    .setFingerprintSetMetadata(fingerprintSet).setParameters(workflow.getParameters())
+		    //pass module's parameters
+		    .setModules(workflow.getModules()).build();
 	    // TODO doesn't work, but should
 	    // JsonValue jsonInput =
 	    // ObjectMapperUtil.getObjectMapper().convertValue(workflowInput,
@@ -91,8 +99,7 @@ public class LocalKnimeJobService implements JobService {
 	    wfm.setInputNodes(inputMap);
 
 	    // start and save actual prediction job
-	    PredictionJob predictionJob = PredictionJob.builder().setFingerprintSetId(fingerprintSet.getFaId())
-		    .setWorklfowId(workflow.getFaId()).setStatus(StatusEnum.RUNNING).build();
+	    PredictionJob predictionJob = PredictionJob.builder().setStatus(StatusEnum.RUNNING).build();
 	    executionService.submit(() -> {
 		StatusEnum status;
 		if (wfm.executeAllAndWaitUntilDone()) {
@@ -113,8 +120,8 @@ public class LocalKnimeJobService implements JobService {
 			PredictionWorkflowOutput predictionOutput = ObjectMapperUtil.getObjectMapper()
 				.readValue(jsonOutput.toString(), PredictionWorkflowOutput.class);
 			Prediction prediction = Prediction.builder().setFingerprintSetId(fingerprintSet.getFaId())
-				.setWorkflowId(workflow.getFaId()).setConfidenceMap(predictionOutput.getConfidenceMap())
-				.build();
+				.setWorkflowId(workflow.getFaId()).setModelId(model.getFaId())
+				.setConfidenceMap(predictionOutput.getConfidenceMap()).build();
 			persistenceService.save(prediction);
 
 			// change the status and prediction id of the prediction job and replace
@@ -130,7 +137,7 @@ public class LocalKnimeJobService implements JobService {
 			    .setStatusMessage(statusMessage).build());
 		}
 
-		// TODO delete the workflow from the temp-dir
+		// TODO delete the workflow(s), fingerprint and models from the temp-dir
 	    });
 	    // create prediction job
 	    persistenceService.save(predictionJob);
@@ -183,9 +190,9 @@ public class LocalKnimeJobService implements JobService {
 	return loadRes.getWorkflowManager();
     }
 
-    public static File unzipToTempDir(final byte[] workflowBlob, UUID blobId) throws IOException {
+    private static File unzipToTempDir(final byte[] workflowBlob, UUID blobId, String prefix) throws IOException {
 	ZipInputStream zipStream = new ZipInputStream(new ByteArrayInputStream(workflowBlob));
-	File destDir = new File(KNIMEConstants.getKNIMETempPath().toFile(), "fa_worklfow_" + blobId.toString());
+	File destDir = new File(KNIMEConstants.getKNIMETempPath().toFile(), prefix + blobId.toString());
 	FileUtil.unzip(zipStream, destDir, 0);
 	// go to workflow level
 	destDir = new File(destDir, destDir.list()[0]);
