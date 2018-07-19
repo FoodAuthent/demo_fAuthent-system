@@ -40,8 +40,8 @@ public abstract class AbstractITTest {
     }
 
     protected final WebTarget webTarget() {
-	Client client = ClientBuilder.newClient().register(JacksonJSONWriter.class).register(JacksonJSONReader.class)
-		.register(MultiPartFeature.class);
+	Client client = ClientBuilder.newClient().register(JacksonJSONWriter.class, Integer.MAX_VALUE)
+		.register(JacksonJSONReader.class, Integer.MAX_VALUE).register(MultiPartFeature.class);
 	return client.target("http://localhost:9090/v0/foodauthent");
     }
 
