@@ -177,6 +177,7 @@
 		<module>foodauthent-api</module>
 		<module>foodauthent-api-internal</module>
 		<module>foodauthent-api-knime</module>
+		<module>foodauthent-api-simple</module>
 		<module>foodauthent-rest</module>
 		<module>foodauthent-swaggerui</module>
 		<module>foodauthent-feature</module>

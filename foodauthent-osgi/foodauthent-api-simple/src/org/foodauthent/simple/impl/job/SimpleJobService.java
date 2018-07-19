@@ -1,4 +1,4 @@
-package org.foodauthent.internal.impl.job;
+package org.foodauthent.simple.impl.job;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
  * @author Martin Horn, University of Konstanz
  *
  */
+@Component(service=JobService.class)
 public class SimpleJobService implements JobService {
 
     private static final Logger logger = LoggerFactory.getLogger(SimpleJobService.class);

@@ -5,7 +5,6 @@ Bundle-SymbolicName: org.foodauthent.api.internal
 Bundle-Version: 1.0.0.qualifier
 Export-Package: org.foodauthent.internal.api.job,
  org.foodauthent.internal.api.persistence,
- org.foodauthent.internal.impl.job,
  org.foodauthent.internal.impl.persistence
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: org.foodauthent.api.internal.exeption,
