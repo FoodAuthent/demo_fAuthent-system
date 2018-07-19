@@ -1,29 +1,52 @@
-package org.foodauthent.impl.fingerprint.util;
+package org.foodauthent.impl.file;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 
+import org.foodauthent.api.FileService;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.DataMetaData;
 import org.foodauthent.internal.api.persistence.PersistenceService;
+import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
+import org.foodauthent.model.FileMetadata;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
 /**
- * Utility methods for persistence.
  * 
  * @author Martin Horn, University of Konstanz
  *
  */
-public class PersistenceUtil {
+public class FileServiceImpl implements FileService {
     
-    private PersistenceUtil() {
-	//utility class
+    private final PersistenceService persistenceService;
+
+    public FileServiceImpl() {
+	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
     }
-    
-    public static UUID saveBlob(InputStream upfile, FormDataContentDisposition upfileDetail,
-	    PersistenceService persistenceService) {
+
+    @Override
+    public UUID createFileMetadata(FileMetadata fileMetadata) {
+	persistenceService.save(fileMetadata);
+	return fileMetadata.getFaId();
+    }
+
+    @Override
+    public File getFileData(UUID fileId) {
+	Blob blob = persistenceService.getBlobByUUID(fileId);
+	//TODO
+	return null;
+    }
+
+    @Override
+    public FileMetadata getFileMetadata(UUID fileId) {
+	return persistenceService.getFaModelByUUID(fileId);
+    }
+
+    @Override
+    public UUID saveFileData(UUID fileId, InputStream upfile, FormDataContentDisposition upfileDetail) {
 	// TODO check whether there is already a workflow-model entry for the workflow
 	// id - otherwise refuse the request
 	// TODO it should be possible to store multiple files per UUID, e.g. multiple
@@ -31,16 +54,15 @@ public class PersistenceUtil {
 
 	try {
 	    // new uuid for the blob
-	    UUID blobId = UUID.randomUUID();
 	    persistenceService
-		    .save(new Blob(blobId, new DataMetaData(upfileDetail.getFileName()), toByteArray(upfile)));
-	    return blobId;
+		    .save(new Blob(fileId, new DataMetaData(upfileDetail.getFileName()), toByteArray(upfile)));
+	    return fileId;
 	} catch (IOException e) {
 	    // TODO throw appropriate exception
 	    throw new RuntimeException(e);
 	}
     }
-
+    
     private static byte[] toByteArray(InputStream in) throws IOException {
 	// would be cool to be able to use apache's IOUtils
 	ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -53,5 +75,7 @@ public class PersistenceUtil {
 	buffer.flush();
 	return buffer.toByteArray();
     }
+
+
 
 }

@@ -24,7 +24,7 @@ import org.foodauthent.model.WorkflowParameter;
 public class WorkflowModule  extends FaModel {
 
 
-  private java.util.UUID moduleId;
+  private java.util.UUID workflowId;
   private String moduleType;
   private java.util.List<WorkflowParameter> moduleParameters;
   
@@ -40,7 +40,7 @@ public class WorkflowModule  extends FaModel {
   
   private WorkflowModule(WorkflowModuleBuilder builder) {
     
-    moduleId = immutable(builder.moduleId);
+    workflowId = immutable(builder.workflowId);
     moduleType = immutable(builder.moduleType);
     moduleParameters = immutable(builder.moduleParameters);
     
@@ -61,12 +61,12 @@ public class WorkflowModule  extends FaModel {
             return false;
         }
         WorkflowModule ent = (WorkflowModule)o;
-        return Objects.equals(moduleId, ent.moduleId) && Objects.equals(moduleType, ent.moduleType) && Objects.equals(moduleParameters, ent.moduleParameters);
+        return Objects.equals(workflowId, ent.workflowId) && Objects.equals(moduleType, ent.moduleType) && Objects.equals(moduleParameters, ent.moduleParameters);
     }
 
 
-  public java.util.UUID getModuleId() {
-        return moduleId;
+  public java.util.UUID getWorkflowId() {
+        return workflowId;
     }
     
   public String getModuleType() {
@@ -95,7 +95,7 @@ public class WorkflowModule  extends FaModel {
 	 */
 	public static WorkflowModuleBuilder builder(WorkflowModule entity) {
 		WorkflowModuleBuilder builder = builder();
-        builder.moduleId = entity.moduleId;
+        builder.workflowId = entity.workflowId;
         builder.moduleType = entity.moduleType;
         builder.moduleParameters = entity.moduleParameters;
  		return builder;
@@ -108,12 +108,12 @@ public class WorkflowModule  extends FaModel {
             
         }
     
-        private java.util.UUID moduleId = null;
+        private java.util.UUID workflowId = null;
         private String moduleType = null;
         private java.util.List<WorkflowParameter> moduleParameters = new java.util.ArrayList<>();
 
-        public WorkflowModuleBuilder setModuleId(java.util.UUID moduleId) {
-             this.moduleId = moduleId;
+        public WorkflowModuleBuilder setWorkflowId(java.util.UUID workflowId) {
+             this.workflowId = workflowId;
              return this;
         }
 

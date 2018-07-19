@@ -1,6 +1,7 @@
 package org.foodauthent.api;
 
 import org.foodauthent.impl.sop.SopServiceImpl;
+import org.foodauthent.impl.file.FileServiceImpl;
 import org.foodauthent.impl.workflow.WorkflowServiceImpl;
 import org.foodauthent.impl.fingerprint.FingerprintServiceImpl;
 import org.foodauthent.impl.product.ProductServiceImpl;
@@ -12,6 +13,9 @@ public class ServiceRegistry {
 	public static <S> S get(Class<S> serviceClass) {
 		if(serviceClass == SopService.class) {
 			return (S) new SopServiceImpl();
+		} 
+		if(serviceClass == FileService.class) {
+			return (S) new FileServiceImpl();
 		} 
 		if(serviceClass == WorkflowService.class) {
 			return (S) new WorkflowServiceImpl();

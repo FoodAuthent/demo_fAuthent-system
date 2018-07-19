@@ -3,7 +3,6 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import java.time.LocalDate;
 import org.foodauthent.model.json.mixin.TagMixIn;
 import org.foodauthent.model.json.mixin.WorkflowModuleMixIn;
 import org.foodauthent.model.json.mixin.WorkflowParameterMixIn;
@@ -60,15 +59,6 @@ public interface WorkflowMixIn {
     @JsonProperty("description")
     public String getDescription();
     
-    @JsonProperty("author")
-    public String getAuthor();
-    
-    @JsonProperty("date")
-    public LocalDate getDate();
-    
-    @JsonProperty("version")
-    public Integer getVersion();
-    
     @JsonProperty("representation")
     public RepresentationEnum getRepresentation();
     
@@ -81,8 +71,8 @@ public interface WorkflowMixIn {
     @JsonProperty("tags")
     public java.util.List<TagMixIn> getTags();
     
-    @JsonProperty("workflow-file-id")
-    public java.util.UUID getWorkflowFileId();
+    @JsonProperty("file-id")
+    public java.util.UUID getFileId();
     
     @JsonProperty("modules")
     public java.util.List<WorkflowModuleMixIn> getModules();
@@ -118,15 +108,6 @@ public interface WorkflowMixIn {
         @JsonProperty("description")
         public WorkflowMixInBuilder setDescription(final String description);
         
-        @JsonProperty("author")
-        public WorkflowMixInBuilder setAuthor(final String author);
-        
-        @JsonProperty("date")
-        public WorkflowMixInBuilder setDate(final LocalDate date);
-        
-        @JsonProperty("version")
-        public WorkflowMixInBuilder setVersion(final Integer version);
-        
         @JsonProperty("representation")
         public WorkflowMixInBuilder setRepresentation(final RepresentationEnum representation);
         
@@ -139,8 +120,8 @@ public interface WorkflowMixIn {
         @JsonProperty("tags")
         public WorkflowMixInBuilder setTags(final java.util.List<TagMixIn> tags);
         
-        @JsonProperty("workflow-file-id")
-        public WorkflowMixInBuilder setWorkflowFileId(final java.util.UUID workflowFileId);
+        @JsonProperty("file-id")
+        public WorkflowMixInBuilder setFileId(final java.util.UUID fileId);
         
         @JsonProperty("modules")
         public WorkflowMixInBuilder setModules(final java.util.List<WorkflowModuleMixIn> modules);

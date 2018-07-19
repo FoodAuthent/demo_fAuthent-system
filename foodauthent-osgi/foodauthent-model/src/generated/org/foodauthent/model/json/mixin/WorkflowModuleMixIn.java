@@ -47,8 +47,8 @@ public interface WorkflowModuleMixIn {
   	public UUID getFaId();
     
 
-    @JsonProperty("module-id")
-    public java.util.UUID getModuleId();
+    @JsonProperty("workflow-id")
+    public java.util.UUID getWorkflowId();
     
     @JsonProperty("module-type")
     public String getModuleType();
@@ -75,8 +75,8 @@ public interface WorkflowModuleMixIn {
     
         public WorkflowModuleMixIn build();
     
-        @JsonProperty("module-id")
-        public WorkflowModuleMixInBuilder setModuleId(final java.util.UUID moduleId);
+        @JsonProperty("workflow-id")
+        public WorkflowModuleMixInBuilder setWorkflowId(final java.util.UUID workflowId);
         
         @JsonProperty("module-type")
         public WorkflowModuleMixInBuilder setModuleType(final String moduleType);

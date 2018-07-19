@@ -20,6 +20,7 @@ public class ServiceUtil {
 	public static List<Class<?>> getRestServiceClasses() {
 		List<Class<?>> res = new ArrayList<Class<?>>();
 		res.add(SopRestService.class);
+		res.add(FileRestService.class);
 		res.add(WorkflowRestService.class);
 		res.add(FingerprintRestService.class);
 		res.add(ProductRestService.class);

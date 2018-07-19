@@ -35,7 +35,6 @@ public class SopRestService{
      */
     @POST
     @Path("/sop")
-    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createNewSOP(SOP sop
 ) {
@@ -82,27 +81,6 @@ public class SopRestService{
     public Response getSOPById(@PathParam("sop-id") java.util.UUID sopId
 ) {
 	    Object res = service.getSOPById(sopId);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
-    }
-
-    /**
-     * TODO
-     *
-     * @param sopId TODO
-     * @return the response
-     */
-    @GET
-    @Path("/sopfile/{sop-id}")
-    @Produces({ "application/pdf" })
-    public Response getSOPFile(@PathParam("sop-id") java.util.UUID sopId
-) {
-	    Object res = service.getSOPFile(sopId);    
 	  	try {
 	   		return Response.ok(res).build();
 	   	} catch(Exception e) {

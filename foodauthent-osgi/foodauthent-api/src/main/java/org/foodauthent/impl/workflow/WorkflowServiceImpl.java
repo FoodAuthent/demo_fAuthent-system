@@ -1,8 +1,5 @@
 package org.foodauthent.impl.workflow;
 
-import static org.foodauthent.impl.fingerprint.util.PersistenceUtil.saveBlob;
-
-import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -18,7 +15,6 @@ import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -103,38 +99,5 @@ public class WorkflowServiceImpl implements WorkflowService {
     public UUID createWorkflow(final Workflow workflow) {
 	persistenceService.save(workflow);
 	return workflow.getFaId();
-    }
-    
-    @Override
-    public UUID saveWorkflowFile(UUID workflowId, InputStream upfile, FormDataContentDisposition upfileDetail) {
-	UUID blobId = saveBlob(upfile, upfileDetail, persistenceService);
-	
-	// get workflow metadata, set blobid and override it
-	Workflow wf = persistenceService.getFaModelByUUID(workflowId);
-	Workflow newWf = Workflow.builder(wf).setWorkflowFileId(blobId).build();
-	persistenceService.replace(newWf);
-	return blobId;
-    }
-    
-    @Override
-    public UUID createWorkflowModule(Workflow module) {
-	persistenceService.save(module);
-        return module.getFaId();
-    }
-    
-    @Override
-    public Workflow getWorkflowModuleById(UUID moduleId) {
-	return persistenceService.getFaModelByUUID(moduleId);
-    }
-    
-    @Override
-    public UUID saveWorkflowModuleFile(UUID moduleId, InputStream upfile, FormDataContentDisposition upfileDetail) {
-	UUID blobId = saveBlob(upfile, upfileDetail, persistenceService);
-	
-	// get workflow metadata, set blobid and override it
-	Workflow wf = persistenceService.getFaModelByUUID(moduleId);
-	Workflow newWf = Workflow.builder(wf).setWorkflowFileId(blobId).build();
-	persistenceService.replace(newWf);
-	return blobId;
     }
 }

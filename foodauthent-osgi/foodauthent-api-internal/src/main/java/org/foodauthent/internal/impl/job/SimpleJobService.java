@@ -64,7 +64,7 @@ public class SimpleJobService implements JobService {
 	    logger.debug(job + " persisted");
 	}
 	// a real job would do this after the job is finished
-	persistenceService.save(Workflow.builder().setFaId(predictionWorkflowId).setDate(LocalDate.now()).build());
+	persistenceService.save(Workflow.builder().setFaId(predictionWorkflowId).build());
 	return job;
     }
 

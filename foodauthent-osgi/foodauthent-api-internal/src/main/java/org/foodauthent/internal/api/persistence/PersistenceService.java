@@ -60,6 +60,15 @@ public interface PersistenceService {
 
     <T extends FaModel> List<T> findByKeywords(Collection<String> keywords, Class<T> modelType);
 
+    /**
+     * TODO
+     * 
+     * Important note: uuid's of blobs do intentionally overlap with uuid's of fa-models!!
+     * 
+     * @param uuid
+     * @return
+     */
+    //TODO rename to getFileByUUID??
     Blob getBlobByUUID(UUID uuid);
 
 }

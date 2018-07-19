@@ -40,13 +40,4 @@ public interface SopService {
      */
     SOP getSOPById(java.util.UUID sopId);
         
-    /**
-     * TODO
-     *
-     * @param sopId TODO
-     *
-     * @return the result
-     */
-    byte[] getSOPFile(java.util.UUID sopId);
-        
 }

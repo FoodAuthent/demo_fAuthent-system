@@ -6,7 +6,6 @@ package org.foodauthent.rest.service;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-import java.io.File;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.TrainingJob;
@@ -89,27 +88,6 @@ public class WorkflowRestService{
     public Response createWorkflow(Workflow workflow
 ) {
 	    Object res = service.createWorkflow(workflow);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
-    }
-
-    /**
-     * Creates/adds a new workflow module.
-     *
-     * @param module TODO
-     * @return the response
-     */
-    @POST
-    @Path("/workflow/module")
-    @Consumes({ "application/json" })
-    public Response createWorkflowModule(Workflow module
-) {
-	    Object res = service.createWorkflowModule(module);    
 	  	try {
 	   		return Response.ok(res).build();
 	   	} catch(Exception e) {
@@ -232,77 +210,6 @@ public class WorkflowRestService{
     public Response getWorkflowById(@PathParam("workflow-id") java.util.UUID workflowId
 ) {
 	    Object res = service.getWorkflowById(workflowId);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
-    }
-
-    /**
-     * TODO
-     *
-     * @param moduleId 
-     * @return the response
-     */
-    @GET
-    @Path("/workflow/module/{module-id}")
-    @Produces({ "application/json" })
-    public Response getWorkflowModuleById(@PathParam("module-id") java.util.UUID moduleId
-) {
-	    Object res = service.getWorkflowModuleById(moduleId);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
-    }
-
-    /**
-     * Uploads the workflow file associated with the workflow of the given workflow-id. Upon upload, the workflow will be validated in order to make sure that it complies with the respective workflow inputs and outputs (as determined by the workflow&#39;s type parameter)
-     *
-     * @param workflowId 
-     * @param upfile The file to upload.
-     * @return the response
-     */
-    @PUT
-    @Path("/workflow/{workflow-id}/file")
-    @Consumes({ "multipart/form-data" })
-    public Response saveWorkflowFile(@PathParam("workflow-id") java.util.UUID workflowId
-, 
-            @org.glassfish.jersey.media.multipart.FormDataParam("upfile") java.io.InputStream upfile,
-            @org.glassfish.jersey.media.multipart.FormDataParam("upfile") org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail
-) {
-	    Object res = service.saveWorkflowFile(workflowId, upfile, upfileDetail);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
-    }
-
-    /**
-     * Uploads the workflow file associated with the workflow module of the given module-id. Upon upload, the workflow module will be validated in order to make sure that it complies with the respective workflow inputs and outputs (as determined by the workflow&#39;s type parameter)
-     *
-     * @param moduleId 
-     * @param upfile The file to upload.
-     * @return the response
-     */
-    @PUT
-    @Path("/workflow/module/{module-id}/file")
-    @Consumes({ "multipart/form-data" })
-    public Response saveWorkflowModuleFile(@PathParam("module-id") java.util.UUID moduleId
-, 
-            @org.glassfish.jersey.media.multipart.FormDataParam("upfile") java.io.InputStream upfile,
-            @org.glassfish.jersey.media.multipart.FormDataParam("upfile") org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail
-) {
-	    Object res = service.saveWorkflowModuleFile(moduleId, upfile, upfileDetail);    
 	  	try {
 	   		return Response.ok(res).build();
 	   	} catch(Exception e) {

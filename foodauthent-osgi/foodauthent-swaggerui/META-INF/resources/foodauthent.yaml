@@ -23,54 +23,12 @@ tags:
   description: All model endpoints.
 - name: tag
   description: All endpoints to deal with tags, i.e. query, delete, add, ...
+- name: file
+  description: All endpoint that deal with files.
 schemes:
 - https
 - http
 paths:
-  /sopfile/{sop-id}:
-    get:
-      tags:
-      - sop
-      summary: Download SOP.
-      description: TODO
-      operationId: getSOPFile
-      produces:
-        - application/pdf
-      parameters:
-      - in: path
-        name: sop-id
-        description: "TODO"
-        required: true
-        type: string
-        format: uuid
-      responses:
-        200:
-          description: TODO
-          # TODO, specify the right return schema
-          schema:
-            type: string
-            format: binary
-            
-  /sop/{sop-id}:
-    get:
-      tags:
-        - sop
-      summary: Get the sop an id.
-      description: TODO
-      operationId: getSOPById
-      produces:
-        - application/json
-      parameters:
-        - name: sop-id
-          in: path
-          required: true
-          type: string
-          format: uuid
-      responses:
-        200:
-          description: The SOP.    
-          schema:
-            $ref: "#/definitions/SOP"         
           
   /sop:
     get:
@@ -108,8 +66,6 @@ paths:
       operationId: createNewSOP
       produces:
         - application/json
-      consumes:
-        - application/json
       parameters:
         - in: body
           name: sop
@@ -123,6 +79,117 @@ paths:
           schema:
             type: string
             format: uuid
+
+  /sop/{sop-id}:
+    get:
+      tags:
+        - sop
+      summary: Get the sop an id.
+      description: TODO
+      operationId: getSOPById
+      produces:
+        - application/json
+      parameters:
+        - name: sop-id
+          in: path
+          required: true
+          type: string
+          format: uuid
+      responses:
+        200:
+          description: The SOP.    
+          schema:
+            $ref: "#/definitions/SOP"         
+ 
+  /file:
+    post:
+      tags:
+        - file
+      summary: Creates a new file by posting the file metadata first.
+      description: TODO
+      operationId: createFileMetadata
+      consumes:
+      - application/json
+      parameters:
+        - name: file-metadata
+          description: The actual metadata object.
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/FileMetadata"
+      responses:
+        201:
+          description: New file metadata object created. Returns its fa-id (i.e. the file id)        
+          schema:
+            type: string
+            format: uuid
+
+  /file/{file-id}:
+    get:
+      tags:
+       - file
+      summary: Returns the file metadata.
+      description: TODO
+      operationId: getFileMetadata
+      produces:
+      - application/json
+      parameters:
+        - name: file-id
+          in: path
+          required: true
+          type: string
+          format: uuid
+      responses:
+        200:
+          description: The file metadata.
+          schema:
+            $ref: "#/definitions/FileMetadata"
+            
+  /file/{file-id}/data:
+    get:
+      tags:
+       - file
+      summary: Let one download the actual file data.
+      description: TODO
+      operationId: getFileData
+      produces:
+      - application/binary
+      parameters:
+        - name: file-id
+          in: path
+          required: true
+          type: string
+          format: uuid
+      responses:
+        200:
+          description: The file data.
+          schema:
+            type: file
+    put:
+      tags:
+        - file
+      summary: Uploads (and replaces) the actual file-data for the given file id
+      description: TODO
+      operationId: saveFileData
+      consumes:
+      - multipart/form-data
+      parameters:
+        - name: file-id
+          in: path
+          required: true
+          type: string
+          format: uuid
+        - name: upfile
+          in: formData
+          type: file
+          required: true
+          description: The file to upload.
+      responses:
+        200:
+          description: File data has been uploaded successfully. Returns the fa-id of the file (i.e. file-id)
+          schema:
+            type: string
+            format: uuid      
         
   /fingerprints:
     get:
@@ -361,32 +428,6 @@ paths:
           schema:
             $ref: "#/definitions/Model"
             
-  /model/{model-id}/file:
-    put:
-      tags:
-        - model
-      summary: Uploads (and replaces) the file associated with the model of the given model-id. 
-      description: Uploads the model file associated with the model of the given model-id.
-      operationId: saveModelFile
-      consumes:
-      - multipart/form-data
-      parameters:
-        - name: model-id
-          in: path
-          required: true
-          type: string
-          format: uuid
-        - name: upfile
-          in: formData
-          type: file
-          description: The file to upload.
-      responses:
-        200:
-          description: Model file has been uploaded successfully. Returns the fa-id of the model file (which is different from the model-id!)
-          schema:
-            type: string
-            format: uuid    
-            
   /workflow:
     post:
       tags:
@@ -429,103 +470,6 @@ paths:
           description: The workflow.    
           schema:
             $ref: "#/definitions/Workflow"
-            
-  /workflow/{workflow-id}/file:
-    put:
-      tags:
-        - workflow
-      summary: Uploads (and replaces) the file associated with the workflow of the given workflow-id. 
-      description: Uploads the workflow file associated with the workflow of the given workflow-id. Upon upload, the workflow will be validated in order to make sure that it complies with the respective workflow inputs and outputs (as determined by the workflow's type parameter)
-      operationId: saveWorkflowFile
-      consumes:
-      - multipart/form-data
-      parameters:
-        - name: workflow-id
-          in: path
-          required: true
-          type: string
-          format: uuid
-        - name: upfile
-          in: formData
-          type: file
-          description: The file to upload.
-      responses:
-        200:
-          description: Workflow file has been uploaded successfully. Returns the fa-id of the workflow file (which is different from the workflow-id!)
-          schema:
-            type: string
-            format: uuid      
-            
-
-  /workflow/module:
-    post:
-      tags:
-        - workflow
-      summary: Creates/adds a new workflow module.
-      description: Creates/adds a new workflow module.
-      operationId: createWorkflowModule
-      consumes:
-      - application/json
-      parameters:
-      - in: body
-        name: module
-        description: TODO
-        schema:
-          $ref: "#/definitions/Workflow" 
-      responses:
-        201:
-          description: Workflow module has been created successfully and the new fa-id of the workflow module (module-id) is returned.
-          schema:
-            type: string
-            format: uuid      
-
-  /workflow/module/{module-id}:
-    get:
-      tags:
-        - workflow
-      summary: Get the workflow module by id.
-      description: TODO
-      operationId: getWorkflowModuleById
-      produces:
-        - application/json
-      parameters:
-        - name: module-id
-          in: path
-          required: true
-          type: string
-          format: uuid
-      responses:
-        200:
-          description: The workflow module.
-          schema:
-            $ref: "#/definitions/Workflow"
-            
-  /workflow/module/{module-id}/file:
-    put:
-      tags:
-        - workflow
-      summary: Uploads (and replaces) the file associated with the workflow module of the given module-id. 
-      description: Uploads the workflow file associated with the workflow module of the given module-id. Upon upload, the workflow module will be validated in order to make sure that it complies with the respective workflow inputs and outputs (as determined by the workflow's type parameter)
-      operationId: saveWorkflowModuleFile
-      consumes:
-      - multipart/form-data
-      parameters:
-        - name: module-id
-          in: path
-          required: true
-          type: string
-          format: uuid
-        - name: upfile
-          in: formData
-          type: file
-          description: The file to upload.
-      responses:
-        200:
-          description: Workflow module file has been uploaded successfully. Returns the fa-id of the workflow file (which is different from the workflow-id!)
-          schema:
-            type: string
-            format: uuid      
- 
 
   /workflow/training:
     get:
@@ -697,9 +641,10 @@ definitions:
         type: string
         format: uuid
         example: ""
-      file-link:
-        description: The URL for downloading the actual SOP-file.
+      file-id:
+        description: Id referencing the file in the fa-system.
         type: string
+        format: uuid
       name:
         description: A short SOP name
         type: string
@@ -725,6 +670,37 @@ definitions:
 #      type: string
     example:
       key: value      
+      
+      
+  FileMetadata:
+    description: Metadata of a file in the FoodAuthent-system.
+    type: object
+    properties:
+      fa-id:
+        description: A global id within the FoodAuthent-system.
+        type: string
+        format: uuid
+        example: ""
+      type:
+        description: The file type.
+        type: string
+        enum: [knime_workflow, knime_model, python_script, sop_pdf]
+      name:
+        description: A name for the file.
+        type: string
+      description:
+        description: A more verbose description of the file.
+        type: string
+      author:
+        description: The authors name (TODO - could reference a user in the future).
+        type: string
+      date:
+        description: The creation date.
+        type: string
+        format: date
+      version:
+        description: The file's version.
+        type: integer
 
   # should always be part of a fingerprint set
   Fingerprint:
@@ -839,7 +815,7 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Tag"
-      model-file-id:
+      file-id:
         description: id referencing the model file.
         type: string
         format: uuid
@@ -959,6 +935,11 @@ definitions:
   Workflow:
     type: "object"
     description: A workflow for a certain task.
+    required:
+      - type
+      - file-id
+      - name
+      - representation
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.
@@ -966,21 +947,9 @@ definitions:
         format: uuid
         example: ""
       name:
-        description: A name for the workflow.
         type: string
       description:
-        description: A more verbose description of the workflow.
         type: string
-      author:
-        description: The authors name (TODO - could reference a user in the future).
-        type: string
-      date:
-        description: The creation date.
-        type: string
-        format: date
-      version:
-        description: The workflow's version.
-        type: integer
       representation:
         description: The workflow representation, e.g. represented by a scripting language, cwl or a KNIME-workflow.
         type: string
@@ -1000,7 +969,7 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Tag"
-      workflow-file-id:
+      file-id:
         description: id referencing the workflow file.
         type: string
         format: uuid
@@ -1020,8 +989,8 @@ definitions:
     type: object
     x-no-faid: true
     properties:
-      module-id:
-        description: The module-id referenced.
+      workflow-id:
+        description: The workflow-id that references the actual workflow.
         type: string
         format: uuid
       module-type:
@@ -1114,11 +1083,11 @@ definitions:
         description: The fingerprint set metadata.
         $ref: "#/definitions/FingerprintSet"
       fingerprintset-URI:
-        description: URI pointing to the resource containg the fingerprints to predict the labels for. 
+        description: URI pointing to the resource containg the fingerprints to learn the model from. 
         type: string
         format: uri
       modules:
-        description: optional list of modules used within the prediction workfow.
+        description: optional list of modules used within the training workfow.
         type: array
         items:
           $ref: "#/definitions/WorkflowModule"

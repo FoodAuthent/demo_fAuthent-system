@@ -12,7 +12,6 @@ import java.util.Objects;
 import java.util.UUID;
 
 
-import java.time.LocalDate;
 import org.foodauthent.model.Tag;
 import org.foodauthent.model.WorkflowModule;
 import org.foodauthent.model.WorkflowParameter;
@@ -107,14 +106,11 @@ public class Workflow  extends FaModel {
   private java.util.UUID faId;
   private String name;
   private String description;
-  private String author;
-  private LocalDate date;
-  private Integer version;
   private RepresentationEnum representation;
   private TypeEnum type;
   private java.util.List<WorkflowParameter> parameters;
   private java.util.List<Tag> tags;
-  private java.util.UUID workflowFileId;
+  private java.util.UUID fileId;
   private java.util.List<WorkflowModule> modules;
   private ModelTypeEnum modelType;
   
@@ -127,16 +123,25 @@ public class Workflow  extends FaModel {
   private Workflow(WorkflowBuilder builder) {
     
     faId = immutable(builder.faId);
+    if(builder.name == null) {
+        throw new IllegalArgumentException("name must not be null.");
+    }
     name = immutable(builder.name);
     description = immutable(builder.description);
-    author = immutable(builder.author);
-    date = immutable(builder.date);
-    version = immutable(builder.version);
+    if(builder.representation == null) {
+        throw new IllegalArgumentException("representation must not be null.");
+    }
     representation = immutable(builder.representation);
+    if(builder.type == null) {
+        throw new IllegalArgumentException("type must not be null.");
+    }
     type = immutable(builder.type);
     parameters = immutable(builder.parameters);
     tags = immutable(builder.tags);
-    workflowFileId = immutable(builder.workflowFileId);
+    if(builder.fileId == null) {
+        throw new IllegalArgumentException("fileId must not be null.");
+    }
+    fileId = immutable(builder.fileId);
     modules = immutable(builder.modules);
     modelType = immutable(builder.modelType);
     
@@ -158,7 +163,7 @@ public class Workflow  extends FaModel {
             return false;
         }
         Workflow ent = (Workflow)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(representation, ent.representation) && Objects.equals(type, ent.type) && Objects.equals(parameters, ent.parameters) && Objects.equals(tags, ent.tags) && Objects.equals(workflowFileId, ent.workflowFileId) && Objects.equals(modules, ent.modules) && Objects.equals(modelType, ent.modelType);
+        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(representation, ent.representation) && Objects.equals(type, ent.type) && Objects.equals(parameters, ent.parameters) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(modules, ent.modules) && Objects.equals(modelType, ent.modelType);
     }
 
 
@@ -172,18 +177,6 @@ public class Workflow  extends FaModel {
     
   public String getDescription() {
         return description;
-    }
-    
-  public String getAuthor() {
-        return author;
-    }
-    
-  public LocalDate getDate() {
-        return date;
-    }
-    
-  public Integer getVersion() {
-        return version;
     }
     
   public RepresentationEnum getRepresentation() {
@@ -202,8 +195,8 @@ public class Workflow  extends FaModel {
         return tags;
     }
     
-  public java.util.UUID getWorkflowFileId() {
-        return workflowFileId;
+  public java.util.UUID getFileId() {
+        return fileId;
     }
     
   public java.util.List<WorkflowModule> getModules() {
@@ -235,14 +228,11 @@ public class Workflow  extends FaModel {
         builder.faId = entity.faId;
         builder.name = entity.name;
         builder.description = entity.description;
-        builder.author = entity.author;
-        builder.date = entity.date;
-        builder.version = entity.version;
         builder.representation = entity.representation;
         builder.type = entity.type;
         builder.parameters = entity.parameters;
         builder.tags = entity.tags;
-        builder.workflowFileId = entity.workflowFileId;
+        builder.fileId = entity.fileId;
         builder.modules = entity.modules;
         builder.modelType = entity.modelType;
  		return builder;
@@ -258,14 +248,11 @@ public class Workflow  extends FaModel {
         private java.util.UUID faId = null;
         private String name = null;
         private String description = null;
-        private String author = null;
-        private LocalDate date = null;
-        private Integer version = null;
         private RepresentationEnum representation = null;
         private TypeEnum type = null;
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
-        private java.util.UUID workflowFileId = null;
+        private java.util.UUID fileId = null;
         private java.util.List<WorkflowModule> modules = new java.util.ArrayList<>();
         private ModelTypeEnum modelType = null;
 
@@ -275,6 +262,9 @@ public class Workflow  extends FaModel {
         }
 
         public WorkflowBuilder setName(String name) {
+             if(name == null) {
+                 throw new IllegalArgumentException("name must not be null.");
+             }
              this.name = name;
              return this;
         }
@@ -284,27 +274,18 @@ public class Workflow  extends FaModel {
              return this;
         }
 
-        public WorkflowBuilder setAuthor(String author) {
-             this.author = author;
-             return this;
-        }
-
-        public WorkflowBuilder setDate(LocalDate date) {
-             this.date = date;
-             return this;
-        }
-
-        public WorkflowBuilder setVersion(Integer version) {
-             this.version = version;
-             return this;
-        }
-
         public WorkflowBuilder setRepresentation(RepresentationEnum representation) {
+             if(representation == null) {
+                 throw new IllegalArgumentException("representation must not be null.");
+             }
              this.representation = representation;
              return this;
         }
 
         public WorkflowBuilder setType(TypeEnum type) {
+             if(type == null) {
+                 throw new IllegalArgumentException("type must not be null.");
+             }
              this.type = type;
              return this;
         }
@@ -319,8 +300,11 @@ public class Workflow  extends FaModel {
              return this;
         }
 
-        public WorkflowBuilder setWorkflowFileId(java.util.UUID workflowFileId) {
-             this.workflowFileId = workflowFileId;
+        public WorkflowBuilder setFileId(java.util.UUID fileId) {
+             if(fileId == null) {
+                 throw new IllegalArgumentException("fileId must not be null.");
+             }
+             this.fileId = fileId;
              return this;
         }
 

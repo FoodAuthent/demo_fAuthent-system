@@ -47,8 +47,8 @@ public interface SOPMixIn {
     @JsonProperty("fa-id")
     public java.util.UUID getFaId();
     
-    @JsonProperty("file-link")
-    public String getFileLink();
+    @JsonProperty("file-id")
+    public java.util.UUID getFileId();
     
     @JsonProperty("name")
     public String getName();
@@ -81,8 +81,8 @@ public interface SOPMixIn {
         @JsonProperty("fa-id")
         public SOPMixInBuilder setFaId(final java.util.UUID faId);
         
-        @JsonProperty("file-link")
-        public SOPMixInBuilder setFileLink(final String fileLink);
+        @JsonProperty("file-id")
+        public SOPMixInBuilder setFileId(final java.util.UUID fileId);
         
         @JsonProperty("name")
         public SOPMixInBuilder setName(final String name);

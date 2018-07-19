@@ -24,6 +24,8 @@ public class ModelUtil {
      */
     public static final void addModelMixIns(final ObjectMapper mapper) {
     
+        mapper.addMixIn(FileMetadata.class, FileMetadataMixIn.class);
+        mapper.addMixIn(FileMetadata.FileMetadataBuilder.class, FileMetadataMixIn.FileMetadataMixInBuilder.class);
         mapper.addMixIn(FingerprintMetadata.class, FingerprintMetadataMixIn.class);
         mapper.addMixIn(FingerprintMetadata.FingerprintMetadataBuilder.class, FingerprintMetadataMixIn.FingerprintMetadataMixInBuilder.class);
         mapper.addMixIn(Fingerprint.class, FingerprintMixIn.class);

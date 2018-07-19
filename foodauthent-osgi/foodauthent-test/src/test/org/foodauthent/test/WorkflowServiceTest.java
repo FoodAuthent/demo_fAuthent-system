@@ -3,6 +3,7 @@ package org.foodauthent.test;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -10,6 +11,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
+import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
@@ -40,26 +42,32 @@ public class WorkflowServiceTest extends AbstractITTest {
 
 	/* upload workflow */
 
-	// upload workflow metadata
-	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("param1").setRequired(false)
-		.setValue("paramValue1").setType(TypeEnum.NUMBER).build();
-	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("param2").setRequired(true).setValue("paramValue2")
-		.setType(TypeEnum.STRING).build();
-	Workflow wf = Workflow.builder().setName("name").setDescription("desc").setParameters(Arrays.asList(wfp1, wfp2))
-		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW)
-		.setRepresentation(RepresentationEnum.KNIME)
-		.setModelType(ModelTypeEnum.KNIME_WORKFLOW)
-		.build(); // TODO set more (or even all) properties
-	UUID wfId = wt.path("workflow").request(MediaType.APPLICATION_JSON)
-		.post(Entity.entity(wf, MediaType.APPLICATION_JSON), UUID.class);
-
 	// upload workflow file
+	FileMetadata fileMeta = FileMetadata.builder().setName("prediction_workflow_file").setDate(LocalDate.now())
+		.setDescription("file description").setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW)
+		.setVersion(0).build();
+	UUID fileId = wt.path("file").request(MediaType.APPLICATION_JSON).post(Entity.entity(fileMeta, MediaType.APPLICATION_JSON),
+		UUID.class);
 	MultiPart multiPart = new MultiPart();
 	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
 	FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("files/PredictionWorkflow.knwf"),
 		MediaType.APPLICATION_OCTET_STREAM_TYPE);
 	multiPart.bodyPart(filePart);
-	wt.path("workflow/" + wfId + "/file").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
+	wt.path("/file/" + fileId + "/data").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
+
+	// upload workflow metadata
+	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("param1").setRequired(false)
+		.setValue("paramValue1").setType(TypeEnum.NUMBER).build();
+	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("param2").setRequired(true).setValue("paramValue2")
+		.setType(TypeEnum.STRING).build();
+	Workflow wf = Workflow.builder().setName("my_prediction_workflow").setDescription("desc").setParameters(Arrays.asList(wfp1, wfp2))
+		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW)
+		.setRepresentation(RepresentationEnum.KNIME)
+		.setModelType(ModelTypeEnum.KNIME_WORKFLOW)
+		.setFileId(fileId)
+		.build(); // TODO set more (or even all) properties
+	UUID wfId = wt.path("workflow").request(MediaType.APPLICATION_JSON)
+		.post(Entity.entity(wf, MediaType.APPLICATION_JSON), UUID.class);
 
 	/* upload fingerprint set */
 	Fingerprint fp = Fingerprint.builder().setMetadata("fp metadata").build();
@@ -99,6 +107,19 @@ public class WorkflowServiceTest extends AbstractITTest {
 	WebTarget wt = webTarget();
 
 	/* upload workflow */
+	
+	// upload workflow file
+	FileMetadata fileMeta = FileMetadata.builder().setName("training_workflow_file").setDate(LocalDate.now())
+		.setDescription("file description").setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW)
+		.setVersion(0).build();
+	UUID fileId = wt.path("file").request(MediaType.APPLICATION_JSON).post(Entity.entity(fileMeta, MediaType.APPLICATION_JSON),
+		UUID.class);
+	MultiPart multiPart = new MultiPart();
+	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
+	FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("files/TrainingWorkflow.knwf"),
+		MediaType.APPLICATION_OCTET_STREAM_TYPE);
+	multiPart.bodyPart(filePart);
+	wt.path("file/" + fileId + "/data").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
 
 	// upload workflow metadata
 	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("param1").setRequired(false)
@@ -108,18 +129,11 @@ public class WorkflowServiceTest extends AbstractITTest {
 	Workflow wf = Workflow.builder().setName("my training workflow").setDescription("desc")
 		.setParameters(Arrays.asList(wfp1, wfp2))
 		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW)
+		.setFileId(fileId)
 		.setRepresentation(RepresentationEnum.KNIME)
 		.setModelType(ModelTypeEnum.KNIME_WORKFLOW).build(); // TODO set more (or even all) properties
 	UUID wfId = wt.path("workflow").request(MediaType.APPLICATION_JSON)
 		.post(Entity.entity(wf, MediaType.APPLICATION_JSON), UUID.class);
-
-	// upload workflow file
-	MultiPart multiPart = new MultiPart();
-	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-	FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("files/TrainingWorkflow.knwf"),
-		MediaType.APPLICATION_OCTET_STREAM_TYPE);
-	multiPart.bodyPart(filePart);
-	wt.path("workflow/" + wfId + "/file").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
 
 	/* upload fingerprint set */
 	Fingerprint fp = Fingerprint.builder().setMetadata("fp metadata").build();

@@ -13,26 +13,27 @@ import java.util.UUID;
 
 
 import java.time.LocalDate;
-import org.foodauthent.model.Tag;
 
 
 /**
- * A model created via training and used for prediction. Can also be a workflow.
+ * Metadata of a file in the FoodAuthent-system.
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class Model  extends FaModel {
+public class FileMetadata  extends FaModel {
 
   /**
-   * The type of the model in order to be able to check for compatibility of the workflows using it.
+   * The file type.
    */
   public enum TypeEnum {
     KNIME_WORKFLOW("knime_workflow"),
     
-    KNIME_PYTHON("knime_python"),
+    KNIME_MODEL("knime_model"),
     
-    PMML("pmml");
+    PYTHON_SCRIPT("python_script"),
+    
+    SOP_PDF("sop_pdf");
 
     private String value;
 
@@ -49,32 +50,28 @@ public class Model  extends FaModel {
 
 
   private java.util.UUID faId;
+  private TypeEnum type;
   private String name;
   private String description;
   private String author;
   private LocalDate date;
   private Integer version;
-  private TypeEnum type;
-  private java.util.List<Tag> tags;
-  private java.util.UUID fileId;
   
   public String getTypeID() {
-    return "Model";
+    return "FileMetadata";
   }
   
 
   
-  private Model(ModelBuilder builder) {
+  private FileMetadata(FileMetadataBuilder builder) {
     
     faId = immutable(builder.faId);
+    type = immutable(builder.type);
     name = immutable(builder.name);
     description = immutable(builder.description);
     author = immutable(builder.author);
     date = immutable(builder.date);
     version = immutable(builder.version);
-    type = immutable(builder.type);
-    tags = immutable(builder.tags);
-    fileId = immutable(builder.fileId);
     
     faId = generateFaIdIfMissing(faId);
   }
@@ -93,13 +90,17 @@ public class Model  extends FaModel {
         if (getClass() != o.getClass()) {
             return false;
         }
-        Model ent = (Model)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId);
+        FileMetadata ent = (FileMetadata)o;
+        return Objects.equals(faId, ent.faId) && Objects.equals(type, ent.type) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version);
     }
 
 
   public java.util.UUID getFaId() {
         return faId;
+    }
+    
+  public TypeEnum getType() {
+        return type;
     }
     
   public String getName() {
@@ -122,24 +123,12 @@ public class Model  extends FaModel {
         return version;
     }
     
-  public TypeEnum getType() {
-        return type;
-    }
-    
-  public java.util.List<Tag> getTags() {
-        return tags;
-    }
-    
-  public java.util.UUID getFileId() {
-        return fileId;
-    }
-    
   
  	/**
   	 * @return a newly created builder
   	 */
-  	public static ModelBuilder builder() {
-  		return new ModelBuilder();
+  	public static FileMetadataBuilder builder() {
+  		return new FileMetadataBuilder();
   	}
   	
   	/**
@@ -150,85 +139,71 @@ public class Model  extends FaModel {
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
 	 */
-	public static ModelBuilder builder(Model entity) {
-		ModelBuilder builder = builder();
+	public static FileMetadataBuilder builder(FileMetadata entity) {
+		FileMetadataBuilder builder = builder();
         builder.faId = entity.faId;
+        builder.type = entity.type;
         builder.name = entity.name;
         builder.description = entity.description;
         builder.author = entity.author;
         builder.date = entity.date;
         builder.version = entity.version;
-        builder.type = entity.type;
-        builder.tags = entity.tags;
-        builder.fileId = entity.fileId;
  		return builder;
   	}
   	
   
-    public static class ModelBuilder {
+    public static class FileMetadataBuilder {
     
-        private ModelBuilder(){
+        private FileMetadataBuilder(){
             
         }
     
         private java.util.UUID faId = null;
+        private TypeEnum type = null;
         private String name = null;
         private String description = null;
         private String author = null;
         private LocalDate date = null;
         private Integer version = null;
-        private TypeEnum type = null;
-        private java.util.List<Tag> tags = new java.util.ArrayList<>();
-        private java.util.UUID fileId = null;
 
-        public ModelBuilder setFaId(java.util.UUID faId) {
+        public FileMetadataBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
-        public ModelBuilder setName(String name) {
-             this.name = name;
-             return this;
-        }
-
-        public ModelBuilder setDescription(String description) {
-             this.description = description;
-             return this;
-        }
-
-        public ModelBuilder setAuthor(String author) {
-             this.author = author;
-             return this;
-        }
-
-        public ModelBuilder setDate(LocalDate date) {
-             this.date = date;
-             return this;
-        }
-
-        public ModelBuilder setVersion(Integer version) {
-             this.version = version;
-             return this;
-        }
-
-        public ModelBuilder setType(TypeEnum type) {
+        public FileMetadataBuilder setType(TypeEnum type) {
              this.type = type;
              return this;
         }
 
-        public ModelBuilder setTags(java.util.List<Tag> tags) {
-             this.tags = tags;
+        public FileMetadataBuilder setName(String name) {
+             this.name = name;
              return this;
         }
 
-        public ModelBuilder setFileId(java.util.UUID fileId) {
-             this.fileId = fileId;
+        public FileMetadataBuilder setDescription(String description) {
+             this.description = description;
+             return this;
+        }
+
+        public FileMetadataBuilder setAuthor(String author) {
+             this.author = author;
+             return this;
+        }
+
+        public FileMetadataBuilder setDate(LocalDate date) {
+             this.date = date;
+             return this;
+        }
+
+        public FileMetadataBuilder setVersion(Integer version) {
+             this.version = version;
              return this;
         }
 
         
-        public Model build() {
-            return new Model(this);
+        public FileMetadata build() {
+            return new FileMetadata(this);
         }
     
     }

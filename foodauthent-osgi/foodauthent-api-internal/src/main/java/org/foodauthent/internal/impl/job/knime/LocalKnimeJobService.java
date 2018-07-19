@@ -71,7 +71,7 @@ public class LocalKnimeJobService implements JobService {
 
     @Override
     public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model) {
-	Blob wfFile = persistenceService.getBlobByUUID(workflow.getWorkflowFileId());
+	Blob wfFile = persistenceService.getBlobByUUID(workflow.getFileId());
 
 	File wfDir;
 	try {
@@ -142,7 +142,7 @@ public class LocalKnimeJobService implements JobService {
 
     @Override
     public TrainingJob createNewTrainingJob(Workflow workflow, FingerprintSet fingerprintSet) {
-	Blob wfFile = persistenceService.getBlobByUUID(workflow.getWorkflowFileId());
+	Blob wfFile = persistenceService.getBlobByUUID(workflow.getFileId());
 
 	File wfDir;
 	try {

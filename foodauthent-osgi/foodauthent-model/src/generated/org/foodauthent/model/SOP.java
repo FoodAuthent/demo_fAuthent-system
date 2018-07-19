@@ -24,7 +24,7 @@ public class SOP  extends FaModel {
 
 
   private java.util.UUID faId;
-  private String fileLink;
+  private java.util.UUID fileId;
   private String name;
   private String description;
   private java.util.UUID productId;
@@ -38,7 +38,7 @@ public class SOP  extends FaModel {
   private SOP(SOPBuilder builder) {
     
     faId = immutable(builder.faId);
-    fileLink = immutable(builder.fileLink);
+    fileId = immutable(builder.fileId);
     name = immutable(builder.name);
     description = immutable(builder.description);
     productId = immutable(builder.productId);
@@ -61,7 +61,7 @@ public class SOP  extends FaModel {
             return false;
         }
         SOP ent = (SOP)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(fileLink, ent.fileLink) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(productId, ent.productId);
+        return Objects.equals(faId, ent.faId) && Objects.equals(fileId, ent.fileId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(productId, ent.productId);
     }
 
 
@@ -69,8 +69,8 @@ public class SOP  extends FaModel {
         return faId;
     }
     
-  public String getFileLink() {
-        return fileLink;
+  public java.util.UUID getFileId() {
+        return fileId;
     }
     
   public String getName() {
@@ -104,7 +104,7 @@ public class SOP  extends FaModel {
 	public static SOPBuilder builder(SOP entity) {
 		SOPBuilder builder = builder();
         builder.faId = entity.faId;
-        builder.fileLink = entity.fileLink;
+        builder.fileId = entity.fileId;
         builder.name = entity.name;
         builder.description = entity.description;
         builder.productId = entity.productId;
@@ -119,7 +119,7 @@ public class SOP  extends FaModel {
         }
     
         private java.util.UUID faId = null;
-        private String fileLink = null;
+        private java.util.UUID fileId = null;
         private String name = null;
         private String description = null;
         private java.util.UUID productId = null;
@@ -129,8 +129,8 @@ public class SOP  extends FaModel {
              return this;
         }
 
-        public SOPBuilder setFileLink(String fileLink) {
-             this.fileLink = fileLink;
+        public SOPBuilder setFileId(java.util.UUID fileId) {
+             this.fileId = fileId;
              return this;
         }
 

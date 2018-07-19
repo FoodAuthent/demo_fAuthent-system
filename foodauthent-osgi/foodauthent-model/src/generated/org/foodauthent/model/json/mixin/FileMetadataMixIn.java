@@ -4,7 +4,6 @@
 package org.foodauthent.model.json.mixin;
 
 import java.time.LocalDate;
-import org.foodauthent.model.json.mixin.TagMixIn;
 
 import java.util.UUID;
 
@@ -15,11 +14,11 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import org.foodauthent.model.Model.TypeEnum;
+import org.foodauthent.model.FileMetadata.TypeEnum;
 
 
-import org.foodauthent.model.Model;
-import org.foodauthent.model.Model.ModelBuilder;
+import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.FileMetadata.FileMetadataBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -31,13 +30,13 @@ import org.foodauthent.model.Model.ModelBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = Model.class)
+    defaultImpl = FileMetadata.class)
 @JsonSubTypes({
-    @Type(value = Model.class, name="Model")
+    @Type(value = FileMetadata.class, name="FileMetadata")
 })
-@JsonDeserialize(builder=ModelBuilder.class)
+@JsonDeserialize(builder=FileMetadataBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface ModelMixIn {
+public interface FileMetadataMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -49,6 +48,9 @@ public interface ModelMixIn {
 
     @JsonProperty("fa-id")
     public java.util.UUID getFaId();
+    
+    @JsonProperty("type")
+    public TypeEnum getType();
     
     @JsonProperty("name")
     public String getName();
@@ -65,15 +67,6 @@ public interface ModelMixIn {
     @JsonProperty("version")
     public Integer getVersion();
     
-    @JsonProperty("type")
-    public TypeEnum getType();
-    
-    @JsonProperty("tags")
-    public java.util.List<TagMixIn> getTags();
-    
-    @JsonProperty("file-id")
-    public java.util.UUID getFileId();
-    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -84,41 +77,35 @@ public interface ModelMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = ModelBuilder.class)
+        defaultImpl = FileMetadataBuilder.class)
     @JsonSubTypes({
-        @Type(value = Model.ModelBuilder.class, name="Model")
+        @Type(value = FileMetadata.FileMetadataBuilder.class, name="FileMetadata")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface ModelMixInBuilder {
+    public static interface FileMetadataMixInBuilder {
     
-        public ModelMixIn build();
+        public FileMetadataMixIn build();
     
         @JsonProperty("fa-id")
-        public ModelMixInBuilder setFaId(final java.util.UUID faId);
-        
-        @JsonProperty("name")
-        public ModelMixInBuilder setName(final String name);
-        
-        @JsonProperty("description")
-        public ModelMixInBuilder setDescription(final String description);
-        
-        @JsonProperty("author")
-        public ModelMixInBuilder setAuthor(final String author);
-        
-        @JsonProperty("date")
-        public ModelMixInBuilder setDate(final LocalDate date);
-        
-        @JsonProperty("version")
-        public ModelMixInBuilder setVersion(final Integer version);
+        public FileMetadataMixInBuilder setFaId(final java.util.UUID faId);
         
         @JsonProperty("type")
-        public ModelMixInBuilder setType(final TypeEnum type);
+        public FileMetadataMixInBuilder setType(final TypeEnum type);
         
-        @JsonProperty("tags")
-        public ModelMixInBuilder setTags(final java.util.List<TagMixIn> tags);
+        @JsonProperty("name")
+        public FileMetadataMixInBuilder setName(final String name);
         
-        @JsonProperty("file-id")
-        public ModelMixInBuilder setFileId(final java.util.UUID fileId);
+        @JsonProperty("description")
+        public FileMetadataMixInBuilder setDescription(final String description);
+        
+        @JsonProperty("author")
+        public FileMetadataMixInBuilder setAuthor(final String author);
+        
+        @JsonProperty("date")
+        public FileMetadataMixInBuilder setDate(final LocalDate date);
+        
+        @JsonProperty("version")
+        public FileMetadataMixInBuilder setVersion(final Integer version);
         
     }
 
