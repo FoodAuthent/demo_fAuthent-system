@@ -47,10 +47,9 @@ public class TrainingJob  extends FaModel {
 
 
   private java.util.UUID faId;
-  private java.util.UUID worklfowId;
-  private java.util.UUID fingerprintsetId;
-  private java.util.UUID predictionWorkflowId;
+  private java.util.UUID modelId;
   private StatusEnum status;
+  private String statusMessage;
   
   public String getTypeID() {
     return "TrainingJob";
@@ -61,10 +60,9 @@ public class TrainingJob  extends FaModel {
   private TrainingJob(TrainingJobBuilder builder) {
     
     faId = immutable(builder.faId);
-    worklfowId = immutable(builder.worklfowId);
-    fingerprintsetId = immutable(builder.fingerprintsetId);
-    predictionWorkflowId = immutable(builder.predictionWorkflowId);
+    modelId = immutable(builder.modelId);
     status = immutable(builder.status);
+    statusMessage = immutable(builder.statusMessage);
     
     faId = generateFaIdIfMissing(faId);
   }
@@ -84,7 +82,7 @@ public class TrainingJob  extends FaModel {
             return false;
         }
         TrainingJob ent = (TrainingJob)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(worklfowId, ent.worklfowId) && Objects.equals(fingerprintsetId, ent.fingerprintsetId) && Objects.equals(predictionWorkflowId, ent.predictionWorkflowId) && Objects.equals(status, ent.status);
+        return Objects.equals(faId, ent.faId) && Objects.equals(modelId, ent.modelId) && Objects.equals(status, ent.status) && Objects.equals(statusMessage, ent.statusMessage);
     }
 
 
@@ -92,20 +90,16 @@ public class TrainingJob  extends FaModel {
         return faId;
     }
     
-  public java.util.UUID getWorklfowId() {
-        return worklfowId;
-    }
-    
-  public java.util.UUID getFingerprintsetId() {
-        return fingerprintsetId;
-    }
-    
-  public java.util.UUID getPredictionWorkflowId() {
-        return predictionWorkflowId;
+  public java.util.UUID getModelId() {
+        return modelId;
     }
     
   public StatusEnum getStatus() {
         return status;
+    }
+    
+  public String getStatusMessage() {
+        return statusMessage;
     }
     
   
@@ -127,10 +121,9 @@ public class TrainingJob  extends FaModel {
 	public static TrainingJobBuilder builder(TrainingJob entity) {
 		TrainingJobBuilder builder = builder();
         builder.faId = entity.faId;
-        builder.worklfowId = entity.worklfowId;
-        builder.fingerprintsetId = entity.fingerprintsetId;
-        builder.predictionWorkflowId = entity.predictionWorkflowId;
+        builder.modelId = entity.modelId;
         builder.status = entity.status;
+        builder.statusMessage = entity.statusMessage;
  		return builder;
   	}
   	
@@ -142,33 +135,27 @@ public class TrainingJob  extends FaModel {
         }
     
         private java.util.UUID faId = null;
-        private java.util.UUID worklfowId = null;
-        private java.util.UUID fingerprintsetId = null;
-        private java.util.UUID predictionWorkflowId = null;
+        private java.util.UUID modelId = null;
         private StatusEnum status = null;
+        private String statusMessage = null;
 
         public TrainingJobBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
-        public TrainingJobBuilder setWorklfowId(java.util.UUID worklfowId) {
-             this.worklfowId = worklfowId;
-             return this;
-        }
-
-        public TrainingJobBuilder setFingerprintsetId(java.util.UUID fingerprintsetId) {
-             this.fingerprintsetId = fingerprintsetId;
-             return this;
-        }
-
-        public TrainingJobBuilder setPredictionWorkflowId(java.util.UUID predictionWorkflowId) {
-             this.predictionWorkflowId = predictionWorkflowId;
+        public TrainingJobBuilder setModelId(java.util.UUID modelId) {
+             this.modelId = modelId;
              return this;
         }
 
         public TrainingJobBuilder setStatus(StatusEnum status) {
              this.status = status;
+             return this;
+        }
+
+        public TrainingJobBuilder setStatusMessage(String statusMessage) {
+             this.statusMessage = statusMessage;
              return this;
         }
 

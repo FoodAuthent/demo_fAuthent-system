@@ -52,7 +52,7 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} extends Fa
   {{#vendorExtensions.x-no-faid}}
   @Override
   public UUID getFaId() {
-	throw new UnsupportedOperationException("The entity '{{classname}}' doesn't provide a fa-id.");
+  	return null;
   }
   {{/vendorExtensions.x-no-faid}}
   

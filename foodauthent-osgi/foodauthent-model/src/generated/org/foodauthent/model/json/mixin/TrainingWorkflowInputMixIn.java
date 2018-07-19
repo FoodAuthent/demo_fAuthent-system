@@ -18,8 +18,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
 
-import org.foodauthent.model.PredictionWorkflowInput;
-import org.foodauthent.model.PredictionWorkflowInput.PredictionWorkflowInputBuilder;
+import org.foodauthent.model.TrainingWorkflowInput;
+import org.foodauthent.model.TrainingWorkflowInput.TrainingWorkflowInputBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -31,13 +31,13 @@ import org.foodauthent.model.PredictionWorkflowInput.PredictionWorkflowInputBuil
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = PredictionWorkflowInput.class)
+    defaultImpl = TrainingWorkflowInput.class)
 @JsonSubTypes({
-    @Type(value = PredictionWorkflowInput.class, name="PredictionWorkflowInput")
+    @Type(value = TrainingWorkflowInput.class, name="TrainingWorkflowInput")
 })
-@JsonDeserialize(builder=PredictionWorkflowInputBuilder.class)
+@JsonDeserialize(builder=TrainingWorkflowInputBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface PredictionWorkflowInputMixIn {
+public interface TrainingWorkflowInputMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -58,9 +58,6 @@ public interface PredictionWorkflowInputMixIn {
     @JsonProperty("fingerprintset-URI")
     public String getFingerprintsetURI();
     
-    @JsonProperty("model-URI")
-    public String getModelURI();
-    
     @JsonProperty("modules")
     public java.util.List<WorkflowModuleMixIn> getModules();
     
@@ -74,29 +71,26 @@ public interface PredictionWorkflowInputMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = PredictionWorkflowInputBuilder.class)
+        defaultImpl = TrainingWorkflowInputBuilder.class)
     @JsonSubTypes({
-        @Type(value = PredictionWorkflowInput.PredictionWorkflowInputBuilder.class, name="PredictionWorkflowInput")
+        @Type(value = TrainingWorkflowInput.TrainingWorkflowInputBuilder.class, name="TrainingWorkflowInput")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface PredictionWorkflowInputMixInBuilder {
+    public static interface TrainingWorkflowInputMixInBuilder {
     
-        public PredictionWorkflowInputMixIn build();
+        public TrainingWorkflowInputMixIn build();
     
         @JsonProperty("parameters")
-        public PredictionWorkflowInputMixInBuilder setParameters(final java.util.List<WorkflowParameterMixIn> parameters);
+        public TrainingWorkflowInputMixInBuilder setParameters(final java.util.List<WorkflowParameterMixIn> parameters);
         
         @JsonProperty("fingerprintset-metadata")
-        public PredictionWorkflowInputMixInBuilder setFingerprintsetMetadata(final FingerprintSetMixIn fingerprintsetMetadata);
+        public TrainingWorkflowInputMixInBuilder setFingerprintsetMetadata(final FingerprintSetMixIn fingerprintsetMetadata);
         
         @JsonProperty("fingerprintset-URI")
-        public PredictionWorkflowInputMixInBuilder setFingerprintsetURI(final String fingerprintsetURI);
-        
-        @JsonProperty("model-URI")
-        public PredictionWorkflowInputMixInBuilder setModelURI(final String modelURI);
+        public TrainingWorkflowInputMixInBuilder setFingerprintsetURI(final String fingerprintsetURI);
         
         @JsonProperty("modules")
-        public PredictionWorkflowInputMixInBuilder setModules(final java.util.List<WorkflowModuleMixIn> modules);
+        public TrainingWorkflowInputMixInBuilder setModules(final java.util.List<WorkflowModuleMixIn> modules);
         
     }
 

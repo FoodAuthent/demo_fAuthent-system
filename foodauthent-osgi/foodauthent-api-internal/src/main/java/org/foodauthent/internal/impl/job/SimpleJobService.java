@@ -57,8 +57,6 @@ public class SimpleJobService implements JobService {
     public TrainingJob createNewTrainingJob(final Workflow workflow, final FingerprintSet fingerprintSet) {
 	final UUID predictionWorkflowId = UUID.randomUUID();
 	final TrainingJob job = TrainingJob.builder().setFaId(UUID.randomUUID())
-		.setPredictionWorkflowId(predictionWorkflowId).setWorklfowId(workflow.getFaId())
-		.setFingerprintsetId(fingerprintSet.getFaId())
 		.setStatus(org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS).build();
 	final long jobPersistenceId = persistenceService.save(job);
 	job.setPersisenceId(jobPersistenceId);

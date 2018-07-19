@@ -80,6 +80,29 @@ public class Workflow  extends FaModel {
 
   }
 
+  /**
+   * Type of the model this workflow can consume or produce. Can be left empty, e.g., in case of a preprocessing workflow. Model type must match one of the model&#39;s type property.
+   */
+  public enum ModelTypeEnum {
+    KNIME_WORKFLOW("knime_workflow"),
+    
+    KNIME_PYTHON("knime_python"),
+    
+    PMML("pmml");
+
+    private String value;
+
+    ModelTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+  }
+
 
   private java.util.UUID faId;
   private String name;
@@ -93,6 +116,7 @@ public class Workflow  extends FaModel {
   private java.util.List<Tag> tags;
   private java.util.UUID workflowFileId;
   private java.util.List<WorkflowModule> modules;
+  private ModelTypeEnum modelType;
   
   public String getTypeID() {
     return "Workflow";
@@ -114,6 +138,7 @@ public class Workflow  extends FaModel {
     tags = immutable(builder.tags);
     workflowFileId = immutable(builder.workflowFileId);
     modules = immutable(builder.modules);
+    modelType = immutable(builder.modelType);
     
     faId = generateFaIdIfMissing(faId);
   }
@@ -133,7 +158,7 @@ public class Workflow  extends FaModel {
             return false;
         }
         Workflow ent = (Workflow)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(representation, ent.representation) && Objects.equals(type, ent.type) && Objects.equals(parameters, ent.parameters) && Objects.equals(tags, ent.tags) && Objects.equals(workflowFileId, ent.workflowFileId) && Objects.equals(modules, ent.modules);
+        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(representation, ent.representation) && Objects.equals(type, ent.type) && Objects.equals(parameters, ent.parameters) && Objects.equals(tags, ent.tags) && Objects.equals(workflowFileId, ent.workflowFileId) && Objects.equals(modules, ent.modules) && Objects.equals(modelType, ent.modelType);
     }
 
 
@@ -185,6 +210,10 @@ public class Workflow  extends FaModel {
         return modules;
     }
     
+  public ModelTypeEnum getModelType() {
+        return modelType;
+    }
+    
   
  	/**
   	 * @return a newly created builder
@@ -215,6 +244,7 @@ public class Workflow  extends FaModel {
         builder.tags = entity.tags;
         builder.workflowFileId = entity.workflowFileId;
         builder.modules = entity.modules;
+        builder.modelType = entity.modelType;
  		return builder;
   	}
   	
@@ -237,6 +267,7 @@ public class Workflow  extends FaModel {
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
         private java.util.UUID workflowFileId = null;
         private java.util.List<WorkflowModule> modules = new java.util.ArrayList<>();
+        private ModelTypeEnum modelType = null;
 
         public WorkflowBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
@@ -295,6 +326,11 @@ public class Workflow  extends FaModel {
 
         public WorkflowBuilder setModules(java.util.List<WorkflowModule> modules) {
              this.modules = modules;
+             return this;
+        }
+
+        public WorkflowBuilder setModelType(ModelTypeEnum modelType) {
+             this.modelType = modelType;
              return this;
         }
 

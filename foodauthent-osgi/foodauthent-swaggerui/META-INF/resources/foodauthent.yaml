@@ -830,14 +830,10 @@ definitions:
         type: integer
       type:
         #TODO allow custom types that are not predefined
-        description: The type of the model. More for informational purpose.
+        description: The type of the model in order to be able to check for compatibility of the workflows using it.
         type: string
-        enum: [knime_workflow, knime_generic_model, knime_python_model, pmml_model]
-      workflow-type:
-        #TODO allow custom types that are not predefined
-        description: "Workflows of this type must be able to work with this model! See workflow's type property."
-        type: string
-        enum: [prediction_workflow]
+        # must be kept in sync with workflow.model-type
+        enum: [knime_workflow, knime_python, pmml]
       tags:
         description: Descriptive tags/annotations for the model.
         type: array
@@ -927,23 +923,18 @@ definitions:
         type: string
         format: uuid
         example: ""
-      worklfow-id:
-        type: string
-        format: uuid
-        example: ""
-      fingerprintset-id:
-        type: string
-        format: uuid
-        example: ""
-      prediction-workflow-id:
-        description: id of the newly created workflow that can be used to use the trained model for prediction
+      model-id:
+        description: The created model after successful training.
         type: string
         format: uuid 
         example: ""
       status:
         type: string
         enum: [running, success, failed]
-    
+      status-message:
+        description: A message, e.g., in case the workflow failed.
+        type: string
+ 
         
   Tag:
     description: A tag/label for objects.
@@ -1018,6 +1009,11 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/WorkflowModule"
+      model-type:
+        description: Type of the model this workflow can consume or produce. Can be left empty, e.g., in case of a preprocessing workflow. Model type must match one of the model's type property.
+        type: string
+        # must be kept in sync with model.type
+        enum: [knime_workflow, knime_python, pmml]
           
   WorkflowModule:
     description: A workflow module used by other workflows (i.e. like a sub-workflow).
@@ -1071,14 +1067,14 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/WorkflowParameter"
-      fingerprintSetMetadata:
+      fingerprintset-metadata:
         description: The fingerprint set metadata.
         $ref: "#/definitions/FingerprintSet"
-      fingerprintSetURI:
+      fingerprintset-URI:
         description: URI pointing to the resource containg the fingerprints to predict the labels for. 
         type: string
         format: uri
-      modelURI:
+      model-URI:
         description: optional model uri (if required by the workflow) pointing to the model to use
         type: string
         format: uri
@@ -1102,3 +1098,37 @@ definitions:
           format: float
           maximum: 1
           minimum: 0
+          
+          
+  TrainingWorkflowInput:
+    description: Describes the input required by a training workflow.
+    type: object
+    x-no-faid: true
+    properties:
+      parameters:
+        description: The workflow parameters as given provided by the Workflow-entity.
+        type: array
+        items:
+          $ref: "#/definitions/WorkflowParameter"
+      fingerprintset-metadata:
+        description: The fingerprint set metadata.
+        $ref: "#/definitions/FingerprintSet"
+      fingerprintset-URI:
+        description: URI pointing to the resource containg the fingerprints to predict the labels for. 
+        type: string
+        format: uri
+      modules:
+        description: optional list of modules used within the prediction workfow.
+        type: array
+        items:
+          $ref: "#/definitions/WorkflowModule"
+  
+  TrainingWorkflowOutput:
+    description:  Describes the outputs delivered by a training workflow.
+    type: object
+    x-no-faid: true
+    properties:
+      model-uri:          
+        description: URI pointing to the created model file.
+        type: string
+        format: uri

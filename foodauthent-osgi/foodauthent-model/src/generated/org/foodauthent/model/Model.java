@@ -25,39 +25,18 @@ import org.foodauthent.model.Tag;
 public class Model  extends FaModel {
 
   /**
-   * The type of the model. More for informational purpose.
+   * The type of the model in order to be able to check for compatibility of the workflows using it.
    */
   public enum TypeEnum {
     KNIME_WORKFLOW("knime_workflow"),
     
-    KNIME_GENERIC_MODEL("knime_generic_model"),
+    KNIME_PYTHON("knime_python"),
     
-    KNIME_PYTHON_MODEL("knime_python_model"),
-    
-    PMML_MODEL("pmml_model");
+    PMML("pmml");
 
     private String value;
 
     TypeEnum(String value) {
-      this.value = value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-  }
-
-  /**
-   * Workflows of this type must be able to work with this model! See workflow&#39;s type property.
-   */
-  public enum WorkflowTypeEnum {
-    WORKFLOW("prediction_workflow");
-
-    private String value;
-
-    WorkflowTypeEnum(String value) {
       this.value = value;
     }
 
@@ -76,7 +55,6 @@ public class Model  extends FaModel {
   private LocalDate date;
   private Integer version;
   private TypeEnum type;
-  private WorkflowTypeEnum workflowType;
   private java.util.List<Tag> tags;
   private java.util.UUID modelFileId;
   
@@ -95,7 +73,6 @@ public class Model  extends FaModel {
     date = immutable(builder.date);
     version = immutable(builder.version);
     type = immutable(builder.type);
-    workflowType = immutable(builder.workflowType);
     tags = immutable(builder.tags);
     modelFileId = immutable(builder.modelFileId);
     
@@ -117,7 +94,7 @@ public class Model  extends FaModel {
             return false;
         }
         Model ent = (Model)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(workflowType, ent.workflowType) && Objects.equals(tags, ent.tags) && Objects.equals(modelFileId, ent.modelFileId);
+        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(tags, ent.tags) && Objects.equals(modelFileId, ent.modelFileId);
     }
 
 
@@ -147,10 +124,6 @@ public class Model  extends FaModel {
     
   public TypeEnum getType() {
         return type;
-    }
-    
-  public WorkflowTypeEnum getWorkflowType() {
-        return workflowType;
     }
     
   public java.util.List<Tag> getTags() {
@@ -186,7 +159,6 @@ public class Model  extends FaModel {
         builder.date = entity.date;
         builder.version = entity.version;
         builder.type = entity.type;
-        builder.workflowType = entity.workflowType;
         builder.tags = entity.tags;
         builder.modelFileId = entity.modelFileId;
  		return builder;
@@ -206,7 +178,6 @@ public class Model  extends FaModel {
         private LocalDate date = null;
         private Integer version = null;
         private TypeEnum type = null;
-        private WorkflowTypeEnum workflowType = null;
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
         private java.util.UUID modelFileId = null;
 
@@ -242,11 +213,6 @@ public class Model  extends FaModel {
 
         public ModelBuilder setType(TypeEnum type) {
              this.type = type;
-             return this;
-        }
-
-        public ModelBuilder setWorkflowType(WorkflowTypeEnum workflowType) {
-             this.workflowType = workflowType;
              return this;
         }
 

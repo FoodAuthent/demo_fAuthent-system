@@ -35,7 +35,7 @@ public class WorkflowModule  extends FaModel {
 
   @Override
   public UUID getFaId() {
-	throw new UnsupportedOperationException("The entity 'WorkflowModule' doesn't provide a fa-id.");
+  	return null;
   }
   
   private WorkflowModule(WorkflowModuleBuilder builder) {

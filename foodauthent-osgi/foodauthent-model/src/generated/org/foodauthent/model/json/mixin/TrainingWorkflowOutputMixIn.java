@@ -13,11 +13,10 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import org.foodauthent.model.TrainingJob.StatusEnum;
 
 
-import org.foodauthent.model.TrainingJob;
-import org.foodauthent.model.TrainingJob.TrainingJobBuilder;
+import org.foodauthent.model.TrainingWorkflowOutput;
+import org.foodauthent.model.TrainingWorkflowOutput.TrainingWorkflowOutputBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -29,13 +28,13 @@ import org.foodauthent.model.TrainingJob.TrainingJobBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = TrainingJob.class)
+    defaultImpl = TrainingWorkflowOutput.class)
 @JsonSubTypes({
-    @Type(value = TrainingJob.class, name="TrainingJob")
+    @Type(value = TrainingWorkflowOutput.class, name="TrainingWorkflowOutput")
 })
-@JsonDeserialize(builder=TrainingJobBuilder.class)
+@JsonDeserialize(builder=TrainingWorkflowOutputBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface TrainingJobMixIn {
+public interface TrainingWorkflowOutputMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -43,19 +42,12 @@ public interface TrainingJobMixIn {
     @JsonIgnore
     public String getTypeID();
     
+   	@JsonIgnore
+  	public UUID getFaId();
     
 
-    @JsonProperty("fa-id")
-    public java.util.UUID getFaId();
-    
-    @JsonProperty("model-id")
-    public java.util.UUID getModelId();
-    
-    @JsonProperty("status")
-    public StatusEnum getStatus();
-    
-    @JsonProperty("status-message")
-    public String getStatusMessage();
+    @JsonProperty("model-uri")
+    public String getModelUri();
     
 
     /**
@@ -67,26 +59,17 @@ public interface TrainingJobMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = TrainingJobBuilder.class)
+        defaultImpl = TrainingWorkflowOutputBuilder.class)
     @JsonSubTypes({
-        @Type(value = TrainingJob.TrainingJobBuilder.class, name="TrainingJob")
+        @Type(value = TrainingWorkflowOutput.TrainingWorkflowOutputBuilder.class, name="TrainingWorkflowOutput")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface TrainingJobMixInBuilder {
+    public static interface TrainingWorkflowOutputMixInBuilder {
     
-        public TrainingJobMixIn build();
+        public TrainingWorkflowOutputMixIn build();
     
-        @JsonProperty("fa-id")
-        public TrainingJobMixInBuilder setFaId(final java.util.UUID faId);
-        
-        @JsonProperty("model-id")
-        public TrainingJobMixInBuilder setModelId(final java.util.UUID modelId);
-        
-        @JsonProperty("status")
-        public TrainingJobMixInBuilder setStatus(final StatusEnum status);
-        
-        @JsonProperty("status-message")
-        public TrainingJobMixInBuilder setStatusMessage(final String statusMessage);
+        @JsonProperty("model-uri")
+        public TrainingWorkflowOutputMixInBuilder setModelUri(final String modelUri);
         
     }
 

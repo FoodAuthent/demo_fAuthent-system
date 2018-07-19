@@ -18,22 +18,21 @@ import org.foodauthent.model.WorkflowParameter;
 
 
 /**
- * Describes the input required by a prediction workflow.
+ * Describes the input required by a training workflow.
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class PredictionWorkflowInput  extends FaModel {
+public class TrainingWorkflowInput  extends FaModel {
 
 
   private java.util.List<WorkflowParameter> parameters;
   private FingerprintSet fingerprintsetMetadata;
   private String fingerprintsetURI;
-  private String modelURI;
   private java.util.List<WorkflowModule> modules;
   
   public String getTypeID() {
-    return "PredictionWorkflowInput";
+    return "TrainingWorkflowInput";
   }
   
 
@@ -42,12 +41,11 @@ public class PredictionWorkflowInput  extends FaModel {
   	return null;
   }
   
-  private PredictionWorkflowInput(PredictionWorkflowInputBuilder builder) {
+  private TrainingWorkflowInput(TrainingWorkflowInputBuilder builder) {
     
     parameters = immutable(builder.parameters);
     fingerprintsetMetadata = immutable(builder.fingerprintsetMetadata);
     fingerprintsetURI = immutable(builder.fingerprintsetURI);
-    modelURI = immutable(builder.modelURI);
     modules = immutable(builder.modules);
     
   }
@@ -66,8 +64,8 @@ public class PredictionWorkflowInput  extends FaModel {
         if (getClass() != o.getClass()) {
             return false;
         }
-        PredictionWorkflowInput ent = (PredictionWorkflowInput)o;
-        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprintsetMetadata, ent.fingerprintsetMetadata) && Objects.equals(fingerprintsetURI, ent.fingerprintsetURI) && Objects.equals(modelURI, ent.modelURI) && Objects.equals(modules, ent.modules);
+        TrainingWorkflowInput ent = (TrainingWorkflowInput)o;
+        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprintsetMetadata, ent.fingerprintsetMetadata) && Objects.equals(fingerprintsetURI, ent.fingerprintsetURI) && Objects.equals(modules, ent.modules);
     }
 
 
@@ -83,10 +81,6 @@ public class PredictionWorkflowInput  extends FaModel {
         return fingerprintsetURI;
     }
     
-  public String getModelURI() {
-        return modelURI;
-    }
-    
   public java.util.List<WorkflowModule> getModules() {
         return modules;
     }
@@ -95,8 +89,8 @@ public class PredictionWorkflowInput  extends FaModel {
  	/**
   	 * @return a newly created builder
   	 */
-  	public static PredictionWorkflowInputBuilder builder() {
-  		return new PredictionWorkflowInputBuilder();
+  	public static TrainingWorkflowInputBuilder builder() {
+  		return new TrainingWorkflowInputBuilder();
   	}
   	
   	/**
@@ -107,57 +101,50 @@ public class PredictionWorkflowInput  extends FaModel {
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
 	 */
-	public static PredictionWorkflowInputBuilder builder(PredictionWorkflowInput entity) {
-		PredictionWorkflowInputBuilder builder = builder();
+	public static TrainingWorkflowInputBuilder builder(TrainingWorkflowInput entity) {
+		TrainingWorkflowInputBuilder builder = builder();
         builder.parameters = entity.parameters;
         builder.fingerprintsetMetadata = entity.fingerprintsetMetadata;
         builder.fingerprintsetURI = entity.fingerprintsetURI;
-        builder.modelURI = entity.modelURI;
         builder.modules = entity.modules;
  		return builder;
   	}
   	
   
-    public static class PredictionWorkflowInputBuilder {
+    public static class TrainingWorkflowInputBuilder {
     
-        private PredictionWorkflowInputBuilder(){
+        private TrainingWorkflowInputBuilder(){
             
         }
     
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
         private FingerprintSet fingerprintsetMetadata = null;
         private String fingerprintsetURI = null;
-        private String modelURI = null;
         private java.util.List<WorkflowModule> modules = new java.util.ArrayList<>();
 
-        public PredictionWorkflowInputBuilder setParameters(java.util.List<WorkflowParameter> parameters) {
+        public TrainingWorkflowInputBuilder setParameters(java.util.List<WorkflowParameter> parameters) {
              this.parameters = parameters;
              return this;
         }
 
-        public PredictionWorkflowInputBuilder setFingerprintsetMetadata(FingerprintSet fingerprintsetMetadata) {
+        public TrainingWorkflowInputBuilder setFingerprintsetMetadata(FingerprintSet fingerprintsetMetadata) {
              this.fingerprintsetMetadata = fingerprintsetMetadata;
              return this;
         }
 
-        public PredictionWorkflowInputBuilder setFingerprintsetURI(String fingerprintsetURI) {
+        public TrainingWorkflowInputBuilder setFingerprintsetURI(String fingerprintsetURI) {
              this.fingerprintsetURI = fingerprintsetURI;
              return this;
         }
 
-        public PredictionWorkflowInputBuilder setModelURI(String modelURI) {
-             this.modelURI = modelURI;
-             return this;
-        }
-
-        public PredictionWorkflowInputBuilder setModules(java.util.List<WorkflowModule> modules) {
+        public TrainingWorkflowInputBuilder setModules(java.util.List<WorkflowModule> modules) {
              this.modules = modules;
              return this;
         }
 
         
-        public PredictionWorkflowInput build() {
-            return new PredictionWorkflowInput(this);
+        public TrainingWorkflowInput build() {
+            return new TrainingWorkflowInput(this);
         }
     
     }

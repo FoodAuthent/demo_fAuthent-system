@@ -16,7 +16,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import org.foodauthent.model.Model.TypeEnum;
-import org.foodauthent.model.Model.WorkflowTypeEnum;
 
 
 import org.foodauthent.model.Model;
@@ -69,9 +68,6 @@ public interface ModelMixIn {
     @JsonProperty("type")
     public TypeEnum getType();
     
-    @JsonProperty("workflow-type")
-    public WorkflowTypeEnum getWorkflowType();
-    
     @JsonProperty("tags")
     public java.util.List<TagMixIn> getTags();
     
@@ -117,9 +113,6 @@ public interface ModelMixIn {
         
         @JsonProperty("type")
         public ModelMixInBuilder setType(final TypeEnum type);
-        
-        @JsonProperty("workflow-type")
-        public ModelMixInBuilder setWorkflowType(final WorkflowTypeEnum workflowType);
         
         @JsonProperty("tags")
         public ModelMixInBuilder setTags(final java.util.List<TagMixIn> tags);

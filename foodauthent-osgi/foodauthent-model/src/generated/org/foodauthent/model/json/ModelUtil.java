@@ -52,6 +52,10 @@ public class ModelUtil {
         mapper.addMixIn(Tag.TagBuilder.class, TagMixIn.TagMixInBuilder.class);
         mapper.addMixIn(TrainingJob.class, TrainingJobMixIn.class);
         mapper.addMixIn(TrainingJob.TrainingJobBuilder.class, TrainingJobMixIn.TrainingJobMixInBuilder.class);
+        mapper.addMixIn(TrainingWorkflowInput.class, TrainingWorkflowInputMixIn.class);
+        mapper.addMixIn(TrainingWorkflowInput.TrainingWorkflowInputBuilder.class, TrainingWorkflowInputMixIn.TrainingWorkflowInputMixInBuilder.class);
+        mapper.addMixIn(TrainingWorkflowOutput.class, TrainingWorkflowOutputMixIn.class);
+        mapper.addMixIn(TrainingWorkflowOutput.TrainingWorkflowOutputBuilder.class, TrainingWorkflowOutputMixIn.TrainingWorkflowOutputMixInBuilder.class);
         mapper.addMixIn(Workflow.class, WorkflowMixIn.class);
         mapper.addMixIn(Workflow.WorkflowBuilder.class, WorkflowMixIn.WorkflowMixInBuilder.class);
         mapper.addMixIn(WorkflowModule.class, WorkflowModuleMixIn.class);

@@ -15,18 +15,18 @@ import java.util.UUID;
 
 
 /**
- * Describes the outputs delivered by a prediction workflow.
+ * Describes the outputs delivered by a training workflow.
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class PredictionWorkflowOutput  extends FaModel {
+public class TrainingWorkflowOutput  extends FaModel {
 
 
-  private java.util.Map<String, Float> confidenceMap;
+  private String modelUri;
   
   public String getTypeID() {
-    return "PredictionWorkflowOutput";
+    return "TrainingWorkflowOutput";
   }
   
 
@@ -35,9 +35,9 @@ public class PredictionWorkflowOutput  extends FaModel {
   	return null;
   }
   
-  private PredictionWorkflowOutput(PredictionWorkflowOutputBuilder builder) {
+  private TrainingWorkflowOutput(TrainingWorkflowOutputBuilder builder) {
     
-    confidenceMap = immutable(builder.confidenceMap);
+    modelUri = immutable(builder.modelUri);
     
   }
   
@@ -55,21 +55,21 @@ public class PredictionWorkflowOutput  extends FaModel {
         if (getClass() != o.getClass()) {
             return false;
         }
-        PredictionWorkflowOutput ent = (PredictionWorkflowOutput)o;
-        return Objects.equals(confidenceMap, ent.confidenceMap);
+        TrainingWorkflowOutput ent = (TrainingWorkflowOutput)o;
+        return Objects.equals(modelUri, ent.modelUri);
     }
 
 
-  public java.util.Map<String, Float> getConfidenceMap() {
-        return confidenceMap;
+  public String getModelUri() {
+        return modelUri;
     }
     
   
  	/**
   	 * @return a newly created builder
   	 */
-  	public static PredictionWorkflowOutputBuilder builder() {
-  		return new PredictionWorkflowOutputBuilder();
+  	public static TrainingWorkflowOutputBuilder builder() {
+  		return new TrainingWorkflowOutputBuilder();
   	}
   	
   	/**
@@ -80,29 +80,29 @@ public class PredictionWorkflowOutput  extends FaModel {
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
 	 */
-	public static PredictionWorkflowOutputBuilder builder(PredictionWorkflowOutput entity) {
-		PredictionWorkflowOutputBuilder builder = builder();
-        builder.confidenceMap = entity.confidenceMap;
+	public static TrainingWorkflowOutputBuilder builder(TrainingWorkflowOutput entity) {
+		TrainingWorkflowOutputBuilder builder = builder();
+        builder.modelUri = entity.modelUri;
  		return builder;
   	}
   	
   
-    public static class PredictionWorkflowOutputBuilder {
+    public static class TrainingWorkflowOutputBuilder {
     
-        private PredictionWorkflowOutputBuilder(){
+        private TrainingWorkflowOutputBuilder(){
             
         }
     
-        private java.util.Map<String, Float> confidenceMap = new java.util.HashMap<>();
+        private String modelUri = null;
 
-        public PredictionWorkflowOutputBuilder setConfidenceMap(java.util.Map<String, Float> confidenceMap) {
-             this.confidenceMap = confidenceMap;
+        public TrainingWorkflowOutputBuilder setModelUri(String modelUri) {
+             this.modelUri = modelUri;
              return this;
         }
 
         
-        public PredictionWorkflowOutput build() {
-            return new PredictionWorkflowOutput(this);
+        public TrainingWorkflowOutput build() {
+            return new TrainingWorkflowOutput(this);
         }
     
     }

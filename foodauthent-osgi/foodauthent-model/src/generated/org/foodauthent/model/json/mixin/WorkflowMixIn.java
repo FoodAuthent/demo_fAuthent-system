@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.Workflow.TypeEnum;
+import org.foodauthent.model.Workflow.ModelTypeEnum;
 
 
 import org.foodauthent.model.Workflow;
@@ -86,6 +87,9 @@ public interface WorkflowMixIn {
     @JsonProperty("modules")
     public java.util.List<WorkflowModuleMixIn> getModules();
     
+    @JsonProperty("model-type")
+    public ModelTypeEnum getModelType();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -140,6 +144,9 @@ public interface WorkflowMixIn {
         
         @JsonProperty("modules")
         public WorkflowMixInBuilder setModules(final java.util.List<WorkflowModuleMixIn> modules);
+        
+        @JsonProperty("model-type")
+        public WorkflowMixInBuilder setModelType(final ModelTypeEnum modelType);
         
     }
 
