@@ -52,8 +52,25 @@ public class FileServiceImpl implements FileService {
 	// TODO it should be possible to store multiple files per UUID, e.g. multiple
 	// versions or a data set
 	
-	//update file metadata (metadata must exist! - TODO otherwise throw appropriate exception)
 	FileMetadata fileMeta = persistenceService.getFaModelByUUID(fileId);
+
+	//basic verification whether the uploaded file type matches the file metadata's type
+	// TODO add more logic
+	switch (fileMeta.getType()) {
+	case KNIME_WORKFLOW:
+	    // expecting the uploaded file to end with ".knwf"
+	    if (!upfileDetail.getFileName().endsWith(".knwf")) {
+		// TODO throw appropriate exception!!
+		throw new RuntimeException(
+			"Uploaded file probably not a KNIME workflow. Doesn't have a '.knwf' extension.");
+	    }
+	    break;
+	default:
+	    // TODO throw appropriate exception!
+	    throw new RuntimeException("File of type " + fileMeta.getType() + " not yet supported.");
+	}
+
+	//update file metadata (metadata must exist! - TODO otherwise throw appropriate exception)
 	fileMeta = FileMetadata.builder(fileMeta).setUploadName(upfileDetail.getFileName()).setUploadDate(LocalDate.now()).build();
 	persistenceService.replace(fileMeta);
 

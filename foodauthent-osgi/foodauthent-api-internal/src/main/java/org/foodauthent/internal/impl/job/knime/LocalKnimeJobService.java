@@ -33,6 +33,7 @@ import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJob.StatusEnum;
 import org.foodauthent.model.Workflow.ModelTypeEnum;
+import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.PredictionWorkflowInput;
 import org.foodauthent.model.PredictionWorkflowOutput;
 import org.foodauthent.model.TrainingJob;
@@ -78,6 +79,16 @@ public class LocalKnimeJobService implements JobService {
 
     @Override
     public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model) {
+	if (workflow.getType() != org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW) {
+	    // TODO throw appropriate exception
+	    throw new RuntimeException("Referenced workflow is not a prediction workflow");
+	}
+
+	if (workflow.getRepresentation() != RepresentationEnum.KNIME) {
+	    // TODO throw appropriate exception
+	    throw new RuntimeException("Referenced workflow is not a knime workflow");
+	}
+
 	Blob wfFile = persistenceService.getBlobByUUID(workflow.getFileId());
 	FileMetadata fileMeta = persistenceService.getFaModelByUUID(workflow.getFileId());
 
@@ -152,6 +163,17 @@ public class LocalKnimeJobService implements JobService {
 
     @Override
     public TrainingJob createNewTrainingJob(Workflow workflow, FingerprintSet fingerprintSet) {
+	if (workflow.getType() != org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW) {
+	    // TODO throw appropriate exception
+	    throw new RuntimeException("Referenced workflow is not a prediction workflow");
+	}
+
+	if (workflow.getRepresentation() != RepresentationEnum.KNIME) {
+	    // TODO throw appropriate exception
+	    throw new RuntimeException("Referenced workflow is not a knime workflow");
+	}
+
+	
 	Blob wfFile = persistenceService.getBlobByUUID(workflow.getFileId());
 	FileMetadata fileMeta = persistenceService.getFaModelByUUID(workflow.getFileId());
 
