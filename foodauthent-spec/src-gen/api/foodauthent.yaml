@@ -686,7 +686,10 @@ definitions:
         type: string
         enum: [knime_workflow, knime_model, python_script, sop_pdf]
       name:
-        description: A name for the file.
+        description: "A name for the file."
+        type: string
+      uploadName:
+        description: The name of the file as uploaded. Will be set automatically if left empty and a file is uploaded for the first time.
         type: string
       description:
         description: A more verbose description of the file.
@@ -696,6 +699,10 @@ definitions:
         type: string
       date:
         description: The creation date.
+        type: string
+        format: date
+      uploadDate:
+        description: Time and date of the file upload. Will be set automatically.
         type: string
         format: date
       version:
@@ -958,7 +965,7 @@ definitions:
         #TODO allow custom types that are not predefined
         description: "The type of the workflow. IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity."
         type: string
-        enum: [prediction_workflow, training_workflow, read_module, binning_module, transformsignal_module, transformsample_module]
+        enum: [prediction_workflow, training_workflow]
       parameters:
         description: The parameters of the workflow, TODO - should maybe be a map.
         type: array
@@ -989,13 +996,15 @@ definitions:
     type: object
     x-no-faid: true
     properties:
-      workflow-id:
-        description: The workflow-id that references the actual workflow.
+      file-id:
+        description: The file-id that references the actual workflow file.
         type: string
         format: uuid
       module-type:
-        description: The type of the module. Optional, mainly for transparency and in order to be able to verify that referenced module is of the desired type.
+        # TODO allow custom types
+        description: "The type of the module. IMPORTANT: This property determines the required workflow input and output."
         type: string
+        enum: [read, transform_signal, binning, transform_sample, predict, train]
       module-parameters:
         description: The parameters required for the module.
         type: array
@@ -1047,11 +1056,11 @@ definitions:
         description: optional model uri (if required by the workflow) pointing to the model to use
         type: string
         format: uri
-      modules:
+      module-inputs:
         description: optional list of modules used within the prediction workfow.
         type: array
         items:
-          $ref: "#/definitions/WorkflowModule"
+          $ref: "#/definitions/WorkflowModuleInput"
   
   PredictionWorkflowOutput:
     description:  Describes the outputs delivered by a prediction workflow.
@@ -1086,11 +1095,11 @@ definitions:
         description: URI pointing to the resource containg the fingerprints to learn the model from. 
         type: string
         format: uri
-      modules:
+      module-inputs:
         description: optional list of modules used within the training workfow.
         type: array
         items:
-          $ref: "#/definitions/WorkflowModule"
+          $ref: "#/definitions/WorkflowModuleInput"
   
   TrainingWorkflowOutput:
     description:  Describes the outputs delivered by a training workflow.
@@ -1101,3 +1110,25 @@ definitions:
         description: URI pointing to the created model file.
         type: string
         format: uri
+        
+  WorkflowModuleInput:
+    description: Input for a workflow module.
+    type: object
+    x-no-faid: true
+    properties:
+      workflow-URI:
+        description: URI of the workflow to use.
+        type: string
+        format: uri
+      module-type:
+        # TODO allow custom types
+        description: "The type of the module."
+        type: string
+        # need to be kept in sync with WorkflowModule.module-type
+        enum: [read, transform_signal, binning, transform_sample, predict, train]
+      module-parameters:
+        description: The parameters required for the module.
+        type: array
+        items:
+          $ref: "#/definitions/WorkflowParameter" 
+ 

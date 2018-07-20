@@ -4,7 +4,7 @@
 package org.foodauthent.model.json.mixin;
 
 import org.foodauthent.model.json.mixin.FingerprintSetMixIn;
-import org.foodauthent.model.json.mixin.WorkflowModuleMixIn;
+import org.foodauthent.model.json.mixin.WorkflowModuleInputMixIn;
 import org.foodauthent.model.json.mixin.WorkflowParameterMixIn;
 
 import java.util.UUID;
@@ -61,8 +61,8 @@ public interface PredictionWorkflowInputMixIn {
     @JsonProperty("model-URI")
     public String getModelURI();
     
-    @JsonProperty("modules")
-    public java.util.List<WorkflowModuleMixIn> getModules();
+    @JsonProperty("module-inputs")
+    public java.util.List<WorkflowModuleInputMixIn> getModuleInputs();
     
 
     /**
@@ -95,8 +95,8 @@ public interface PredictionWorkflowInputMixIn {
         @JsonProperty("model-URI")
         public PredictionWorkflowInputMixInBuilder setModelURI(final String modelURI);
         
-        @JsonProperty("modules")
-        public PredictionWorkflowInputMixInBuilder setModules(final java.util.List<WorkflowModuleMixIn> modules);
+        @JsonProperty("module-inputs")
+        public PredictionWorkflowInputMixInBuilder setModuleInputs(final java.util.List<WorkflowModuleInputMixIn> moduleInputs);
         
     }
 

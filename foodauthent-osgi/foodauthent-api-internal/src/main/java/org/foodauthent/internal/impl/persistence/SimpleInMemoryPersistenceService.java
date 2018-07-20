@@ -147,13 +147,16 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
     }
 
     private long save(final PersistenceIdProvider obj, UUID faId) throws EntityExistsException {
-	final long currentId = persistenceIdCounter++;
+	long currentId;
 	if (obj instanceof FaModel) {
 	    //for fa-models the faId must not exist already
 	    if (idMapper.containsUUID(faId)) {
 		throw new EntityExistsException("An entity with the given id already exists.");
 	    }
+	    currentId = persistenceIdCounter++;
 	    entities.put(currentId, (FaModel) obj);
+	    obj.setPersisenceId(currentId);
+	    idMapper.addMapping(faId, obj.getPersistenceId());
 	} else if (obj instanceof Blob) {
 	    // for blobs the faId _must_ exist already because there always must be a
 	    // corresponding fa-model (FileMetadata)
@@ -161,13 +164,12 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 		//TODO find/create better exception
 		throw new IllegalStateException("There is obviously no file metadata available for the blob.");
 	    }
-	    blobs.put(currentId, (Blob) obj);
+	    currentId = idMapper.getPersistenceId(faId);
+	    blobs.put(idMapper.getPersistenceId(faId), (Blob) obj);
 	} else {
 	    throw new IllegalArgumentException("Objects of type '" + obj.getClass().getSimpleName()
 		    + "' + not supported by the persistence service.");
 	}
-	obj.setPersisenceId(currentId);
-	idMapper.addMapping(faId, obj.getPersistenceId());
 	return currentId;
     }
 

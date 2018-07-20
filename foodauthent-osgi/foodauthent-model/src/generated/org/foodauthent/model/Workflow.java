@@ -56,15 +56,7 @@ public class Workflow  extends FaModel {
   public enum TypeEnum {
     PREDICTION_WORKFLOW("prediction_workflow"),
     
-    TRAINING_WORKFLOW("training_workflow"),
-    
-    READ_MODULE("read_module"),
-    
-    BINNING_MODULE("binning_module"),
-    
-    TRANSFORMSIGNAL_MODULE("transformsignal_module"),
-    
-    TRANSFORMSAMPLE_MODULE("transformsample_module");
+    TRAINING_WORKFLOW("training_workflow");
 
     private String value;
 

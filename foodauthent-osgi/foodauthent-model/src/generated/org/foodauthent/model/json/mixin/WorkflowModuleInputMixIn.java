@@ -14,11 +14,11 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import org.foodauthent.model.WorkflowModule.ModuleTypeEnum;
+import org.foodauthent.model.WorkflowModuleInput.ModuleTypeEnum;
 
 
-import org.foodauthent.model.WorkflowModule;
-import org.foodauthent.model.WorkflowModule.WorkflowModuleBuilder;
+import org.foodauthent.model.WorkflowModuleInput;
+import org.foodauthent.model.WorkflowModuleInput.WorkflowModuleInputBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -30,13 +30,13 @@ import org.foodauthent.model.WorkflowModule.WorkflowModuleBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = WorkflowModule.class)
+    defaultImpl = WorkflowModuleInput.class)
 @JsonSubTypes({
-    @Type(value = WorkflowModule.class, name="WorkflowModule")
+    @Type(value = WorkflowModuleInput.class, name="WorkflowModuleInput")
 })
-@JsonDeserialize(builder=WorkflowModuleBuilder.class)
+@JsonDeserialize(builder=WorkflowModuleInputBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface WorkflowModuleMixIn {
+public interface WorkflowModuleInputMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -48,8 +48,8 @@ public interface WorkflowModuleMixIn {
   	public UUID getFaId();
     
 
-    @JsonProperty("file-id")
-    public java.util.UUID getFileId();
+    @JsonProperty("workflow-URI")
+    public String getWorkflowURI();
     
     @JsonProperty("module-type")
     public ModuleTypeEnum getModuleType();
@@ -67,23 +67,23 @@ public interface WorkflowModuleMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = WorkflowModuleBuilder.class)
+        defaultImpl = WorkflowModuleInputBuilder.class)
     @JsonSubTypes({
-        @Type(value = WorkflowModule.WorkflowModuleBuilder.class, name="WorkflowModule")
+        @Type(value = WorkflowModuleInput.WorkflowModuleInputBuilder.class, name="WorkflowModuleInput")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface WorkflowModuleMixInBuilder {
+    public static interface WorkflowModuleInputMixInBuilder {
     
-        public WorkflowModuleMixIn build();
+        public WorkflowModuleInputMixIn build();
     
-        @JsonProperty("file-id")
-        public WorkflowModuleMixInBuilder setFileId(final java.util.UUID fileId);
+        @JsonProperty("workflow-URI")
+        public WorkflowModuleInputMixInBuilder setWorkflowURI(final String workflowURI);
         
         @JsonProperty("module-type")
-        public WorkflowModuleMixInBuilder setModuleType(final ModuleTypeEnum moduleType);
+        public WorkflowModuleInputMixInBuilder setModuleType(final ModuleTypeEnum moduleType);
         
         @JsonProperty("module-parameters")
-        public WorkflowModuleMixInBuilder setModuleParameters(final java.util.List<WorkflowParameterMixIn> moduleParameters);
+        public WorkflowModuleInputMixInBuilder setModuleParameters(final java.util.List<WorkflowParameterMixIn> moduleParameters);
         
     }
 

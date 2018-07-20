@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,18 +25,23 @@ import org.foodauthent.internal.api.job.JobService;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
+import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.Model.TypeEnum;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJob.StatusEnum;
+import org.foodauthent.model.Workflow.ModelTypeEnum;
 import org.foodauthent.model.PredictionWorkflowInput;
 import org.foodauthent.model.PredictionWorkflowOutput;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.TrainingWorkflowInput;
 import org.foodauthent.model.TrainingWorkflowOutput;
 import org.foodauthent.model.Workflow;
+import org.foodauthent.model.WorkflowModule;
+import org.foodauthent.model.WorkflowModuleInput;
+import org.foodauthent.model.WorkflowModuleInput.ModuleTypeEnum;
 import org.foodauthent.model.json.ObjectMapperUtil;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionMonitor;
@@ -72,11 +79,14 @@ public class LocalKnimeJobService implements JobService {
     @Override
     public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model) {
 	Blob wfFile = persistenceService.getBlobByUUID(workflow.getFileId());
+	FileMetadata fileMeta = persistenceService.getFaModelByUUID(workflow.getFileId());
 
 	File wfDir;
+	List<WorkflowModuleInput> moduleInputs = null;
 	try {
 	    // extract workflow to a temporary location
-	    wfDir = unzipToTempDir(wfFile.getData(), wfFile.getFaId(), "fa_workflow");
+	    wfDir = unzipToTempDir(wfFile.getData(), wfFile.getFaId(), "fa_workflow", fileMeta.getName());
+	    moduleInputs = prepareWorkflowModules(workflow.getModules(), wfFile.getFaId());
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
 	    throw new RuntimeException(e);
@@ -90,13 +100,13 @@ public class LocalKnimeJobService implements JobService {
 
 	// TODO get actual model file
 	// persistenceService.getBlobByUUID(model.getModelFileId());
-
+	
 	// assemble workflow input
 	PredictionWorkflowInput workflowInput = PredictionWorkflowInput.builder()
 		.setFingerprintsetURI("TODO:fingerprintURI").setModelURI("TODO:modelURI")
 		.setFingerprintsetMetadata(fingerprintSet).setParameters(workflow.getParameters())
-		// pass module's parameters
-		.setModules(workflow.getModules()).build();
+		.setModuleInputs(moduleInputs)
+		.build();
 	// TODO doesn't work, but should
 	// JsonValue jsonInput =
 	// ObjectMapperUtil.getObjectMapper().convertValue(workflowInput,
@@ -143,12 +153,14 @@ public class LocalKnimeJobService implements JobService {
     @Override
     public TrainingJob createNewTrainingJob(Workflow workflow, FingerprintSet fingerprintSet) {
 	Blob wfFile = persistenceService.getBlobByUUID(workflow.getFileId());
+	FileMetadata fileMeta = persistenceService.getFaModelByUUID(workflow.getFileId());
 
 	File wfDir;
+	List<WorkflowModuleInput> moduleInputs = null;
 	try {
 	    // extract workflow to a temporary location
-	    wfDir = unzipToTempDir(wfFile.getData(), wfFile.getFaId(), "fa_workflow");
-
+	    wfDir = unzipToTempDir(wfFile.getData(), wfFile.getFaId(), "fa_workflow", fileMeta.getName());
+	    moduleInputs = prepareWorkflowModules(workflow.getModules(), wfFile.getFaId());
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
@@ -161,8 +173,8 @@ public class LocalKnimeJobService implements JobService {
 	TrainingWorkflowInput workflowInput = TrainingWorkflowInput.builder()
 		.setFingerprintsetURI("TODO:fingerprintURI").setFingerprintsetMetadata(fingerprintSet)
 		.setParameters(workflow.getParameters())
-		// pass module's parameters
-		.setModules(workflow.getModules()).build();
+		.setModuleInputs(moduleInputs)
+		.build();
 	// TODO doesn't work, but should
 	// JsonValue jsonInput =
 	// ObjectMapperUtil.getObjectMapper().convertValue(workflowInput,
@@ -243,8 +255,8 @@ public class LocalKnimeJobService implements JobService {
 		wfm = loadWorkflow(wfDir, null);
 		wfm.setInputNodes(inputMap);
 	    } catch (IOException | InvalidSettingsException | CanceledExecutionException
-		    | UnsupportedWorkflowVersionException | LockFailedException e) {
-		failCallback.accept("Loading workflow failed", e);
+		    | UnsupportedWorkflowVersionException | LockFailedException | IllegalStateException e) {
+		failCallback.accept("Loading workflow failed: " + e.getMessage(), e);
 		return;
 	    }
 
@@ -266,7 +278,7 @@ public class LocalKnimeJobService implements JobService {
 
     private static WorkflowManager loadWorkflow(final File workflowDir, File workflowRoot)
 	    throws IOException, InvalidSettingsException, CanceledExecutionException,
-	    UnsupportedWorkflowVersionException, LockFailedException {
+	    UnsupportedWorkflowVersionException, LockFailedException, IllegalStateException {
 	WorkflowLoadHelper loadHelper = new WorkflowLoadHelper() {
 	    /**
 	     * {@inheritDoc}
@@ -294,18 +306,38 @@ public class LocalKnimeJobService implements JobService {
 		|| ((loadRes.getType() == LoadResultEntryType.DataLoadError)
 			&& loadRes.getGUIMustReportDataLoadErrors())) {
 	    // TODO
-	    throw new RuntimeException("Loading workflow failed: " + loadRes.getMessage());
+	    throw new IllegalStateException("Loading workflow failed: " + loadRes.getMessage());
 	}
 	return loadRes.getWorkflowManager();
     }
 
-    private static File unzipToTempDir(final byte[] workflowBlob, UUID blobId, String prefix) throws IOException {
+    private static File unzipToTempDir(final byte[] workflowBlob, UUID blobId, String prefix, String workflowName)
+	    throws IOException {
 	ZipInputStream zipStream = new ZipInputStream(new ByteArrayInputStream(workflowBlob));
 	File destDir = new File(KNIMEConstants.getKNIMETempPath().toFile(), prefix + blobId.toString());
 	FileUtil.unzip(zipStream, destDir, 0);
 	// go to workflow level
-	destDir = new File(destDir, destDir.list()[0]);
+	destDir = new File(destDir, workflowName);
 	return destDir;
+    }
+    
+    private List<WorkflowModuleInput> prepareWorkflowModules(List<WorkflowModule> modules, UUID masterFileId)
+	    throws IOException {
+	List<WorkflowModuleInput> moduleInputs = null;
+	// extract workflow modules to a temp location (if there are any)
+	if (modules != null) {
+	    moduleInputs = new ArrayList<WorkflowModuleInput>();
+	    for (WorkflowModule m : modules) {
+		Blob mFile = persistenceService.getBlobByUUID(m.getFileId());
+		FileMetadata fileMeta = persistenceService.getFaModelByUUID(m.getFileId());
+		//make sure to extract it at the very same location as the 'master' workflow
+		File dir = unzipToTempDir(mFile.getData(), masterFileId, "fa_workflow", fileMeta.getName());
+		moduleInputs.add(WorkflowModuleInput.builder().setModuleParameters(m.getModuleParameters())
+			.setModuleType(ModuleTypeEnum.valueOf(m.getModuleType().toString().toUpperCase()))
+			.setWorkflowURI("/" + dir.getName()).build());
+	    }
+	}
+	return moduleInputs;
     }
 
 }

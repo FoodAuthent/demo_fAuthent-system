@@ -52,9 +52,11 @@ public class FileMetadata  extends FaModel {
   private java.util.UUID faId;
   private TypeEnum type;
   private String name;
+  private String uploadName;
   private String description;
   private String author;
   private LocalDate date;
+  private LocalDate uploadDate;
   private Integer version;
   
   public String getTypeID() {
@@ -68,9 +70,11 @@ public class FileMetadata  extends FaModel {
     faId = immutable(builder.faId);
     type = immutable(builder.type);
     name = immutable(builder.name);
+    uploadName = immutable(builder.uploadName);
     description = immutable(builder.description);
     author = immutable(builder.author);
     date = immutable(builder.date);
+    uploadDate = immutable(builder.uploadDate);
     version = immutable(builder.version);
     
     faId = generateFaIdIfMissing(faId);
@@ -91,7 +95,7 @@ public class FileMetadata  extends FaModel {
             return false;
         }
         FileMetadata ent = (FileMetadata)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(type, ent.type) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version);
+        return Objects.equals(faId, ent.faId) && Objects.equals(type, ent.type) && Objects.equals(name, ent.name) && Objects.equals(uploadName, ent.uploadName) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(uploadDate, ent.uploadDate) && Objects.equals(version, ent.version);
     }
 
 
@@ -107,6 +111,10 @@ public class FileMetadata  extends FaModel {
         return name;
     }
     
+  public String getUploadName() {
+        return uploadName;
+    }
+    
   public String getDescription() {
         return description;
     }
@@ -117,6 +125,10 @@ public class FileMetadata  extends FaModel {
     
   public LocalDate getDate() {
         return date;
+    }
+    
+  public LocalDate getUploadDate() {
+        return uploadDate;
     }
     
   public Integer getVersion() {
@@ -144,9 +156,11 @@ public class FileMetadata  extends FaModel {
         builder.faId = entity.faId;
         builder.type = entity.type;
         builder.name = entity.name;
+        builder.uploadName = entity.uploadName;
         builder.description = entity.description;
         builder.author = entity.author;
         builder.date = entity.date;
+        builder.uploadDate = entity.uploadDate;
         builder.version = entity.version;
  		return builder;
   	}
@@ -161,9 +175,11 @@ public class FileMetadata  extends FaModel {
         private java.util.UUID faId = null;
         private TypeEnum type = null;
         private String name = null;
+        private String uploadName = null;
         private String description = null;
         private String author = null;
         private LocalDate date = null;
+        private LocalDate uploadDate = null;
         private Integer version = null;
 
         public FileMetadataBuilder setFaId(java.util.UUID faId) {
@@ -181,6 +197,11 @@ public class FileMetadata  extends FaModel {
              return this;
         }
 
+        public FileMetadataBuilder setUploadName(String uploadName) {
+             this.uploadName = uploadName;
+             return this;
+        }
+
         public FileMetadataBuilder setDescription(String description) {
              this.description = description;
              return this;
@@ -193,6 +214,11 @@ public class FileMetadata  extends FaModel {
 
         public FileMetadataBuilder setDate(LocalDate date) {
              this.date = date;
+             return this;
+        }
+
+        public FileMetadataBuilder setUploadDate(LocalDate uploadDate) {
+             this.uploadDate = uploadDate;
              return this;
         }
 

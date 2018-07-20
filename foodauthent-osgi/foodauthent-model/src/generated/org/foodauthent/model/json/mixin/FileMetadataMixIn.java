@@ -55,6 +55,9 @@ public interface FileMetadataMixIn {
     @JsonProperty("name")
     public String getName();
     
+    @JsonProperty("uploadName")
+    public String getUploadName();
+    
     @JsonProperty("description")
     public String getDescription();
     
@@ -63,6 +66,9 @@ public interface FileMetadataMixIn {
     
     @JsonProperty("date")
     public LocalDate getDate();
+    
+    @JsonProperty("uploadDate")
+    public LocalDate getUploadDate();
     
     @JsonProperty("version")
     public Integer getVersion();
@@ -95,6 +101,9 @@ public interface FileMetadataMixIn {
         @JsonProperty("name")
         public FileMetadataMixInBuilder setName(final String name);
         
+        @JsonProperty("uploadName")
+        public FileMetadataMixInBuilder setUploadName(final String uploadName);
+        
         @JsonProperty("description")
         public FileMetadataMixInBuilder setDescription(final String description);
         
@@ -103,6 +112,9 @@ public interface FileMetadataMixIn {
         
         @JsonProperty("date")
         public FileMetadataMixInBuilder setDate(final LocalDate date);
+        
+        @JsonProperty("uploadDate")
+        public FileMetadataMixInBuilder setUploadDate(final LocalDate uploadDate);
         
         @JsonProperty("version")
         public FileMetadataMixInBuilder setVersion(final Integer version);

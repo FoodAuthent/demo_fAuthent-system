@@ -4,11 +4,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import org.foodauthent.api.FileService;
 import org.foodauthent.internal.api.persistence.Blob;
-import org.foodauthent.internal.api.persistence.DataMetaData;
 import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FileMetadata;
@@ -51,11 +51,16 @@ public class FileServiceImpl implements FileService {
 	// id - otherwise refuse the request
 	// TODO it should be possible to store multiple files per UUID, e.g. multiple
 	// versions or a data set
+	
+	//update file metadata (metadata must exist! - TODO otherwise throw appropriate exception)
+	FileMetadata fileMeta = persistenceService.getFaModelByUUID(fileId);
+	fileMeta = FileMetadata.builder(fileMeta).setUploadName(upfileDetail.getFileName()).setUploadDate(LocalDate.now()).build();
+	persistenceService.replace(fileMeta);
 
 	try {
 	    // new uuid for the blob
 	    persistenceService
-		    .save(new Blob(fileId, new DataMetaData(upfileDetail.getFileName()), toByteArray(upfile)));
+		    .save(new Blob(fileId, toByteArray(upfile)));
 	    return fileId;
 	} catch (IOException e) {
 	    // TODO throw appropriate exception

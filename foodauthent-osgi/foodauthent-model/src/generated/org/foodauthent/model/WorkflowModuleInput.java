@@ -16,15 +16,15 @@ import org.foodauthent.model.WorkflowParameter;
 
 
 /**
- * A workflow module used by other workflows (i.e. like a sub-workflow).
+ * Input for a workflow module.
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class WorkflowModule  extends FaModel {
+public class WorkflowModuleInput  extends FaModel {
 
   /**
-   * The type of the module. IMPORTANT: This property determines the required workflow input and output.
+   * The type of the module.
    */
   public enum ModuleTypeEnum {
     READ("read"),
@@ -53,12 +53,12 @@ public class WorkflowModule  extends FaModel {
   }
 
 
-  private java.util.UUID fileId;
+  private String workflowURI;
   private ModuleTypeEnum moduleType;
   private java.util.List<WorkflowParameter> moduleParameters;
   
   public String getTypeID() {
-    return "WorkflowModule";
+    return "WorkflowModuleInput";
   }
   
 
@@ -67,9 +67,9 @@ public class WorkflowModule  extends FaModel {
   	return null;
   }
   
-  private WorkflowModule(WorkflowModuleBuilder builder) {
+  private WorkflowModuleInput(WorkflowModuleInputBuilder builder) {
     
-    fileId = immutable(builder.fileId);
+    workflowURI = immutable(builder.workflowURI);
     moduleType = immutable(builder.moduleType);
     moduleParameters = immutable(builder.moduleParameters);
     
@@ -89,13 +89,13 @@ public class WorkflowModule  extends FaModel {
         if (getClass() != o.getClass()) {
             return false;
         }
-        WorkflowModule ent = (WorkflowModule)o;
-        return Objects.equals(fileId, ent.fileId) && Objects.equals(moduleType, ent.moduleType) && Objects.equals(moduleParameters, ent.moduleParameters);
+        WorkflowModuleInput ent = (WorkflowModuleInput)o;
+        return Objects.equals(workflowURI, ent.workflowURI) && Objects.equals(moduleType, ent.moduleType) && Objects.equals(moduleParameters, ent.moduleParameters);
     }
 
 
-  public java.util.UUID getFileId() {
-        return fileId;
+  public String getWorkflowURI() {
+        return workflowURI;
     }
     
   public ModuleTypeEnum getModuleType() {
@@ -110,8 +110,8 @@ public class WorkflowModule  extends FaModel {
  	/**
   	 * @return a newly created builder
   	 */
-  	public static WorkflowModuleBuilder builder() {
-  		return new WorkflowModuleBuilder();
+  	public static WorkflowModuleInputBuilder builder() {
+  		return new WorkflowModuleInputBuilder();
   	}
   	
   	/**
@@ -122,43 +122,43 @@ public class WorkflowModule  extends FaModel {
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
 	 */
-	public static WorkflowModuleBuilder builder(WorkflowModule entity) {
-		WorkflowModuleBuilder builder = builder();
-        builder.fileId = entity.fileId;
+	public static WorkflowModuleInputBuilder builder(WorkflowModuleInput entity) {
+		WorkflowModuleInputBuilder builder = builder();
+        builder.workflowURI = entity.workflowURI;
         builder.moduleType = entity.moduleType;
         builder.moduleParameters = entity.moduleParameters;
  		return builder;
   	}
   	
   
-    public static class WorkflowModuleBuilder {
+    public static class WorkflowModuleInputBuilder {
     
-        private WorkflowModuleBuilder(){
+        private WorkflowModuleInputBuilder(){
             
         }
     
-        private java.util.UUID fileId = null;
+        private String workflowURI = null;
         private ModuleTypeEnum moduleType = null;
         private java.util.List<WorkflowParameter> moduleParameters = new java.util.ArrayList<>();
 
-        public WorkflowModuleBuilder setFileId(java.util.UUID fileId) {
-             this.fileId = fileId;
+        public WorkflowModuleInputBuilder setWorkflowURI(String workflowURI) {
+             this.workflowURI = workflowURI;
              return this;
         }
 
-        public WorkflowModuleBuilder setModuleType(ModuleTypeEnum moduleType) {
+        public WorkflowModuleInputBuilder setModuleType(ModuleTypeEnum moduleType) {
              this.moduleType = moduleType;
              return this;
         }
 
-        public WorkflowModuleBuilder setModuleParameters(java.util.List<WorkflowParameter> moduleParameters) {
+        public WorkflowModuleInputBuilder setModuleParameters(java.util.List<WorkflowParameter> moduleParameters) {
              this.moduleParameters = moduleParameters;
              return this;
         }
 
         
-        public WorkflowModule build() {
-            return new WorkflowModule(this);
+        public WorkflowModuleInput build() {
+            return new WorkflowModuleInput(this);
         }
     
     }

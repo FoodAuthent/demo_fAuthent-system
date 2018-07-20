@@ -13,7 +13,7 @@ import java.util.UUID;
 
 
 import org.foodauthent.model.FingerprintSet;
-import org.foodauthent.model.WorkflowModule;
+import org.foodauthent.model.WorkflowModuleInput;
 import org.foodauthent.model.WorkflowParameter;
 
 
@@ -29,7 +29,7 @@ public class TrainingWorkflowInput  extends FaModel {
   private java.util.List<WorkflowParameter> parameters;
   private FingerprintSet fingerprintsetMetadata;
   private String fingerprintsetURI;
-  private java.util.List<WorkflowModule> modules;
+  private java.util.List<WorkflowModuleInput> moduleInputs;
   
   public String getTypeID() {
     return "TrainingWorkflowInput";
@@ -46,7 +46,7 @@ public class TrainingWorkflowInput  extends FaModel {
     parameters = immutable(builder.parameters);
     fingerprintsetMetadata = immutable(builder.fingerprintsetMetadata);
     fingerprintsetURI = immutable(builder.fingerprintsetURI);
-    modules = immutable(builder.modules);
+    moduleInputs = immutable(builder.moduleInputs);
     
   }
   
@@ -65,7 +65,7 @@ public class TrainingWorkflowInput  extends FaModel {
             return false;
         }
         TrainingWorkflowInput ent = (TrainingWorkflowInput)o;
-        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprintsetMetadata, ent.fingerprintsetMetadata) && Objects.equals(fingerprintsetURI, ent.fingerprintsetURI) && Objects.equals(modules, ent.modules);
+        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprintsetMetadata, ent.fingerprintsetMetadata) && Objects.equals(fingerprintsetURI, ent.fingerprintsetURI) && Objects.equals(moduleInputs, ent.moduleInputs);
     }
 
 
@@ -81,8 +81,8 @@ public class TrainingWorkflowInput  extends FaModel {
         return fingerprintsetURI;
     }
     
-  public java.util.List<WorkflowModule> getModules() {
-        return modules;
+  public java.util.List<WorkflowModuleInput> getModuleInputs() {
+        return moduleInputs;
     }
     
   
@@ -106,7 +106,7 @@ public class TrainingWorkflowInput  extends FaModel {
         builder.parameters = entity.parameters;
         builder.fingerprintsetMetadata = entity.fingerprintsetMetadata;
         builder.fingerprintsetURI = entity.fingerprintsetURI;
-        builder.modules = entity.modules;
+        builder.moduleInputs = entity.moduleInputs;
  		return builder;
   	}
   	
@@ -120,7 +120,7 @@ public class TrainingWorkflowInput  extends FaModel {
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
         private FingerprintSet fingerprintsetMetadata = null;
         private String fingerprintsetURI = null;
-        private java.util.List<WorkflowModule> modules = new java.util.ArrayList<>();
+        private java.util.List<WorkflowModuleInput> moduleInputs = new java.util.ArrayList<>();
 
         public TrainingWorkflowInputBuilder setParameters(java.util.List<WorkflowParameter> parameters) {
              this.parameters = parameters;
@@ -137,8 +137,8 @@ public class TrainingWorkflowInput  extends FaModel {
              return this;
         }
 
-        public TrainingWorkflowInputBuilder setModules(java.util.List<WorkflowModule> modules) {
-             this.modules = modules;
+        public TrainingWorkflowInputBuilder setModuleInputs(java.util.List<WorkflowModuleInput> moduleInputs) {
+             this.moduleInputs = moduleInputs;
              return this;
         }
 

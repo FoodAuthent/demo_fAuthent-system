@@ -11,23 +11,15 @@ import org.foodauthent.model.PersistenceIdProvider;
  */
 public class Blob implements PersistenceIdProvider {
 
-    private final DataMetaData metadata;
-
     private byte[] data;
 
     private long persistenceId;
 
     private UUID faId;
 
-    public Blob(UUID faId, final DataMetaData metadata) {
-	this(faId, metadata, null);
-	this.faId = faId;
-    }
-
-    public Blob(UUID faId, final DataMetaData metadata, final byte[] data) {
+    public Blob(UUID faId, final byte[] data) {
 	super();
 	this.faId = faId;
-	this.metadata = metadata;
 	this.data = data;
     }
 
@@ -37,10 +29,6 @@ public class Blob implements PersistenceIdProvider {
 
     public byte[] getData() {
 	return data;
-    }
-
-    public DataMetaData getMetadata() {
-	return metadata;
     }
 
     @Override
