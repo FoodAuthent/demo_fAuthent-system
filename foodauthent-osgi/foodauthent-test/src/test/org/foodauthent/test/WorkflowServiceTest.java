@@ -59,10 +59,10 @@ public class WorkflowServiceTest extends AbstractITTest {
 
 	// upload workflow metadata
 	//TODO make workflow fail when some parameters are not provided (and test that they fail)
-	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("param1").setRequired(false)
-		.setValue("paramValue1").setType(TypeEnum.NUMBER).build();
-	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("param2").setRequired(true).setValue("paramValue2")
-		.setType(TypeEnum.STRING).build();
+	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("pred_param1").setRequired(false)
+		.setValue("pred_paramValue1").setType(TypeEnum.NUMBER).build();
+	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("pred_param2").setRequired(true)
+		.setValue("pred_paramValue2").setType(TypeEnum.STRING).build();
 	Workflow wf = Workflow.builder().setName("my_prediction_workflow").setDescription("desc").setParameters(Arrays.asList(wfp1, wfp2))
 		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW)
 		.setRepresentation(RepresentationEnum.KNIME)
@@ -97,7 +97,8 @@ public class WorkflowServiceTest extends AbstractITTest {
 	/* retrieve prediction result */
 	predictionJob = wt.path("workflow/prediction/job/" + predictionJob.getFaId())
 		.request(MediaType.APPLICATION_JSON).get(PredictionJob.class);
-	assertEquals(StatusEnum.SUCCESS, predictionJob.getStatus());
+	assertEquals("Execution failed: " + predictionJob.getStatusMessage(), StatusEnum.SUCCESS,
+		predictionJob.getStatus());
 	Prediction prediction = wt.path("prediction/" + predictionJob.getPredictionId())
 		.request(MediaType.APPLICATION_JSON).get(Prediction.class);
 	assertEquals(prediction.getConfidenceMap().size(), 1);
@@ -125,10 +126,10 @@ public class WorkflowServiceTest extends AbstractITTest {
 	wt.path("file/" + fileId + "/data").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
 
 	// upload workflow metadata
-	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("param1").setRequired(false)
-		.setValue("paramValue1").setType(TypeEnum.NUMBER).build();
-	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("param2").setRequired(true).setValue("paramValue2")
-		.setType(TypeEnum.STRING).build();
+	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("train_param1").setRequired(false)
+		.setValue("train_paramValue1").setType(TypeEnum.NUMBER).build();
+	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("train_param2").setRequired(true)
+		.setValue("train_paramValue2")	.setType(TypeEnum.STRING).build();
 	Workflow wf = Workflow.builder().setName("my training workflow").setDescription("desc")
 		.setParameters(Arrays.asList(wfp1, wfp2))
 		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW)
@@ -156,7 +157,8 @@ public class WorkflowServiceTest extends AbstractITTest {
 	/* retrieve training result */
 	trainingJob = wt.path("workflow/training/job/" + trainingJob.getFaId()).request(MediaType.APPLICATION_JSON)
 		.get(TrainingJob.class);
-	assertEquals(org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS, trainingJob.getStatus());
+	assertEquals("Execution failed: " + trainingJob.getStatusMessage(),
+		org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS, trainingJob.getStatus());
 	Model model = wt.path("model/" + trainingJob.getModelId()).request(MediaType.APPLICATION_JSON).get(Model.class);
 	assertEquals(model.getType(), org.foodauthent.model.Model.TypeEnum.KNIME_WORKFLOW);
     }
