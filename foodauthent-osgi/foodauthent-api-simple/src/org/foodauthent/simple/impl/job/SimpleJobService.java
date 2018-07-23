@@ -1,17 +1,18 @@
-package org.foodauthent.internal.impl.job;
+package org.foodauthent.simple.impl.job;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 import org.foodauthent.internal.api.job.JobService;
 import org.foodauthent.internal.api.persistence.PersistenceService;
-import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJob.StatusEnum;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,14 +23,16 @@ import org.slf4j.LoggerFactory;
  * @author Martin Horn, University of Konstanz
  *
  */
+@Component(service=JobService.class)
 public class SimpleJobService implements JobService {
 
     private static final Logger logger = LoggerFactory.getLogger(SimpleJobService.class);
 
-    private final PersistenceService persistenceService;
-
-    public SimpleJobService() {
-	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
+    private static PersistenceService persistenceService;
+    
+    @Reference
+    void bindPersistenceService(PersistenceService persistenceService) {
+    	SimpleJobService.persistenceService = persistenceService;
     }
 
     @Override

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="40">
+<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="44">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.2.2.v20180210-1608"/>
@@ -10,21 +10,147 @@
 <repository location="http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.knime.features.base.feature.group" version="3.6.0.v201807100939"/>
-<unit id="org.knime.features.base.source.feature.group" version="3.6.0.v201807100939"/>
-<repository location="http://update.knime.org/analytics-platform/nightly"/>
+<unit id="com.fasterxml.jackson.core.jackson-annotations" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.core.jackson-annotations.source" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.core.jackson-core" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.core.jackson-core.source" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.core.jackson-databind" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.core.jackson-databind.source" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.dataformat.jackson-dataformat-cbor" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.dataformat.jackson-dataformat-cbor.source" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.dataformat.jackson-dataformat-smile" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.dataformat.jackson-dataformat-smile.source" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.dataformat.jackson-dataformat-yaml" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.dataformat.jackson-dataformat-yaml.source" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.datatype.jackson-datatype-guava" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.datatype.jackson-datatype-guava.source" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.datatype.jackson-datatype-jdk8" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.datatype.jackson-datatype-jdk8.source" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.datatype.jackson-datatype-jsr310" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.datatype.jackson-datatype-jsr310.source" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.feature.feature.group" version="2.8.10.20180712135744"/>
+<unit id="com.fasterxml.jackson.feature.source.feature.group" version="2.8.10.20180712135744"/>
+<unit id="com.fasterxml.jackson.jaxrs.jackson-jaxrs-base" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.jaxrs.jackson-jaxrs-base.source" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider.source" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.module.jackson-module-jaxb-annotations" version="2.8.10"/>
+<unit id="com.fasterxml.jackson.module.jackson-module-jaxb-annotations.source" version="2.8.10"/>
+<unit id="com.google.guava" version="16.0.0"/>
+<unit id="com.google.guava.source" version="16.0.0"/>
+<unit id="com.thoughtworks.paranamer" version="2.8.0"/>
+<unit id="com.thoughtworks.paranamer.source" version="2.8.0"/>
+<unit id="commons-logging" version="1.1.1"/>
+<unit id="commons-logging.source" version="1.1.1"/>
+<unit id="javassist" version="3.22.0.CR2"/>
+<unit id="javassist.source" version="3.22.0.CR2"/>
+<unit id="javax.annotation-api" version="1.2.0"/>
+<unit id="javax.annotation-api.source" version="1.2.0"/>
+<unit id="javax.inject" version="1.0.0"/>
+<unit id="javax.inject.source" version="1.0.0"/>
+<unit id="javax.validation.api" version="1.1.0.Final"/>
+<unit id="javax.validation.api.source" version="1.1.0.Final"/>
+<unit id="javax.ws.rs-api" version="2.1.0"/>
+<unit id="javax.ws.rs-api.source" version="2.1.0"/>
+<unit id="jcl.over.slf4j" version="1.7.25"/>
+<unit id="jcl.over.slf4j.source" version="1.7.25"/>
+<unit id="jul.to.slf4j" version="1.7.25"/>
+<unit id="jul.to.slf4j.source" version="1.7.25"/>
+<unit id="log4j" version="1.2.17"/>
+<unit id="log4j.over.slf4j" version="1.7.25"/>
+<unit id="log4j.over.slf4j.source" version="1.7.25"/>
+<unit id="log4j.source" version="1.2.17"/>
+<unit id="org.apache.commons.codec" version="1.9.0"/>
+<unit id="org.apache.commons.codec.source" version="1.9.0"/>
+<unit id="org.apache.commons.logging" version="1.2.0"/>
+<unit id="org.apache.commons.logging.source" version="1.2.0"/>
+<unit id="org.apache.httpcomponents.httpclient" version="4.5.0"/>
+<unit id="org.apache.httpcomponents.httpclient.source" version="4.5.0"/>
+<unit id="org.apache.httpcomponents.httpcore" version="4.4.1"/>
+<unit id="org.apache.httpcomponents.httpcore.source" version="4.4.1"/>
+<unit id="org.elasticsearch.client.feature.feature.group" version="6.3.1.20180712135744"/>
+<unit id="org.elasticsearch.client.rest" version="6.3.1"/>
+<unit id="org.glassfish.hk2.api" version="2.5.0.b42"/>
+<unit id="org.glassfish.hk2.api.source" version="2.5.0.b42"/>
+<unit id="org.glassfish.hk2.external.aopalliance-repackaged" version="2.5.0.b42"/>
+<unit id="org.glassfish.hk2.external.aopalliance-repackaged.source" version="2.5.0.b42"/>
+<unit id="org.glassfish.hk2.external.javax.inject" version="2.5.0.b42"/>
+<unit id="org.glassfish.hk2.external.javax.inject.source" version="2.5.0.b42"/>
+<unit id="org.glassfish.hk2.locator" version="2.5.0.b42"/>
+<unit id="org.glassfish.hk2.locator.source" version="2.5.0.b42"/>
+<unit id="org.glassfish.hk2.osgi-resource-locator" version="1.0.1"/>
+<unit id="org.glassfish.hk2.osgi-resource-locator.source" version="1.0.1"/>
+<unit id="org.glassfish.hk2.utils" version="2.5.0.b42"/>
+<unit id="org.glassfish.hk2.utils.source" version="2.5.0.b42"/>
+<unit id="org.glassfish.jersey.connectors.jersey-apache-connector" version="2.27.0"/>
+<unit id="org.glassfish.jersey.connectors.jersey-apache-connector.source" version="2.27.0"/>
+<unit id="org.glassfish.jersey.containers.jersey-container-servlet" version="2.27.0"/>
+<unit id="org.glassfish.jersey.containers.jersey-container-servlet-core" version="2.27.0"/>
+<unit id="org.glassfish.jersey.containers.jersey-container-servlet-core.source" version="2.27.0"/>
+<unit id="org.glassfish.jersey.containers.jersey-container-servlet.source" version="2.27.0"/>
+<unit id="org.glassfish.jersey.core.jersey-client" version="2.27.0"/>
+<unit id="org.glassfish.jersey.core.jersey-client.source" version="2.27.0"/>
+<unit id="org.glassfish.jersey.core.jersey-common" version="2.27.0"/>
+<unit id="org.glassfish.jersey.core.jersey-common.source" version="2.27.0"/>
+<unit id="org.glassfish.jersey.core.jersey-server" version="2.27.0"/>
+<unit id="org.glassfish.jersey.core.jersey-server.source" version="2.27.0"/>
+<unit id="org.glassfish.jersey.ext.jersey-entity-filtering" version="2.27.0"/>
+<unit id="org.glassfish.jersey.ext.jersey-entity-filtering.source" version="2.27.0"/>
+<unit id="org.glassfish.jersey.feature.feature.group" version="2.27.0.20180712135744"/>
+<unit id="org.glassfish.jersey.feature.source.feature.group" version="2.27.0.20180712135744"/>
+<unit id="org.glassfish.jersey.inject.jersey-hk2" version="2.27.0"/>
+<unit id="org.glassfish.jersey.inject.jersey-hk2.source" version="2.27.0"/>
+<unit id="org.glassfish.jersey.media.jersey-media-jaxb" version="2.27.0"/>
+<unit id="org.glassfish.jersey.media.jersey-media-jaxb.source" version="2.27.0"/>
+<unit id="org.glassfish.jersey.media.jersey-media-json-jackson" version="2.27.0"/>
+<unit id="org.glassfish.jersey.media.jersey-media-json-jackson.source" version="2.27.0"/>
+<unit id="org.glassfish.jersey.media.jersey-media-multipart" version="2.27.0"/>
+<unit id="org.glassfish.jersey.media.jersey-media-multipart.source" version="2.27.0"/>
+<unit id="org.json4s.ast_2.12" version="3.5.4"/>
+<unit id="org.json4s.ast_2.12.source" version="3.5.4"/>
+<unit id="org.json4s.core_2.12" version="3.5.4"/>
+<unit id="org.json4s.core_2.12.source" version="3.5.4"/>
+<unit id="org.json4s.jackson_2.12" version="3.5.4"/>
+<unit id="org.json4s.jackson_2.12.source" version="3.5.4"/>
+<unit id="org.json4s.scalap_2.12" version="3.5.4"/>
+<unit id="org.json4s.scalap_2.12.source" version="3.5.4"/>
+<unit id="org.jvnet.mimepull" version="1.9.6"/>
+<unit id="org.jvnet.mimepull.source" version="1.9.6"/>
+<unit id="org.scala-lang.feature.feature.group" version="2.12.3.20180712135744"/>
+<unit id="org.scala-lang.feature.source.feature.group" version="2.12.3.20180712135744"/>
+<unit id="org.scala-lang.modules.scala-xml" version="1.0.6"/>
+<unit id="org.scala-lang.modules.scala-xml.source" version="1.0.6"/>
+<unit id="org.scala-lang.scala-library" version="2.12.6.v20180426-183816-VFINAL-d7ae7a8"/>
+<unit id="org.scala-lang.scala-library.source" version="2.12.6.v20180426-183816-VFINAL-d7ae7a8"/>
+<unit id="org.slf4j.feature.feature.group" version="1.7.25.20180712135744"/>
+<unit id="org.slf4j.feature.source.feature.group" version="1.7.25.20180712135744"/>
+<unit id="org.slf4j.nlog4j" version="1.2.25"/>
+<unit id="org.slf4j.osgi-over-slf4j" version="1.7.25"/>
+<unit id="org.slf4j.osgi-over-slf4j.source" version="1.7.25"/>
+<unit id="org.yaml.snakeyaml" version="1.17.0"/>
+<unit id="org.yaml.snakeyaml.source" version="1.17.0"/>
+<unit id="slf4j.api" version="1.7.25"/>
+<unit id="slf4j.api.source" version="1.7.25"/>
+<unit id="slf4j.jcl" version="1.7.25"/>
+<unit id="slf4j.jcl.source" version="1.7.25"/>
+<unit id="slf4j.jdk14" version="1.7.25"/>
+<unit id="slf4j.jdk14.source" version="1.7.25"/>
+<unit id="slf4j.log4j12" version="1.7.25"/>
+<unit id="slf4j.log4j12.source" version="1.7.25"/>
+<unit id="slf4j.nop" version="1.7.25"/>
+<unit id="slf4j.nop.source" version="1.7.25"/>
+<unit id="slf4j.simple" version="1.7.25"/>
+<unit id="slf4j.simple.source" version="1.7.25"/>
+<repository location="http://repository.foodauthent.net/p2/p2-maven-1.0.0-ES/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="com.fasterxml.jackson.feature.feature.group" version="2.8.10.20180712132751"/>
-<unit id="com.fasterxml.jackson.feature.source.feature.group" version="2.8.10.20180712132751"/>
-<unit id="org.elasticsearch.client.feature.feature.group" version="6.3.1.20180712132751"/>
-<unit id="org.glassfish.jersey.feature.feature.group" version="2.27.0.20180712132751"/>
-<unit id="org.glassfish.jersey.feature.source.feature.group" version="2.27.0.20180712132751"/>
-<unit id="org.scala-lang.feature.feature.group" version="2.12.3.20180712132751"/>
-<unit id="org.scala-lang.feature.source.feature.group" version="2.12.3.20180712132751"/>
-<unit id="org.slf4j.feature.feature.group" version="1.7.25.20180712132751"/>
-<unit id="org.slf4j.feature.source.feature.group" version="1.7.25.20180712132751"/>
-<repository location="http://repository.foodauthent.net/p2/p2-maven-1.0.0-ES/"/>
+<unit id="org.knime.features.base.feature.group" version="3.6.0.v201807200923"/>
+<unit id="org.knime.features.base.source.feature.group" version="3.6.0.v201807200923"/>
+<unit id="org.knime.features.json.feature.group" version="3.6.0.v201807061527"/>
+<unit id="org.knime.features.json.source.feature.group" version="3.6.0.v201807061527"/>
+<unit id="org.knime.features.python2.feature.group" version="3.6.0.v201807061638"/>
+<unit id="org.knime.features.python2.source.feature.group" version="3.6.0.v201807061638"/>
+<repository location="http://update.knime.org/analytics-platform/nightly"/>
 </location>
 </locations>
 </target>

@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: FoodAuthent Knime API Services
-Bundle-SymbolicName: org.foodauthent.api.knime
+Bundle-Name: Simple API Services
+Bundle-SymbolicName: org.foodauthent.api.simple
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Automatic-Module-Name: org.foodauthent.api.knime
+Automatic-Module-Name: org.foodauthent.api.simple
 Import-Package: org.foodauthent.api.internal.exeption,
  org.foodauthent.internal.api.job,
  org.foodauthent.internal.api.persistence,
@@ -13,8 +13,9 @@ Import-Package: org.foodauthent.api.internal.exeption,
  org.osgi.service.component.annotations;version="[1.2.0,2.0.0)";resolution:=optional,
  org.slf4j;version="[1.7.10,2.0.0)"
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.knime.core;bundle-version="3.5.4"
-Export-Package: org.foodauthent.internal.impl.job.knime
-Service-Component: OSGI-INF/org.foodauthent.internal.impl.job.knime.LocalKnimeJobService.xml
+Export-Package: org.foodauthent.simple.impl.job
 Require-Capability: osgi.extender;
  filter:="(&(osgi.extender=osgi.component)(version>=1.2)(!(version>=2.0)))"
+Service-Component: OSGI-INF/org.foodauthent.simple.impl.job.SimpleJobService.xml
+
+

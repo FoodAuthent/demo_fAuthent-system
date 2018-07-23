@@ -1,16 +1,19 @@
-package org.foodauthent.internal.api.persistence;
+package org.foodauthent.internal.impl.persistence;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
 import org.foodauthent.api.internal.exeption.NoSuchIDException;
+import org.foodauthent.internal.api.persistence.UUIDPersistenceIDMapper;
+import org.osgi.service.component.annotations.Component;
 
 /**
  *
  * @author Alexander Kerner, Lablicate GmbH
  *
  */
+@Component(service=UUIDPersistenceIDMapper.class)
 public class SimpleUUIDEntityMapper implements UUIDPersistenceIDMapper {
 
     private final Map<Long, UUID> persistenceId2Uuid;

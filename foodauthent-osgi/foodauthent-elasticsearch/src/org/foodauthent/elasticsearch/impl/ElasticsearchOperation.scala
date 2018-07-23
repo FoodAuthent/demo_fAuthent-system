@@ -34,6 +34,7 @@ import org.slf4j.LoggerFactory
 import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResult
 import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResultItem
 import org.osgi.service.component.annotations.Reference
+import scala.reflect.ManifestFactory
 
 /**
  * Commonly used operations for communicating with Elasticsearch
@@ -88,6 +89,21 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
       }
     }
     false
+  }
+
+  
+   /**
+   * get model entity from Elasticsearch
+   *
+   * @tparam T entity type
+   * @param id
+   * @param target implicit Elasticsearch target with index name and type
+   * @param value model entity
+   * @return optional entity, defined when found
+   */
+  def get[T](id: String, clazz: Class[T])(implicit target: Target): Option[T] = {
+    val manifest = ManifestFactory.classType[T](clazz)
+    get[T](id)(target, manifest)
   }
 
   /**

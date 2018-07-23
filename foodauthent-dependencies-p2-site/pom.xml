@@ -51,7 +51,7 @@
 						<artifact>
 							<groupId>org.foodauthent.p2</groupId>
 							<artifactId>foodauthent-dependencies</artifactId>
-							<version>1.0.0.v20180711</version>
+							<version>1.0.0.v20180723</version>
 						</artifact>
 					</target>
 					<environments>

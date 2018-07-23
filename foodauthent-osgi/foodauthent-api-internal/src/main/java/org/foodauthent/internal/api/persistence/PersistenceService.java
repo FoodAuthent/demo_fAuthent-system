@@ -30,7 +30,7 @@ public interface PersistenceService {
      * @throws EntityExistsException
      *             if an entity with the same fa-id already exists
      */
-    long save(FaModel entity) throws EntityExistsException;
+    <T extends FaModel> long save(T entity) throws EntityExistsException;
 
     /**
      * Replaces an existing entity with the passed one.
@@ -41,7 +41,7 @@ public interface PersistenceService {
      * @throws NoSuchElementException
      *             if there is no entity with the same fa-id to replace
      */
-    long replace(FaModel entity) throws NoSuchElementException;
+    <T extends FaModel> long replace(T entity) throws NoSuchElementException;
 
     long save(Blob blob) throws EntityExistsException;
 
@@ -54,12 +54,14 @@ public interface PersistenceService {
      * @throws NoSuchElementException
      *             if there is no product matching given GTIN
      */
-    Product findProductByGtin(String gtin);
+    <T extends Product> T findProductByGtin(String gtin);
 
-    <T extends FaModel> T getFaModelByUUID(UUID uuid);
+    <T extends FaModel> T getFaModelByUUID(UUID uuid, Class<T> modelType);
 
     <T extends FaModel> List<T> findByKeywords(Collection<String> keywords, Class<T> modelType);
 
     Blob getBlobByUUID(UUID uuid);
+    
+    int getPriority();
 
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.foodauthent.internal.impl.job.knime.LocalKnimeJobService">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.foodauthent.simple.impl.job.SimpleJobService">
    <service>
       <provide interface="org.foodauthent.internal.api.job.JobService"/>
    </service>
    <reference bind="bindPersistenceService" interface="org.foodauthent.internal.api.persistence.PersistenceService" name="PersistenceService"/>
-   <implementation class="org.foodauthent.internal.impl.job.knime.LocalKnimeJobService"/>
+   <implementation class="org.foodauthent.simple.impl.job.SimpleJobService"/>
 </scr:component>

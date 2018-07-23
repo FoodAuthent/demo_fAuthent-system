@@ -3,6 +3,7 @@ package org.foodauthent.impl.workflow;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -12,7 +13,6 @@ import org.foodauthent.internal.api.job.JobService;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.DataMetaData;
 import org.foodauthent.internal.api.persistence.PersistenceService;
-import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
@@ -29,37 +29,39 @@ import org.slf4j.LoggerFactory;
  * @author Alexander Kerner, Lablicate GmbH
  *
  */
-@Component(service=WorkflowService.class)
+@Component(service = WorkflowService.class)
 public class WorkflowServiceImpl implements WorkflowService {
 
     @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(WorkflowServiceImpl.class);
 
-    private final PersistenceService persistenceService;
+    private static PersistenceService persistenceService;
 
-    private JobService jobService;
-
-    public WorkflowServiceImpl() {
-	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
-    }
+    private static JobService jobService;
 
     @Reference
     void bindJobService(JobService jobService) {
-        this.jobService = jobService;
+	WorkflowServiceImpl.jobService = jobService;
+    }
+
+    @Reference
+    void bindPersistenceService(PersistenceService persistenceService) {
+	WorkflowServiceImpl.persistenceService = persistenceService;
     }
 
     @Override
     public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId) {
-	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId);
-	final FingerprintSet fingerprint = persistenceService.getFaModelByUUID(fingerprintSetId);
+	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId, Workflow.class);
+	final FingerprintSet fingerprint = persistenceService.getFaModelByUUID(fingerprintSetId, FingerprintSet.class);
 	final PredictionJob job = jobService.createNewPredictionJob(workflow, fingerprint);
 	return job;
     }
 
     @Override
     public TrainingJob createTrainingJob(final UUID workflowId, final UUID fingerprintSetId) {
-	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId);
-	final FingerprintSet fingerprintSet = persistenceService.getFaModelByUUID(fingerprintSetId);
+	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId, Workflow.class);
+	final FingerprintSet fingerprintSet = persistenceService.getFaModelByUUID(fingerprintSetId,
+		FingerprintSet.class);
 	final TrainingJob job = jobService.createNewTrainingJob(workflow, fingerprintSet);
 	return job;
     }
@@ -78,22 +80,23 @@ public class WorkflowServiceImpl implements WorkflowService {
 
     @Override
     public PredictionJob getPredictionJob(final UUID jobId) {
-	return persistenceService.getFaModelByUUID(jobId);
+	return persistenceService.getFaModelByUUID(jobId, PredictionJob.class);
     }
 
     @Override
     public List<Prediction> getPredictionResult(final UUID predictionId) {
-	return persistenceService.getFaModelByUUID(predictionId);
+	// TODO: must be refactored to own PredictionList type
+	return Collections.emptyList(); // persistenceService.getFaModelByUUID(predictionId);
     }
 
     @Override
     public TrainingJob getTrainingJob(final UUID jobId) {
-	return persistenceService.getFaModelByUUID(jobId);
+	return persistenceService.getFaModelByUUID(jobId, TrainingJob.class);
     }
 
     @Override
     public Workflow getWorkflowById(final UUID workflowId) {
-	return persistenceService.getFaModelByUUID(workflowId);
+	return persistenceService.getFaModelByUUID(workflowId, Workflow.class);
     }
 
     @Override
@@ -101,7 +104,7 @@ public class WorkflowServiceImpl implements WorkflowService {
 	persistenceService.save(workflow);
 	return workflow.getFaId();
     }
-    
+
     @Override
     public UUID saveWorkflowFile(UUID workflowId, InputStream upfile, FormDataContentDisposition upfileDetail) {
 	// TODO check whether there is already a workflow-model entry for the workflow
@@ -116,7 +119,7 @@ public class WorkflowServiceImpl implements WorkflowService {
 		    .save(new Blob(blobId, new DataMetaData(upfileDetail.getFileName()), toByteArray(upfile)));
 
 	    // get workflow metadata, set blobid and override it
-	    Workflow wf = persistenceService.getFaModelByUUID(workflowId);
+	    Workflow wf = persistenceService.getFaModelByUUID(workflowId, Workflow.class);
 	    Workflow newWf = Workflow.builder(wf).setWorkflowFileId(blobId).build();
 	    persistenceService.replace(newWf);
 	} catch (IOException e) {
