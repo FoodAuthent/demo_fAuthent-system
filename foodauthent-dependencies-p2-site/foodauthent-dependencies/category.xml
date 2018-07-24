@@ -54,6 +54,12 @@
    <feature url="features/org.scala-lang.feature.source_2.12.3.20180711213428.jar" id="org.scala-lang.feature.source" version="0.0.0">
       <category name="org.scala-lang"/>
    </feature>
+   <feature url="features/org.apache.httpcomponents_4.4.10.20180724123622.jar" id="org.apache.httpcomponents" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.apache.httpcomponents.source_4.4.10.20180724123622.jar" id="org.apache.httpcomponents.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
    <category-def name="org.foodauthent.custom" label="FoodAuthent Custom Dependencies"/>
    <category-def name="org.foodauthent.maven" label="FoodAuthent Maven Dependencies"/>
    <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime"/>
