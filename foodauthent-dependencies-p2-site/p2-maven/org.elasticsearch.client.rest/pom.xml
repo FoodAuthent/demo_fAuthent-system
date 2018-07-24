@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.foodauthent</groupId>
 	<artifactId>org.elasticsearch.client.rest</artifactId>
-	<version>6.3.1</version>
+	<version>6.3.1.v20180724</version>
 	<packaging>bundle</packaging>
 
 	<name>ElasticSearch Rest Client OSGi Bundle</name>
