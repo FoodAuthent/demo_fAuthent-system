@@ -247,13 +247,13 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 									<generateSourceFeature>true</generateSourceFeature>
 									<artifacts>
 										<artifact>
-											<id>org.scala-lang:scala-library:jar:2.12.3</id>
+											<id>org.scala-lang:scala-library:jar:2.12.6</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>org.json4s:json4s-jackson_2.12:jar:3.5.4</id>
-											<source>true</source>
-										</artifact>
+											<id>org.foodauthent:org.json4s_2.12:jar:3.5.4.v20180724</id>
+											<transitive>false</transitive>
+										</artifact>										
 									</artifacts>
 								</feature>
 							</featureDefinitions>
@@ -301,5 +301,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	</build>
 	<modules>
 		<module>org.elasticsearch.client.rest</module>
+		<module>org.json4s_2.12</module>
 	</modules>
 </project>
