@@ -4,20 +4,14 @@ Bundle-Name: Elasticsearch
 Bundle-SymbolicName: org.foodauthent.persistence.elasticsearch
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.scala-lang.scala-library,
-  org.json4s.ast_2.12;bundle-version="3.5.4",
-  org.json4s.core_2.12;bundle-version="3.5.4",
-  org.json4s.jackson_2.12;bundle-version="3.5.4",
-  org.json4s.scalap_2.12;bundle-version="3.5.4",
-  org.elasticsearch;bundle-version="6.3.1",
-  org.elasticsearch.cli;bundle-version="6.3.1",
-  org.elasticsearch.client.elasticsearch-rest-client;bundle-version="6.3.1",
-  org.elasticsearch.client.elasticsearch-rest-high-level-client;bundle-version="6.3.1",
-  org.elasticsearch.core;bundle-version="6.3.1",
-  org.elasticsearch.x-content;bundle-version="6.3.1"
+ org.json4s.ast_2.12;bundle-version="3.5.4",
+ org.json4s.core_2.12;bundle-version="3.5.4",
+ org.json4s.jackson_2.12;bundle-version="3.5.4",
+ org.json4s.scalap_2.12;bundle-version="3.5.4",
+ org.elasticsearch.client.rest;bundle-version="6.3.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: org.foodauthent.api.elasticsearch
 Import-Package: com.google.common.io;version="16.0.0",
- org.apache.http,
  org.foodauthent.api.internal.exeption,
  org.foodauthent.internal.api.persistence,
  org.foodauthent.model,
