@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="47">
+<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="53">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.2.2.v20180210-1608"/>
@@ -10,20 +10,6 @@
 <repository location="http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="com.fasterxml.jackson.feature.feature.group" version="2.8.10.20180724123622"/>
-<unit id="com.fasterxml.jackson.feature.source.feature.group" version="2.8.10.20180724123622"/>
-<unit id="org.apache.httpcomponents.feature.group" version="4.4.10.20180724123622"/>
-<unit id="org.apache.httpcomponents.source.feature.group" version="4.4.10.20180724123622"/>
-<unit id="org.elasticsearch.client.feature.feature.group" version="6.3.1.20180724123622"/>
-<unit id="org.glassfish.jersey.feature.feature.group" version="2.27.0.20180724123622"/>
-<unit id="org.glassfish.jersey.feature.source.feature.group" version="2.27.0.20180724123622"/>
-<unit id="org.scala-lang.feature.feature.group" version="2.12.3.20180724123622"/>
-<unit id="org.scala-lang.feature.source.feature.group" version="2.12.3.20180724123622"/>
-<unit id="org.slf4j.feature.feature.group" version="1.7.25.20180724123622"/>
-<unit id="org.slf4j.feature.source.feature.group" version="1.7.25.20180724123622"/>
-<repository location="http://repository.foodauthent.net/p2/p2-maven-1.0.0-ES/"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="com.knime.features.explorer.serverspace.feature.group" version="4.7.0.v201807061420"/>
 <unit id="org.knime.features.base.feature.group" version="3.6.0.v201807100940"/>
 <unit id="org.knime.features.base.source.feature.group" version="3.6.0.v201807100940"/>
@@ -32,6 +18,20 @@
 <unit id="org.knime.features.python2.feature.group" version="3.6.0.v201807061638"/>
 <unit id="org.knime.features.python2.source.feature.group" version="3.6.0.v201807061638"/>
 <repository location="http://update.knime.com/analytics-platform/3.6"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="com.fasterxml.jackson.feature.feature.group" version="2.8.10.20180724133117"/>
+<unit id="com.fasterxml.jackson.feature.source.feature.group" version="2.8.10.20180724133117"/>
+<unit id="org.apache.httpcomponents.feature.group" version="4.4.10.20180724133117"/>
+<unit id="org.apache.httpcomponents.source.feature.group" version="4.4.10.20180724133117"/>
+<unit id="org.elasticsearch.client.feature.feature.group" version="6.3.1.20180724133117"/>
+<unit id="org.glassfish.jersey.feature.feature.group" version="2.27.0.20180724133117"/>
+<unit id="org.glassfish.jersey.feature.source.feature.group" version="2.27.0.20180724133117"/>
+<unit id="org.scala-lang.feature.feature.group" version="2.12.3.20180724133117"/>
+<unit id="org.scala-lang.feature.source.feature.group" version="2.12.3.20180724133117"/>
+<unit id="org.slf4j.feature.feature.group" version="1.7.25.20180724133117"/>
+<unit id="org.slf4j.feature.source.feature.group" version="1.7.25.20180724133117"/>
+<repository location="http://repository.foodauthent.net/p2/p2-maven-1.0.0-ES/"/>
 </location>
 </locations>
 </target>

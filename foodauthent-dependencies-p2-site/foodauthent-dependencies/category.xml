@@ -60,6 +60,9 @@
    <feature url="features/org.apache.httpcomponents.source_4.4.10.20180724123622.jar" id="org.apache.httpcomponents.source" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
+   <feature url="features/org.elasticsearch.client.feature_6.3.1.20180724133117.jar" id="org.elasticsearch.client.feature" version="6.3.1.20180724133117">
+      <category name="org.foodauthent.maven"/>
+   </feature>
    <category-def name="org.foodauthent.custom" label="FoodAuthent Custom Dependencies"/>
    <category-def name="org.foodauthent.maven" label="FoodAuthent Maven Dependencies"/>
    <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime"/>
