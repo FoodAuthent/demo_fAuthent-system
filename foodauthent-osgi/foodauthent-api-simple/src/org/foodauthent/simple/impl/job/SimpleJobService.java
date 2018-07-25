@@ -40,8 +40,7 @@ public class SimpleJobService implements JobService {
 	final UUID predictionId = UUID.randomUUID();
 	final PredictionJob job = PredictionJob.builder().setFingerprintSetId(fingerprintSet.getFaId())
 		.setWorklfowId(workflow.getFaId()).setStatus(StatusEnum.SUCCESS).setPredictionId(predictionId).build();
-	final long jobPersistenceId = persistenceService.save(job);
-	job.setPersisenceId(jobPersistenceId);
+	persistenceService.save(job);
 	if (logger.isDebugEnabled()) {
 	    logger.debug(job + " persisted");
 	}
@@ -58,8 +57,7 @@ public class SimpleJobService implements JobService {
 		.setPredictionWorkflowId(predictionWorkflowId).setWorklfowId(workflow.getFaId())
 		.setFingerprintsetId(fingerprintSet.getFaId())
 		.setStatus(org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS).build();
-	final long jobPersistenceId = persistenceService.save(job);
-	job.setPersisenceId(jobPersistenceId);
+	persistenceService.save(job);
 	if (logger.isDebugEnabled()) {
 	    logger.debug(job + " persisted");
 	}

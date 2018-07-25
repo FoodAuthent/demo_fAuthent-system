@@ -13,11 +13,7 @@ import java.util.UUID;
  * @author Martin Horn, University of Konstanz
  *
  */
-public abstract class FaModel implements PersistenceIdProvider {
-
-    private long persistenceId;
-
-    protected String faId;
+public abstract class FaModel {
 
     /**
      * A global FoodAuthent-ID for every model in the system.
@@ -25,17 +21,9 @@ public abstract class FaModel implements PersistenceIdProvider {
      * @return a globally unique id, never <code>null</code>
      */
     public abstract UUID getFaId();
-
-    @Override
-    public long getPersistenceId() {
-	return persistenceId;
-    }
-
-    @Override
-    public void setPersisenceId(final long persistenceId) {
-	this.persistenceId = persistenceId;
-    }
-
+    
+    public abstract String getTypeID();
+    
     /**
      * Turns an object into an immutable one (if not already). TODO move it
      * somewhere else

@@ -13,7 +13,7 @@
 		<!-- Plugin Versions -->
 		<tycho.version>1.2.0</tycho.version>
 		<maven-scala-plugin.version>2.15.2</maven-scala-plugin.version>
-		<scala.version>2.12.3</scala.version>
+		<scala.version>2.12.6</scala.version>
 
 
 		<!-- p2 repositories -->
@@ -192,6 +192,7 @@
 		<module>foodauthent-api-simple</module>
 		<module>foodauthent-rest</module>
 		<module>foodauthent-swaggerui</module>
+		<module>foodauthent-persistence-simple</module>
 		<module>foodauthent-elasticsearch</module>
 		<module>foodauthent-feature</module>
 		<module>foodauthent-knime-feature</module>

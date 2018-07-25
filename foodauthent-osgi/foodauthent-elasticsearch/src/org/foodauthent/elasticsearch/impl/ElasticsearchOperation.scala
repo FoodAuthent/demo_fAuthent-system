@@ -3,12 +3,16 @@ package org.foodauthent.elasticsearch.impl
 import java.io.InputStream
 import java.util.Collections
 
+import scala.collection.Set
 import scala.io.Source
+import scala.reflect.ClassTag
+import scala.reflect.ManifestFactory
 
 import org.apache.http.entity.StringEntity
 import org.apache.http.message.BasicHeader
 import org.elasticsearch.action.delete.DeleteRequest
 import org.elasticsearch.action.get.GetRequest
+import org.elasticsearch.action.get.MultiGetRequest
 import org.elasticsearch.action.index.IndexRequest
 import org.elasticsearch.action.search.SearchRequest
 import org.elasticsearch.action.update.UpdateRequest
@@ -21,20 +25,15 @@ import org.elasticsearch.index.query.QueryBuilders
 import org.elasticsearch.search.builder.SearchSourceBuilder
 import org.elasticsearch.search.fetch.subphase.FetchSourceContext
 import org.elasticsearch.search.sort.FieldSortBuilder
-import org.json4s.DefaultFormats
-import org.json4s.jackson.Serialization.read
-import org.json4s.jackson.Serialization.write
-
-import org.elasticsearch.client.RestClientBuilder
-import org.elasticsearch.client.Client
-import org.elasticsearch.action.get.MultiGetRequest
-import scala.collection.Set
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResult
 import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResultItem
-import org.osgi.service.component.annotations.Reference
-import scala.reflect.ManifestFactory
+import org.foodauthent.model.json.ObjectMapperUtil
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.json4s.jackson.Json4sScalaModule
+import org.slf4j.LoggerFactory
+import java.lang.reflect.{ Type, ParameterizedType }
+import com.fasterxml.jackson.core.`type`.TypeReference
+import collection.JavaConverters._
 
 /**
  * Commonly used operations for communicating with Elasticsearch
@@ -43,16 +42,35 @@ import scala.reflect.ManifestFactory
  */
 class ElasticsearchOperation(val client: RestHighLevelClient) {
 
-  /**
-   * default json4s formats used for serialization of model entities
-   */
-  implicit val formats = DefaultFormats
+  val mapper = ObjectMapperUtil.newObjectMapper.registerModule(new Json4sScalaModule)
 
   /**
    * log4j logger
    */
   val LOG = LoggerFactory.getLogger(getClass)
 
+  def write[T <: AnyRef](value: T): String = {
+    mapper.writeValueAsString(value)
+  }
+
+  def read[T](json: String)(implicit mf: Manifest[T]): T = {
+    mapper.readValue(json, typeReference[T](mf))
+  }
+
+  private[this] def typeReference[T](mf: Manifest[T]) = new TypeReference[T] {
+    override def getType = typeFromManifest(mf)
+  }
+
+  private[this] def typeFromManifest(m: Manifest[_]): Type =
+    if (m.typeArguments.isEmpty) m.runtimeClass
+    else new ParameterizedType {
+      def getRawType = m.runtimeClass
+
+      def getActualTypeArguments = m.typeArguments.map(typeFromManifest).toArray
+
+      def getOwnerType = null
+    }
+  
   /**
    * save model entity to Elasticsearch
    *
@@ -63,6 +81,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
    * @return true when successfully saved
    */
   def save[T <: AnyRef](id: Option[String], value: T)(implicit target: Target): Boolean = {
+    val json = write(value)
     save[T](target.indexName, target.typeName, id, value)
   }
 
@@ -89,21 +108,6 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
       }
     }
     false
-  }
-
-  
-   /**
-   * get model entity from Elasticsearch
-   *
-   * @tparam T entity type
-   * @param id
-   * @param target implicit Elasticsearch target with index name and type
-   * @param value model entity
-   * @return optional entity, defined when found
-   */
-  def get[T](id: String, clazz: Class[T])(implicit target: Target): Option[T] = {
-    val manifest = ManifestFactory.classType[T](clazz)
-    get[T](id)(target, manifest)
   }
 
   /**
@@ -368,7 +372,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
    * @param target implicit Elasticsearch target with index name and type
    * @return list of results
    */
-  def search[T](query: QueryBuilder)(implicit target: Target, mf: Manifest[T]): List[T] = {
+  def search[T](query: QueryBuilder)(implicit target: Target, mf: Manifest[T]): java.util.List[T] = {
     search(query, target.indexName, target.typeName)
   }
 
@@ -403,18 +407,18 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
    * @param query Elasticsearch QueryBuilder for executing search
    * @return list of results
    */
-  def search[T](query: QueryBuilder, indexName: String, typeName: String)(implicit mf: Manifest[T]): List[T] = {
+  def search[T](query: QueryBuilder, indexName: String, typeName: String)(implicit mf: Manifest[T]): java.util.List[T] = {
     val request = searchRequest(indexName, typeName)
     val sourceBuilder = new SearchSourceBuilder()
     sourceBuilder.query(query)
     request.source(sourceBuilder)
     val response = client.search(request)
     if (response.getHits.getTotalHits == 0) {
-      return List.empty[T]
+      return List.empty[T].asJava
     }
     return response.getHits.getHits.map(h => {
       read[T](h.getSourceAsString)
-    }).toList
+    }).toList.asJava
   }
 
   /**
@@ -456,6 +460,20 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
       read[T](h.getSourceAsString)
     }).toList
   }
+
+    /**
+   * get model entity from Elasticsearch
+   *
+   * @tparam T entity type
+   * @param id
+   * @param target implicit Elasticsearch target with index name and type
+   * @param value model entity
+   * @return optional entity, defined when found
+   */
+  def manifest[T](clazz: Class[T]): Manifest[T] = {
+    ManifestFactory.classType[T](clazz)
+  }
+
 
 }
 
@@ -543,12 +561,11 @@ object ElasticsearchUtil {
    */
   def indexExists(restClient: RestHighLevelClient, indexName: String): Boolean = {
     try {
-    val response = restClient.getLowLevelClient.performRequest("HEAD", "/" + indexName)
-    val statusCode = response.getStatusLine().getStatusCode();
-    return statusCode != 404
-    }
-    catch {
-      case ex:Exception => {
+      val response = restClient.getLowLevelClient.performRequest("HEAD", "/" + indexName)
+      val statusCode = response.getStatusLine().getStatusCode();
+      return statusCode != 404
+    } catch {
+      case ex: Exception => {
         return false
       }
     }

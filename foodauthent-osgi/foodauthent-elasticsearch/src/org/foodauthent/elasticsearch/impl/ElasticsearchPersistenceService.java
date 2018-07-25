@@ -2,17 +2,14 @@ package org.foodauthent.elasticsearch.impl;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Base64;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
-import org.apache.http.Header;
-import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.foodauthent.api.internal.exeption.EntityExistsException;
 import org.foodauthent.elasticsearch.ClientService;
 import org.foodauthent.internal.api.persistence.Blob;
@@ -39,67 +36,76 @@ public class ElasticsearchPersistenceService implements PersistenceService {
 	}
 
 	@Override
-	public <T extends FaModel> long save(T entity) throws EntityExistsException {
-		if (op.save(Option.apply(entity.getFaId().toString()), entity, classTarget(entity.getClass()))) {
-			return entity.getFaId().getMostSignificantBits();
+	public <T extends FaModel> T save(T entity) throws EntityExistsException {
+		final Target target = classTarget(entity.getClass());
+		if (op.exists(QueryBuilders.idsQuery().addIds(entity.getFaId().toString()), target).isDefined()) {
+			throw new EntityExistsException("An entity with the given id already exists.");
 		}
-		return -1;
+		if (op.save(Option.apply(entity.getFaId().toString()), entity, target)) {
+			return entity;
+		}
+		throw new RuntimeException("unable to store entity");
 	}
 
 	@Override
-	public <T extends FaModel> long replace(T entity) throws NoSuchElementException {
+	public <T extends FaModel> T replace(T entity) throws NoSuchElementException {
 		if (op.update(entity.getFaId().toString(), entity, classTarget(entity.getClass()))) {
-			return entity.getFaId().getMostSignificantBits();
+			return entity;
 		}
-		return -1;
+		throw new NoSuchElementException();
 	}
 
 	@Override
-	public long save(Blob blob) throws EntityExistsException {
+	public UUID save(Blob blob) throws EntityExistsException {
 		Target target = blobTarget();
-		IndexRequest request = new IndexRequest(target.indexName(), target.typeName(), blob.getFaId().toString());
-		Map<String, String> data = new HashMap<String, String>();
-		data.put("blob", Base64.getEncoder().encodeToString(blob.getData()));
-		request.source(data);
-		try {
-			op.client().index(request, new Header[0]);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return -1;
+		if (op.exists(QueryBuilders.idsQuery().addIds(blob.getFaId().toString()), target).isDefined()) {
+			throw new EntityExistsException("An entity with the given id already exists.");
 		}
-		return blob.getFaId().getMostSignificantBits();
+		ESBlob es = new ESBlob(blob);
+		if (op.save(Option.apply(blob.getFaId().toString()), es, target)) {
+			return blob.getFaId();
+		}
+		throw new RuntimeException("unable to store entity");
 	}
 
 	@Override
-	public <T extends Product> T findProductByGtin(String gtin) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product findProductByGtin(String gtin) {
+		List<Product> products = op.search(QueryBuilders.termQuery("gtin", gtin), classTarget(Product.class),
+				op.manifest(Product.class));
+		if (products.isEmpty()) {
+			throw new NoSuchElementException();
+		}
+		return products.get(0);
 	}
 
 	@Override
-	public <T extends FaModel> T getFaModelByUUID(UUID uuid, Class<T> modelType) {
-		Option<T> value = op.get(uuid.toString(), modelType, classTarget(modelType));
+	public <T extends FaModel> T getFaModelByUUID(UUID uuid, Class<T> modelType) throws NoSuchElementException {
+		Option<T> value = op.get(uuid.toString(), classTarget(modelType), op.manifest(modelType));
 		if (value.isDefined()) {
 			return value.get();
 		}
-		return null;
+		throw new NoSuchElementException();
 	}
 
 	@Override
 	public <T extends FaModel> List<T> findByKeywords(Collection<String> keywords, Class<T> modelType) {
-		return Collections.emptyList();
+		return op.search(QueryBuilders.simpleQueryStringQuery(String.join(" AND ", keywords)), classTarget(modelType),
+				op.manifest(modelType));
 	}
 
 	@Override
 	public Blob getBlobByUUID(UUID uuid) {
-		// TODO Auto-generated method stub
-		return null;
+		Option<ESBlob> es = op.get(uuid.toString(), blobTarget(), op.manifest(ESBlob.class));
+		if (es.isDefined()) {
+			return es.get().toBlob(uuid);
+		}
+		throw new NoSuchElementException();
 	}
 
 	private Target classTarget(Class<?> cls) {
 		Target t = targets.get(cls);
 		if (t == null) {
-			t = new Target(cls.getSimpleName(), "data");
+			t = new Target(cls.getSimpleName().toLowerCase(), "data");
 			targets.put(cls, t);
 		}
 		return t;
@@ -108,7 +114,7 @@ public class ElasticsearchPersistenceService implements PersistenceService {
 	private Target blobTarget() {
 		Target t = targets.get(Blob.class);
 		if (t == null) {
-			t = new Target(Blob.class.getSimpleName(), "data");
+			t = new Target(Blob.class.getSimpleName().toLowerCase(), "data");
 			String mapping;
 			try {
 				mapping = CharStreams.toString(new InputStreamReader(
@@ -121,11 +127,6 @@ public class ElasticsearchPersistenceService implements PersistenceService {
 			}
 		}
 		return t;
-	}
-
-	@Override
-	public int getPriority() {
-		return 10;
 	}
 
 }

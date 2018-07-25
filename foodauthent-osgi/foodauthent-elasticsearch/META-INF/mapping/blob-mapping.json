@@ -10,7 +10,7 @@
 		{
 			"properties": 
 			{
-				"blob": 
+				"data": 
 				{
 					"type": "binary",
 					"store": true
