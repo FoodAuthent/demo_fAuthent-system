@@ -278,9 +278,9 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<source>true</source>
 										</artifact>										
 										<artifact>
-											<id>io.swagger:swagger-core:jar:1.5.20</id>
+											<id>org.javassist:javassist:jar:3.23.1-GA</id>
 											<source>true</source>
-										</artifact>										
+										</artifact>				
 									</artifacts>
 								</feature>
 							</featureDefinitions>
