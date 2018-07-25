@@ -72,6 +72,15 @@
    <feature url="features/org.knime.features.python2.source_3.6.0.v201807061638.jar" id="org.knime.features.python2.source" version="0.0.0">
       <category name="org.knime.platform"/>
    </feature>
+   <feature url="features/com.knime.features.enterprise.client_4.7.0.v201807091120.jar" id="com.knime.features.enterprise.client" version="4.7.0.v201807091120">
+      <category name="org.knime.platform"/>
+   </feature>
+   <feature url="features/com.knime.features.enterprise.server.ws.client_4.7.0.v201807091120.jar" id="com.knime.features.enterprise.server.ws.client" version="4.7.0.v201807091120">
+      <category name="org.knime.platform"/>
+   </feature>
+   <feature url="features/com.knime.features.explorer.serverspace_4.7.0.v201807061420.jar" id="com.knime.features.explorer.serverspace" version="4.7.0.v201807061420">
+      <category name="org.knime.platform"/>
+   </feature>
    <category-def name="org.foodauthent.custom" label="FoodAuthent Custom Dependencies"/>
    <category-def name="org.foodauthent.maven" label="FoodAuthent Maven Dependencies"/>
    <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime"/>
