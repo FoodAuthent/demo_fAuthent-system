@@ -122,7 +122,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 										<artifact>
 											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-smile:jar:2.8.10</id>
 											<source>true</source>
-										</artifact>										
+										</artifact>							
+										<artifact>
+											<id>com.github.joschi.jackson:jackson-datatype-threetenbp:jar:2.8.4</id>
+											<source>true</source>
+										</artifact>							
 									</artifacts>
 								</feature>
 								<feature>
@@ -253,6 +257,29 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 										<artifact>
 											<id>org.foodauthent:org.json4s_2.12:jar:3.5.4.v20180724</id>
 											<transitive>false</transitive>
+										</artifact>										
+									</artifacts>
+								</feature>
+								<feature>
+									<id>io.swagger.feature</id>
+									<version>1.5.20.qualifier</version>
+									<label>Swagger 1.5.20 Feature</label>
+									<providerName>swagger.io</providerName>
+									<copyright>https://www.swagger.io</copyright>
+									<license>Apache License Version 2.0</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>io.swagger:swagger-annotations:jar:1.5.20</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>io.swagger:swagger-jaxrs:jar:1.5.20</id>
+											<source>true</source>
+										</artifact>										
+										<artifact>
+											<id>io.swagger:swagger-core:jar:1.5.20</id>
+											<source>true</source>
 										</artifact>										
 									</artifacts>
 								</feature>
