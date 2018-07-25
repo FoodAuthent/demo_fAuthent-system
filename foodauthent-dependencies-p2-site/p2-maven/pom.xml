@@ -273,14 +273,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<id>io.swagger:swagger-annotations:jar:1.5.20</id>
 											<source>true</source>
 										</artifact>
-										<artifact>
-											<id>io.swagger:swagger-jaxrs:jar:1.5.20</id>
-											<source>true</source>
-										</artifact>										
-										<artifact>
-											<id>org.glassfish:javax.annotation:jar:3.1.1</id>
-											<source>true</source>
-										</artifact>				
 									</artifacts>
 								</feature>
 							</featureDefinitions>
