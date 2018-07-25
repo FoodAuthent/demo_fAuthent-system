@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="37">
+<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="39">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.2.2.v20180210-1608"/>
@@ -23,13 +23,14 @@
 <repository location="http://repository.foodauthent.net/p2/p2-maven-1.0.0-SNAPSHOT"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.knime.features.base.feature.group" version="3.6.0.v201807100939"/>
-<unit id="org.knime.features.base.source.feature.group" version="3.6.0.v201807100939"/>
+<unit id="com.knime.features.explorer.serverspace.feature.group" version="4.7.0.v201807061420"/>
+<unit id="org.knime.features.base.feature.group" version="3.6.0.v201807100940"/>
+<unit id="org.knime.features.base.source.feature.group" version="3.6.0.v201807100940"/>
 <unit id="org.knime.features.json.feature.group" version="3.6.0.v201807061527"/>
 <unit id="org.knime.features.json.source.feature.group" version="3.6.0.v201807061527"/>
 <unit id="org.knime.features.python2.feature.group" version="3.6.0.v201807061638"/>
 <unit id="org.knime.features.python2.source.feature.group" version="3.6.0.v201807061638"/>
-<repository location="http://update.knime.org/analytics-platform/nightly"/>
+<repository location="http://update.knime.com/analytics-platform/3.6"/>
 </location>
 </locations>
 </target>
