@@ -278,7 +278,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<source>true</source>
 										</artifact>										
 										<artifact>
-											<id>org.javassist:javassist:jar:3.23.1-GA</id>
+											<id>org.glassfish:javax.annotation:jar:3.1.1</id>
 											<source>true</source>
 										</artifact>				
 									</artifacts>
