@@ -6,6 +6,13 @@ import java.util.UUID;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.DataMetaData;
 
+/**
+ * Blob implementation for converting data to required Base64 encoded format
+ * Base64 Encoding is required by Elasticsearch to store data as binary 
+ *
+ * @author Sven Böckelmann
+ *
+ */
 public class ESBlob {
 
 	private String data;

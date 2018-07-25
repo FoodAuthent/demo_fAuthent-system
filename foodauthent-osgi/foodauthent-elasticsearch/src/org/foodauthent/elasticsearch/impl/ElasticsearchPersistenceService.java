@@ -23,6 +23,12 @@ import com.google.common.io.CharStreams;
 
 import scala.Option;
 
+/**
+ * Persistence Service for persisting data object to elasticsearch cluster 
+ *
+ * @author Sven Böckelmann
+ *
+ */
 @Component(service = PersistenceService.class)
 public class ElasticsearchPersistenceService implements PersistenceService {
 

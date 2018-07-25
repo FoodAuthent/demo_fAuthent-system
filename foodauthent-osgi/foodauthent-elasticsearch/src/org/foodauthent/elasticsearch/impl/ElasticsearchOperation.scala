@@ -39,6 +39,8 @@ import collection.JavaConverters._
  * Commonly used operations for communicating with Elasticsearch
  * wraps save, search, list and update operations for scala case class model entities
  * @constructor create new ElasticsearchOperation using RestClientBuilder
+ * 
+ * @author Sven Böckelmann
  */
 class ElasticsearchOperation(val client: RestHighLevelClient) {
 

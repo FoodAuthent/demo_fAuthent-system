@@ -5,7 +5,12 @@ import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.foodauthent.elasticsearch.ClientService;
 import org.osgi.service.component.annotations.Component;
-
+/**
+ * Service providing Client for Elasticsearch 
+ *
+ * @author Sven Böckelmann
+ *
+ */
 @Component(service=ClientService.class)
 public class ClientServiceImpl implements ClientService {
 	
