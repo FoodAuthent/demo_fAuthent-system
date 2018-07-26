@@ -18,7 +18,6 @@ import org.osgi.framework.BundleException;
 
 public class ITTestSandbox extends AbstractITTest {
 
-    @Test
     public void test() throws FileNotFoundException, BundleException, InterruptedException {
 	WebTarget wt = webTarget();
 
