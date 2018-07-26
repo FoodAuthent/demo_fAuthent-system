@@ -1,6 +1,7 @@
 package org.foodauthent.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.util.UUID;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.Fingerprint;
@@ -22,12 +24,14 @@ import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
 import org.foodauthent.model.Workflow.ModelTypeEnum;
 import org.foodauthent.model.Workflow.RepresentationEnum;
+import org.foodauthent.model.Workflow.WorkflowBuilder;
 import org.foodauthent.model.WorkflowModule;
-import org.foodauthent.model.WorkflowModuleInput.ModuleTypeEnum;
 import org.foodauthent.model.WorkflowParameter;
 import org.foodauthent.model.WorkflowParameter.TypeEnum;
 import org.glassfish.jersey.media.multipart.MultiPart;
 import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -36,26 +40,56 @@ import org.junit.Test;
  *
  */
 public class WorkflowServiceTest extends AbstractITTest {
-
-    @Test
-    public void testUploadAndRunPredictionWorkflow() throws InterruptedException {
-
-	WebTarget wt = webTarget();
-
-	/* upload workflow */
-
+    
+    private UUID predictionWorkflowFileId;
+    private UUID fingerprintSetId;
+    private UUID modelId;
+    private WebTarget wt = webTarget();
+    
+    @Before
+    public void uploadPredictionWorkflowFile() {
+	
 	// upload workflow file
 	FileMetadata fileMeta = FileMetadata.builder().setName("PredictionWorkflow").setDate(LocalDate.now())
 		.setDescription("file description").setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW)
 		.setVersion(0).build();
-	UUID fileId = wt.path("file").request(MediaType.APPLICATION_JSON).post(Entity.entity(fileMeta, MediaType.APPLICATION_JSON),
-		UUID.class);
+	predictionWorkflowFileId = wt.path("file").request(MediaType.APPLICATION_JSON)
+		.post(Entity.entity(fileMeta, MediaType.APPLICATION_JSON), UUID.class);
 	MultiPart multiPart = new MultiPart();
 	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
 	FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("files/PredictionWorkflow.knwf"),
 		MediaType.APPLICATION_OCTET_STREAM_TYPE);
 	multiPart.bodyPart(filePart);
-	wt.path("/file/" + fileId + "/data").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
+	wt.path("/file/" + predictionWorkflowFileId + "/data").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
+    }
+    
+    
+    @Before
+    public void uploadFingerprintSet() {
+	
+	/* upload fingerprint set */
+	Fingerprint fp = Fingerprint.builder().setMetadata("fp metadata").build();
+	FingerprintSet fps = FingerprintSet.builder().setName("myset").setFingerprints(Arrays.asList(fp)).build();
+	fingerprintSetId = wt.path("fingerprints").request(MediaType.APPLICATION_JSON)
+		.post(Entity.entity(fps, MediaType.APPLICATION_JSON), UUID.class);
+	// TODO upload fingerprint set file
+    }
+    
+    @Before
+    public void uploadModel() {
+	
+	/* upload model */
+	Model m = Model.builder().setName("mymodel").setType(org.foodauthent.model.Model.TypeEnum.KNIME_WORKFLOW)
+		.build();
+	modelId = wt.path("model").request(MediaType.APPLICATION_JSON)
+		.post(Entity.entity(m, MediaType.APPLICATION_JSON), UUID.class);
+	// TODO upload model file
+    }
+    
+    @Test
+    public void testUploadAndRunPredictionWorkflow() throws InterruptedException {
+
+	/* upload workflow */
 
 	// upload workflow metadata
 	//TODO make workflow fail when some parameters are not provided (and test that they fail)
@@ -67,28 +101,14 @@ public class WorkflowServiceTest extends AbstractITTest {
 		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW)
 		.setRepresentation(RepresentationEnum.KNIME)
 		.setModelType(ModelTypeEnum.KNIME_WORKFLOW)
-		.setFileId(fileId)
+		.setFileId(predictionWorkflowFileId)
 		.build(); // TODO set more (or even all) properties
 	UUID wfId = wt.path("workflow").request(MediaType.APPLICATION_JSON)
 		.post(Entity.entity(wf, MediaType.APPLICATION_JSON), UUID.class);
 
-	/* upload fingerprint set */
-	Fingerprint fp = Fingerprint.builder().setMetadata("fp metadata").build();
-	FingerprintSet fps = FingerprintSet.builder().setName("myset").setFingerprints(Arrays.asList(fp)).build();
-	UUID fpsId = wt.path("fingerprints").request(MediaType.APPLICATION_JSON)
-		.post(Entity.entity(fps, MediaType.APPLICATION_JSON), UUID.class);
-	// TODO upload fingerprint set file
-
-	/* upload model */
-	Model m = Model.builder().setName("mymodel").setType(org.foodauthent.model.Model.TypeEnum.KNIME_WORKFLOW)
-		.build();
-	UUID modelId = wt.path("model").request(MediaType.APPLICATION_JSON)
-		.post(Entity.entity(m, MediaType.APPLICATION_JSON), UUID.class);
-	// TODO upload model file
-
 	/* run prediction workflow */
 	PredictionJob predictionJob = wt.path("workflow/prediction/job").queryParam("workflow-id", wfId)
-		.queryParam("fingerprintset-id", fpsId).queryParam("model-id", modelId)
+		.queryParam("fingerprintset-id", fingerprintSetId).queryParam("model-id", modelId)
 		.request(MediaType.APPLICATION_JSON).post(null, PredictionJob.class);
 	assertEquals(StatusEnum.RUNNING, predictionJob.getStatus());
 	// let the job finish the prediction
@@ -104,11 +124,47 @@ public class WorkflowServiceTest extends AbstractITTest {
 	assertEquals(prediction.getConfidenceMap().size(), 1);
 
     }
+    
+    @Test
+    public void testFailInitPredictionWorkflow() {
+	
+	WorkflowBuilder wfb = Workflow.builder().setName("inconsistent_prediction_workflow").setDescription("desc")
+		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW)
+		//on purpose not a knime workflow
+		.setRepresentation(RepresentationEnum.CWL)
+		.setModelType(ModelTypeEnum.KNIME_WORKFLOW)
+		.setFileId(predictionWorkflowFileId);
+	
+	//post workflow
+	UUID wfId = wt.path("workflow").request(MediaType.APPLICATION_JSON)
+		.post(Entity.entity(wfb.build(), MediaType.APPLICATION_JSON), UUID.class);
+	
+	// try to run prediction job
+	Response response = wt.path("workflow/prediction/job").queryParam("workflow-id", wfId)
+		.queryParam("fingerprintset-id", fingerprintSetId).queryParam("model-id", modelId)
+		.request(MediaType.APPLICATION_JSON).post(null);
+	assertEquals("Unexpected status code", 500, response.getStatus());
+	String message = response.readEntity(String.class);
+	assertTrue(message.contains("not a knime workflow"));
+	//TODO use 'assertThat' instead!
+	
+	//wrong type
+	wfb.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW);
+	//post workflow
+	wfId = wt.path("workflow").request(MediaType.APPLICATION_JSON)
+		.post(Entity.entity(wfb.build(), MediaType.APPLICATION_JSON), UUID.class);
+	
+	// try to run prediction job
+	response = wt.path("workflow/prediction/job").queryParam("workflow-id", wfId)
+		.queryParam("fingerprintset-id", fingerprintSetId).queryParam("model-id", modelId)
+		.request(MediaType.APPLICATION_JSON).post(null);
+	assertEquals("Unexpected status code", 500, response.getStatus());
+	message = response.readEntity(String.class);
+	assertTrue(message.contains("not a prediction workflow"));
+    } 
 
     @Test
     public void testUploadAndRunTrainingWorkflow() throws InterruptedException {
-
-	WebTarget wt = webTarget();
 
 	/* upload workflow */
 	
@@ -165,7 +221,6 @@ public class WorkflowServiceTest extends AbstractITTest {
     
     //@Test
     public void testUploadAndRunModularTrainingWorkflow() throws InterruptedException {
-	WebTarget wt = webTarget();
 
 	/* upload workflow modules */
 	// upload workflow module file 

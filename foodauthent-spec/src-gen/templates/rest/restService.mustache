@@ -12,6 +12,8 @@ import {{import}};
 import org.foodauthent.api.{{baseName}}Service;
 import org.foodauthent.api.ServiceRegistry;
 
+import org.foodauthent.common.exception.FAExceptions;
+
 {{#appName}}
 /**
  * {{{appName}}}
@@ -56,25 +58,19 @@ public class {{classname}}{
     @Produces({ {{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}} })
 {{/hasProduces}}
     public Response {{nickname}}({{#allParams}}{{>rest/queryParams}}{{>rest/pathParams}}{{>rest/headerParams}}{{>rest/bodyParams}}{{>rest/formParams}}{{#hasMore}}, {{/hasMore}}{{/allParams}}) {
-	    {{#returnType}}Object res = {{/returnType}}service.{{nickname}}({{>rest/paramNames}});    
-	  	{{#returnType}}
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
-	   	{{/returnType}}
-    	{{^returnType}}
-    	try {
-    		return Response.ok().build();
-    	} catch(Exception e) {
-    		//TODO
-    		e.printStackTrace();
-    		throw e;
+    	{{#vendorExtensions.x-fa-exceptions.0}}
+	    try {
+	    {{/vendorExtensions.x-fa-exceptions.0}}
+			{{#returnType}}Object res = {{/returnType}}service.{{nickname}}({{>rest/paramNames}});    
+			{{#returnType}}return Response.ok(res).build();{{/returnType}}
+			{{^returnType}}
+    			return Response.ok().build();
+			{{/returnType}}
+		{{#vendorExtensions.x-fa-exceptions}}
+    	} catch(FAExceptions.{{name}} e) {
+	   		return Response.status({{code}}).entity(e.getMessage()).build();
     	}
-    	{{/returnType}}
+		{{/vendorExtensions.x-fa-exceptions}}
     }
 {{/operation}}
 }

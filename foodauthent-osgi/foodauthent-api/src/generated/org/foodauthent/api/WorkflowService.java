@@ -8,6 +8,8 @@ import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
 
+import org.foodauthent.common.exception.FAExceptions;
+
 /**
  * 
  *
@@ -24,8 +26,10 @@ public interface WorkflowService {
      * @param modelId The model to be used for prediction. Needs to be compatible with the selected workflow!!
      *
      * @return the result
+     * @throws InitJobException Exception thrown when a job could not be initialized.
      */
-    PredictionJob createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId);
+    PredictionJob createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId)  throws FAExceptions.InitJobException
+;
         
     /**
      * 
@@ -35,7 +39,8 @@ public interface WorkflowService {
      *
      * @return the result
      */
-    TrainingJob createTrainingJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId);
+    TrainingJob createTrainingJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId) 
+;
         
     /**
      * Creates/adds a new workflow.
@@ -44,7 +49,8 @@ public interface WorkflowService {
      *
      * @return the result
      */
-    java.util.UUID createWorkflow(Workflow workflow);
+    java.util.UUID createWorkflow(Workflow workflow) 
+;
         
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
@@ -53,7 +59,8 @@ public interface WorkflowService {
      *
      * @return the result
      */
-    java.util.List<java.util.UUID> findPredictionWorkflows(java.util.List<String> keywords);
+    java.util.List<java.util.UUID> findPredictionWorkflows(java.util.List<String> keywords) 
+;
         
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
@@ -62,7 +69,8 @@ public interface WorkflowService {
      *
      * @return the result
      */
-    java.util.List<java.util.UUID> findTrainingWorkflows(java.util.List<String> keywords);
+    java.util.List<java.util.UUID> findTrainingWorkflows(java.util.List<String> keywords) 
+;
         
     /**
      * 
@@ -71,7 +79,8 @@ public interface WorkflowService {
      *
      * @return the result
      */
-    PredictionJob getPredictionJob(java.util.UUID jobId);
+    PredictionJob getPredictionJob(java.util.UUID jobId) 
+;
         
     /**
      * 
@@ -80,7 +89,8 @@ public interface WorkflowService {
      *
      * @return the result
      */
-    Prediction getPredictionResult(java.util.UUID predictionId);
+    Prediction getPredictionResult(java.util.UUID predictionId) 
+;
         
     /**
      * 
@@ -89,7 +99,8 @@ public interface WorkflowService {
      *
      * @return the result
      */
-    TrainingJob getTrainingJob(java.util.UUID jobId);
+    TrainingJob getTrainingJob(java.util.UUID jobId) 
+;
         
     /**
      * TODO
@@ -98,6 +109,7 @@ public interface WorkflowService {
      *
      * @return the result
      */
-    Workflow getWorkflowById(java.util.UUID workflowId);
+    Workflow getWorkflowById(java.util.UUID workflowId) 
+;
         
 }

@@ -12,6 +12,8 @@ import org.foodauthent.model.FileMetadata;
 import org.foodauthent.api.FileService;
 import org.foodauthent.api.ServiceRegistry;
 
+import org.foodauthent.common.exception.FAExceptions;
+
 /**
  * FoodAuthent Swagger API
  *
@@ -39,14 +41,8 @@ public class FileRestService{
     @Consumes({ "application/json" })
     public Response createFileMetadata(FileMetadata fileMetadata
 ) {
-	    Object res = service.createFileMetadata(fileMetadata);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.createFileMetadata(fileMetadata);    
+			return Response.ok(res).build();
     }
 
     /**
@@ -60,14 +56,8 @@ public class FileRestService{
     @Produces({ "application/binary" })
     public Response getFileData(@PathParam("file-id") java.util.UUID fileId
 ) {
-	    Object res = service.getFileData(fileId);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.getFileData(fileId);    
+			return Response.ok(res).build();
     }
 
     /**
@@ -81,14 +71,8 @@ public class FileRestService{
     @Produces({ "application/json" })
     public Response getFileMetadata(@PathParam("file-id") java.util.UUID fileId
 ) {
-	    Object res = service.getFileMetadata(fileId);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.getFileMetadata(fileId);    
+			return Response.ok(res).build();
     }
 
     /**
@@ -106,14 +90,8 @@ public class FileRestService{
             @org.glassfish.jersey.media.multipart.FormDataParam("upfile") java.io.InputStream upfile,
             @org.glassfish.jersey.media.multipart.FormDataParam("upfile") org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail
 ) {
-	    Object res = service.saveFileData(fileId, upfile, upfileDetail);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.saveFileData(fileId, upfile, upfileDetail);    
+			return Response.ok(res).build();
     }
 }
 

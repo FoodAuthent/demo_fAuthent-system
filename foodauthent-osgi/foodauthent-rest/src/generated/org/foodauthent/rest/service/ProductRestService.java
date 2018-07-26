@@ -11,6 +11,8 @@ import org.foodauthent.model.Product;
 import org.foodauthent.api.ProductService;
 import org.foodauthent.api.ServiceRegistry;
 
+import org.foodauthent.common.exception.FAExceptions;
+
 /**
  * FoodAuthent Swagger API
  *
@@ -38,14 +40,8 @@ public class ProductRestService{
     @Consumes({ "application/json" })
     public Response createProduct(Product product
 ) {
-	    Object res = service.createProduct(product);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.createProduct(product);    
+			return Response.ok(res).build();
     }
 
     /**
@@ -59,14 +55,8 @@ public class ProductRestService{
     @Produces({ "application/json" })
     public Response findProductByGtin(@QueryParam("gtin")String gtin
 ) {
-	    Object res = service.findProductByGtin(gtin);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.findProductByGtin(gtin);    
+			return Response.ok(res).build();
     }
 }
 

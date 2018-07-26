@@ -11,6 +11,8 @@ import org.foodauthent.model.SOP;
 import org.foodauthent.api.SopService;
 import org.foodauthent.api.ServiceRegistry;
 
+import org.foodauthent.common.exception.FAExceptions;
+
 /**
  * FoodAuthent Swagger API
  *
@@ -38,14 +40,8 @@ public class SopRestService{
     @Produces({ "application/json" })
     public Response createNewSOP(SOP sop
 ) {
-	    Object res = service.createNewSOP(sop);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.createNewSOP(sop);    
+			return Response.ok(res).build();
     }
 
     /**
@@ -59,14 +55,8 @@ public class SopRestService{
     @Produces({ "application/json" })
     public Response findSOPByKeyword(@QueryParam("keywords")java.util.List<String> keywords
 ) {
-	    Object res = service.findSOPByKeyword(keywords);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.findSOPByKeyword(keywords);    
+			return Response.ok(res).build();
     }
 
     /**
@@ -80,14 +70,8 @@ public class SopRestService{
     @Produces({ "application/json" })
     public Response getSOPById(@PathParam("sop-id") java.util.UUID sopId
 ) {
-	    Object res = service.getSOPById(sopId);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.getSOPById(sopId);    
+			return Response.ok(res).build();
     }
 }
 

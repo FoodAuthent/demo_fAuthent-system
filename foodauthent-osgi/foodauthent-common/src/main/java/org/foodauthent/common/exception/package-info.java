@@ -5,4 +5,4 @@
  * @author Alexander Kerner
  *
  */
-package org.foodauthent.api.internal.exeption;
+package org.foodauthent.common.exception;

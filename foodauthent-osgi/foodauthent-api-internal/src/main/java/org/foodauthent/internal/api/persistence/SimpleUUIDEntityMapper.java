@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import org.foodauthent.api.internal.exeption.NoSuchIDException;
+import org.foodauthent.common.exception.NoSuchIDException;
 
 /**
  *

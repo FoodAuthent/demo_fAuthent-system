@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
-import org.foodauthent.api.internal.exeption.EntityExistsException;
+import org.foodauthent.common.exception.EntityExistsException;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
 

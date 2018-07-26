@@ -12,6 +12,8 @@ import org.foodauthent.model.MetadataEntries;
 import org.foodauthent.api.FingerprintService;
 import org.foodauthent.api.ServiceRegistry;
 
+import org.foodauthent.common.exception.FAExceptions;
+
 /**
  * FoodAuthent Swagger API
  *
@@ -41,14 +43,9 @@ public class FingerprintRestService{
     public Response addFingerprintRawData(@PathParam("fingerprint-id") java.util.UUID fingerprintId
 , byte[] data
 ) {
-	    service.addFingerprintRawData(fingerprintId, data);    
-    	try {
-    		return Response.ok().build();
-    	} catch(Exception e) {
-    		//TODO
-    		e.printStackTrace();
-    		throw e;
-    	}
+			service.addFingerprintRawData(fingerprintId, data);    
+			
+    			return Response.ok().build();
     }
 
     /**
@@ -64,14 +61,9 @@ public class FingerprintRestService{
     public Response addMetaData(@PathParam("fingerprint-id") java.util.UUID fingerprintId
 , MetadataEntries metadata
 ) {
-	    service.addMetaData(fingerprintId, metadata);    
-    	try {
-    		return Response.ok().build();
-    	} catch(Exception e) {
-    		//TODO
-    		e.printStackTrace();
-    		throw e;
-    	}
+			service.addMetaData(fingerprintId, metadata);    
+			
+    			return Response.ok().build();
     }
 
     /**
@@ -86,14 +78,8 @@ public class FingerprintRestService{
     @Produces({ "application/json" })
     public Response createFingerprintSet(FingerprintSet fingerprintSet
 ) {
-	    Object res = service.createFingerprintSet(fingerprintSet);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.createFingerprintSet(fingerprintSet);    
+			return Response.ok(res).build();
     }
 
     /**
@@ -107,14 +93,8 @@ public class FingerprintRestService{
     @Produces({ "application/json" })
     public Response findFingerprintSetByKeyword(@QueryParam("keywords")java.util.List<String> keywords
 ) {
-	    Object res = service.findFingerprintSetByKeyword(keywords);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.findFingerprintSetByKeyword(keywords);    
+			return Response.ok(res).build();
     }
 
     /**
@@ -128,14 +108,8 @@ public class FingerprintRestService{
     @Produces({ "application/json" })
     public Response getFingerprintSetById(@PathParam("fingerprintset-id") java.util.UUID fingerprintsetId
 ) {
-	    Object res = service.getFingerprintSetById(fingerprintsetId);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.getFingerprintSetById(fingerprintsetId);    
+			return Response.ok(res).build();
     }
 }
 

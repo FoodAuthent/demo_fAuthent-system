@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.foodauthent.api.WorkflowService;
+import org.foodauthent.common.exception.FAExceptions.InitJobException;
 import org.foodauthent.internal.api.job.JobService;
 import org.foodauthent.internal.api.job.JobServiceProvider;
 import org.foodauthent.internal.api.persistence.PersistenceService;
@@ -47,7 +48,8 @@ public class WorkflowServiceImpl implements WorkflowService {
     }
 
     @Override
-    public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId, UUID modelId) {
+    public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId, UUID modelId)
+	    throws InitJobException {
 	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId);
 	final FingerprintSet fingerprint = persistenceService.getFaModelByUUID(fingerprintSetId);
 	final Model model = persistenceService.getFaModelByUUID(modelId);

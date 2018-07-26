@@ -4,6 +4,8 @@ package {{package}};
 {{#imports}}import {{import}};
 {{/imports}}
 
+import org.foodauthent.common.exception.FAExceptions;
+
 {{#operations}}
 /**
  * {{tagDescription}}
@@ -22,11 +24,11 @@ public interface {{classname}} {
      {{/allParams}}
      *
      * {{#returnType}}@return the result{{/returnType}}
-     {{#vendorExtensions.x-knimegateway-exceptions.executor}}
-     * @throws {{>exceptionName}} {{description}}
-     {{/vendorExtensions.x-knimegateway-exceptions.executor}}
+     {{#vendorExtensions.x-fa-exceptions}}
+     * @throws {{name}} {{description}}
+     {{/vendorExtensions.x-fa-exceptions}}
      */
-    {{#returnType}}{{{returnType}}} {{/returnType}}{{^returnType}}void {{/returnType}}{{nickname}}({{#allParams}}{{>serviceQueryParams}}{{>servicePathParams}}{{>serviceHeaderParams}}{{>serviceBodyParams}}{{>serviceFormParams}}{{^-last}}, {{/-last}}{{/allParams}});
+    {{#returnType}}{{{returnType}}} {{/returnType}}{{^returnType}}void {{/returnType}}{{nickname}}({{#allParams}}{{>serviceQueryParams}}{{>servicePathParams}}{{>serviceHeaderParams}}{{>serviceBodyParams}}{{>serviceFormParams}}{{^-last}}, {{/-last}}{{/allParams}}){{>throwsException}};
         
     {{/operation}}
 }

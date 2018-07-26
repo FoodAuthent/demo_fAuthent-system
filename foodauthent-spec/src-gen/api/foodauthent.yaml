@@ -499,6 +499,7 @@ paths:
               format: uuid
         400:
           description: Invalid search query value    
+          x-exception: 
      
   /workflow/training/job:
     post:
@@ -522,10 +523,12 @@ paths:
         type: string
         format: uuid
       responses:
-        200:
-          description: The model training job.
+        201:
+          description: The model training job as been created successfully.
           schema:
             $ref: "#/definitions/TrainingJob"
+        400:
+          description: failed
             
   /workflow/training/job/{job-id}:
     get:
@@ -574,8 +577,6 @@ paths:
             items:
               type: string
               format: uuid
-        400:
-          description: Invalid search query value    
  
   /workflow/prediction/job:
     post:
@@ -609,6 +610,12 @@ paths:
           description: The prediction job.
           schema:
             $ref: "#/definitions/PredictionJob"  
+        500:
+         description: Problem during job initialization.    
+      x-fa-exceptions:
+        - $ref: "#/x-fa-exceptions/InitJobException"
+          code: 500
+        
 
   /workflow/prediction/job/{job-id}:
     get:
@@ -630,7 +637,10 @@ paths:
           description: The prediction job.
           schema:
             $ref: "#/definitions/PredictionJob"
-       
+
+x-fa-exceptions:
+  InitJobException:
+    description: Exception thrown when a job could not be initialized.
     
 definitions:
   SOP:

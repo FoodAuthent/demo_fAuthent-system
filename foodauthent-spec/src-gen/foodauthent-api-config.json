@@ -19,7 +19,7 @@
                 "templateFile": "serviceRegistry.mustache",
                 "package" : "org.foodauthent.api",
                 "destinationFileName" : "ServiceRegistry.java"
-            }     
+            }
          ]
     }
 }

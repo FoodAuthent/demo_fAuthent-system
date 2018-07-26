@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
-import org.foodauthent.api.internal.exeption.EntityExistsException;
-import org.foodauthent.api.internal.exeption.NoSuchIDException;
+import org.foodauthent.common.exception.EntityExistsException;
+import org.foodauthent.common.exception.NoSuchIDException;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.UUIDEntityIDMapperProvider;

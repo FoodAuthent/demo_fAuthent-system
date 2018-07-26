@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -22,6 +23,7 @@ import io.swagger.codegen.CodegenType;
 import io.swagger.codegen.SupportingFile;
 import io.swagger.codegen.languages.AbstractJavaCodegen;
 import io.swagger.models.Operation;
+import io.swagger.models.Swagger;
 
 /**
  * TODO
@@ -108,6 +110,51 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
     @Override
     public String getHelp() {
 	return "TODO";
+    }
+    
+    @Override
+    public void preprocessSwagger(final Swagger swagger) {
+	super.preprocessSwagger(swagger);
+
+	// Collect all pre-defined exceptions (x-fa-exceptions section
+	// in the swagger
+	// file) - a 'vendor extension'
+	Map<String, Object> faExceptions = (Map<String, Object>) swagger.getVendorExtensions()
+		.get("x-fa-exceptions");
+	// TODO null-check for required properties
+	additionalProperties().put("faExceptions",
+		faExceptions.values().stream().collect(Collectors.toList()));
+
+	// 'manually' map x-fa-exceptions cross-references since
+	// swagger doesn't support cross-references for vendor extensions
+	// there might be a more elegant way ...
+	swagger.getPaths().values().stream().flatMap(p -> p.getOperations().stream()).forEach(op -> {
+	    resolveExceptionReference(op, faExceptions);
+	});
+    }
+
+    private void resolveExceptionReference(final Operation operation, final Map<String, Object> exceptions) {
+	List<Object> opExceptions = (List<Object>) operation.getVendorExtensions().get("x-fa-exceptions");
+	String prefix = "#/x-fa-exceptions/";
+	if (opExceptions != null) {
+	    // replace reference by predefined objects (in case it's a
+	    // reference)
+	    for (int i = 0; i < opExceptions.size(); i++) {
+		Map<String, Object> ex = (Map<String, Object>) opExceptions.get(i);
+		String ref = (String) ex.get("$ref");
+		Integer code = (Integer) ex.get("code");
+		String key = ref.substring(prefix.length());
+		Object o2 = exceptions.get(key);
+		if (o2 != null) {
+		    opExceptions.set(i, o2);
+		    // set response code
+		    ((Map<String, Object>) o2).put("code", code);
+		    ((Map<String, Object>) o2).put("name", key);
+		} else {
+		    throw new RuntimeException("Reference '" + key + "' cannot be resolved.");
+		}
+	    }
+	}
     }
 
     @Override

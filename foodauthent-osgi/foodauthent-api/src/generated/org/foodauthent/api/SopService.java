@@ -5,6 +5,8 @@ package org.foodauthent.api;
 
 import org.foodauthent.model.SOP;
 
+import org.foodauthent.common.exception.FAExceptions;
+
 /**
  * 
  *
@@ -20,7 +22,8 @@ public interface SopService {
      *
      * @return the result
      */
-    java.util.UUID createNewSOP(SOP sop);
+    java.util.UUID createNewSOP(SOP sop) 
+;
         
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
@@ -29,7 +32,8 @@ public interface SopService {
      *
      * @return the result
      */
-    java.util.List<java.util.UUID> findSOPByKeyword(java.util.List<String> keywords);
+    java.util.List<java.util.UUID> findSOPByKeyword(java.util.List<String> keywords) 
+;
         
     /**
      * TODO
@@ -38,6 +42,7 @@ public interface SopService {
      *
      * @return the result
      */
-    SOP getSOPById(java.util.UUID sopId);
+    SOP getSOPById(java.util.UUID sopId) 
+;
         
 }

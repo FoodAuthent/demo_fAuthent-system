@@ -21,6 +21,7 @@ import java.util.zip.ZipInputStream;
 import javax.json.Json;
 import javax.json.JsonValue;
 
+import org.foodauthent.common.exception.FAExceptions.InitJobException;
 import org.foodauthent.internal.api.job.JobService;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.PersistenceService;
@@ -32,14 +33,13 @@ import org.foodauthent.model.Model.TypeEnum;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJob.StatusEnum;
-import org.foodauthent.model.Workflow.ModelTypeEnum;
-import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.PredictionWorkflowInput;
 import org.foodauthent.model.PredictionWorkflowOutput;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.TrainingWorkflowInput;
 import org.foodauthent.model.TrainingWorkflowOutput;
 import org.foodauthent.model.Workflow;
+import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.WorkflowModule;
 import org.foodauthent.model.WorkflowModuleInput;
 import org.foodauthent.model.WorkflowModuleInput.ModuleTypeEnum;
@@ -78,15 +78,14 @@ public class LocalKnimeJobService implements JobService {
     }
 
     @Override
-    public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model) {
+    public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model)
+	    throws InitJobException {
 	if (workflow.getType() != org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW) {
-	    // TODO throw appropriate exception
-	    throw new RuntimeException("Referenced workflow is not a prediction workflow");
+	    throw new InitJobException("Referenced workflow is not a prediction workflow");
 	}
 
 	if (workflow.getRepresentation() != RepresentationEnum.KNIME) {
-	    // TODO throw appropriate exception
-	    throw new RuntimeException("Referenced workflow is not a knime workflow");
+	    throw new InitJobException("Referenced workflow is not a knime workflow");
 	}
 
 	Blob wfFile = persistenceService.getBlobByUUID(workflow.getFileId());
@@ -99,8 +98,7 @@ public class LocalKnimeJobService implements JobService {
 	    wfDir = unzipToTempDir(wfFile.getData(), wfFile.getFaId(), "fa_workflow", fileMeta.getName());
 	    moduleInputs = prepareWorkflowModules(workflow.getModules(), wfFile.getFaId());
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    throw new RuntimeException(e);
+	    throw new InitJobException("Problem unzipping workflow", e);
 	}
 
 	// TODO get fingerprint set file(s)
@@ -127,8 +125,7 @@ public class LocalKnimeJobService implements JobService {
 	    jsonString = ObjectMapperUtil.getObjectMapper().writerWithDefaultPrettyPrinter()
 		    .writeValueAsString(workflowInput);
 	} catch (JsonProcessingException e) {
-	    // TODO Auto-generated catch block
-	    throw new RuntimeException(e);
+	    throw new InitJobException("Problem while creating workflow input", e);
 	}
 	JsonValue jsonInput = Json.createReader(new StringReader(jsonString)).readObject();
 

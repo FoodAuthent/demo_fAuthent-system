@@ -6,6 +6,8 @@ package org.foodauthent.api;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.MetadataEntries;
 
+import org.foodauthent.common.exception.FAExceptions;
+
 /**
  * 
  *
@@ -22,7 +24,8 @@ public interface FingerprintService {
      *
      * 
      */
-    void addFingerprintRawData(java.util.UUID fingerprintId, byte[] data);
+    void addFingerprintRawData(java.util.UUID fingerprintId, byte[] data) 
+;
         
     /**
      * TODO
@@ -32,7 +35,8 @@ public interface FingerprintService {
      *
      * 
      */
-    void addMetaData(java.util.UUID fingerprintId, MetadataEntries metadata);
+    void addMetaData(java.util.UUID fingerprintId, MetadataEntries metadata) 
+;
         
     /**
      * TODO
@@ -41,7 +45,8 @@ public interface FingerprintService {
      *
      * @return the result
      */
-    java.util.UUID createFingerprintSet(FingerprintSet fingerprintSet);
+    java.util.UUID createFingerprintSet(FingerprintSet fingerprintSet) 
+;
         
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
@@ -50,7 +55,8 @@ public interface FingerprintService {
      *
      * @return the result
      */
-    java.util.List<java.util.UUID> findFingerprintSetByKeyword(java.util.List<String> keywords);
+    java.util.List<java.util.UUID> findFingerprintSetByKeyword(java.util.List<String> keywords) 
+;
         
     /**
      * TODO
@@ -59,6 +65,7 @@ public interface FingerprintService {
      *
      * @return the result
      */
-    FingerprintSet getFingerprintSetById(java.util.UUID fingerprintsetId);
+    FingerprintSet getFingerprintSetById(java.util.UUID fingerprintsetId) 
+;
         
 }

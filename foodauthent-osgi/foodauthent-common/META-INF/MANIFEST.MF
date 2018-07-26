@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: foodauthent-common
 Bundle-SymbolicName: org.foodauthent.common
 Bundle-Version: 1.0.0.qualifier
-Export-Package: org.foodauthent.api.internal.exeption
+Export-Package: org.foodauthent.common.exception
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .
 Automatic-Module-Name: org.foodauthent.common

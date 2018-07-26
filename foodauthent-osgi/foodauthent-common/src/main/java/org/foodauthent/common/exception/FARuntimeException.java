@@ -1,4 +1,4 @@
-package org.foodauthent.api.internal.exeption;
+package org.foodauthent.common.exception;
 
 public class FARuntimeException extends RuntimeException {
 

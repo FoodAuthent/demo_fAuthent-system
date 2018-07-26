@@ -2,7 +2,7 @@ package org.foodauthent.internal.api.persistence;
 
 import java.util.UUID;
 
-import org.foodauthent.api.internal.exeption.NoSuchIDException;
+import org.foodauthent.common.exception.NoSuchIDException;
 
 /**
  *

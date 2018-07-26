@@ -11,6 +11,8 @@ import org.foodauthent.model.Model;
 import org.foodauthent.api.ModelService;
 import org.foodauthent.api.ServiceRegistry;
 
+import org.foodauthent.common.exception.FAExceptions;
+
 /**
  * FoodAuthent Swagger API
  *
@@ -38,14 +40,8 @@ public class ModelRestService{
     @Consumes({ "application/json" })
     public Response createModel(Model model
 ) {
-	    Object res = service.createModel(model);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.createModel(model);    
+			return Response.ok(res).build();
     }
 
     /**
@@ -59,14 +55,8 @@ public class ModelRestService{
     @Produces({ "application/json" })
     public Response getModelById(@PathParam("model-id") java.util.UUID modelId
 ) {
-	    Object res = service.getModelById(modelId);    
-	  	try {
-	   		return Response.ok(res).build();
-	   	} catch(Exception e) {
-	   		//TODO
-	   		e.printStackTrace();
-	   		throw e;
-	   	}
+			Object res = service.getModelById(modelId);    
+			return Response.ok(res).build();
     }
 }
 

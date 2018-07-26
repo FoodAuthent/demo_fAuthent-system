@@ -5,6 +5,8 @@ package org.foodauthent.api;
 
 import org.foodauthent.model.Model;
 
+import org.foodauthent.common.exception.FAExceptions;
+
 /**
  * 
  *
@@ -20,7 +22,8 @@ public interface ModelService {
      *
      * @return the result
      */
-    java.util.UUID createModel(Model model);
+    java.util.UUID createModel(Model model) 
+;
         
     /**
      * TODO
@@ -29,6 +32,7 @@ public interface ModelService {
      *
      * @return the result
      */
-    Model getModelById(java.util.UUID modelId);
+    Model getModelById(java.util.UUID modelId) 
+;
         
 }
