@@ -223,7 +223,7 @@ public class LocalKnimeJobService implements JobService {
 			.setType(TypeEnum.valueOf(workflow.getModelType().toString().toUpperCase())).build();
 		persistenceService.save(model);
 		//TODO: store model file!
-		//trainingOutput.getModelUri();
+		String modelUri = trainingOutput.getModelUri();
 
 		// change the status and model id of the training job and replace
 		// training job in DB

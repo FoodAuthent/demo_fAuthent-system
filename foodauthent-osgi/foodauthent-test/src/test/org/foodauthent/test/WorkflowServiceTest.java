@@ -278,16 +278,9 @@ public class WorkflowServiceTest extends AbstractITTest {
 	UUID wfId = wt.path("workflow").request(MediaType.APPLICATION_JSON)
 		.post(Entity.entity(wf, MediaType.APPLICATION_JSON), UUID.class);
 
-	/* upload fingerprint set */
-	Fingerprint fp = Fingerprint.builder().setMetadata("fp metadata").build();
-	FingerprintSet fps = FingerprintSet.builder().setName("myset").setFingerprints(Arrays.asList(fp)).build();
-	UUID fpsId = wt.path("fingerprints").request(MediaType.APPLICATION_JSON)
-		.post(Entity.entity(fps, MediaType.APPLICATION_JSON), UUID.class);
-	// TODO upload fingerprint set file
-
 	/* run training workflow */
 	TrainingJob trainingJob = wt.path("workflow/training/job").queryParam("workflow-id", wfId)
-		.queryParam("fingerprintset-id", fpsId).request(MediaType.APPLICATION_JSON)
+		.queryParam("fingerprintset-id", fingerprintSetId).request(MediaType.APPLICATION_JSON)
 		.post(null, TrainingJob.class);
 	assertEquals(org.foodauthent.model.TrainingJob.StatusEnum.RUNNING, trainingJob.getStatus());
 	// let the job finish the training
