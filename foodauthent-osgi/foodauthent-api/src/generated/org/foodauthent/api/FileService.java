@@ -23,8 +23,7 @@ public interface FileService {
      *
      * @return the result
      */
-    java.util.UUID createFileMetadata(FileMetadata fileMetadata) 
-;
+    java.util.UUID createFileMetadata(FileMetadata fileMetadata);
         
     /**
      * TODO
@@ -33,8 +32,7 @@ public interface FileService {
      *
      * @return the result
      */
-    File getFileData(java.util.UUID fileId) 
-;
+    File getFileData(java.util.UUID fileId);
         
     /**
      * TODO
@@ -43,8 +41,7 @@ public interface FileService {
      *
      * @return the result
      */
-    FileMetadata getFileMetadata(java.util.UUID fileId) 
-;
+    FileMetadata getFileMetadata(java.util.UUID fileId);
         
     /**
      * TODO
@@ -54,7 +51,6 @@ public interface FileService {
      *
      * @return the result
      */
-    java.util.UUID saveFileData(java.util.UUID fileId, java.io.InputStream upfile, org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail) 
-;
+    java.util.UUID saveFileData(java.util.UUID fileId, java.io.InputStream upfile, org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail);
         
 }

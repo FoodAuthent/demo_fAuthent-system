@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 
 
@@ -31,7 +29,7 @@ public class PredictionWorkflowOutput  extends FaModel {
   
 
   @Override
-  public UUID getFaId() {
+  public java.util.UUID getFaId() {
   	return null;
   }
   
@@ -60,6 +58,10 @@ public class PredictionWorkflowOutput  extends FaModel {
     }
 
 
+  /**
+   * The confidences for each fingerprint, mapped from the fingerprint-id.
+   * @return confidenceMap 
+   */
   public java.util.Map<String, Float> getConfidenceMap() {
         return confidenceMap;
     }
@@ -95,6 +97,10 @@ public class PredictionWorkflowOutput  extends FaModel {
     
         private java.util.Map<String, Float> confidenceMap = new java.util.HashMap<>();
 
+        /**
+         * The confidences for each fingerprint, mapped from the fingerprint-id.
+         * @return confidenceMap 
+         */
         public PredictionWorkflowOutputBuilder setConfidenceMap(java.util.Map<String, Float> confidenceMap) {
              this.confidenceMap = confidenceMap;
              return this;

@@ -17,11 +17,11 @@ public class ServiceUtil {
         //utility class
     }
     
-	public static List<Class<?>> getRestServiceClasses() {
-		List<Class<?>> res = new ArrayList<Class<?>>();
-		{{#tags}}
-		res.add({{name}}RestService.class);
+    public static List<Class<?>> getRestServiceClasses() {
+        List<Class<?>> res = new ArrayList<Class<?>>();
+        {{#tags}}
+        res.add({{name}}RestService.class);
         {{/tags}}
-		return res;
-	}
+        return res;
+    }
 }

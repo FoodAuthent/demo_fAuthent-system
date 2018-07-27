@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 
 
@@ -55,7 +53,7 @@ public class WorkflowParameter  extends FaModel {
   
 
   @Override
-  public UUID getFaId() {
+  public java.util.UUID getFaId() {
   	return null;
   }
   
@@ -87,18 +85,34 @@ public class WorkflowParameter  extends FaModel {
     }
 
 
+  /**
+   * the parameter name
+   * @return name 
+   */
   public String getName() {
         return name;
     }
     
+  /**
+   * whether the parameter is required
+   * @return required 
+   */
   public Boolean Required() {
         return required;
     }
     
+  /**
+   * the parameter type
+   * @return type 
+   */
   public TypeEnum getType() {
         return type;
     }
     
+  /**
+   * the parameter value
+   * @return value 
+   */
   public String getValue() {
         return value;
     }
@@ -140,21 +154,37 @@ public class WorkflowParameter  extends FaModel {
         private TypeEnum type = null;
         private String value = null;
 
+        /**
+         * the parameter name
+         * @return name 
+         */
         public WorkflowParameterBuilder setName(String name) {
              this.name = name;
              return this;
         }
 
+        /**
+         * whether the parameter is required
+         * @return required 
+         */
         public WorkflowParameterBuilder setRequired(Boolean required) {
              this.required = required;
              return this;
         }
 
+        /**
+         * the parameter type
+         * @return type 
+         */
         public WorkflowParameterBuilder setType(TypeEnum type) {
              this.type = type;
              return this;
         }
 
+        /**
+         * the parameter value
+         * @return value 
+         */
         public WorkflowParameterBuilder setValue(String value) {
              this.value = value;
              return this;

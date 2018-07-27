@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.WorkflowModuleInput;
@@ -38,7 +36,7 @@ public class PredictionWorkflowInput  extends FaModel {
   
 
   @Override
-  public UUID getFaId() {
+  public java.util.UUID getFaId() {
   	return null;
   }
   
@@ -71,22 +69,42 @@ public class PredictionWorkflowInput  extends FaModel {
     }
 
 
+  /**
+   * The workflow parameters as given provided by the Workflow-entity.
+   * @return parameters 
+   */
   public java.util.List<WorkflowParameter> getParameters() {
         return parameters;
     }
     
+  /**
+   * The fingerprint set metadata.
+   * @return fingerprintsetMetadata 
+   */
   public FingerprintSet getFingerprintsetMetadata() {
         return fingerprintsetMetadata;
     }
     
+  /**
+   * URI pointing to the resource containg the fingerprints to predict the labels for.
+   * @return fingerprintsetURI 
+   */
   public String getFingerprintsetURI() {
         return fingerprintsetURI;
     }
     
+  /**
+   * optional model uri (if required by the workflow) pointing to the model to use
+   * @return modelURI 
+   */
   public String getModelURI() {
         return modelURI;
     }
     
+  /**
+   * optional list of modules used within the prediction workfow.
+   * @return moduleInputs 
+   */
   public java.util.List<WorkflowModuleInput> getModuleInputs() {
         return moduleInputs;
     }
@@ -130,26 +148,46 @@ public class PredictionWorkflowInput  extends FaModel {
         private String modelURI = null;
         private java.util.List<WorkflowModuleInput> moduleInputs = new java.util.ArrayList<>();
 
+        /**
+         * The workflow parameters as given provided by the Workflow-entity.
+         * @return parameters 
+         */
         public PredictionWorkflowInputBuilder setParameters(java.util.List<WorkflowParameter> parameters) {
              this.parameters = parameters;
              return this;
         }
 
+        /**
+         * The fingerprint set metadata.
+         * @return fingerprintsetMetadata 
+         */
         public PredictionWorkflowInputBuilder setFingerprintsetMetadata(FingerprintSet fingerprintsetMetadata) {
              this.fingerprintsetMetadata = fingerprintsetMetadata;
              return this;
         }
 
+        /**
+         * URI pointing to the resource containg the fingerprints to predict the labels for.
+         * @return fingerprintsetURI 
+         */
         public PredictionWorkflowInputBuilder setFingerprintsetURI(String fingerprintsetURI) {
              this.fingerprintsetURI = fingerprintsetURI;
              return this;
         }
 
+        /**
+         * optional model uri (if required by the workflow) pointing to the model to use
+         * @return modelURI 
+         */
         public PredictionWorkflowInputBuilder setModelURI(String modelURI) {
              this.modelURI = modelURI;
              return this;
         }
 
+        /**
+         * optional list of modules used within the prediction workfow.
+         * @return moduleInputs 
+         */
         public PredictionWorkflowInputBuilder setModuleInputs(java.util.List<WorkflowModuleInput> moduleInputs) {
              this.moduleInputs = moduleInputs;
              return this;

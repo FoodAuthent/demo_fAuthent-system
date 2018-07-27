@@ -26,7 +26,7 @@ import org.foodauthent.common.exception.FAExceptions;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public class FingerprintRestService{
 
-	private final FingerprintService service = ServiceRegistry.get(FingerprintService.class);
+    private final FingerprintService service = ServiceRegistry.get(FingerprintService.class);
 
 
     /**
@@ -41,8 +41,9 @@ public class FingerprintRestService{
     @Produces({ "application/json" })
     public Response createFingerprintSet(FingerprintSet fingerprintSet
 ) {
-			Object res = service.createFingerprintSet(fingerprintSet);    
-			return Response.ok(res).build();
+        
+            Object res = service.createFingerprintSet(fingerprintSet);
+            return Response.ok(res).build();
     }
 
     /**
@@ -56,8 +57,9 @@ public class FingerprintRestService{
     @Produces({ "application/json" })
     public Response findFingerprintSetByKeyword(@QueryParam("keywords")java.util.List<String> keywords
 ) {
-			Object res = service.findFingerprintSetByKeyword(keywords);    
-			return Response.ok(res).build();
+        
+            Object res = service.findFingerprintSetByKeyword(keywords);
+            return Response.ok(res).build();
     }
 
     /**
@@ -71,8 +73,9 @@ public class FingerprintRestService{
     @Produces({ "application/json" })
     public Response getFingerprintSetById(@PathParam("fingerprintset-id") java.util.UUID fingerprintsetId
 ) {
-			Object res = service.getFingerprintSetById(fingerprintsetId);    
-			return Response.ok(res).build();
+        
+            Object res = service.getFingerprintSetById(fingerprintsetId);
+            return Response.ok(res).build();
     }
 }
 

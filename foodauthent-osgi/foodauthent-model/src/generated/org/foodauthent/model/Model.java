@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 import java.time.LocalDate;
 import org.foodauthent.model.Tag;
@@ -98,38 +96,74 @@ public class Model  extends FaModel {
     }
 
 
+  /**
+   * A global id within the FoodAuthent-system.
+   * @return faId 
+   */
   public java.util.UUID getFaId() {
         return faId;
     }
     
+  /**
+   * A name for the model.
+   * @return name 
+   */
   public String getName() {
         return name;
     }
     
+  /**
+   * A more verbose description of the model.
+   * @return description 
+   */
   public String getDescription() {
         return description;
     }
     
+  /**
+   * The authors name (TODO - could reference a user in the future).
+   * @return author 
+   */
   public String getAuthor() {
         return author;
     }
     
+  /**
+   * The creation date.
+   * @return date 
+   */
   public LocalDate getDate() {
         return date;
     }
     
+  /**
+   * The model&#39;s version.
+   * @return version 
+   */
   public Integer getVersion() {
         return version;
     }
     
+  /**
+   * The type of the model in order to be able to check for compatibility of the workflows using it.
+   * @return type 
+   */
   public TypeEnum getType() {
         return type;
     }
     
+  /**
+   * Descriptive tags/annotations for the model.
+   * @return tags 
+   */
   public java.util.List<Tag> getTags() {
         return tags;
     }
     
+  /**
+   * id referencing the model file.
+   * @return fileId 
+   */
   public java.util.UUID getFileId() {
         return fileId;
     }
@@ -181,46 +215,82 @@ public class Model  extends FaModel {
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
         private java.util.UUID fileId = null;
 
+        /**
+         * A global id within the FoodAuthent-system.
+         * @return faId 
+         */
         public ModelBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
+        /**
+         * A name for the model.
+         * @return name 
+         */
         public ModelBuilder setName(String name) {
              this.name = name;
              return this;
         }
 
+        /**
+         * A more verbose description of the model.
+         * @return description 
+         */
         public ModelBuilder setDescription(String description) {
              this.description = description;
              return this;
         }
 
+        /**
+         * The authors name (TODO - could reference a user in the future).
+         * @return author 
+         */
         public ModelBuilder setAuthor(String author) {
              this.author = author;
              return this;
         }
 
+        /**
+         * The creation date.
+         * @return date 
+         */
         public ModelBuilder setDate(LocalDate date) {
              this.date = date;
              return this;
         }
 
+        /**
+         * The model&#39;s version.
+         * @return version 
+         */
         public ModelBuilder setVersion(Integer version) {
              this.version = version;
              return this;
         }
 
+        /**
+         * The type of the model in order to be able to check for compatibility of the workflows using it.
+         * @return type 
+         */
         public ModelBuilder setType(TypeEnum type) {
              this.type = type;
              return this;
         }
 
+        /**
+         * Descriptive tags/annotations for the model.
+         * @return tags 
+         */
         public ModelBuilder setTags(java.util.List<Tag> tags) {
              this.tags = tags;
              return this;
         }
 
+        /**
+         * id referencing the model file.
+         * @return fileId 
+         */
         public ModelBuilder setFileId(java.util.UUID fileId) {
              this.fileId = fileId;
              return this;

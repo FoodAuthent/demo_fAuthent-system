@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 
 
@@ -86,18 +84,34 @@ public class PredictionJob  extends FaModel {
     }
 
 
+  /**
+   * A global id within the FoodAuthent-system.
+   * @return faId 
+   */
   public java.util.UUID getFaId() {
         return faId;
     }
     
+  /**
+   * The id of the prediction result if the job has completed successfully.
+   * @return predictionId 
+   */
   public java.util.UUID getPredictionId() {
         return predictionId;
     }
     
+  /**
+   * The current status of the prediction job.
+   * @return status 
+   */
   public StatusEnum getStatus() {
         return status;
     }
     
+  /**
+   * A message, e.g., in case the workflow failed.
+   * @return statusMessage 
+   */
   public String getStatusMessage() {
         return statusMessage;
     }
@@ -139,21 +153,37 @@ public class PredictionJob  extends FaModel {
         private StatusEnum status = null;
         private String statusMessage = null;
 
+        /**
+         * A global id within the FoodAuthent-system.
+         * @return faId 
+         */
         public PredictionJobBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
+        /**
+         * The id of the prediction result if the job has completed successfully.
+         * @return predictionId 
+         */
         public PredictionJobBuilder setPredictionId(java.util.UUID predictionId) {
              this.predictionId = predictionId;
              return this;
         }
 
+        /**
+         * The current status of the prediction job.
+         * @return status 
+         */
         public PredictionJobBuilder setStatus(StatusEnum status) {
              this.status = status;
              return this;
         }
 
+        /**
+         * A message, e.g., in case the workflow failed.
+         * @return statusMessage 
+         */
         public PredictionJobBuilder setStatusMessage(String statusMessage) {
              this.statusMessage = statusMessage;
              return this;

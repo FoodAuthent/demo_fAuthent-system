@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 
 
@@ -31,7 +29,7 @@ public class TrainingWorkflowOutput  extends FaModel {
   
 
   @Override
-  public UUID getFaId() {
+  public java.util.UUID getFaId() {
   	return null;
   }
   
@@ -60,6 +58,10 @@ public class TrainingWorkflowOutput  extends FaModel {
     }
 
 
+  /**
+   * URI pointing to the created model file.
+   * @return modelUri 
+   */
   public String getModelUri() {
         return modelUri;
     }
@@ -95,6 +97,10 @@ public class TrainingWorkflowOutput  extends FaModel {
     
         private String modelUri = null;
 
+        /**
+         * URI pointing to the created model file.
+         * @return modelUri 
+         */
         public TrainingWorkflowOutputBuilder setModelUri(String modelUri) {
              this.modelUri = modelUri;
              return this;

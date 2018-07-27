@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 import org.foodauthent.model.Tag;
 import org.foodauthent.model.WorkflowModule;
@@ -159,42 +157,82 @@ public class Workflow  extends FaModel {
     }
 
 
+  /**
+   * A global id within the FoodAuthent-system.
+   * @return faId 
+   */
   public java.util.UUID getFaId() {
         return faId;
     }
     
+  /**
+   * Get name
+   * @return name , never <code>null</code>
+   */
   public String getName() {
         return name;
     }
     
+  /**
+   * Get description
+   * @return description 
+   */
   public String getDescription() {
         return description;
     }
     
+  /**
+   * The workflow representation, e.g. represented by a scripting language, cwl or a KNIME-workflow.
+   * @return representation , never <code>null</code>
+   */
   public RepresentationEnum getRepresentation() {
         return representation;
     }
     
+  /**
+   * The type of the workflow. IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity.
+   * @return type , never <code>null</code>
+   */
   public TypeEnum getType() {
         return type;
     }
     
+  /**
+   * The parameters of the workflow, TODO - should maybe be a map.
+   * @return parameters 
+   */
   public java.util.List<WorkflowParameter> getParameters() {
         return parameters;
     }
     
+  /**
+   * Descriptive tags/annotations for the workflow.
+   * @return tags 
+   */
   public java.util.List<Tag> getTags() {
         return tags;
     }
     
+  /**
+   * id referencing the workflow file.
+   * @return fileId , never <code>null</code>
+   */
   public java.util.UUID getFileId() {
         return fileId;
     }
     
+  /**
+   * The workflow modules (including their parameters) required by this workflow or empty (or null) if none required.
+   * @return modules 
+   */
   public java.util.List<WorkflowModule> getModules() {
         return modules;
     }
     
+  /**
+   * Type of the model this workflow can consume or produce. Can be left empty, e.g., in case of a preprocessing workflow. Model type must match one of the model&#39;s type property.
+   * @return modelType 
+   */
   public ModelTypeEnum getModelType() {
         return modelType;
     }
@@ -248,11 +286,19 @@ public class Workflow  extends FaModel {
         private java.util.List<WorkflowModule> modules = new java.util.ArrayList<>();
         private ModelTypeEnum modelType = null;
 
+        /**
+         * A global id within the FoodAuthent-system.
+         * @return faId 
+         */
         public WorkflowBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
+        /**
+         * Get name
+         * @return name , never <code>null</code>
+         */
         public WorkflowBuilder setName(String name) {
              if(name == null) {
                  throw new IllegalArgumentException("name must not be null.");
@@ -261,11 +307,19 @@ public class Workflow  extends FaModel {
              return this;
         }
 
+        /**
+         * Get description
+         * @return description 
+         */
         public WorkflowBuilder setDescription(String description) {
              this.description = description;
              return this;
         }
 
+        /**
+         * The workflow representation, e.g. represented by a scripting language, cwl or a KNIME-workflow.
+         * @return representation , never <code>null</code>
+         */
         public WorkflowBuilder setRepresentation(RepresentationEnum representation) {
              if(representation == null) {
                  throw new IllegalArgumentException("representation must not be null.");
@@ -274,6 +328,10 @@ public class Workflow  extends FaModel {
              return this;
         }
 
+        /**
+         * The type of the workflow. IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity.
+         * @return type , never <code>null</code>
+         */
         public WorkflowBuilder setType(TypeEnum type) {
              if(type == null) {
                  throw new IllegalArgumentException("type must not be null.");
@@ -282,16 +340,28 @@ public class Workflow  extends FaModel {
              return this;
         }
 
+        /**
+         * The parameters of the workflow, TODO - should maybe be a map.
+         * @return parameters 
+         */
         public WorkflowBuilder setParameters(java.util.List<WorkflowParameter> parameters) {
              this.parameters = parameters;
              return this;
         }
 
+        /**
+         * Descriptive tags/annotations for the workflow.
+         * @return tags 
+         */
         public WorkflowBuilder setTags(java.util.List<Tag> tags) {
              this.tags = tags;
              return this;
         }
 
+        /**
+         * id referencing the workflow file.
+         * @return fileId , never <code>null</code>
+         */
         public WorkflowBuilder setFileId(java.util.UUID fileId) {
              if(fileId == null) {
                  throw new IllegalArgumentException("fileId must not be null.");
@@ -300,11 +370,19 @@ public class Workflow  extends FaModel {
              return this;
         }
 
+        /**
+         * The workflow modules (including their parameters) required by this workflow or empty (or null) if none required.
+         * @return modules 
+         */
         public WorkflowBuilder setModules(java.util.List<WorkflowModule> modules) {
              this.modules = modules;
              return this;
         }
 
+        /**
+         * Type of the model this workflow can consume or produce. Can be left empty, e.g., in case of a preprocessing workflow. Model type must match one of the model&#39;s type property.
+         * @return modelType 
+         */
         public WorkflowBuilder setModelType(ModelTypeEnum modelType) {
              this.modelType = modelType;
              return this;

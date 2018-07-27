@@ -22,8 +22,7 @@ public interface ProductService {
      *
      * @return the result
      */
-    java.util.UUID createProduct(Product product) 
-;
+    java.util.UUID createProduct(Product product);
         
     /**
      * TODO
@@ -32,7 +31,6 @@ public interface ProductService {
      *
      * @return the result
      */
-    Product findProductByGtin(String gtin) 
-;
+    Product findProductByGtin(String gtin);
         
 }

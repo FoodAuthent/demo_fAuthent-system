@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 import org.foodauthent.model.WorkflowParameter;
 
@@ -63,7 +61,7 @@ public class WorkflowModule  extends FaModel {
   
 
   @Override
-  public UUID getFaId() {
+  public java.util.UUID getFaId() {
   	return null;
   }
   
@@ -94,14 +92,26 @@ public class WorkflowModule  extends FaModel {
     }
 
 
+  /**
+   * The file-id that references the actual workflow file.
+   * @return fileId 
+   */
   public java.util.UUID getFileId() {
         return fileId;
     }
     
+  /**
+   * The type of the module. IMPORTANT: This property determines the required workflow input and output.
+   * @return moduleType 
+   */
   public ModuleTypeEnum getModuleType() {
         return moduleType;
     }
     
+  /**
+   * The parameters required for the module.
+   * @return moduleParameters 
+   */
   public java.util.List<WorkflowParameter> getModuleParameters() {
         return moduleParameters;
     }
@@ -141,16 +151,28 @@ public class WorkflowModule  extends FaModel {
         private ModuleTypeEnum moduleType = null;
         private java.util.List<WorkflowParameter> moduleParameters = new java.util.ArrayList<>();
 
+        /**
+         * The file-id that references the actual workflow file.
+         * @return fileId 
+         */
         public WorkflowModuleBuilder setFileId(java.util.UUID fileId) {
              this.fileId = fileId;
              return this;
         }
 
+        /**
+         * The type of the module. IMPORTANT: This property determines the required workflow input and output.
+         * @return moduleType 
+         */
         public WorkflowModuleBuilder setModuleType(ModuleTypeEnum moduleType) {
              this.moduleType = moduleType;
              return this;
         }
 
+        /**
+         * The parameters required for the module.
+         * @return moduleParameters 
+         */
         public WorkflowModuleBuilder setModuleParameters(java.util.List<WorkflowParameter> moduleParameters) {
              this.moduleParameters = moduleParameters;
              return this;

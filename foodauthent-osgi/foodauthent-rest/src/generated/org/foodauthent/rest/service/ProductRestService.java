@@ -26,7 +26,7 @@ import org.foodauthent.common.exception.FAExceptions;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public class ProductRestService{
 
-	private final ProductService service = ServiceRegistry.get(ProductService.class);
+    private final ProductService service = ServiceRegistry.get(ProductService.class);
 
 
     /**
@@ -40,8 +40,9 @@ public class ProductRestService{
     @Consumes({ "application/json" })
     public Response createProduct(Product product
 ) {
-			Object res = service.createProduct(product);    
-			return Response.ok(res).build();
+        
+            Object res = service.createProduct(product);
+            return Response.ok(res).build();
     }
 
     /**
@@ -55,8 +56,9 @@ public class ProductRestService{
     @Produces({ "application/json" })
     public Response findProductByGtin(@QueryParam("gtin")String gtin
 ) {
-			Object res = service.findProductByGtin(gtin);    
-			return Response.ok(res).build();
+        
+            Object res = service.findProductByGtin(gtin);
+            return Response.ok(res).build();
     }
 }
 

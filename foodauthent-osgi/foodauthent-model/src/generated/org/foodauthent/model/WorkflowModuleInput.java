@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 import org.foodauthent.model.WorkflowParameter;
 
@@ -63,7 +61,7 @@ public class WorkflowModuleInput  extends FaModel {
   
 
   @Override
-  public UUID getFaId() {
+  public java.util.UUID getFaId() {
   	return null;
   }
   
@@ -94,14 +92,26 @@ public class WorkflowModuleInput  extends FaModel {
     }
 
 
+  /**
+   * URI of the workflow to use.
+   * @return workflowURI 
+   */
   public String getWorkflowURI() {
         return workflowURI;
     }
     
+  /**
+   * The type of the module.
+   * @return moduleType 
+   */
   public ModuleTypeEnum getModuleType() {
         return moduleType;
     }
     
+  /**
+   * The parameters required for the module.
+   * @return moduleParameters 
+   */
   public java.util.List<WorkflowParameter> getModuleParameters() {
         return moduleParameters;
     }
@@ -141,16 +151,28 @@ public class WorkflowModuleInput  extends FaModel {
         private ModuleTypeEnum moduleType = null;
         private java.util.List<WorkflowParameter> moduleParameters = new java.util.ArrayList<>();
 
+        /**
+         * URI of the workflow to use.
+         * @return workflowURI 
+         */
         public WorkflowModuleInputBuilder setWorkflowURI(String workflowURI) {
              this.workflowURI = workflowURI;
              return this;
         }
 
+        /**
+         * The type of the module.
+         * @return moduleType 
+         */
         public WorkflowModuleInputBuilder setModuleType(ModuleTypeEnum moduleType) {
              this.moduleType = moduleType;
              return this;
         }
 
+        /**
+         * The parameters required for the module.
+         * @return moduleParameters 
+         */
         public WorkflowModuleInputBuilder setModuleParameters(java.util.List<WorkflowParameter> moduleParameters) {
              this.moduleParameters = moduleParameters;
              return this;

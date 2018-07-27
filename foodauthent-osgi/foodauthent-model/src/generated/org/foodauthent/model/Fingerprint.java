@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 
 
@@ -59,10 +57,18 @@ public class Fingerprint  extends FaModel {
     }
 
 
+  /**
+   * A global id within the FoodAuthent-system.
+   * @return faId 
+   */
   public java.util.UUID getFaId() {
         return faId;
     }
     
+  /**
+   * Placeholder for the actual metadata.
+   * @return metadata 
+   */
   public String getMetadata() {
         return metadata;
     }
@@ -100,11 +106,19 @@ public class Fingerprint  extends FaModel {
         private java.util.UUID faId = null;
         private String metadata = null;
 
+        /**
+         * A global id within the FoodAuthent-system.
+         * @return faId 
+         */
         public FingerprintBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
+        /**
+         * Placeholder for the actual metadata.
+         * @return metadata 
+         */
         public FingerprintBuilder setMetadata(String metadata) {
              this.metadata = metadata;
              return this;

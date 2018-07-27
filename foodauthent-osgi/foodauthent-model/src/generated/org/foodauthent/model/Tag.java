@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 
 
@@ -88,18 +86,34 @@ public class Tag  extends FaModel {
     }
 
 
+  /**
+   * A global id within the FoodAuthent-system.
+   * @return faId 
+   */
   public java.util.UUID getFaId() {
         return faId;
     }
     
+  /**
+   * A human-readable name
+   * @return name 
+   */
   public String getName() {
         return name;
     }
     
+  /**
+   * A more verbose description.
+   * @return description 
+   */
   public String getDescription() {
         return description;
     }
     
+  /**
+   * The type of the tag, e.g. whether it&#39;s a tag for a workflow, a model or a fingerprint.
+   * @return type 
+   */
   public TypeEnum getType() {
         return type;
     }
@@ -141,21 +155,37 @@ public class Tag  extends FaModel {
         private String description = null;
         private TypeEnum type = null;
 
+        /**
+         * A global id within the FoodAuthent-system.
+         * @return faId 
+         */
         public TagBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
+        /**
+         * A human-readable name
+         * @return name 
+         */
         public TagBuilder setName(String name) {
              this.name = name;
              return this;
         }
 
+        /**
+         * A more verbose description.
+         * @return description 
+         */
         public TagBuilder setDescription(String description) {
              this.description = description;
              return this;
         }
 
+        /**
+         * The type of the tag, e.g. whether it&#39;s a tag for a workflow, a model or a fingerprint.
+         * @return type 
+         */
         public TagBuilder setType(TypeEnum type) {
              this.type = type;
              return this;

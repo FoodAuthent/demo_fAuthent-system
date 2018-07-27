@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 import org.foodauthent.model.Fingerprint;
 
@@ -76,30 +74,58 @@ public class FingerprintSet  extends FaModel {
     }
 
 
+  /**
+   * A global id within the FoodAuthent-system.
+   * @return faId 
+   */
   public java.util.UUID getFaId() {
         return faId;
     }
     
+  /**
+   * The fa-id of the product all fingerprints are associated with.
+   * @return productId , never <code>null</code>
+   */
   public java.util.UUID getProductId() {
         return productId;
     }
     
+  /**
+   * The fingerprints.
+   * @return fingerprints 
+   */
   public java.util.List<Fingerprint> getFingerprints() {
         return fingerprints;
     }
     
+  /**
+   * Id referencing the fingerpint-set file.
+   * @return fileId , never <code>null</code>
+   */
   public java.util.UUID getFileId() {
         return fileId;
     }
     
+  /**
+   * A human-readable name of the fingerprint set.
+   * @return name 
+   */
   public String getName() {
         return name;
     }
     
+  /**
+   * Placeholder for more (fixed) metadata (including device settings etc.). Possibly automatically determined upon creation of the fingerprint-set.
+   * @return metadata 
+   */
   public String getMetadata() {
         return metadata;
     }
     
+  /**
+   * Key-value-map for additional properties.
+   * @return additionalProperties 
+   */
   public java.util.Map<String, String> getAdditionalProperties() {
         return additionalProperties;
     }
@@ -147,11 +173,19 @@ public class FingerprintSet  extends FaModel {
         private String metadata = null;
         private java.util.Map<String, String> additionalProperties = new java.util.HashMap<>();
 
+        /**
+         * A global id within the FoodAuthent-system.
+         * @return faId 
+         */
         public FingerprintSetBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
+        /**
+         * The fa-id of the product all fingerprints are associated with.
+         * @return productId , never <code>null</code>
+         */
         public FingerprintSetBuilder setProductId(java.util.UUID productId) {
              if(productId == null) {
                  throw new IllegalArgumentException("productId must not be null.");
@@ -160,11 +194,19 @@ public class FingerprintSet  extends FaModel {
              return this;
         }
 
+        /**
+         * The fingerprints.
+         * @return fingerprints 
+         */
         public FingerprintSetBuilder setFingerprints(java.util.List<Fingerprint> fingerprints) {
              this.fingerprints = fingerprints;
              return this;
         }
 
+        /**
+         * Id referencing the fingerpint-set file.
+         * @return fileId , never <code>null</code>
+         */
         public FingerprintSetBuilder setFileId(java.util.UUID fileId) {
              if(fileId == null) {
                  throw new IllegalArgumentException("fileId must not be null.");
@@ -173,16 +215,28 @@ public class FingerprintSet  extends FaModel {
              return this;
         }
 
+        /**
+         * A human-readable name of the fingerprint set.
+         * @return name 
+         */
         public FingerprintSetBuilder setName(String name) {
              this.name = name;
              return this;
         }
 
+        /**
+         * Placeholder for more (fixed) metadata (including device settings etc.). Possibly automatically determined upon creation of the fingerprint-set.
+         * @return metadata 
+         */
         public FingerprintSetBuilder setMetadata(String metadata) {
              this.metadata = metadata;
              return this;
         }
 
+        /**
+         * Key-value-map for additional properties.
+         * @return additionalProperties 
+         */
         public FingerprintSetBuilder setAdditionalProperties(java.util.Map<String, String> additionalProperties) {
              this.additionalProperties = additionalProperties;
              return this;

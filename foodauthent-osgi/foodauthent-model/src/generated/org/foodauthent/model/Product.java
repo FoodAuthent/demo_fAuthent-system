@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 
 
@@ -61,14 +59,26 @@ public class Product  extends FaModel {
     }
 
 
+  /**
+   * A global id within the FoodAuthent-system.
+   * @return faId 
+   */
   public java.util.UUID getFaId() {
         return faId;
     }
     
+  /**
+   * Get gtin
+   * @return gtin 
+   */
   public String getGtin() {
         return gtin;
     }
     
+  /**
+   * Get brand
+   * @return brand 
+   */
   public String getBrand() {
         return brand;
     }
@@ -108,16 +118,28 @@ public class Product  extends FaModel {
         private String gtin = null;
         private String brand = null;
 
+        /**
+         * A global id within the FoodAuthent-system.
+         * @return faId 
+         */
         public ProductBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
+        /**
+         * Get gtin
+         * @return gtin 
+         */
         public ProductBuilder setGtin(String gtin) {
              this.gtin = gtin;
              return this;
         }
 
+        /**
+         * Get brand
+         * @return brand 
+         */
         public ProductBuilder setBrand(String brand) {
              this.brand = brand;
              return this;

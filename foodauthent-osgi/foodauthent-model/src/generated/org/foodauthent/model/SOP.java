@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 
 
@@ -65,22 +63,42 @@ public class SOP  extends FaModel {
     }
 
 
+  /**
+   * A global id within the FoodAuthent-system.
+   * @return faId 
+   */
   public java.util.UUID getFaId() {
         return faId;
     }
     
+  /**
+   * Id referencing the file in the fa-system.
+   * @return fileId 
+   */
   public java.util.UUID getFileId() {
         return fileId;
     }
     
+  /**
+   * A short SOP name
+   * @return name 
+   */
   public String getName() {
         return name;
     }
     
+  /**
+   * A short description of the sop
+   * @return description 
+   */
   public String getDescription() {
         return description;
     }
     
+  /**
+   * A reference to a product this sop is made for.
+   * @return productId 
+   */
   public java.util.UUID getProductId() {
         return productId;
     }
@@ -124,26 +142,46 @@ public class SOP  extends FaModel {
         private String description = null;
         private java.util.UUID productId = null;
 
+        /**
+         * A global id within the FoodAuthent-system.
+         * @return faId 
+         */
         public SOPBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
+        /**
+         * Id referencing the file in the fa-system.
+         * @return fileId 
+         */
         public SOPBuilder setFileId(java.util.UUID fileId) {
              this.fileId = fileId;
              return this;
         }
 
+        /**
+         * A short SOP name
+         * @return name 
+         */
         public SOPBuilder setName(String name) {
              this.name = name;
              return this;
         }
 
+        /**
+         * A short description of the sop
+         * @return description 
+         */
         public SOPBuilder setDescription(String description) {
              this.description = description;
              return this;
         }
 
+        /**
+         * A reference to a product this sop is made for.
+         * @return productId 
+         */
         public SOPBuilder setProductId(java.util.UUID productId) {
              this.productId = productId;
              return this;

@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 
 
@@ -86,18 +84,34 @@ public class TrainingJob  extends FaModel {
     }
 
 
+  /**
+   * A global id within the FoodAuthent-system.
+   * @return faId 
+   */
   public java.util.UUID getFaId() {
         return faId;
     }
     
+  /**
+   * The created model after successful training.
+   * @return modelId 
+   */
   public java.util.UUID getModelId() {
         return modelId;
     }
     
+  /**
+   * Get status
+   * @return status 
+   */
   public StatusEnum getStatus() {
         return status;
     }
     
+  /**
+   * A message, e.g., in case the workflow failed.
+   * @return statusMessage 
+   */
   public String getStatusMessage() {
         return statusMessage;
     }
@@ -139,21 +153,37 @@ public class TrainingJob  extends FaModel {
         private StatusEnum status = null;
         private String statusMessage = null;
 
+        /**
+         * A global id within the FoodAuthent-system.
+         * @return faId 
+         */
         public TrainingJobBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
+        /**
+         * The created model after successful training.
+         * @return modelId 
+         */
         public TrainingJobBuilder setModelId(java.util.UUID modelId) {
              this.modelId = modelId;
              return this;
         }
 
+        /**
+         * Get status
+         * @return status 
+         */
         public TrainingJobBuilder setStatus(StatusEnum status) {
              this.status = status;
              return this;
         }
 
+        /**
+         * A message, e.g., in case the workflow failed.
+         * @return statusMessage 
+         */
         public TrainingJobBuilder setStatusMessage(String statusMessage) {
              this.statusMessage = statusMessage;
              return this;

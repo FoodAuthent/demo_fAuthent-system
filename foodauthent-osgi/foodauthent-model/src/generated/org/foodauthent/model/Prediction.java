@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 
 
@@ -65,22 +63,42 @@ public class Prediction  extends FaModel {
     }
 
 
+  /**
+   * A global id within the FoodAuthent-system.
+   * @return faId 
+   */
   public java.util.UUID getFaId() {
         return faId;
     }
     
+  /**
+   * The confidences for each fingerprint, mapped from the fingerprint-id.
+   * @return confidenceMap 
+   */
   public java.util.Map<String, Float> getConfidenceMap() {
         return confidenceMap;
     }
     
+  /**
+   * Workflow used for the prediction.
+   * @return workflowId 
+   */
   public java.util.UUID getWorkflowId() {
         return workflowId;
     }
     
+  /**
+   * Id of the set the prediction has been done for.
+   * @return fingerprintSetId 
+   */
   public java.util.UUID getFingerprintSetId() {
         return fingerprintSetId;
     }
     
+  /**
+   * The model that has been used for the prediction.
+   * @return modelId 
+   */
   public java.util.UUID getModelId() {
         return modelId;
     }
@@ -124,26 +142,46 @@ public class Prediction  extends FaModel {
         private java.util.UUID fingerprintSetId = null;
         private java.util.UUID modelId = null;
 
+        /**
+         * A global id within the FoodAuthent-system.
+         * @return faId 
+         */
         public PredictionBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
+        /**
+         * The confidences for each fingerprint, mapped from the fingerprint-id.
+         * @return confidenceMap 
+         */
         public PredictionBuilder setConfidenceMap(java.util.Map<String, Float> confidenceMap) {
              this.confidenceMap = confidenceMap;
              return this;
         }
 
+        /**
+         * Workflow used for the prediction.
+         * @return workflowId 
+         */
         public PredictionBuilder setWorkflowId(java.util.UUID workflowId) {
              this.workflowId = workflowId;
              return this;
         }
 
+        /**
+         * Id of the set the prediction has been done for.
+         * @return fingerprintSetId 
+         */
         public PredictionBuilder setFingerprintSetId(java.util.UUID fingerprintSetId) {
              this.fingerprintSetId = fingerprintSetId;
              return this;
         }
 
+        /**
+         * The model that has been used for the prediction.
+         * @return modelId 
+         */
         public PredictionBuilder setModelId(java.util.UUID modelId) {
              this.modelId = modelId;
              return this;

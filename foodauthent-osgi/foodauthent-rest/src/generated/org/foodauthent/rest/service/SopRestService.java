@@ -26,7 +26,7 @@ import org.foodauthent.common.exception.FAExceptions;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public class SopRestService{
 
-	private final SopService service = ServiceRegistry.get(SopService.class);
+    private final SopService service = ServiceRegistry.get(SopService.class);
 
 
     /**
@@ -40,8 +40,9 @@ public class SopRestService{
     @Produces({ "application/json" })
     public Response createNewSOP(SOP sop
 ) {
-			Object res = service.createNewSOP(sop);    
-			return Response.ok(res).build();
+        
+            Object res = service.createNewSOP(sop);
+            return Response.ok(res).build();
     }
 
     /**
@@ -55,8 +56,9 @@ public class SopRestService{
     @Produces({ "application/json" })
     public Response findSOPByKeyword(@QueryParam("keywords")java.util.List<String> keywords
 ) {
-			Object res = service.findSOPByKeyword(keywords);    
-			return Response.ok(res).build();
+        
+            Object res = service.findSOPByKeyword(keywords);
+            return Response.ok(res).build();
     }
 
     /**
@@ -70,8 +72,9 @@ public class SopRestService{
     @Produces({ "application/json" })
     public Response getSOPById(@PathParam("sop-id") java.util.UUID sopId
 ) {
-			Object res = service.getSOPById(sopId);    
-			return Response.ok(res).build();
+        
+            Object res = service.getSOPById(sopId);
+            return Response.ok(res).build();
     }
 }
 

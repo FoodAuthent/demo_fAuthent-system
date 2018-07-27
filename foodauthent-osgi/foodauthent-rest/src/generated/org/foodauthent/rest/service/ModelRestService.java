@@ -26,7 +26,7 @@ import org.foodauthent.common.exception.FAExceptions;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public class ModelRestService{
 
-	private final ModelService service = ServiceRegistry.get(ModelService.class);
+    private final ModelService service = ServiceRegistry.get(ModelService.class);
 
 
     /**
@@ -40,8 +40,9 @@ public class ModelRestService{
     @Consumes({ "application/json" })
     public Response createModel(Model model
 ) {
-			Object res = service.createModel(model);    
-			return Response.ok(res).build();
+        
+            Object res = service.createModel(model);
+            return Response.ok(res).build();
     }
 
     /**
@@ -55,8 +56,9 @@ public class ModelRestService{
     @Produces({ "application/json" })
     public Response getModelById(@PathParam("model-id") java.util.UUID modelId
 ) {
-			Object res = service.getModelById(modelId);    
-			return Response.ok(res).build();
+        
+            Object res = service.getModelById(modelId);
+            return Response.ok(res).build();
     }
 }
 

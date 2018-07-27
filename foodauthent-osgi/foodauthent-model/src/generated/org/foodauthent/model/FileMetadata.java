@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
-
 
 import java.time.LocalDate;
 
@@ -101,38 +99,74 @@ public class FileMetadata  extends FaModel {
     }
 
 
+  /**
+   * A global id within the FoodAuthent-system.
+   * @return faId 
+   */
   public java.util.UUID getFaId() {
         return faId;
     }
     
+  /**
+   * The file type.
+   * @return type 
+   */
   public TypeEnum getType() {
         return type;
     }
     
+  /**
+   * A name for the file.
+   * @return name 
+   */
   public String getName() {
         return name;
     }
     
+  /**
+   * The name of the file as uploaded. Will be set automatically if left empty and a file is uploaded for the first time.
+   * @return uploadName 
+   */
   public String getUploadName() {
         return uploadName;
     }
     
+  /**
+   * A more verbose description of the file.
+   * @return description 
+   */
   public String getDescription() {
         return description;
     }
     
+  /**
+   * The authors name (TODO - could reference a user in the future).
+   * @return author 
+   */
   public String getAuthor() {
         return author;
     }
     
+  /**
+   * The creation date.
+   * @return date 
+   */
   public LocalDate getDate() {
         return date;
     }
     
+  /**
+   * Time and date of the file upload. Will be set automatically.
+   * @return uploadDate 
+   */
   public LocalDate getUploadDate() {
         return uploadDate;
     }
     
+  /**
+   * The file&#39;s version.
+   * @return version 
+   */
   public Integer getVersion() {
         return version;
     }
@@ -184,46 +218,82 @@ public class FileMetadata  extends FaModel {
         private LocalDate uploadDate = null;
         private Integer version = null;
 
+        /**
+         * A global id within the FoodAuthent-system.
+         * @return faId 
+         */
         public FileMetadataBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
              return this;
         }
 
+        /**
+         * The file type.
+         * @return type 
+         */
         public FileMetadataBuilder setType(TypeEnum type) {
              this.type = type;
              return this;
         }
 
+        /**
+         * A name for the file.
+         * @return name 
+         */
         public FileMetadataBuilder setName(String name) {
              this.name = name;
              return this;
         }
 
+        /**
+         * The name of the file as uploaded. Will be set automatically if left empty and a file is uploaded for the first time.
+         * @return uploadName 
+         */
         public FileMetadataBuilder setUploadName(String uploadName) {
              this.uploadName = uploadName;
              return this;
         }
 
+        /**
+         * A more verbose description of the file.
+         * @return description 
+         */
         public FileMetadataBuilder setDescription(String description) {
              this.description = description;
              return this;
         }
 
+        /**
+         * The authors name (TODO - could reference a user in the future).
+         * @return author 
+         */
         public FileMetadataBuilder setAuthor(String author) {
              this.author = author;
              return this;
         }
 
+        /**
+         * The creation date.
+         * @return date 
+         */
         public FileMetadataBuilder setDate(LocalDate date) {
              this.date = date;
              return this;
         }
 
+        /**
+         * Time and date of the file upload. Will be set automatically.
+         * @return uploadDate 
+         */
         public FileMetadataBuilder setUploadDate(LocalDate uploadDate) {
              this.uploadDate = uploadDate;
              return this;
         }
 
+        /**
+         * The file&#39;s version.
+         * @return version 
+         */
         public FileMetadataBuilder setVersion(Integer version) {
              this.version = version;
              return this;

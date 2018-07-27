@@ -22,8 +22,7 @@ public interface ModelService {
      *
      * @return the result
      */
-    java.util.UUID createModel(Model model) 
-;
+    java.util.UUID createModel(Model model);
         
     /**
      * TODO
@@ -32,7 +31,6 @@ public interface ModelService {
      *
      * @return the result
      */
-    Model getModelById(java.util.UUID modelId) 
-;
+    Model getModelById(java.util.UUID modelId);
         
 }
