@@ -20,6 +20,7 @@ import org.foodauthent.model.Model;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJob.StatusEnum;
+import org.foodauthent.model.Product;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
 import org.foodauthent.model.Workflow.ModelTypeEnum;
@@ -66,12 +67,21 @@ public class WorkflowServiceTest extends AbstractITTest {
     @Before
     public void uploadFingerprintSet() {
 	
-	/* upload fingerprint set */
-	Fingerprint fp = Fingerprint.builder().setMetadata("fp metadata").build();
-	FingerprintSet fps = FingerprintSet.builder().setName("myset").setFingerprints(Arrays.asList(fp)).build();
-	fingerprintSetId = wt.path("fingerprints").request(MediaType.APPLICATION_JSON)
-		.post(Entity.entity(fps, MediaType.APPLICATION_JSON), UUID.class);
+	//upload product
+	Product p = Product.builder().setBrand("my_product").setGtin("1234").build();
+	UUID productId = wt.path("product").request(MediaType.APPLICATION_JSON)
+		.post(Entity.entity(p, MediaType.APPLICATION_JSON), UUID.class);
+	
 	// TODO upload fingerprint set file
+	// use some random id for now
+	UUID fpsFileId = UUID.randomUUID();
+	
+	// upload fingerprint set
+	Fingerprint fp = Fingerprint.builder().setMetadata("fp metadata").build();
+	FingerprintSet fps = FingerprintSet.builder().setName("myset").setProductId(productId)
+		.setFingerprints(Arrays.asList(fp)).setFileId(fpsFileId).build();
+	fingerprintSetId = wt.path("fingerprintset").request(MediaType.APPLICATION_JSON)
+		.post(Entity.entity(fps, MediaType.APPLICATION_JSON), UUID.class);
     }
     
     @Before
@@ -194,16 +204,9 @@ public class WorkflowServiceTest extends AbstractITTest {
 	UUID wfId = wt.path("workflow").request(MediaType.APPLICATION_JSON)
 		.post(Entity.entity(wf, MediaType.APPLICATION_JSON), UUID.class);
 
-	/* upload fingerprint set */
-	Fingerprint fp = Fingerprint.builder().setMetadata("fp metadata").build();
-	FingerprintSet fps = FingerprintSet.builder().setName("myset").setFingerprints(Arrays.asList(fp)).build();
-	UUID fpsId = wt.path("fingerprints").request(MediaType.APPLICATION_JSON)
-		.post(Entity.entity(fps, MediaType.APPLICATION_JSON), UUID.class);
-	// TODO upload fingerprint set file
-
 	/* run training workflow */
 	TrainingJob trainingJob = wt.path("workflow/training/job").queryParam("workflow-id", wfId)
-		.queryParam("fingerprintset-id", fpsId).request(MediaType.APPLICATION_JSON)
+		.queryParam("fingerprintset-id", fingerprintSetId).request(MediaType.APPLICATION_JSON)
 		.post(null, TrainingJob.class);
 	assertEquals(org.foodauthent.model.TrainingJob.StatusEnum.RUNNING, trainingJob.getStatus());
 	// let the job finish the training
