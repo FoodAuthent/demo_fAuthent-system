@@ -191,7 +191,7 @@ paths:
             type: string
             format: uuid      
         
-  /fingerprints:
+  /fingerprintset:
     get:
       tags:
         - fingerprint
@@ -231,7 +231,7 @@ paths:
       - application/json
       parameters:
       - in: body
-        name: fingerprintSet
+        name: fingerprint-set
         description: A fingerprint set containing fingerprint metadata.
         required: true
         schema:
@@ -264,63 +264,6 @@ paths:
           schema:
             $ref: "#/definitions/FingerprintSet"
  
-  /fingerprint/addrawdata/{fingerprint-id}:
-    post:
-      tags:
-        - fingerprint
-      summary: Upload fingerprint raw data.
-      description: TODO
-      operationId: addFingerprintRawData
-      consumes:
-      - application/json 
-      parameters:
-      - in: path
-        name: fingerprint-id
-        description: The fingerprint the data is associated with.
-        type: string
-        format: uuid
-        required: true
-      - in: body
-        name: data
-        required: true
-        description: The raw data.
-        schema:
-          type: string
-          format: binary
-      responses:
-        200:
-          description: Successful upload
-        405:
-          description: If there is no fingerprint with the given id.
-          
-  /fingerprint/addmetadata/{fingerprint-id}:
-    post:
-      tags:
-        - fingerprint
-      summary: Upload fingerprint metadata.
-      description: TODO
-      operationId: addMetaData
-      consumes:
-      - application/json
-      parameters:
-      - in: path
-        name: fingerprint-id
-        description: The fingerprint the data is associated with.
-        type: string
-        format: uuid
-        required: true
-      - in: body
-        name: metadata
-        required: true
-        description: Metadata to add.
-        schema:
-          $ref: "#/definitions/MetadataEntries"
-      responses:
-        200:
-          description: Successful upload 
-        405:
-          description: If there is no fingerprint with the given id.
-        
   /product:
     post:
       tags:
@@ -667,21 +610,6 @@ definitions:
         format: uuid
         example: ""
         
-  MetadataEntries:
-    description: One or more metadata entries (key-value-pair)
-    type: object
-    properties:
-      fa-id:
-        description: A global id within the FoodAuthent-system.
-        type: string
-        format: uuid
-        example: ""
-#    additionalProperties:
-#      type: string
-    example:
-      key: value      
-      
-      
   FileMetadata:
     description: Metadata of a file in the FoodAuthent-system.
     type: object
@@ -694,7 +622,7 @@ definitions:
       type:
         description: The file type.
         type: string
-        enum: [knime_workflow, knime_model, python_script, sop_pdf]
+        enum: [knime_workflow, knime_model, python_script, sop_pdf, fingerprints_bruker]
       name:
         description: "A name for the file."
         type: string
@@ -721,7 +649,7 @@ definitions:
 
   # should always be part of a fingerprint set
   Fingerprint:
-    description: A fingerprint object referencing metadata and raw data.
+    description: A fingerprint object representing its metadata.
     type: object
     properties:
       fa-id:
@@ -733,49 +661,12 @@ definitions:
         description: Placeholder for the actual metadata.
         type: string
         
-  FingerprintRawData:
-    description: The fingerprint/sample raw data.
-    type: object
-    required:
-      - parent-id
-      - data
-    properties:
-      fa-id:
-        description: A global id within the FoodAuthent-system.
-        type: string
-        format: uuid
-        example: ""
-      parent-id:
-        description: The ID of the fingerprint (parent) object.
-        type: string
-        format: uuid
-      data:
-        type: string
-        format: binary        
-        
-  FingerprintMetadata:
-    description:  The fingerprint/sample metadata including, e.g., the meassurment meta data such as device info, processing info, etc.
-    type: object
-    properties:
-      fa-id:
-        description: A global id within the FoodAuthent-system.
-        type: string
-        format: uuid
-        example: ""
-      
-      parent-id:
-        description: The ID of the fingerprint (parent) object.
-        type: string
-        format: uuid
-        example: ""
-#    additionalProperties:
-#      type: string
-    example:
-      key: value
-        
   FingerprintSet:
     description: A set of fingerprints with its own id.
     type: object
+    required:
+      - file-id
+      - product-id
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.
@@ -792,9 +683,23 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Fingerprint"
+      file-id:
+        description: Id referencing the fingerpint-set file.
+        type: string
+        format: uuid
       name:
         description: A human-readable name of the fingerprint set.
         type: string
+      metadata:
+        description: Placeholder for more (fixed) metadata (including device settings etc.).
+          Possibly automatically determined upon creation of the fingerprint-set.
+        type: string
+      additional-properties:
+        description: Key-value-map for additional properties.
+        #string to string map
+        type: object
+        additionalProperties:
+          type: string
         
   Model:
     description: A model created via training and used for prediction. Can also be a workflow.

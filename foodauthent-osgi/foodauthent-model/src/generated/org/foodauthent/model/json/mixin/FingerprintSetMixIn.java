@@ -54,8 +54,17 @@ public interface FingerprintSetMixIn {
     @JsonProperty("fingerprints")
     public java.util.List<FingerprintMixIn> getFingerprints();
     
+    @JsonProperty("file-id")
+    public java.util.UUID getFileId();
+    
     @JsonProperty("name")
     public String getName();
+    
+    @JsonProperty("metadata")
+    public String getMetadata();
+    
+    @JsonProperty("additional-properties")
+    public java.util.Map<String, String> getAdditionalProperties();
     
 
     /**
@@ -85,8 +94,17 @@ public interface FingerprintSetMixIn {
         @JsonProperty("fingerprints")
         public FingerprintSetMixInBuilder setFingerprints(final java.util.List<FingerprintMixIn> fingerprints);
         
+        @JsonProperty("file-id")
+        public FingerprintSetMixInBuilder setFileId(final java.util.UUID fileId);
+        
         @JsonProperty("name")
         public FingerprintSetMixInBuilder setName(final String name);
+        
+        @JsonProperty("metadata")
+        public FingerprintSetMixInBuilder setMetadata(final String metadata);
+        
+        @JsonProperty("additional-properties")
+        public FingerprintSetMixInBuilder setAdditionalProperties(final java.util.Map<String, String> additionalProperties);
         
     }
 

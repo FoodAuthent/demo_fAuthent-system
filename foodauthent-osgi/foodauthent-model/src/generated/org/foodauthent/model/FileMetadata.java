@@ -33,7 +33,9 @@ public class FileMetadata  extends FaModel {
     
     PYTHON_SCRIPT("python_script"),
     
-    SOP_PDF("sop_pdf");
+    SOP_PDF("sop_pdf"),
+    
+    FINGERPRINTS_BRUKER("fingerprints_bruker");
 
     private String value;
 

@@ -26,16 +26,10 @@ public class ModelUtil {
     
         mapper.addMixIn(FileMetadata.class, FileMetadataMixIn.class);
         mapper.addMixIn(FileMetadata.FileMetadataBuilder.class, FileMetadataMixIn.FileMetadataMixInBuilder.class);
-        mapper.addMixIn(FingerprintMetadata.class, FingerprintMetadataMixIn.class);
-        mapper.addMixIn(FingerprintMetadata.FingerprintMetadataBuilder.class, FingerprintMetadataMixIn.FingerprintMetadataMixInBuilder.class);
         mapper.addMixIn(Fingerprint.class, FingerprintMixIn.class);
         mapper.addMixIn(Fingerprint.FingerprintBuilder.class, FingerprintMixIn.FingerprintMixInBuilder.class);
-        mapper.addMixIn(FingerprintRawData.class, FingerprintRawDataMixIn.class);
-        mapper.addMixIn(FingerprintRawData.FingerprintRawDataBuilder.class, FingerprintRawDataMixIn.FingerprintRawDataMixInBuilder.class);
         mapper.addMixIn(FingerprintSet.class, FingerprintSetMixIn.class);
         mapper.addMixIn(FingerprintSet.FingerprintSetBuilder.class, FingerprintSetMixIn.FingerprintSetMixInBuilder.class);
-        mapper.addMixIn(MetadataEntries.class, MetadataEntriesMixIn.class);
-        mapper.addMixIn(MetadataEntries.MetadataEntriesBuilder.class, MetadataEntriesMixIn.MetadataEntriesMixInBuilder.class);
         mapper.addMixIn(Model.class, ModelMixIn.class);
         mapper.addMixIn(Model.ModelBuilder.class, ModelMixIn.ModelMixInBuilder.class);
         mapper.addMixIn(PredictionJob.class, PredictionJobMixIn.class);

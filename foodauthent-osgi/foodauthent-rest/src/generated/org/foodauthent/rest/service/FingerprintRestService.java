@@ -7,7 +7,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.FingerprintSet;
-import org.foodauthent.model.MetadataEntries;
 
 import org.foodauthent.api.FingerprintService;
 import org.foodauthent.api.ServiceRegistry;
@@ -33,47 +32,11 @@ public class FingerprintRestService{
     /**
      * TODO
      *
-     * @param fingerprintId The fingerprint the data is associated with.
-     * @param data The raw data.
-     * @return the response
-     */
-    @POST
-    @Path("/fingerprint/addrawdata/{fingerprint-id}")
-    @Consumes({ "application/json" })
-    public Response addFingerprintRawData(@PathParam("fingerprint-id") java.util.UUID fingerprintId
-, byte[] data
-) {
-			service.addFingerprintRawData(fingerprintId, data);    
-			
-    			return Response.ok().build();
-    }
-
-    /**
-     * TODO
-     *
-     * @param fingerprintId The fingerprint the data is associated with.
-     * @param metadata Metadata to add.
-     * @return the response
-     */
-    @POST
-    @Path("/fingerprint/addmetadata/{fingerprint-id}")
-    @Consumes({ "application/json" })
-    public Response addMetaData(@PathParam("fingerprint-id") java.util.UUID fingerprintId
-, MetadataEntries metadata
-) {
-			service.addMetaData(fingerprintId, metadata);    
-			
-    			return Response.ok().build();
-    }
-
-    /**
-     * TODO
-     *
      * @param fingerprintSet A fingerprint set containing fingerprint metadata.
      * @return the response
      */
     @POST
-    @Path("/fingerprints")
+    @Path("/fingerprintset")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createFingerprintSet(FingerprintSet fingerprintSet
@@ -89,7 +52,7 @@ public class FingerprintRestService{
      * @return the response
      */
     @GET
-    @Path("/fingerprints")
+    @Path("/fingerprintset")
     @Produces({ "application/json" })
     public Response findFingerprintSetByKeyword(@QueryParam("keywords")java.util.List<String> keywords
 ) {

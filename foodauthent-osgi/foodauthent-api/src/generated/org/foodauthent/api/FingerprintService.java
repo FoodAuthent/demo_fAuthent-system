@@ -4,7 +4,6 @@
 package org.foodauthent.api;
 
 import org.foodauthent.model.FingerprintSet;
-import org.foodauthent.model.MetadataEntries;
 
 import org.foodauthent.common.exception.FAExceptions;
 
@@ -16,28 +15,6 @@ import org.foodauthent.common.exception.FAExceptions;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public interface FingerprintService {
 
-    /**
-     * TODO
-     *
-     * @param fingerprintId The fingerprint the data is associated with.
-     * @param data The raw data.
-     *
-     * 
-     */
-    void addFingerprintRawData(java.util.UUID fingerprintId, byte[] data) 
-;
-        
-    /**
-     * TODO
-     *
-     * @param fingerprintId The fingerprint the data is associated with.
-     * @param metadata Metadata to add.
-     *
-     * 
-     */
-    void addMetaData(java.util.UUID fingerprintId, MetadataEntries metadata) 
-;
-        
     /**
      * TODO
      *

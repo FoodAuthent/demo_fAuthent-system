@@ -15,7 +15,7 @@ import java.util.UUID;
 
 
 /**
- * A fingerprint object referencing metadata and raw data.
+ * A fingerprint object representing its metadata.
  *
  * @author Martin Horn, University of Konstanz
  */
