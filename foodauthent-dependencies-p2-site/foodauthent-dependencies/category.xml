@@ -86,4 +86,5 @@
    <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime"/>
    <category-def name="org.knime.platform" label="KNIME Analytics Platform"/>
    <category-def name="org.scala-lang" label="Scala Library"/>
+   <category-def name="org.openchrom" label="org.openchrom"/>
 </site>
