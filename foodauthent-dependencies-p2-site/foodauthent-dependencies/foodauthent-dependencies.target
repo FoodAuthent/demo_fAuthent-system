@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="39">
+<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="41">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.2.2.v20180210-1608"/>
@@ -31,6 +31,14 @@
 <unit id="org.knime.features.python2.feature.group" version="3.6.0.v201807061638"/>
 <unit id="org.knime.features.python2.source.feature.group" version="3.6.0.v201807061638"/>
 <repository location="http://update.knime.com/analytics-platform/3.6"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="net.openchrom.rcp.compilation.community.converter.feature.feature.group" version="1.3.0.201808020520"/>
+<repository location="https://update.openchrom.net/repositories/community/latest/converter"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="net.openchrom.platform.feature.feature.group" version="1.0.0.201808011437"/>
+<repository location="https://update.openchrom.net/repositories/community/latest/platform"/>
 </location>
 </locations>
 </target>
