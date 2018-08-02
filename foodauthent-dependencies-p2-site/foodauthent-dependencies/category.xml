@@ -81,6 +81,12 @@
    <feature url="features/com.knime.features.explorer.serverspace_4.7.0.v201807061420.jar" id="com.knime.features.explorer.serverspace" version="4.7.0.v201807061420">
       <category name="org.knime.platform"/>
    </feature>
+   <feature url="features/org.foodauthent.openchrom.converter.feature_1.0.0.qualifier.jar" id="org.foodauthent.openchrom.converter.feature" version="1.0.0.qualifier">
+      <category name="org.openchrom"/>
+   </feature>
+   <feature url="features/org.foodauthent.openchrom.platform.feature_1.0.0.qualifier.jar" id="org.foodauthent.openchrom.platform.feature" version="1.0.0.qualifier">
+      <category name="org.openchrom"/>
+   </feature>
    <category-def name="org.foodauthent.custom" label="FoodAuthent Custom Dependencies"/>
    <category-def name="org.foodauthent.maven" label="FoodAuthent Maven Dependencies"/>
    <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime"/>
