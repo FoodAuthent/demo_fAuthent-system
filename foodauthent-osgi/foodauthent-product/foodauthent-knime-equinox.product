@@ -197,6 +197,8 @@
       <feature id="org.eclipse.equinox.executable" version="3.7.2.v20171108-1834"/>
       <feature id="org.eclipse.equinox.server.core" version="1.5.3.v20180210-1608"/>
       <feature id="org.eclipse.equinox.server.jetty" version="1.4.4.v20180322-2228"/>
+      <feature id="org.foodauthent.openchrom.converter.feature" version="1.0.0.qualifier"/>
+      <feature id="org.foodauthent.openchrom.platform.feature" version="1.0.0.qualifier"/>
    </features>
 
    <configurations>
