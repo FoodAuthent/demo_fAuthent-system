@@ -122,6 +122,8 @@
 		<module>com.eclipsesource.jaxrs.publisher</module>
 		<module>com.eclipsesource.jaxrs.consumer</module>
 		<module>com.eclipsesource.jaxrs.feature</module>
+		<module>net.openchrom.platform.feature</module>
+		<module>net.openchrom.converter.feature</module>
 		<module>foodauthent-dependencies-feature</module>
 		<module>foodauthent-dependencies</module>
 	</modules>
