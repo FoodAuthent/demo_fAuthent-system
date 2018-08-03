@@ -1,0 +1,40 @@
+##TITLE= Audit trail, TopSpin 3.5 pl 2
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= nmrsu
+$$ C:/Bruker/TopSpin3.5pl2/data/Speiseöl/W-FAO06502_17P_20170817/1/pdata/1/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2017-08-17 15:21:11.334 +0200>,<nmrsu>,<CZC14270YN>,<go4>,<TopSpin 3.5.2>,
+      <created by zg
+	started at 2017-08-17 15:18:24.992 +0200,
+	POWCHK enabled, PULCHK disabled,
+       configuration hash MD5:
+       1E D9 84 B1 9A 61 FA 0C 19 F8 65 63 09 82 AA 02
+       data hash MD5: 64K
+       2E 51 F5 4F 18 F6 28 F1 37 9C C9 FF 50 57 55 8A>)
+(   2,<2017-08-17 15:21:12.077 +0200>,<nmrsu>,<CZC14270YN>,<audit>,<TopSpin 3.5.2>,
+      <user comment:
+       ICON-NMR User ID: nmrsu
+       data hash MD5: 64K
+       2E 51 F5 4F 18 F6 28 F1 37 9C C9 FF 50 57 55 8A>)
+(   3,<2017-08-17 15:21:12.517 +0200>,<nmrsu>,<CZC14270YN>,<proc1d>,<TopSpin 3.5.2>,
+      <Start of raw data processing
+       ef LB = 0.3 FT_mod = 6 PKNL = 1 SI = 128K 
+       data hash MD5: 128K
+       DA 89 65 9F 52 8C 1A 26 78 53 CB E1 DA FD F5 93>)
+(   4,<2017-08-17 15:21:13.098 +0200>,<nmrsu>,<CZC14270YN>,<proc1d>,<TopSpin 3.5.2>,
+      <apk 
+       data hash MD5: 128K
+       72 C7 9A EC BA 47 47 22 E7 05 6F 27 89 39 93 A2>)
+(   5,<2017-08-17 15:21:13.152 +0200>,<nmrsu>,<CZC14270YN>,<proc1d>,<TopSpin 3.5.2>,
+      <abs ABSG = 3 
+       data hash MD5: 128K
+       4B 68 D5 BB CD 1B 69 93 18 40 F7 61 E8 7B 14 EC>)
+(   6,<2017-08-17 15:21:13.506 +0200>,<nmrsu>,<CZC14270YN>,<proc1d>,<TopSpin 3.5.2>,
+      <apk1 
+       data hash MD5: 128K
+       21 62 7F C3 2C C2 7D 96 26 EE 2F C6 4B 58 5A 0E>)
+##END=
+
+$$ hash MD5
+$$ 3A 87 07 A0 DD 6A FB AD 9D 81 B8 1F 30 6E AA 54

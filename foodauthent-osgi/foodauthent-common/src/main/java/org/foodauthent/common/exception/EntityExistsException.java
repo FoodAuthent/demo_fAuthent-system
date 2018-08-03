@@ -2,7 +2,12 @@ package org.foodauthent.common.exception;
 
 public class EntityExistsException extends FARuntimeException {
 
-    public EntityExistsException() {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4901473988195681167L;
+
+	public EntityExistsException() {
     }
 
     public EntityExistsException(final String message) {

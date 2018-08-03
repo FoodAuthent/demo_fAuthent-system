@@ -1,0 +1,23 @@
+##TITLE= Audit trail, TopSpin 3.5 pl 2
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= nmrsu
+$$ C:/Bruker/TopSpin3.5pl2/data/Speiseöl/W-FAO06502_17P_20170817/1/audita.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2017-08-17 15:21:11.334 +0200>,<nmrsu>,<CZC14270YN>,<go4>,<TopSpin 3.5.2>,
+      <created by zg
+	started at 2017-08-17 15:18:24.992 +0200,
+	POWCHK enabled, PULCHK disabled,
+       configuration hash MD5:
+       1E D9 84 B1 9A 61 FA 0C 19 F8 65 63 09 82 AA 02
+       data hash MD5: 64K
+       2E 51 F5 4F 18 F6 28 F1 37 9C C9 FF 50 57 55 8A>)
+(   2,<2017-08-17 15:21:12.077 +0200>,<nmrsu>,<CZC14270YN>,<audit>,<TopSpin 3.5.2>,
+      <user comment:
+       ICON-NMR User ID: nmrsu
+       data hash MD5: 64K
+       2E 51 F5 4F 18 F6 28 F1 37 9C C9 FF 50 57 55 8A>)
+##END=
+
+$$ hash MD5
+$$ 95 3B 6E 49 C8 57 B8 3A A6 45 EE 61 BA C8 E5 A6

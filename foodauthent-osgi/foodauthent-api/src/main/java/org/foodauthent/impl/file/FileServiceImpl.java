@@ -65,6 +65,10 @@ public class FileServiceImpl implements FileService {
 			"Uploaded file probably not a KNIME workflow. Doesn't have a '.knwf' extension.");
 	    }
 	    break;
+	case FINGERPRINTS_BRUKER:
+	    // TODO: store original data, or converted data, or both?
+	    // data is zipped, just to mention it.
+	    break;
 	default:
 	    // TODO throw appropriate exception!
 	    throw new RuntimeException("File of type " + fileMeta.getType() + " not yet supported.");
