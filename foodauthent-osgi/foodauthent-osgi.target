@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="FoodAuthent Equinox-Oxygen" sequenceNumber="62">
+<?pde version="3.8"?><target name="FoodAuthent Equinox-Oxygen" sequenceNumber="68">
 <locations>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="com.eclipsesource.jaxrs.feature.feature.group" version="1.0.0.201808031216"/>
 <unit id="com.fasterxml.jackson.feature.feature.group" version="2.8.10.20180727084003"/>
 <unit id="com.fasterxml.jackson.feature.source.feature.group" version="2.8.10.20180727084003"/>
