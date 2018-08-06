@@ -26,6 +26,7 @@ import org.foodauthent.internal.api.job.JobService;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
+import org.foodauthent.internal.impl.job.knime.KnimeExecutor.LoadingFailedException;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
@@ -70,11 +71,11 @@ public class LocalKnimeJobService implements JobService {
 
     private PersistenceService persistenceService;
 
-    private ExecutorService executionService;
+    private KnimeExecutor knimeExecutor;
 
     public LocalKnimeJobService() {
 	persistenceService = PersistenceServiceProvider.getInstance().getService();
-	executionService = Executors.newCachedThreadPool();
+	knimeExecutor = new LocalKnimeExecutor();
     }
 
     @Override
@@ -88,17 +89,11 @@ public class LocalKnimeJobService implements JobService {
 	    throw new InitJobException("Referenced workflow is not a knime workflow");
 	}
 
-	Blob wfFile = persistenceService.getBlobByUUID(workflow.getFileId());
-	FileMetadata fileMeta = persistenceService.getFaModelByUUID(workflow.getFileId());
-
-	File wfDir;
-	List<WorkflowModuleInput> moduleInputs = null;
+	List<WorkflowModuleInput> moduleInputs;
 	try {
-	    // extract workflow to a temporary location
-	    wfDir = unzipToTempDir(wfFile.getData(), wfFile.getFaId(), "fa_workflow", fileMeta.getName());
-	    moduleInputs = prepareWorkflowModules(workflow.getModules(), wfFile.getFaId());
-	} catch (IOException e) {
-	    throw new InitJobException("Problem unzipping workflow", e);
+	    moduleInputs = loadWorkflowAndPrepareInputs(workflow);
+	} catch (LoadingFailedException e1) {
+	    throw new InitJobException("Problem initializing job", e1);
 	}
 
 	// TODO get fingerprint set file(s)
@@ -109,13 +104,12 @@ public class LocalKnimeJobService implements JobService {
 
 	// TODO get actual model file
 	// persistenceService.getBlobByUUID(model.getModelFileId());
-	
+
 	// assemble workflow input
 	PredictionWorkflowInput workflowInput = PredictionWorkflowInput.builder()
 		.setFingerprintsetURI("TODO:fingerprintURI").setModelURI("TODO:modelURI")
 		.setFingerprintsetMetadata(fingerprintSet).setParameters(workflow.getParameters())
-		.setModuleInputs(moduleInputs)
-		.build();
+		.setModuleInputs(moduleInputs).build();
 	// TODO doesn't work, but should
 	// JsonValue jsonInput =
 	// ObjectMapperUtil.getObjectMapper().convertValue(workflowInput,
@@ -132,58 +126,53 @@ public class LocalKnimeJobService implements JobService {
 	// start and save current prediction job
 	PredictionJob predictionJob = PredictionJob.builder().setStatus(StatusEnum.RUNNING).build();
 	persistenceService.save(predictionJob);
-	asyncLoadAndRunWorkflow(wfDir, jsonInput, "predictionWorkflowInput", "predictionWorkflowOutput", jsonValue -> {
-	    // TODO use objectMapper.convertValue instead
-	    try {
-		PredictionWorkflowOutput predictionOutput = ObjectMapperUtil.getObjectMapper()
-			.readValue(jsonValue.toString(), PredictionWorkflowOutput.class);
-		Prediction prediction = Prediction.builder().setFingerprintSetId(fingerprintSet.getFaId())
-			.setWorkflowId(workflow.getFaId()).setModelId(model.getFaId())
-			.setConfidenceMap(predictionOutput.getConfidenceMap()).build();
-		persistenceService.save(prediction);
+	//TODO dispose worklfow!
+	knimeExecutor.asyncRunWorkflow(workflow.getFaId(), jsonInput, "predictionWorkflowInput",
+		"predictionWorkflowOutput", jsonValue -> {
+		    // TODO use objectMapper.convertValue instead
+		    PredictionWorkflowOutput predictionOutput;
+		    try {
+			predictionOutput = ObjectMapperUtil.getObjectMapper()
+			    .readValue(jsonValue.toString(), PredictionWorkflowOutput.class);
+		    } catch (IOException e) {
+			persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(StatusEnum.FAILED)
+				.setStatusMessage("Failed to read workflow output: " + e.getMessage()).build());
+			return;
+		    }
+		    Prediction prediction = Prediction.builder().setFingerprintSetId(fingerprintSet.getFaId())
+			    .setWorkflowId(workflow.getFaId()).setModelId(model.getFaId())
+			    .setConfidenceMap(predictionOutput.getConfidenceMap()).build();
+		    persistenceService.save(prediction);
 
-		// change the status and prediction id of the prediction job and replace
-		// prediction job in DB
-		persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(StatusEnum.SUCCESS)
-			.setPredictionId(prediction.getFaId()).build());
-	    } catch (IOException e) {
-		e.printStackTrace();
-	    }
-	}, (message, exception) -> {
-	    // write fail status to DB
-	    persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(StatusEnum.FAILED)
-		    .setStatusMessage(message).build());
+		    // change the status and prediction id of the prediction job and replace
+		    // prediction job in DB
+		    persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(StatusEnum.SUCCESS)
+			    .setPredictionId(prediction.getFaId()).build());
+		}, (message, exception) -> {
+		    // write fail status to DB
+		    persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(StatusEnum.FAILED)
+			    .setStatusMessage(message).build());
 
-	});
+		});
 	return predictionJob;
     }
 
     @Override
-    public TrainingJob createNewTrainingJob(Workflow workflow, FingerprintSet fingerprintSet) {
+    public TrainingJob createNewTrainingJob(Workflow workflow, FingerprintSet fingerprintSet) throws InitJobException {
 	if (workflow.getType() != org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW) {
 	    // TODO throw appropriate exception
-	    throw new RuntimeException("Referenced workflow is not a prediction workflow");
+	    throw new InitJobException("Referenced workflow is not a prediction workflow");
 	}
 
 	if (workflow.getRepresentation() != RepresentationEnum.KNIME) {
-	    // TODO throw appropriate exception
-	    throw new RuntimeException("Referenced workflow is not a knime workflow");
+	    throw new InitJobException("Referenced workflow is not a knime workflow");
 	}
 
-	
-	Blob wfFile = persistenceService.getBlobByUUID(workflow.getFileId());
-	FileMetadata fileMeta = persistenceService.getFaModelByUUID(workflow.getFileId());
-
-	File wfDir;
-	List<WorkflowModuleInput> moduleInputs = null;
+	List<WorkflowModuleInput> moduleInputs;
 	try {
-	    // extract workflow to a temporary location
-	    wfDir = unzipToTempDir(wfFile.getData(), wfFile.getFaId(), "fa_workflow", fileMeta.getName());
-	    moduleInputs = prepareWorkflowModules(workflow.getModules(), wfFile.getFaId());
-	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	    throw new RuntimeException(e);
+	    moduleInputs = loadWorkflowAndPrepareInputs(workflow);
+	} catch (LoadingFailedException e1) {
+	    throw new InitJobException("Problem initializing job", e1);
 	}
 
 	// TODO get fingerprint set file(s)
@@ -191,9 +180,7 @@ public class LocalKnimeJobService implements JobService {
 	// assemble workflow input
 	TrainingWorkflowInput workflowInput = TrainingWorkflowInput.builder()
 		.setFingerprintsetURI("TODO:fingerprintURI").setFingerprintsetMetadata(fingerprintSet)
-		.setParameters(workflow.getParameters())
-		.setModuleInputs(moduleInputs)
-		.build();
+		.setParameters(workflow.getParameters()).setModuleInputs(moduleInputs).build();
 	// TODO doesn't work, but should
 	// JsonValue jsonInput =
 	// ObjectMapperUtil.getObjectMapper().convertValue(workflowInput,
@@ -201,7 +188,7 @@ public class LocalKnimeJobService implements JobService {
 	String jsonString;
 	try {
 	    jsonString = ObjectMapperUtil.getObjectMapper().writerWithDefaultPrettyPrinter()
-	    	.writeValueAsString(workflowInput);
+		    .writeValueAsString(workflowInput);
 	} catch (JsonProcessingException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
@@ -212,151 +199,68 @@ public class LocalKnimeJobService implements JobService {
 	// start and save current training job
 	TrainingJob trainingJob = TrainingJob.builder().setStatus(org.foodauthent.model.TrainingJob.StatusEnum.RUNNING)
 		.build();
-	asyncLoadAndRunWorkflow(wfDir, jsonInput, "trainingWorkflowInput", "trainingWorkflowOutput", jsonValue -> {
-	    // TODO use objectMapper.convertValue instead
-	    try {
-		TrainingWorkflowOutput trainingOutput = ObjectMapperUtil.getObjectMapper()
-			.readValue(jsonValue.toString(), TrainingWorkflowOutput.class);
-		//store new model (metadata and file) to the data base
-		Model model = Model.builder().setName("generated model by " + workflow.getName())
-			.setDate(LocalDate.now())
-			.setType(TypeEnum.valueOf(workflow.getModelType().toString().toUpperCase())).build();
-		persistenceService.save(model);
-		//TODO: store model file!
-		String modelUri = trainingOutput.getModelUri();
 
-		// change the status and model id of the training job and replace
-		// training job in DB
-		persistenceService.replace(
-			TrainingJob.builder(trainingJob).setStatus(org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS)
-				.setModelId(model.getFaId()).build());
-	    } catch (IOException e) {
-		e.printStackTrace();
-	    }
-	}, (message, exception) -> {
-	    // write fail status to DB
-	    persistenceService.replace(TrainingJob.builder(trainingJob)
-		    .setStatus(org.foodauthent.model.TrainingJob.StatusEnum.FAILED).setStatusMessage(message).build());
-	});
+	knimeExecutor.asyncRunWorkflow(workflow.getFaId(), jsonInput, "trainingWorkflowInput", "trainingWorkflowOutput",
+		jsonValue -> {
+		    // TODO use objectMapper.convertValue instead
+		    TrainingWorkflowOutput trainingOutput;
+		    try {
+			trainingOutput = ObjectMapperUtil.getObjectMapper().readValue(jsonValue.toString(),
+				TrainingWorkflowOutput.class);
+		    } catch (IOException e) {
+			persistenceService.replace(TrainingJob.builder(trainingJob)
+				.setStatus(org.foodauthent.model.TrainingJob.StatusEnum.FAILED)
+				.setStatusMessage("Failed to read workflow output: " + e.getMessage()).build());
+			return;
+		    }
+		    // TODO: store model file!
+		    String modelUri = trainingOutput.getModelUri();
+		    UUID modelFileId = UUID.randomUUID();
+		    
+		    // store new model (metadata and file) to the data base
+		    Model model = Model.builder().setName("generated model by " + workflow.getName())
+			    .setDate(LocalDate.now())
+			    .setType(TypeEnum.valueOf(workflow.getModelType().toString().toUpperCase()))
+			    .setFileId(modelFileId).build();
+		    persistenceService.save(model);
+
+		    // change the status and model id of the training job and replace
+		    // training job in DB
+		    persistenceService.replace(TrainingJob.builder(trainingJob)
+			    .setStatus(org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS).setModelId(model.getFaId())
+			    .build());
+		}, (message, exception) -> {
+		    // write fail status to DB
+		    persistenceService.replace(TrainingJob.builder(trainingJob)
+			    .setStatus(org.foodauthent.model.TrainingJob.StatusEnum.FAILED).setStatusMessage(message)
+			    .build());
+		});
 	persistenceService.save(trainingJob);
 	return trainingJob;
     }
-    
-    /**
-     * Loads and asynchronously runs the workflow.
-     * 
-     * @param wfDir
-     *            workflow to run
-     * @param input
-     *            workflow input as json object
-     * @param inputName
-     *            the name of the input parameter that takes the json object
-     * @param outputName
-     *            the name of the output parameter to get the result from
-     * @param successCallback
-     *            called with the result json object when execution has successfully
-     *            finished
-     * @param failCallback
-     *            called when something failed with a message and an optional(!)
-     *            exception
-     */
-    private void asyncLoadAndRunWorkflow(File wfDir, JsonValue input, String inputName, String outputName,
-	    Consumer<JsonValue> successCallback, BiConsumer<String, Exception> failCallback) {
-	executionService.submit(() -> {
 
-	    ExternalNodeData data = ExternalNodeData.builder(inputName).jsonValue(input).build();
-	    Map<String, ExternalNodeData> inputMap = new HashMap<String, ExternalNodeData>();
-	    inputMap.put(data.getID(), data);
-
-	    // load workflow
-	    WorkflowManager wfm;
-	    try {
-		wfm = loadWorkflow(wfDir, null);
-		wfm.setInputNodes(inputMap);
-	    } catch (IOException | InvalidSettingsException | CanceledExecutionException
-		    | UnsupportedWorkflowVersionException | LockFailedException | IllegalStateException e) {
-		failCallback.accept("Loading workflow failed: " + e.getMessage(), e);
-		return;
-	    }
-
-	    if (wfm.executeAllAndWaitUntilDone()) {
-		Optional<ExternalNodeData> output = wfm.getExternalOutputs().values().stream()
-			.filter(o -> o.getID().equals(outputName)).findFirst();
-		if(output.isPresent()) {
-		    successCallback.accept(output.get().getJSONValue());
-		} else {
-		    failCallback.accept("No output with name " + outputName + " available!", null);
-		}
-	    } else {
-		String statusMessage = wfm.getNodeMessages(Type.ERROR, Type.WARNING).stream()
-			.map(p -> p.getSecond().getMessage()).collect(Collectors.joining("\n"));
-		failCallback.accept(statusMessage, null);
-	    }
-	});
-    }
-
-    private static WorkflowManager loadWorkflow(final File workflowDir, File workflowRoot)
-	    throws IOException, InvalidSettingsException, CanceledExecutionException,
-	    UnsupportedWorkflowVersionException, LockFailedException, IllegalStateException {
-	WorkflowLoadHelper loadHelper = new WorkflowLoadHelper() {
-	    /**
-	     * {@inheritDoc}
-	     */
-	    @Override
-	    public WorkflowContext getWorkflowContext() {
-		WorkflowContext.Factory fac = new WorkflowContext.Factory(workflowDir);
-		fac.setMountpointRoot(workflowRoot);
-		return fac.createContext();
-	    }
-
-	    /**
-	     * {@inheritDoc}
-	     */
-	    @Override
-	    public UnknownKNIMEVersionLoadPolicy getUnknownKNIMEVersionLoadPolicy(
-		    final LoadVersion workflowKNIMEVersion, final Version createdByKNIMEVersion,
-		    final boolean isNightlyBuild) {
-		return UnknownKNIMEVersionLoadPolicy.Try;
-	    }
-	};
-
-	WorkflowLoadResult loadRes = WorkflowManager.loadProject(workflowDir, new ExecutionMonitor(), loadHelper);
-	if ((loadRes.getType() == LoadResultEntryType.Error)
-		|| ((loadRes.getType() == LoadResultEntryType.DataLoadError)
-			&& loadRes.getGUIMustReportDataLoadErrors())) {
-	    // TODO
-	    throw new IllegalStateException("Loading workflow failed: " + loadRes.getMessage());
-	}
-	return loadRes.getWorkflowManager();
-    }
-
-    private static File unzipToTempDir(final byte[] workflowBlob, UUID blobId, String prefix, String workflowName)
-	    throws IOException {
-	ZipInputStream zipStream = new ZipInputStream(new ByteArrayInputStream(workflowBlob));
-	File destDir = new File(KNIMEConstants.getKNIMETempPath().toFile(), prefix + blobId.toString());
-	FileUtil.unzip(zipStream, destDir, 0);
-	// go to workflow level
-	destDir = new File(destDir, workflowName);
-	return destDir;
-    }
-    
-    private List<WorkflowModuleInput> prepareWorkflowModules(List<WorkflowModule> modules, UUID masterFileId)
-	    throws IOException {
+    private List<WorkflowModuleInput> loadWorkflowAndPrepareInputs(Workflow workflow) throws LoadingFailedException {
+	Blob wfFile = persistenceService.getBlobByUUID(workflow.getFileId());
+	FileMetadata fileMeta = persistenceService.getFaModelByUUID(workflow.getFileId());
 	List<WorkflowModuleInput> moduleInputs = null;
-	// extract workflow modules to a temp location (if there are any)
-	if (modules != null) {
+	if (workflow.getModules().isEmpty()) {
+	    knimeExecutor.loadWorkflow(workflow.getFaId(), fileMeta, wfFile);
+	} else {
+	    FileMetadata[] mMetadata = workflow.getModules().stream()
+		    .map(m -> persistenceService.getFaModelByUUID(m.getFileId()))
+		    .toArray(size -> new FileMetadata[size]);
+	    Blob[] mData = workflow.getModules().stream().map(m -> persistenceService.getBlobByUUID(m.getFileId()))
+		    .toArray(size -> new Blob[size]);
+	    String[] moduleRefs = knimeExecutor.loadWorkflowWithModules(workflow.getFaId(), fileMeta, wfFile, mMetadata,
+		    mData);
 	    moduleInputs = new ArrayList<WorkflowModuleInput>();
-	    for (WorkflowModule m : modules) {
-		Blob mFile = persistenceService.getBlobByUUID(m.getFileId());
-		FileMetadata fileMeta = persistenceService.getFaModelByUUID(m.getFileId());
-		//make sure to extract it at the very same location as the 'master' workflow
-		File dir = unzipToTempDir(mFile.getData(), masterFileId, "fa_workflow", fileMeta.getName());
+	    for (int i = 0; i < moduleRefs.length; i++) {
+		WorkflowModule m = workflow.getModules().get(i);
 		moduleInputs.add(WorkflowModuleInput.builder().setModuleParameters(m.getModuleParameters())
 			.setModuleType(ModuleTypeEnum.valueOf(m.getModuleType().toString().toUpperCase()))
-			.setWorkflowURI("/" + dir.getName()).build());
+			.setWorkflowURI(moduleRefs[i]).build());
 	    }
 	}
 	return moduleInputs;
     }
-
 }

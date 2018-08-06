@@ -37,8 +37,9 @@ public interface WorkflowService {
      * @param fingerprintsetId TODO
      *
      * @return the result
+     * @throws InitJobException Exception thrown when a job could not be initialized.
      */
-    TrainingJob createTrainingJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId);
+    TrainingJob createTrainingJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId) throws FAExceptions.InitJobException;
         
     /**
      * Creates/adds a new workflow.

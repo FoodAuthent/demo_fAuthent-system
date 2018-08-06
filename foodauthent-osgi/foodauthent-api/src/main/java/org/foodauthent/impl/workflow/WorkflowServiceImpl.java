@@ -58,7 +58,7 @@ public class WorkflowServiceImpl implements WorkflowService {
     }
 
     @Override
-    public TrainingJob createTrainingJob(final UUID workflowId, final UUID fingerprintSetId) {
+    public TrainingJob createTrainingJob(final UUID workflowId, final UUID fingerprintSetId) throws InitJobException {
 	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId);
 	final FingerprintSet fingerprintSet = persistenceService.getFaModelByUUID(fingerprintSetId);
 	final TrainingJob job = jobService.createNewTrainingJob(workflow, fingerprintSet);
