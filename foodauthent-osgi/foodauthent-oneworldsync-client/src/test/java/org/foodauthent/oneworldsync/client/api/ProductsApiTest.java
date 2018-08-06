@@ -12,21 +12,25 @@
 
 package org.foodauthent.oneworldsync.client.api;
 
-import org.foodauthent.oneworldsync.client.ApiException;
-import org.threeten.bp.OffsetDateTime;
-import org.foodauthent.oneworldsync.client.model.Response;
-import org.junit.Test;
-import org.junit.Ignore;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.foodauthent.oneworldsync.client.ApiException;
+import org.foodauthent.oneworldsync.client.model.InformationProviderOfTradeItem;
+import org.foodauthent.oneworldsync.client.model.Item;
+import org.foodauthent.oneworldsync.client.model.ItemIdentificationInformation;
+import org.foodauthent.oneworldsync.client.model.LanguageLabel;
+import org.foodauthent.oneworldsync.client.model.ManufacturerOfTradeItem;
+import org.foodauthent.oneworldsync.client.model.Response;
+import org.foodauthent.oneworldsync.client.model.Result;
+import org.junit.Test;
+
+import com.fasterxml.jackson.databind.util.ISO8601Utils;
 
 /**
  * API tests for ProductsApi
  */
-@Ignore
 public class ProductsApiTest {
 
 	private final ProductsApi api = new ProductsApi();
@@ -49,11 +53,11 @@ public class ProductsApiTest {
 	 */
 	@Test
 	public void productsGetTest() throws ApiException {
-		String appId = null;
-		String searchType = null;
-		String query = null;
-		String accessMdm = null;
-		OffsetDateTime TIMESTAMP = null;
+		String appId = "6e987765";
+		String searchType = "freeTextSearch";
+		String query = "Olivenöl";
+		String accessMdm = "computer";
+		String TIMESTAMP = ISO8601Utils.format(new Date(), false);
 		Integer rows = null;
 		Integer start = null;
 		String filter = null;
@@ -66,6 +70,28 @@ public class ProductsApiTest {
 		Response response = api.productsGet(appId, searchType, query, accessMdm, TIMESTAMP, rows, start, filter,
 				sortOrder, sortColumn, matchScore, cursorMark, geoLocAccessLatd, geoLocAccessLong);
 
+		for (final Result r : response.getResults()) {
+			final Item item = r.getItem();
+			final ItemIdentificationInformation info = item.getItemIdentificationInformation();
+			final List<LanguageLabel> deLabels = info.getProductName().getValues().stream().filter(l -> {
+				return l.getLanguage().equals("de");
+			}).collect(Collectors.toList());
+			String productName = "";
+			String brandOwner = "";
+			String itemIdentifier = String.join(" ", info.getItemIdentifier().stream().map(i -> {
+				return i.getItemIdType().getValue() + ":" + i.getItemId();
+			}).collect(Collectors.toList()));
+			if (!deLabels.isEmpty()) {
+				productName = deLabels.get(0).getValue();
+			}
+			brandOwner = String.join(" ", item.getTradeItemInformation().stream().map(i -> {
+				return String.join(" ",
+						i.getTradeItemDescriptionModule().getTradeItemDescriptionInformation().stream().map(t -> {
+							return t.getBrandNameInformation().getBrandName();
+						}).collect(Collectors.toList()));
+			}).collect(Collectors.toList()));
+			System.out.println(brandOwner + ", " + productName + ", " + itemIdentifier);
+		}
 		// TODO: test validations
 	}
 
@@ -83,12 +109,11 @@ public class ProductsApiTest {
 	 * @throws ApiException
 	 *             if the Api call fails
 	 */
-	@Test
 	public void productsItemReferenceIdGetTest() throws ApiException {
 		String appId = null;
 		String itemReferenceId = null;
 		String accessMdm = null;
-		OffsetDateTime TIMESTAMP = null;
+		String TIMESTAMP = null;
 		Double geoLocAccessLatd = null;
 		Double geoLocAccessLong = null;
 		String attrset = null;

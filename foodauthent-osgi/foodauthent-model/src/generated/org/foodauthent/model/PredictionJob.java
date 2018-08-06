@@ -20,7 +20,7 @@ import java.util.UUID;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class PredictionJob  extends FaModel {
+public class PredictionJob   extends FaModel {
 
   /**
    * Gets or Sets status
@@ -69,6 +69,7 @@ public class PredictionJob  extends FaModel {
     statusMessage = immutable(builder.statusMessage);
     
     faId = generateFaIdIfMissing(faId);
+    
   }
   
    /**

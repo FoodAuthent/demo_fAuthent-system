@@ -25,6 +25,10 @@ import java.io.InputStream;
 
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SignatureException;
+
 import org.glassfish.jersey.logging.LoggingFeature;
 import java.util.Collection;
 import java.util.Collections;
@@ -49,6 +53,7 @@ import org.foodauthent.oneworldsync.client.auth.Authentication;
 import org.foodauthent.oneworldsync.client.auth.HttpBasicAuth;
 import org.foodauthent.oneworldsync.client.auth.ApiKeyAuth;
 import org.foodauthent.oneworldsync.client.auth.OAuth;
+import org.foodauthent.oneworldsync.util.HMAC;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-07-25T20:10:55.785Z")
 public class ApiClient {
@@ -717,7 +722,12 @@ public class ApiClient {
 				}
 			}
 		}
-
+		
+		try {
+			target=HMAC.sign(target);
+		} catch (Exception e1) {
+			throw new ApiException(e1);
+		}
 		Invocation.Builder invocationBuilder = target.request().accept(accept);
 
 		for (Entry<String, String> entry : headerParams.entrySet()) {

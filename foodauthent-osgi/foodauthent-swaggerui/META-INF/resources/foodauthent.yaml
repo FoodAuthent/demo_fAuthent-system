@@ -314,9 +314,8 @@ paths:
         200:
           description: List of predictions.
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Prediction"
+            $ref: "#/definitions/PredictionList"
+              
 
   /workflow:
     post:
@@ -723,7 +722,14 @@ definitions:
         type: string
         format: uuid
         example: ""
-  
+        
+  PredictionList:
+    type: array
+    x-no-faid: true    
+    items:
+      $ref: "#/definitions/Prediction"
+
+        
   # Not used by any endpoint but as entity directly!
   PredictionWorkflowInput:
     description: Describes the input required by a prediction workflow.

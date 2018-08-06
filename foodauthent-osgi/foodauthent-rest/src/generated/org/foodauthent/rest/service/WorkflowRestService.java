@@ -7,8 +7,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 import java.io.File;
-import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
+import org.foodauthent.model.PredictionList;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
 

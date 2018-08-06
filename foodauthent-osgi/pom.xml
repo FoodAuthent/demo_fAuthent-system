@@ -194,6 +194,7 @@
 		<module>foodauthent-swaggerui</module>
 		<module>foodauthent-persistence-simple</module>
 		<module>foodauthent-elasticsearch</module>
+		<module>foodauthent-oneworldsync-client</module>
 		<module>foodauthent-feature</module>
 		<module>foodauthent-knime-feature</module>
 		<module>foodauthent-product</module>

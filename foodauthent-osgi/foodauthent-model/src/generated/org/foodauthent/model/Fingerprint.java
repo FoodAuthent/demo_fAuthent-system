@@ -20,7 +20,7 @@ import java.util.UUID;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class Fingerprint  extends FaModel {
+public class Fingerprint   extends FaModel {
 
 
   private java.util.UUID faId;
@@ -38,6 +38,7 @@ public class Fingerprint  extends FaModel {
     metadata = immutable(builder.metadata);
     
     faId = generateFaIdIfMissing(faId);
+    
   }
   
    /**

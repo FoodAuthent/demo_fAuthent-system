@@ -20,7 +20,7 @@ import java.util.UUID;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class WorkflowParameter  extends FaModel {
+public class WorkflowParameter   extends FaModel {
 
   /**
    * the parameter type
@@ -63,6 +63,7 @@ public class WorkflowParameter  extends FaModel {
     name = immutable(builder.name);
     required = immutable(builder.required);
     type = immutable(builder.type);
+    
     
   }
   

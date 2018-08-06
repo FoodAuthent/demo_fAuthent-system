@@ -20,7 +20,7 @@ import java.util.UUID;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class MetadataEntries  extends FaModel {
+public class MetadataEntries   extends FaModel {
 
 
   private java.util.UUID faId;
@@ -36,6 +36,7 @@ public class MetadataEntries  extends FaModel {
     faId = immutable(builder.faId);
     
     faId = generateFaIdIfMissing(faId);
+    
   }
   
    /**

@@ -8,7 +8,6 @@ import org.foodauthent.oneworldsync.client.Pair;
 
 import javax.ws.rs.core.GenericType;
 
-import org.threeten.bp.OffsetDateTime;
 import org.foodauthent.oneworldsync.client.model.Response;
 
 import java.util.ArrayList;
@@ -159,7 +158,7 @@ public class ProductsApi {
 	 *             if fails to make API call
 	 */
 	public Response productsGet(String appId, String searchType, String query, String accessMdm,
-			OffsetDateTime TIMESTAMP, Integer rows, Integer start, String filter, String sortOrder, String sortColumn,
+			String TIMESTAMP, Integer rows, Integer start, String filter, String sortOrder, String sortColumn,
 			String matchScore, String cursorMark, Double geoLocAccessLatd, Double geoLocAccessLong)
 			throws ApiException {
 		return productsGetWithHttpInfo(appId, searchType, query, accessMdm, TIMESTAMP, rows, start, filter, sortOrder,
@@ -289,7 +288,7 @@ public class ProductsApi {
 	 *             if fails to make API call
 	 */
 	public ApiResponse<Response> productsGetWithHttpInfo(String appId, String searchType, String query,
-			String accessMdm, OffsetDateTime TIMESTAMP, Integer rows, Integer start, String filter, String sortOrder,
+			String accessMdm, String TIMESTAMP, Integer rows, Integer start, String filter, String sortOrder,
 			String sortColumn, String matchScore, String cursorMark, Double geoLocAccessLatd, Double geoLocAccessLong)
 			throws ApiException {
 		Object localVarPostBody = null;
@@ -408,7 +407,7 @@ public class ProductsApi {
 	 *             if fails to make API call
 	 */
 	public Response productsItemReferenceIdGet(String appId, String itemReferenceId, String accessMdm,
-			OffsetDateTime TIMESTAMP, Double geoLocAccessLatd, Double geoLocAccessLong, String attrset)
+			String TIMESTAMP, Double geoLocAccessLatd, Double geoLocAccessLong, String attrset)
 			throws ApiException {
 		return productsItemReferenceIdGetWithHttpInfo(appId, itemReferenceId, accessMdm, TIMESTAMP, geoLocAccessLatd,
 				geoLocAccessLong, attrset).getData();
@@ -464,7 +463,7 @@ public class ProductsApi {
 	 *             if fails to make API call
 	 */
 	public ApiResponse<Response> productsItemReferenceIdGetWithHttpInfo(String appId, String itemReferenceId,
-			String accessMdm, OffsetDateTime TIMESTAMP, Double geoLocAccessLatd, Double geoLocAccessLong,
+			String accessMdm, String TIMESTAMP, Double geoLocAccessLatd, Double geoLocAccessLong,
 			String attrset) throws ApiException {
 		Object localVarPostBody = null;
 

@@ -21,7 +21,7 @@ import org.foodauthent.model.Prediction;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class PredictionWorkflowOutput  extends FaModel {
+public class PredictionWorkflowOutput   extends FaModel {
 
 
   private java.util.List<Prediction> predictionResults;
@@ -39,6 +39,7 @@ public class PredictionWorkflowOutput  extends FaModel {
   private PredictionWorkflowOutput(PredictionWorkflowOutputBuilder builder) {
     
     predictionResults = immutable(builder.predictionResults);
+    
     
   }
   

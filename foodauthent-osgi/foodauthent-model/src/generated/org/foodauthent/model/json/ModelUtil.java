@@ -36,6 +36,8 @@ public class ModelUtil {
         mapper.addMixIn(MetadataEntries.MetadataEntriesBuilder.class, MetadataEntriesMixIn.MetadataEntriesMixInBuilder.class);
         mapper.addMixIn(PredictionJob.class, PredictionJobMixIn.class);
         mapper.addMixIn(PredictionJob.PredictionJobBuilder.class, PredictionJobMixIn.PredictionJobMixInBuilder.class);
+        mapper.addMixIn(PredictionList.class, PredictionListMixIn.class);
+        mapper.addMixIn(PredictionList.PredictionListBuilder.class, PredictionListMixIn.PredictionListMixInBuilder.class);
         mapper.addMixIn(Prediction.class, PredictionMixIn.class);
         mapper.addMixIn(Prediction.PredictionBuilder.class, PredictionMixIn.PredictionMixInBuilder.class);
         mapper.addMixIn(PredictionWorkflowInput.class, PredictionWorkflowInputMixIn.class);

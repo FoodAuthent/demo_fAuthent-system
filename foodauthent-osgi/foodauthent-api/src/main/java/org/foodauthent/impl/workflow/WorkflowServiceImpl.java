@@ -16,6 +16,7 @@ import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
+import org.foodauthent.model.PredictionList;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
@@ -84,9 +85,8 @@ public class WorkflowServiceImpl implements WorkflowService {
     }
 
     @Override
-    public List<Prediction> getPredictionResult(final UUID predictionId) {
-	// TODO: must be refactored to own PredictionList type
-	return Collections.emptyList(); // persistenceService.getFaModelByUUID(predictionId);
+    public PredictionList getPredictionResult(final UUID predictionId) {
+	return null;
     }
 
     @Override

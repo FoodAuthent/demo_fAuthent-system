@@ -21,7 +21,7 @@ import org.foodauthent.model.Fingerprint;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class FingerprintSet  extends FaModel {
+public class FingerprintSet   extends FaModel {
 
 
   private java.util.UUID faId;
@@ -43,6 +43,7 @@ public class FingerprintSet  extends FaModel {
     name = immutable(builder.name);
     
     faId = generateFaIdIfMissing(faId);
+    
   }
   
    /**

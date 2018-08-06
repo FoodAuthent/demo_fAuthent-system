@@ -4,8 +4,8 @@
 package org.foodauthent.api;
 
 import java.io.File;
-import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
+import org.foodauthent.model.PredictionList;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
 
@@ -80,7 +80,7 @@ public interface WorkflowService {
      *
      * @return the result
      */
-    java.util.List<Prediction> getPredictionResult(java.util.UUID predictionId);
+    PredictionList getPredictionResult(java.util.UUID predictionId);
         
     /**
      * 
