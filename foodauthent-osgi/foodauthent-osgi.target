@@ -48,6 +48,7 @@
 <unit id="org.scala-lang.feature.feature.group" version="0.0.0"/>
 <unit id="org.scala-lang.feature.source.feature.group" version="0.0.0"/>
 <unit id="org.slf4j.feature.feature.group" version="0.0.0"/>
+<unit id="org.junit.feature.group" version="0.0.0"/>
 <unit id="org.slf4j.feature.source.feature.group" version="0.0.0"/>
 <repository location="http://repository.foodauthent.net/p2/foodauthent-dependencies-1.0.0-SNAPSHOT/"/>
 </location>
