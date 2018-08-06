@@ -87,6 +87,9 @@
    <feature url="features/net.openchrom.platform.feature_1.0.0.qualifier.jar" id="net.openchrom.platform.feature" version="1.0.0.qualifier">
       <category name="net.openchrom"/>
    </feature>
+   <feature url="features/org.junit_4.12.0.20180806174446.jar" id="org.junit" version="4.12.0.20180806174446">
+      <category name="org.foodauthent.maven"/>
+   </feature>
    <category-def name="org.foodauthent.custom" label="FoodAuthent Custom Dependencies"/>
    <category-def name="org.foodauthent.maven" label="FoodAuthent Maven Dependencies"/>
    <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime"/>
