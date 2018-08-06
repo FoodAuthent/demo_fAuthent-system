@@ -470,8 +470,11 @@ paths:
           description: The model training job as been created successfully.
           schema:
             $ref: "#/definitions/TrainingJob"
-        400:
-          description: failed
+        500:
+         description: Problem during job initialization.    
+      x-fa-exceptions:
+        - $ref: "#/x-fa-exceptions/InitJobException"
+          code: 500
             
   /workflow/training/job/{job-id}:
     get:

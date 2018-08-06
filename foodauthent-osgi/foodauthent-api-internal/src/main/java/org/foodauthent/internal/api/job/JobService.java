@@ -12,6 +12,6 @@ public interface JobService {
     PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model)
 	    throws InitJobException;
 
-    TrainingJob createNewTrainingJob(Workflow workflow, FingerprintSet fingerprintSet);
+    TrainingJob createNewTrainingJob(Workflow workflow, FingerprintSet fingerprintSet) throws InitJobException;
 
 }

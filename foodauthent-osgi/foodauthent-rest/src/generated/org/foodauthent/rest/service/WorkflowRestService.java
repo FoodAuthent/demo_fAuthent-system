@@ -66,9 +66,12 @@ public class WorkflowRestService{
     public Response createTrainingJob(@QueryParam("workflow-id")java.util.UUID workflowId
 , @QueryParam("fingerprintset-id")java.util.UUID fingerprintsetId
 ) {
-        
+        try { 
             Object res = service.createTrainingJob(workflowId, fingerprintsetId);
             return Response.ok(res).build();
+        } catch(FAExceptions.InitJobException e) {
+           return Response.status(500).entity(e.getMessage()).build();
+        }
     }
 
     /**
