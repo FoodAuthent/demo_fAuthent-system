@@ -10,10 +10,10 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import org.elasticsearch.index.query.QueryBuilders;
+import org.foodauthent.api.internal.persistence.Blob;
+import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.EntityExistsException;
 import org.foodauthent.elasticsearch.ClientService;
-import org.foodauthent.internal.api.persistence.Blob;
-import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
 import org.osgi.service.component.annotations.Component;

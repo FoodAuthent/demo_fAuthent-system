@@ -19,14 +19,14 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service=ModelService.class)
 public class ModelServiceImpl implements ModelService {
 
-    private PersistenceService persistenceService;
+    private static PersistenceService persistenceService;
 
     public ModelServiceImpl() {
     }
 
     @Reference
     void setPersistenceService(PersistenceService persistenceService) {
-	this.persistenceService = persistenceService;
+	ModelServiceImpl.persistenceService = persistenceService;
     }
 
     @Override

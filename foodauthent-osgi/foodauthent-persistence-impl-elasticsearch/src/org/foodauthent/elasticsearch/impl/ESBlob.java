@@ -3,7 +3,7 @@ package org.foodauthent.elasticsearch.impl;
 import java.util.Base64;
 import java.util.UUID;
 
-import org.foodauthent.internal.api.persistence.Blob;
+import org.foodauthent.api.internal.persistence.Blob;
 
 /**
  * Blob implementation for converting data to required Base64 encoded format

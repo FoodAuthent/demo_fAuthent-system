@@ -23,14 +23,14 @@ public class SopServiceImpl implements SopService {
 
     private static final Logger logger = LoggerFactory.getLogger(SopServiceImpl.class);
 
-    private PersistenceService persistenceService;
+    private static PersistenceService persistenceService;
 
     public SopServiceImpl() {
     }
 
     @Reference
     void setPersistenceService(PersistenceService persistenceService) {
-	this.persistenceService = persistenceService;
+	SopServiceImpl.persistenceService = persistenceService;
     }
     
     @Override

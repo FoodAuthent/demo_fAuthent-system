@@ -18,12 +18,12 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service=ProductService.class)
 public class ProductServiceImpl implements ProductService {
 
-    private PersistenceService persistenceService;
+    private static PersistenceService persistenceService;
 
     
     @Reference
     void bindPersistenceService(PersistenceService persistenceService) {
-        this.persistenceService = persistenceService;
+	ProductServiceImpl.persistenceService = persistenceService;
     }
 
     @Override

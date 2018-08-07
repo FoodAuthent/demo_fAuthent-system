@@ -22,11 +22,11 @@ public class FingerprintServiceImpl implements FingerprintService {
 
     private static final Logger logger = LoggerFactory.getLogger(FingerprintServiceImpl.class);
 
-    private PersistenceService persistenceService;
+    private static PersistenceService persistenceService;
 
     @Reference
     void setPersistenceService(PersistenceService persistenceService) {
-	this.persistenceService = persistenceService;
+	FingerprintServiceImpl.persistenceService = persistenceService;
     }
 
     @Override

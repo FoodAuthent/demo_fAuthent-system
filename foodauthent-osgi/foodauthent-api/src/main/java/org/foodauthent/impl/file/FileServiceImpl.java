@@ -28,14 +28,14 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service=FileService.class)
 public class FileServiceImpl implements FileService {
     
-    private PersistenceService persistenceService;
+    private static PersistenceService persistenceService;
 
     public FileServiceImpl() {
     }
 
     @Reference
     void setPersistenceService(PersistenceService persistenceService) {
-	this.persistenceService = persistenceService;
+	FileServiceImpl.persistenceService = persistenceService;
     }
     @Override
     public UUID createFileMetadata(FileMetadata fileMetadata) {

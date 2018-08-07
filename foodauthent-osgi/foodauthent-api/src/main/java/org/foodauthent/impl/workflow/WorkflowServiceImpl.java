@@ -34,21 +34,21 @@ public class WorkflowServiceImpl implements WorkflowService {
     @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(WorkflowServiceImpl.class);
 
-    private PersistenceService persistenceService;
+    private static PersistenceService persistenceService;
 
-    private JobService jobService;
+    private static JobService jobService;
 
     public WorkflowServiceImpl() {
     }
 
     @Reference
     void bindJobService(JobService jobService) {
-        this.jobService = jobService;
+	WorkflowServiceImpl.jobService = jobService;
     }
 
     @Reference
     void bindPersistenceService(PersistenceService persistenceService) {
-        this.persistenceService = persistenceService;
+	WorkflowServiceImpl.persistenceService = persistenceService;
     }
     
     @Override
