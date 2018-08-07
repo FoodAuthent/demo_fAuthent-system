@@ -9,6 +9,32 @@ package org.foodauthent.common.exception;
 public final class FAExceptions {
 
     /**
+    * Unspecified exception.
+    */
+    public static class FAException extends Exception {
+        public FAException(String message) {
+            super(message);
+        }
+        
+        public FAException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+    
+    /**
+    * Invalid input was provided.
+    */
+    public static class InvalidInputException extends Exception {
+        public InvalidInputException(String message) {
+            super(message);
+        }
+        
+        public InvalidInputException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+    
+    /**
     * Exception thrown when a job could not be initialized.
     */
     public static class InitJobException extends Exception {

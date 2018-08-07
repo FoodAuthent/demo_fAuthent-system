@@ -51,7 +51,9 @@ public interface FileService {
      *
      * @return the result
      * @throws InvalidDataException Invalid data was uploaded.
+     * @throws InvalidInputException Invalid input was provided.
+     * @throws FAException Unspecified exception.
      */
-    java.util.UUID saveFileData(java.util.UUID fileId, java.io.InputStream upfile, org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail) throws FAExceptions.InvalidDataException;
+    java.util.UUID saveFileData(java.util.UUID fileId, java.io.InputStream upfile, org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail) throws FAExceptions.InvalidDataException, FAExceptions.InvalidInputException, FAExceptions.FAException;
         
 }
