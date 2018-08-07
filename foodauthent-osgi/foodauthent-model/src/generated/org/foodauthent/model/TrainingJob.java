@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class TrainingJob  extends FaModel {
+public class TrainingJob   extends FaModel {
 
   /**
    * Gets or Sets status
@@ -63,6 +63,7 @@ public class TrainingJob  extends FaModel {
     statusMessage = immutable(builder.statusMessage);
     
     faId = generateFaIdIfMissing(faId);
+    
   }
   
    /**

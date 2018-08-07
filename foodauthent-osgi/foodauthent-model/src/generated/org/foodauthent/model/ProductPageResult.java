@@ -19,7 +19,7 @@ import org.foodauthent.model.Product;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class ProductPageResult  extends FaModel {
+public class ProductPageResult   extends FaModel {
 
 
   private Integer pageNumber;
@@ -43,6 +43,7 @@ public class ProductPageResult  extends FaModel {
     pageCount = immutable(builder.pageCount);
     resultCount = immutable(builder.resultCount);
     results = immutable(builder.results);
+    
     
   }
   

@@ -2,13 +2,13 @@ package org.foodauthent.impl.fingerprint;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.foodauthent.api.FingerprintService;
 import org.foodauthent.internal.api.persistence.PersistenceService;
-import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,14 +17,16 @@ import org.slf4j.LoggerFactory;
  * @author Alexander Kerner, Lablicate GmbH
  *
  */
+@Component(service=FingerprintService.class)
 public class FingerprintServiceImpl implements FingerprintService {
 
     private static final Logger logger = LoggerFactory.getLogger(FingerprintServiceImpl.class);
 
-    private final PersistenceService persistenceService;
+    private PersistenceService persistenceService;
 
-    public FingerprintServiceImpl() {
-	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
+    @Reference
+    void setPersistenceService(PersistenceService persistenceService) {
+	this.persistenceService = persistenceService;
     }
 
     @Override
@@ -35,13 +37,13 @@ public class FingerprintServiceImpl implements FingerprintService {
 
     @Override
     public FingerprintSet getFingerprintSetById(UUID fingerprintsetId) {
-	return persistenceService.getFaModelByUUID(fingerprintsetId);
+	return persistenceService.getFaModelByUUID(fingerprintsetId, FingerprintSet.class);
     }
 
     @Override
     public FingerprintSetPageResult findFingerprintSetByKeyword(Integer pageNumber, Integer pageSize,
 	    List<String> keywords) {
-	// TODO Auto-generated method stub
 	return null;
     }
+
 }

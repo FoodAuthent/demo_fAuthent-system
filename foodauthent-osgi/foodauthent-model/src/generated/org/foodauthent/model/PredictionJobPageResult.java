@@ -19,7 +19,7 @@ import org.foodauthent.model.PredictionJob;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class PredictionJobPageResult  extends FaModel {
+public class PredictionJobPageResult   extends FaModel {
 
 
   private Integer pageNumber;
@@ -43,6 +43,7 @@ public class PredictionJobPageResult  extends FaModel {
     pageCount = immutable(builder.pageCount);
     resultCount = immutable(builder.resultCount);
     results = immutable(builder.results);
+    
     
   }
   

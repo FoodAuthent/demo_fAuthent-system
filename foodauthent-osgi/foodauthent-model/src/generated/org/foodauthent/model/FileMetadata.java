@@ -19,7 +19,7 @@ import java.time.LocalDate;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class FileMetadata  extends FaModel {
+public class FileMetadata   extends FaModel {
 
   /**
    * The file type.
@@ -78,6 +78,7 @@ public class FileMetadata  extends FaModel {
     version = immutable(builder.version);
     
     faId = generateFaIdIfMissing(faId);
+    
   }
   
    /**

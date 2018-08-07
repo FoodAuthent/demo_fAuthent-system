@@ -5,22 +5,28 @@ import java.util.UUID;
 
 import org.foodauthent.api.ModelService;
 import org.foodauthent.internal.api.persistence.PersistenceService;
-import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelPageResult;
 import org.foodauthent.model.WorkflowPageResult;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * 
  * @author Martin Horn, University of Konstanz
  *
  */
+@Component(service=ModelService.class)
 public class ModelServiceImpl implements ModelService {
 
-    private final PersistenceService persistenceService;
+    private PersistenceService persistenceService;
 
     public ModelServiceImpl() {
-	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
+    }
+
+    @Reference
+    void setPersistenceService(PersistenceService persistenceService) {
+	this.persistenceService = persistenceService;
     }
 
     @Override
@@ -31,7 +37,7 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     public Model getModelById(UUID modelId) {
-	return persistenceService.getFaModelByUUID(modelId);
+	return persistenceService.getFaModelByUUID(modelId, Model.class);
     }
 
     @Override

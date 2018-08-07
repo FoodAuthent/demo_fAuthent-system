@@ -20,7 +20,7 @@ import org.foodauthent.model.Tag;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class Model  extends FaModel {
+public class Model   extends FaModel {
 
   /**
    * The type of the model in order to be able to check for compatibility of the workflows using it.
@@ -75,6 +75,7 @@ public class Model  extends FaModel {
     fileId = immutable(builder.fileId);
     
     faId = generateFaIdIfMissing(faId);
+    
   }
   
    /**

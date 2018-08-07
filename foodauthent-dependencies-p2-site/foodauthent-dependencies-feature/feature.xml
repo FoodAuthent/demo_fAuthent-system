@@ -25,14 +25,6 @@
          version="0.0.0"/>
 
    <includes
-         id="org.elasticsearch.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.elasticsearch.feature.source"
-         version="0.0.0"/>
-
-   <includes
          id="org.glassfish.jersey.feature"
          version="0.0.0"/>
 
@@ -50,6 +42,10 @@
 
    <includes
          id="com.eclipsesource.jaxrs.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.elasticsearch.client.feature"
          version="0.0.0"/>
 
 </feature>

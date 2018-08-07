@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class Tag  extends FaModel {
+public class Tag   extends FaModel {
 
   /**
    * The type of the tag, e.g. whether it&#39;s a tag for a workflow, a model or a fingerprint.
@@ -65,6 +65,7 @@ public class Tag  extends FaModel {
     type = immutable(builder.type);
     
     faId = generateFaIdIfMissing(faId);
+    
   }
   
    /**

@@ -10,22 +10,29 @@ import java.util.UUID;
 import org.foodauthent.api.FileService;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.PersistenceService;
-import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FileMetadata;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * 
  * @author Martin Horn, University of Konstanz
  *
  */
+@Component(service=FileService.class)
 public class FileServiceImpl implements FileService {
     
-    private final PersistenceService persistenceService;
+    private PersistenceService persistenceService;
 
     public FileServiceImpl() {
-	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
     }
+    
+    @Reference
+    void setPersistenceService(PersistenceService persistenceService) {
+	this.persistenceService = persistenceService;
+    }
+    
 
     @Override
     public UUID createFileMetadata(FileMetadata fileMetadata) {
@@ -41,18 +48,13 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public FileMetadata getFileMetadata(UUID fileId) {
-	return persistenceService.getFaModelByUUID(fileId);
-    }
-
-    @Override
     public UUID saveFileData(UUID fileId, InputStream upfile, FormDataContentDisposition upfileDetail) {
 	// TODO check whether there is already a workflow-model entry for the workflow
 	// id - otherwise refuse the request
 	// TODO it should be possible to store multiple files per UUID, e.g. multiple
 	// versions or a data set
 	
-	FileMetadata fileMeta = persistenceService.getFaModelByUUID(fileId);
+	FileMetadata fileMeta = persistenceService.getFaModelByUUID(fileId, FileMetadata.class);
 
 	//basic verification whether the uploaded file type matches the file metadata's type
 	// TODO add more logic
@@ -100,6 +102,11 @@ public class FileServiceImpl implements FileService {
 
 	buffer.flush();
 	return buffer.toByteArray();
+    }
+
+    @Override
+    public FileMetadata getFileMetadata(UUID fileId) {
+	return persistenceService.getFaModelByUUID(fileId, FileMetadata.class);
     }
 
 

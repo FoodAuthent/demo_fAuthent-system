@@ -5,9 +5,10 @@ import java.util.UUID;
 
 import org.foodauthent.api.SopService;
 import org.foodauthent.internal.api.persistence.PersistenceService;
-import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.SOP;
 import org.foodauthent.model.SOPPageResult;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,16 +17,21 @@ import org.slf4j.LoggerFactory;
  * @author Alexander Kerner, Lablicate GmbH
  *
  */
+@Component(service=SopService.class)
 public class SopServiceImpl implements SopService {
 
     private static final Logger logger = LoggerFactory.getLogger(SopServiceImpl.class);
 
-    private final PersistenceService persistenceService;
+    private PersistenceService persistenceService;
 
     public SopServiceImpl() {
-	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
     }
 
+    @Reference
+    void setPersistenceService(PersistenceService persistenceService) {
+	this.persistenceService = persistenceService;
+    }
+    
     @Override
     public UUID createNewSOP(final SOP sop) {
 	persistenceService.save(sop);
@@ -34,7 +40,7 @@ public class SopServiceImpl implements SopService {
 
     @Override
     public SOP getSOPById(final UUID sopId) {
-	return persistenceService.getFaModelByUUID(sopId);
+	return persistenceService.getFaModelByUUID(sopId, SOP.class);
     }
 
     @Override

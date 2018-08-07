@@ -19,7 +19,7 @@ import org.foodauthent.model.FingerprintSet;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class FingerprintSetPageResult  extends FaModel {
+public class FingerprintSetPageResult   extends FaModel {
 
 
   private Integer pageNumber;
@@ -43,6 +43,7 @@ public class FingerprintSetPageResult  extends FaModel {
     pageCount = immutable(builder.pageCount);
     resultCount = immutable(builder.resultCount);
     results = immutable(builder.results);
+    
     
   }
   

@@ -5,21 +5,25 @@ import java.util.UUID;
 
 import org.foodauthent.api.ProductService;
 import org.foodauthent.internal.api.persistence.PersistenceService;
-import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.ProductPageResult;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  *
  * @author Alexander Kerner, Lablicate GmbH
  *
  */
+@Component(service=ProductService.class)
 public class ProductServiceImpl implements ProductService {
 
-    private final PersistenceService persistenceService;
+    private PersistenceService persistenceService;
 
-    public ProductServiceImpl() {
-	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
+    
+    @Reference
+    void bindPersistenceService(PersistenceService persistenceService) {
+        this.persistenceService = persistenceService;
     }
 
     @Override

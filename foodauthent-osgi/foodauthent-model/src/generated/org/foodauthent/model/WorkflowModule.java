@@ -19,7 +19,7 @@ import org.foodauthent.model.WorkflowParameter;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class WorkflowModule  extends FaModel {
+public class WorkflowModule   extends FaModel {
 
   /**
    * The type of the module. IMPORTANT: This property determines the required workflow input and output.
@@ -70,6 +70,7 @@ public class WorkflowModule  extends FaModel {
     fileId = immutable(builder.fileId);
     moduleType = immutable(builder.moduleType);
     moduleParameters = immutable(builder.moduleParameters);
+    
     
   }
   

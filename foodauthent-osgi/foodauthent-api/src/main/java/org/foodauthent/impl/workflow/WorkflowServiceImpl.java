@@ -2,14 +2,11 @@ package org.foodauthent.impl.workflow;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.foodauthent.api.WorkflowService;
 import org.foodauthent.common.exception.FAExceptions.InitJobException;
 import org.foodauthent.internal.api.job.JobService;
-import org.foodauthent.internal.api.job.JobServiceProvider;
 import org.foodauthent.internal.api.persistence.PersistenceService;
-import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.Prediction;
@@ -36,14 +33,11 @@ public class WorkflowServiceImpl implements WorkflowService {
     @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(WorkflowServiceImpl.class);
 
-    private final PersistenceService persistenceService;
+    private PersistenceService persistenceService;
 
     private JobService jobService;
 
     public WorkflowServiceImpl() {
-	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
-	//TODO remove
-	this.jobService = JobServiceProvider.getInstance().getService();
     }
 
     @Reference
@@ -51,42 +45,47 @@ public class WorkflowServiceImpl implements WorkflowService {
         this.jobService = jobService;
     }
 
+    @Reference
+    void bindPersistenceService(PersistenceService persistenceService) {
+        this.persistenceService = persistenceService;
+    }
+    
     @Override
     public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId, UUID modelId)
 	    throws InitJobException {
-	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId);
-	final FingerprintSet fingerprint = persistenceService.getFaModelByUUID(fingerprintSetId);
-	final Model model = persistenceService.getFaModelByUUID(modelId);
+	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId, Workflow.class);
+	final FingerprintSet fingerprint = persistenceService.getFaModelByUUID(fingerprintSetId, FingerprintSet.class);
+	final Model model = persistenceService.getFaModelByUUID(modelId, Model.class);
 	final PredictionJob job = jobService.createNewPredictionJob(workflow, fingerprint, model);
 	return job;
     }
 
     @Override
     public TrainingJob createTrainingJob(final UUID workflowId, final UUID fingerprintSetId) throws InitJobException {
-	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId);
-	final FingerprintSet fingerprintSet = persistenceService.getFaModelByUUID(fingerprintSetId);
+	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId, Workflow.class);
+	final FingerprintSet fingerprintSet = persistenceService.getFaModelByUUID(fingerprintSetId, FingerprintSet.class);
 	final TrainingJob job = jobService.createNewTrainingJob(workflow, fingerprintSet);
 	return job;
     }
 
     @Override
     public PredictionJob getPredictionJob(final UUID jobId) {
-	return persistenceService.getFaModelByUUID(jobId);
+	return persistenceService.getFaModelByUUID(jobId, PredictionJob.class);
     }
 
     @Override
     public Prediction getPredictionResult(final UUID predictionId) {
-	return persistenceService.getFaModelByUUID(predictionId);
+	return persistenceService.getFaModelByUUID(predictionId, Prediction.class);
     }
 
     @Override
     public TrainingJob getTrainingJob(final UUID jobId) {
-	return persistenceService.getFaModelByUUID(jobId);
+	return persistenceService.getFaModelByUUID(jobId, TrainingJob.class);
     }
 
     @Override
     public Workflow getWorkflowById(final UUID workflowId) {
-	return persistenceService.getFaModelByUUID(workflowId);
+	return persistenceService.getFaModelByUUID(workflowId, Workflow.class);
     }
 
     @Override

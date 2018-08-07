@@ -21,7 +21,7 @@ import org.foodauthent.model.WorkflowParameter;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class TrainingWorkflowInput  extends FaModel {
+public class TrainingWorkflowInput   extends FaModel {
 
 
   private java.util.List<WorkflowParameter> parameters;
@@ -45,6 +45,7 @@ public class TrainingWorkflowInput  extends FaModel {
     fingerprintsetMetadata = immutable(builder.fingerprintsetMetadata);
     fingerprintsetURI = immutable(builder.fingerprintsetURI);
     moduleInputs = immutable(builder.moduleInputs);
+    
     
   }
   
