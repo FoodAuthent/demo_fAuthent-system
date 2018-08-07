@@ -1,0 +1,54 @@
+/*
+ * TODO	
+ */
+package org.foodauthent.rest.api.service;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
+
+import org.foodauthent.model.Product;
+
+import org.foodauthent.api.ProductService;
+import org.foodauthent.api.ServiceRegistry;
+
+import org.foodauthent.common.exception.FAExceptions;
+
+/**
+ * FoodAuthent Swagger API
+ *
+ * <p>This is the FoodAuthent API Description [www.foodauthent.net]
+ *
+ * <p> 
+ *
+ * @author Martin Horn, University of Konstanz
+ */
+@Path("/v0/foodauthent")
+@javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
+public interface ProductRestService{
+
+
+    /**
+     * TODO
+     *
+     * @param product TODO
+     * @return the response
+     */
+    @POST
+    @Path("/product")
+    @Consumes({ "application/json" })
+    public Response createProduct(Product product
+);
+
+    /**
+     * TODO
+     *
+     * @param gtin TODO
+     * @return the response
+     */
+    @GET
+    @Path("/product/findByGtin")
+    @Produces({ "application/json" })
+    public Response findProductByGtin(@QueryParam("gtin")String gtin
+);
+}
+

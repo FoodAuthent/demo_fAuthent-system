@@ -1,0 +1,16 @@
+{
+    "lang" : "org.foodauthent.codegen.FoodAuthentCodegen",
+    "inputSpec" : "src-gen/api/foodauthent.yaml",
+    "outputDir" : "../foodauthent-osgi/foodauthent-rest-api/",
+    "modelPackage" : "org.foodauthent.model",
+    "apiPackage"   : "org.foodauthent.rest.api.service",
+    "fullJavaUtil" : true,
+    "dateLibrary" : "java8",
+    "sourceFolder" : "src/generated",
+    "templateDir" : "src-gen/templates",
+    "additionalProperties" : {
+        "codegenName" : "rest-service-api",
+        "apiTemplateFile" : "rest/restService.mustache",
+        "apiNamePattern" : "##name##RestService"
+    }
+}

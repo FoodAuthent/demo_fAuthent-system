@@ -19,9 +19,12 @@ public class ServiceUtil {
     
     public static List<Class<?>> getRestServiceClasses() {
         List<Class<?>> res = new ArrayList<Class<?>>();
-        {{#tags}}
-        res.add({{name}}RestServiceImpl.class);
-        {{/tags}}
+        res.add(SopRestServiceImpl.class);
+        res.add(FileRestServiceImpl.class);
+        res.add(WorkflowRestServiceImpl.class);
+        res.add(FingerprintRestServiceImpl.class);
+        res.add(ProductRestServiceImpl.class);
+        res.add(ModelRestServiceImpl.class);
         return res;
     }
 }
