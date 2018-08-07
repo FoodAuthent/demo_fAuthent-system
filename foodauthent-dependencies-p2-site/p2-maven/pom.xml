@@ -122,7 +122,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 										<artifact>
 											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-smile:jar:2.8.10</id>
 											<source>true</source>
-										</artifact>							
+										</artifact>			
+										<artifact>
+											<id>com.fasterxml.jackson.datatype:jackson-datatype-jsr353:jar:2.8.10</id>
+											<source>true</source>
+										</artifact>														
 										<artifact>
 											<id>com.github.joschi.jackson:jackson-datatype-threetenbp:jar:2.8.4</id>
 											<source>true</source>
@@ -184,6 +188,10 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<id>org.glassfish.jersey.inject:jersey-hk2:jar:2.27</id>
 											<source>true</source>
 										</artifact>
+										<artifact>
+											<id>org.glassfish.jersey.ext:jersey-proxy-client:jar:2.27</id>
+											<source>true</source>
+										</artifact>										
 									</artifacts>
 								</feature>
 								<feature>

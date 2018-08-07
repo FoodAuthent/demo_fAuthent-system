@@ -110,12 +110,12 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	    return new PagedResult<T>() {
 	
 	    @Override
-	    public int getTotalNumPages() {
+	    public long getTotalNumPages() {
 		return res.size() / pageSize;
 	    }
 	    
 	    @Override
-	    public int getTotalNumEntries() {
+	    public long getTotalNumEntries() {
 	        return res.size();
 	    }
 	

@@ -102,12 +102,12 @@ public interface PersistenceService {
 	/**
 	 * @return number of pages available in total
 	 */
-	int getTotalNumPages();
+	long getTotalNumPages();
 	
 	/**
 	 * @return total number of entries available
 	 */
-	int getTotalNumEntries();
+	long getTotalNumEntries();
 	
 	/**
 	 * @return the actual result list
