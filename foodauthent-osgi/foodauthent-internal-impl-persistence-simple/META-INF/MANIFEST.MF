@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Simple InMemory Persistence
-Bundle-SymbolicName: org.foodauthent.persistence.simple
+Bundle-SymbolicName: org.foodauthent.internal.persistence.impl.simple
 Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: org.foodauthent.persistence.simple
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

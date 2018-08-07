@@ -1,4 +1,4 @@
-package org.foodauthent.internal.impl.persistence;
+package src.org.foodauthent.internal.persistence.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;

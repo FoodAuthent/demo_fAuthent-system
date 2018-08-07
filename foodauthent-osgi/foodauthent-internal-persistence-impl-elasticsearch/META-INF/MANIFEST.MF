@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Elasticsearch
-Bundle-SymbolicName: org.foodauthent.persistence.elasticsearch
+Bundle-SymbolicName: org.foodauthent.internal.persistence.impl.elasticsearch
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.scala-lang.scala-library,
  org.elasticsearch.client.rest;bundle-version="6.3.1",
