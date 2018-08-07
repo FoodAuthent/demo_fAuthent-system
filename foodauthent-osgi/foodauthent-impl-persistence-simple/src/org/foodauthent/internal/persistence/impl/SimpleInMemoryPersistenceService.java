@@ -9,10 +9,10 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.foodauthent.api.internal.exception.EntityExistsException;
+import org.foodauthent.api.internal.exception.NoSuchIDException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
-import org.foodauthent.common.exception.EntityExistsException;
-import org.foodauthent.common.exception.NoSuchIDException;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Product;
@@ -69,28 +69,40 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 
 			if (modelType.equals(Workflow.class) && o instanceof Workflow) {
 				final Workflow wf = (Workflow) o;
-				if (keywords.contains(wf.getDescription())) {
-					result.add((T) wf);
-				}
-				if (keywords.contains(wf.getName())) {
+				if (keywords.isEmpty()) {
 					result.add((T) wf);
 				} else {
-					if (logger.isDebugEnabled()) {
-						logger.debug("Ignoring " + o);
+					if (keywords.contains(wf.getDescription())) {
+						result.add((T) wf);
+					}
+					if (keywords.contains(wf.getName())) {
+						result.add((T) wf);
+					} else {
+						if (logger.isDebugEnabled()) {
+							logger.debug("Ignoring " + o);
+						}
 					}
 				}
 			} else if (modelType.equals(SOP.class) && o instanceof SOP) {
 				final SOP sop = (SOP) o;
-				if (keywords.contains(sop.getDescription())) {
+				if (keywords.isEmpty()) {
 					result.add((T) sop);
-				}
-				if (keywords.contains(sop.getName())) {
-					result.add((T) sop);
+				} else {
+					if (keywords.contains(sop.getDescription())) {
+						result.add((T) sop);
+					}
+					if (keywords.contains(sop.getName())) {
+						result.add((T) sop);
+					}
 				}
 			} else if (modelType.equals(FingerprintSet.class) && o instanceof FingerprintSet) {
 				final FingerprintSet fs = (FingerprintSet) o;
-				if (keywords.contains(fs.getName())) {
+				if (keywords.isEmpty()) {
 					result.add((T) fs);
+				} else {
+					if (keywords.contains(fs.getName())) {
+						result.add((T) fs);
+					}
 				}
 			} else {
 				if (logger.isDebugEnabled()) {
@@ -176,12 +188,15 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	}
 
 	private <T extends Object> boolean save(final T obj, UUID faId) throws EntityExistsException {
-		if (entities.containsKey(faId) || blobs.containsKey(faId)) {
-			throw new EntityExistsException("An entity with the given id already exists.");
-		}
 		if (obj instanceof FaModel) {
+			if (entities.containsKey(faId)) {
+				throw new EntityExistsException("An entity with the given id already exists.");
+			}
 			entities.put(faId, (FaModel) obj);
 		} else if (obj instanceof Blob) {
+			if (blobs.containsKey(faId)) {
+				throw new EntityExistsException("A blob with the given id already exists.");
+			}
 			blobs.put(faId, (Blob) obj);
 		} else {
 			throw new IllegalArgumentException("Objects of type '" + obj.getClass().getSimpleName()

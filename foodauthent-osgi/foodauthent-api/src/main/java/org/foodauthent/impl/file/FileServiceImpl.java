@@ -8,12 +8,13 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 import org.foodauthent.api.FileService;
+import org.foodauthent.api.internal.exception.FARuntimeException;
+import org.foodauthent.api.internal.exception.ServiceNotAvailableException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.FAExceptions;
 import org.foodauthent.common.exception.FAExceptions.InvalidDataException;
 import org.foodauthent.common.exception.FAExceptions.InvalidInputException;
-import org.foodauthent.common.exception.FARuntimeException;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
@@ -43,8 +44,8 @@ public class FileServiceImpl implements FileService {
     }
     @Override
     public UUID createFileMetadata(FileMetadata fileMetadata) {
-	if (logger.isDebugEnabled()) {
-	    logger.debug("Persisting file metadata " + fileMetadata);
+	if (persistenceService == null) {
+	    throw new ServiceNotAvailableException("Persistence service not available");
 	}
 	persistenceService.save(fileMetadata);
 	return fileMetadata.getFaId();
@@ -62,7 +63,9 @@ public class FileServiceImpl implements FileService {
 	    throws InvalidDataException, InvalidInputException {
 	// TODO it should be possible to store multiple files per UUID, e.g. multiple
 	// versions or a data set
-	
+	if (persistenceService == null) {
+	    throw new ServiceNotAvailableException("Persistence service not available");
+	}
 	FileMetadata fileMeta = persistenceService.getFaModelByUUID(fileId, FileMetadata.class);
 	if (fileMeta == null) {
 	    throw new FAExceptions.InvalidInputException("No metadata found for " + fileId);
@@ -70,16 +73,16 @@ public class FileServiceImpl implements FileService {
 
 	validateFileType(fileMeta.getType(), upfileDetail);
 
-	//update file metadata (metadata must exist! - TODO otherwise throw appropriate exception)
+
 	fileMeta = FileMetadata.builder(fileMeta).setUploadName(upfileDetail.getFileName()).setUploadDate(LocalDate.now()).build();
 	persistenceService.replace(fileMeta);
 
 	try {
-	    // new uuid for the blob
+	    // new uuid for the blob (the same id as the one of metadata!)
 	    persistenceService
 		    .save(new Blob(fileId, toByteArray(upfile)));
 	    return fileId;
-	} catch (IOException e) {
+	} catch (Exception e) {
 	    throw new FARuntimeException(e);
 	}
     }

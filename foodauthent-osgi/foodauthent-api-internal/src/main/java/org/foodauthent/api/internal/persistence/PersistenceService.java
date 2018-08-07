@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
-import org.foodauthent.common.exception.EntityExistsException;
+import org.foodauthent.api.internal.exception.EntityExistsException;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
 
@@ -43,6 +43,15 @@ public interface PersistenceService {
      */
     <T extends FaModel> T replace(T entity) throws NoSuchElementException;
 
+
+    /**
+     * 
+     * Important note: uuid's of blobs do intentionally overlap with uuid's of fa-models!!
+     * 
+     * @param blob
+     * @return
+     * @throws EntityExistsException
+     */
     UUID save(Blob blob) throws EntityExistsException;
 
     /**

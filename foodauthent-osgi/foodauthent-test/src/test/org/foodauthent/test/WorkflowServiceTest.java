@@ -60,7 +60,9 @@ public class WorkflowServiceTest extends AbstractITTest {
 	FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("files/PredictionWorkflow.knwf"),
 		MediaType.APPLICATION_OCTET_STREAM_TYPE);
 	multiPart.bodyPart(filePart);
-	wt.path("/file/" + predictionWorkflowFileId + "/data").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
+	Response response = wt.path("/file/" + predictionWorkflowFileId + "/data").request()
+		.put(Entity.entity(multiPart, multiPart.getMediaType()));
+	assertEquals(200, response.getStatus());
     }
     
     
