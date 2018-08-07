@@ -3,7 +3,7 @@
    <service>
       <provide interface="org.foodauthent.api.WorkflowService"/>
    </service>
-   <reference bind="bindJobService" interface="org.foodauthent.internal.api.job.JobService" name="JobService"/>
-   <reference bind="bindPersistenceService" interface="org.foodauthent.internal.api.persistence.PersistenceService" name="PersistenceService"/>
+   <reference bind="bindJobService" interface="org.foodauthent.api.internal.job.JobService" name="JobService"/>
+   <reference bind="bindPersistenceService" interface="org.foodauthent.api.internal.persistence.PersistenceService" name="PersistenceService"/>
    <implementation class="org.foodauthent.impl.workflow.WorkflowServiceImpl"/>
 </scr:component>

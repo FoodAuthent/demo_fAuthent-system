@@ -102,9 +102,6 @@
    <feature url="features/io.swagger.feature.source_1.5.20.20180807122933.jar" id="io.swagger.feature.source" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
-   <feature url="features/org.foodauthent.knime.feature_1.0.0.qualifier.jar" id="org.foodauthent.knime.feature" version="0.0.0">
-      <category name="org.foodauthent.custom"/>
-   </feature>
    <category-def name="org.foodauthent.custom" label="FoodAuthent Custom Dependencies"/>
    <category-def name="org.foodauthent.maven" label="FoodAuthent Maven Dependencies"/>
    <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime"/>

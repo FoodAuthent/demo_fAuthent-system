@@ -3,6 +3,6 @@
    <service>
       <provide interface="org.foodauthent.api.FingerprintService"/>
    </service>
-   <reference bind="setPersistenceService" interface="org.foodauthent.internal.api.persistence.PersistenceService" name="PersistenceService"/>
+   <reference bind="setPersistenceService" interface="org.foodauthent.api.internal.persistence.PersistenceService" name="PersistenceService"/>
    <implementation class="org.foodauthent.impl.fingerprint.FingerprintServiceImpl"/>
 </scr:component>
