@@ -34,6 +34,8 @@ public class OpenChromTest extends AbstractITTest {
 	UUID fileMetaID = wt.path("file").request(MediaType.APPLICATION_JSON)
 		.post(Entity.entity(fileMeta, MediaType.APPLICATION_JSON), UUID.class);
 
+	System.err.println("File metadata ID: " + fileMetaID);
+
 	MultiPart multiPart = new MultiPart();
 	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
 	FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("files/bruker-nmr/1.zip"),
