@@ -36,12 +36,13 @@ public interface SopRestService{
      */
     @POST
     @Path("/sop")
+    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createNewSOP(SOP sop
 );
 
     /**
-     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     * Muliple tags can be provided with comma separated strings. Use keyword1, keyword2, keyword3 for testing. If no keyword is specified, all entries will be considered.
      *
      * @param pageNumber 
      * @param pageSize 

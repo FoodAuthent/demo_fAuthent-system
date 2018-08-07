@@ -37,5 +37,9 @@ public abstract class AbstractITTest {
     protected final WebTarget webTarget() {
 	return TestUtils.newWebTarget();
     }
+    
+    protected final <S> S restService(Class<S> serviceClass) {
+	return TestUtils.createClientProxy(serviceClass);
+    }
 
 }

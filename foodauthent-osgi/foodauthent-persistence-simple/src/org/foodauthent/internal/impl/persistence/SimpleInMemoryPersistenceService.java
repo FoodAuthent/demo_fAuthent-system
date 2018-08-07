@@ -101,6 +101,32 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	}
 
 	@Override
+	public <T extends FaModel> PagedResult<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
+	        int pageNumber, int pageSize) {
+	List<T> res = findByKeywords(keywords, modelType);
+	int start = pageNumber * pageSize;
+	List<T> page = res.stream().skip(start).limit(pageSize).collect(Collectors.toList());
+	    return new PagedResult<T>() {
+	
+	    @Override
+	    public int getTotalNumPages() {
+		return res.size() / pageSize;
+	    }
+	    
+	    @Override
+	    public int getTotalNumEntries() {
+	        return res.size();
+	    }
+	
+	    @Override
+	    public List<T> getResult() {
+		return page;
+	    }
+	        
+	    };
+	}
+
+	@Override
 	public Product findProductByGtin(final String gtin) {
 		for (final Object o : entities.values()) {
 			if (o instanceof Product) {
@@ -121,8 +147,8 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 			throw new NoSuchElementException(e.getLocalizedMessage());
 		}
 	}
-
-	/**
+	
+    /**
 	 * Returns the last used entity ID.
 	 *
 	 * @return the last used entity ID

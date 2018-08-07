@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.foodauthent.common.exception.EntityExistsException;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
+import org.knime.core.util.Pair;
 
 /**
  * Persistence Service. Implementations persist entities to a database, for
@@ -56,9 +57,29 @@ public interface PersistenceService {
      */
     Product findProductByGtin(String gtin);
 
+    /**
+     * Queries a fa-model by uuid.
+     * 
+     * @param uuid
+     * @param modelType
+     * @return
+     */
     <T extends FaModel> T getFaModelByUUID(UUID uuid, Class<T> modelType);
-
+    
     <T extends FaModel> List<T> findByKeywords(Collection<String> keywords, Class<T> modelType);
+
+    /**
+     * Queries a limited number of the specified fa-model, filtered by the given
+     * keywords.
+     * 
+     * @param keywords if list is empty, all models are considered
+     * @param modelType
+     * @param pageNumber
+     * @param pageSize
+     * @return pair of the list of results and the number of available pages
+     */
+    <T extends FaModel> PagedResult<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
+	    int pageNumber, int pageSize);
 
     /**
      * TODO
@@ -70,5 +91,29 @@ public interface PersistenceService {
      */
     //TODO rename to getFileByUUID??
     Blob getBlobByUUID(UUID uuid);
+    
+    /**
+     * Result in pages.
+     *
+     * @param <T>
+     */
+    public interface PagedResult<T> {
+	
+	/**
+	 * @return number of pages available in total
+	 */
+	int getTotalNumPages();
+	
+	/**
+	 * @return total number of entries available
+	 */
+	int getTotalNumEntries();
+	
+	/**
+	 * @return the actual result list
+	 */
+	List<T> getResult();
+	
+    }
 
 }

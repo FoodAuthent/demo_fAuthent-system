@@ -18,6 +18,9 @@ public class TestUtils {
     }
     
     public static <S> S createClientProxy(Class<S> serviceClass) {
-	return WebResourceFactory.newResource(serviceClass, newWebTarget());
+	Client client = ClientBuilder.newClient().register(JacksonJSONWriter.class, Integer.MAX_VALUE)
+		.register(JacksonJSONReader.class, Integer.MAX_VALUE).register(MultiPartFeature.class);
+	WebTarget wt = client.target("http://localhost:9090");
+	return WebResourceFactory.newResource(serviceClass, wt);
     }
 }
