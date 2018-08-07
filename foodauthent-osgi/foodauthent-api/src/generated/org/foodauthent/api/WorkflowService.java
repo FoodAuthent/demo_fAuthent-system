@@ -110,6 +110,17 @@ public interface WorkflowService {
     WorkflowPageResult findTrainingWorkflows(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
     /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param pageNumber 
+     * @param pageSize 
+     * @param keywords Keywords to search for
+     *
+     * @return the result
+     */
+    WorkflowPageResult findWorkflowByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
+        
+    /**
      * 
      *
      * @param jobId TODO

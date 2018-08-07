@@ -5,7 +5,6 @@ package org.foodauthent.api;
 
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelPageResult;
-import org.foodauthent.model.WorkflowPageResult;
 
 import org.foodauthent.common.exception.FAExceptions;
 
@@ -36,17 +35,6 @@ public interface ModelService {
      * @return the result
      */
     ModelPageResult findModelByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
-        
-    /**
-     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
-     *
-     * @param pageNumber 
-     * @param pageSize 
-     * @param keywords Keywords to search for
-     *
-     * @return the result
-     */
-    WorkflowPageResult findWorkflowByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
     /**
      * TODO

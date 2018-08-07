@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.foodauthent.api.WorkflowService;
 import org.foodauthent.api.internal.job.JobService;
 import org.foodauthent.api.internal.persistence.PersistenceService;
+import org.foodauthent.api.internal.persistence.PersistenceService.PagedResult;
 import org.foodauthent.common.exception.FAExceptions.InitJobException;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
@@ -93,34 +94,50 @@ public class WorkflowServiceImpl implements WorkflowService {
 	persistenceService.save(workflow);
 	return workflow.getFaId();
     }
+    
+    @Override
+    public WorkflowPageResult findWorkflowByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
+	PagedResult<Workflow> res = persistenceService.findByKeywordsPaged(keywords, Workflow.class, pageNumber,
+		pageSize);
+	return WorkflowPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
+   }
 
     @Override
     public PredictionPageResult findModelByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	// TODO Auto-generated method stub
-	return null;
+	PagedResult<Prediction> res = persistenceService.findByKeywordsPaged(keywords, Prediction.class, pageNumber,
+		pageSize);
+	return PredictionPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
 
     @Override
     public PredictionJobPageResult findPredictionJobs(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	// TODO Auto-generated method stub
-	return null;
+	PagedResult<PredictionJob> res = persistenceService.findByKeywordsPaged(keywords, PredictionJob.class,
+		pageNumber, pageSize);
+	return PredictionJobPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
 
     @Override
     public WorkflowPageResult findPredictionWorkflows(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	// TODO Auto-generated method stub
-	return null;
+	// TODO we need a better way to query fa-models by means of specific properties
+	// (e.g. a specific workflow-type)
+	throw new UnsupportedOperationException();
     }
 
     @Override
     public TrainingJobPageResult findTrainingJobs(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	// TODO Auto-generated method stub
-	return null;
+	PagedResult<TrainingJob> res = persistenceService.findByKeywordsPaged(keywords, TrainingJob.class, pageNumber,
+		pageSize);
+	return TrainingJobPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
 
     @Override
     public WorkflowPageResult findTrainingWorkflows(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	// TODO Auto-generated method stub
-	return null;
+	// TODO we need a better way to query fa-models by means of specific properties
+	// (e.g. a specific workflow-type)
+	throw new UnsupportedOperationException();
     }
 }
