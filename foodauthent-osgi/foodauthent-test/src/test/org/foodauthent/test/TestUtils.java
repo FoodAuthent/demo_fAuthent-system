@@ -6,6 +6,7 @@ import javax.ws.rs.client.WebTarget;
 
 import org.foodauthent.rest.impl.json.JacksonJSONReader;
 import org.foodauthent.rest.impl.json.JacksonJSONWriter;
+import org.glassfish.jersey.client.proxy.WebResourceFactory;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 public class TestUtils {
@@ -15,5 +16,8 @@ public class TestUtils {
 		.register(JacksonJSONReader.class, Integer.MAX_VALUE).register(MultiPartFeature.class);
 	return client.target("http://localhost:9090/v0/foodauthent");
     }
-
+    
+    public static <S> S createClientProxy(Class<S> serviceClass) {
+	return WebResourceFactory.newResource(serviceClass, newWebTarget());
+    }
 }

@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.foodauthent.model.SOP;
 import org.foodauthent.model.Workflow;
+import org.foodauthent.rest.api.service.WorkflowRestService;
 import org.glassfish.jersey.media.multipart.MultiPart;
 import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
 import org.junit.Test;
@@ -42,5 +43,13 @@ public class ITTestSandbox extends AbstractITTest {
 
 	wt.path("workflow/" + wfId + "/file").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
     }
+    
+    @Test
+    public void test2() {
+	WorkflowRestService workflowService = TestUtils.createClientProxy(WorkflowRestService.class);
+	workflowService.createWorkflow(null);
+
+    }
+    
 
 }
