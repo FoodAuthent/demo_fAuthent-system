@@ -5,8 +5,8 @@ Bundle-SymbolicName: org.foodauthent.persistence.impl.simple
 Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: org.foodauthent.persistence.simple
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: org.foodauthent.common.exception,
- org.foodauthent.internal.api.persistence,
+Import-Package: org.foodauthent.api.internal.persistence,
+ org.foodauthent.common.exception,
  org.foodauthent.model,
  org.osgi.framework;version="[1.3.0,2.0.0)",
  org.osgi.service.component.annotations;version="[1.3.0,2.0.0)";resolution:=optional,

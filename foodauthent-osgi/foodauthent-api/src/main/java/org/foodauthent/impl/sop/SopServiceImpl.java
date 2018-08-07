@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.foodauthent.api.SopService;
-import org.foodauthent.internal.api.persistence.PersistenceService;
-import org.foodauthent.internal.api.persistence.PersistenceService.PagedResult;
+import org.foodauthent.api.internal.persistence.PersistenceService;
+import org.foodauthent.api.internal.persistence.PersistenceService.PagedResult;
 import org.foodauthent.model.SOP;
 import org.foodauthent.model.SOPPageResult;
 import org.osgi.service.component.annotations.Component;

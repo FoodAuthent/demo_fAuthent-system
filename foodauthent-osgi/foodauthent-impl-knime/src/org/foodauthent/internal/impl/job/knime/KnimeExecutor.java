@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 import javax.json.JsonValue;
 
-import org.foodauthent.internal.api.persistence.Blob;
+import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.WorkflowModuleInput;
 

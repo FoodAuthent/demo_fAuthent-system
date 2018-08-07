@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.foodauthent.api.ProductService;
-import org.foodauthent.internal.api.persistence.PersistenceService;
+import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.ProductPageResult;
 import org.osgi.service.component.annotations.Component;

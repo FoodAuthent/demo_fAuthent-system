@@ -12,10 +12,10 @@ import java.util.concurrent.Executors;
 import javax.json.Json;
 import javax.json.JsonValue;
 
+import org.foodauthent.api.internal.job.JobService;
+import org.foodauthent.api.internal.persistence.Blob;
+import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.FAExceptions.InitJobException;
-import org.foodauthent.internal.api.job.JobService;
-import org.foodauthent.internal.api.persistence.Blob;
-import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.impl.job.knime.KnimeExecutor.LoadingFailedException;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FingerprintSet;

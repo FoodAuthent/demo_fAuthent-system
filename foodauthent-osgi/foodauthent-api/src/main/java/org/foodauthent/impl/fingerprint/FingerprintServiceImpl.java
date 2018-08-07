@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.foodauthent.api.FingerprintService;
-import org.foodauthent.internal.api.persistence.PersistenceService;
+import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
 import org.osgi.service.component.annotations.Component;

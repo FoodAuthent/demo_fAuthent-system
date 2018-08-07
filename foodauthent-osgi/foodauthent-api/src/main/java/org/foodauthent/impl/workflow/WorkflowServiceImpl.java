@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.UUID;
 
 import org.foodauthent.api.WorkflowService;
+import org.foodauthent.api.internal.job.JobService;
+import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.FAExceptions.InitJobException;
-import org.foodauthent.internal.api.job.JobService;
-import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.Prediction;

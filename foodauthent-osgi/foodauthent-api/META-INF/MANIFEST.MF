@@ -9,9 +9,9 @@ Export-Package: org.foodauthent.api,
  org.foodauthent.impl.sop,
  org.foodauthent.impl.workflow
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: org.foodauthent.common.exception,
- org.foodauthent.internal.api.job,
- org.foodauthent.internal.api.persistence,
+Import-Package: org.foodauthent.api.internal.job,
+ org.foodauthent.api.internal.persistence,
+ org.foodauthent.common.exception,
  org.foodauthent.model,
  org.glassfish.jersey.media.multipart;version="2.22.1",
  org.osgi.service.component.annotations;version="[1.2.0,2.0.0)";resolution:=optional,

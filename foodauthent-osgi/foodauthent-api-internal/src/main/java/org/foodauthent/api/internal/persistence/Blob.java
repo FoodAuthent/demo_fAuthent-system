@@ -1,4 +1,4 @@
-package org.foodauthent.internal.api.persistence;
+package org.foodauthent.api.internal.persistence;
 
 import java.util.UUID;
 

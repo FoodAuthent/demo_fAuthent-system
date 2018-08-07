@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.foodauthent.api.ModelService;
-import org.foodauthent.internal.api.persistence.PersistenceService;
+import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelPageResult;
 import org.foodauthent.model.WorkflowPageResult;

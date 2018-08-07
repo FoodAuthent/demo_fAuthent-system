@@ -8,12 +8,12 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 import org.foodauthent.api.FileService;
+import org.foodauthent.api.internal.persistence.Blob;
+import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.FAExceptions;
 import org.foodauthent.common.exception.FAExceptions.InvalidDataException;
 import org.foodauthent.common.exception.FAExceptions.InvalidInputException;
 import org.foodauthent.common.exception.FARuntimeException;
-import org.foodauthent.internal.api.persistence.Blob;
-import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;

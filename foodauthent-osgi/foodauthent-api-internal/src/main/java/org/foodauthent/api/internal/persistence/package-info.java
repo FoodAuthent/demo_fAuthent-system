@@ -6,4 +6,4 @@
  * @author Alexander Kerner, Lablicate GmbH
  *
  */
-package org.foodauthent.internal.api.job;
+package org.foodauthent.api.internal.persistence;
