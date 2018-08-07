@@ -3,6 +3,6 @@
    <service>
       <provide interface="org.foodauthent.api.SopService"/>
    </service>
-   <reference bind="bindPersistenceService" interface="org.foodauthent.internal.api.persistence.PersistenceService" name="PersistenceService"/>
+   <reference bind="setPersistenceService" interface="org.foodauthent.internal.api.persistence.PersistenceService" name="PersistenceService"/>
    <implementation class="org.foodauthent.impl.sop.SopServiceImpl"/>
 </scr:component>
