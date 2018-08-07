@@ -176,12 +176,15 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	}
 
 	private <T extends Object> boolean save(final T obj, UUID faId) throws EntityExistsException {
-		if (entities.containsKey(faId) || blobs.containsKey(faId)) {
-			throw new EntityExistsException("An entity with the given id already exists.");
-		}
 		if (obj instanceof FaModel) {
+			if (entities.containsKey(faId)) {
+				throw new EntityExistsException("An entity with the given id already exists.");
+			}
 			entities.put(faId, (FaModel) obj);
 		} else if (obj instanceof Blob) {
+			if (blobs.containsKey(faId)) {
+				throw new EntityExistsException("A blob with the given id already exists.");
+			}
 			blobs.put(faId, (Blob) obj);
 		} else {
 			throw new IllegalArgumentException("Objects of type '" + obj.getClass().getSimpleName()

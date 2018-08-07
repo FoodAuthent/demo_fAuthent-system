@@ -76,7 +76,7 @@ public class FileServiceImpl implements FileService {
 	persistenceService.replace(fileMeta);
 
 	try {
-	    // new uuid for the blob
+	    // new uuid for the blob (the same id as the one of metadata!)
 	    persistenceService
 		    .save(new Blob(fileId, toByteArray(upfile)));
 	    return fileId;

@@ -43,6 +43,15 @@ public interface PersistenceService {
      */
     <T extends FaModel> T replace(T entity) throws NoSuchElementException;
 
+
+    /**
+     * 
+     * Important note: uuid's of blobs do intentionally overlap with uuid's of fa-models!!
+     * 
+     * @param blob
+     * @return
+     * @throws EntityExistsException
+     */
     UUID save(Blob blob) throws EntityExistsException;
 
     /**
