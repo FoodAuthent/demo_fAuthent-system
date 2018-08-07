@@ -168,6 +168,11 @@ paths:
           description: The file data.
           schema:
             type: file
+        500:
+         description: Problem during upload.    
+      x-fa-exceptions:
+        - $ref: "#/x-fa-exceptions/InvalidDataException"
+          code: 500
     put:
       tags:
         - file
@@ -787,6 +792,8 @@ paths:
 x-fa-exceptions:
   InitJobException:
     description: Exception thrown when a job could not be initialized.
+  InvalidDataException:
+    description: Invalid data was uploaded.
     
 definitions:
   SOPPageResult:
