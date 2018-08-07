@@ -23,6 +23,7 @@ public class Fingerprint  extends FaModel {
 
   private java.util.UUID faId;
   private String metadata;
+  private java.util.Map<String, String> additionalProperties;
   
   public String getTypeID() {
     return "Fingerprint";
@@ -34,6 +35,7 @@ public class Fingerprint  extends FaModel {
     
     faId = immutable(builder.faId);
     metadata = immutable(builder.metadata);
+    additionalProperties = immutable(builder.additionalProperties);
     
     faId = generateFaIdIfMissing(faId);
   }
@@ -53,7 +55,7 @@ public class Fingerprint  extends FaModel {
             return false;
         }
         Fingerprint ent = (Fingerprint)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(metadata, ent.metadata);
+        return Objects.equals(faId, ent.faId) && Objects.equals(metadata, ent.metadata) && Objects.equals(additionalProperties, ent.additionalProperties);
     }
 
 
@@ -71,6 +73,14 @@ public class Fingerprint  extends FaModel {
    */
   public String getMetadata() {
         return metadata;
+    }
+    
+  /**
+   * Key-value-map for additional properties.
+   * @return additionalProperties 
+   */
+  public java.util.Map<String, String> getAdditionalProperties() {
+        return additionalProperties;
     }
     
   
@@ -93,6 +103,7 @@ public class Fingerprint  extends FaModel {
 		FingerprintBuilder builder = builder();
         builder.faId = entity.faId;
         builder.metadata = entity.metadata;
+        builder.additionalProperties = entity.additionalProperties;
  		return builder;
   	}
   	
@@ -105,6 +116,7 @@ public class Fingerprint  extends FaModel {
     
         private java.util.UUID faId = null;
         private String metadata = null;
+        private java.util.Map<String, String> additionalProperties = new java.util.HashMap<>();
 
         /**
          * A global id within the FoodAuthent-system.
@@ -121,6 +133,15 @@ public class Fingerprint  extends FaModel {
          */
         public FingerprintBuilder setMetadata(String metadata) {
              this.metadata = metadata;
+             return this;
+        }
+
+        /**
+         * Key-value-map for additional properties.
+         * @return additionalProperties 
+         */
+        public FingerprintBuilder setAdditionalProperties(java.util.Map<String, String> additionalProperties) {
+             this.additionalProperties = additionalProperties;
              return this;
         }
 

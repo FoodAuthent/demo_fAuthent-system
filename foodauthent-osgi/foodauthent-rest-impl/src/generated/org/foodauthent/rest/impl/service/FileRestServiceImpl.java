@@ -75,9 +75,12 @@ public class FileRestServiceImpl implements FileRestService {
      * @return the response
      */
     public Response saveFileData(java.util.UUID fileId, java.io.InputStream upfile, org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail) {
-        
+        try { 
             Object res = service.saveFileData(fileId, upfile, upfileDetail);
             return Response.ok(res).build();
+        } catch(FAExceptions.InvalidDataException e) {
+           return Response.status(500).entity(e.getMessage()).build();
+        }
     }
 }
 

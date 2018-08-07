@@ -21,5 +21,18 @@ public final class FAExceptions {
         }
     }
     
+    /**
+    * Invalid data was uploaded.
+    */
+    public static class InvalidDataException extends Exception {
+        public InvalidDataException(String message) {
+            super(message);
+        }
+        
+        public InvalidDataException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+    
     
 }

@@ -168,11 +168,6 @@ paths:
           description: The file data.
           schema:
             type: file
-        500:
-         description: Problem during upload.    
-      x-fa-exceptions:
-        - $ref: "#/x-fa-exceptions/InvalidDataException"
-          code: 500
     put:
       tags:
         - file
@@ -197,7 +192,12 @@ paths:
           description: File data has been uploaded successfully. Returns the fa-id of the file (i.e. file-id)
           schema:
             type: string
-            format: uuid      
+            format: uuid
+        500:
+         description: Problem during upload.    
+      x-fa-exceptions:
+        - $ref: "#/x-fa-exceptions/InvalidDataException"
+          code: 500
         
   /fingerprintset:
     get:
