@@ -63,7 +63,9 @@ public class FileServiceImpl implements FileService {
 	    throws InvalidDataException, InvalidInputException {
 	// TODO it should be possible to store multiple files per UUID, e.g. multiple
 	// versions or a data set
-	
+	if (persistenceService == null) {
+	    throw new ServiceNotAvailableException("Persistence service not available");
+	}
 	FileMetadata fileMeta = persistenceService.getFaModelByUUID(fileId, FileMetadata.class);
 	if (fileMeta == null) {
 	    throw new FAExceptions.InvalidInputException("No metadata found for " + fileId);
@@ -71,7 +73,7 @@ public class FileServiceImpl implements FileService {
 
 	validateFileType(fileMeta.getType(), upfileDetail);
 
-	//update file metadata (metadata must exist! - TODO otherwise throw appropriate exception)
+
 	fileMeta = FileMetadata.builder(fileMeta).setUploadName(upfileDetail.getFileName()).setUploadDate(LocalDate.now()).build();
 	persistenceService.replace(fileMeta);
 
