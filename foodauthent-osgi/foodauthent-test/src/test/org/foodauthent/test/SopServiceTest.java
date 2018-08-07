@@ -25,7 +25,7 @@ public class SopServiceTest extends AbstractITTest {
     @Test
     public void testFindSOPsByKeywords() {
 	SopRestService s = restService(SopRestService.class);
-	List<SOP> sops = IntStream.rangeClosed(0, 95).mapToObj(i -> {
+	List<SOP> sops = IntStream.range(0, 95).mapToObj(i -> {
 	    return SOP.builder().setName("sop" + i).setDescription("desc" + (i % 10)).setFileId(UUID.randomUUID())
 		    .setProductId(UUID.randomUUID()).build();
 	}).collect(Collectors.toList());
@@ -41,7 +41,7 @@ public class SopServiceTest extends AbstractITTest {
 	
 	sopPage = s.findSOPByKeyword(9, 10, Collections.emptyList()).readEntity(SOPPageResult.class);
 	assertEquals(5, sopPage.getResults().size());
-	assertEquals(96, sopPage.getResultCount().intValue());
+	assertEquals(95, sopPage.getResultCount().intValue());
 
     }
 

@@ -43,13 +43,5 @@ public class ITTestSandbox extends AbstractITTest {
 
 	wt.path("workflow/" + wfId + "/file").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
     }
-    
-    @Test
-    public void test2() {
-	WorkflowRestService workflowService = TestUtils.createClientProxy(WorkflowRestService.class);
-	workflowService.createWorkflow(null);
-
-    }
-    
 
 }

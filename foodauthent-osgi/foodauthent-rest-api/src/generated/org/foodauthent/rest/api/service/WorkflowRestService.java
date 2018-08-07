@@ -155,6 +155,22 @@ public interface WorkflowRestService{
 );
 
     /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param pageNumber 
+     * @param pageSize 
+     * @param keywords Keywords to search for
+     * @return the response
+     */
+    @GET
+    @Path("/workflow")
+    @Produces({ "application/json" })
+    public Response findWorkflowByKeyword(@QueryParam("pageNumber")Integer pageNumber
+, @QueryParam("pageSize")Integer pageSize
+, @QueryParam("keywords")java.util.List<String> keywords
+);
+
+    /**
      *
      * @param jobId TODO
      * @return the response
