@@ -69,28 +69,40 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 
 			if (modelType.equals(Workflow.class) && o instanceof Workflow) {
 				final Workflow wf = (Workflow) o;
-				if (keywords.contains(wf.getDescription())) {
-					result.add((T) wf);
-				}
-				if (keywords.contains(wf.getName())) {
+				if (keywords.isEmpty()) {
 					result.add((T) wf);
 				} else {
-					if (logger.isDebugEnabled()) {
-						logger.debug("Ignoring " + o);
+					if (keywords.contains(wf.getDescription())) {
+						result.add((T) wf);
+					}
+					if (keywords.contains(wf.getName())) {
+						result.add((T) wf);
+					} else {
+						if (logger.isDebugEnabled()) {
+							logger.debug("Ignoring " + o);
+						}
 					}
 				}
 			} else if (modelType.equals(SOP.class) && o instanceof SOP) {
 				final SOP sop = (SOP) o;
-				if (keywords.contains(sop.getDescription())) {
+				if (keywords.isEmpty()) {
 					result.add((T) sop);
-				}
-				if (keywords.contains(sop.getName())) {
-					result.add((T) sop);
+				} else {
+					if (keywords.contains(sop.getDescription())) {
+						result.add((T) sop);
+					}
+					if (keywords.contains(sop.getName())) {
+						result.add((T) sop);
+					}
 				}
 			} else if (modelType.equals(FingerprintSet.class) && o instanceof FingerprintSet) {
 				final FingerprintSet fs = (FingerprintSet) o;
-				if (keywords.contains(fs.getName())) {
+				if (keywords.isEmpty()) {
 					result.add((T) fs);
+				} else {
+					if (keywords.contains(fs.getName())) {
+						result.add((T) fs);
+					}
 				}
 			} else {
 				if (logger.isDebugEnabled()) {
