@@ -135,4 +135,11 @@ public class ElasticsearchPersistenceService implements PersistenceService {
 		return t;
 	}
 
+	@Override
+	public <T extends FaModel> PagedResult<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
+			int pageNumber, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

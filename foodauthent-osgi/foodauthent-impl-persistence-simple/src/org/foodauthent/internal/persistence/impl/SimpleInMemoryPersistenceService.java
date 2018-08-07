@@ -1,4 +1,4 @@
-package src.org.foodauthent.internal.persistence.impl;
+package org.foodauthent.internal.persistence.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -110,12 +110,12 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	    return new PagedResult<T>() {
 	
 	    @Override
-	    public long getTotalNumPages() {
+	    public int getTotalNumPages() {
 		return res.size() / pageSize;
 	    }
 	    
 	    @Override
-	    public long getTotalNumEntries() {
+	    public int getTotalNumEntries() {
 	        return res.size();
 	    }
 	
