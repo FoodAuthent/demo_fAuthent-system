@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: FoodAuthent Knime API Services
-Bundle-SymbolicName: org.foodauthent.internal.impl.knime
+Bundle-SymbolicName: org.foodauthent.impl.knime
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: org.foodauthent.api.knime
