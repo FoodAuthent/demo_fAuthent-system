@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: foodauthent-api-internal
 Bundle-SymbolicName: org.foodauthent.api.internal
 Bundle-Version: 1.0.0.qualifier
-Export-Package: org.foodauthent.api.internal.filereading,
+Export-Package: org.foodauthent.api.internal.filereader,
  org.foodauthent.api.internal.job,
  org.foodauthent.api.internal.persistence
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

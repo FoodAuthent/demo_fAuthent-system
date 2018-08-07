@@ -1,3 +1,4 @@
 bin
 .swagger-codegen*
 target
+*.orig
