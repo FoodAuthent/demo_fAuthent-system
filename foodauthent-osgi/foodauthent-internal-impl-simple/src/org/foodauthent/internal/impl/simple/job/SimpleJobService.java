@@ -1,4 +1,4 @@
-package org.foodauthent.simple.impl.job;
+package org.foodauthent.internal.impl.simple.job;
 
 import java.util.HashMap;
 import java.util.Map;
