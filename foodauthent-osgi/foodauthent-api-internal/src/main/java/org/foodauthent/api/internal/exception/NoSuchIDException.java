@@ -1,4 +1,4 @@
-package org.foodauthent.common.exception;
+package org.foodauthent.api.internal.exception;
 
 public class NoSuchIDException extends FARuntimeException {
 

@@ -9,10 +9,10 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.foodauthent.api.internal.exception.EntityExistsException;
+import org.foodauthent.api.internal.exception.NoSuchIDException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
-import org.foodauthent.common.exception.EntityExistsException;
-import org.foodauthent.common.exception.NoSuchIDException;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Product;

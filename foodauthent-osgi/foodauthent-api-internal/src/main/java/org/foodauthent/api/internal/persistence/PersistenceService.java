@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
-import org.foodauthent.common.exception.EntityExistsException;
+import org.foodauthent.api.internal.exception.EntityExistsException;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
-import org.knime.core.util.Pair;
 
 /**
  * Persistence Service. Implementations persist entities to a database, for
