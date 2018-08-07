@@ -196,6 +196,8 @@ paths:
       operationId: saveFileData
       consumes:
       - multipart/form-data
+      produces:
+      - application/json
       parameters:
         - name: file-id
           in: path

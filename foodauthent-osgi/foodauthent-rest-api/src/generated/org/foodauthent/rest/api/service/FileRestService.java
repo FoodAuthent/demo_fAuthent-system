@@ -74,6 +74,7 @@ public interface FileRestService{
     @PUT
     @Path("/file/{file-id}/data")
     @Consumes({ "multipart/form-data" })
+    @Produces({ "application/json" })
     public Response saveFileData(@PathParam("file-id") java.util.UUID fileId
 , 
             @org.glassfish.jersey.media.multipart.FormDataParam("upfile") java.io.InputStream upfile,
