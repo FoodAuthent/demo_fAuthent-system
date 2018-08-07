@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?><target name="FoodAuthent Equinox-Oxygen" sequenceNumber="71">
 <locations>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="com.eclipsesource.jaxrs.feature.feature.group" version="0.0.0"/>
 <unit id="com.fasterxml.jackson.feature.feature.group" version="0.0.0"/>
 <unit id="com.fasterxml.jackson.feature.source.feature.group" version="0.0.0"/>
@@ -50,6 +49,7 @@
 <unit id="org.slf4j.feature.feature.group" version="0.0.0"/>
 <unit id="org.junit.feature.group" version="0.0.0"/>
 <unit id="org.slf4j.feature.source.feature.group" version="0.0.0"/>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <repository location="http://repository.foodauthent.net/p2/foodauthent-dependencies-1.0.0-SNAPSHOT/"/>
 </location>
 </locations>
