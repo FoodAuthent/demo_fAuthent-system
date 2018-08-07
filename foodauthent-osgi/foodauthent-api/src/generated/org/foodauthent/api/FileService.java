@@ -50,7 +50,8 @@ public interface FileService {
      * @param upfile The file to upload.
      *
      * @return the result
+     * @throws InvalidDataException Invalid data was uploaded.
      */
-    java.util.UUID saveFileData(java.util.UUID fileId, java.io.InputStream upfile, org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail);
+    java.util.UUID saveFileData(java.util.UUID fileId, java.io.InputStream upfile, org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail) throws FAExceptions.InvalidDataException;
         
 }
