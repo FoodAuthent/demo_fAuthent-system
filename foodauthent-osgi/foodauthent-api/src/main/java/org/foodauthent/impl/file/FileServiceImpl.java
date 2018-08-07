@@ -19,6 +19,8 @@ import org.foodauthent.model.FileMetadata.TypeEnum;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -28,6 +30,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service=FileService.class)
 public class FileServiceImpl implements FileService {
     
+    private static final Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);
+
     private static PersistenceService persistenceService;
 
     public FileServiceImpl() {
@@ -39,6 +43,9 @@ public class FileServiceImpl implements FileService {
     }
     @Override
     public UUID createFileMetadata(FileMetadata fileMetadata) {
+	if (logger.isDebugEnabled()) {
+	    logger.debug("Persisting file metadata " + fileMetadata);
+	}
 	persistenceService.save(fileMetadata);
 	return fileMetadata.getFaId();
     }
