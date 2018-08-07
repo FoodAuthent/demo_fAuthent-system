@@ -790,6 +790,10 @@ paths:
             $ref: "#/definitions/PredictionJob"
 
 x-fa-exceptions:
+  FAException:
+    description: Unspecified exception.
+  FARuntimeException:
+    description: Unspecified runtime exception.
   InitJobException:
     description: Exception thrown when a job could not be initialized.
   InvalidDataException:
