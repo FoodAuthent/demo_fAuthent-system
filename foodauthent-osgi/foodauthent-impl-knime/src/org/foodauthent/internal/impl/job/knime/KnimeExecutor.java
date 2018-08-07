@@ -1,12 +1,12 @@
 package org.foodauthent.internal.impl.job.knime;
 
-import java.sql.Blob;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import javax.json.JsonValue;
 
+import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.WorkflowModuleInput;
 

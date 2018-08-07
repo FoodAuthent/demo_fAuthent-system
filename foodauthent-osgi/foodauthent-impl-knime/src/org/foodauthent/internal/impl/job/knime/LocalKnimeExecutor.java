@@ -45,136 +45,136 @@ import org.knime.core.util.Version;
  */
 public class LocalKnimeExecutor implements KnimeExecutor {
 
-    private ExecutorService executionService;
+	private ExecutorService executionService;
 
-    private final Map<UUID, WorkflowManager> m_workflowMap;
+	private final Map<UUID, WorkflowManager> m_workflowMap;
 
-    public LocalKnimeExecutor() {
-	executionService = Executors.newCachedThreadPool();
-	m_workflowMap = new HashMap<UUID, WorkflowManager>();
-    }
-
-    @Override
-    public void loadWorkflow(UUID workflowId, FileMetadata workflowMetadata, Blob workflowData)
-	    throws LoadingFailedException {
-	WorkflowManager wfm = loadWorkflowInternal(workflowId, workflowMetadata, workflowData);
-	m_workflowMap.put(workflowId, wfm);
-    }
-
-    @Override
-    public String[] loadWorkflowWithModules(UUID workflowId, FileMetadata workflowMetadata, Blob workflowData,
-	    FileMetadata[] modulesMetadata, Blob[] modulesData) throws LoadingFailedException {
-	assert modulesMetadata.length == modulesData.length;
-	WorkflowManager wfm = loadWorkflowInternal(workflowId, workflowMetadata, workflowData);
-	String[] refs = new String[modulesMetadata.length];
-	for (int i = 0; i < modulesMetadata.length; i++) {
-	    // make sure to unzip the modules into the same dir as the master workflow
-	    try {
-		File dir = unzipToTempDir(workflowId, modulesData[i].getData(), modulesMetadata[i].getName());
-		refs[i] = "/" + dir.getName();
-	    } catch (IOException e) {
-		throw new LoadingFailedException(
-			"Problem unzipping workflow module '" + modulesMetadata[i].getName() + "'", e);
-	    }
+	public LocalKnimeExecutor() {
+		executionService = Executors.newCachedThreadPool();
+		m_workflowMap = new HashMap<UUID, WorkflowManager>();
 	}
-	m_workflowMap.put(workflowId, wfm);
-	return refs;
-    }
 
-    private void disposeWorkflow(UUID workflowId) {
-	m_workflowMap.remove(workflowId);
-	// TODO
-	// remove tmp-directories etc.
-	// dipose workflow modules, too
-    }
-
-    @Override
-    public void asyncRunWorkflow(UUID workflowId, JsonValue input, String inputName, String outputName,
-	    Consumer<JsonValue> successCallback, BiConsumer<String, Exception> failCallback)
-	    throws IllegalStateException {
-	WorkflowManager wfm = m_workflowMap.get(workflowId);
-	if (wfm == null) {
-	    throw new IllegalStateException("Workflow not available. Please load first.");
+	@Override
+	public void loadWorkflow(UUID workflowId, FileMetadata workflowMetadata, Blob workflowData)
+			throws LoadingFailedException {
+		WorkflowManager wfm = loadWorkflowInternal(workflowId, workflowMetadata, workflowData);
+		m_workflowMap.put(workflowId, wfm);
 	}
-	CompletableFuture.runAsync(() -> {
-	    ExternalNodeData data = ExternalNodeData.builder(inputName).jsonValue(input).build();
-	    Map<String, ExternalNodeData> inputMap = new HashMap<String, ExternalNodeData>();
-	    inputMap.put(data.getID(), data);
-	    try {
-		wfm.setInputNodes(inputMap);
-	    } catch (InvalidSettingsException e) {
-		failCallback.accept("Problem setting workflow inputs", e);
-	    }
 
-	    if (wfm.executeAllAndWaitUntilDone()) {
-		Optional<ExternalNodeData> output = wfm.getExternalOutputs().values().stream()
-			.filter(o -> o.getID().equals(outputName)).findFirst();
-		if (output.isPresent()) {
-		    successCallback.accept(output.get().getJSONValue());
-		} else {
-		    failCallback.accept("No output with name " + outputName + " available!", null);
+	@Override
+	public String[] loadWorkflowWithModules(UUID workflowId, FileMetadata workflowMetadata, Blob workflowData,
+			FileMetadata[] modulesMetadata, Blob[] modulesData) throws LoadingFailedException {
+		assert modulesMetadata.length == modulesData.length;
+		WorkflowManager wfm = loadWorkflowInternal(workflowId, workflowMetadata, workflowData);
+		String[] refs = new String[modulesMetadata.length];
+		for (int i = 0; i < modulesMetadata.length; i++) {
+			// make sure to unzip the modules into the same dir as the master workflow
+			try {
+				File dir = unzipToTempDir(workflowId, modulesData[i].getData(), modulesMetadata[i].getName());
+				refs[i] = "/" + dir.getName();
+			} catch (IOException e) {
+				throw new LoadingFailedException(
+						"Problem unzipping workflow module '" + modulesMetadata[i].getName() + "'", e);
+			}
 		}
-	    } else {
-		String statusMessage = wfm.getNodeMessages(Type.ERROR, Type.WARNING).stream()
-			.map(p -> p.getSecond().getMessage()).collect(Collectors.joining("\n"));
-		failCallback.accept(statusMessage, null);
-	    }
-	}, executionService).thenRun(() -> disposeWorkflow(workflowId));
-    }
-
-    private static WorkflowManager loadWorkflowInternal(UUID workflowId, FileMetadata workflowMetadata,
-	    Blob workflowData) throws LoadingFailedException {
-	File workflowDir;
-	try {
-	    workflowDir = unzipToTempDir(workflowId, workflowData.getData(), workflowMetadata.getName());
-	} catch (IOException e) {
-	    throw new LoadingFailedException("Problem unzipping workflow", e);
+		m_workflowMap.put(workflowId, wfm);
+		return refs;
 	}
-	WorkflowLoadHelper loadHelper = new WorkflowLoadHelper() {
-	    /**
-	     * {@inheritDoc}
-	     */
-	    @Override
-	    public WorkflowContext getWorkflowContext() {
-		WorkflowContext.Factory fac = new WorkflowContext.Factory(workflowDir);
-		// fac.setMountpointRoot(workflowRoot);
-		return fac.createContext();
-	    }
 
-	    /**
-	     * {@inheritDoc}
-	     */
-	    @Override
-	    public UnknownKNIMEVersionLoadPolicy getUnknownKNIMEVersionLoadPolicy(
-		    final LoadVersion workflowKNIMEVersion, final Version createdByKNIMEVersion,
-		    final boolean isNightlyBuild) {
-		return UnknownKNIMEVersionLoadPolicy.Try;
-	    }
-	};
-
-	WorkflowLoadResult loadRes;
-	try {
-	    loadRes = WorkflowManager.loadProject(workflowDir, new ExecutionMonitor(), loadHelper);
-	} catch (IOException | InvalidSettingsException | CanceledExecutionException
-		| UnsupportedWorkflowVersionException | LockFailedException e) {
-	    throw new LoadingFailedException("Problem loading workflow", e);
+	private void disposeWorkflow(UUID workflowId) {
+		m_workflowMap.remove(workflowId);
+		// TODO
+		// remove tmp-directories etc.
+		// dipose workflow modules, too
 	}
-	if ((loadRes.getType() == LoadResultEntryType.Error)
-		|| ((loadRes.getType() == LoadResultEntryType.DataLoadError)
-			&& loadRes.getGUIMustReportDataLoadErrors())) {
-	    throw new LoadingFailedException("Loading workflow failed: " + loadRes.getMessage());
-	}
-	return loadRes.getWorkflowManager();
-    }
 
-    private static File unzipToTempDir(UUID blobId, final byte[] workflowBlob, String workflowName) throws IOException {
-	String prefix = "fa_workflow_";
-	ZipInputStream zipStream = new ZipInputStream(new ByteArrayInputStream(workflowBlob));
-	File destDir = new File(KNIMEConstants.getKNIMETempPath().toFile(), prefix + blobId.toString());
-	FileUtil.unzip(zipStream, destDir, 0);
-	// go to workflow level
-	destDir = new File(destDir, workflowName);
-	return destDir;
-    }
+	@Override
+	public void asyncRunWorkflow(UUID workflowId, JsonValue input, String inputName, String outputName,
+			Consumer<JsonValue> successCallback, BiConsumer<String, Exception> failCallback)
+			throws IllegalStateException {
+		WorkflowManager wfm = m_workflowMap.get(workflowId);
+		if (wfm == null) {
+			throw new IllegalStateException("Workflow not available. Please load first.");
+		}
+		CompletableFuture.runAsync(() -> {
+			ExternalNodeData data = ExternalNodeData.builder(inputName).jsonValue(input).build();
+			Map<String, ExternalNodeData> inputMap = new HashMap<String, ExternalNodeData>();
+			inputMap.put(data.getID(), data);
+			try {
+				wfm.setInputNodes(inputMap);
+			} catch (InvalidSettingsException e) {
+				failCallback.accept("Problem setting workflow inputs", e);
+			}
+
+			if (wfm.executeAllAndWaitUntilDone()) {
+				Optional<ExternalNodeData> output = wfm.getExternalOutputs().values().stream()
+						.filter(o -> o.getID().equals(outputName)).findFirst();
+				if (output.isPresent()) {
+					successCallback.accept(output.get().getJSONValue());
+				} else {
+					failCallback.accept("No output with name " + outputName + " available!", null);
+				}
+			} else {
+				String statusMessage = wfm.getNodeMessages(Type.ERROR, Type.WARNING).stream()
+						.map(p -> p.getSecond().getMessage()).collect(Collectors.joining("\n"));
+				failCallback.accept(statusMessage, null);
+			}
+		}, executionService).thenRun(() -> disposeWorkflow(workflowId));
+	}
+
+	private static WorkflowManager loadWorkflowInternal(UUID workflowId, FileMetadata workflowMetadata,
+			Blob workflowData) throws LoadingFailedException {
+		File workflowDir;
+		try {
+			workflowDir = unzipToTempDir(workflowId, workflowData.getData(), workflowMetadata.getName());
+		} catch (IOException e) {
+			throw new LoadingFailedException("Problem unzipping workflow", e);
+		}
+		WorkflowLoadHelper loadHelper = new WorkflowLoadHelper() {
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public WorkflowContext getWorkflowContext() {
+				WorkflowContext.Factory fac = new WorkflowContext.Factory(workflowDir);
+				// fac.setMountpointRoot(workflowRoot);
+				return fac.createContext();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public UnknownKNIMEVersionLoadPolicy getUnknownKNIMEVersionLoadPolicy(
+					final LoadVersion workflowKNIMEVersion, final Version createdByKNIMEVersion,
+					final boolean isNightlyBuild) {
+				return UnknownKNIMEVersionLoadPolicy.Try;
+			}
+		};
+
+		WorkflowLoadResult loadRes;
+		try {
+			loadRes = WorkflowManager.loadProject(workflowDir, new ExecutionMonitor(), loadHelper);
+		} catch (IOException | InvalidSettingsException | CanceledExecutionException
+				| UnsupportedWorkflowVersionException | LockFailedException e) {
+			throw new LoadingFailedException("Problem loading workflow", e);
+		}
+		if ((loadRes.getType() == LoadResultEntryType.Error)
+				|| ((loadRes.getType() == LoadResultEntryType.DataLoadError)
+						&& loadRes.getGUIMustReportDataLoadErrors())) {
+			throw new LoadingFailedException("Loading workflow failed: " + loadRes.getMessage());
+		}
+		return loadRes.getWorkflowManager();
+	}
+
+	private static File unzipToTempDir(UUID blobId, final byte[] workflowBlob, String workflowName) throws IOException {
+		String prefix = "fa_workflow_";
+		ZipInputStream zipStream = new ZipInputStream(new ByteArrayInputStream(workflowBlob));
+		File destDir = new File(KNIMEConstants.getKNIMETempPath().toFile(), prefix + blobId.toString());
+		FileUtil.unzip(zipStream, destDir, 0);
+		// go to workflow level
+		destDir = new File(destDir, workflowName);
+		return destDir;
+	}
 
 }
