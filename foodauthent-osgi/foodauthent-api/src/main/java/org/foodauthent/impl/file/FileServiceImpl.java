@@ -82,7 +82,7 @@ public class FileServiceImpl implements FileService {
 	    persistenceService
 		    .save(new Blob(fileId, toByteArray(upfile)));
 	    return fileId;
-	} catch (IOException e) {
+	} catch (Exception e) {
 	    throw new FARuntimeException(e);
 	}
     }
