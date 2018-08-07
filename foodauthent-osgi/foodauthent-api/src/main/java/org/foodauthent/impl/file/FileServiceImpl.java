@@ -14,7 +14,6 @@ import org.foodauthent.common.exception.FAExceptions.InvalidInputException;
 import org.foodauthent.common.exception.FARuntimeException;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.PersistenceService;
-import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
@@ -32,7 +31,6 @@ public class FileServiceImpl implements FileService {
     private PersistenceService persistenceService;
 
     public FileServiceImpl() {
-	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
     }
 
     @Reference
@@ -53,31 +51,16 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public FileMetadata getFileMetadata(UUID fileId) {
-	return persistenceService.getFaModelByUUID(fileId);
-    }
-
-    @Override
     public UUID saveFileData(UUID fileId, InputStream upfile, FormDataContentDisposition upfileDetail)
 	    throws InvalidDataException, InvalidInputException {
 	// TODO it should be possible to store multiple files per UUID, e.g. multiple
 	// versions or a data set
 	
-	FileMetadata fileMeta = persistenceService.getFaModelByUUID(fileId);
+	FileMetadata fileMeta = persistenceService.getFaModelByUUID(fileId, FileMetadata.class);
 	if (fileMeta == null) {
 	    throw new FAExceptions.InvalidInputException("No metadata found for " + fileId);
 	}
 
-	//basic verification whether the uploaded file type matches the file metadata's type
-	// TODO add more logic
-	switch (fileMeta.getType()) {
-	case KNIME_WORKFLOW:
-	    // expecting the uploaded file to end with ".knwf"
-	    if (!upfileDetail.getFileName().endsWith(".knwf")) {
-		// TODO throw appropriate exception!!
-		throw new RuntimeException(
-			"Uploaded file probably not a KNIME workflow. Doesn't have a '.knwf' extension.");
-	    }
 	validateFileType(fileMeta.getType(), upfileDetail);
 
 	//update file metadata (metadata must exist! - TODO otherwise throw appropriate exception)
