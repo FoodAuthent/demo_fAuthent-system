@@ -9,6 +9,32 @@ package org.foodauthent.common.exception;
 public final class FAExceptions {
 
     /**
+    * Unspecified exception.
+    */
+    public static class  extends Exception {
+        public (String message) {
+            super(message);
+        }
+        
+        public (String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+    
+    /**
+    * Unspecified runtime exception.
+    */
+    public static class  extends Exception {
+        public (String message) {
+            super(message);
+        }
+        
+        public (String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+    
+    /**
     * Exception thrown when a job could not be initialized.
     */
     public static class InitJobException extends Exception {
