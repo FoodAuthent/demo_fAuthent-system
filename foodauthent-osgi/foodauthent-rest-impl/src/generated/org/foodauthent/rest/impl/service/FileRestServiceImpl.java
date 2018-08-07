@@ -78,7 +78,16 @@ public class FileRestServiceImpl implements FileRestService {
         try { 
             Object res = service.saveFileData(fileId, upfile, upfileDetail);
             return Response.ok(res).build();
-        } catch(FAExceptions.InvalidDataException e) {
+         } 
+        catch(FAExceptions.InvalidDataException e) {
+           return Response.status(433).entity(e.getMessage()).build();
+        }
+        
+        catch(FAExceptions.InvalidInputException e) {
+           return Response.status(433).entity(e.getMessage()).build();
+        }
+        
+        catch(FAExceptions.FAException e) {
            return Response.status(500).entity(e.getMessage()).build();
         }
     }

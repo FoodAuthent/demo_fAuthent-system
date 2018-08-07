@@ -11,25 +11,25 @@ public final class FAExceptions {
     /**
     * Unspecified exception.
     */
-    public static class  extends Exception {
-        public (String message) {
+    public static class FAException extends Exception {
+        public FAException(String message) {
             super(message);
         }
         
-        public (String message, Throwable cause) {
+        public FAException(String message, Throwable cause) {
             super(message, cause);
         }
     }
     
     /**
-    * Unspecified runtime exception.
+    * Invalid input was provided.
     */
-    public static class  extends Exception {
-        public (String message) {
+    public static class InvalidInputException extends Exception {
+        public InvalidInputException(String message) {
             super(message);
         }
         
-        public (String message, Throwable cause) {
+        public InvalidInputException(String message, Throwable cause) {
             super(message, cause);
         }
     }

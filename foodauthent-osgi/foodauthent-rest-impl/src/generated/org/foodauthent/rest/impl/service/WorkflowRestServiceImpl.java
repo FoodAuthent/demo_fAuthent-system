@@ -48,7 +48,8 @@ public class WorkflowRestServiceImpl implements WorkflowRestService {
         try { 
             Object res = service.createPredictionJob(workflowId, fingerprintsetId, modelId);
             return Response.ok(res).build();
-        } catch(FAExceptions.InitJobException e) {
+         } 
+        catch(FAExceptions.InitJobException e) {
            return Response.status(500).entity(e.getMessage()).build();
         }
     }
@@ -63,7 +64,8 @@ public class WorkflowRestServiceImpl implements WorkflowRestService {
         try { 
             Object res = service.createTrainingJob(workflowId, fingerprintsetId);
             return Response.ok(res).build();
-        } catch(FAExceptions.InitJobException e) {
+         } 
+        catch(FAExceptions.InitJobException e) {
            return Response.status(500).entity(e.getMessage()).build();
         }
     }

@@ -10,6 +10,7 @@ import java.util.UUID;
 import org.foodauthent.api.FileService;
 import org.foodauthent.common.exception.FAExceptions;
 import org.foodauthent.common.exception.FAExceptions.InvalidDataException;
+import org.foodauthent.common.exception.FAExceptions.InvalidInputException;
 import org.foodauthent.common.exception.FARuntimeException;
 import org.foodauthent.internal.api.persistence.Blob;
 import org.foodauthent.internal.api.persistence.PersistenceService;
@@ -51,13 +52,15 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public UUID saveFileData(UUID fileId, InputStream upfile, FormDataContentDisposition upfileDetail)
-	    throws InvalidDataException {
-	// TODO check whether there is already a workflow-model entry for the workflow
-	// id - otherwise refuse the request
+	    throws InvalidDataException, InvalidInputException {
+
 	// TODO it should be possible to store multiple files per UUID, e.g. multiple
 	// versions or a data set
 	
 	FileMetadata fileMeta = persistenceService.getFaModelByUUID(fileId);
+	if (fileMeta == null) {
+	    throw new FAExceptions.InvalidInputException("No metadata found for " + fileId);
+	}
 
 	validateFileType(fileMeta.getType(), upfileDetail);
 
@@ -84,8 +87,7 @@ public class FileServiceImpl implements FileService {
 	    }
 	    break;
 	case FINGERPRINTS_BRUKER:
-	    // TODO: store original data, or converted data, or both?
-	    // data is zipped, just to mention it.
+	    // TODO: cannot be validated without acutally trying to convert the data.
 	    break;
 	default:
 	}

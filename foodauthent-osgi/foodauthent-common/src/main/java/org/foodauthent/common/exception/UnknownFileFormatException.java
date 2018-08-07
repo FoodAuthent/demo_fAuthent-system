@@ -1,7 +1,7 @@
 package org.foodauthent.common.exception;
 
 
-public class UnknownFileFormatException extends FAException {
+public class UnknownFileFormatException extends FAExceptionOld {
 
 	/**
 	 * 

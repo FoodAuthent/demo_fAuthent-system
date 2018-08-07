@@ -54,7 +54,8 @@ public class {{classname}} implements {{baseName}}RestService {
                 return Response.ok().build();
             {{/returnType}}
         {{#vendorExtensions.x-fa-exceptions}}
-        } catch(FAExceptions.{{name}} e) {
+        {{#-first}} } {{/-first}}
+        catch(FAExceptions.{{name}} e) {
            return Response.status({{code}}).entity(e.getMessage()).build();
         }
         {{/vendorExtensions.x-fa-exceptions}}

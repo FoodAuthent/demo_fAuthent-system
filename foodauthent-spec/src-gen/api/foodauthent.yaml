@@ -193,10 +193,16 @@ paths:
           schema:
             type: string
             format: uuid
+        433:
+          description: Invalid input provided.
         500:
          description: Problem during upload.    
       x-fa-exceptions:
         - $ref: "#/x-fa-exceptions/InvalidDataException"
+          code: 433
+        - $ref: "#/x-fa-exceptions/InvalidInputException"
+          code: 433
+        - $ref: "#/x-fa-exceptions/FAException"
           code: 500
         
   /fingerprintset:
@@ -792,8 +798,10 @@ paths:
 x-fa-exceptions:
   FAException:
     description: Unspecified exception.
-  FARuntimeException:
-    description: Unspecified runtime exception.
+#  FARuntimeException:
+#    description: Unspecified runtime exception.
+  InvalidInputException:
+    description: Invalid input was provided.
   InitJobException:
     description: Exception thrown when a job could not be initialized.
   InvalidDataException:
