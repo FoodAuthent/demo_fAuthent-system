@@ -878,7 +878,14 @@ definitions:
       metadata:
         description: Placeholder for the actual metadata.
         type: string
-       
+      additional-properties:
+        description: Key-value-map for additional properties.
+        #string to string map
+        type: object
+        additionalProperties:
+          type: string
+        
+              
   FingerprintSetPageResult:
     type: object
     x-no-faid: true    
