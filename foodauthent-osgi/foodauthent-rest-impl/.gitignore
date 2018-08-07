@@ -1,6 +1,0 @@
-/target/
-# Classpath for source folders, settings for formatting etc.
-#/.classpath
-#/.settings/
-/.swagger-codegen/
-/.swagger-codegen-ignore

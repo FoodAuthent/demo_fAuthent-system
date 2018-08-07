@@ -1,6 +1,0 @@
-/target/
-# It's good to track Eclipse project settings, such as formatter settings.
-#/.classpath
-#/.settings/
-/.swagger-codegen/
-/.swagger-codegen-ignore
