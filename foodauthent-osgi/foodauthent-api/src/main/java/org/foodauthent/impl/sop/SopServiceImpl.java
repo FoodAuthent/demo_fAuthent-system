@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import org.foodauthent.api.SopService;
 import org.foodauthent.api.internal.persistence.PersistenceService;
-import org.foodauthent.api.internal.persistence.PersistenceService.PagedResult;
+import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
 import org.foodauthent.model.SOP;
 import org.foodauthent.model.SOPPageResult;
 import org.osgi.service.component.annotations.Component;
@@ -43,10 +43,15 @@ public class SopServiceImpl implements SopService {
     public SOP getSOPById(final UUID sopId) {
 	return persistenceService.getFaModelByUUID(sopId, SOP.class);
     }
+    
+    @Override
+    public void removeSOPById(UUID sopId) {
+	persistenceService.removeFaModelByUUID(sopId);
+    }
 
     @Override
     public SOPPageResult findSOPByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	PagedResult<SOP> res = persistenceService.findByKeywordsPaged(keywords, SOP.class, pageNumber, pageSize);
+	ResultPage<SOP> res = persistenceService.findByKeywordsPaged(keywords, SOP.class, pageNumber, pageSize);
 	return SOPPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }

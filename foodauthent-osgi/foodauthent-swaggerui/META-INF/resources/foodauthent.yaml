@@ -105,7 +105,22 @@ paths:
         200:
           description: The SOP.    
           schema:
-            $ref: "#/definitions/SOP"         
+            $ref: "#/definitions/SOP"
+    delete:
+      tags:
+        - sop
+      summary: Delete a sop specified by id.         
+      description: TODO
+      operationId: removeSOPById
+      parameters:
+        - name: sop-id
+          in: path
+          required: true
+          type: string
+          format: uuid
+      responses:
+        200:
+          description: SOP successfully deleted.
  
   /file:
     post:

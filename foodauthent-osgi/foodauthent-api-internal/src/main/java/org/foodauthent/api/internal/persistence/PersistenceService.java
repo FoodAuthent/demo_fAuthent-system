@@ -66,6 +66,11 @@ public interface PersistenceService {
      */
     <T extends FaModel> T getFaModelByUUID(UUID uuid, Class<T> modelType);
     
+    /**
+     * @param uuid
+     */
+    void removeFaModelByUUID(UUID uuid);
+    
     <T extends FaModel> List<T> findByKeywords(Collection<String> keywords, Class<T> modelType);
 
     /**
@@ -78,7 +83,7 @@ public interface PersistenceService {
      * @param pageSize
      * @return pair of the list of results and the number of available pages
      */
-    <T extends FaModel> PagedResult<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
+    <T extends FaModel> ResultPage<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
 	    int pageNumber, int pageSize);
 
     /**
@@ -97,7 +102,7 @@ public interface PersistenceService {
      *
      * @param <T>
      */
-    public interface PagedResult<T> {
+    public interface ResultPage<T> {
 	
 	/**
 	 * @return number of pages available in total
@@ -110,7 +115,7 @@ public interface PersistenceService {
 	int getTotalNumEntries();
 	
 	/**
-	 * @return the actual result list
+	 * @return the actual entries for one page
 	 */
 	List<T> getResult();
 	

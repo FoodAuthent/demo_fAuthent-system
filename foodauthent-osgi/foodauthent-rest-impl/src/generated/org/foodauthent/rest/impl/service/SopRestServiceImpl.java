@@ -68,5 +68,18 @@ public class SopRestServiceImpl implements SopRestService {
             Object res = service.getSOPById(sopId);
             return Response.ok(res).build();
     }
+
+    /**
+     * TODO
+     *
+     * @param sopId 
+     * @return the response
+     */
+    public Response removeSOPById(java.util.UUID sopId) {
+        
+            service.removeSOPById(sopId);
+            
+                return Response.ok().build();
+    }
 }
 

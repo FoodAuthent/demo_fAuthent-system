@@ -25,6 +25,12 @@ public class SopServiceTest extends AbstractITTest {
     @Test
     public void testFindSOPsByKeywords() {
 	SopRestService s = restService(SopRestService.class);
+	
+	// remove all sops first
+	List<SOP> allSops = s.findSOPByKeyword(0, Integer.MAX_VALUE, Collections.emptyList())
+		.readEntity(SOPPageResult.class).getResults();
+	allSops.forEach(sop -> s.removeSOPById(sop.getFaId()));
+	
 	List<SOP> sops = IntStream.range(0, 95).mapToObj(i -> {
 	    return SOP.builder().setName("sop" + i).setDescription("desc" + (i % 10)).setFileId(UUID.randomUUID())
 		    .setProductId(UUID.randomUUID()).build();

@@ -45,4 +45,13 @@ public interface SopService {
      */
     SOP getSOPById(java.util.UUID sopId);
         
+    /**
+     * TODO
+     *
+     * @param sopId 
+     *
+     * 
+     */
+    void removeSOPById(java.util.UUID sopId);
+        
 }

@@ -102,12 +102,12 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	}
 
 	@Override
-	public <T extends FaModel> PagedResult<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
+	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
 	        int pageNumber, int pageSize) {
 	List<T> res = findByKeywords(keywords, modelType);
 	int start = pageNumber * pageSize;
 	List<T> page = res.stream().skip(start).limit(pageSize).collect(Collectors.toList());
-	    return new PagedResult<T>() {
+	    return new ResultPage<T>() {
 	
 	    @Override
 	    public int getTotalNumPages() {
@@ -147,6 +147,11 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 		} catch (final NoSuchIDException e) {
 			throw new NoSuchElementException(e.getLocalizedMessage());
 		}
+	}
+	
+	@Override
+	public void removeFaModelByUUID(UUID uuid) {
+		entities.remove(uuid);
 	}
 	
     /**

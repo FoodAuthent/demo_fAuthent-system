@@ -68,5 +68,16 @@ public interface SopRestService{
     @Produces({ "application/json" })
     public Response getSOPById(@PathParam("sop-id") java.util.UUID sopId
 );
+
+    /**
+     * TODO
+     *
+     * @param sopId 
+     * @return the response
+     */
+    @DELETE
+    @Path("/sop/{sop-id}")
+    public Response removeSOPById(@PathParam("sop-id") java.util.UUID sopId
+);
 }
 
