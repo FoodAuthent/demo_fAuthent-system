@@ -2,3 +2,4 @@ bin
 .swagger-codegen*
 target
 *.orig
+.cache-main

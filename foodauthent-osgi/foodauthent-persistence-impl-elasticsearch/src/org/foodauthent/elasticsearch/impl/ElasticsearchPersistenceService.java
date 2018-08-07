@@ -8,12 +8,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
+import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.EntityExistsException;
 import org.foodauthent.elasticsearch.ClientService;
+import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResult;
+import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResultItem;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
 import org.osgi.service.component.annotations.Component;
@@ -24,7 +29,7 @@ import com.google.common.io.CharStreams;
 import scala.Option;
 
 /**
- * Persistence Service for persisting data object to elasticsearch cluster 
+ * Persistence Service for persisting data object to elasticsearch cluster
  *
  * @author Sven Böckelmann
  *
@@ -136,10 +141,40 @@ public class ElasticsearchPersistenceService implements PersistenceService {
 	}
 
 	@Override
-	public <T extends FaModel> PagedResult<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
+	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
 			int pageNumber, int pageSize) {
-		// TODO Auto-generated method stub
-		return null;
+		final SearchRequest request = op.searchRequest(classTarget(modelType));
+		final SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+		sourceBuilder.query(QueryBuilders.simpleQueryStringQuery(String.join(" AND ", keywords)));
+		sourceBuilder.from(pageNumber * pageSize);
+		sourceBuilder.size(pageSize);
+		request.source(sourceBuilder);
+		final SearchResult<T> result = op.search(request, op.manifest(modelType));
+		final List<SearchResultItem<T>> res = op.resultAsJava(result, modelType);
+		return new ResultPage<T>() {
+
+			@Override
+			public int getTotalNumPages() {
+				return (int) result.resultTotalCount() / pageSize;
+			}
+
+			@Override
+			public int getTotalNumEntries() {
+				return (int) result.resultTotalCount();
+			}
+
+			@Override
+			public List<T> getResult() {
+				return res.stream().map(r -> r.item()).collect(Collectors.toList());
+			}
+
+		};
+
+	}
+
+	@Override
+	public void removeFaModelByUUID(UUID uuid, Class<?> modelType) {
+		op.delete(uuid.toString(), classTarget(modelType));
 	}
 
 }

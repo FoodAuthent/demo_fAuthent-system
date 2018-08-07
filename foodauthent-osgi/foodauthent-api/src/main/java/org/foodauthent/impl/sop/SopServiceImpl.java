@@ -46,7 +46,7 @@ public class SopServiceImpl implements SopService {
     
     @Override
     public void removeSOPById(UUID sopId) {
-	persistenceService.removeFaModelByUUID(sopId);
+	persistenceService.removeFaModelByUUID(sopId, SOP.class);
     }
 
     @Override

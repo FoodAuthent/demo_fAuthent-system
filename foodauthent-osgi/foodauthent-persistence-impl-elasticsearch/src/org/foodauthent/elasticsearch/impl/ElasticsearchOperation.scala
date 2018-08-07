@@ -39,7 +39,7 @@ import collection.JavaConverters._
  * Commonly used operations for communicating with Elasticsearch
  * wraps save, search, list and update operations for scala case class model entities
  * @constructor create new ElasticsearchOperation using RestClientBuilder
- * 
+ *
  * @author Sven Böckelmann
  */
 class ElasticsearchOperation(val client: RestHighLevelClient) {
@@ -72,7 +72,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
 
       def getOwnerType = null
     }
-  
+
   /**
    * save model entity to Elasticsearch
    *
@@ -463,7 +463,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
     }).toList
   }
 
-    /**
+  /**
    * get model entity from Elasticsearch
    *
    * @tparam T entity type
@@ -475,8 +475,12 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   def manifest[T](clazz: Class[T]): Manifest[T] = {
     ManifestFactory.classType[T](clazz)
   }
-
-
+  
+  
+  def resultAsJava[T](result:ElasticsearchUtil.SearchResult[T], clazz:Class[T]) : java.util.List[SearchResultItem[T]] = {
+    result.result.asJava
+  }
+  
 }
 
 /**
@@ -522,7 +526,7 @@ object ElasticsearchUtil {
     }
     setupIndex(restClient, indexName, settings)
   }
-
+  
   /**
    * use settings from json string and create new index if it does not exist
    *
@@ -612,3 +616,4 @@ object ElasticsearchUtil {
     item: T)
 
 }
+

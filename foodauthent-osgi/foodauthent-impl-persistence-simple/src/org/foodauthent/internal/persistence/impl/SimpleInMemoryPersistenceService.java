@@ -150,7 +150,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	}
 	
 	@Override
-	public void removeFaModelByUUID(UUID uuid) {
+	public void removeFaModelByUUID(UUID uuid, Class<?> modelType) {
 		entities.remove(uuid);
 	}
 	

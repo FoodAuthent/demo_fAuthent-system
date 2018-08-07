@@ -8,7 +8,6 @@ import java.util.UUID;
 import org.foodauthent.common.exception.EntityExistsException;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
-import org.knime.core.util.Pair;
 
 /**
  * Persistence Service. Implementations persist entities to a database, for
@@ -69,7 +68,7 @@ public interface PersistenceService {
     /**
      * @param uuid
      */
-    void removeFaModelByUUID(UUID uuid);
+    void removeFaModelByUUID(UUID uuid, Class<?> modelType) throws NoSuchElementException;
     
     <T extends FaModel> List<T> findByKeywords(Collection<String> keywords, Class<T> modelType);
 
