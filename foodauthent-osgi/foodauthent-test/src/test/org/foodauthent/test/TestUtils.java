@@ -4,8 +4,8 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
-import org.foodauthent.rest.json.JacksonJSONReader;
-import org.foodauthent.rest.json.JacksonJSONWriter;
+import org.foodauthent.rest.impl.json.JacksonJSONReader;
+import org.foodauthent.rest.impl.json.JacksonJSONWriter;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 public class TestUtils {

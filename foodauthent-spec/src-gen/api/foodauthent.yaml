@@ -40,12 +40,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: pageNumber
-          type: integer
-          in: query
-        - name: pageSize
-          type: integer
-          in: query
         - name: keywords
           in: query
           description: Keywords to search for
@@ -58,7 +52,10 @@ paths:
         200:
           description: successful operation
           schema:
-            $ref: "#/definitions/SOPPageResult" 
+            type: array
+            items:
+              type: string
+              format: uuid
         400:
           description: Invalid tag value
     post:
@@ -592,20 +589,6 @@ x-fa-exceptions:
     description: Exception thrown when a job could not be initialized.
     
 definitions:
-  SOPPageResult:
-    type: object
-    properties:
-      pageNumber:
-        type: integer
-      pageCount:
-        type: integer
-      resultCount:
-        type: integer
-      results:
-        type: array
-        items:
-          $ref: "#/definitions/SOP"
-
   SOP:
     type: object
     properties:

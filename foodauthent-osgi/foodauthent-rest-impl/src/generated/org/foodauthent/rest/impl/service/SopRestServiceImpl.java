@@ -7,7 +7,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.SOP;
-import org.foodauthent.model.SOPPageResult;
 
 import org.foodauthent.api.SopService;
 import org.foodauthent.api.ServiceRegistry;
@@ -46,14 +45,12 @@ public class SopRestServiceImpl implements SopRestService {
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber 
-     * @param pageSize 
      * @param keywords Keywords to search for
      * @return the response
      */
-    public Response findSOPByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords) {
+    public Response findSOPByKeyword(java.util.List<String> keywords) {
         
-            Object res = service.findSOPByKeyword(pageNumber, pageSize, keywords);
+            Object res = service.findSOPByKeyword(keywords);
             return Response.ok(res).build();
     }
 
