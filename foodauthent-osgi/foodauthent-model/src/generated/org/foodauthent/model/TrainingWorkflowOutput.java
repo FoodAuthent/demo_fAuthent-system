@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class TrainingWorkflowOutput  extends FaModel {
+public class TrainingWorkflowOutput   extends FaModel {
 
 
   private String modelUri;
@@ -36,6 +36,7 @@ public class TrainingWorkflowOutput  extends FaModel {
   private TrainingWorkflowOutput(TrainingWorkflowOutputBuilder builder) {
     
     modelUri = immutable(builder.modelUri);
+    
     
   }
   

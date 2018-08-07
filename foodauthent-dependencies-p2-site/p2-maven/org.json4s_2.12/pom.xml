@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.foodauthent</groupId>
+	<artifactId>org.json4s_2.12</artifactId>
+	<version>3.5.4.v20180724</version>
+	<packaging>bundle</packaging>
+
+	<name>JSON4Scala OSGi Bundle</name>
+	<description>OSGi Bundle for json4s dependencies.</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.json4s</groupId>
+			<artifactId>json4s-native_2.12</artifactId>
+			<version>3.5.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json4s</groupId>
+			<artifactId>json4s-core_2.12</artifactId>
+			<version>3.5.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json4s</groupId>
+			<artifactId>json4s-jackson_2.12</artifactId>
+			<version>3.5.4</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Include all dependencies -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>3.5.1</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>org.json4s.osgi_2.12</Bundle-SymbolicName>
+						<Import-Package>
+							com.fasterxml.jackson.*;version=2.8.10,
+							scala.*;version=2.12.0
+						</Import-Package>
+						<Export-Package>org.json4s.*;version=3.5.4</Export-Package>
+						<Embed-Transitive>true</Embed-Transitive>
+						<Embed-Dependency>*;scope=compile|runtime;inline=true;groupId=!org.scala-lang|com.fasterxml.jackson.dataformat|com.fasterxml.jackson.core</Embed-Dependency>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

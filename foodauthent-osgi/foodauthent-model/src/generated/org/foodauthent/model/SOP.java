@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class SOP  extends FaModel {
+public class SOP   extends FaModel {
 
 
   private java.util.UUID faId;
@@ -42,6 +42,7 @@ public class SOP  extends FaModel {
     productId = immutable(builder.productId);
     
     faId = generateFaIdIfMissing(faId);
+    
   }
   
    /**

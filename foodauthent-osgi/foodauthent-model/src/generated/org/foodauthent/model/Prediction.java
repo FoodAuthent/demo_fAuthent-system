@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class Prediction  extends FaModel {
+public class Prediction   extends FaModel {
 
 
   private java.util.UUID faId;
@@ -42,6 +42,7 @@ public class Prediction  extends FaModel {
     modelId = immutable(builder.modelId);
     
     faId = generateFaIdIfMissing(faId);
+    
   }
   
    /**

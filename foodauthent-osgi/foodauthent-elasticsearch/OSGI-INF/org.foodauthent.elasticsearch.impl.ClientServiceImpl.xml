@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.foodauthent.elasticsearch.impl.ClientServiceImpl">
+   <service>
+      <provide interface="org.foodauthent.elasticsearch.ClientService"/>
+   </service>
+   <implementation class="org.foodauthent.elasticsearch.impl.ClientServiceImpl"/>
+</scr:component>

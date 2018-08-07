@@ -30,20 +30,46 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 						<configuration>
 							<featureDefinitions>
 								<feature>
-									<id>org.elasticsearch.feature</id>
-									<version>6.3.0.qualifier</version>
-									<label>Elasticsearch 6.3.0 Feature</label>
-									<providerName>elastic.co</providerName>
-									<copyright>elastic.co</copyright>
-									<license>Elastic License</license>
+									<id>org.apache.httpcomponents</id>
+									<version>4.4.10.qualifier</version>
+									<label>Apache HTTP Components Feature</label>
+									<providerName>apache.org</providerName>
+									<copyright>https://www.apache.org</copyright>
+									<license>Apache</license>
 									<generateSourceFeature>true</generateSourceFeature>
 									<artifacts>
 										<artifact>
-											<id>org.elasticsearch.client:elasticsearch-rest-high-level-client:jar:6.3.0</id>
+											<id>org.apache.httpcomponents:httpcore:jar:4.4.10</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>org.apache.httpcomponents:httpclient:jar:4.5.6</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>org.apache.httpcomponents:httpasyncclient:jar:4.1.3</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>org.apache.httpcomponents:httpcore-nio:jar:4.4.10</id>
 											<source>true</source>
 										</artifact>
 									</artifacts>
-								</feature>
+								</feature>							
+								<feature>
+									<id>org.elasticsearch.client.feature</id>
+									<version>6.3.1.qualifier</version>
+									<label>Elasticsearch 6.3.1 Client Feature</label>
+									<providerName>elastic.co</providerName>
+									<copyright>elastic.co</copyright>
+									<license>Elastic License</license>
+									<artifacts>
+										<artifact>
+											<id>org.foodauthent:org.elasticsearch.client.rest:jar:6.3.1.v20180724-0</id>
+											<transitive>false</transitive>
+										</artifact>
+									</artifacts>
+								</feature>							
 								<feature>
 									<id>com.fasterxml.jackson.feature</id>
 									<version>2.8.10.qualifier</version>
@@ -86,9 +112,21 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>com.fasterxml.jackson.datatype:jackson-datatype-jsr353:jar:2.8.10</id>
+											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.8.10</id>
 											<source>true</source>
 										</artifact>
+										<artifact>
+											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:jar:2.8.10</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-smile:jar:2.8.10</id>
+											<source>true</source>
+										</artifact>							
+										<artifact>
+											<id>com.github.joschi.jackson:jackson-datatype-threetenbp:jar:2.8.4</id>
+											<source>true</source>
+										</artifact>							
 									</artifacts>
 								</feature>
 								<feature>
@@ -144,10 +182,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 										</artifact>
 										<artifact>
 											<id>org.glassfish.jersey.inject:jersey-hk2:jar:2.27</id>
-											<source>true</source>
-										</artifact>
-										<artifact>
-											<id>org.glassfish.jersey.ext:jersey-proxy-client:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 									</artifacts>
@@ -217,11 +251,26 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 									<generateSourceFeature>true</generateSourceFeature>
 									<artifacts>
 										<artifact>
-											<id>org.scala-lang:scala-library:jar:2.12.3</id>
+											<id>org.scala-lang:scala-library:jar:2.12.6</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>org.json4s:json4s-jackson_2.12:jar:3.5.4</id>
+											<id>org.foodauthent:org.json4s_2.12:jar:3.5.4.v20180724</id>
+											<transitive>false</transitive>
+										</artifact>										
+									</artifacts>
+								</feature>
+								<feature>
+									<id>io.swagger.feature</id>
+									<version>1.5.20.qualifier</version>
+									<label>Swagger 1.5.20 Feature</label>
+									<providerName>swagger.io</providerName>
+									<copyright>https://www.swagger.io</copyright>
+									<license>Apache License Version 2.0</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>io.swagger:swagger-annotations:jar:1.5.20</id>
 											<source>true</source>
 										</artifact>
 									</artifacts>
@@ -244,7 +293,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<source>false</source>
 										</artifact>
 									</artifacts>
-								</feature>
+								</feature>								
 							</featureDefinitions>
 						</configuration>
 					</execution>
@@ -286,7 +335,10 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 					</execution>
 				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
+	<modules>
+		<module>org.elasticsearch.client.rest</module>
+		<module>org.json4s_2.12</module>
+	</modules>
 </project>

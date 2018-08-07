@@ -18,20 +18,27 @@ import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * 
  * @author Martin Horn, University of Konstanz
  *
  */
+@Component(service=FileService.class)
 public class FileServiceImpl implements FileService {
     
-    private final PersistenceService persistenceService;
+    private PersistenceService persistenceService;
 
     public FileServiceImpl() {
 	this.persistenceService = PersistenceServiceProvider.getInstance().getService();
     }
 
+    @Reference
+    void setPersistenceService(PersistenceService persistenceService) {
+	this.persistenceService = persistenceService;
+    }
     @Override
     public UUID createFileMetadata(FileMetadata fileMetadata) {
 	persistenceService.save(fileMetadata);
@@ -53,7 +60,6 @@ public class FileServiceImpl implements FileService {
     @Override
     public UUID saveFileData(UUID fileId, InputStream upfile, FormDataContentDisposition upfileDetail)
 	    throws InvalidDataException, InvalidInputException {
-
 	// TODO it should be possible to store multiple files per UUID, e.g. multiple
 	// versions or a data set
 	
@@ -62,6 +68,16 @@ public class FileServiceImpl implements FileService {
 	    throw new FAExceptions.InvalidInputException("No metadata found for " + fileId);
 	}
 
+	//basic verification whether the uploaded file type matches the file metadata's type
+	// TODO add more logic
+	switch (fileMeta.getType()) {
+	case KNIME_WORKFLOW:
+	    // expecting the uploaded file to end with ".knwf"
+	    if (!upfileDetail.getFileName().endsWith(".knwf")) {
+		// TODO throw appropriate exception!!
+		throw new RuntimeException(
+			"Uploaded file probably not a KNIME workflow. Doesn't have a '.knwf' extension.");
+	    }
 	validateFileType(fileMeta.getType(), upfileDetail);
 
 	//update file metadata (metadata must exist! - TODO otherwise throw appropriate exception)
@@ -92,7 +108,7 @@ public class FileServiceImpl implements FileService {
 	default:
 	}
     }
-
+    
     private static byte[] toByteArray(InputStream in) throws IOException {
 	// would be cool to be able to use apache's IOUtils
 	ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -104,6 +120,11 @@ public class FileServiceImpl implements FileService {
 
 	buffer.flush();
 	return buffer.toByteArray();
+    }
+
+    @Override
+    public FileMetadata getFileMetadata(UUID fileId) {
+	return persistenceService.getFaModelByUUID(fileId, FileMetadata.class);
     }
 
 

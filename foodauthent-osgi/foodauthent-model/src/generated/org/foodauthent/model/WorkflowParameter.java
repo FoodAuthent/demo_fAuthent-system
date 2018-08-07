@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class WorkflowParameter  extends FaModel {
+public class WorkflowParameter   extends FaModel {
 
   /**
    * the parameter type
@@ -63,6 +63,7 @@ public class WorkflowParameter  extends FaModel {
     required = immutable(builder.required);
     type = immutable(builder.type);
     value = immutable(builder.value);
+    
     
   }
   

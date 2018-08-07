@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class PredictionWorkflowOutput  extends FaModel {
+public class PredictionWorkflowOutput   extends FaModel {
 
 
   private java.util.Map<String, Float> confidenceMap;
@@ -36,6 +36,7 @@ public class PredictionWorkflowOutput  extends FaModel {
   private PredictionWorkflowOutput(PredictionWorkflowOutputBuilder builder) {
     
     confidenceMap = immutable(builder.confidenceMap);
+    
     
   }
   

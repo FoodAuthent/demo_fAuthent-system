@@ -21,7 +21,7 @@ import org.foodauthent.model.WorkflowParameter;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class Workflow  extends FaModel {
+public class Workflow   extends FaModel {
 
   /**
    * The workflow representation, e.g. represented by a scripting language, cwl or a KNIME-workflow.
@@ -136,6 +136,7 @@ public class Workflow  extends FaModel {
     modelType = immutable(builder.modelType);
     
     faId = generateFaIdIfMissing(faId);
+    
   }
   
    /**

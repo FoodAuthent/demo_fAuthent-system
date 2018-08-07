@@ -21,7 +21,7 @@ import {{import}};
  {{>authors}}
  */
 {{>generatedAnnotation}}
-public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} extends FaModel {
+public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}} extends FaModel{{/parent}} {
 
     {{#vars}}
     {{#isEnum}}
@@ -47,12 +47,14 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} extends Fa
   }
   
 
+{{^parent}}
   {{#vendorExtensions.x-no-faid}}
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
   {{/vendorExtensions.x-no-faid}}
+{{/parent}}
   
   private {{classname}}({{classname}}Builder builder) {
     {{#parent}}super();{{/parent}}
@@ -68,6 +70,7 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} extends Fa
     {{^vendorExtensions.x-no-faid}}
     faId = generateFaIdIfMissing(faId);
     {{/vendorExtensions.x-no-faid}}
+    
   }
   
    /**
@@ -85,7 +88,12 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} extends Fa
             return false;
         }
         {{classname}} ent = ({{classname}})o;
+        {{^parent}}
         return{{#allVars}} Objects.equals({{name}}, ent.{{name}}){{^-last}} &&{{/-last}}{{/allVars}};
+        {{/parent}}
+        {{#parent}}
+        return super.equals(ent);
+        {{/parent}}
     }
 
 
