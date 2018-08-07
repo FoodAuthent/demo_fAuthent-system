@@ -2,12 +2,12 @@ package org.foodauthent.impl.sop;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.foodauthent.api.SopService;
 import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.SOP;
+import org.foodauthent.model.SOPPageResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,17 +33,15 @@ public class SopServiceImpl implements SopService {
     }
 
     @Override
-    public List<UUID> findSOPByKeyword(final List<String> keywords) {
-	if (logger.isDebugEnabled()) {
-	    logger.debug("Seaching fields: name, descrption");
-	}
-	final List<SOP> result = persistenceService.findByKeywords(keywords, SOP.class);
-	return result.stream().map(e -> e.getFaId()).collect(Collectors.toList());
-    }
-
-    @Override
     public SOP getSOPById(final UUID sopId) {
 	return persistenceService.getFaModelByUUID(sopId);
     }
+
+    @Override
+    public SOPPageResult findSOPByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
 
 }

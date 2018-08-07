@@ -5,8 +5,12 @@ package org.foodauthent.api;
 
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
+import org.foodauthent.model.PredictionJobPageResult;
+import org.foodauthent.model.PredictionPageResult;
 import org.foodauthent.model.TrainingJob;
+import org.foodauthent.model.TrainingJobPageResult;
 import org.foodauthent.model.Workflow;
+import org.foodauthent.model.WorkflowPageResult;
 
 import org.foodauthent.common.exception.FAExceptions;
 
@@ -53,20 +57,57 @@ public interface WorkflowService {
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
+     * @param pageNumber 
+     * @param pageSize 
      * @param keywords Keywords to search for
      *
      * @return the result
      */
-    java.util.List<java.util.UUID> findPredictionWorkflows(java.util.List<String> keywords);
+    PredictionPageResult findModelByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
+     * @param pageNumber 
+     * @param pageSize 
      * @param keywords Keywords to search for
      *
      * @return the result
      */
-    java.util.List<java.util.UUID> findTrainingWorkflows(java.util.List<String> keywords);
+    PredictionJobPageResult findPredictionJobs(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
+        
+    /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param pageNumber 
+     * @param pageSize 
+     * @param keywords Keywords to search for
+     *
+     * @return the result
+     */
+    WorkflowPageResult findPredictionWorkflows(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
+        
+    /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param pageNumber 
+     * @param pageSize 
+     * @param keywords Keywords to search for
+     *
+     * @return the result
+     */
+    TrainingJobPageResult findTrainingJobs(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
+        
+    /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param pageNumber 
+     * @param pageSize 
+     * @param keywords Keywords to search for
+     *
+     * @return the result
+     */
+    WorkflowPageResult findTrainingWorkflows(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
     /**
      * 

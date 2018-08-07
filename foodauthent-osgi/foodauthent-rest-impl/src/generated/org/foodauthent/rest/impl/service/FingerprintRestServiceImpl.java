@@ -7,6 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.FingerprintSetPageResult;
 
 import org.foodauthent.api.FingerprintService;
 import org.foodauthent.api.ServiceRegistry;
@@ -45,12 +46,14 @@ public class FingerprintRestServiceImpl implements FingerprintRestService {
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
+     * @param pageNumber 
+     * @param pageSize 
      * @param keywords Keywords to search for
      * @return the response
      */
-    public Response findFingerprintSetByKeyword(java.util.List<String> keywords) {
+    public Response findFingerprintSetByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords) {
         
-            Object res = service.findFingerprintSetByKeyword(keywords);
+            Object res = service.findFingerprintSetByKeyword(pageNumber, pageSize, keywords);
             return Response.ok(res).build();
     }
 

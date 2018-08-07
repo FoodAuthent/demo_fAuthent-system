@@ -8,6 +8,7 @@ import org.foodauthent.api.FingerprintService;
 import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.FingerprintSetPageResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,11 +39,9 @@ public class FingerprintServiceImpl implements FingerprintService {
     }
 
     @Override
-    public List<UUID> findFingerprintSetByKeyword(List<String> keywords) {
-	if (logger.isDebugEnabled()) {
-	    logger.debug("Seaching fields: name, descrption");
-	}
-	final List<FingerprintSet> result = persistenceService.findByKeywords(keywords, FingerprintSet.class);
-	return result.stream().map(e -> e.getFaId()).collect(Collectors.toList());
+    public FingerprintSetPageResult findFingerprintSetByKeyword(Integer pageNumber, Integer pageSize,
+	    List<String> keywords) {
+	// TODO Auto-generated method stub
+	return null;
     }
 }

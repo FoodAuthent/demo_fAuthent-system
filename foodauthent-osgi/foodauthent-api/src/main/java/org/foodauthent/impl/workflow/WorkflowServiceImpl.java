@@ -14,8 +14,12 @@ import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
+import org.foodauthent.model.PredictionJobPageResult;
+import org.foodauthent.model.PredictionPageResult;
 import org.foodauthent.model.TrainingJob;
+import org.foodauthent.model.TrainingJobPageResult;
 import org.foodauthent.model.Workflow;
+import org.foodauthent.model.WorkflowPageResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -66,18 +70,6 @@ public class WorkflowServiceImpl implements WorkflowService {
     }
 
     @Override
-    public List<UUID> findPredictionWorkflows(final List<String> keywords) {
-	final List<Workflow> workflows = persistenceService.findByKeywords(keywords, Workflow.class);
-	return workflows.stream().map(e -> e.getFaId()).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<UUID> findTrainingWorkflows(final List<String> keywords) {
-	final List<Workflow> result = persistenceService.findByKeywords(keywords, Workflow.class);
-	return result.stream().map(e -> e.getFaId()).collect(Collectors.toList());
-    }
-
-    @Override
     public PredictionJob getPredictionJob(final UUID jobId) {
 	return persistenceService.getFaModelByUUID(jobId);
     }
@@ -101,5 +93,35 @@ public class WorkflowServiceImpl implements WorkflowService {
     public UUID createWorkflow(final Workflow workflow) {
 	persistenceService.save(workflow);
 	return workflow.getFaId();
+    }
+
+    @Override
+    public PredictionPageResult findModelByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public PredictionJobPageResult findPredictionJobs(Integer pageNumber, Integer pageSize, List<String> keywords) {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public WorkflowPageResult findPredictionWorkflows(Integer pageNumber, Integer pageSize, List<String> keywords) {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public TrainingJobPageResult findTrainingJobs(Integer pageNumber, Integer pageSize, List<String> keywords) {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public WorkflowPageResult findTrainingWorkflows(Integer pageNumber, Integer pageSize, List<String> keywords) {
+	// TODO Auto-generated method stub
+	return null;
     }
 }

@@ -8,8 +8,12 @@ import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
+import org.foodauthent.model.PredictionJobPageResult;
+import org.foodauthent.model.PredictionPageResult;
 import org.foodauthent.model.TrainingJob;
+import org.foodauthent.model.TrainingJobPageResult;
 import org.foodauthent.model.Workflow;
+import org.foodauthent.model.WorkflowPageResult;
 
 import org.foodauthent.api.WorkflowService;
 import org.foodauthent.api.ServiceRegistry;
@@ -73,25 +77,81 @@ public interface WorkflowRestService{
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
+     * @param pageNumber 
+     * @param pageSize 
+     * @param keywords Keywords to search for
+     * @return the response
+     */
+    @GET
+    @Path("/prediction")
+    @Produces({ "application/json" })
+    public Response findModelByKeyword(@QueryParam("pageNumber")Integer pageNumber
+, @QueryParam("pageSize")Integer pageSize
+, @QueryParam("keywords")java.util.List<String> keywords
+);
+
+    /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param pageNumber 
+     * @param pageSize 
+     * @param keywords Keywords to search for
+     * @return the response
+     */
+    @GET
+    @Path("/workflow/prediction/job")
+    @Produces({ "application/json" })
+    public Response findPredictionJobs(@QueryParam("pageNumber")Integer pageNumber
+, @QueryParam("pageSize")Integer pageSize
+, @QueryParam("keywords")java.util.List<String> keywords
+);
+
+    /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param pageNumber 
+     * @param pageSize 
      * @param keywords Keywords to search for
      * @return the response
      */
     @GET
     @Path("/workflow/prediction")
     @Produces({ "application/json" })
-    public Response findPredictionWorkflows(@QueryParam("keywords")java.util.List<String> keywords
+    public Response findPredictionWorkflows(@QueryParam("pageNumber")Integer pageNumber
+, @QueryParam("pageSize")Integer pageSize
+, @QueryParam("keywords")java.util.List<String> keywords
 );
 
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
+     * @param pageNumber 
+     * @param pageSize 
+     * @param keywords Keywords to search for
+     * @return the response
+     */
+    @GET
+    @Path("/workflow/training/job")
+    @Produces({ "application/json" })
+    public Response findTrainingJobs(@QueryParam("pageNumber")Integer pageNumber
+, @QueryParam("pageSize")Integer pageSize
+, @QueryParam("keywords")java.util.List<String> keywords
+);
+
+    /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param pageNumber 
+     * @param pageSize 
      * @param keywords Keywords to search for
      * @return the response
      */
     @GET
     @Path("/workflow/training")
     @Produces({ "application/json" })
-    public Response findTrainingWorkflows(@QueryParam("keywords")java.util.List<String> keywords
+    public Response findTrainingWorkflows(@QueryParam("pageNumber")Integer pageNumber
+, @QueryParam("pageSize")Integer pageSize
+, @QueryParam("keywords")java.util.List<String> keywords
 );
 
     /**

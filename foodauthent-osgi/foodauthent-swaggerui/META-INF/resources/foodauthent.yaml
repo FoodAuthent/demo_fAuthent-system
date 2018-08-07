@@ -40,6 +40,12 @@ paths:
       produces:
         - application/json
       parameters:
+        - name: pageNumber
+          type: integer
+          in: query
+        - name: pageSize
+          type: integer
+          in: query
         - name: keywords
           in: query
           description: Keywords to search for
@@ -52,10 +58,7 @@ paths:
         200:
           description: successful operation
           schema:
-            type: array
-            items:
-              type: string
-              format: uuid
+            $ref: "#/definitions/SOPPageResult" 
         400:
           description: Invalid tag value
     post:
@@ -201,6 +204,12 @@ paths:
       produces:
         - application/json
       parameters:
+        - name: pageNumber
+          type: integer
+          in: query
+        - name: pageSize
+          type: integer
+          in: query
         - name: keywords
           in: query
           description: Keywords to search for
@@ -213,10 +222,7 @@ paths:
         200:
           description: successful operation
           schema:
-            type: array
-            items:
-              type: string
-              format: uuid
+            $ref: "#/definitions/FingerprintSetPageResult"
         400:
           description: Invalid tag value
     post:
@@ -265,6 +271,37 @@ paths:
             $ref: "#/definitions/FingerprintSet"
  
   /product:
+    get:
+      tags:
+        - product
+      summary: Finds Products by some key words or return all Products.
+      description: 'Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
+      operationId: findProductByKeyword
+      produces:
+        - application/json
+      parameters:
+        - name: pageNumber
+          type: integer
+          in: query
+        - name: pageSize
+          type: integer
+          in: query
+        - name: keywords
+          in: query
+          description: Keywords to search for
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/ProductPageResult" 
+        400:
+          description: Invalid tag value
+  
     post:
       tags:
         - product
@@ -309,6 +346,38 @@ paths:
         404:
           description: Not found.
           
+  /prediction:
+    get:
+      tags:
+        - workflow
+      summary: Finds Prediction by some key words or return all Predictions.
+      description: 'Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
+      operationId: findModelByKeyword
+      produces:
+        - application/json
+      parameters:
+        - name: pageNumber
+          type: integer
+          in: query
+        - name: pageSize
+          type: integer
+          in: query
+        - name: keywords
+          in: query
+          description: Keywords to search for
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/PredictionPageResult" 
+        400:
+          description: Invalid tag value
+                    
   /prediction/{prediction-id}:
     get:
       tags:
@@ -329,6 +398,36 @@ paths:
             $ref: "#/definitions/Prediction"
 
   /model:
+    get:
+      tags:
+        - model
+      summary: Finds Models by some key words or return all Models.
+      description: 'Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
+      operationId: findModelByKeyword
+      produces:
+        - application/json
+      parameters:
+        - name: pageNumber
+          type: integer
+          in: query
+        - name: pageSize
+          type: integer
+          in: query
+        - name: keywords
+          in: query
+          description: Keywords to search for
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/ModelPageResult" 
+        400:
+          description: Invalid tag value  
     post:
       tags:
         - model
@@ -372,6 +471,36 @@ paths:
             $ref: "#/definitions/Model"
             
   /workflow:
+    get:
+      tags:
+        - model
+      summary: Finds Workflow by some key words or return all Workflows.
+      description: 'Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
+      operationId: findWorkflowByKeyword
+      produces:
+        - application/json
+      parameters:
+        - name: pageNumber
+          type: integer
+          in: query
+        - name: pageSize
+          type: integer
+          in: query
+        - name: keywords
+          in: query
+          description: Keywords to search for
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/WorkflowPageResult" 
+        400:
+          description: Invalid tag value    
     post:
       tags:
         - workflow
@@ -424,6 +553,12 @@ paths:
       produces:
         - application/json
       parameters:
+        - name: pageNumber
+          type: integer
+          in: query
+        - name: pageSize
+          type: integer
+          in: query
         - name: keywords
           in: query
           description: Keywords to search for
@@ -434,17 +569,45 @@ paths:
           collectionFormat: multi
       responses:
         200:
-          description: successful search with a list of found workflow-ids
+          description: successful operation
           schema:
-            type: array
-            items:
-              type: string
-              format: uuid
+            $ref: "#/definitions/WorkflowPageResult" 
         400:
-          description: Invalid search query value    
+          description: Invalid tag value   
           x-exception: 
      
   /workflow/training/job:
+    get:
+      tags:
+        - workflow
+      summary: Finds training jobs by some key words or return all training jobs.
+      description: 'Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
+      operationId: findTrainingJobs
+      produces:
+        - application/json
+      parameters:
+        - name: pageNumber
+          type: integer
+          in: query
+        - name: pageSize
+          type: integer
+          in: query
+        - name: keywords
+          in: query
+          description: Keywords to search for
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/TrainingJobPageResult" 
+        400:
+          description: Invalid tag value   
+          x-exception:   
     post:
       tags:
         - workflow
@@ -507,6 +670,12 @@ paths:
       produces:
         - application/json
       parameters:
+        - name: pageNumber
+          type: integer
+          in: query
+        - name: pageSize
+          type: integer
+          in: query
         - name: keywords
           in: query
           description: Keywords to search for
@@ -517,14 +686,45 @@ paths:
           collectionFormat: multi
       responses:
         200:
-          description: successful search with a list of found workflow-ids
+          description: successful operation
           schema:
-            type: array
-            items:
-              type: string
-              format: uuid
+            $ref: "#/definitions/WorkflowPageResult" 
+        400:
+          description: Invalid tag value   
+          x-exception: 
  
   /workflow/prediction/job:
+    get:
+      tags:
+        - workflow
+      summary: Finds predictions jobs by some key words or return all predictions jobs suitable for prediction.
+      description: 'Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
+      operationId: findPredictionJobs
+      produces:
+        - application/json
+      parameters:
+        - name: pageNumber
+          type: integer
+          in: query
+        - name: pageSize
+          type: integer
+          in: query
+        - name: keywords
+          in: query
+          description: Keywords to search for
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/PredictionJobPageResult" 
+        400:
+          description: Invalid tag value   
+          x-exception:   
     post:
       tags:
         - workflow
@@ -589,6 +789,21 @@ x-fa-exceptions:
     description: Exception thrown when a job could not be initialized.
     
 definitions:
+  SOPPageResult:
+    type: object
+    x-no-faid: true
+    properties:
+      pageNumber:
+        type: integer
+      pageCount:
+        type: integer
+      resultCount:
+        type: integer
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/SOP"
+
   SOP:
     type: object
     properties:
@@ -663,7 +878,22 @@ definitions:
       metadata:
         description: Placeholder for the actual metadata.
         type: string
-        
+       
+  FingerprintSetPageResult:
+    type: object
+    x-no-faid: true    
+    properties:
+      pageNumber:
+        type: integer
+      pageCount:
+        type: integer
+      resultCount:
+        type: integer
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/FingerprintSet"
+           
   FingerprintSet:
     description: A set of fingerprints with its own id.
     type: object
@@ -703,7 +933,21 @@ definitions:
         type: object
         additionalProperties:
           type: string
-        
+
+  ModelPageResult:
+    type: object
+    x-no-faid: true    
+    properties:
+      pageNumber:
+        type: integer
+      pageCount:
+        type: integer
+      resultCount:
+        type: integer
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/Model"        
   Model:
     description: A model created via training and used for prediction. Can also be a workflow.
     type: object
@@ -745,6 +989,21 @@ definitions:
         type: string
         format: uuid
  
+  ProductPageResult:
+    type: object
+    x-no-faid: true    
+    properties:
+      pageNumber:
+        type: integer
+      pageCount:
+        type: integer
+      resultCount:
+        type: integer
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/Product"        
+ 
   Product: 
     description: Global product metadata, e.g., country of origin, etc. There can be multiple fingerprints for one product.
     type: object
@@ -758,6 +1017,21 @@ definitions:
         type: string
       brand:
         type: string
+
+  PredictionJobPageResult:
+    type: object
+    x-no-faid: true    
+    properties:
+      pageNumber:
+        type: integer
+      pageCount:
+        type: integer
+      resultCount:
+        type: integer
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/PredictionJob"        
         
   PredictionJob:
     description: Represents prediction job.
@@ -780,7 +1054,22 @@ definitions:
       status-message:
         description: A message, e.g., in case the workflow failed.
         type: string
-  
+
+  PredictionPageResult:
+    type: object
+    x-no-faid: true    
+    properties:
+      pageNumber:
+        type: integer
+      pageCount:
+        type: integer
+      resultCount:
+        type: integer
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/Prediction"    
+            
   #predictions per fingerprint set!!
   Prediction:
     type: object
@@ -814,7 +1103,22 @@ definitions:
         type: string
         format: uuid
         example: ""
-        
+
+  TrainingJobPageResult:
+    type: object
+    x-no-faid: true    
+    properties:
+      pageNumber:
+        type: integer
+      pageCount:
+        type: integer
+      resultCount:
+        type: integer
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/TrainingJob"
+                     
   TrainingJob:
     description: Represents model training job.
     type: object
@@ -836,6 +1140,20 @@ definitions:
         description: A message, e.g., in case the workflow failed.
         type: string
  
+  TagPageResult:
+    type: object
+    x-no-faid: true    
+    properties:
+      pageNumber:
+        type: integer
+      pageCount:
+        type: integer
+      resultCount:
+        type: integer
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/Tag"
         
   Tag:
     description: A tag/label for objects.
@@ -857,6 +1175,21 @@ definitions:
           type: string
           enum: [workflow, model, fingerprint, sop]
 
+  WorkflowPageResult:
+    type: object
+    x-no-faid: true    
+    properties:
+      pageNumber:
+        type: integer
+      pageCount:
+        type: integer
+      resultCount:
+        type: integer
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/Workflow"
+          
   Workflow:
     type: "object"
     description: A workflow for a certain task.

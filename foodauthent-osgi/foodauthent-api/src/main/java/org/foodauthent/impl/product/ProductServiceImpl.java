@@ -1,11 +1,13 @@
 package org.foodauthent.impl.product;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.foodauthent.api.ProductService;
 import org.foodauthent.internal.api.persistence.PersistenceService;
 import org.foodauthent.internal.api.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.Product;
+import org.foodauthent.model.ProductPageResult;
 
 /**
  *
@@ -29,6 +31,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product findProductByGtin(final String gtin) {
 	return persistenceService.findProductByGtin(gtin);
+    }
+
+    @Override
+    public ProductPageResult findProductByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
+	// TODO Auto-generated method stub
+	return null;
     }
 
 }

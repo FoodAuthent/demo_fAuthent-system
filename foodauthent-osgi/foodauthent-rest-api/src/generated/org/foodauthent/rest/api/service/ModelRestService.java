@@ -7,6 +7,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.Model;
+import org.foodauthent.model.ModelPageResult;
+import org.foodauthent.model.WorkflowPageResult;
 
 import org.foodauthent.api.ModelService;
 import org.foodauthent.api.ServiceRegistry;
@@ -37,6 +39,38 @@ public interface ModelRestService{
     @Path("/model")
     @Consumes({ "application/json" })
     public Response createModel(Model model
+);
+
+    /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param pageNumber 
+     * @param pageSize 
+     * @param keywords Keywords to search for
+     * @return the response
+     */
+    @GET
+    @Path("/model")
+    @Produces({ "application/json" })
+    public Response findModelByKeyword(@QueryParam("pageNumber")Integer pageNumber
+, @QueryParam("pageSize")Integer pageSize
+, @QueryParam("keywords")java.util.List<String> keywords
+);
+
+    /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param pageNumber 
+     * @param pageSize 
+     * @param keywords Keywords to search for
+     * @return the response
+     */
+    @GET
+    @Path("/workflow")
+    @Produces({ "application/json" })
+    public Response findWorkflowByKeyword(@QueryParam("pageNumber")Integer pageNumber
+, @QueryParam("pageSize")Integer pageSize
+, @QueryParam("keywords")java.util.List<String> keywords
 );
 
     /**

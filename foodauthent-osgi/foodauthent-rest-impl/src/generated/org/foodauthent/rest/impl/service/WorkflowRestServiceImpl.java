@@ -8,8 +8,12 @@ import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
+import org.foodauthent.model.PredictionJobPageResult;
+import org.foodauthent.model.PredictionPageResult;
 import org.foodauthent.model.TrainingJob;
+import org.foodauthent.model.TrainingJobPageResult;
 import org.foodauthent.model.Workflow;
+import org.foodauthent.model.WorkflowPageResult;
 
 import org.foodauthent.api.WorkflowService;
 import org.foodauthent.api.ServiceRegistry;
@@ -79,24 +83,70 @@ public class WorkflowRestServiceImpl implements WorkflowRestService {
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
+     * @param pageNumber 
+     * @param pageSize 
      * @param keywords Keywords to search for
      * @return the response
      */
-    public Response findPredictionWorkflows(java.util.List<String> keywords) {
+    public Response findModelByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords) {
         
-            Object res = service.findPredictionWorkflows(keywords);
+            Object res = service.findModelByKeyword(pageNumber, pageSize, keywords);
             return Response.ok(res).build();
     }
 
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
+     * @param pageNumber 
+     * @param pageSize 
      * @param keywords Keywords to search for
      * @return the response
      */
-    public Response findTrainingWorkflows(java.util.List<String> keywords) {
+    public Response findPredictionJobs(Integer pageNumber, Integer pageSize, java.util.List<String> keywords) {
         
-            Object res = service.findTrainingWorkflows(keywords);
+            Object res = service.findPredictionJobs(pageNumber, pageSize, keywords);
+            return Response.ok(res).build();
+    }
+
+    /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param pageNumber 
+     * @param pageSize 
+     * @param keywords Keywords to search for
+     * @return the response
+     */
+    public Response findPredictionWorkflows(Integer pageNumber, Integer pageSize, java.util.List<String> keywords) {
+        
+            Object res = service.findPredictionWorkflows(pageNumber, pageSize, keywords);
+            return Response.ok(res).build();
+    }
+
+    /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param pageNumber 
+     * @param pageSize 
+     * @param keywords Keywords to search for
+     * @return the response
+     */
+    public Response findTrainingJobs(Integer pageNumber, Integer pageSize, java.util.List<String> keywords) {
+        
+            Object res = service.findTrainingJobs(pageNumber, pageSize, keywords);
+            return Response.ok(res).build();
+    }
+
+    /**
+     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     *
+     * @param pageNumber 
+     * @param pageSize 
+     * @param keywords Keywords to search for
+     * @return the response
+     */
+    public Response findTrainingWorkflows(Integer pageNumber, Integer pageSize, java.util.List<String> keywords) {
+        
+            Object res = service.findTrainingWorkflows(pageNumber, pageSize, keywords);
             return Response.ok(res).build();
     }
 

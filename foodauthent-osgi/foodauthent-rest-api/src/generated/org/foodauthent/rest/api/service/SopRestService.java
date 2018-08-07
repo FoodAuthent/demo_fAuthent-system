@@ -7,6 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.SOP;
+import org.foodauthent.model.SOPPageResult;
 
 import org.foodauthent.api.SopService;
 import org.foodauthent.api.ServiceRegistry;
@@ -42,13 +43,17 @@ public interface SopRestService{
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
+     * @param pageNumber 
+     * @param pageSize 
      * @param keywords Keywords to search for
      * @return the response
      */
     @GET
     @Path("/sop")
     @Produces({ "application/json" })
-    public Response findSOPByKeyword(@QueryParam("keywords")java.util.List<String> keywords
+    public Response findSOPByKeyword(@QueryParam("pageNumber")Integer pageNumber
+, @QueryParam("pageSize")Integer pageSize
+, @QueryParam("keywords")java.util.List<String> keywords
 );
 
     /**
