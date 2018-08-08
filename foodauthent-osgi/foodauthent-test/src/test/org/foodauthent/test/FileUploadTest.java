@@ -12,9 +12,12 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.FileMetadata;
+import org.foodauthent.test.category.FrameworkTest;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
-public class OpenChromTest extends AbstractITTest {
+@Category(FrameworkTest.class)
+public class FileUploadTest extends AbstractITTest {
 
 
     @Test

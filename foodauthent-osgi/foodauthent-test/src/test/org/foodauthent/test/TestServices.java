@@ -21,7 +21,7 @@ public class TestServices {
 
     private void linkServices() {
 	fileService.setPersistenceService(persistenceService);
-	rawFileReader.setFileService(fileService);
+
 
     }
 
