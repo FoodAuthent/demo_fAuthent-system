@@ -24,7 +24,7 @@ public class WorkflowModule   extends FaModel {
   /**
    * The type of the module. IMPORTANT: This property determines the required workflow input and output.
    */
-  public enum ModuleTypeEnum {
+  public static enum ModuleTypeEnum {
     READ("read"),
     
     TRANSFORM_SIGNAL("transform_signal"),

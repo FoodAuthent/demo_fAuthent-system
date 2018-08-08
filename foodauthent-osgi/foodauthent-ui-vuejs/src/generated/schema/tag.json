@@ -1,0 +1,15 @@
+{
+  "fields" : [ {
+    "label" : "Name",
+    "model" : "name",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Description",
+    "model" : "description",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}

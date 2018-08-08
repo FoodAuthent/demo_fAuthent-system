@@ -33,7 +33,7 @@
 <script>
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
-import jsonschema from '@/schema/predictionjob.json';
+import jsonschema from '@/generated/schema/predictionjob.json';
 import {EndpointUrl} from '../../config.js'
  export default {
     data() {

@@ -208,10 +208,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>org.slf4j:slf4j-log4j12:jar:1.7.25</id>
-											<source>true</source>
-										</artifact>
-										<artifact>
 											<id>org.slf4j:slf4j-simple:jar:1.7.25</id>
 											<source>true</source>
 										</artifact>
@@ -225,22 +221,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 										</artifact>
 										<artifact>
 											<id>org.slf4j:log4j-over-slf4j:jar:1.7.25</id>
-											<source>true</source>
-										</artifact>
-										<artifact>
-											<id>org.slf4j:slf4j-jdk14:jar:1.7.25</id>
-											<source>true</source>
-										</artifact>
-										<artifact>
-											<id>org.slf4j:slf4j-nop:jar:1.7.25</id>
-											<source>true</source>
-										</artifact>
-										<artifact>
-											<id>org.slf4j:slf4j-jcl:jar:1.7.25</id>
-											<source>true</source>
-										</artifact>
-										<artifact>
-											<id>org.slf4j:nlog4j:jar:1.2.25</id>
 											<source>true</source>
 										</artifact>
 										<artifact>

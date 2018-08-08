@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="app2">
     <div class="panel panel-default">
-      <div class="panel-heading">SOP FORM</div>
+      <div class="panel-heading">Create new Prediction</div>
       <div class="panel-body">
         <vue-form-generator :schema="schema" :model="model" :options="formOptions">
         </vue-form-generator>
@@ -33,7 +33,7 @@
 <script>
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
-import jsonschema from '@/generated/schema/sop.json';
+import jsonschema from '@/generated/schema/prediction.json';
 import {EndpointUrl} from '../../config.js'
  export default {
     data() {
@@ -41,7 +41,7 @@ import {EndpointUrl} from '../../config.js'
         schema: jsonschema,
         model: {},
         response: "",
-        endpointurl : EndpointUrl.SOPURL,
+        endpointurl : EndpointUrl.PREDICTIONURL,
         formOptions: {
             validateAfterLoad: true,
             validateAfterChanged: true

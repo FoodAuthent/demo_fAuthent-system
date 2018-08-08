@@ -3,6 +3,5 @@
    <service>
       <provide interface="org.foodauthent.api.internal.filereader.RawFileReader"/>
    </service>
-   <reference bind="setFileService" interface="org.foodauthent.api.FileService" name="FileService"/>
    <implementation class="org.foodauthent.impl.openchrom.OpenChromRawFileReader"/>
 </scr:component>

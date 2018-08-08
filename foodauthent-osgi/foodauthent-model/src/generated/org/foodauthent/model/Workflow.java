@@ -26,7 +26,7 @@ public class Workflow   extends FaModel {
   /**
    * The workflow representation, e.g. represented by a scripting language, cwl or a KNIME-workflow.
    */
-  public enum RepresentationEnum {
+  public static enum RepresentationEnum {
     CWL("cwl"),
     
     R("r"),
@@ -51,7 +51,7 @@ public class Workflow   extends FaModel {
   /**
    * The type of the workflow. IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity.
    */
-  public enum TypeEnum {
+  public static enum TypeEnum {
     PREDICTION_WORKFLOW("prediction_workflow"),
     
     TRAINING_WORKFLOW("training_workflow");
@@ -72,7 +72,7 @@ public class Workflow   extends FaModel {
   /**
    * Type of the model this workflow can consume or produce. Can be left empty, e.g., in case of a preprocessing workflow. Model type must match one of the model&#39;s type property.
    */
-  public enum ModelTypeEnum {
+  public static enum ModelTypeEnum {
     KNIME_WORKFLOW("knime_workflow"),
     
     KNIME_PYTHON("knime_python"),

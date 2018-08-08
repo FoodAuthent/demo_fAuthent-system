@@ -23,7 +23,7 @@ public class TrainingJob   extends FaModel {
   /**
    * Gets or Sets status
    */
-  public enum StatusEnum {
+  public static enum StatusEnum {
     RUNNING("running"),
     
     SUCCESS("success"),
