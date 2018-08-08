@@ -8,8 +8,6 @@ import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.ProductPageResult;
-import org.foodauthent.model.SOP;
-import org.foodauthent.model.SOPPageResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
