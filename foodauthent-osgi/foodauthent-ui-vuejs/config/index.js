@@ -43,7 +43,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../wwwroot'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/ui',
+    assetsPublicPath: '/ui/',
 
     /**
      * Source Maps
