@@ -63,39 +63,6 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 	}
 	
 	@Override
-	public void processOpts() {
-		// supporting files
-//		getPropertyAsList("supportingFiles").ifPresent(l -> l.stream().forEach(sf -> {
-//			Map<String, Object> sfmap = (Map<String, Object>) sf;
-//			supportingFiles.add(new SupportingFile(sfmap.get("templateFile").toString(),
-//					outputFolder + File.separator + sfmap.get("subFolder") + File.separator,
-//					sfmap.get("destinationFileName").toString()));
-//		}));
-//		super.processOpts();
-	}
-	
-	@Override
-	public String toApiName(String name) {
-		// make original name available to templates
-		// these form the basis of the service names, e.g. WorkflowService,
-		// NodeService
-		if (additionalProperties().get("tags") == null) {
-			additionalProperties().put("tags", new HashSet<HashMap<String, String>>());
-		} else {
-			Set<Map<String, String>> tags = (Set<Map<String, String>>) additionalProperties().get("tags");
-			Map<String, String> tag = new HashMap<String, String>();
-			tag.put("nameLowerCase", name.toLowerCase());
-			tag.put("name", name);
-			tags.add(tag);
-		}
-		return name;
-	}
-	
-	private Optional<List<Object>> getPropertyAsList(final String propName) {
-		return Optional.ofNullable(additionalProperties.get(propName)).map(o -> List.class.cast(o));
-	}
-
-	@Override
 	public CodegenType getTag() {
 		return CodegenType.OTHER;
 	}
