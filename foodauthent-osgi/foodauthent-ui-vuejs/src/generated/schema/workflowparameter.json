@@ -7,11 +7,11 @@
     "inputType" : "text"
   }, {
     "label" : "Required",
-    "model" : "required",
+    "model" : null,
     "required" : false
   }, {
     "label" : "Type",
-    "model" : "type",
+    "model" : null,
     "required" : false,
     "type" : "select",
     "validator" : "string",
@@ -25,7 +25,7 @@
     } ]
   }, {
     "label" : "Value",
-    "model" : "value",
+    "model" : null,
     "required" : false,
     "type" : "input",
     "inputType" : "text"

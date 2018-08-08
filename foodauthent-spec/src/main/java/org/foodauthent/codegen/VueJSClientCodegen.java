@@ -2,8 +2,10 @@ package org.foodauthent.codegen;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,6 +21,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.swagger.codegen.CodegenConfig;
 import io.swagger.codegen.CodegenType;
 import io.swagger.codegen.DefaultCodegen;
+import io.swagger.codegen.SupportingFile;
 import io.swagger.models.Model;
 import io.swagger.models.Swagger;
 import io.swagger.models.properties.ArrayProperty;
@@ -30,13 +33,14 @@ import io.swagger.util.Json;
 
 /**
  * Code generator for vue.js-forms json-files (see, e.g.,
- * https://icebob.gitbooks.io/vueformgenerator/content/schema.html).
+ * https://icebob.gitbooks.io/vueformgenerator/content/schema.html) and other
+ * files required for the vue.js-client.
  * 
  * @author Martin Horn, University of Konstanz
  */
-public class VueFormCodegen extends DefaultCodegen implements CodegenConfig {
+public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(VueFormCodegen.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(VueJSClientCodegen.class);
 	private static final String VUE_JS_FORMS_EXTENSION = "x-ui-vue.js";
 
 	private static final Object[][] ARRAY_STATIC_FIELDS = new Object[][] { { "type", "array" },
@@ -54,8 +58,41 @@ public class VueFormCodegen extends DefaultCodegen implements CodegenConfig {
 	private static final Object[][] ENUM_STATIC_FIELDS = new Object[][] { { "type", "select" },
 			{ "validator", "string" } };
 
-	public VueFormCodegen() {
+	public VueJSClientCodegen() {
 		super();
+	}
+	
+	@Override
+	public void processOpts() {
+		// supporting files
+//		getPropertyAsList("supportingFiles").ifPresent(l -> l.stream().forEach(sf -> {
+//			Map<String, Object> sfmap = (Map<String, Object>) sf;
+//			supportingFiles.add(new SupportingFile(sfmap.get("templateFile").toString(),
+//					outputFolder + File.separator + sfmap.get("subFolder") + File.separator,
+//					sfmap.get("destinationFileName").toString()));
+//		}));
+//		super.processOpts();
+	}
+	
+	@Override
+	public String toApiName(String name) {
+		// make original name available to templates
+		// these form the basis of the service names, e.g. WorkflowService,
+		// NodeService
+		if (additionalProperties().get("tags") == null) {
+			additionalProperties().put("tags", new HashSet<HashMap<String, String>>());
+		} else {
+			Set<Map<String, String>> tags = (Set<Map<String, String>>) additionalProperties().get("tags");
+			Map<String, String> tag = new HashMap<String, String>();
+			tag.put("nameLowerCase", name.toLowerCase());
+			tag.put("name", name);
+			tags.add(tag);
+		}
+		return name;
+	}
+	
+	private Optional<List<Object>> getPropertyAsList(final String propName) {
+		return Optional.ofNullable(additionalProperties.get(propName)).map(o -> List.class.cast(o));
 	}
 
 	@Override
@@ -85,7 +122,8 @@ public class VueFormCodegen extends DefaultCodegen implements CodegenConfig {
 					vueForm.set("fields", fields);
 
 					String vueFormString = Json.pretty(vueForm);
-					String outputFile = outputFolder + File.separator + def.getKey().toLowerCase() + ".json";
+					String outputFile = outputFolder + File.separator + "schema" + File.separator
+							+ def.getKey().toLowerCase() + ".json";
 					FileUtils.writeStringToFile(new File(outputFile), vueFormString);
 					LOGGER.debug("wrote file to " + outputFile);
 
@@ -114,25 +152,31 @@ public class VueFormCodegen extends DefaultCodegen implements CodegenConfig {
 			throw new IllegalStateException("No " + VUE_JS_FORMS_EXTENSION
 					+ " vendor extension defined for model with description" + model.getDescription());
 		}
-		Set<String> inclProps = uiInfo.stream().map(m -> m.get("name")).collect(Collectors.toSet());
-		for (Entry<String, Property> e : model.getProperties().entrySet()) {
-			if (inclProps.contains(e.getKey())) {
-				ObjectNode field = Json.mapper().createObjectNode();
-				addFieldInfo(e.getKey(), e.getValue(), field, models);
-				fields.add(field);
+		for (Map<String, String> m : uiInfo) {
+			String name = m.get("name");
+			if (model.getProperties().get(name) == null) {
+				throw new IllegalStateException("No property '" + name + "'");
 			}
+			ObjectNode field = Json.mapper().createObjectNode();
+			addFieldInfo(m, model.getProperties().get(name), field, models);
+			fields.add(field);
 		}
 	}
 
-	private void addFieldInfo(String name, Property prop, ObjectNode field, Map<String, Model> models) {
+	private void addFieldInfo(Map<String, String> uiInfo, Property prop, ObjectNode field, Map<String, Model> models) {
+		String name = uiInfo.get("name");
 		// properties that have all fields in common
 		field.put("label", StringUtils.capitalize(name));
-		field.put("model", name);
+		field.put("model", uiInfo.get(name));
 		field.put("required", prop.getRequired());
+		
+		if (uiInfo.containsKey("ref")) {
+			field.put("modelRef", uiInfo.get("ref"));
+		}
 
 		if (prop.getType().equals("string") && prop.getFormat() != null && prop.getFormat().equals("uuid")) {
 			UUIDProperty uuidProp = (UUIDProperty) prop;
-			//uuid
+			// uuid
 			addStaticProperties(field, STRING_STATIC_FIELDS);
 		} else if (prop.getType().equals("string")) {
 			StringProperty stringProp = (StringProperty) prop;

@@ -1,13 +1,13 @@
 {
   "fields" : [ {
     "label" : "Gtin",
-    "model" : "gtin",
+    "model" : null,
     "required" : false,
     "type" : "input",
     "inputType" : "text"
   }, {
     "label" : "Brand",
-    "model" : "brand",
+    "model" : null,
     "required" : false,
     "type" : "input",
     "inputType" : "text"

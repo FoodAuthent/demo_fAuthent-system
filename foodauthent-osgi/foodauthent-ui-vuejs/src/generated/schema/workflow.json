@@ -7,13 +7,13 @@
     "inputType" : "text"
   }, {
     "label" : "Description",
-    "model" : "description",
+    "model" : null,
     "required" : false,
     "type" : "input",
     "inputType" : "text"
   }, {
     "label" : "Type",
-    "model" : "type",
+    "model" : null,
     "required" : true,
     "type" : "select",
     "validator" : "string",
@@ -51,11 +51,11 @@
           "inputType" : "text"
         }, {
           "label" : "Required",
-          "model" : "required",
+          "model" : null,
           "required" : false
         }, {
           "label" : "Type",
-          "model" : "type",
+          "model" : null,
           "required" : false,
           "type" : "select",
           "validator" : "string",
@@ -69,7 +69,7 @@
           } ]
         }, {
           "label" : "Value",
-          "model" : "value",
+          "model" : null,
           "required" : false,
           "type" : "input",
           "inputType" : "text"
