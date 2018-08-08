@@ -191,11 +191,13 @@
    </plugins>
 
    <features>
-      <feature id="org.foodauthent.feature" version="1.0.0.qualifier"/>
-      <feature id="org.eclipse.equinox.core.feature" version="1.4.2.v20180210-1608"/>
-      <feature id="org.eclipse.equinox.executable" version="3.7.2.v20171108-1834"/>
-      <feature id="org.eclipse.equinox.server.core" version="1.5.3.v20180210-1608"/>
-      <feature id="org.eclipse.equinox.server.jetty" version="1.4.4.v20180322-2228"/>
+      <feature id="org.foodauthent.feature"/>
+      <feature id="org.eclipse.equinox.core.feature"/>
+      <feature id="org.eclipse.equinox.executable"/>
+      <feature id="org.eclipse.equinox.server.core"/>
+      <feature id="org.eclipse.equinox.server.jetty"/>
+      <feature id="org.foodauthent.knime.feature"/>
+      <feature id="org.eclipse.core.runtime.feature"/>
    </features>
 
    <configurations>
@@ -319,10 +321,14 @@
       <plugin id="org.eclipse.ui.workbench" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.api" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.api.internal" autoStart="true" startLevel="0" />
-      <plugin id="org.foodauthent.api.knime" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.common" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.impl.knime" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.impl.simple" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.model" autoStart="true" startLevel="0" />
-      <plugin id="org.foodauthent.rest" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.oneworldsync" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.persistence.impl.simple" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.rest.api" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.rest.impl" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.swaggerui" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.hk2.api" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.hk2.external.aopalliance-repackaged" autoStart="true" startLevel="0" />
@@ -341,8 +347,6 @@
       <plugin id="org.glassfish.jersey.media.jersey-media-jaxb" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.jersey.media.jersey-media-json-jackson" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.jersey.media.jersey-media-multipart" autoStart="true" startLevel="0" />
-      <plugin id="org.hamcrest.core" autoStart="true" startLevel="0" />
-      <plugin id="org.junit" autoStart="true" startLevel="0" />
       <plugin id="org.jvnet.mimepull" autoStart="true" startLevel="0" />
       <plugin id="org.knime.core" autoStart="true" startLevel="0" />
       <plugin id="org.knime.core.pmml" autoStart="true" startLevel="0" />

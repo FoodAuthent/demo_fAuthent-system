@@ -18,8 +18,8 @@
 
 		<!-- p2 repositories -->
 		<foodauthent-dependencies.url>http://repository.foodauthent.net/p2/foodauthent-dependencies-1.0.0-SNAPSHOT/</foodauthent-dependencies.url>
-		<!-- <equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a/</equinox-oxygen-repo.url> 
-			<knime-analytics-platform.url>http://update.knime.org/analytics-platform/nightly/</knime-analytics-platform.url> -->
+		<knime-analytics-platform.url>http://update.knime.com/analytics-platform/3.6/</knime-analytics-platform.url>
+		
 		<!-- use UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -31,9 +31,11 @@
 			<url>${foodauthent-dependencies.url}</url>
 			<layout>p2</layout>
 		</repository>
-		<!-- <repository> <id>equinox-oxygen</id> <url>${equinox-oxygen-repo.url}</url> 
-			<layout>p2</layout> </repository> <repository> <id>knime-analytics-platform</id> 
-			<url>${knime-analytics-platform.url}</url> <layout>p2</layout> </repository> -->
+		<repository>
+			<id>knime-analytics-platform</id>
+			<url>${knime-analytics-platform.url}</url>
+			<layout>p2</layout>
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -196,7 +198,10 @@
 		<module>foodauthent-persistence-impl-simple</module>
 		<module>foodauthent-persistence-impl-elasticsearch</module>
 		<module>foodauthent-oneworldsync-client</module>
+		<module>foodauthent-ui-vuejs</module>
+		<module>foodauthent-impl-openchrom</module>
 		<module>foodauthent-feature</module>
+		<module>foodauthent-knime-feature</module>
 		<module>foodauthent-product</module>
 	</modules>
 </project>

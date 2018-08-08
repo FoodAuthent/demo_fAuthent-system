@@ -16,8 +16,7 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.foodauthent.internal.impl.simple.job
 Require-Capability: osgi.extender;
  filter:="(&(osgi.extender=osgi.component)(version>=1.2)(!(version>=2.0)))"
-Service-Component: OSGI-INF/org.foodauthent.simple.impl.job.SimpleJobService.xml,
- OSGI-INF/org.foodauthent.internal.impl.simple.job.SimpleJobService.xml
+Service-Component: OSGI-INF/org.foodauthent.internal.impl.simple.job.SimpleJobService.xml
 Bundle-ClassPath: .
 
 
