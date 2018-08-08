@@ -10,17 +10,16 @@ Require-Bundle: org.scala-lang.scala-library,
  com.fasterxml.jackson.core.jackson-core;bundle-version="2.8.10",
  com.fasterxml.jackson.core.jackson-databind;bundle-version="2.8.10",
  com.fasterxml.jackson.datatype.jackson-datatype-jdk8;bundle-version="2.8.10",
- com.fasterxml.jackson.datatype.jackson-datatype-jsr310;bundle-version="2.8.10"
+ com.fasterxml.jackson.datatype.jackson-datatype-jsr310;bundle-version="2.8.10",
+ org.foodauthent.common,
+ org.foodauthent.api.internal,
+ org.foodauthent.model
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: org.foodauthent.api.elasticsearch
 Import-Package: com.google.common.io;version="16.0.0",
  org.apache.http,
  org.apache.http.entity,
  org.apache.http.message,
- org.foodauthent.api.internal.persistence,
- org.foodauthent.common.exception,
- org.foodauthent.model,
- org.foodauthent.model.json,
  org.osgi.framework;version="[1.3.0,2.0.0)",
  org.osgi.service.component.annotations;version="[1.3.0,2.0.0)";resolution:=optional,
  org.slf4j;version="[1.7.10,2.0.0)"

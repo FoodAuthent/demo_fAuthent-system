@@ -188,15 +188,15 @@
 		<module>foodauthent-model</module>
 		<module>foodauthent-api</module>
 		<module>foodauthent-api-internal</module>
-		<module>foodauthent-api-knime</module>
-		<module>foodauthent-api-simple</module>
-		<module>foodauthent-rest</module>
+		<module>foodauthent-impl-knime</module>
+		<module>foodauthent-impl-simple</module>
+		<module>foodauthent-rest-api</module>
+		<module>foodauthent-rest-impl</module>
 		<module>foodauthent-swaggerui</module>
-		<module>foodauthent-persistence-simple</module>
-		<module>foodauthent-elasticsearch</module>
+		<module>foodauthent-impl-persistence-simple</module>
+		<module>foodauthent-persistence-impl-elasticsearch</module>
 		<module>foodauthent-oneworldsync-client</module>
 		<module>foodauthent-feature</module>
-		<module>foodauthent-knime-feature</module>
 		<module>foodauthent-product</module>
 	</modules>
 </project>
