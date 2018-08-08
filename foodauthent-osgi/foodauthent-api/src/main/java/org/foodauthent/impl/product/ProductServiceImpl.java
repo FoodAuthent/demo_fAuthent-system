@@ -5,8 +5,11 @@ import java.util.UUID;
 
 import org.foodauthent.api.ProductService;
 import org.foodauthent.api.internal.persistence.PersistenceService;
+import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.ProductPageResult;
+import org.foodauthent.model.SOP;
+import org.foodauthent.model.SOPPageResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -39,8 +42,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductPageResult findProductByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	// TODO Auto-generated method stub
-	return null;
+	ResultPage<Product> res = persistenceService.findByKeywordsPaged(keywords, Product.class, pageNumber, pageSize);
+	return ProductPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
 
 }
