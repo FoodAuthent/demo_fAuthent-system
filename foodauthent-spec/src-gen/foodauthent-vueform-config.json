@@ -1,0 +1,5 @@
+{
+    "lang" : "org.foodauthent.codegen.VueFormCodegen",
+    "inputSpec" : "src-gen/api/foodauthent.yaml",
+    "outputDir" : "../foodauthent-osgi/foodauthent-ui-vuejs/src/schema"
+}

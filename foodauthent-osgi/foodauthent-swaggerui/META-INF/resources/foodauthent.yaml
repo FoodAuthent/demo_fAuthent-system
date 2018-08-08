@@ -847,6 +847,11 @@ definitions:
 
   SOP:
     type: object
+    x-ui-vue.js:
+      - name: file-id
+      - name: name
+      - name: description
+      - name: product-id
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.
@@ -872,6 +877,10 @@ definitions:
   FileMetadata:
     description: Metadata of a file in the FoodAuthent-system.
     type: object
+    x-ui-vue.js:
+      - name: type
+      - name: name
+      - name: author
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.
@@ -948,6 +957,12 @@ definitions:
     required:
       - file-id
       - product-id
+    x-ui-vue.js:
+      - name: product-id
+      - name: fingerpints
+      - name: file-id
+      - name: name
+      - name: metdata
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.
@@ -1055,6 +1070,9 @@ definitions:
   Product: 
     description: Global product metadata, e.g., country of origin, etc. There can be multiple fingerprints for one product.
     type: object
+    x-ui-vue.js:
+      - name: gtin
+      - name: brand
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.
@@ -1246,6 +1264,11 @@ definitions:
       - file-id
       - name
       - representation
+    x-ui-vue.js:
+      - name: name
+      - name: description
+      - name: type
+      - name: parameters
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.
@@ -1314,6 +1337,11 @@ definitions:
     type: object
     description: Represents a workflow parameter.
     x-no-faid: true
+    x-ui-vue.js:
+      - name: name
+      - name: required
+      - name: type
+      - name: value
     properties:
       name:
         description: the parameter name

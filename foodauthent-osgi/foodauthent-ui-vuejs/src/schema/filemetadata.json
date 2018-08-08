@@ -1,0 +1,38 @@
+{
+  "fields" : [ {
+    "label" : "Type",
+    "model" : "type",
+    "required" : false,
+    "type" : "select",
+    "validator" : "string",
+    "inputName" : "type",
+    "values" : [ {
+      "id" : "knime_workflow",
+      "name" : "Knime_workflow"
+    }, {
+      "id" : "knime_model",
+      "name" : "Knime_model"
+    }, {
+      "id" : "python_script",
+      "name" : "Python_script"
+    }, {
+      "id" : "sop_pdf",
+      "name" : "Sop_pdf"
+    }, {
+      "id" : "fingerprints_bruker",
+      "name" : "Fingerprints_bruker"
+    } ]
+  }, {
+    "label" : "Name",
+    "model" : "name",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Author",
+    "model" : "author",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}

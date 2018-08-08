@@ -1,0 +1,33 @@
+{
+  "fields" : [ {
+    "label" : "Name",
+    "model" : "name",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Required",
+    "model" : "required",
+    "required" : false
+  }, {
+    "label" : "Type",
+    "model" : "type",
+    "required" : false,
+    "type" : "select",
+    "validator" : "string",
+    "inputName" : "type",
+    "values" : [ {
+      "id" : "string",
+      "name" : "String"
+    }, {
+      "id" : "number",
+      "name" : "Number"
+    } ]
+  }, {
+    "label" : "Value",
+    "model" : "value",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}
