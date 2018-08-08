@@ -32,4 +32,7 @@ Import-Package: com.eclipsesource.jaxrs.publisher;version="6.0.0",
  org.osgi.util.tracker;version="1.5.1",
  org.slf4j;version="1.7.10"
 Automatic-Module-Name: org.foodauthent.test
-Require-Bundle: junit
+Require-Bundle: junit;bundle-version="[4.0.0,5.0.0)"
+Export-Package: org.foodauthent.impl.openchrom,
+ org.foodauthent.test,
+ org.foodauthent.test.category
