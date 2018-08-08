@@ -39,7 +39,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Reference
-    void setPersistenceService(PersistenceService persistenceService) {
+    public void setPersistenceService(PersistenceService persistenceService) {
 	FileServiceImpl.persistenceService = persistenceService;
     }
     @Override

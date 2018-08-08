@@ -6,13 +6,13 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.foodauthent.api.FileService;
-import org.foodauthent.api.internal.filereader.FileReader;
+import org.foodauthent.api.internal.filereader.RawFileReader;
 import org.foodauthent.model.FileMetadata;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(service = FileReader.class)
-public class OpenChromFileReader implements FileReader {
+@Component(service = RawFileReader.class)
+public class OpenChromRawFileReader implements RawFileReader {
 
 	private FileService fileService;
 
@@ -27,7 +27,7 @@ public class OpenChromFileReader implements FileReader {
 		this.fileService = fileService;
 	}
 
-	public OpenChromFileReader() {
+	public OpenChromRawFileReader() {
 
 	}
 

@@ -16,3 +16,4 @@ Service-Component: OSGI-INF/org.foodauthent.internal.impl.persistence.SimpleUUID
  OSGI-INF/org.foodauthent.internal.impl.persistence.SimpleInMemoryPersistenceService.xml,
  OSGI-INF/org.foodauthent.internal.persistence.impl.SimpleInMemoryPersistenceService.xml
 Bundle-ActivationPolicy: lazy
+Export-Package: org.foodauthent.internal.persistence.impl

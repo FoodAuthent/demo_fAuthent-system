@@ -4,6 +4,7 @@ Bundle-Name: foodauthent-api
 Bundle-SymbolicName: org.foodauthent.api
 Bundle-Version: 1.0.0.qualifier
 Export-Package: org.foodauthent.api,
+ org.foodauthent.impl.file,
  org.foodauthent.impl.fingerprint,
  org.foodauthent.impl.product,
  org.foodauthent.impl.sop,
