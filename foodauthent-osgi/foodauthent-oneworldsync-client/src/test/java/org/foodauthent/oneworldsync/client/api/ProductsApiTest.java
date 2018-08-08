@@ -35,6 +35,54 @@ public class ProductsApiTest {
 
 	private final ProductsApi api = new ProductsApi();
 
+	@Test
+	public void productsGetGtin() throws ApiException {
+		String appId = "6e987765";
+		String searchType = "freeTextSearch";
+		String query = "Olivenöl";
+		String accessMdm = "computer";
+		String TIMESTAMP = ISO8601Utils.format(new Date(), false);
+		Integer rows = null;
+		Integer start = null;
+		String filter = null;
+		String sortOrder = null;
+		String sortColumn = null;
+		String matchScore = null;
+		String cursorMark = null;
+		Double geoLocAccessLatd = null;
+		Double geoLocAccessLong = null;
+		Response response = api.productsGet(appId, searchType, query, accessMdm, TIMESTAMP, rows, start, filter,
+				sortOrder, sortColumn, matchScore, cursorMark, geoLocAccessLatd, geoLocAccessLong);
+
+		for (final Result r : response.getResults()) {
+			printResult(r);
+		}
+		// TODO: test validations
+	}
+
+	private void printResult(Result r) {
+		final Item item = r.getItem();
+		final ItemIdentificationInformation info = item.getItemIdentificationInformation();
+		final List<LanguageLabel> deLabels = info.getProductName().getValues().stream().filter(l -> {
+			return l.getLanguage().equals("de");
+		}).collect(Collectors.toList());
+		String productName = "";
+		String brandOwner = "";
+		String itemIdentifier = String.join(" ", info.getItemIdentifier().stream().map(i -> {
+			return i.getItemIdType().getValue() + ":" + i.getItemId();
+		}).collect(Collectors.toList()));
+		if (!deLabels.isEmpty()) {
+			productName = deLabels.get(0).getValue();
+		}
+		brandOwner = String.join(" ", item.getTradeItemInformation().stream().map(i -> {
+			return String.join(" ",
+					i.getTradeItemDescriptionModule().getTradeItemDescriptionInformation().stream().map(t -> {
+						return t.getBrandNameInformation().getBrandName();
+					}).collect(Collectors.toList()));
+		}).collect(Collectors.toList()));
+		System.out.println(brandOwner + ", " + productName + ", " + itemIdentifier);
+	}
+
 	/**
 	 * &lt;p&gt;&lt;strong&gt;Product Search&lt;/strong&gt;&lt;/p&gt; &lt;p&gt; The
 	 * search will get a pre-defined subset (~20 attributes) of information on
@@ -51,7 +99,7 @@ public class ProductsApiTest {
 	 * @throws ApiException
 	 *             if the Api call fails
 	 */
-	@Test
+	// @Test
 	public void productsGetTest() throws ApiException {
 		String appId = "6e987765";
 		String searchType = "freeTextSearch";
@@ -71,26 +119,7 @@ public class ProductsApiTest {
 				sortOrder, sortColumn, matchScore, cursorMark, geoLocAccessLatd, geoLocAccessLong);
 
 		for (final Result r : response.getResults()) {
-			final Item item = r.getItem();
-			final ItemIdentificationInformation info = item.getItemIdentificationInformation();
-			final List<LanguageLabel> deLabels = info.getProductName().getValues().stream().filter(l -> {
-				return l.getLanguage().equals("de");
-			}).collect(Collectors.toList());
-			String productName = "";
-			String brandOwner = "";
-			String itemIdentifier = String.join(" ", info.getItemIdentifier().stream().map(i -> {
-				return i.getItemIdType().getValue() + ":" + i.getItemId();
-			}).collect(Collectors.toList()));
-			if (!deLabels.isEmpty()) {
-				productName = deLabels.get(0).getValue();
-			}
-			brandOwner = String.join(" ", item.getTradeItemInformation().stream().map(i -> {
-				return String.join(" ",
-						i.getTradeItemDescriptionModule().getTradeItemDescriptionInformation().stream().map(t -> {
-							return t.getBrandNameInformation().getBrandName();
-						}).collect(Collectors.toList()));
-			}).collect(Collectors.toList()));
-			System.out.println(brandOwner + ", " + productName + ", " + itemIdentifier);
+			printResult(r);
 		}
 		// TODO: test validations
 	}
@@ -109,6 +138,7 @@ public class ProductsApiTest {
 	 * @throws ApiException
 	 *             if the Api call fails
 	 */
+	// @Test
 	public void productsItemReferenceIdGetTest() throws ApiException {
 		String appId = null;
 		String itemReferenceId = null;

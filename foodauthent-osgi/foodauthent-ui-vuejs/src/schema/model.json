@@ -1,0 +1,116 @@
+{
+	"fields": [{
+			"type": "input",
+			"inputType": "text",
+			"label": "FA-ID",
+			"model": "fa-id",
+			"readonly": false,
+			"featured": true,
+			"disabled": false,
+			"required": true
+		},
+		{
+			"type": "input",
+			"inputType": "text",
+			"label": "Name",
+			"model": "name",
+			"required": true,
+			"hint": "Minimum 4 characters"
+		},
+		{
+			"type": "input",
+			"inputType": "text",
+			"label": "Description",
+			"model": "description"
+		},
+		{
+			"type": "input",
+			"inputType": "text",
+			"label": "Author",
+			"model": "author"
+		},
+		{
+			"type": "input",
+			"inputType": "text",
+			"label": "Date",
+			"model": "date"
+		},
+		{
+			"type": "input",
+			"inputType": "number",
+			"label": "Version",
+			"model": "version"
+		},
+		{
+			"type": "select",
+			"label": "Type",
+			"model": "type",
+			"inputName": "type",
+			"required": false,
+			"validator": "string",
+			"values": [{
+					"id": "knime_workflow",
+					"name": "Knime workflow"
+				},
+				{
+					"id": "knime_python",
+					"name": "Knime python"
+				},
+				{
+					"id": "pmml",
+					"name": "pmml"
+				}
+			]
+		},
+		{
+			"type": "input",
+			"inputType": "string",
+			"label": "File ID",
+			"model": "file-id"
+		},
+		{
+			"type": "input",
+			"inputType": "text",
+			"label": "Product ID",
+			"model": "product-id",
+			"placeholder": "product id",
+			"required": true
+		},
+		{
+			"type": "array",
+			"label": "Tags",
+			"model": "tags",
+			"showRemoveButton": true,
+			"fieldClasses": "arrayEditor",
+			"newElementButtonLabelClasses": "btn btn-primary",
+			"items": {
+				"type": "object",
+				"default": {},
+				"schema": {
+					"fields": [{
+					"type": "input",
+					"inputType": "text",
+					"label": "Fa ID",
+					"model": "fa-id",
+					"placeholder": "Fa id",
+					"required": true
+					}, {
+					"type": "input",
+					"inputType": "text",
+					"label": "Name",
+					"model": "name",
+					"placeholder": "Name",
+					"required": true
+					}, {
+					"type": "input",
+					"inputType": "text",
+					"label": "Description",
+					"model": "description",
+					"placeholder": "Description",
+					"required": true
+					}]
+				}
+			}
+		}
+	]
+}

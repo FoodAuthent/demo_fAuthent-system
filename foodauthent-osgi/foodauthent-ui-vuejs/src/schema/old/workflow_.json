@@ -1,0 +1,238 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+
+	"definitions": {
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"minLength": 8,
+					"maxLength": 80,
+					"title": "Name",
+					"attrs": {
+						"type": "string",
+						"placeholder": "name"
+					}
+				},
+				"workflow-required": {
+					"type": "string",
+					"minLength": 8,
+					"maxLength": 80,
+					"title": "Required",
+					"attrs": {
+						"type": "string",
+						"placeholder": "Required"
+					}
+				},
+				"parameters-type": {
+					"type": "string",
+					"minLength": 8,
+					"maxLength": 80,
+					"title": "Parameters type",
+					"attrs": {
+						"type": "string",
+						"placeholder": "Parameters type"
+					}
+				},
+				"value": {
+					"type": "string",
+					"minLength": 8,
+					"maxLength": 80,
+					"title": "Value",
+					"attrs": {
+						"type": "string",
+						"placeholder": "Value"
+					}
+				},
+				"required": ["name", "value"]
+			}
+		},
+		"tags": {
+			"type": "object",
+			"properties": {
+				"fa-id": {
+					"type": "string",
+					"minLength": 8,
+					"maxLength": 80,
+					"title": "Fa ID",
+					"attrs": {
+						"type": "string",
+						"placeholder": "Fa-id"
+					}
+				}
+			},
+			"name": {
+				"type": "string",
+				"minLength": 8,
+				"maxLength": 80,
+				"title": "Name",
+				"attrs": {
+					"type": "string",
+					"placeholder": "Name"
+				}
+			},
+			"description": {
+				"type": "string",
+				"minLength": 8,
+				"maxLength": 80,
+				"title": "Description",
+				"attrs": {
+					"type": "string",
+					"placeholder": "Description"
+				}
+			},
+			"model-type": {
+				"type": "string",
+				"minLength": 8,
+				"maxLength": 80,
+				"title": "Type",
+				"attrs": {
+					"type": "string",
+					"placeholder": "Type"
+				}
+			},
+
+			"required": ["fa-id", "metadata"]
+		}
+	},
+	"modules": {
+		"type": "object",
+		"properties": {
+			"file-id": {
+				"type": "string",
+				"minLength": 8,
+				"maxLength": 80,
+				"title": "File-id",
+				"attrs": {
+					"type": "string",
+					"placeholder": "file-id"
+				}
+			},
+			"module-type": {
+				"type": "string",
+				"minLength": 8,
+				"maxLength": 80,
+				"title": "Module-type",
+				"attrs": {
+					"type": "string",
+					"placeholder": "module-type"
+				}
+			},
+			"module-parameters": {
+				"type": "array",
+				"items": {
+					"$ref": "#/definitions/parameters"
+				},
+				"model-type": {
+					"type": "string",
+					"minLength": 8,
+					"maxLength": 80,
+					"title": "Model-type",
+					"attrs": {
+						"type": "string",
+						"placeholder": "model-type"
+					}
+				},
+				"required": ["file-id"]
+			}
+		}
+	},
+
+	"type": "object",
+	"title": "Add new Workflow",
+	"description": "Create a new Workflow",
+	"properties": {
+		"fa-id": {
+			"type": "string",
+			"minLength": 8,
+			"maxLength": 80,
+			"title": "Fa ID",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Fa-id"
+			}
+		},
+		"name": {
+			"type": "string",
+			"title": "Name",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Name"
+			}
+		},
+		"workflow-description": {
+			"type": "string",
+			"title": "Description",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Description"
+			}
+		},
+		"workflow-type": {
+			"type": "string",
+			"title": "Workflow-type",
+			"attrs": {
+				"type": "string",
+				"placeholder": "workflow-type"
+			}
+		},
+		"parameters": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/parameters"
+			},
+			"minItems": 1,
+			"title": "Parameters",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Parameters"
+			}
+		},
+		"tags": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/tags"
+			},
+			"minItems": 1,
+			"title": "Tags",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Tags"
+			}
+		},
+		"file-id": {
+			"type": "string",
+			"minLength": 8,
+			"maxLength": 80,
+			"title": "File ID",
+			"attrs": {
+				"type": "string",
+				"placeholder": "File-id"
+			}
+		},
+		"workflow-modules": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/modules"
+			},
+			"minItems": 1,
+			"title": "Modules",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Modules"
+			}
+		},
+		"model-type": {
+			"type": "string",
+			"title": "Model-type",
+			"attrs": {
+				"type": "string",
+				"placeholder": "model-type"
+			}
+
+		},
+		"additionalProperties": true,
+		"required": ["fa-id", "product-id", "name"]
+	}
+}

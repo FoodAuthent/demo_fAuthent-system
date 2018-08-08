@@ -1,0 +1,139 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+
+	"definitions": {
+		"tags": {
+			"type": "object",
+			"properties": {
+				"fa-id": {
+					"type": "string",
+					"minLength": 8,
+					"maxLength": 80,
+					"title": "Fa ID",
+					"attrs": {
+						"type": "string",
+						"placeholder": "Fa-id"
+					}
+				}
+			},
+			"name": {
+				"type": "string",
+				"minLength": 8,
+				"maxLength": 80,
+				"title": "Name",
+				"attrs": {
+					"type": "string",
+					"placeholder": "Name"
+				}
+			},
+			"description": {
+				"type": "string",
+				"minLength": 8,
+				"maxLength": 80,
+				"title": "Description",
+				"attrs": {
+					"type": "string",
+					"placeholder": "Description"
+				}
+			},
+			"model-type": {
+				"type": "string",
+				"minLength": 8,
+				"maxLength": 80,
+				"title": "Type",
+				"attrs": {
+					"type": "string",
+					"placeholder": "Type"
+				}
+			},
+
+			"required": ["fa-id", "metadata"]
+		}
+	},
+
+	"type": "object",
+	"title": "Add new Model",
+	"description": "Create a new Model",
+	"properties": {
+		"fa-id": {
+			"type": "string",
+			"minLength": 8,
+			"maxLength": 80,
+			"title": "Fa ID",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Fa-id"
+			}
+		},
+		"name": {
+			"type": "string",
+			"title": "Name",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Name"
+			}
+		},
+		"description": {
+			"type": "string",
+			"title": "Description",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Description"
+			}
+		},
+		"author": {
+			"type": "string",
+			"title": "Author",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Author"
+			}
+		},
+		"date": {
+			"type": "date-time",
+			"title": "Date",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Date"
+			}
+		},
+		"version": {
+			"type": "string",
+			"title": "Version",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Version"
+			}
+		},
+		"type": {
+			"type": "string",
+			"title": "Type",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Type"
+			}
+		},
+		"tags": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/tags"
+			},
+			"minItems": 1,
+			"title": "Tags",
+			"attrs": {
+				"type": "string",
+				"placeholder": "Tags"
+			}
+		},
+		"file-id": {
+			"type": "string",
+			"title": "File-id",
+			"attrs": {
+				"type": "string",
+				"placeholder": "File-id"
+			}
+		}
+	},
+	"additionalProperties": true,
+	"required": ["fa-id", "file-id", "name"]
+}

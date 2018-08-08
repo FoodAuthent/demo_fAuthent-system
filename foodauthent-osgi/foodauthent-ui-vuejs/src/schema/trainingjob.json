@@ -1,0 +1,50 @@
+{
+	"fields": [{
+			"type": "input",
+			"inputType": "text",
+			"label": "FA-ID",
+			"model": "fa-id",
+			"readonly": false,
+			"featured": true,
+			"disabled": false,
+			"required": true
+		},
+		{
+			"type": "input",
+			"inputType": "text",
+			"label": "Model ID",
+			"model": "model-id",
+			"placeholder": "model id",
+			"required": true
+		},
+		{
+			"type": "select",
+			"label": "Status",
+			"model": "status",
+			"inputName": "status",
+			"required": false,
+			"validator": "string",
+			"values": [
+				{
+					"id": "running",
+					"name": "running"
+				},
+				{
+					"id": "success",
+					"name": "success"
+				},
+				{
+					"id": "failed",
+					"name": "failed"
+				}
+			]
+		},
+		{
+			"type": "input",
+			"inputType": "text",
+			"label": "Status Message",
+			"model": "status-message"
+		}
+
+	]
+}

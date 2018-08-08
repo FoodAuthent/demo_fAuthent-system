@@ -1,0 +1,43 @@
+{
+	"fields": [{
+			"type": "input",
+			"inputType": "text",
+			"label": "FA-ID",
+			"model": "fa-id",
+			"readonly": false,
+			"featured": true,
+			"disabled": false,
+			"required": true
+		},
+				{
+			"type": "input",
+			"inputType": "text",
+			"label": "Confidence Map",
+			"model": "confidence-map",
+			"placeholder": "confidence map",
+			"required": true
+		},
+		{
+			"type": "input",
+			"inputType": "text",
+			"label": "Workflow ID",
+			"model": "workflow-id",
+			"placeholder": "workflow id",
+			"required": true
+		},
+
+		{
+			"type": "input",
+			"inputType": "text",
+			"label": "Fingerprint Set Id",
+			"model": "fingerprint-set-id"
+		},
+				{
+			"type": "input",
+			"inputType": "text",
+			"label": "Model Id",
+			"model": "model-id"
+		}
+
+	]
+}
