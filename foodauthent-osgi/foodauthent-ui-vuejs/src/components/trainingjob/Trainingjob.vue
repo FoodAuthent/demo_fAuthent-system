@@ -23,9 +23,6 @@
     <b-tab title="Results" active>
   <trainingjobTable></trainingjobTable>
     </b-tab>
-    <b-tab title="Create">
-     <trainingjobForm></trainingjobForm>
-    </b-tab>
   <b-tab title="Empty">
 
     </b-tab>
@@ -39,7 +36,6 @@
 
 <script>
 import trainingjobTable from '@/components/trainingjob/TrainingjobTable';
-import trainingjobForm from '@/components/trainingjob/TrainingjobForm';
   export default {
     name: 'Test',
     data: () => ({
@@ -52,8 +48,7 @@ import trainingjobForm from '@/components/trainingjob/TrainingjobForm';
 
     },
       components: {
-            trainingjobTable,
-            trainingjobForm
+            trainingjobTable
         }
   }
 </script>
