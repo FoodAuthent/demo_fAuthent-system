@@ -49,7 +49,7 @@ import {EndpointUrl} from '../../config.js';
         schema: getJSONSchema(),
         model: {"product-id": "", "fa-id": "" },
         response: "",
-        endpointurl : EndpointUrl.FINGERPRINTURL,
+        endpointurl : EndpointUrl.WORKFLOWURL,
         formOptions: {
             validateAfterLoad: true,
             validateAfterChanged: true

@@ -1,0 +1,21 @@
+{
+	"fields": [{
+			"type": "input",
+			"inputType": "text",
+			"label": "Workflow Id",
+			"model": "workflow-id",
+			"readonly": false,
+			"featured": true,
+			"disabled": false,
+			"required": true
+		},
+		{
+			"type": "input",
+			"inputType": "text",
+			"label": "Fingerprintset Id",
+			"model": "fingerprintset-id",
+			"placeholder": "fingerprintset-id",
+			"required": true
+		}
+	]
+}

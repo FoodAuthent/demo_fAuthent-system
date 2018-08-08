@@ -41,7 +41,7 @@ import {EndpointUrl} from '../../config.js'
         schema: jsonschema,
         model: {},
         response: "",
-        endpointurl : EndpointUrl.FINGERPRINTURL,
+        endpointurl : EndpointUrl.PREDICTIONURL,
         formOptions: {
             validateAfterLoad: true,
             validateAfterChanged: true

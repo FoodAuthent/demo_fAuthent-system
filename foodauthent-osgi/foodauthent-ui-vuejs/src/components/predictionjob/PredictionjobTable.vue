@@ -53,13 +53,13 @@
       test: null,
       selected: {},
       prediction: {},
-      //fields: [ 'id', 'title', 'body', 'actions' ],
-      fields: [
-        { key: 'id', sortable: true },
-        { key: 'title', sortable: true },
-        { key: 'body', sortable: true },
-        { key: 'actions', sortable: false }
-      ],
+      fields: [ ],
+      //fields: [
+       // { key: 'id', sortable: true },
+       // { key: 'title', sortable: true },
+       // { key: 'body', sortable: true },
+       // { key: 'actions', sortable: false }
+      //],
       endpointurl : EndpointUrl.PREDICTIONJOBURL,
       predictionUrl: EndpointUrl.PREDICTIONURL,
       currentPage: 1,

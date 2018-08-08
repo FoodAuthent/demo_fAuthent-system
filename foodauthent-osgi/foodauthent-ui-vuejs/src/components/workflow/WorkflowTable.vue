@@ -18,7 +18,7 @@
   <b-table bordered striped hover
          :sort-by.sync="sortBy"
          :sort-desc.sync="sortDesc"
-         :items="test"
+         :items="items"
          :fields="fields"
          :current-page="currentPage"
          :per-page="perPage"
@@ -26,14 +26,14 @@
          v-model="shownItems"
          @row-clicked="myRowClickHandler"
 >
-  <template slot="actions" scope="test">
+  <template slot="actions" scope="items">
    <!-- <b-btn size="sm" @click="log(environment.item)">Details</b-btn> -->
     <b-btn size="sm" v-b-modal.modal1>Details</b-btn>
   </template>
 </b-table>
 
 <!-- PAGINATION -->
-<b-pagination :total-rows="test.length" :per-page="perPage" v-model="currentPage" />
+<b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" />
 
 <!-- MODAL DETAILS -->
   <b-modal id="modal1" title="Details">
@@ -50,15 +50,15 @@
   name: 'Workflow',
   data () {
     return {
-      test: null,
+      items: null,
       selected: {},
-      //fields: [ 'id', 'title', 'body', 'actions' ],
-      fields: [
-        { key: 'id', sortable: true },
-        { key: 'title', sortable: true },
-        { key: 'body', sortable: true },
-        { key: 'actions', sortable: false }
-      ],
+      fields: [ ],
+      //fields: [
+       // { key: 'id', sortable: true },
+       // { key: 'title', sortable: true },
+       // { key: 'body', sortable: true },
+       // { key: 'actions', sortable: false }
+      //],
       endpointurl : EndpointUrl.WORKFLOWURL,
       currentPage: 1,
       perPage: 10,
@@ -74,7 +74,7 @@
         return j.json();
       })
       .then ((r) => {
-        self.test = r;
+        self.items = r;
       })
         },
   computed: {

@@ -1,5 +1,9 @@
 <template>
   <div id="sopTable">
+    <b-container fluid>
+    <!-- User Interface controls -->
+    <b-row>
+      <b-col md="6" class="my-1">
     <!-- SEARCH -->
    <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
@@ -9,12 +13,20 @@
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
+      </b-col>
+      <b-col md="6" class="my-1">
+      <b-form-group horizontal label="PER PAGE" class="mb-0">
+          <b-form-select :options="pageOptions" v-model="perPage" />
+        </b-form-group>
+      </b-col>
+      </b-row>
+      </b-container>
 
 <!-- TABLE -->
   <b-table bordered striped hover
          :sort-by.sync="sortBy"
          :sort-desc.sync="sortDesc"
-         :items="test"
+         :items="items"
          :fields="fields"
          :current-page="currentPage"
          :per-page="perPage"
@@ -22,14 +34,14 @@
          v-model="shownItems"
          @row-clicked="myRowClickHandler"
 >
-  <template slot="actions" scope="test">
+  <template slot="actions" scope="items">
    <!-- <b-btn size="sm" @click="log(environment.item)">Details</b-btn> -->
     <b-btn size="sm" v-b-modal.modal1>Details</b-btn>
   </template>
 </b-table>
 
 <!-- PAGINATION -->
-<b-pagination :total-rows="test.length" :per-page="perPage" v-model="currentPage" />
+<b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" />
 
 <!-- MODAL DETAILS -->
   <b-modal id="modal1" title="Details">
@@ -46,30 +58,32 @@
   name: 'Sop',
   data () {
     return {
-      test: null,
+      items: null,
       shownItems : null,
       selected: {},
-      //fields: [ 'id', 'title', 'body', 'actions' ],
-      fields: [
-        { key: 'fa-id', sortable: true },
-        { key: 'actions', sortable: false }
-      ],
+      fields: [ ],
+      //fields: [
+        //{ key: 'fa-id', sortable: true },
+        //{ key: 'actions', sortable: false }
+     // ],
       endpointurl : EndpointUrl.SOPURL,
       currentPage: 1,
       perPage: 10,
       sortBy: 'id',
       sortDesc: false,
-      filter: null
+      filter: null,
+      pageOptions: [ 1, 10, 15 ]
     }
   },
     mounted() {
     let self = this;
-    fetch(self.endpointurl)
+    fetch(self.endpointurl+'?pageNumber=0&pageSize='+self.perPage)
       .then((j) => {
         return j.json();
       })
       .then ((r) => {
-        self.test = r;
+      console.log("Results", r.results);
+        self.items = r.results;
       })
         },
   computed: {

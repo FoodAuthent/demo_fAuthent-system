@@ -23,9 +23,9 @@
     <b-tab title="Results" active>
   <predictionTable></predictionTable>
     </b-tab>
-    <b-tab title="Create">
+   <!-- <b-tab title="Create">
      <predictionForm></predictionForm>
-    </b-tab>
+    </b-tab> -->
   <b-tab title="Empty">
 
     </b-tab>

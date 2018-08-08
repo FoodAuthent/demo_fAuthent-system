@@ -41,7 +41,7 @@ import {EndpointUrl} from '../../config.js'
         schema: jsonschema,
         model: {},
         response: "",
-        endpointurl : EndpointUrl.SOPPOSTURL,
+        endpointurl : EndpointUrl.MODELURL,
         formOptions: {
             validateAfterLoad: true,
             validateAfterChanged: true
@@ -71,8 +71,6 @@ import {EndpointUrl} from '../../config.js'
             }
         },
           save() {
-          console.log("URL",this.endpointurl);
-          console.log(JSON.stringify(this.model, undefined, 4));
             this.response = "";
                 this.$http.post(this.endpointurl, JSON.stringify(this.model, undefined, 4), { headers: { "content-type": "application/json" } }).then(result => {
                     this.response = result.data;
