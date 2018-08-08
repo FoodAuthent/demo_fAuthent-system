@@ -193,7 +193,7 @@
 		<module>foodauthent-rest-api</module>
 		<module>foodauthent-rest-impl</module>
 		<module>foodauthent-swaggerui</module>
-		<module>foodauthent-impl-persistence-simple</module>
+		<module>foodauthent-persistence-impl-simple</module>
 		<module>foodauthent-persistence-impl-elasticsearch</module>
 		<module>foodauthent-oneworldsync-client</module>
 		<module>foodauthent-feature</module>
