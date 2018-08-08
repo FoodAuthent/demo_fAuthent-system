@@ -1,0 +1,56 @@
+{
+  "fields" : [ {
+    "label" : "Product-id",
+    "model" : null,
+    "required" : true,
+    "modelRef" : "Product",
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Parameters",
+    "model" : "parameters",
+    "required" : false,
+    "type" : "array",
+    "inputName" : "fingerprints",
+    "validator" : "array",
+    "showRemoveButton" : true,
+    "itemFieldClasses" : "form-control",
+    "itemContainerClasses" : "input-group pb-2",
+    "newElementButtonLabelClasses" : "btn btn-outline-dark",
+    "removeElementButtonClasses" : "btn btn-danger input-group-append",
+    "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
+    "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
+    "newElementButtonLabel" : "Add",
+    "items" : {
+      "type" : "object",
+      "schema" : {
+        "fields" : [ {
+          "label" : "Metadata",
+          "model" : null,
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        } ]
+      }
+    }
+  }, {
+    "label" : "File-id",
+    "model" : null,
+    "required" : true,
+    "modelRef" : "FileMetadata",
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Name",
+    "model" : "name",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Metadata",
+    "model" : null,
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}

@@ -852,6 +852,7 @@ definitions:
       - name: name
       - name: description
       - name: product-id
+        ref: Product
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.
@@ -961,10 +962,12 @@ definitions:
       - product-id
     x-ui-vue.js:
       - name: product-id
-      - name: fingerpints
+        ref: Product
+      - name: fingerprints
       - name: file-id
+        ref: FileMetadata
       - name: name
-      - name: metdata
+      - name: metadata
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.

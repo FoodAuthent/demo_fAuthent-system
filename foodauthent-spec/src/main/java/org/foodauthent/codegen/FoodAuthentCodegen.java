@@ -79,7 +79,6 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
 				additionalProperties.put(sfmap.get("templateFile").toString() + "#package",
 						sfmap.get("package").toString());
 			});
-
 		}));
 		try {
 			additionalProperties.put("swagger-yaml",

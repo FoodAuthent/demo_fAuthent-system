@@ -1,7 +1,7 @@
 {
   "fields" : [ {
     "label" : "Type",
-    "model" : "type",
+    "model" : null,
     "required" : false,
     "type" : "select",
     "validator" : "string",
@@ -30,7 +30,7 @@
     "inputType" : "text"
   }, {
     "label" : "Author",
-    "model" : "author",
+    "model" : null,
     "required" : false,
     "type" : "input",
     "inputType" : "text"
