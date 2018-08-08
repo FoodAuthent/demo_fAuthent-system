@@ -7,11 +7,12 @@
     "inputType" : "text"
   }, {
     "label" : "Required",
-    "model" : null,
-    "required" : false
+    "model" : "required",
+    "required" : false,
+    "type" : "checkbox"
   }, {
     "label" : "Type",
-    "model" : null,
+    "model" : "type",
     "required" : false,
     "type" : "select",
     "validator" : "string",
@@ -25,7 +26,7 @@
     } ]
   }, {
     "label" : "Value",
-    "model" : null,
+    "model" : "value",
     "required" : false,
     "type" : "input",
     "inputType" : "text"

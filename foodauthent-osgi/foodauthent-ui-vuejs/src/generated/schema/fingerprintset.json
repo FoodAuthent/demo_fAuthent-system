@@ -1,7 +1,7 @@
 {
   "fields" : [ {
     "label" : "Product-id",
-    "model" : null,
+    "model" : "product-id",
     "required" : true,
     "modelRef" : "Product",
     "type" : "input",
@@ -26,7 +26,7 @@
       "schema" : {
         "fields" : [ {
           "label" : "Metadata",
-          "model" : null,
+          "model" : "metadata",
           "required" : false,
           "type" : "input",
           "inputType" : "text"
@@ -35,7 +35,7 @@
     }
   }, {
     "label" : "File-id",
-    "model" : null,
+    "model" : "file-id",
     "required" : true,
     "modelRef" : "FileMetadata",
     "type" : "input",
@@ -48,7 +48,7 @@
     "inputType" : "text"
   }, {
     "label" : "Metadata",
-    "model" : null,
+    "model" : "metadata",
     "required" : false,
     "type" : "input",
     "inputType" : "text"

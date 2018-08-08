@@ -1019,6 +1019,14 @@ definitions:
   Model:
     description: A model created via training and used for prediction. Can also be a workflow.
     type: object
+    x-ui-vue.js:
+      - name: name
+      - name: description
+      - name: author
+      - name: version
+      - name: type
+      - name: tags
+      - name: file-id
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.
@@ -1229,6 +1237,9 @@ definitions:
   Tag:
     description: A tag/label for objects.
     type: object
+    x-ui-vue.js:
+      - name: name
+      - name: description
     properties:
         fa-id:
          description: A global id within the FoodAuthent-system.
@@ -1274,6 +1285,7 @@ definitions:
       - name: description
       - name: type
       - name: parameters
+      - name: tags
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.

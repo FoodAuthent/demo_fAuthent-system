@@ -7,13 +7,13 @@
     "inputType" : "text"
   }, {
     "label" : "Description",
-    "model" : null,
+    "model" : "description",
     "required" : false,
     "type" : "input",
     "inputType" : "text"
   }, {
     "label" : "Type",
-    "model" : null,
+    "model" : "type",
     "required" : true,
     "type" : "select",
     "validator" : "string",
@@ -51,11 +51,12 @@
           "inputType" : "text"
         }, {
           "label" : "Required",
-          "model" : null,
-          "required" : false
+          "model" : "required",
+          "required" : false,
+          "type" : "checkbox"
         }, {
           "label" : "Type",
-          "model" : null,
+          "model" : "type",
           "required" : false,
           "type" : "select",
           "validator" : "string",
@@ -69,7 +70,40 @@
           } ]
         }, {
           "label" : "Value",
-          "model" : null,
+          "model" : "value",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        } ]
+      }
+    }
+  }, {
+    "label" : "Parameters",
+    "model" : "parameters",
+    "required" : false,
+    "type" : "array",
+    "inputName" : "tags",
+    "validator" : "array",
+    "showRemoveButton" : true,
+    "itemFieldClasses" : "form-control",
+    "itemContainerClasses" : "input-group pb-2",
+    "newElementButtonLabelClasses" : "btn btn-outline-dark",
+    "removeElementButtonClasses" : "btn btn-danger input-group-append",
+    "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
+    "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
+    "newElementButtonLabel" : "Add",
+    "items" : {
+      "type" : "object",
+      "schema" : {
+        "fields" : [ {
+          "label" : "Name",
+          "model" : "name",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        }, {
+          "label" : "Description",
+          "model" : "description",
           "required" : false,
           "type" : "input",
           "inputType" : "text"

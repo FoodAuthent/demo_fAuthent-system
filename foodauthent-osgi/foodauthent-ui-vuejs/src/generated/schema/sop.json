@@ -1,7 +1,7 @@
 {
   "fields" : [ {
     "label" : "File-id",
-    "model" : null,
+    "model" : "file-id",
     "required" : false,
     "type" : "input",
     "inputType" : "text"
@@ -13,13 +13,13 @@
     "inputType" : "text"
   }, {
     "label" : "Description",
-    "model" : null,
+    "model" : "description",
     "required" : false,
     "type" : "input",
     "inputType" : "text"
   }, {
     "label" : "Product-id",
-    "model" : null,
+    "model" : "product-id",
     "required" : false,
     "modelRef" : "Product",
     "type" : "input",

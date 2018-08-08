@@ -25,6 +25,7 @@ import io.swagger.codegen.SupportingFile;
 import io.swagger.models.Model;
 import io.swagger.models.Swagger;
 import io.swagger.models.properties.ArrayProperty;
+import io.swagger.models.properties.DateProperty;
 import io.swagger.models.properties.Property;
 import io.swagger.models.properties.RefProperty;
 import io.swagger.models.properties.StringProperty;
@@ -58,41 +59,13 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 	private static final Object[][] ENUM_STATIC_FIELDS = new Object[][] { { "type", "select" },
 			{ "validator", "string" } };
 
+	private static final Object[][] BOOLEAN_STATIC_FIELDS = new Object[][] { { "type", "checkbox" } };
+
+	private static final Object[][] INTEGER_STATIC_FIELDS = new Object[][] { { "type", "input" },
+			{ "inputType", "number" }, { "validator", "integer" } };
+
 	public VueJSClientCodegen() {
 		super();
-	}
-	
-	@Override
-	public void processOpts() {
-		// supporting files
-//		getPropertyAsList("supportingFiles").ifPresent(l -> l.stream().forEach(sf -> {
-//			Map<String, Object> sfmap = (Map<String, Object>) sf;
-//			supportingFiles.add(new SupportingFile(sfmap.get("templateFile").toString(),
-//					outputFolder + File.separator + sfmap.get("subFolder") + File.separator,
-//					sfmap.get("destinationFileName").toString()));
-//		}));
-//		super.processOpts();
-	}
-	
-	@Override
-	public String toApiName(String name) {
-		// make original name available to templates
-		// these form the basis of the service names, e.g. WorkflowService,
-		// NodeService
-		if (additionalProperties().get("tags") == null) {
-			additionalProperties().put("tags", new HashSet<HashMap<String, String>>());
-		} else {
-			Set<Map<String, String>> tags = (Set<Map<String, String>>) additionalProperties().get("tags");
-			Map<String, String> tag = new HashMap<String, String>();
-			tag.put("nameLowerCase", name.toLowerCase());
-			tag.put("name", name);
-			tags.add(tag);
-		}
-		return name;
-	}
-	
-	private Optional<List<Object>> getPropertyAsList(final String propName) {
-		return Optional.ofNullable(additionalProperties.get(propName)).map(o -> List.class.cast(o));
 	}
 
 	@Override
@@ -167,9 +140,9 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 		String name = uiInfo.get("name");
 		// properties that have all fields in common
 		field.put("label", StringUtils.capitalize(name));
-		field.put("model", uiInfo.get(name));
+		field.put("model", name);
 		field.put("required", prop.getRequired());
-		
+
 		if (uiInfo.containsKey("ref")) {
 			field.put("modelRef", uiInfo.get("ref"));
 		}
@@ -211,7 +184,9 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 			schema.set("fields", fields);
 			addFieldsInfo(models.get(((RefProperty) arrayProp.getItems()).getSimpleRef()), fields, models);
 		} else if (prop.getType().equals("boolean")) {
-			// TODO
+			addStaticProperties(field, BOOLEAN_STATIC_FIELDS);
+		} else if(prop.getType().equals("integer")) {
+			addStaticProperties(field, INTEGER_STATIC_FIELDS);
 		} else {
 			throw new IllegalArgumentException("Type " + prop.getType() + " not supported!");
 		}

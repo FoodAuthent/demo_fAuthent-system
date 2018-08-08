@@ -1,108 +1,84 @@
 {
-	"fields": [{
-			"type": "input",
-			"inputType": "text",
-			"label": "FA-ID",
-			"model": "fa-id",
-			"readonly": false,
-			"featured": true,
-			"disabled": false,
-			"required": true
-		},
-		{
-			"type": "input",
-			"inputType": "text",
-			"label": "Name",
-			"model": "name",
-			"required": true,
-			"hint": "Minimum 4 characters"
-		},
-		{
-			"type": "input",
-			"inputType": "text",
-			"label": "Description",
-			"model": "description"
-		},
-		{
-			"type": "input",
-			"inputType": "text",
-			"label": "Author",
-			"model": "author"
-		},
-		{
-			"type": "input",
-			"inputType": "text",
-			"label": "Date",
-			"model": "date"
-		},
-		{
-			"type": "input",
-			"inputType": "number",
-			"label": "Version",
-			"model": "version"
-		},
-		{
-			"type": "select",
-			"label": "Type",
-			"model": "type",
-			"inputName": "type",
-			"required": false,
-			"validator": "string",
-			"values": [{
-					"id": "knime_workflow",
-					"name": "Knime workflow"
-				},
-				{
-					"id": "knime_python",
-					"name": "Knime python"
-				},
-				{
-					"id": "pmml",
-					"name": "pmml"
-				}
-			]
-		},
-		{
-			"type": "input",
-			"inputType": "string",
-			"label": "File ID",
-			"model": "file-id"
-		},
-		{
-			"type": "array",
-			"label": "Tags",
-			"model": "tags",
-			"showRemoveButton": true,
-			"fieldClasses": "arrayEditor",
-			"newElementButtonLabelClasses": "btn btn-primary",
-			"items": {
-				"type": "object",
-				"default": {},
-				"schema": {
-					"fields": [{
-					"type": "input",
-					"inputType": "text",
-					"label": "Fa ID",
-					"model": "fa-id",
-					"placeholder": "Fa id",
-					"required": true
-					}, {
-					"type": "input",
-					"inputType": "text",
-					"label": "Name",
-					"model": "name",
-					"placeholder": "Name",
-					"required": true
-					}, {
-					"type": "input",
-					"inputType": "text",
-					"label": "Description",
-					"model": "description",
-					"placeholder": "Description",
-					"required": true
-					}]
-				}
-			}
-		}
-	]
+  "fields" : [ {
+    "label" : "Name",
+    "model" : "name",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Description",
+    "model" : "description",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Author",
+    "model" : "author",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Version",
+    "model" : "version",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "number",
+    "validator" : "integer"
+  }, {
+    "label" : "Type",
+    "model" : "type",
+    "required" : false,
+    "type" : "select",
+    "validator" : "string",
+    "inputName" : "type",
+    "values" : [ {
+      "id" : "knime_workflow",
+      "name" : "Knime_workflow"
+    }, {
+      "id" : "knime_python",
+      "name" : "Knime_python"
+    }, {
+      "id" : "pmml",
+      "name" : "Pmml"
+    } ]
+  }, {
+    "label" : "Parameters",
+    "model" : "parameters",
+    "required" : false,
+    "type" : "array",
+    "inputName" : "tags",
+    "validator" : "array",
+    "showRemoveButton" : true,
+    "itemFieldClasses" : "form-control",
+    "itemContainerClasses" : "input-group pb-2",
+    "newElementButtonLabelClasses" : "btn btn-outline-dark",
+    "removeElementButtonClasses" : "btn btn-danger input-group-append",
+    "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
+    "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
+    "newElementButtonLabel" : "Add",
+    "items" : {
+      "type" : "object",
+      "schema" : {
+        "fields" : [ {
+          "label" : "Name",
+          "model" : "name",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        }, {
+          "label" : "Description",
+          "model" : "description",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        } ]
+      }
+    }
+  }, {
+    "label" : "File-id",
+    "model" : "file-id",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
 }
