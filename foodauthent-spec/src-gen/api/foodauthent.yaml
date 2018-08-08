@@ -919,6 +919,8 @@ definitions:
   Fingerprint:
     description: A fingerprint object representing its metadata.
     type: object
+    x-ui-vue.js:
+      - name: metadata
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.

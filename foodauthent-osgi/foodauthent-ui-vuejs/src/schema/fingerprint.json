@@ -1,0 +1,9 @@
+{
+  "fields" : [ {
+    "label" : "Metadata",
+    "model" : "metadata",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}

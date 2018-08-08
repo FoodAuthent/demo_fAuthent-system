@@ -9,7 +9,6 @@ import Prediction from '@/components/prediction/Prediction'
 import Predictionjob from '@/components/predictionjob/Predictionjob'
 import Trainingjob from '@/components/trainingjob/Trainingjob'
 import Model from '@/components/model/Model'
-import Test from '@/components/test/Test'
 
 
 Vue.use(Router)
@@ -60,11 +59,6 @@ export default new Router({
       path: '/model',
       name: 'Model',
       component: Model,
-      },
-      {
-      path: '/test',
-      name: 'Test',
-      component: Test
-    },
+      }
   ]
 })
