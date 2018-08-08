@@ -41,13 +41,13 @@
 <script>
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
-//var getJSONSchema = require('@/schema/workflow.js').default.getJSONSchema;
-import jsonschema from '@/schema/workflow.json'; 
+var getJSONSchema = require('@/schema/workflow.js').default.getJSONSchema;
+//import jsonschema from '@/schema/workflow.json'; 
 import {EndpointUrl} from '../../config.js';
  export default {
     data() {
 			return {
-        schema: jsonschema,
+        schema: getJSONSchema(),
         model: {"product-id": "", "fa-id": "" },
         response: "",
         endpointurl : EndpointUrl.WORKFLOWURL,
