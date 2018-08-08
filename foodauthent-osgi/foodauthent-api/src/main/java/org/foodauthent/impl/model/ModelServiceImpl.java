@@ -5,8 +5,11 @@ import java.util.UUID;
 
 import org.foodauthent.api.ModelService;
 import org.foodauthent.api.internal.persistence.PersistenceService;
+import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelPageResult;
+import org.foodauthent.model.SOP;
+import org.foodauthent.model.SOPPageResult;
 import org.foodauthent.model.WorkflowPageResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -42,7 +45,8 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     public ModelPageResult findModelByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	// TODO Auto-generated method stub
-	return null;
+	ResultPage<Model> res = persistenceService.findByKeywordsPaged(keywords, Model.class, pageNumber, pageSize);
+	return ModelPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
 }
