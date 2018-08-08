@@ -25,7 +25,7 @@ public class Model   extends FaModel {
   /**
    * The type of the model in order to be able to check for compatibility of the workflows using it.
    */
-  public enum TypeEnum {
+  public static enum TypeEnum {
     KNIME_WORKFLOW("knime_workflow"),
     
     KNIME_PYTHON("knime_python"),

@@ -23,7 +23,7 @@ public class WorkflowParameter   extends FaModel {
   /**
    * the parameter type
    */
-  public enum TypeEnum {
+  public static enum TypeEnum {
     STRING("string"),
     
     NUMBER("number");

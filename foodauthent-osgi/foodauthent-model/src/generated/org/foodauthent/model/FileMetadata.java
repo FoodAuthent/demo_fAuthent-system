@@ -24,7 +24,7 @@ public class FileMetadata   extends FaModel {
   /**
    * The file type.
    */
-  public enum TypeEnum {
+  public static enum TypeEnum {
     KNIME_WORKFLOW("knime_workflow"),
     
     KNIME_MODEL("knime_model"),

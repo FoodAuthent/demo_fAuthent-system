@@ -23,7 +23,7 @@ public class Tag   extends FaModel {
   /**
    * The type of the tag, e.g. whether it&#39;s a tag for a workflow, a model or a fingerprint.
    */
-  public enum TypeEnum {
+  public static enum TypeEnum {
     WORKFLOW("workflow"),
     
     MODEL("model"),

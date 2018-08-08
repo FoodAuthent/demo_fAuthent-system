@@ -23,7 +23,7 @@ public class PredictionJob   extends FaModel {
   /**
    * The current status of the prediction job.
    */
-  public enum StatusEnum {
+  public static enum StatusEnum {
     RUNNING("running"),
     
     SUCCESS("success"),
