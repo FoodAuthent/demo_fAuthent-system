@@ -10,10 +10,13 @@ import org.foodauthent.impl.file.FileServiceImpl;
 import org.foodauthent.impl.openchrom.OpenChromRawFileReader;
 import org.foodauthent.internal.persistence.impl.SimpleInMemoryPersistenceService;
 import org.foodauthent.model.FileMetadata;
+import org.foodauthent.test.category.FastTest;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+@Category(FastTest.class)
 public class OpenChromTest2 extends AbstractITTest {
 
     private FileMetadata fileMeta;

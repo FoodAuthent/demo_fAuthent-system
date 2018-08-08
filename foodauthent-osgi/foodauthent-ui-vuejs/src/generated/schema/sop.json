@@ -1,0 +1,28 @@
+{
+  "fields" : [ {
+    "label" : "File-id",
+    "model" : null,
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Name",
+    "model" : "name",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Description",
+    "model" : null,
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Product-id",
+    "model" : null,
+    "required" : false,
+    "modelRef" : "Product",
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}
