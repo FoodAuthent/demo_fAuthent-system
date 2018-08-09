@@ -63,6 +63,8 @@ public class OpenChromRawFileReaderTest {
 
 	assertThat(map, is(not(nullValue())));
 
+	assertThat(map.isEmpty(), is(false));
+
     }
 
 }
