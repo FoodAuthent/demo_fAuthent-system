@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.pde.ui.JunitLaunchConfig">
+<setAttribute key="additional_plugins"/>
 <booleanAttribute key="append.args" value="true"/>
 <stringAttribute key="application" value="org.eclipse.pde.junit.runtime.coretestapplication"/>
 <booleanAttribute key="askclear" value="false"/>
-<booleanAttribute key="automaticAdd" value="true"/>
-<booleanAttribute key="automaticValidate" value="true"/>
+<booleanAttribute key="automaticAdd" value="false"/>
+<booleanAttribute key="automaticValidate" value="false"/>
 <stringAttribute key="bootstrap" value=""/>
 <stringAttribute key="checked" value="[NONE]"/>
-<booleanAttribute key="clearConfig" value="false"/>
+<booleanAttribute key="clearConfig" value="true"/>
 <booleanAttribute key="clearws" value="true"/>
 <booleanAttribute key="clearwslog" value="false"/>
-<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/pde-junit"/>
-<booleanAttribute key="default" value="true"/>
+<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/FA-Tests"/>
+<booleanAttribute key="default" value="false"/>
+<stringAttribute key="featureDefaultLocation" value="workspace"/>
+<stringAttribute key="featurePluginResolution" value="workspace"/>
 <booleanAttribute key="includeOptional" value="true"/>
 <stringAttribute key="location" value="${workspace_loc}/../junit-workspace"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/org.foodauthent.test/src/test/org/foodauthent/test"/>
+<listEntry value="/org.foodauthent.test"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
-<listEntry value="2"/>
+<listEntry value="4"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.jdt.junit.CONTAINER" value="=org.foodauthent.test/src\/test&lt;org.foodauthent.test"/>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.junit.CONTAINER" value="=org.foodauthent.test"/>
 <booleanAttribute key="org.eclipse.jdt.junit.KEEPRUNNING_ATTR" value="false"/>
 <stringAttribute key="org.eclipse.jdt.junit.TESTNAME" value=""/>
 <stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
@@ -32,11 +39,14 @@
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-ea"/>
 <stringAttribute key="pde.version" value="3.3"/>
 <stringAttribute key="product" value="org.eclipse.platform.ide"/>
-<booleanAttribute key="run_in_ui_thread" value="true"/>
+<booleanAttribute key="run_in_ui_thread" value="false"/>
+<setAttribute key="selected_features"/>
+<stringAttribute key="selected_target_plugins" value="com.fasterxml.jackson.core.jackson-annotations*2.8.10@default:default,com.fasterxml.jackson.core.jackson-core*2.8.10@default:default,com.fasterxml.jackson.core.jackson-databind*2.8.10@default:default,com.fasterxml.jackson.datatype.jackson-datatype-jdk8@default:default,com.fasterxml.jackson.datatype.jackson-datatype-jsr310@default:default,com.ibm.icu@default:default,javassist@default:default,javax.activation@default:default,javax.annotation@default:default,javax.inject*1.0.0.v20091030@default:default,javax.mail.glassfish@default:default,javax.servlet@default:default,javax.transaction@default:false,javax.validation.api@default:default,javax.ws.rs-api*2.1.0@default:default,javax.xml.stream@default:default,javax.xml@default:default,log4j.over.slf4j@default:default,org.apache.commons.io@default:default,org.apache.felix.scr@default:default,org.apache.log4j@default:default,org.eclipse.chemclipse.chromatogram.xxd.calculator@default:default,org.eclipse.chemclipse.converter@default:default,org.eclipse.chemclipse.logging@default:default,org.eclipse.chemclipse.model@default:default,org.eclipse.chemclipse.msd.converter@default:default,org.eclipse.chemclipse.msd.model@default:default,org.eclipse.chemclipse.nmr.converter@default:default,org.eclipse.chemclipse.nmr.model@default:default,org.eclipse.chemclipse.numeric@default:default,org.eclipse.chemclipse.processing@default:default,org.eclipse.chemclipse.support@default:default,org.eclipse.chemclipse.thirdpartylibraries.apache.commons.math@default:default,org.eclipse.core.contenttype@default:default,org.eclipse.core.databinding.observable@default:default,org.eclipse.core.databinding.property@default:default,org.eclipse.core.databinding@default:default,org.eclipse.core.jobs@default:default,org.eclipse.core.runtime@default:true,org.eclipse.e4.core.contexts@default:default,org.eclipse.e4.core.di.annotations@default:default,org.eclipse.e4.core.di@default:default,org.eclipse.e4.core.services@default:default,org.eclipse.equinox.app@default:default,org.eclipse.equinox.common@2:true,org.eclipse.equinox.http.servlet@default:default,org.eclipse.equinox.preferences@default:default,org.eclipse.equinox.registry@default:default,org.eclipse.osgi.compatibility.state@default:false,org.eclipse.osgi.services@default:default,org.eclipse.osgi.util@default:default,org.eclipse.osgi@-1:true,org.glassfish.hk2.api@default:default,org.glassfish.hk2.external.aopalliance-repackaged@default:default,org.glassfish.hk2.locator@default:default,org.glassfish.hk2.osgi-resource-locator@default:default,org.glassfish.hk2.utils@default:default,org.glassfish.jersey.containers.jersey-container-servlet-core@default:default,org.glassfish.jersey.core.jersey-client@default:default,org.glassfish.jersey.core.jersey-common@default:default,org.glassfish.jersey.core.jersey-server@default:default,org.glassfish.jersey.ext.jersey-proxy-client@default:default,org.glassfish.jersey.inject.jersey-hk2@default:default,org.glassfish.jersey.media.jersey-media-multipart@default:default,org.hamcrest.core@default:default,org.junit@default:default,org.jvnet.mimepull@default:default,slf4j.api@default:default,slf4j.simple@default:false"/>
+<stringAttribute key="selected_workspace_plugins" value="com.eclipsesource.jaxrs.publisher@default:default,org.foodauthent.api.internal@default:default,org.foodauthent.api@default:default,org.foodauthent.common@default:default,org.foodauthent.impl.openchrom@default:default,org.foodauthent.model@default:default,org.foodauthent.persistence.impl.simple@default:default,org.foodauthent.rest.api@default:default,org.foodauthent.rest.impl@default:default,org.foodauthent.test@default:default"/>
 <booleanAttribute key="show_selected_only" value="false"/>
 <booleanAttribute key="tracing" value="false"/>
 <booleanAttribute key="useCustomFeatures" value="false"/>
 <booleanAttribute key="useDefaultConfig" value="true"/>
-<booleanAttribute key="useDefaultConfigArea" value="false"/>
+<booleanAttribute key="useDefaultConfigArea" value="true"/>
 <booleanAttribute key="useProduct" value="false"/>
 </launchConfiguration>
