@@ -95,7 +95,7 @@
 					<products>
 						<product>
 							<id>org.foodauthent.runtime</id>
-							<attachId>foodauthent-knime-equinox</attachId>
+							<attachId>foodauthent-knime-runtime</attachId>
 						</product>
 					</products>
 					<formats>

@@ -201,7 +201,7 @@
 		<module>foodauthent-impl-openchrom</module>
 		<module>foodauthent-feature</module>
 		<module>foodauthent-knime-feature</module>
-		<module>foodauthent-product</module>
-		<module>foodauthent-product-knime</module>
+		<module>foodauthent-product-runtime</module>
+		<module>foodauthent-product-application</module>
 	</modules>
 </project>
