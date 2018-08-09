@@ -3,6 +3,7 @@
     "label" : "File-id",
     "model" : "file-id",
     "required" : false,
+    "idprovider" : "upload-file",
     "type" : "input",
     "inputType" : "text"
   }, {
@@ -21,7 +22,7 @@
     "label" : "Product-id",
     "model" : "product-id",
     "required" : false,
-    "modelRef" : "Product",
+    "idprovider" : "select-product",
     "type" : "input",
     "inputType" : "text"
   } ]

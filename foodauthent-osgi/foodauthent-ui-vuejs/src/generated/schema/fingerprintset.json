@@ -3,7 +3,7 @@
     "label" : "Product-id",
     "model" : "product-id",
     "required" : true,
-    "modelRef" : "Product",
+    "idprovider" : "select-product",
     "type" : "input",
     "inputType" : "text"
   }, {
@@ -37,7 +37,7 @@
     "label" : "File-id",
     "model" : "file-id",
     "required" : true,
-    "modelRef" : "FileMetadata",
+    "idprovider" : "upload-file",
     "type" : "input",
     "inputType" : "text"
   }, {

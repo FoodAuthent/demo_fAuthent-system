@@ -849,10 +849,11 @@ definitions:
     type: object
     x-ui-vue.js:
       - name: file-id
+        id-provider: upload-file
       - name: name
       - name: description
       - name: product-id
-        ref: Product
+        id-provider: select-product
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.
@@ -962,10 +963,10 @@ definitions:
       - product-id
     x-ui-vue.js:
       - name: product-id
-        ref: Product
+        id-provider: select-product
       - name: fingerprints
       - name: file-id
-        ref: FileMetadata
+        id-provider: upload-file
       - name: name
       - name: metadata
     properties:

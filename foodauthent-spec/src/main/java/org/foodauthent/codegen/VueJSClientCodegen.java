@@ -143,8 +143,8 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 		field.put("model", name);
 		field.put("required", prop.getRequired());
 
-		if (uiInfo.containsKey("ref")) {
-			field.put("modelRef", uiInfo.get("ref"));
+		if (uiInfo.containsKey("id-provider")) {
+			field.put("idprovider", uiInfo.get("id-provider"));
 		}
 
 		if (prop.getType().equals("string") && prop.getFormat() != null && prop.getFormat().equals("uuid")) {
