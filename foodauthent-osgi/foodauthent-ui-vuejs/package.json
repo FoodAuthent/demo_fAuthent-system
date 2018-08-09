@@ -26,7 +26,8 @@
     "vue-material": "^1.0.0-beta-10.2",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
-    "vue-sidebar-component": "^1.0.0"
+    "vue-sidebar-component": "^1.0.0",
+    "superagent": "3.5.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
