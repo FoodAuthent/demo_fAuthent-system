@@ -208,15 +208,15 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>org.slf4j:slf4j-simple:jar:1.7.25</id>
-											<source>true</source>
-										</artifact>
-										<artifact>
 											<id>org.slf4j:log4j-over-slf4j:jar:1.7.25</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
 											<id>org.slf4j:osgi-over-slf4j:jar:1.7.25</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>ch.qos.logback:logback-classic:jar:1.2.3</id>
 											<source>true</source>
 										</artifact>
 									</artifacts>
@@ -258,7 +258,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 								<feature>
 									<id>org.junit</id>
 									<version>4.12.0.qualifier</version>
-									<label>JUnit 4.23 Feature</label>
+									<label>Testing Feature</label>
 									<providerName>org.junit</providerName>
 									<copyright>https://www.junit.org</copyright>
 									<license></license>
