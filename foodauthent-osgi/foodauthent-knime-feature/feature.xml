@@ -1531,4 +1531,25 @@
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="org.knime.jsnippets"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.jdt.compiler.tool"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="com.github.flatbuffers"
+         download-size="0"
+         install-size="0"
+         version="1.6.0"
+         unpack="false"/>
+
 </feature>

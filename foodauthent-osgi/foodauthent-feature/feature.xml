@@ -228,13 +228,6 @@
          unpack="false"/>
 
    <plugin
-         id="slf4j.api"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.glassfish.hk2.external.aopalliance-repackaged"
          download-size="0"
          install-size="0"
@@ -466,18 +459,17 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.jdt.core"
+         id="slf4j.api"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.jdt.compiler.tool"
+         id="org.slf4j.api"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         fragment="true"
          unpack="false"/>
 
 </feature>
