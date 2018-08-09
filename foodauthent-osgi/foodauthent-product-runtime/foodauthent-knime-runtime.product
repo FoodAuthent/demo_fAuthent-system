@@ -67,6 +67,7 @@
       <plugin id="org.eclipse.osgi.util" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.swt" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.ui.workbench" autoStart="true" startLevel="0" />
+      <plugin id="org.glassfish.jersey.containers.jersey-container-servlet" autoStart="true" startLevel="0" />
    </configurations>
 
 </product>
