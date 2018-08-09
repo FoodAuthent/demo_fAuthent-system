@@ -3,6 +3,7 @@
 
 <product uid="org.foodauthent.runtime" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
+
    <configIni use="default">
    </configIni>
 
@@ -15,11 +16,15 @@
       </vmArgsMac>
    </launcherArgs>
 
+   <windowImages/>
+
+
    <launcher name="FoodAuthent KNIME Equinox">
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
       <linux include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
@@ -67,6 +72,7 @@
       <plugin id="org.eclipse.osgi.services" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.swt" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.ui.workbench" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.common" autoStart="true" startLevel="2" />
       <plugin id="org.foodauthent.rest.api" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.rest.impl" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.swaggerui" autoStart="true" startLevel="0" />
@@ -76,5 +82,12 @@
       <plugin id="org.glassfish.jersey.core.jersey-server" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.jersey.inject.jersey-hk2" autoStart="true" startLevel="0" />
    </configurations>
+
+   <preferencesInfo>
+      <targetfile overwrite="false"/>
+   </preferencesInfo>
+
+   <cssInfo>
+   </cssInfo>
 
 </product>

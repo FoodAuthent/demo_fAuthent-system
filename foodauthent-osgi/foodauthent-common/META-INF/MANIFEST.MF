@@ -7,3 +7,6 @@ Export-Package: org.foodauthent.common.exception
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .
 Automatic-Module-Name: org.foodauthent.common
+Require-Bundle: ch.qos.logback.classic;bundle-version="1.2.3",
+ ch.qos.logback.core;bundle-version="1.2.3"
+Import-Package: org.slf4j
