@@ -1,15 +1,5 @@
 {
-    "lang" : "org.foodauthent.codegen.VueJSClientCodegen",
+    "lang" : "javascript",
     "inputSpec" : "src-gen/api/foodauthent.yaml",
-    "outputDir" : "../foodauthent-osgi/foodauthent-ui-vuejs/src/generated",
-    "templateDir" : "src-gen/templates",
-    "additionalProperties" : {
-        "supportingFiles" : [
-            {
-                "subFolder" : "router",
-                "templateFile": "vue-js/router_index_js.mustache",
-                "destinationFileName" : "index.js"
-            }     
-         ]
-    }
+    "outputDir" : "../foodauthent-osgi/foodauthent-ui-vuejs/src/generated/rest-client"
 }
