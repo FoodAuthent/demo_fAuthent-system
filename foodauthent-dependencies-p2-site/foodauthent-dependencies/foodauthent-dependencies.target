@@ -58,11 +58,11 @@
 <repository location="https://update.openchrom.net/repositories/community/latest/converter"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="com.knime.features.explorer.serverspace.feature.group" version="4.7.0.v201807061420"/>
-<unit id="org.knime.features.base.feature.group" version="3.6.0.v201807100940"/>
-<unit id="org.knime.features.base.source.feature.group" version="3.6.0.v201807100940"/>
-<unit id="org.knime.features.python2.feature.group" version="3.6.0.v201807061638"/>
-<unit id="org.knime.features.python2.source.feature.group" version="3.6.0.v201807061638"/>
+<unit id="com.knime.features.explorer.serverspace.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.base.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.base.source.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.python2.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.python2.source.feature.group" version="0.0.0"/>
 <repository location="http://update.knime.com/analytics-platform/3.6"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
