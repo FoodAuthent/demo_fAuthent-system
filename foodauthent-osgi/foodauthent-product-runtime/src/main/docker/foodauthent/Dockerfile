@@ -10,7 +10,6 @@ COPY maven/org.foodauthent.runtime /opt/foodauthent/runtime
 
 COPY bin /opt/foodauthent/bin
 RUN chmod +x /opt/foodauthent/bin/run.sh
-RUN chmod +x /opt/foodauthent/runtime/foodauthent-api
 
 EXPOSE 9090/tcp
 EXPOSE 9023/tcp
