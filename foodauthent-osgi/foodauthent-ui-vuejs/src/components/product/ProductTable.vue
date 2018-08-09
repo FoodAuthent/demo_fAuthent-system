@@ -1,6 +1,10 @@
 <template>
   <div id="productTable">
-  <!-- SEARCH -->
+    <b-container fluid>
+    <!-- User Interface controls -->
+    <b-row>
+      <b-col md="6" class="my-1">
+    <!-- SEARCH -->
    <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search" />
@@ -9,6 +13,14 @@
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
+      </b-col>
+      <b-col md="6" class="my-1">
+      <b-form-group horizontal label="PER PAGE" class="mb-0">
+          <b-form-select :options="pageOptions" v-model="perPage" />
+        </b-form-group>
+      </b-col>
+      </b-row>
+  </b-container>
 
 <!-- TABLE -->
   <b-table bordered striped hover
@@ -21,10 +33,7 @@
          :filter="filter"
          @row-clicked="myRowClickHandler"
 >
-  <template slot="actions" scope="items">
-   <!-- <b-btn size="sm" @click="log(environment.item)">Details</b-btn> -->
-    <b-btn size="sm" v-b-modal.modal1>Details</b-btn>
-  </template>
+
 </b-table>
 
 <!-- PAGINATION -->
@@ -60,28 +69,23 @@ import axios from 'axios'
       perPage: 10,
       sortBy: 'id',
       sortDesc: false,
-      filter: null
+      filter: null,
+      pageOptions: [ 1, 10, 15 ]
     }
   },
     mounted() {
-    var self = this
-    const url = self.endpointurl;
-    axios.get(url, {
-      dataType: 'json',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      mode: 'no-cors',
-      credentials: 'include'
+    let self = this;
+    fetch(self.endpointurl+'?pageNumber=0&pageSize='+self.perPage)
+    .then((j) => {return j.json();
     })
-    .then(function (response) {
-      console.log(JSON.stringify(response.data))
-      self.items = response.data
-    })
-    .catch(function (error) {
-      console.log(error)
-    })},
+      .then ((r) => {
+      if(!r.results){
+      self.items.push(r);
+      }else{
+      self.items = r.results;
+      }
+      })
+        },
   computed: {
     sortOptions () {
       // Create an options list from our fields

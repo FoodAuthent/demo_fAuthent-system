@@ -37,7 +37,6 @@
 <script>
 import predictionjobTable from '@/components/predictionjob/PredictionjobTable';
   export default {
-    name: 'Test',
     data: () => ({
 
     }),

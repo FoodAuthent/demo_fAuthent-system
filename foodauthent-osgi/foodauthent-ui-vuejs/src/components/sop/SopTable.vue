@@ -20,7 +20,7 @@
         </b-form-group>
       </b-col>
       </b-row>
-      </b-container>
+  </b-container>
 
 <!-- TABLE -->
   <b-table bordered striped hover
@@ -53,73 +53,73 @@
 
 
 <script>
- import {EndpointUrl} from '../../config.js'
- export default {
-  name: 'Sop',
-  data () {
+import { EndpointUrl } from "../../config.js";
+export default {
+  name: "Sop",
+  data() {
     return {
-      items: null,
-      shownItems : null,
+      items: [],
+      shownItems: null,
       selected: {},
-      fields: [ ],
+      fields: [],
       //fields: [
-        //{ key: 'fa-id', sortable: true },
-        //{ key: 'actions', sortable: false }
-     // ],
-      endpointurl : EndpointUrl.SOPURL,
+      //{ key: 'fa-id', sortable: true },
+      //{ key: 'actions', sortable: false }
+      // ],
+      endpointurl: EndpointUrl.SOPURL,
       currentPage: 1,
       perPage: 10,
-      sortBy: 'id',
+      sortBy: "id",
       sortDesc: false,
       filter: null,
-      pageOptions: [ 1, 10, 15 ]
-    }
+      pageOptionsPerPage: [1, 10, 15]
+    };
   },
-    mounted() {
+  mounted() {
     let self = this;
-    fetch(self.endpointurl+'?pageNumber=0&pageSize='+self.perPage)
-      .then((j) => {
+    fetch(self.endpointurl + "?pageNumber=0&pageSize=" + self.perPage)
+      .then(j => {
         return j.json();
       })
-      .then ((r) => {
-      console.log("Results", r.results);
+      .then(r => {
+        console.log("Results", r.results);
         self.items = r.results;
-      })
-        },
+      });
+  },
   computed: {
-    sortOptions () {
+    sortOptions() {
       // Create an options list from our fields
-      return this.fields
-        .filter(f => f.sortable)
-        .map(f => { return { text: f.label, value: f.key } })
+      return this.fields.filter(f => f.sortable).map(f => {
+        return { text: f.label, value: f.key };
+      });
     }
   },
   methods: {
-  myRowClickHandler(record, index) {
-    // 'record' will be the row data from items
-    // `index` will be the visible row number (available in the v-model 'shownItems')
-    //console.log(record); // This will be the item data for the row
-    this.selected = record
-  },
-    onFiltered (filteredItems) {
+    myRowClickHandler(record, index) {
+      // 'record' will be the row data from items
+      // `index` will be the visible row number (available in the v-model 'shownItems')
+      //console.log(record); // This will be the item data for the row
+      this.selected = record;
+    },
+    onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length
-      this.currentPage = 1
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
     }
-}
-}
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-  .md-table + .md-table {
-    margin-top: 16px
-  }
-    .md-app {
-    /*max-height: px; */
-    border: 1px solid rgba(#000, .12);
-  }
+.md-table + .md-table {
+  margin-top: 16px;
+}
+.md-app {
+  /*max-height: px; */
+  border: 1px solid rgba(#000, 0.12);
+}
 
-  .md-drawer {
+.md-drawer {
   max-width: 250px;
-  }
+}
 </style>

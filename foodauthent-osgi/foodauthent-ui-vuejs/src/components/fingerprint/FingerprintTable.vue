@@ -1,6 +1,10 @@
 <template>
   <div id="fingerprintTable">
-  <!-- SEARCH -->
+    <b-container fluid>
+    <!-- User Interface controls -->
+    <b-row>
+      <b-col md="6" class="my-1">
+    <!-- SEARCH -->
    <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search" />
@@ -9,6 +13,14 @@
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
+      </b-col>
+      <b-col md="6" class="my-1">
+      <b-form-group horizontal label="PER PAGE" class="mb-0">
+          <b-form-select :options="pageOptions" v-model="perPage" />
+        </b-form-group>
+      </b-col>
+      </b-row>
+  </b-container>
 
 <!-- TABLE -->
   <b-table bordered striped hover
@@ -45,7 +57,7 @@
   name: 'Workflow',
   data () {
     return {
-      items: null,
+      items: [],
       selected: {},
       fields: [ ],
       //fields: [
@@ -59,12 +71,13 @@
       perPage: 10,
       sortBy: 'id',
       sortDesc: false,
-      filter: null
+      filter: null,
+      pageOptions: [ 1, 10, 15 ]
     }
   },
     mounted() {
     let self = this;
-    fetch(self.endpointurl)
+    fetch(self.endpointurl+'?pageNumber=0&pageSize='+self.perPage)
       .then((j) => {
         return j.json();
       })
