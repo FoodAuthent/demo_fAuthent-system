@@ -75,7 +75,7 @@ import {EndpointUrl} from '../../config.js'
           console.log("URL",this.endpointurl);
           console.log(JSON.stringify(this.model, undefined, 4));
             this.response = "";
-                //TODO: do better
+                //TODO: do better and use auto-generated js-client
                 let urlWithParams = this.endpointurl + "?workflow-id=" + this.model['workflow-id'] + "&fingerprintset-id=" + this.model['fingerprintset-id'] + "&model-id=" + this.model['model-id'];
                 this.$http.post(urlWithParams, "", { headers: { "content-type": "application/json" } }).then(result => {
                     this.response = result.data;

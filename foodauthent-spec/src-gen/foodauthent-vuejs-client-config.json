@@ -1,5 +1,6 @@
 {
-    "lang" : "javascript",
+    "lang" : "org.foodauthent.codegen.JavascriptClientCodegen",
     "inputSpec" : "src-gen/api/foodauthent.yaml",
-    "outputDir" : "../foodauthent-osgi/foodauthent-ui-vuejs/src/generated/rest-client"
+    "outputDir" : "../foodauthent-osgi/foodauthent-ui-vuejs/src/generated/rest-client",
+    "templateDir" : "src-gen/templates"
 }

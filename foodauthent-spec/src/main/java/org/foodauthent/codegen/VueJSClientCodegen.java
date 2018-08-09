@@ -34,8 +34,7 @@ import io.swagger.util.Json;
 
 /**
  * Code generator for vue.js-forms json-files (see, e.g.,
- * https://icebob.gitbooks.io/vueformgenerator/content/schema.html) and other
- * files required for the vue.js-client.
+ * https://icebob.gitbooks.io/vueformgenerator/content/schema.html).
  * 
  * @author Martin Horn, University of Konstanz
  */
