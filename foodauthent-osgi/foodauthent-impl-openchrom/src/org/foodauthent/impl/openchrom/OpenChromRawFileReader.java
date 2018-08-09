@@ -38,6 +38,21 @@ public class OpenChromRawFileReader implements RawFileReader {
 	}
 
 	@Override
+	public Map<String, String> getAllFileMetadata(FileMetadata.TypeEnum fileType, File file) throws IOException {
+
+		Map<String, String> result = new LinkedHashMap<>();
+		switch(fileType) {
+			case FINGERPRINTS_BRUKER:
+				result.putAll(readBruker(file));
+				break;
+			default:
+				throw new RuntimeException();
+		}
+
+		return result;
+	}
+
+	@Override
 	public Map<String, String> getAllFileMetadata(FileMetadata.TypeEnum fileType, FileInputStream stream) throws IOException {
 
 		Map<String, String> result = new LinkedHashMap<>();

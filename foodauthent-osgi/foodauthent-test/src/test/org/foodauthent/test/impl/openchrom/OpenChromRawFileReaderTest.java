@@ -38,14 +38,26 @@ public class OpenChromRawFileReaderTest {
     public void tearDown() throws Exception {
     }
 
-    private static final File testFile = new File("files/bruker-nmr/1.zip");
+    private static final File testFileZip = new File("files/bruker-nmr/1.zip");
+    private static final File testDir = new File("files/bruker-nmr/1");
 
     @Test
     public void test01() throws Exception {
 
 	OpenChromRawFileReader reader = new OpenChromRawFileReader();
 	Map<String, String> map = reader.getAllFileMetadata(TypeEnum.FINGERPRINTS_BRUKER,
-		new FileInputStream(testFile));
+		testDir);
+
+	assertThat(map, is(not(nullValue())));
+
+    }
+
+    @Test
+    public void test02() throws Exception {
+
+	OpenChromRawFileReader reader = new OpenChromRawFileReader();
+	Map<String, String> map = reader.getAllFileMetadata(TypeEnum.FINGERPRINTS_BRUKER,
+		new FileInputStream(testFileZip));
 
 	assertThat(map, is(not(nullValue())));
 
