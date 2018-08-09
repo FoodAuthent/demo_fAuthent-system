@@ -1,0 +1,21 @@
+{
+  "fields" : [ {
+    "label" : "workflow-id",
+    "model" : "workflow-id",
+    "required" : true,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "fingerprintset-id",
+    "model" : "fingerprintset-id",
+    "required" : true,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "model-id",
+    "model" : "model-id",
+    "required" : true,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}

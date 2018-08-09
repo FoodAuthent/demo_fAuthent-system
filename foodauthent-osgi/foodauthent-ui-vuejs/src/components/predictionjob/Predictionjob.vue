@@ -23,6 +23,9 @@
     <b-tab title="Results" active>
   <predictionjobTable></predictionjobTable>
     </b-tab>
+  <b-tab title="Form">
+     <predictionjobForm></predictionjobForm>
+    </b-tab>
   <b-tab title="Empty">
 
     </b-tab>
@@ -36,6 +39,7 @@
 
 <script>
 import predictionjobTable from '@/components/predictionjob/PredictionjobTable';
+import predictionjobForm from '@/components/predictionjob/PredictionjobForm';
   export default {
     data: () => ({
 
@@ -47,7 +51,8 @@ import predictionjobTable from '@/components/predictionjob/PredictionjobTable';
 
     },
       components: {
-            predictionjobTable
+            predictionjobTable,
+            predictionjobForm
         }
   }
 </script>

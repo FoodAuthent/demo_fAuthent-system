@@ -9,12 +9,13 @@
       </div>
     </div>
 
-   <div class="panel panel-default">
-      <div class="panel-heading">Model</div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Request Parameters</div>
       <div class="panel-body">
         <pre v-if="model" v-html="prettyJSON(model)"></pre>
       </div>
     </div>
+
 
     <div id="response">
     <h1>Response</h1>
@@ -33,7 +34,7 @@
 <script>
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
-import jsonschema from '@/generated/schema/predictionjob.json';
+import jsonschema from '@/schema/createPredictionJob.json';
 import {EndpointUrl} from '../../config.js'
  export default {
     data() {
@@ -74,7 +75,9 @@ import {EndpointUrl} from '../../config.js'
           console.log("URL",this.endpointurl);
           console.log(JSON.stringify(this.model, undefined, 4));
             this.response = "";
-                this.$http.post(this.endpointurl, JSON.stringify(this.model, undefined, 4), { headers: { "content-type": "application/json" } }).then(result => {
+                //TODO: do better
+                let urlWithParams = this.endpointurl + "?workflow-id=" + this.model['workflow-id'] + "&fingerprintset-id=" + this.model['fingerprintset-id'] + "&model-id=" + this.model['model-id'];
+                this.$http.post(urlWithParams, "", { headers: { "content-type": "application/json" } }).then(result => {
                     this.response = result.data;
                 }, error => {
                     console.error(error);
