@@ -5,9 +5,7 @@ Bundle-SymbolicName: org.foodauthent.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .
-Import-Package: com.eclipsesource.jaxrs.publisher;version="6.0.0",
- javax.ws.rs.client;version="2.0.1",
- javax.ws.rs.core;version="2.0.1",
+Import-Package: javax.ws.rs.core,
  org.foodauthent.api,
  org.foodauthent.api.internal.exception,
  org.foodauthent.api.internal.filereader,
@@ -22,18 +20,17 @@ Import-Package: com.eclipsesource.jaxrs.publisher;version="6.0.0",
  org.foodauthent.rest.api.service,
  org.foodauthent.rest.impl.json,
  org.foodauthent.test.impl.openchrom,
- org.glassfish.hk2.osgiresourcelocator;version="1.0.1",
- org.glassfish.jersey.client;version="2.22.1",
- org.glassfish.jersey.client.proxy;version="2.22.0",
- org.glassfish.jersey.media.multipart;version="2.22.1",
- org.glassfish.jersey.media.multipart.file;version="2.22.1",
+ org.glassfish.hk2.osgiresourcelocator,
+ org.glassfish.jersey.client,
+ org.glassfish.jersey.client.proxy,
+ org.glassfish.jersey.media.multipart,
+ org.glassfish.jersey.media.multipart.file,
  org.hamcrest,
  org.hamcrest.core,
- org.osgi.framework;version="1.8.0",
- org.osgi.util.tracker;version="1.5.1",
- org.slf4j;version="1.7.10"
+ org.osgi.framework,
+ org.slf4j
 Automatic-Module-Name: org.foodauthent.test
-Require-Bundle: junit;bundle-version="[4.0.0,5.0.0)"
 Export-Package: org.foodauthent.test,
  org.foodauthent.test.category,
  org.foodauthent.test.impl.openchrom
+Require-Bundle: org.junit;bundle-version="4.12.0"
