@@ -22,7 +22,7 @@
 
    <windowImages i16="icons/png/knime_16.png" i32="icons/png/knime_32.png" i48="icons/png/knime_48.png" i64="icons/png/knime_64.png" i128="icons/png/knime_128.png" i256="icons/png/knime_256.png"/>
 
-   <launcher>
+   <launcher name="faKNIME">
       <win useIco="false">
          <bmp/>
       </win>
