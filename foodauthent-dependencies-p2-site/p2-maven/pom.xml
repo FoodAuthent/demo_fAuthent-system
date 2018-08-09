@@ -216,6 +216,10 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<id>ch.qos.logback:logback-core:jar:1.2.3</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
 											<id>ch.qos.logback:logback-classic:jar:1.2.3</id>
 											<source>true</source>
 										</artifact>
