@@ -1,38 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product uid="org.foodauthent.runtime" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="KNIME Analytics Platform" uid="org.foodauthent.knime" id="org.knime.product.KNIME_PRODUCT" application="org.knime.product.KNIME_APPLICATION" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+
+   <aboutInfo>
+      <image path="icons/png/knime_about.png"/>
+      <text>
+         %aboutText
+      </text>
+   </aboutInfo>
 
    <configIni use="default">
    </configIni>
 
    <launcherArgs>
-      <programArgs>-consoleLog -console
-      </programArgs>
-      <vmArgs>-Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dorg.osgi.service.http.port=9090
+      <vmArgs>-Dorg.osgi.service.http.port=9190
       </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
 
-   <launcher name="foodauthent-api">
+   <windowImages i16="icons/png/knime_16.png" i32="icons/png/knime_32.png" i48="icons/png/knime_48.png" i64="icons/png/knime_64.png" i128="icons/png/knime_128.png" i256="icons/png/knime_256.png"/>
+
+   <launcher>
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
 
    <vm>
-      <macos include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</macos>
    </vm>
 
+   <plugins>
+   </plugins>
+
    <features>
-      <feature id="org.foodauthent.feature"/>
-      <feature id="org.eclipse.equinox.core.feature"/>
-      <feature id="org.eclipse.equinox.executable"/>
-      <feature id="org.eclipse.equinox.server.core"/>
-      <feature id="org.eclipse.equinox.server.jetty"/>
-      <feature id="org.foodauthent.knime.feature"/>
-      <feature id="org.eclipse.core.runtime.feature"/>
+      <feature id="org.foodauthent.knime.feature" version="1.0.0.qualifier"/>
+      <feature id="org.knime.features.base" version="3.6.0.v201807100940"/>
+      <feature id="org.knime.features.json" version="3.6.0.v201807061527"/>
+      <feature id="org.knime.features.python2" version="3.6.0.v201807061638"/>
+      <feature id="org.eclipse.ecf.filetransfer.httpclient4.feature"/>
+      <feature id="org.eclipse.help"/>
+      <feature id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature"/>
+      <feature id="org.eclipse.emf.common"/>
+      <feature id="org.eclipse.equinox.p2.core.feature"/>
+      <feature id="org.knime.features.base.source"/>
+      <feature id="org.eclipse.ecf.core.ssl.feature"/>
+      <feature id="org.eclipse.gef"/>
+      <feature id="org.eclipse.draw2d"/>
+      <feature id="org.eclipse.emf.ecore"/>
+      <feature id="org.eclipse.equinox.p2.user.ui"/>
+      <feature id="org.eclipse.equinox.p2.extras.feature"/>
+      <feature id="org.knime.features.python2.source"/>
+      <feature id="org.eclipse.rcp"/>
+      <feature id="org.eclipse.ecf.core.feature"/>
+      <feature id="org.eclipse.equinox.p2.rcp.feature"/>
+      <feature id="org.eclipse.platform"/>
+      <feature id="org.knime.features.json.source"/>
+      <feature id="org.eclipse.e4.rcp"/>
+      <feature id="org.foodauthent.feature" version="1.0.0.qualifier"/>
+      <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
+      <feature id="org.eclipse.ecf.filetransfer.feature"/>
    </features>
 
    <configurations>
@@ -164,6 +192,7 @@
       <plugin id="org.foodauthent.rest.api" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.rest.impl" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.swaggerui" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.ui.vuejs" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.hk2.api" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.hk2.external.aopalliance-repackaged" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.hk2.external.javax.inject" autoStart="true" startLevel="0" />
