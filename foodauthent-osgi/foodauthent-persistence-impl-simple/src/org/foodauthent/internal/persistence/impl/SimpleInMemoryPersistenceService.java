@@ -104,6 +104,15 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 						result.add((T) fs);
 					}
 				}
+			} else if (modelType.equals(Product.class) && o instanceof Product) {
+				final Product p = (Product) o;
+				if (keywords.isEmpty()) {
+					result.add((T) p);
+				} else {
+					if (keywords.contains(p.getBrand())) {
+						result.add((T) p);
+					}
+				}
 			} else {
 				if (logger.isDebugEnabled()) {
 					logger.debug("Ignoring " + o);
