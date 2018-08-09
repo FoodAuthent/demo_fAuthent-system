@@ -21,6 +21,7 @@ Import-Package: com.eclipsesource.jaxrs.publisher;version="6.0.0",
  org.foodauthent.model.json.mixin,
  org.foodauthent.rest.api.service,
  org.foodauthent.rest.impl.json,
+ org.foodauthent.test.impl.openchrom,
  org.glassfish.hk2.osgiresourcelocator;version="1.0.1",
  org.glassfish.jersey.client;version="2.22.1",
  org.glassfish.jersey.client.proxy;version="2.22.0",
@@ -33,6 +34,6 @@ Import-Package: com.eclipsesource.jaxrs.publisher;version="6.0.0",
  org.slf4j;version="1.7.10"
 Automatic-Module-Name: org.foodauthent.test
 Require-Bundle: junit;bundle-version="[4.0.0,5.0.0)"
-Export-Package: org.foodauthent.impl.openchrom,
- org.foodauthent.test,
- org.foodauthent.test.category
+Export-Package: org.foodauthent.test,
+ org.foodauthent.test.category,
+ org.foodauthent.test.impl.openchrom

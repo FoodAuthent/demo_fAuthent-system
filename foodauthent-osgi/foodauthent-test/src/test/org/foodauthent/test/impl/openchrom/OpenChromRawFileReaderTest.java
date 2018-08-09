@@ -1,4 +1,4 @@
-package org.foodauthent.impl.openchrom;
+package org.foodauthent.test.impl.openchrom;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Map;
 
+import org.foodauthent.impl.openchrom.OpenChromRawFileReader;
 import org.foodauthent.model.FileMetadata.TypeEnum;
 import org.foodauthent.test.category.FrameworkTest;
 import org.junit.After;

@@ -9,20 +9,21 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: org.apache.commons.io,
  org.apache.log4j,
- org.eclipse.chemclipse.converter.exceptions,
- org.eclipse.chemclipse.processing.core,
- org.foodauthent.api,
- org.foodauthent.api.internal.filereader,
- org.foodauthent.model,
- org.osgi.service.component.annotations;version="1.2.0",
  org.eclipse.chemclipse.converter.chromatogram,
+ org.eclipse.chemclipse.converter.exceptions,
  org.eclipse.chemclipse.converter.scan,
  org.eclipse.chemclipse.logging.core,
  org.eclipse.chemclipse.model.identifier,
  org.eclipse.chemclipse.msd.converter.chromatogram,
  org.eclipse.chemclipse.msd.model.core,
  org.eclipse.chemclipse.nmr.converter.core,
+ org.eclipse.chemclipse.processing.core,
  org.eclipse.core.runtime;version="3.5.0",
- org.eclipse.osgi.util;version="1.1.0"
+ org.eclipse.osgi.util;version="1.1.0",
+ org.foodauthent.api,
+ org.foodauthent.api.internal.filereader,
+ org.foodauthent.model,
+ org.osgi.service.component.annotations;version="1.2.0",
+ org.slf4j;version="1.7.10"
 Export-Package: org.foodauthent.impl.openchrom
 Service-Component: OSGI-INF/org.foodauthent.impl.openchrom.OpenChromRawFileReader.xml
