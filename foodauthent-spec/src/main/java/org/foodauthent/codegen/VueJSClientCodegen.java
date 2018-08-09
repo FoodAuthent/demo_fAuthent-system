@@ -45,7 +45,6 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 	private static final String VUE_JS_FORMS_EXTENSION = "x-ui-vue.js";
 
 	private static final Object[][] ARRAY_STATIC_FIELDS = new Object[][] { { "type", "array" },
-			{ "label", "Parameters" }, { "model", "parameters" }, { "inputName", "parameters" },
 			{ "validator", "array" }, { "showRemoveButton", true }, { "itemFieldClasses", "form-control" },
 			{ "itemContainerClasses", "input-group pb-2" }, { "newElementButtonLabelClasses", "btn btn-outline-dark" },
 			{ "removeElementButtonClasses", "btn btn-danger input-group-append" },

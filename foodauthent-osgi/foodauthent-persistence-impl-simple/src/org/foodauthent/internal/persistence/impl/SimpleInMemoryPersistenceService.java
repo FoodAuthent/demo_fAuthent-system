@@ -15,6 +15,7 @@ import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.Model;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.SOP;
 import org.foodauthent.model.Workflow;
@@ -103,6 +104,16 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 					if (keywords.contains(fs.getName())) {
 						result.add((T) fs);
 					}
+				}
+			} else if (modelType.equals(Product.class) && o instanceof Product) {
+				final Product p = (Product) o;
+				if (keywords.isEmpty() || keywords.contains(p.getBrand())) {
+					result.add((T) p);
+				}
+			} else if (modelType.equals(Model.class) && o instanceof Model) {
+				final Model m = (Model) o;
+				if (keywords.isEmpty() || keywords.contains(m.getDescription()) || keywords.contains(m.getName())) {
+					result.add((T) m);
 				}
 			} else {
 				if (logger.isDebugEnabled()) {

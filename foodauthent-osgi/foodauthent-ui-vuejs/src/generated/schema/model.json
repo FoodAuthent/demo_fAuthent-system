@@ -42,11 +42,10 @@
       "name" : "Pmml"
     } ]
   }, {
-    "label" : "Parameters",
-    "model" : "parameters",
+    "label" : "Tags",
+    "model" : "tags",
     "required" : false,
     "type" : "array",
-    "inputName" : "tags",
     "validator" : "array",
     "showRemoveButton" : true,
     "itemFieldClasses" : "form-control",
@@ -56,6 +55,7 @@
     "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
     "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
     "newElementButtonLabel" : "Add",
+    "inputName" : "tags",
     "items" : {
       "type" : "object",
       "schema" : {
@@ -78,6 +78,7 @@
     "label" : "File-id",
     "model" : "file-id",
     "required" : false,
+    "idprovider" : "upload-file",
     "type" : "input",
     "inputType" : "text"
   } ]
