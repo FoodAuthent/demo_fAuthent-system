@@ -62,6 +62,15 @@ public class LocalKnimeJobService implements JobService {
 	@Override
 	public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model)
 			throws InitJobException {
+		if(workflow == null) {
+			throw new InitJobException("No workflow given");
+		}
+		if(fingerprintSet == null) {
+			throw new InitJobException("No fingerprint set given");
+		}
+		if(model == null) {
+			throw new InitJobException("No model given");
+		}
 		if (workflow.getType() != org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW) {
 			throw new InitJobException("Referenced workflow is not a prediction workflow");
 		}
@@ -140,6 +149,12 @@ public class LocalKnimeJobService implements JobService {
 
 	@Override
 	public TrainingJob createNewTrainingJob(Workflow workflow, FingerprintSet fingerprintSet) throws InitJobException {
+		if(workflow == null) {
+			throw new InitJobException("No workflow given");
+		}
+		if(fingerprintSet == null) {
+			throw new InitJobException("No fingerprint set given");
+		}
 		if (workflow.getType() != org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW) {
 			// TODO throw appropriate exception
 			throw new InitJobException("Referenced workflow is not a prediction workflow");

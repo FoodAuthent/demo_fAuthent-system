@@ -20,9 +20,12 @@
       <md-app-content>
  <b-card no-body>
   <b-tabs card>
-    <b-tab title="Results" active>
-  <trainingjobTable></trainingjobTable>
-    </b-tab>
+  <b-tab title="Results" active>
+    <trainingjobTable></trainingjobTable>
+  </b-tab>
+  <b-tab title="Form">
+     <trainingjobForm></trainingjobForm>
+  </b-tab>
   <b-tab title="Empty">
 
     </b-tab>
@@ -36,8 +39,8 @@
 
 <script>
 import trainingjobTable from '@/components/trainingjob/TrainingjobTable';
+import trainingjobForm from '@/components/trainingjob/TrainingjobForm';
   export default {
-    name: 'Test',
     data: () => ({
 
     }),
@@ -48,7 +51,8 @@ import trainingjobTable from '@/components/trainingjob/TrainingjobTable';
 
     },
       components: {
-            trainingjobTable
+            trainingjobTable,
+            trainingjobForm
         }
   }
 </script>
