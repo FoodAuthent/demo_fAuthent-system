@@ -17,7 +17,7 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Prediction', 'model/PredictionJob', 'model/PredictionJobPageResult', 'model/PredictionPageResult', 'model/TrainingJob', 'model/TrainingJobPageResult', 'model/Workflow', 'model/WorkflowPageResult'], factory);
+    define(['../ApiClient', '../model/Prediction', '../model/PredictionJob', '../model/PredictionJobPageResult', '../model/PredictionPageResult', '../model/TrainingJob', '../model/TrainingJobPageResult', '../model/Workflow', '../model/WorkflowPageResult'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
     module.exports = factory(require('../ApiClient'), require('../model/Prediction'), require('../model/PredictionJob'), require('../model/PredictionJobPageResult'), require('../model/PredictionPageResult'), require('../model/TrainingJob'), require('../model/TrainingJobPageResult'), require('../model/Workflow'), require('../model/WorkflowPageResult'));
