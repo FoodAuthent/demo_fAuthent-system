@@ -32,13 +32,13 @@
 
    <features>
       <feature id="org.foodauthent.feature"/>
-      <feature id="org.eclipse.equinox.core.feature"/>
-      <feature id="org.eclipse.equinox.executable"/>
       <feature id="org.eclipse.equinox.server.core"/>
       <feature id="org.eclipse.equinox.server.jetty"/>
       <feature id="org.foodauthent.knime.feature"/>
-      <feature id="org.eclipse.core.runtime.feature"/>
       <feature id="org.foodauthent.openchrom.feature"/>
+      <feature id="org.eclipse.platform"/>
+      <feature id="org.eclipse.ecf.core.feature"/>
+      <feature id="org.eclipse.ecf.filetransfer.feature"/>
    </features>
 
    <configurations>
@@ -57,11 +57,6 @@
       <plugin id="org.eclipse.equinox.http.registry" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.http.servlet" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.launcher" autoStart="true" startLevel="0" />
-      <plugin id="org.eclipse.equinox.p2.core" autoStart="true" startLevel="0" />
-      <plugin id="org.eclipse.equinox.p2.engine" autoStart="true" startLevel="0" />
-      <plugin id="org.eclipse.equinox.p2.metadata" autoStart="true" startLevel="0" />
-      <plugin id="org.eclipse.equinox.p2.metadata.repository" autoStart="true" startLevel="0" />
-      <plugin id="org.eclipse.equinox.p2.repository" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.preferences" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.registry" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.security" autoStart="true" startLevel="0" />
