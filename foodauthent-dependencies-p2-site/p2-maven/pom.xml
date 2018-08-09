@@ -197,7 +197,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 								<feature>
 									<id>org.slf4j.feature</id>
 									<version>1.7.25.qualifier</version>
-									<label>SLF4J 1.7.25 Feature</label>
+									<label>Logging Feature</label>
 									<providerName>slf4j.org</providerName>
 									<copyright>slf4j.org</copyright>
 									<license>MIT License</license>
@@ -224,7 +224,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 								<feature>
 									<id>org.scala-lang.feature</id>
 									<version>2.12.3.qualifier</version>
-									<label>Scala 2.12.3 Feature</label>
+									<label>Scala Feature</label>
 									<providerName>org.scala-lang</providerName>
 									<copyright>https://www.scala-lang.org</copyright>
 									<license>BSD-3 Clause</license>
