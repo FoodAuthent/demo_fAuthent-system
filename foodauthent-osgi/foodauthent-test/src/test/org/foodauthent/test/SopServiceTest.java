@@ -9,6 +9,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.ws.rs.core.Response;
+
 import org.foodauthent.model.SOP;
 import org.foodauthent.model.SOPPageResult;
 import org.foodauthent.rest.api.service.SopRestService;
@@ -31,16 +33,21 @@ public class SopServiceTest extends AbstractITTest {
 		.readEntity(SOPPageResult.class).getResults();
 	allSops.forEach(sop -> s.removeSOPById(sop.getFaId()));
 	
+	//test what happens when there are no sops
+	SOPPageResult sopPage = s.findSOPByKeyword(0, 10, null).readEntity(SOPPageResult.class);
+	assertEquals(0, sopPage.getPageNumber().intValue());
+	assertEquals(0, sopPage.getResults().size());
+	assertEquals(0, sopPage.getResultCount().intValue());
+
+	//add sops
 	List<SOP> sops = IntStream.range(0, 95).mapToObj(i -> {
 	    return SOP.builder().setName("sop" + i).setDescription("desc" + (i % 10)).setFileId(UUID.randomUUID())
 		    .setProductId(UUID.randomUUID()).build();
 	}).collect(Collectors.toList());
-
-	
 	sops.stream().forEach(sop -> s.createNewSOP(sop));
 	
-	SOPPageResult sopPage = s.findSOPByKeyword(1, 3, Arrays.asList("desc1", "desc2"))
-		.readEntity(SOPPageResult.class);
+	//retrieve them
+	sopPage = s.findSOPByKeyword(1, 3, Arrays.asList("desc1", "desc2")).readEntity(SOPPageResult.class);
 	assertEquals(1, sopPage.getPageNumber().intValue());
 	assertEquals(3, sopPage.getResults().size());
 	assertEquals(20, sopPage.getResultCount().intValue());
