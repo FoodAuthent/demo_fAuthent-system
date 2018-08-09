@@ -1028,6 +1028,7 @@ definitions:
       - name: type
       - name: tags
       - name: file-id
+        id-provider: upload-file
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.

@@ -7,11 +7,10 @@
     "type" : "input",
     "inputType" : "text"
   }, {
-    "label" : "Parameters",
-    "model" : "parameters",
+    "label" : "Fingerprints",
+    "model" : "fingerprints",
     "required" : false,
     "type" : "array",
-    "inputName" : "fingerprints",
     "validator" : "array",
     "showRemoveButton" : true,
     "itemFieldClasses" : "form-control",
@@ -21,6 +20,7 @@
     "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
     "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
     "newElementButtonLabel" : "Add",
+    "inputName" : "fingerprints",
     "items" : {
       "type" : "object",
       "schema" : {
