@@ -34,7 +34,7 @@
          v-model="shownItems"
          @row-clicked="myRowClickHandler"
 >
-  <template slot="actions" scope="items">
+  <template slot="actions">
    <!-- <b-btn size="sm" @click="log(environment.item)">Details</b-btn> -->
     <b-btn size="sm" v-b-modal.modal1>Details</b-btn>
   </template>

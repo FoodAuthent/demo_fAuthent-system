@@ -9,6 +9,7 @@ import VueFormGenerator from "vue-form-generator";
 import VueResource from 'vue-resource';
 import ModuleLibrary from 'vfg-field-array';
 import ModuleLibrary2 from 'vfg-field-object';
+import fieldSelectModel from '@/components/customFields/fieldSelectModel'
 
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css';
@@ -21,6 +22,8 @@ Vue.use(ModuleLibrary);
 Vue.use(ModuleLibrary2);
 
 Vue.use(VueResource);
+
+Vue.component("fieldSelectModel", fieldSelectModel);
 
 Vue.use(VueFormGenerator);
 
