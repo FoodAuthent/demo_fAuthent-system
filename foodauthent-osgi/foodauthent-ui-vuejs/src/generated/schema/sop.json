@@ -27,7 +27,7 @@
       "buttonLabel": "Search Product",
       "readonly": true,
       "modalId": "testModal",
-      "fieldName": "title"
+      "fieldName": "fa-id"
     }
   ]
 }

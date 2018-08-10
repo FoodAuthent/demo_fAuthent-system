@@ -27,7 +27,7 @@
    <template>
    <div class="button-div"> <b-button variant="primary" @click="search()">Search</b-button></div>
     <b-table striped hover :items="items" :fields="fields"  @row-clicked="myRowClickHandler">
-      <template slot="actions" scope="items">
+      <template slot="actions" slot-scope="items">
     <b-btn size="sm" @click="testFunction">Select</b-btn>
   </template>
     </b-table>

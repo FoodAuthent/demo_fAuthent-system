@@ -16,7 +16,7 @@
       </b-col>
       <b-col md="6" class="my-1">
       <b-form-group horizontal label="PER PAGE" class="mb-0">
-          <b-form-select :options="pageOptions" v-model="perPage" />
+          <b-form-select :options="pageOptionsPerPage" v-model="perPage" />
         </b-form-group>
       </b-col>
       </b-row>
@@ -34,7 +34,7 @@
          v-model="shownItems"
          @row-clicked="myRowClickHandler"
 >
-  <template slot="actions">
+  <template slot="actions" slot-scope="items">
    <!-- <b-btn size="sm" @click="log(environment.item)">Details</b-btn> -->
     <b-btn size="sm" v-b-modal.modal1>Details</b-btn>
   </template>
@@ -72,7 +72,7 @@ export default {
       sortBy: "id",
       sortDesc: false,
       filter: null,
-      pageOptionsPerPage: [1, 10, 15]
+      pageOptionsPerPage: [10, 25, 50, 100]
     };
   },
   mounted() {

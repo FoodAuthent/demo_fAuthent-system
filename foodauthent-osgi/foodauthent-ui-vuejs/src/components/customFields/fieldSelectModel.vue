@@ -25,7 +25,7 @@
 </template>
 <!-- Table -->
 <template v-if="items">
-<div id="searchtable"">
+<div id="searchtable">
    <b-form-group horizontal label="SEARCH" class="mb-1">
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search" />
@@ -77,6 +77,7 @@ var getProducts = require('@/utils/functions.js').default.getProducts;
     search(){
      let self = this;
      getProducts(self);
+     console.log(self.items);
              },
     myRowClickHandler(record, index) {
     this.value = record[this.schema.fieldName];

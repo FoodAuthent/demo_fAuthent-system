@@ -16,7 +16,7 @@
       </b-col>
       <b-col md="6" class="my-1">
       <b-form-group horizontal label="PER PAGE" class="mb-0">
-          <b-form-select :options="pageOptions" v-model="perPage" />
+          <b-form-select :options="pageOptionsPerPage" v-model="perPage" />
         </b-form-group>
       </b-col>
       </b-row>
@@ -70,7 +70,7 @@ import axios from 'axios'
       sortBy: 'id',
       sortDesc: false,
       filter: null,
-      pageOptions: [ 1, 10, 15 ]
+      pageOptionsPerPage: [10, 25, 50, 100]
     }
   },
     mounted() {

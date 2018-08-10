@@ -67,7 +67,7 @@ export default {
       perPage: 10,
       sortDesc: false,
       filter: null,
-      pageOptionsPerPage: [1, 10, 15]
+      pageOptionsPerPage: [10, 25, 50, 100]
     };
   },
   mounted() {
