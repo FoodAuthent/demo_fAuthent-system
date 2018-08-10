@@ -57,7 +57,7 @@ public class WorkflowServiceTest extends AbstractITTest {
 		.post(Entity.entity(fileMeta, MediaType.APPLICATION_JSON), UUID.class);
 	MultiPart multiPart = new MultiPart();
 	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-	FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("files/PredictionWorkflow.knwf"),
+	FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("files/workflows/PredictionWorkflow.knwf"),
 		MediaType.APPLICATION_OCTET_STREAM_TYPE);
 	multiPart.bodyPart(filePart);
 	Response response = wt.path("/file/" + predictionWorkflowFileId + "/data").request()
@@ -187,7 +187,7 @@ public class WorkflowServiceTest extends AbstractITTest {
 		UUID.class);
 	MultiPart multiPart = new MultiPart();
 	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-	FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("files/TrainingWorkflow.knwf"),
+	FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("files/workflows/TrainingWorkflow.knwf"),
 		MediaType.APPLICATION_OCTET_STREAM_TYPE);
 	multiPart.bodyPart(filePart);
 	wt.path("file/" + fileId + "/data").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
@@ -235,7 +235,7 @@ public class WorkflowServiceTest extends AbstractITTest {
 		UUID.class);
 	MultiPart multiPart = new MultiPart();
 	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-	FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("files/WorkflowModule.knwf"),
+	FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("files/workflows/WorkflowModule.knwf"),
 		MediaType.APPLICATION_OCTET_STREAM_TYPE);
 	multiPart.bodyPart(filePart);
 	wt.path("file/" + fileId + "/data").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
@@ -260,7 +260,7 @@ public class WorkflowServiceTest extends AbstractITTest {
 		UUID.class);
 	multiPart = new MultiPart();
 	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-	filePart = new FileDataBodyPart("upfile", new File("files/ModularTrainingWorkflow.knwf"),
+	filePart = new FileDataBodyPart("upfile", new File("files/workflows/ModularTrainingWorkflow.knwf"),
 		MediaType.APPLICATION_OCTET_STREAM_TYPE);
 	multiPart.bodyPart(filePart);
 	wt.path("file/" + fileId + "/data").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
