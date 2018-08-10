@@ -62,11 +62,11 @@ public class JavascriptClientCodegen extends DefaultCodegen implements CodegenCo
     public static final String USE_ES6 = "useES6";
 
     final String[][] JAVASCRIPT_SUPPORTING_FILES = new String[][] {
-            new String[] {"ApiClient.mustache", "src/ApiClient.js"}
+            new String[] {"js-client/ApiClient.mustache", "src/ApiClient.js"}
     };
 
     final String[][] JAVASCRIPT_ES6_SUPPORTING_FILES = new String[][] {
-            new String[] {"ApiClient.mustache", "src/ApiClient.js"}
+            new String[] {"js-client/ApiClient.mustache", "src/ApiClient.js"}
     };
 
     protected String projectName;
@@ -321,6 +321,9 @@ public class JavascriptClientCodegen extends DefaultCodegen implements CodegenCo
         for (String[] supportingTemplateFile :supportingTemplateFiles) {
             supportingFiles.add(new SupportingFile(supportingTemplateFile[0], "", supportingTemplateFile[1]));
         }
+        
+        additionalProperties.put("basePathWithoutHost", swagger.getBasePath());
+        
     }
 
     @Override
