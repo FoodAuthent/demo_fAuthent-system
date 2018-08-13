@@ -38,8 +38,8 @@ public class OpenChromRawFileReaderTest {
     public void tearDown() throws Exception {
     }
 
-    private static final File testFileZip = new File("files/bruker-nmr/1.zip");
-    private static final File testDir = new File("files/bruker-nmr/1");
+    private static final File testFileZip = new File("files/bruker-nmr/speiseoel.zip");
+    private static final File testDir = new File("files/bruker-nmr/speiseoel/1");
 
     @Test
     public void test01() throws Exception {

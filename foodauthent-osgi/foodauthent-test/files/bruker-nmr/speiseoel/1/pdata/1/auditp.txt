@@ -1,0 +1,32 @@
+##TITLE= Audit trail, TopSpin 3.5 pl 2
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= nmrsu
+$$ C:/Bruker/TopSpin3.5pl2/data/Speiseöl/W_FAO06713_17P_20180316/1/pdata/1/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2018-03-16 17:36:18.043 +0100>,<nmrsu>,<CZC14270YN>,<go4>,<TopSpin 3.5.2>,
+      <created by zg
+	started at 2018-03-16 17:33:29.675 +0100,
+	POWCHK enabled, PULCHK disabled,
+       configuration hash MD5:
+       1E D9 84 B1 9A 61 FA 0C 19 F8 65 63 09 82 AA 02
+       data hash MD5: 64K
+       12 BF A3 2F C7 D3 61 6C 2B 89 80 4B 4B 13 92 49>)
+(   2,<2018-03-16 17:36:18.560 +0100>,<nmrsu>,<CZC14270YN>,<audit>,<TopSpin 3.5.2>,
+      <user comment:
+       ICON-NMR User ID: nmrsu
+       data hash MD5: 64K
+       12 BF A3 2F C7 D3 61 6C 2B 89 80 4B 4B 13 92 49>)
+(   3,<2018-03-16 17:36:20.183 +0100>,<nmrsu>,<CZC14270YN>,<proc1d>,<TopSpin 3.5.2>,
+      <Start of raw data processing
+       efp LB = 0.3 FT_mod = 6 PKNL = 1 PHC0 = 152.158 PHC1 = 0 SI = 128K 
+       data hash MD5: 128K
+       D1 11 11 1D 45 B4 F3 E2 E0 73 F9 F3 F6 F3 36 49>)
+(   4,<2018-03-16 17:36:31.711 +0100>,<nmrsu>,<CZC14270YN>,<aplbc.c>,<TopSpin 3.5.2>,
+      <Applied phased Lorentz-Baseline-Correction (METHOD=STANDARD) with following parameters:
+width = 17.30ppm, center = 4.69ppm, factor = 3.008670e+004, bphc0 = -28.20, phc0 = 0.03
+used 668 iterations and 0 restart(s) -- final error: 3.527e+011>)
+##END=
+
+$$ hash MD5
+$$ 32 F5 AA 8E FF 14 CA DC E1 AE 50 B9 00 1E CE 49
