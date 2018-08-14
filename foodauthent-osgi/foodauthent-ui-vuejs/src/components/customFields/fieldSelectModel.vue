@@ -7,24 +7,16 @@
         :disabled="disabled"
         :maxlength="schema.max"
         :placeholder="schema.placeholder"
-        :endpoint="schema.endpoint"
         :readonly="schema.readonly"
+        :idprovider="schema.idprovider"
+        :test="schema.test"
         :buttonLabel="schema.buttonLabel">
 
-        <b-btn v-b-modal.testModal>{{ schema.buttonLabel }}</b-btn>
-
-      <!-- MODAL SEARCH -->
- <b-modal :id="schema.modalId" :title="schema.modalId" size="lg">
-<template v-if="!items">
-  <div>
-    <b-form inline>
-      <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName2" placeholder="product" />
-       <b-btn variant="primary" @click="search">Search</b-btn>
-    </b-form>
-  </div>
-</template>
+<!-- MODAL SEARCH -->
+ <!--<b-modal :id="schema.modalId" :title="schema.modalId" size="lg">-->
+<b-modal :id="schema.idprovider" :title="schema.idprovider" size="lg" @show="loadData" @cancel="handleCancel">
 <!-- Table -->
-<template v-if="items">
+<template>
 <div id="searchtable">
    <b-form-group horizontal label="SEARCH" class="mb-1">
           <b-input-group>
@@ -35,7 +27,9 @@
           </b-input-group>
         </b-form-group>
 <!-- TABLE -->
+
   <b-table bordered striped hover
+          show-empty
          :sort-by.sync="sortBy"
          :sort-desc.sync="sortDesc"
          :items="items"
@@ -46,6 +40,7 @@
          @row-clicked="myRowClickHandler"
 >
 </b-table>
+<b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" />
 
 </div>
 </template>
@@ -57,49 +52,66 @@
 
 <script>
 import VueFormGenerator from "vue-form-generator";
-var getProducts = require('@/utils/functions.js').default.getProducts;
-   export default {
-      mixins: [ VueFormGenerator.abstractField ],
-    data() {
-			return {
-			model:{"value": ""},
-      items: null,
+var getProducts = require("@/utils/productFunction.js").default.getProducts;
+var getFingerprints = require("@/utils/fingerprintFunction.js").default.getFingerprints;
+var getWorkflows = require("@/utils/workflowFunction.js").default.getWorkflows;
+var getModels = require("@/utils/modelFunction.js").default.getModels;
+export default {
+  mixins: [VueFormGenerator.abstractField],
+  data() {
+    return {
+      items: [],
       fields: null,
       currentPage: 1,
       perPage: 10,
-      sortBy: 'id',
+      sortBy: "id",
       sortDesc: false,
-      filter: null,
-      shownItems:""
-			};
-    },
-  methods: {
-    search(){
-     let self = this;
-     getProducts(self);
-     console.log(self.items);
-             },
-    myRowClickHandler(record, index) {
-    this.value = record[this.schema.fieldName];
+      filter: null
+    };
   },
-  onFiltered (filteredItems) {
-      this.totalRows = filteredItems.length
-      this.currentPage = 1
+  methods: {
+    loadData() {
+      let self = this;
+      if (this.schema.idprovider == "select-product") {
+        getProducts(self);
+      } else if (this.schema.idprovider == "select-fingerprint") {
+        getFingerprints(self);
+      }  else if (this.schema.idprovider == "select-workflow") {
+        getWorkflows(self);
+      } else if (this.schema.idprovider == "select-model") {
+        getModels(self);
+      }else {
+        alert("NO method found");
+      }
+    },
+    myRowClickHandler(record, index) {
+      this.value = record[this.schema.fieldName];
+    },
+    onFiltered(filteredItems) {
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    handleCancel() {
+      this.value = "";
     }
   },
-    computed: {
-    sortOptions () {
+  computed: {
+    sortOptions() {
       // Create an options list from our fields
-      return this.fields
-        .filter(f => f.sortable)
-        .map(f => { return { text: f.label, value: f.key } })
+      return this.fields.filter(f => f.sortable).map(f => {
+        return { text: f.label, value: f.key };
+      });
     }
   }
-   };
-
+};
 </script>
 
 
 <style>
-
+.field-wrap {
+  width: 100%;
+}
+.input-group {
+  flex-wrap: nowrap;
+}
 </style>

@@ -12,7 +12,7 @@
    <div class="panel panel-default">
       <div class="panel-heading">Model</div>
       <div class="panel-body">
-        <pre v-if="model" v-html="prettyJSON(model)"></pre>
+        <pre v-if="model" v-html="JSON.stringify(model, undefined, 4)"></pre>
       </div>
     </div>
 
@@ -34,14 +34,41 @@
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
 import jsonschema from '@/generated/schema/fingerprint.json';
-import {EndpointUrl} from '../../config.js'
+
+console.log(jsonschema.fields);
+function getFun(val) {
+  return function() {
+    this.$root.$emit("bv::show::modal", val);
+  };
+}
+
+if (jsonschema.fields) {
+  for (var i = 0; i < jsonschema.fields.length; i++) {
+    var currentField = jsonschema.fields[i];
+
+    if (currentField.idprovider) {
+      console.log("Provider: ", currentField.idprovider);
+
+      var buttton = [
+        {
+          classes: "btn-location",
+
+          label: currentField.idprovider,
+
+          onclick: getFun(currentField.idprovider)
+        }
+      ];
+
+      currentField.buttons = buttton;
+    }
+  }
+}
  export default {
     data() {
 			return {
         schema: jsonschema,
         model: {},
         response: "",
-        endpointurl : EndpointUrl.FINGERPRINTURL,
         formOptions: {
             validateAfterLoad: true,
             validateAfterChanged: true
@@ -49,27 +76,6 @@ import {EndpointUrl} from '../../config.js'
 			};
     },
       methods: {
-        prettyJSON: function(json) {
-            if (json) {
-                json = JSON.stringify(json, undefined, 4);
-                json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
-                return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(match) {
-                    var cls = 'number';
-                    if (/^"/.test(match)) {
-                        if (/:$/.test(match)) {
-                            cls = 'key';
-                        } else {
-                            cls = 'string';
-                        }
-                    } else if (/true|false/.test(match)) {
-                        cls = 'boolean';
-                    } else if (/null/.test(match)) {
-                        cls = 'null';
-                    }
-                    return '<span class="' + cls + '">' + match + '</span>';
-                });
-            }
-        },
           save() {
           console.log("URL",this.endpointurl);
           console.log(JSON.stringify(this.model, undefined, 4));

@@ -64,3 +64,11 @@ text-align: right;
 .field-checklist .wrapper {
 	width: 100%;
 }
+
+.custom-select {
+  width: 20%;
+}
+
+.btn .md-icon.md-theme-default.md-icon-font {
+  color: #fff;
+}

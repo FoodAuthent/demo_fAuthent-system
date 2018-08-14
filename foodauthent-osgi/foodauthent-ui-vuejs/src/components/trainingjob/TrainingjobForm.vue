@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="app2">
     <div class="panel panel-default">
-      <div class="panel-heading">Create new Training Job</div>
+      <div class="panel-heading">TRAINING JOB FORM</div>
       <div class="panel-body">
         <vue-form-generator :schema="schema" :model="model" :options="formOptions">
         </vue-form-generator>
@@ -10,9 +10,9 @@
     </div>
 
    <div class="panel panel-default">
-      <div class="panel-heading">Request Parameters</div>
+      <div class="panel-heading">Model</div>
       <div class="panel-body">
-        <pre v-if="model" v-html="prettyJSON(model)"></pre>
+         <pre v-if="model" v-html="JSON.stringify(model, undefined, 4)"></pre>
       </div>
     </div>
 
@@ -20,21 +20,45 @@
     <h1>Response</h1>
    <p> {{response}}</p>
     </div>
-
-  <!--   <div class="panel panel-default">
-      <div class="panel-heading">Schema</div>
-      <div class="panel-body">
-        <pre v-if="model" v-html="prettyJSON(schema)"></pre>
-      </div>
-    </div> -->
   </div>
 </template>
 
 <script>
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
+var saveTrainingJob = require("@/utils/workflowFunction.js").default.saveTrainingJob;
 import jsonschema from "@/schema/createTrainingJob.json";
-import { EndpointUrl } from "../../config.js";
+
+
+console.log(jsonschema.fields);
+
+function getFun(val) {
+  return function() {
+    this.$root.$emit("bv::show::modal", val);
+  };
+}
+
+if (jsonschema.fields) {
+  for (var i = 0; i < jsonschema.fields.length; i++) {
+    var currentField = jsonschema.fields[i];
+
+    if (currentField.idprovider) {
+      console.log("Provider: ", currentField.idprovider);
+
+      var buttton = [
+        {
+          classes: "btn-location",
+
+          label: currentField.idprovider,
+
+          onclick: getFun(currentField.idprovider)
+        }
+      ];
+
+      currentField.buttons = buttton;
+    }
+  }
+}
 
 export default {
   data() {
@@ -42,7 +66,6 @@ export default {
       schema: jsonschema,
       model: {},
       response: "",
-      endpointurl: EndpointUrl.TRAININGJOBURL,
       formOptions: {
         validateAfterLoad: true,
         validateAfterChanged: true
@@ -50,76 +73,10 @@ export default {
     };
   },
   methods: {
-    prettyJSON: function(json) {
-      if (json) {
-        json = JSON.stringify(json, undefined, 4);
-        json = json
-          .replace(/&/g, "&")
-          .replace(/</g, "<")
-          .replace(/>/g, ">");
-        return json.replace(
-          /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
-          function(match) {
-            var cls = "number";
-            if (/^"/.test(match)) {
-              if (/:$/.test(match)) {
-                cls = "key";
-              } else {
-                cls = "string";
-              }
-            } else if (/true|false/.test(match)) {
-              cls = "boolean";
-            } else if (/null/.test(match)) {
-              cls = "null";
-            }
-            return '<span class="' + cls + '">' + match + "</span>";
-          }
-        );
-      }
-    },
     save() {
-      console.log("URL", this.endpointurl);
-      console.log(JSON.stringify(this.model, undefined, 4));
-      //var ApiClient = require("../../generated/rest-client/src/ApiClient.js");
-      //var apiClient = new ApiClient();
-      //var WorkflowApi = require("../../generated/rest-client/src/api/WorkflowApi.js");
-      //var workflowApi = new WorkflowApi(apiClient);
-      //var callback = function(error, data, response) {
-      //  if (error) {
-      //    this.response = result.data;
-      //    console.error(error);
-      //  } else {
-      //    this.reponse = result.data;
-      //    console.log("API called successfully. Returned data: " + data);
-      //  }
-      //};
-      //workflowApi.createTrainingJob(
-      //  this.model["workflow-id"],
-      //  this.model["fingerprintset-id"],
-      //  callback
-      //    );
-
-      this.response = "";
-      //TODO: do better and use auto-generated js-client
-      let urlWithParams =
-        this.endpointurl +
-        "?workflow-id=" +
-        this.model["workflow-id"] +
-        "&fingerprintset-id=" +
-        this.model["fingerprintset-id"];
-      this.$http
-        .post(this.endpointurl, JSON.stringify(this.model, undefined, 4), {
-          headers: { "content-type": "application/json" }
-        })
-        .then(
-          result => {
-            this.response = result.data;
-          },
-          error => {
-            console.error(error);
-            this.response = error;
-          }
-        );
+      let self = this;
+      console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
+      saveTrainingJob(JSON.stringify(this.model, undefined, 4), self);
     }
   },
   components: {

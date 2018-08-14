@@ -1,10 +1,19 @@
 <template>
   <div id="modelTable">
-    <b-container fluid>
-    <!-- User Interface controls -->
+ <b-container fluid>
+    <!-- UPDATE -->
     <b-row>
-      <b-col md="6" class="my-1">
-    <!-- SEARCH -->
+        <b-col>
+           <b-btn variant="primary" size="sm" @click="loadTableData"><md-icon>autorenew</md-icon></b-btn>
+        </b-col>
+              <!-- PER PAGE -->
+      <b-col class="my-1">
+      <b-form-group horizontal label="PER PAGE" class="mb-0">
+          <b-form-select :options="pageOptionsPerPage" v-model="perPage" />
+        </b-form-group>
+      </b-col>
+        <!-- SEARCH -->
+      <b-col class="my-1">
    <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search" />
@@ -14,16 +23,11 @@
           </b-input-group>
         </b-form-group>
       </b-col>
-      <b-col md="6" class="my-1">
-      <b-form-group horizontal label="PER PAGE" class="mb-0">
-          <b-form-select :options="pageOptions" v-model="perPage" />
-        </b-form-group>
-      </b-col>
       </b-row>
   </b-container>
 
 <!-- TABLE -->
-  <b-table bordered striped hover
+  <b-table bordered striped hover show-empty
          :sort-by.sync="sortBy"
          :sort-desc.sync="sortDesc"
          :items="items"
@@ -48,7 +52,7 @@
 
 
 <script>
-import { EndpointUrl } from "../../config.js";
+var getModels = require("@/utils/modelFunction.js").default.getModels;
 export default {
   name: "Workflow",
   data() {
@@ -62,30 +66,17 @@ export default {
       // { key: 'description', sortable: true },
       // { key: 'actions', sortable: false }
       // ],
-      endpointurl: EndpointUrl.MODELURL,
       currentPage: 1,
       perPage: 10,
       sortDesc: false,
+      sortBy: "id",
+      shownItems: null,
       filter: null,
       pageOptionsPerPage: [10, 25, 50, 100]
     };
   },
   mounted() {
-    let self = this;
-    fetch(self.endpointurl + "?pageNumber=0&pageSize=" + self.perPage)
-      .then(j => {
-        return j.json();
-      })
-      .then(r => {
-        if (!r.results) {
-          self.items.push(r);
-        } else {
-          self.items = r.results;
-        }
-      });
-    for (var item of items) {
-      pageOptionsPageNumber.push(item.index);
-    }
+    this.loadTableData();
   },
   computed: {
     sortOptions() {
@@ -96,6 +87,11 @@ export default {
     }
   },
   methods: {
+    loadTableData() {
+      console.log("Load table data");
+      let self = this;
+      getModels(self);
+    },
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items
       // `index` will be the visible row number (available in the v-model 'shownItems')

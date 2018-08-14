@@ -12,7 +12,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">Request Parameters</div>
       <div class="panel-body">
-        <pre v-if="model" v-html="prettyJSON(model)"></pre>
+        <pre v-if="model" v-html="JSON.stringify(model, undefined, 4)"></pre>
       </div>
     </div>
 
@@ -35,14 +35,46 @@
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
 import jsonschema from '@/schema/createPredictionJob.json';
-import {EndpointUrl} from '../../config.js'
+var savePredictionJob = require("@/utils/workflowFunction.js").default.savePredictionJob;
+
+console.log(jsonschema.fields);
+
+function getFun(val) {
+  return function() {
+    this.$root.$emit("bv::show::modal", val);
+  };
+}
+
+if (jsonschema.fields) {
+  for (var i = 0; i < jsonschema.fields.length; i++) {
+    var currentField = jsonschema.fields[i];
+
+    if (currentField.idprovider) {
+      console.log("Provider: ", currentField.idprovider);
+
+      var buttton = [
+        {
+          classes: "btn-location",
+
+          label: currentField.idprovider,
+
+          onclick: getFun(currentField.idprovider)
+        }
+      ];
+
+      currentField.buttons = buttton;
+    }
+  }
+}
+
+
+
  export default {
     data() {
 			return {
         schema: jsonschema,
         model: {},
         response: "",
-        endpointurl : EndpointUrl.PREDICTIONJOBURL,
         formOptions: {
             validateAfterLoad: true,
             validateAfterChanged: true
@@ -50,40 +82,11 @@ import {EndpointUrl} from '../../config.js'
 			};
     },
       methods: {
-        prettyJSON: function(json) {
-            if (json) {
-                json = JSON.stringify(json, undefined, 4);
-                json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
-                return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(match) {
-                    var cls = 'number';
-                    if (/^"/.test(match)) {
-                        if (/:$/.test(match)) {
-                            cls = 'key';
-                        } else {
-                            cls = 'string';
-                        }
-                    } else if (/true|false/.test(match)) {
-                        cls = 'boolean';
-                    } else if (/null/.test(match)) {
-                        cls = 'null';
-                    }
-                    return '<span class="' + cls + '">' + match + '</span>';
-                });
-            }
-        },
-          save() {
-          console.log("URL",this.endpointurl);
-          console.log(JSON.stringify(this.model, undefined, 4));
-            this.response = "";
-                //TODO: do better and use auto-generated js-client
-                let urlWithParams = this.endpointurl + "?workflow-id=" + this.model['workflow-id'] + "&fingerprintset-id=" + this.model['fingerprintset-id'] + "&model-id=" + this.model['model-id'];
-                this.$http.post(urlWithParams, "", { headers: { "content-type": "application/json" } }).then(result => {
-                    this.response = result.data;
-                }, error => {
-                    console.error(error);
-                    this.response = error;
-                });
-            },
+    save() {
+      let self = this;
+      console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
+      savePredictionJob(JSON.stringify(this.model, undefined, 4), self);
+    }
         },
       components: {
         "vue-form-generator": VueFormGenerator.component
