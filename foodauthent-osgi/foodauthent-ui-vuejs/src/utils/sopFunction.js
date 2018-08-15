@@ -1,14 +1,15 @@
 var MyObject = function () {
+
+  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+  var apiClient = new ApiClient();
+  //only for test---
+  apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
+  //only for test---
+  var SopApi = require("../generated/rest-client/src/api/SopApi.js");
+  var sopApi = new SopApi(apiClient);
+
   var getSops = function (self) {
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
 
-    //only for test---
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-    //only for test---
-
-    var SopApi = require("../generated/rest-client/src/api/SopApi.js");
-    var sopApi = new SopApi(apiClient);
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -31,13 +32,6 @@ var MyObject = function () {
   };
   var saveSop = function (json, self) {
     console.log('Save Sop');
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-    //only for test---
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-    //only for test---
-    var SopApi = require("../generated/rest-client/src/api/SopApi.js");
-    var sopApi = new SopApi(apiClient);
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);

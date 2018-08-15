@@ -1,29 +1,32 @@
 {
-  "fields" : [ {
-    "label" : "File-id",
-    "model" : "file-id",
-    "required" : false,
-    "idprovider" : "upload-file",
-    "type" : "input",
-    "inputType" : "text"
+  "fields": [ {
+    "type": "loadFile",
+    "label": "File-id",
+    "model": "file-id",
+    "buttonLabel": "Load File",
+    "idprovider": "upload-file",
+    "readonly": true,
+    "fieldName": "fa-id",
+    "inputType": "text"
   }, {
-    "label" : "Name",
-    "model" : "name",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
+    "label": "Name",
+    "model": "name",
+    "required": false,
+    "type": "input",
+    "inputType": "text"
   }, {
-    "label" : "Description",
-    "model" : "description",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
+    "label": "Description",
+    "model": "description",
+    "required": false,
+    "type": "input",
+    "inputType": "text"
   }, {
-    "label" : "Product-id",
-    "model" : "product-id",
-    "required" : false,
-    "idprovider" : "select-product",
-    "type" : "input",
-    "inputType" : "text"
-  } ]
+    "type": "selectModel",
+    "label": "Product-id",
+    "model": "product-id",
+    "buttonLabel": "Search Product",
+    "idprovider": "select-product",
+    "readonly": true,
+    "fieldName": "fa-id"
+  }]
 }

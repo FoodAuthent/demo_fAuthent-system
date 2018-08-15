@@ -1,14 +1,14 @@
 var MyObject = function () {
+  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+  var apiClient = new ApiClient();
+  //only for test---
+  apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
+  //only for test---
+  var WorkflowApi = require("../generated/rest-client/src/api/WorkflowApi.js");
+  var workflowApi = new WorkflowApi(apiClient);
+
   var getWorkflows = function (self) {
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-
-    //only for test---
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-    //only for test---
-
-    var WorkflowApi = require("../generated/rest-client/src/api/WorkflowApi.js");
-    var workflowApi = new WorkflowApi(apiClient);
+    console.log('Get Workflow');
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -31,15 +31,7 @@ var MyObject = function () {
   };
 
   var getPredictions = function (self) {
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-
-    //only for test---
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-    //only for test---
-
-    var WorkflowApi = require("../generated/rest-client/src/api/WorkflowApi.js");
-    var workflowApi = new WorkflowApi(apiClient);
+        console.log('Get  Prediction');
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -62,15 +54,7 @@ var MyObject = function () {
   };
 
   var getPredictionJobs = function (self) {
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-
-    //only for test---
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-    //only for test---
-
-    var WorkflowApi = require("../generated/rest-client/src/api/WorkflowApi.js");
-    var workflowApi = new WorkflowApi(apiClient);
+        console.log('Get Prediction Job');
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -92,16 +76,8 @@ var MyObject = function () {
     );
   };
 
-    var getTrainingJobs = function (self) {
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-
-    //only for test---
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-    //only for test---
-
-    var WorkflowApi = require("../generated/rest-client/src/api/WorkflowApi.js");
-    var workflowApi = new WorkflowApi(apiClient);
+  var getTrainingJobs = function (self) {
+        console.log('Get Trainingjob');
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -126,13 +102,6 @@ var MyObject = function () {
 
   var saveWorkflow = function (json, self) {
     console.log('Save Workflow');
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-    //only for test---
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-    //only for test---
-    var WorkflowApi = require("../generated/rest-client/src/api/WorkflowApi.js");
-    var workflowApi = new WorkflowApi(apiClient);
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -152,15 +121,8 @@ var MyObject = function () {
     );
   };
 
-    var savePredictionJob = function (json, self) {
+  var savePredictionJob = function (json, self) {
     console.log('Save Prediction Job');
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-    //only for test---
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-    //only for test---
-    var WorkflowApi = require("../generated/rest-client/src/api/WorkflowApi.js");
-    var workflowApi = new WorkflowApi(apiClient);
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -183,13 +145,6 @@ var MyObject = function () {
 
   var saveTrainingJob = function (json, self) {
     console.log('Save Prediction Job');
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-    //only for test---
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-    //only for test---
-    var WorkflowApi = require("../generated/rest-client/src/api/WorkflowApi.js");
-    var workflowApi = new WorkflowApi(apiClient);
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);

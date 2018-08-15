@@ -9,7 +9,6 @@
         :placeholder="schema.placeholder"
         :readonly="schema.readonly"
         :idprovider="schema.idprovider"
-        :test="schema.test"
         :buttonLabel="schema.buttonLabel">
 
 <!-- MODAL SEARCH -->

@@ -1,15 +1,15 @@
 var Fingerprints = function () {
+
+  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+  var apiClient = new ApiClient();
+  //only for test---
+  apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
+  //only for test---
+  var FingerprintApi = require("../generated/rest-client/src/api/FingerprintApi.js");
+  var fingerprintApi = new FingerprintApi(apiClient);
+
   var getFingerprints = function (self) {
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-
-
-    //only for test---
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-    //only for test---
-
-    var FingerprintApi = require("../generated/rest-client/src/api/FingerprintApi.js");
-    var fingerprintApi = new FingerprintApi(apiClient);
+    console.log("getFingerprints");
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -36,17 +36,8 @@ var Fingerprints = function () {
     );
   }
 
-   var saveFingerprints = function (json, self) {
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-
-
-    //only for test---
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-    //only for test---
-
-    var FingerprintApi = require("../generated/rest-client/src/api/FingerprintApi.js");
-    var fingerprintApi = new FingerprintApi(apiClient);
+  var saveFingerprints = function (json, self) {
+    console.log("saveFingerprints");
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -63,7 +54,7 @@ var Fingerprints = function () {
 
       }
     };
-    var fingerprintSet =  json;
+    var fingerprintSet = json;
     fingerprintApi.createFingerprintSet(
       fingerprintSet,
       callback

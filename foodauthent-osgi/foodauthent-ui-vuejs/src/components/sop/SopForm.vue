@@ -41,7 +41,7 @@
 
     </div>
 
-<!-- UPLOAD FILE -->
+<!-- UPLOAD FILE 
 
   <b-modal id="upload-file" title="Upload File">
 
@@ -52,7 +52,7 @@
   </template>
 
 
-  </b-modal>
+  </b-modal> -->
 
   
 
@@ -68,8 +68,7 @@ import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
 
 var saveSop = require("@/utils/sopFunction.js").default.saveSop;
-var renderCustomField = require("@/utils/commonFunction.js").default.renderCustomField;
-
+var saveFile = require("@/utils/fileFunction.js").default.saveFile;
 import jsonschema from "@/generated/schema/sop.json";
 
 
@@ -119,6 +118,9 @@ export default {
   },
 
   methods: {
+    loadFile(){
+    console.log("FILE:",this.file);
+    },
     save() {
       let self = this;
       console.log("POST BODY", JSON.stringify(self.model, undefined, 4));

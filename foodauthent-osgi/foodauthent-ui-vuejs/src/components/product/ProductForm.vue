@@ -1,5 +1,7 @@
 <template>
   <div class="container" id="app2">
+    <b-alert :show="showSuccess" variant="success">{{messageSuccess}}</b-alert>
+     <b-alert :show="showDanger" variant="danger">{{messageDanger}}</b-alert>
     <div class="panel panel-default">
       <div class="panel-heading">PRODUCT FORM</div>
       <div class="panel-body">
@@ -34,6 +36,10 @@ export default {
       schema: jsonschema,
       model: {},
       response: "",
+      showSuccess: false,
+      showDanger: false,
+      messageSuccess: "",
+      messageDanger: "",
       formOptions: {
         validateAfterLoad: true,
         validateAfterChanged: true

@@ -1,14 +1,14 @@
 var MyObject = function () {
+  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+  var apiClient = new ApiClient();
+  //only for test---
+  apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
+  //only for test---
+  var ModelApi = require("../generated/rest-client/src/api/ModelApi.js");
+  var modelApi = new ModelApi(apiClient);
+
   var getModels = function (self) {
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-
-    //only for test---
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-    //only for test---
-
-    var ModelApi = require("../generated/rest-client/src/api/ModelApi.js");
-    var modelApi = new ModelApi(apiClient);
+    console.log('Get Model');
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -31,13 +31,6 @@ var MyObject = function () {
   };
   var saveModel = function (json, self) {
     console.log('Save Model');
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-    //only for test---
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-    //only for test---
-    var ModelApi = require("../generated/rest-client/src/api/ModelApi.js");
-    var modelApi = new ModelApi(apiClient);
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
