@@ -2,21 +2,16 @@ package org.foodauthent.impl.openchrom;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.eclipse.chemclipse.nmr.converter.core.ScanConverterNMR;
 import org.eclipse.chemclipse.processing.core.IProcessingInfo;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -25,6 +20,8 @@ import org.foodauthent.model.FileMetadata;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.openchrom.nmr.converter.supplier.bruker.model.IVendorScanNMR;
 
 @Component(service = RawFileReader.class)
 public class OpenChromRawFileReader implements RawFileReader {
@@ -40,6 +37,13 @@ public class OpenChromRawFileReader implements RawFileReader {
 	@Override
 	public Map<String, String> getAllFileMetadata(FileMetadata.TypeEnum fileType, File file) throws IOException {
 
+		if(!file.exists()) {
+			throw new FileNotFoundException(file.toString());
+		}
+		if(logger.isDebugEnabled()) {
+			logger.debug("Reading metadata from " + file);
+		}
+
 		Map<String, String> result = new LinkedHashMap<>();
 		switch(fileType) {
 			case FINGERPRINTS_BRUKER:
@@ -52,53 +56,66 @@ public class OpenChromRawFileReader implements RawFileReader {
 		return result;
 	}
 
-	@Override
-	public Map<String, String> getAllFileMetadata(FileMetadata.TypeEnum fileType, FileInputStream stream) throws IOException {
+	private void extractFileFromArchive(ZipInputStream stream, File outpath) throws IOException {
 
-		Map<String, String> result = new LinkedHashMap<>();
-		
-		File tmpFile = File.createTempFile(getClass().getSimpleName(), null);
-		FileUtils.copyInputStreamToFile(stream, tmpFile);
-		final Path tmpDir = Files.createTempDirectory(getClass().getSimpleName());
-		@SuppressWarnings("resource")
-		ZipFile zipFile = new ZipFile(tmpFile);
-		Enumeration<? extends ZipEntry> entries = zipFile.entries();
-		while(entries.hasMoreElements()) {
-			ZipEntry entry = entries.nextElement();
-			File entryDestination = new File(tmpDir.toFile(), entry.getName());
-			System.err.println(entryDestination);
+		try (FileOutputStream output = new FileOutputStream(outpath)) {
+			int len;
+			while((len = stream.read(buffer)) > 0) {
+				output.write(buffer, 0, len);
+			}
+		}
+	}
+
+	@Override
+	public Map<String, String> getAllFileMetadata(FileMetadata.TypeEnum fileType, FileInputStream stream2) throws IOException {
+
+		ZipInputStream stream = new ZipInputStream(stream2);
+		Path tmpDir = Files.createTempDirectory(getClass().getSimpleName());
+
+		if(logger.isDebugEnabled()) {
+			logger.debug("Extracting to tmp dir " + tmpDir);
+		}
+		ZipEntry entry;
+		while((entry = stream.getNextEntry()) != null) {
 			if(entry.isDirectory()) {
-				entryDestination.mkdirs();
+				if(new File(tmpDir.toFile(), entry.getName()).mkdirs()) {
+				}
+				else {
+					throw new IOException("Failed to create directory " + entry.getName());
+				}
 			} else {
-				entryDestination.getParentFile().mkdirs();
-				InputStream in = zipFile.getInputStream(entry);
-				OutputStream out = new FileOutputStream(entryDestination);
-				IOUtils.copy(in, out);
-				IOUtils.closeQuietly(in);
-				out.close();
+				File outFile = new File(tmpDir.toFile(), entry.getName());
+				extractFileFromArchive(stream, outFile);
 			}
 		}
 
-		switch(fileType) {
-			case FINGERPRINTS_BRUKER:
-				result.putAll(readBruker(tmpDir.toFile()));
-				break;
-			default:
-				throw new RuntimeException();
-		}
-
-		return result;
+		return getAllFileMetadata(fileType, new File(tmpDir.toFile(), "fid"));
 		
 	}
 
 	private Map<String, String> readBruker(File file) {
 
 		if(logger.isDebugEnabled()) {
-			logger.debug("Reading " + file.getName() + ", " + Arrays.asList(file.list()));
+			logger.debug("Reading " + file.getName());
 		}
 		Map<String, String> result = new LinkedHashMap<>();
-		final IProcessingInfo nmr = ScanConverterNMR.convert(file, new NullProgressMonitor());
-		System.err.println(nmr.getProcessingResult());
+		final IProcessingInfo processingInfo = ScanConverterNMR.convert(file, new NullProgressMonitor());
+		if(processingInfo == null) {
+			if(logger.isErrorEnabled()) {
+				logger.error("Processing failed");
+			}
+		} else {
+			Object processingResult = processingInfo.getProcessingResult();
+			// System.err.println(processingResult.getClass());
+			if(processingResult instanceof IVendorScanNMR) {
+				IVendorScanNMR scan = (IVendorScanNMR)processingResult;
+				result.putAll(scan.getHeaderDataMap());
+			} else {
+				if(logger.isErrorEnabled()) {
+					logger.error("Processing failed");
+				}
+			}
+		}
 
 		return result;
 

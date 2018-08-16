@@ -21,7 +21,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(FrameworkTest.class)
-public class OpenChromRawFileReaderTest {
+public class OpenChromRawFileReaderTest2 {
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -39,8 +39,8 @@ public class OpenChromRawFileReaderTest {
     public void tearDown() throws Exception {
     }
 
-    private static final File testDir = new File("files/bruker-nmr/1/fid");
-    private static final File testFileZip = new File("files/bruker-nmr/1.zip");
+    private static final File testDir = new File("files/bruker-nmr/speiseoel/1/fid");
+    private static final File testFileZip = new File("files/bruker-nmr/speiseoel.zip");
 
 
     @Test
