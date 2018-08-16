@@ -146,9 +146,20 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 		}
 
 		if (prop.getType().equals("string") && prop.getFormat() != null && prop.getFormat().equals("uuid")) {
-			UUIDProperty uuidProp = (UUIDProperty) prop;
+			//UUIDProperty uuidProp = (UUIDProperty) prop;
 			// uuid
-			addStaticProperties(field, STRING_STATIC_FIELDS);
+			if (uiInfo.containsKey("id-provider")) {
+				String idProvider = uiInfo.get("id-provider");
+				field.put("fieldName", "fa-id");
+				if (idProvider.startsWith("select")) {
+					field.put("type", "selectModel");
+				} else if (idProvider.startsWith("upload")) {
+					field.put("type", "loadFile");
+				}
+			} else {
+				//regard as simple string if no id-provider is given
+				addStaticProperties(field, STRING_STATIC_FIELDS);
+			}
 		} else if (prop.getType().equals("string")) {
 			StringProperty stringProp = (StringProperty) prop;
 			if (stringProp.getEnum() == null) {

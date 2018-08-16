@@ -4,8 +4,8 @@
     "model" : "product-id",
     "required" : true,
     "idprovider" : "select-product",
-    "type" : "input",
-    "inputType" : "text"
+    "fieldName" : "fa-id",
+    "type" : "selectModel"
   }, {
     "label" : "Fingerprints",
     "model" : "fingerprints",
@@ -38,8 +38,8 @@
     "model" : "file-id",
     "required" : true,
     "idprovider" : "upload-file",
-    "type" : "input",
-    "inputType" : "text"
+    "fieldName" : "fa-id",
+    "type" : "loadFile"
   }, {
     "label" : "Name",
     "model" : "name",

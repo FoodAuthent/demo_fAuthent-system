@@ -79,7 +79,7 @@
     "model" : "file-id",
     "required" : false,
     "idprovider" : "upload-file",
-    "type" : "input",
-    "inputType" : "text"
+    "fieldName" : "fa-id",
+    "type" : "loadFile"
   } ]
 }
