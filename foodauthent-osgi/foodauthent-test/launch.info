@@ -1,0 +1,3 @@
+* "FA-Tests.launch" needs the application server running.
+* "OpenChromTests.launch" does not need the application server running, since no remove calls are done (so far).
+	It tests only the internal API (so far).
