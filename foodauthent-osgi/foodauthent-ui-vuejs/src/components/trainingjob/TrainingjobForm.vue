@@ -1,5 +1,11 @@
 <template>
-  <div class="container" id="app2">
+  <div class="container" id="trainingjobContainer">
+  <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
+    <p>Operation success</p>
+  </b-alert>
+  <b-alert :show="showError" dismissible variant="danger" @dismissed="showError=false">
+     <p>There is a problem {{response}}</p>
+  </b-alert>
     <div class="panel panel-default">
       <div class="panel-heading">TRAINING JOB FORM</div>
       <div class="panel-body">
@@ -26,9 +32,9 @@
 <script>
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
-var saveTrainingJob = require("@/utils/workflowFunction.js").default.saveTrainingJob;
+var saveTrainingJob = require("@/utils/workflowFunction.js").default
+  .saveTrainingJob;
 import jsonschema from "@/schema/createTrainingJob.json";
-
 
 console.log(jsonschema.fields);
 
@@ -66,6 +72,8 @@ export default {
       schema: jsonschema,
       model: {},
       response: "",
+      showSuccess: false,
+      showError: false,
       formOptions: {
         validateAfterLoad: true,
         validateAfterChanged: true

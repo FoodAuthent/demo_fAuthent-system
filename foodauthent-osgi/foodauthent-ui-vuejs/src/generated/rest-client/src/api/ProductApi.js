@@ -82,7 +82,7 @@
 
       var authNames = [];
       var contentTypes = ['application/json'];
-      var accepts = [];
+      var accepts = ['application/json'];
       var returnType = 'String';
 
       return this.apiClient.callApi(

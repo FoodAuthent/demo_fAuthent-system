@@ -1,5 +1,11 @@
 <template>
-  <div class="container" id="app2">
+  <div class="container" id="predictionjobContainer">
+          <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
+    <p>Operation success</p>
+  </b-alert>
+  <b-alert :show="showError" dismissible variant="danger" @dismissed="showError=false">
+     <p>There is a problem {{response}}</p>
+  </b-alert>
     <div class="panel panel-default">
       <div class="panel-heading">Create new Prediction Job</div>
       <div class="panel-body">
@@ -34,8 +40,9 @@
 <script>
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
-import jsonschema from '@/schema/createPredictionJob.json';
-var savePredictionJob = require("@/utils/workflowFunction.js").default.savePredictionJob;
+import jsonschema from "@/schema/createPredictionJob.json";
+var savePredictionJob = require("@/utils/workflowFunction.js").default
+  .savePredictionJob;
 
 console.log(jsonschema.fields);
 
@@ -67,34 +74,33 @@ if (jsonschema.fields) {
   }
 }
 
-
-
- export default {
-    data() {
-			return {
-        schema: jsonschema,
-        model: {},
-        response: "",
-        formOptions: {
-            validateAfterLoad: true,
-            validateAfterChanged: true
-        }
-			};
-    },
-      methods: {
+export default {
+  data() {
+    return {
+      schema: jsonschema,
+      model: {},
+      response: "",
+      showSuccess: false,
+      showError: false,
+      formOptions: {
+        validateAfterLoad: true,
+        validateAfterChanged: true
+      }
+    };
+  },
+  methods: {
     save() {
       let self = this;
       console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
       savePredictionJob(JSON.stringify(this.model, undefined, 4), self);
     }
-        },
-      components: {
-        "vue-form-generator": VueFormGenerator.component
-    }
+  },
+  components: {
+    "vue-form-generator": VueFormGenerator.component
   }
+};
 </script>
 
 
 <style>
-
 </style>

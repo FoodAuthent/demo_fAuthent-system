@@ -1,7 +1,11 @@
 <template>
-  <div class="container" id="app2">
-    <b-alert :show="showSuccess" variant="success">{{messageSuccess}}</b-alert>
-     <b-alert :show="showDanger" variant="danger">{{messageDanger}}</b-alert>
+  <div class="container" id="productContainer">
+          <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
+    <p>Operation success</p>
+  </b-alert>
+  <b-alert :show="showError" dismissible variant="danger" @dismissed="showError=false">
+     <p>There is a problem {{response}}</p>
+  </b-alert>
     <div class="panel panel-default">
       <div class="panel-heading">PRODUCT FORM</div>
       <div class="panel-body">
@@ -37,9 +41,7 @@ export default {
       model: {},
       response: "",
       showSuccess: false,
-      showDanger: false,
-      messageSuccess: "",
-      messageDanger: "",
+      showError: false,
       formOptions: {
         validateAfterLoad: true,
         validateAfterChanged: true

@@ -36,8 +36,10 @@ var MyObject = function () {
       console.log("response:", response);
       if (error) {
         console.error(error);
+        self.showError = true;
       } else {
         self.response = data.results;
+        self.showSuccess = true;
         console.log("API called successfully. Returned data: ", data);
       }
     };

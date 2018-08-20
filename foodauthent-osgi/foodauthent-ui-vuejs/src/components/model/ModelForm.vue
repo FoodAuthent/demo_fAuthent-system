@@ -1,5 +1,11 @@
 <template>
-  <div class="container" id="app2">
+  <div class="container" id="modelContainer">
+  <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
+    <p>Operation success</p>
+  </b-alert>
+  <b-alert :show="showError" dismissible variant="danger" @dismissed="showError=false">
+     <p>There is a problem {{response}}</p>
+  </b-alert>
     <div class="panel panel-default">
       <div class="panel-heading">MODEL FORM</div>
       <div class="panel-body">
@@ -40,6 +46,8 @@ export default {
     return {
       schema: jsonschema,
       model: {},
+      showSuccess: false,
+      showError: false,
       response: "",
       formOptions: {
         validateAfterLoad: true,

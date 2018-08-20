@@ -131,6 +131,8 @@ paths:
       operationId: createFileMetadata
       consumes:
       - application/json
+      produces:
+      - application/json
       parameters:
         - name: file-metadata
           description: The actual metadata object.
@@ -343,6 +345,8 @@ paths:
       operationId: createProduct
       consumes:
       - application/json
+      produces:
+      - application/json
       parameters:
       - in: body
         name: product
@@ -468,6 +472,8 @@ paths:
       description: Creates/adds a new model.
       operationId: createModel
       consumes:
+      - application/json
+      produces:
       - application/json
       parameters:
       - in: body

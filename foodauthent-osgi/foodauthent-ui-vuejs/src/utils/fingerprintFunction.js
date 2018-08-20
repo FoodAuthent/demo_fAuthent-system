@@ -44,9 +44,11 @@ var Fingerprints = function () {
       if (error) {
         //this.response = data;
         console.error(error);
+        self.showError = true;
       } else {
         if (data) {
           self.items = data.results;
+          self.showSuccess = true;
           console.log("API called successfully. Returned data: ", data);
         } else {
           self.items = [];

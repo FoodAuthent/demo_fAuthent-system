@@ -37,6 +37,7 @@ public interface FileRestService{
     @POST
     @Path("/file")
     @Consumes({ "application/json" })
+    @Produces({ "application/json" })
     public Response createFileMetadata(FileMetadata fileMetadata
 );
 

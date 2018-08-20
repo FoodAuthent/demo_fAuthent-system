@@ -18,7 +18,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">FILE FORM</div>
       <div class="panel-body">
-        <vue-form-generator :schema="schemaFile" :model="modelFile" :options="formOptions">
+        <vue-form-generator :schema="schemaFile" :model="modelFile" :options="formFileOptions">
         </vue-form-generator>
          <b-form-file v-model="file" :state="Boolean(file)" placeholder="Choose a file..."></b-form-file>
       </div>
@@ -56,19 +56,16 @@ export default {
       modelFile: {},
       response: "",
       file: null,
-      formOptions: {
+      formFileOptions: {
         validateAfterLoad: true,
         validateAfterChanged: true
       }
     };
   },
   methods: {
-    loadFile() {
-      console.log("FILE", this.file);
+     loadFile() {
       let self = this;
-      createFileMetadata(JSON.stringify(self.modelFile, undefined, 4), self);
-      console.log("FileID", self.value);
-      uploadFile(self.value, this.file, self);
+      createFileMetadata(JSON.stringify(self.modelFile, undefined, 4),self.file, self);
     },
     handleCancel() {
       this.value = "";

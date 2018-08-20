@@ -31,7 +31,7 @@ var MyObject = function () {
   };
 
   var getPredictions = function (self) {
-        console.log('Get  Prediction');
+    console.log('Get  Prediction');
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -54,7 +54,7 @@ var MyObject = function () {
   };
 
   var getPredictionJobs = function (self) {
-        console.log('Get Prediction Job');
+    console.log('Get Prediction Job');
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -77,7 +77,7 @@ var MyObject = function () {
   };
 
   var getTrainingJobs = function (self) {
-        console.log('Get Trainingjob');
+    console.log('Get Trainingjob');
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -107,8 +107,10 @@ var MyObject = function () {
       console.log("response:", response);
       if (error) {
         console.error(error);
+        self.showError = true;
       } else {
         self.response = data.results;
+        self.showSuccess = true;
         console.log("API called successfully. Returned data: ", data);
       }
     };

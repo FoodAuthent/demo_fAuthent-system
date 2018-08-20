@@ -1,5 +1,11 @@
 <template>
-  <div class="container" id="app2">
+  <div class="container" id="fingerprintContainer">
+      <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
+    <p>Operation success</p>
+  </b-alert>
+  <b-alert :show="showError" dismissible variant="danger" @dismissed="showError=false">
+     <p>There is a problem {{response}}</p>
+  </b-alert>
     <div class="panel panel-default">
       <div class="panel-heading">FINGERPRINT FORM</div>
       <div class="panel-body">
@@ -33,7 +39,7 @@
 <script>
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
-import jsonschema from '@/generated/schema/fingerprint.json';
+import jsonschema from "@/generated/schema/fingerprint.json";
 
 console.log(jsonschema.fields);
 function getFun(val) {
@@ -63,38 +69,46 @@ if (jsonschema.fields) {
     }
   }
 }
- export default {
-    data() {
-			return {
-        schema: jsonschema,
-        model: {},
-        response: "",
-        formOptions: {
-            validateAfterLoad: true,
-            validateAfterChanged: true
-        }
-			};
-    },
-      methods: {
-          save() {
-          console.log("URL",this.endpointurl);
-          console.log(JSON.stringify(this.model, undefined, 4));
-            this.response = "";
-                this.$http.post(this.endpointurl, JSON.stringify(this.model, undefined, 4), { headers: { "content-type": "application/json" } }).then(result => {
-                    this.response = result.data;
-                }, error => {
-                    console.error(error);
-                    this.response = error;
-                });
-            },
-        },
-      components: {
-        "vue-form-generator": VueFormGenerator.component
+export default {
+  data() {
+    return {
+      schema: jsonschema,
+      model: {},
+      response: "",
+      showSuccess: false,
+      showError: false,
+      formOptions: {
+        validateAfterLoad: true,
+        validateAfterChanged: true
+      }
+    };
+  },
+  methods: {
+    save() {
+      console.log("URL", this.endpointurl);
+      console.log(JSON.stringify(this.model, undefined, 4));
+      this.response = "";
+      this.$http
+        .post(this.endpointurl, JSON.stringify(this.model, undefined, 4), {
+          headers: { "content-type": "application/json" }
+        })
+        .then(
+          result => {
+            this.response = result.data;
+          },
+          error => {
+            console.error(error);
+            this.response = error;
+          }
+        );
     }
+  },
+  components: {
+    "vue-form-generator": VueFormGenerator.component
   }
+};
 </script>
 
 
 <style>
-
 </style>

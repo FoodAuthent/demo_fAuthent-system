@@ -1,12 +1,10 @@
 var MyObject = function () {
-
+  var getFile = function (fileIdJson, self) {
     var ApiClient = require("../generated/rest-client/src/ApiClient.js");
     var apiClient = new ApiClient();
     apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
     var FileApi = require("../generated/rest-client/src/api/FileApi.js");
     var fileApi = new FileApi(apiClient);
-
-  var getFile = function (fileIdJson,self) {
     console.log('Get File');
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -25,16 +23,22 @@ var MyObject = function () {
       callback
     );
   };
-  var createFileMetadata = function (fileJson, self) {
+  var createFileMetadata = function (fileJson, file, self) {
+    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+    var apiClient = new ApiClient();
+    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
+    var FileApi = require("../generated/rest-client/src/api/FileApi.js");
+    var fileApi = new FileApi(apiClient);
     console.log('Create File Metadata');
     var callback = function (error, data, response) {
-      console.log("data:", data);
-      console.log("response:", response);
+      console.log("createFileMetadata data:", data);
+      console.log("createFileMetadata response:", response);
       if (error) {
         console.error(error);
       } else {
-        self.value = response;
-        console.log("API called successfully. Returned data: ", data);
+        self.value = data;
+        console.log("createFileMetadata API called successfully. Returned data: ", data);
+        uploadFile(data, file, self);
       }
     };
     var fileMetadata = fileJson;
@@ -44,24 +48,29 @@ var MyObject = function () {
     );
   };
 
-    var uploadFile = function (fileIdJson, fileJson, self) {
+  var uploadFile = function (varFileId, fileJson, self) {
+    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+    var apiClient = new ApiClient();
+    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
+    var FileApi = require("../generated/rest-client/src/api/FileApi.js");
+    var fileApi = new FileApi(apiClient);
     console.log('Upload file');
-    var callback = function (error, data, response) {
-      console.log("data:", data);
-      console.log("response:", response);
+    var callback2 = function (error, data, response) {
+      console.log("uploadFile data:", data);
+      console.log("uploadFile response:", response);
       if (error) {
         console.error(error);
       } else {
         self.value = data;
-        console.log("API called successfully. Returned data: ", data);
+        console.log("uploadFile API called successfully. Returned data: ", data);
       }
     };
-    var fileId = "f55f28aa-73cb-4700-bec6-a8e741b69f52";
+    var fileId = varFileId;
     var upFile = fileJson;
     fileApi.saveFileData(
       fileId,
       upFile,
-      callback
+      callback2
     );
   };
 

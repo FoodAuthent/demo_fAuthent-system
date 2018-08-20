@@ -37,6 +37,7 @@ public interface ProductRestService{
     @POST
     @Path("/product")
     @Consumes({ "application/json" })
+    @Produces({ "application/json" })
     public Response createProduct(Product product
 );
 

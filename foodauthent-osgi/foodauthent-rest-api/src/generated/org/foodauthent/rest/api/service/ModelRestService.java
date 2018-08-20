@@ -37,6 +37,7 @@ public interface ModelRestService{
     @POST
     @Path("/model")
     @Consumes({ "application/json" })
+    @Produces({ "application/json" })
     public Response createModel(Model model
 );
 

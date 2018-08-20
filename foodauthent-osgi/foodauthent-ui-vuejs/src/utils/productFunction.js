@@ -36,12 +36,10 @@ var MyObject = function () {
       console.log("response:", response);
       if (error) {
         console.error(error);
-     self.showDanger =  true;
-     self.messageDanger = error;
+        self.showError = true;
       } else {
         self.response = data.results;
         self.showSuccess = true;
-        self.messageSuccess = data.results;
         console.log("API called successfully. Returned data: ", data);
       }
     };

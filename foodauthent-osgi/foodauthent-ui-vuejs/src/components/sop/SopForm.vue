@@ -1,6 +1,12 @@
 <template>
 
-  <div class="container" id="app2">
+  <div class="container" id="sopContainer">
+  <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
+    <p>Operation success</p>
+  </b-alert>
+  <b-alert :show="showError" dismissible variant="danger" @dismissed="showError=false">
+     <p>There is a problem {{response}}</p>
+  </b-alert>
 
     <div class="panel panel-default">
 
@@ -39,22 +45,7 @@
 
    <p> {{response}}</p>
 
-    </div>
-
-<!-- UPLOAD FILE 
-
-  <b-modal id="upload-file" title="Upload File">
-
-   <template>
-
-        <b-form-file v-model="file" :state="Boolean(file)" placeholder="Choose a file..."></b-form-file>
-
-  </template>
-
-
-  </b-modal> -->
-
-  
+    </div>  
 
   </div>
 
@@ -70,7 +61,6 @@ import "vue-form-generator/dist/vfg.css";
 var saveSop = require("@/utils/sopFunction.js").default.saveSop;
 var saveFile = require("@/utils/fileFunction.js").default.saveFile;
 import jsonschema from "@/generated/schema/sop.json";
-
 
 console.log(jsonschema.fields);
 function getFun(val) {
@@ -109,6 +99,8 @@ export default {
       fields: null,
       items: [],
       response: "",
+      showSuccess: false,
+      showError: false,
       file: null,
       formOptions: {
         validateAfterLoad: true,
@@ -118,8 +110,8 @@ export default {
   },
 
   methods: {
-    loadFile(){
-    console.log("FILE:",this.file);
+    loadFile() {
+      console.log("FILE:", this.file);
     },
     save() {
       let self = this;
