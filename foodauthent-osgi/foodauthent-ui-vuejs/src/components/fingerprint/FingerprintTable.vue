@@ -38,8 +38,8 @@
          @row-clicked="myRowClickHandler"
 >
   <template slot="actions" slot-scope="items">
-   <!-- <b-btn size="sm" @click="log(environment.item)">Details</b-btn> -->
-    <b-btn size="sm" v-b-modal.modal1>Details</b-btn>
+    <b-btn size="sm" v-b-modal.modal1> <md-icon>edit</md-icon></b-btn>
+    <b-btn size="sm" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
   </template>
 </b-table>
 
@@ -51,12 +51,19 @@
     <p class="my-1"> {{ selected }}</p>
   </b-modal>
 
+    <!-- MODAL Delete -->
+  <b-modal id="modalDelete" title="Delete" @ok="handleDeleteOk">
+    <p>Are you sure do you want to delete this record?</p>
+    <pre v-if="selected" v-html="JSON.stringify(selected, undefined, 4)"></pre>
+  </b-modal>
+
   </div>
 </template>
 
 
 <script>
 var getFingerprints = require("@/utils/fingerprintFunction.js").default.getFingerprints;
+var deleteFingerprints = require("@/utils/fingerprintFunction.js").default.deleteFingerprints;
 export default {
   name: "Fingerprints",
   data() {
@@ -91,9 +98,14 @@ export default {
     }
   },
   methods: {
-     loadTableData() {
+    loadTableData() {
       let self = this;
       getFingerprints(self);
+    },
+    handleDeleteOk(){
+      let self = this;
+      console.log("fa-id:",this.selected['fa-id']);
+      deleteFingerprints(this.selected['fa-id'], self);
     },
     myRowClickHandler(record, index) {
       this.selected = record;

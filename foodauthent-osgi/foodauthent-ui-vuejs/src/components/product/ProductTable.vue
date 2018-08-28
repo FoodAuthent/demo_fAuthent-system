@@ -38,17 +38,24 @@
          @row-clicked="myRowClickHandler"
 >
   <template slot="actions" slot-scope="items">
-   <!-- <b-btn size="sm" @click="log(environment.item)">Details</b-btn> -->
-    <b-btn size="sm" v-b-modal.modal1>Details</b-btn>
+    <b-btn size="sm" v-b-modal.modalEdit> <md-icon>edit</md-icon></b-btn>
+    <b-btn size="sm" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
   </template>
 </b-table>
 
 <!-- PAGINATION -->
 <b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" />
 
-<!-- MODAL DETAILS -->
-  <b-modal id="modal1" title="Details">
-    <p class="my-1"> {{ selected }}</p>
+<!-- MODAL EDIT -->
+  <b-modal id="modalEdit" title="Details" @ok="handleEditOk">
+       <p>Do you want to edit this record?</p>
+     <pre v-if="selected" v-html="JSON.stringify(selected, undefined, 4)"></pre>
+  </b-modal>
+
+    <!-- MODAL Delete -->
+  <b-modal id="modalDelete" title="Delete" @ok="handleDeleteOk">
+    <p>Are you sure do you want to delete this record?</p>
+    <pre v-if="selected" v-html="JSON.stringify(selected, undefined, 4)"></pre>
   </b-modal>
 
   </div>
@@ -57,6 +64,9 @@
 
 <script>
 var getProducts = require("@/utils/productFunction.js").default.getProducts;
+var deleteProducts = require("@/utils/productFunction.js").default.deleteProducts;
+import productForm from "@/components/product/ProductForm";
+import product from "@/components/product/Product";
 export default {
   name: "Product",
   data() {
@@ -70,7 +80,8 @@ export default {
       shownItems: null,
       sortDesc: false,
       filter: null,
-      pageOptionsPerPage: [5,10, 25, 50, 100]
+      temp: null,
+      pageOptionsPerPage: [5, 10, 25, 50, 100]
     };
   },
   mounted() {
@@ -88,6 +99,20 @@ export default {
     loadTableData() {
       let self = this;
       getProducts(self);
+    },
+    handleEditOk(){
+      console.log("EDIT FORM");
+      this.temp = JSON.stringify(this.selected, undefined, 4);
+      console.log("selected",this.selected.exports);
+      // this.temp = this.selected;
+      console.log("temp",this.temp);
+      productForm.methods.editRecord(this.temp);
+      product.data.tabIndex = 1;
+    },
+    handleDeleteOk(){
+      let self = this;
+      console.log("fa-id:",this.selected['fa-id']);
+      deleteProducts(this.selected['fa-id'], self);
     },
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items

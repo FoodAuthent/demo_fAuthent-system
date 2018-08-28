@@ -37,23 +37,28 @@
          :filter="filter"
          @row-clicked="myRowClickHandler"
 >
-
+  <template slot="actions" slot-scope="items">
+    <b-btn size="sm" v-b-modal.modal1> <md-icon>edit</md-icon></b-btn>
+    <b-btn size="sm" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
+  </template>
 </b-table>
-
-<!-- PAGINATION -->
-<b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" />
 
 <!-- MODAL DETAILS -->
   <b-modal id="modal1" title="Details">
     <p class="my-1"> {{ selected }}</p>
   </b-modal>
-
+    <!-- MODAL Delete -->
+  <b-modal id="modalDelete" title="Delete"  @ok="handleDeleteOk">
+    <p>Are you sure do you want to delete this record?</p>
+    <pre v-if="selected" v-html="JSON.stringify(selected, undefined, 4)"></pre>
+  </b-modal>
   </div>
 </template>
 
 
 <script>
 var getWorkflows = require("@/utils/workflowFunction.js").default.getWorkflows;
+var deleteWorkflow = require("@/utils/workflowFunction.js").default.deleteWorkflow;
 export default {
   name: "Workflow",
   data() {
@@ -84,6 +89,11 @@ export default {
     loadTableData() {
       let self = this;
       getWorkflows(self);
+    },
+ handleDeleteOk(){
+      let self = this;
+      console.log("fa-id:",this.selected['fa-id']);
+      deleteProducts(this.selected['fa-id'], self);
     },
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items

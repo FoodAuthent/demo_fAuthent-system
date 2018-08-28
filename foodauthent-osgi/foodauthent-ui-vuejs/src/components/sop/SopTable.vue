@@ -38,8 +38,8 @@
          @row-clicked="myRowClickHandler"
 >
   <template slot="actions" slot-scope="items">
-   <!-- <b-btn size="sm" @click="log(environment.item)">Details</b-btn> -->
-    <b-btn size="sm" v-b-modal.modal1>Details</b-btn>
+    <b-btn size="sm" v-b-modal.modal1> <md-icon>edit</md-icon></b-btn>
+    <b-btn size="sm" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
   </template>
 </b-table>
 
@@ -50,13 +50,18 @@
   <b-modal id="modal1" title="Details">
     <p class="my-1"> {{ selected }}</p>
   </b-modal>
-
+    <!-- MODAL Delete -->
+  <b-modal id="modalDelete" title="Delete" @ok="handleDeleteOk">
+    <p>Are you sure do you want to delete this record?</p>
+    <pre v-if="selected" v-html="JSON.stringify(selected, undefined, 4)"></pre>
+  </b-modal>
   </div>
 </template>
 
 
 <script>
 var getSops = require("@/utils/sopFunction.js").default.getSops;
+var deleteSop = require("@/utils/sopFunction.js").default.deleteSop;
 export default {
   name: "Sop",
   data() {
@@ -92,16 +97,11 @@ export default {
       console.log("Load table data");
       let self = this;
       getSops(self)
-      console.log("self items inner", self.items);
-      // let self = this;
-      // fetch(self.endpointurl + "?pageNumber=0&pageSize=" + self.perPage)
-      //   .then(j => {
-      //     return j.json();
-      //   })
-      //   .then(r => {
-      //     console.log("Results", r.results);
-      //     self.items = r.results;
-      //   });
+    },
+  handleDeleteOk(){
+      let self = this;
+      console.log("fa-id:",this.selected['fa-id']);
+      deleteSop(this.selected['fa-id'], self);
     },
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items

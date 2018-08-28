@@ -1,5 +1,6 @@
 <template>
   <div class="page-container">
+    <p>{{tabIndex}}</p>
       <md-app>
       <md-app-toolbar class="md-primary">
         <span class="md-title">Product</span>
@@ -20,7 +21,7 @@
 
       <md-app-content>
  <b-card no-body>
-  <b-tabs card>
+  <b-tabs card v-model="tabIndex">
     <b-tab title="Results" active>
   <productTable></productTable>
     </b-tab>
@@ -39,36 +40,32 @@
 </template>
 
 <script>
-import productTable from '@/components/product/ProductTable';
-import productForm from '@/components/product/ProductForm';
-  export default {
-    name: 'Test',
-    data: () => ({
-
-    }),
-    mounted() {
-
-        },
-    methods: {
-
-    },
-      components: {
-            productTable,
-            productForm
-        }
+import productTable from "@/components/product/ProductTable";
+import productForm from "@/components/product/ProductForm";
+export default {
+  name: "Product",
+  data: () => ({
+    tabIndex: 0
+  }),
+  mounted() {},
+  methods: {},
+  components: {
+    productTable,
+    productForm
   }
+};
 </script>
 
 <style lang="scss" scoped>
-  .md-table + .md-table {
-    margin-top: 16px
-  }
-    .md-app {
-    /*max-height: px; */
-    border: 1px solid rgba(#000, .12);
-  }
+.md-table + .md-table {
+  margin-top: 16px;
+}
+.md-app {
+  /*max-height: px; */
+  border: 1px solid rgba(#000, 0.12);
+}
 
-  .md-drawer {
+.md-drawer {
   max-width: 250px;
-  }
+}
 </style>

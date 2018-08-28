@@ -37,6 +37,10 @@
          :filter="filter"
          @row-clicked="myRowClickHandler"
 >
+  <template slot="actions" slot-scope="items">
+    <b-btn class="btn btn-primary" v-b-modal.modal1> <md-icon>edit</md-icon></b-btn>
+    <b-btn class="btn btn-primary" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
+  </template>
 </b-table>
 
 <!-- PAGINATION -->
@@ -47,12 +51,19 @@
     <p class="my-1"> {{ selected }}</p>
   </b-modal>
 
+  <!-- MODAL Delete -->
+  <b-modal id="modalDelete" title="Delete" @ok="handleDeleteOk">
+    <p>Are you sure do you want to delete this record?</p>
+    <pre v-if="selected" v-html="JSON.stringify(selected, undefined, 4)"></pre>
+  </b-modal>
+
   </div>
 </template>
 
 
 <script>
 var getModels = require("@/utils/modelFunction.js").default.getModels;
+var deleteModel = require("@/utils/modelFunction.js").default.deleteModel;
 export default {
   name: "Workflow",
   data() {
@@ -60,7 +71,7 @@ export default {
       items: [],
       selected: {},
       fields: [],
-      //fields: [
+      // fields: [
       //  { key: 'fa-id', sortable: true },
       // { key: 'author', sortable: true },
       // { key: 'description', sortable: true },
@@ -91,6 +102,11 @@ export default {
       console.log("Load table data");
       let self = this;
       getModels(self);
+    },
+    handleDeleteOk(){
+      let self = this;
+      console.log("fa-id:",this.selected['fa-id']);
+      deleteModel(this.selected['fa-id'], self);
     },
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items

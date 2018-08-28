@@ -1,6 +1,7 @@
 <template>
   <div class="container" id="productContainer">
-          <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
+     <b-button variant="primary" @click="massimo()">Massimo</b-button>
+    <b-alert dismissible variant="success" @dismissed="showSuccess=false">
     <p>Operation success</p>
   </b-alert>
   <b-alert :show="showError" dismissible variant="danger" @dismissed="showError=false">
@@ -37,9 +38,9 @@ import jsonschema from "@/generated/schema/product.json";
 export default {
   data() {
     return {
-      schema: jsonschema,
-      model: {},
       response: "",
+      model: {},
+      schema: jsonschema,
       showSuccess: false,
       showError: false,
       formOptions: {
@@ -49,10 +50,30 @@ export default {
     };
   },
   methods: {
+    massimo(){
+      this.model = {
+    "fa-id": "eda97cbe-7ed4-4562-a82c-0c66d9841fef",
+    "gtin": "GTIN3",
+    "brand": "TEST3",
+    "actions": ""
+}
+console.log("MassimoModel", this.model);
+    },
+    fillForm() {
+      let self = this;
+      self.model = self.modelTemp;
+      console.log("See the model", self.model);
+    },
     save() {
       let self = this;
-      console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
+      // console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
       saveProducts(JSON.stringify(this.model, undefined, 4), self);
+    },
+    editRecord(modelEdit) {
+      let self = this;
+      console.log("modelEdit", modelEdit);
+      self.model = modelEdit;
+      console.log("model", self.model);
     }
   },
   components: {
