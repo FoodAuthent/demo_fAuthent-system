@@ -38,7 +38,7 @@
          @row-clicked="myRowClickHandler"
 >
   <template slot="actions" slot-scope="items">
-    <b-btn class="btn btn-primary" v-b-modal.modal1> <md-icon>edit</md-icon></b-btn>
+    <b-btn class="btn btn-primary" v-b-modal.modalEdit @click="editData">  <md-icon>edit</md-icon></b-btn>
     <b-btn class="btn btn-primary" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
   </template>
 </b-table>
@@ -46,9 +46,9 @@
 <!-- PAGINATION -->
 <b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" />
 
-<!-- MODAL DETAILS -->
-  <b-modal id="modal1" title="Details">
-    <p class="my-1"> {{ selected }}</p>
+<!-- MODAL EDIT -->
+  <b-modal id="modalEdit" title="edit" @ok="handleEditOk">
+        <vue-form-generator :schema="schema" :model="model" :options="formOptions"> </vue-form-generator>
   </b-modal>
 
   <!-- MODAL Delete -->
@@ -64,10 +64,18 @@
 <script>
 var getModels = require("@/utils/modelFunction.js").default.getModels;
 var deleteModel = require("@/utils/modelFunction.js").default.deleteModel;
+var updateModel = require("@/utils/modelFunction.js").default.updateModel;
+import jsonschema from "@/generated/schema/model.json";
 export default {
   name: "Workflow",
   data() {
     return {
+      model: {},
+      schema: jsonschema,
+      formOptions: {
+        validateAfterLoad: true,
+        validateAfterChanged: true
+      },
       items: [],
       selected: {},
       fields: [],
@@ -98,16 +106,28 @@ export default {
     }
   },
   methods: {
+    editData(){
+  console.log("Inside EditData");
+  console.log("Selected",this.selected);
+  this.model=this.selected;
+    console.log("Model Editdata",this.model);
+  },
     loadTableData() {
       console.log("Load table data");
       let self = this;
       getModels(self);
     },
-    handleDeleteOk(){
+    handleDeleteOk() {
       let self = this;
-      console.log("fa-id:",this.selected['fa-id']);
-      deleteModel(this.selected['fa-id'], self);
+      console.log("fa-id:", this.selected["fa-id"]);
+      deleteModel(this.selected["fa-id"], self);
     },
+    handleEditOk() {
+        let self = this;
+      console.log("This is the model", this.model);
+      //updateModel(JSON.stringify(this.model, undefined, 4), self);
+      updateModel(this.model, self);
+      },
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items
       // `index` will be the visible row number (available in the v-model 'shownItems')

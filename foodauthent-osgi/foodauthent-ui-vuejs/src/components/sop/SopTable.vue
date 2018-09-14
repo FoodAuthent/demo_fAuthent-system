@@ -38,7 +38,7 @@
          @row-clicked="myRowClickHandler"
 >
   <template slot="actions" slot-scope="items">
-    <b-btn size="sm" v-b-modal.modal1> <md-icon>edit</md-icon></b-btn>
+    <b-btn size="sm" v-b-modal.modalEdit @click="editData"> <md-icon>edit</md-icon></b-btn>
     <b-btn size="sm" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
   </template>
 </b-table>
@@ -46,9 +46,10 @@
 <!-- PAGINATION -->
 <b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" />
 
-<!-- MODAL DETAILS -->
-  <b-modal id="modal1" title="Details">
-    <p class="my-1"> {{ selected }}</p>
+<!-- MODAL EDIT -->
+  <b-modal id="modalEdit" title="Edit" @ok="handleEditOk">
+   <!-- <p class="my-1"> {{ selected }}</p> -->
+        <vue-form-generator :schema="schema" :model="model" :options="formOptions">        </vue-form-generator>
   </b-modal>
     <!-- MODAL Delete -->
   <b-modal id="modalDelete" title="Delete" @ok="handleDeleteOk">
@@ -62,10 +63,18 @@
 <script>
 var getSops = require("@/utils/sopFunction.js").default.getSops;
 var deleteSop = require("@/utils/sopFunction.js").default.deleteSop;
+var updateSop = require("@/utils/sopFunction.js").default.updateSop;
+import jsonschema from "@/generated/schema/sop.json";
 export default {
   name: "Sop",
   data() {
     return {
+       model: {},
+      schema: jsonschema,
+      formOptions: {
+        validateAfterLoad: true,
+        validateAfterChanged: true
+      },
       items: [],
       selected: {},
       fields: [],
@@ -93,15 +102,27 @@ export default {
     }
   },
   methods: {
+    editData(){
+  console.log("Inside EditData");
+  console.log("Selected",this.selected);
+  this.model=this.selected;
+    console.log("Model Editdata",this.model);
+  },
     loadTableData() {
       console.log("Load table data");
       let self = this;
-      getSops(self)
+      getSops(self);
     },
-  handleDeleteOk(){
+    handleDeleteOk() {
       let self = this;
-      console.log("fa-id:",this.selected['fa-id']);
-      deleteSop(this.selected['fa-id'], self);
+      console.log("fa-id:", this.selected["fa-id"]);
+      deleteSop(this.selected["fa-id"], self);
+    },
+    handleEditOk() {
+    let self = this;
+      console.log("This is the model", this.model);
+      //updateProducts(JSON.stringify(this.model, undefined, 4), self);
+      updateSop(this.model, self);
     },
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items
@@ -130,5 +151,4 @@ export default {
 .md-drawer {
   max-width: 250px;
 }
-
 </style>

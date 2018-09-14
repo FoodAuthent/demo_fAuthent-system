@@ -1,6 +1,6 @@
 <template>
   <div class="container" id="productContainer">
-     <b-button variant="primary" @click="massimo()">Massimo</b-button>
+     <b-button id="buttonMax" variant="primary" @click="massimo()">Massimo</b-button>
     <b-alert dismissible variant="success" @dismissed="showSuccess=false">
     <p>Operation success</p>
   </b-alert>
@@ -50,19 +50,15 @@ export default {
     };
   },
   methods: {
-    massimo(){
-      this.model = {
-    "fa-id": "eda97cbe-7ed4-4562-a82c-0c66d9841fef",
-    "gtin": "GTIN3",
-    "brand": "TEST3",
-    "actions": ""
-}
-console.log("MassimoModel", this.model);
-    },
-    fillForm() {
+    massimo() {
       let self = this;
-      self.model = self.modelTemp;
-      console.log("See the model", self.model);
+      self.model = {
+        "fa-id": "eda97cbe-7ed4-4562-a82c-0c66d9841fef",
+        gtin: "GTIN3",
+        brand: "TEST3",
+        actions: ""
+      };
+      console.log("MassimoModel", self.model);
     },
     save() {
       let self = this;
@@ -73,7 +69,11 @@ console.log("MassimoModel", this.model);
       let self = this;
       console.log("modelEdit", modelEdit);
       self.model = modelEdit;
-      console.log("model", self.model);
+      console.log("ONCLICK");
+      // document.getElementById("buttonMax").click();
+      console.log("modelEdit", modelEdit);
+      console.log("modelTest", self.model);
+
     }
   },
   components: {

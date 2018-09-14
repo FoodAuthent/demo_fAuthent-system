@@ -77,7 +77,32 @@ var MyObject = function () {
       id: id
     };
     alert("When the Api will support thie features it will work and delete this id: "+id);
-    // productApi.createProduct(
+    // productApi.deleteProduct(
+    //   opt,
+    //   callback
+    // );
+  };
+  
+    var updateProducts = function (json, self) {
+    console.log('Update Products');
+    var callback = function (error, data, response) {
+      console.log("data:", data);
+      console.log("response:", response);
+      if (error) {
+        console.error(error);
+        self.showError = true;
+      } else {
+        self.response = data.results;
+        self.showSuccess = true;
+        console.log("API called successfully. Returned data: ", data);
+      }
+    };
+    var opt = {
+      product: json
+    };
+    console.log("json:", json);
+    alert("When the Api will support this features it will work and update this id: "+json["fa-id"]);
+    // productApi.updateProduct(
     //   opt,
     //   callback
     // );
@@ -87,7 +112,8 @@ var MyObject = function () {
   return {
     getProducts: getProducts,
     saveProducts: saveProducts,
-    deleteProducts: deleteProducts
+    deleteProducts: deleteProducts,
+    updateProducts: updateProducts
   }
 }();
 

@@ -1,6 +1,5 @@
 <template>
   <div class="page-container">
-    <p>{{tabIndex}}</p>
       <md-app>
       <md-app-toolbar class="md-primary">
         <span class="md-title">Product</span>

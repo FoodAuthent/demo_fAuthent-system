@@ -83,12 +83,38 @@ var MyObject = function () {
     //   callback
     // );
   };
+  
+  var updateModel = function (json, self) {
+	    console.log('Update Model');
+	    var callback = function (error, data, response) {
+	      console.log("data:", data);
+	      console.log("response:", response);
+	      if (error) {
+	        console.error(error);
+	        self.showError = true;
+	      } else {
+	        self.response = data.results;
+	        self.showSuccess = true;
+	        console.log("API called successfully. Returned data: ", data);
+	      }
+	    };
+	    var opt = {
+	      product: json
+	    };
+	    console.log("json:", json);
+	    alert("When the Api will support this features it will work and update this id: "+json["fa-id"]);
+	    // productApi.updateModel(
+	    //   opt,
+	    //   callback
+	    // );
+	  };
 
 
   return {
     getModels: getModels,
     saveModel: saveModel,
-    deleteModel: deleteModel
+    deleteModel: deleteModel,
+    updateModel: updateModel
   }
 }();
 

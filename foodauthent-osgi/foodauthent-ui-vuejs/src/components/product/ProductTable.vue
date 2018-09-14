@@ -38,7 +38,7 @@
          @row-clicked="myRowClickHandler"
 >
   <template slot="actions" slot-scope="items">
-    <b-btn size="sm" v-b-modal.modalEdit> <md-icon>edit</md-icon></b-btn>
+    <b-btn size="sm" v-b-modal.modalEdit @click="editData"> <md-icon>edit</md-icon></b-btn>
     <b-btn size="sm" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
   </template>
 </b-table>
@@ -47,9 +47,10 @@
 <b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" />
 
 <!-- MODAL EDIT -->
-  <b-modal id="modalEdit" title="Details" @ok="handleEditOk">
-       <p>Do you want to edit this record?</p>
-     <pre v-if="selected" v-html="JSON.stringify(selected, undefined, 4)"></pre>
+  <b-modal id="modalEdit" title="Edit" @ok="handleEditOk">
+      <!-- <p>Do you want to edit this record?</p>
+     <pre v-if="selected" v-html="JSON.stringify(selected, undefined, 4)"></pre> -->
+     <vue-form-generator :schema="schema" :model="model" :options="formOptions">        </vue-form-generator>
   </b-modal>
 
     <!-- MODAL Delete -->
@@ -64,13 +65,22 @@
 
 <script>
 var getProducts = require("@/utils/productFunction.js").default.getProducts;
-var deleteProducts = require("@/utils/productFunction.js").default.deleteProducts;
+var deleteProducts = require("@/utils/productFunction.js").default
+  .deleteProducts;
+var updateProducts = require("@/utils/productFunction.js").default.updateProducts;
 import productForm from "@/components/product/ProductForm";
 import product from "@/components/product/Product";
+import jsonschema from "@/generated/schema/product.json";
 export default {
   name: "Product",
   data() {
     return {
+      model: {},
+      schema: jsonschema,
+      formOptions: {
+        validateAfterLoad: true,
+        validateAfterChanged: true
+      },
       items: [],
       selected: {},
       fields: [],
@@ -80,7 +90,6 @@ export default {
       shownItems: null,
       sortDesc: false,
       filter: null,
-      temp: null,
       pageOptionsPerPage: [5, 10, 25, 50, 100]
     };
   },
@@ -96,23 +105,29 @@ export default {
     }
   },
   methods: {
+  editData(){
+  console.log("Inside EditData");
+  console.log("Selected",this.selected);
+  this.model=this.selected;
+    console.log("Model Editdata",this.model);
+  },
     loadTableData() {
       let self = this;
       getProducts(self);
     },
-    handleEditOk(){
-      console.log("EDIT FORM");
-      this.temp = JSON.stringify(this.selected, undefined, 4);
-      console.log("selected",this.selected.exports);
-      // this.temp = this.selected;
-      console.log("temp",this.temp);
-      productForm.methods.editRecord(this.temp);
-      product.data.tabIndex = 1;
+    handleEditOk() {
+    let self = this;
+      //console.log("selected", this.selected);
+      // productForm.methods.editRecord(JSON.stringify(this.selected, undefined, 4));
+      console.log("This is the model", this.model);
+      //updateProducts(JSON.stringify(this.model, undefined, 4), self);
+      updateProducts(this.model, self);
+      //product.data.tabIndex = 1;
     },
-    handleDeleteOk(){
+    handleDeleteOk() {
       let self = this;
-      console.log("fa-id:",this.selected['fa-id']);
-      deleteProducts(this.selected['fa-id'], self);
+      console.log("fa-id:", this.selected["fa-id"]);
+      deleteProducts(this.selected["fa-id"], self);
     },
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items
