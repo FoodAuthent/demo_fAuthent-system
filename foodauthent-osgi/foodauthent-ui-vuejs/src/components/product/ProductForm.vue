@@ -1,7 +1,6 @@
 <template>
   <div class="container" id="productContainer">
-     <b-button id="buttonMax" variant="primary" @click="massimo()">Massimo</b-button>
-    <b-alert dismissible variant="success" @dismissed="showSuccess=false">
+  <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
     <p>Operation success</p>
   </b-alert>
   <b-alert :show="showError" dismissible variant="danger" @dismissed="showError=false">
@@ -50,16 +49,6 @@ export default {
     };
   },
   methods: {
-    massimo() {
-      let self = this;
-      self.model = {
-        "fa-id": "eda97cbe-7ed4-4562-a82c-0c66d9841fef",
-        gtin: "GTIN3",
-        brand: "TEST3",
-        actions: ""
-      };
-      console.log("MassimoModel", self.model);
-    },
     save() {
       let self = this;
       // console.log("POST BODY", JSON.stringify(this.model, undefined, 4));

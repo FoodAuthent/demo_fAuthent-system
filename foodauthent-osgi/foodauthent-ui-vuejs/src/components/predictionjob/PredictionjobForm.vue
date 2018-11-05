@@ -40,7 +40,7 @@
 <script>
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
-import jsonschema from "@/schema/createPredictionJob.json";
+import jsonschema from "@/generated/schema/prediction.json";
 var savePredictionJob = require("@/utils/workflowFunction.js").default
   .savePredictionJob;
 

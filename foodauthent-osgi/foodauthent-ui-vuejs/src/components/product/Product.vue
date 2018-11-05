@@ -28,7 +28,7 @@
      <productForm></productForm>
     </b-tab>
   <b-tab title="Empty">
-
+Just an Empty tab for test
     </b-tab>
   </b-tabs>
 </b-card>

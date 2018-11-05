@@ -1,85 +1,85 @@
 {
-  "fields": [{
-    "label": "Name",
-    "model": "name",
-    "required": false,
-    "type": "input",
-    "inputType": "text"
+  "fields" : [ {
+    "label" : "Name",
+    "model" : "name",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
   }, {
-    "label": "Description",
-    "model": "description",
-    "required": false,
-    "type": "input",
-    "inputType": "text"
+    "label" : "Description",
+    "model" : "description",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
   }, {
-    "label": "Author",
-    "model": "author",
-    "required": false,
-    "type": "input",
-    "inputType": "text"
+    "label" : "Author",
+    "model" : "author",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
   }, {
-    "label": "Version",
-    "model": "version",
-    "required": false,
-    "type": "input",
-    "inputType": "number",
-    "validator": "integer"
+    "label" : "Version",
+    "model" : "version",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "number",
+    "validator" : "integer"
   }, {
-    "label": "Type",
-    "model": "type",
-    "required": false,
-    "type": "select",
-    "validator": "string",
-    "inputName": "type",
-    "values": [{
-      "id": "knime_workflow",
-      "name": "Knime_workflow"
+    "label" : "Type",
+    "model" : "type",
+    "required" : false,
+    "type" : "select",
+    "validator" : "string",
+    "inputName" : "type",
+    "values" : [ {
+      "id" : "knime_workflow",
+      "name" : "Knime_workflow"
     }, {
-      "id": "knime_python",
-      "name": "Knime_python"
+      "id" : "knime_python",
+      "name" : "Knime_python"
     }, {
-      "id": "pmml",
-      "name": "Pmml"
-    }]
+      "id" : "pmml",
+      "name" : "Pmml"
+    } ]
   }, {
-    "label": "Tags",
-    "model": "tags",
-    "required": false,
-    "type": "array",
-    "validator": "array",
-    "showRemoveButton": true,
-    "itemFieldClasses": "form-control",
-    "itemContainerClasses": "input-group pb-2",
-    "newElementButtonLabelClasses": "btn btn-outline-dark",
-    "removeElementButtonClasses": "btn btn-danger input-group-append",
-    "moveElementUpButtonClasses": "btn btn-outline-dark input-group-append",
-    "moveElementDownButtonClasses": "btn btn-outline-dark input-group-append",
-    "newElementButtonLabel": "Add",
-    "inputName": "tags",
-    "items": {
-      "type": "object",
-      "schema": {
-        "fields": [{
-          "label": "Name",
-          "model": "name",
-          "required": false,
-          "type": "input",
-          "inputType": "text"
+    "label" : "Tags",
+    "model" : "tags",
+    "required" : false,
+    "type" : "array",
+    "validator" : "array",
+    "showRemoveButton" : true,
+    "itemFieldClasses" : "form-control",
+    "itemContainerClasses" : "input-group pb-2",
+    "newElementButtonLabelClasses" : "btn btn-outline-dark",
+    "removeElementButtonClasses" : "btn btn-danger input-group-append",
+    "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
+    "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
+    "newElementButtonLabel" : "Add",
+    "inputName" : "tags",
+    "items" : {
+      "type" : "object",
+      "schema" : {
+        "fields" : [ {
+          "label" : "Name",
+          "model" : "name",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
         }, {
-          "label": "Description",
-          "model": "description",
-          "required": false,
-          "type": "input",
-          "inputType": "text"
-        }]
+          "label" : "Description",
+          "model" : "description",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        } ]
       }
     }
   }, {
-    "label": "File-id",
-    "model": "file-id",
-    "required": false,
-    "idprovider": "upload-file",
-    "fieldName": "fa-id",
-    "type": "loadFile"
-  }]
+    "label" : "File-id",
+    "model" : "file-id",
+    "required" : false,
+    "idprovider" : "upload-file",
+    "fieldName" : "fa-id",
+    "type" : "loadFile"
+  } ]
 }

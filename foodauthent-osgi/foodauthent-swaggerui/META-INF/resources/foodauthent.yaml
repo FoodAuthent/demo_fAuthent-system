@@ -1160,6 +1160,13 @@ definitions:
   #predictions per fingerprint set!!
   Prediction:
     type: object
+    x-ui-vue.js:
+      - name: workflow-id
+        id-provider: select-workflow
+      - name: fingerprint-set-id
+        id-provider: select-fingerprint
+      - name: model-id
+        id-provider: select-model
     properties:
      fa-id:
         description: A global id within the FoodAuthent-system.

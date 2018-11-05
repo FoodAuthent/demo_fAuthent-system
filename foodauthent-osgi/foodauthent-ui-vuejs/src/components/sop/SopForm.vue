@@ -1,5 +1,4 @@
 <template>
-
   <div class="container" id="sopContainer">
   <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
     <p>Operation success</p>
