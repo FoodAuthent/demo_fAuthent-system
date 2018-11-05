@@ -37,8 +37,8 @@
          :filter="filter"
          @row-clicked="myRowClickHandler"
 >
-  <template slot="actions" slot-scope="items">
-    <b-btn size="sm" v-b-modal.modalEdit @click="editData"> <md-icon>edit</md-icon></b-btn>
+  <template slot="actions" slot-scope="row">
+    <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)"> <md-icon>edit</md-icon></b-btn>
     <b-btn size="sm" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
   </template>
 </b-table>
@@ -102,12 +102,6 @@ export default {
     }
   },
   methods: {
-    editData(){
-  console.log("Inside EditData");
-  console.log("Selected",this.selected);
-  this.model=this.selected;
-    console.log("Model Editdata",this.model);
-  },
     loadTableData() {
       console.log("Load table data");
       let self = this;
@@ -129,6 +123,11 @@ export default {
       // `index` will be the visible row number (available in the v-model 'shownItems')
       //console.log(record); // This will be the item data for the row
       this.selected = record;
+    },
+    info (item, index, button) {
+      this.model = item;
+      console.log("This is the model in the new method", this.model);
+      this.$root.$emit('bv::show::modal', 'modalEdit', button);
     },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering

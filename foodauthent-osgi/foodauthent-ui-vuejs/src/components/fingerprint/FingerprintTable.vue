@@ -37,8 +37,8 @@
          :filter="filter"
          @row-clicked="myRowClickHandler"
 >
-  <template slot="actions" slot-scope="items">
-    <b-btn size="sm" v-b-modal.modalEdit> <md-icon>edit</md-icon></b-btn>
+  <template slot="actions" slot-scope="row">
+    <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)"> <md-icon>edit</md-icon></b-btn>
     <b-btn size="sm" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
   </template>
 </b-table>
@@ -48,7 +48,7 @@
 
 <!-- MODAL DETAILS -->
   <b-modal id="modalEdit" title="Edit" @ok="handleEditOk">
-    <p class="my-1"> {{ selected }}</p>
+    <vue-form-generator :schema="schema" :model="model" :options="formOptions"> </vue-form-generator>
   </b-modal>
 
     <!-- MODAL Delete -->
@@ -112,6 +112,10 @@ export default {
     handleEditOk() {},
     myRowClickHandler(record, index) {
       this.selected = record;
+    },
+     info (item, index, button) {
+      this.model = item;
+      this.$root.$emit('bv::show::modal', 'modalEdit', button);
     },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering

@@ -98,6 +98,10 @@ export default {
       //console.log(record); // This will be the item data for the row
       this.selected = record;
     },
+   info (item, index, button) {
+      this.model = item;
+      this.$root.$emit('bv::show::modal', 'modalEdit', button);
+    },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;

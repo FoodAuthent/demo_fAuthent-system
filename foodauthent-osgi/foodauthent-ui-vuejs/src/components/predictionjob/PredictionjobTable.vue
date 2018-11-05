@@ -37,8 +37,8 @@
          :filter="filter"
          @row-clicked="myRowClickHandler"
 >
-  <template slot="actions" slot-scope="items">
-    <b-btn size="sm" v-b-modAL.prediction-modal>Link to Prediction</b-btn>
+  <template slot="actions" slot-scope="row">
+    <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)"> <md-icon>edit</md-icon></b-btn>
     <b-btn size="sm" v-b-modal.modal1>Details</b-btn>
   </template>
 </b-table>
@@ -110,6 +110,10 @@ export default {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
+    },
+  info (item, index, button) {
+      this.model = item;
+      this.$root.$emit('bv::show::modal', 'modalEdit', button);
     },
     getPrediction(record) {
       let self = this;
