@@ -74,6 +74,12 @@ public interface ModelMixIn {
     @JsonProperty("file-id")
     public java.util.UUID getFileId();
     
+    @JsonProperty("product-id")
+    public java.util.UUID getProductId();
+    
+    @JsonProperty("workflow-id")
+    public java.util.UUID getWorkflowId();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -119,6 +125,12 @@ public interface ModelMixIn {
         
         @JsonProperty("file-id")
         public ModelMixInBuilder setFileId(final java.util.UUID fileId);
+        
+        @JsonProperty("product-id")
+        public ModelMixInBuilder setProductId(final java.util.UUID productId);
+        
+        @JsonProperty("workflow-id")
+        public ModelMixInBuilder setWorkflowId(final java.util.UUID workflowId);
         
     }
 

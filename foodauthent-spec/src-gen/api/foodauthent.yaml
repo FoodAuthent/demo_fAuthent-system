@@ -1026,6 +1026,7 @@ definitions:
   Model:
     description: A model created via training and used for prediction. Can also be a workflow.
     type: object
+    required: [name, author, version, type, date, file-id, product-id]       
     x-ui-vue.js:
       - name: name
       - name: description
@@ -1035,6 +1036,8 @@ definitions:
       - name: tags
       - name: file-id
         id-provider: upload-file
+      - name: product-id
+        id-provider: select-product
     properties:
       fa-id:
         description: A global id within the FoodAuthent-system.
@@ -1070,6 +1073,14 @@ definitions:
           $ref: "#/definitions/Tag"
       file-id:
         description: id referencing the model file.
+        type: string
+        format: uuid
+      product-id:
+        description: Reference to the product this model has been trained for.
+        type: string
+        format: uuid
+      workflow-id:
+        description: Optional reference to the workflow used to create this model.
         type: string
         format: uuid
  

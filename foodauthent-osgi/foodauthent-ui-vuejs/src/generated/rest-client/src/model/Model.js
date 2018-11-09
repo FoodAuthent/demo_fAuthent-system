@@ -45,18 +45,27 @@
    * A model created via training and used for prediction. Can also be a workflow.
    * @alias module:model/Model
    * @class
+   * @param name {String} A name for the model.
+   * @param author {String} The authors name (TODO - could reference a user in the future).
+   * @param _date {Date} The creation date.
+   * @param version {Number} The model's version.
+   * @param type {module:model/Model.TypeEnum} The type of the model in order to be able to check for compatibility of the workflows using it.
+   * @param fileId {String} id referencing the model file.
+   * @param productId {String} Reference to the product this model has been trained for.
    */
-  var exports = function() {
+  var exports = function(name, author, _date, version, type, fileId, productId) {
     var _this = this;
 
 
+    _this['name'] = name;
 
+    _this['author'] = author;
+    _this['date'] = _date;
+    _this['version'] = version;
+    _this['type'] = type;
 
-
-
-
-
-
+    _this['file-id'] = fileId;
+    _this['product-id'] = productId;
 
   };
 
@@ -97,6 +106,12 @@
       }
       if (data.hasOwnProperty('file-id')) {
         obj['file-id'] = ApiClient.convertToType(data['file-id'], 'String');
+      }
+      if (data.hasOwnProperty('product-id')) {
+        obj['product-id'] = ApiClient.convertToType(data['product-id'], 'String');
+      }
+      if (data.hasOwnProperty('workflow-id')) {
+        obj['workflow-id'] = ApiClient.convertToType(data['workflow-id'], 'String');
       }
     }
     return obj;
@@ -147,6 +162,16 @@
    * @member {String} file-id
    */
   exports.prototype['file-id'] = undefined;
+  /**
+   * Reference to the product this model has been trained for.
+   * @member {String} product-id
+   */
+  exports.prototype['product-id'] = undefined;
+  /**
+   * Optional reference to the workflow used to create this model.
+   * @member {String} workflow-id
+   */
+  exports.prototype['workflow-id'] = undefined;
 
 
   /**
