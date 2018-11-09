@@ -2,7 +2,7 @@
   "fields" : [ {
     "label" : "Name",
     "model" : "name",
-    "required" : true,
+    "required" : false,
     "type" : "input",
     "inputType" : "text"
   }, {
@@ -14,20 +14,20 @@
   }, {
     "label" : "Author",
     "model" : "author",
-    "required" : true,
+    "required" : false,
     "type" : "input",
     "inputType" : "text"
   }, {
     "label" : "Version",
     "model" : "version",
-    "required" : true,
+    "required" : false,
     "type" : "input",
     "inputType" : "number",
     "validator" : "integer"
   }, {
     "label" : "Type",
     "model" : "type",
-    "required" : true,
+    "required" : false,
     "type" : "select",
     "validator" : "string",
     "inputName" : "type",
@@ -77,14 +77,14 @@
   }, {
     "label" : "File-id",
     "model" : "file-id",
-    "required" : true,
+    "required" : false,
     "idprovider" : "upload-file",
     "fieldName" : "fa-id",
     "type" : "loadFile"
   }, {
     "label" : "Product-id",
     "model" : "product-id",
-    "required" : true,
+    "required" : false,
     "idprovider" : "select-product",
     "fieldName" : "fa-id",
     "type" : "selectModel"

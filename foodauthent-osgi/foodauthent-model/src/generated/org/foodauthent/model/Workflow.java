@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.foodauthent.model.Tag;
-import org.foodauthent.model.WorkflowModule;
 import org.foodauthent.model.WorkflowParameter;
 
 
@@ -101,7 +100,6 @@ public class Workflow   extends FaModel {
   private java.util.List<WorkflowParameter> parameters;
   private java.util.List<Tag> tags;
   private java.util.UUID fileId;
-  private java.util.List<WorkflowModule> modules;
   private ModelTypeEnum modelType;
   
   public String getTypeID() {
@@ -132,7 +130,6 @@ public class Workflow   extends FaModel {
         throw new IllegalArgumentException("fileId must not be null.");
     }
     fileId = immutable(builder.fileId);
-    modules = immutable(builder.modules);
     modelType = immutable(builder.modelType);
     
     faId = generateFaIdIfMissing(faId);
@@ -154,7 +151,7 @@ public class Workflow   extends FaModel {
             return false;
         }
         Workflow ent = (Workflow)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(representation, ent.representation) && Objects.equals(type, ent.type) && Objects.equals(parameters, ent.parameters) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(modules, ent.modules) && Objects.equals(modelType, ent.modelType);
+        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(representation, ent.representation) && Objects.equals(type, ent.type) && Objects.equals(parameters, ent.parameters) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(modelType, ent.modelType);
     }
 
 
@@ -223,14 +220,6 @@ public class Workflow   extends FaModel {
     }
     
   /**
-   * The workflow modules (including their parameters) required by this workflow or empty (or null) if none required.
-   * @return modules 
-   */
-  public java.util.List<WorkflowModule> getModules() {
-        return modules;
-    }
-    
-  /**
    * Type of the model this workflow can consume or produce. Can be left empty, e.g., in case of a preprocessing workflow. Model type must match one of the model&#39;s type property.
    * @return modelType 
    */
@@ -264,7 +253,6 @@ public class Workflow   extends FaModel {
         builder.parameters = entity.parameters;
         builder.tags = entity.tags;
         builder.fileId = entity.fileId;
-        builder.modules = entity.modules;
         builder.modelType = entity.modelType;
  		return builder;
   	}
@@ -284,7 +272,6 @@ public class Workflow   extends FaModel {
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
         private java.util.UUID fileId = null;
-        private java.util.List<WorkflowModule> modules = new java.util.ArrayList<>();
         private ModelTypeEnum modelType = null;
 
         /**
@@ -368,15 +355,6 @@ public class Workflow   extends FaModel {
                  throw new IllegalArgumentException("fileId must not be null.");
              }
              this.fileId = fileId;
-             return this;
-        }
-
-        /**
-         * The workflow modules (including their parameters) required by this workflow or empty (or null) if none required.
-         * @return modules 
-         */
-        public WorkflowBuilder setModules(java.util.List<WorkflowModule> modules) {
-             this.modules = modules;
              return this;
         }
 

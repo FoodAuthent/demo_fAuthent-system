@@ -8,7 +8,6 @@ import javax.json.JsonValue;
 
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.model.FileMetadata;
-import org.foodauthent.model.WorkflowModuleInput;
 
 /**
  * Interface to separate fa-system knime-job logic from the pure execution of
@@ -35,30 +34,6 @@ public interface KnimeExecutor {
      *             if the workflow couln't be loaded
      */
     void loadWorkflow(UUID workflowId, FileMetadata workflowMetadata, Blob workflowData) throws LoadingFailedException;
-
-    /**
-     * Loads the given workflow including required workflow modules. Modules are,
-     * e.g., stored in the same folder as the master workflow.
-     * 
-     * @param workflowId
-     *            id of the master workflow
-     * @param workflowMetadata
-     *            metadata of the workflow file
-     * @param workflowData
-     *            the workflow binaries
-     * @param modulesMetadata
-     *            metadata of the module files
-     * @param modulesData
-     *            the module binaries
-     * @return a reference (e.g. URI) to the modules loaded to be passed to the
-     *         master workflow as inputs (see
-     *         {@link WorkflowModuleInput#getWorkflowURI()}
-     * @throws LoadingFailedException
-     *             if the workflow couln't be loaded
-     * 
-     */
-    String[] loadWorkflowWithModules(UUID workflowId, FileMetadata workflowMetadata, Blob workflowData,
-	    FileMetadata[] modulesMetadata, Blob[] modulesData) throws LoadingFailedException;
 
     /**
      * TODO - also pass the data (fingerprints, models etc.) along!!

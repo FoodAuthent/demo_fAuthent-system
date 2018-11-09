@@ -70,10 +70,6 @@ public class ModelUtil {
         mapper.addMixIn(TrainingWorkflowOutput.TrainingWorkflowOutputBuilder.class, TrainingWorkflowOutputMixIn.TrainingWorkflowOutputMixInBuilder.class);
         mapper.addMixIn(Workflow.class, WorkflowMixIn.class);
         mapper.addMixIn(Workflow.WorkflowBuilder.class, WorkflowMixIn.WorkflowMixInBuilder.class);
-        mapper.addMixIn(WorkflowModuleInput.class, WorkflowModuleInputMixIn.class);
-        mapper.addMixIn(WorkflowModuleInput.WorkflowModuleInputBuilder.class, WorkflowModuleInputMixIn.WorkflowModuleInputMixInBuilder.class);
-        mapper.addMixIn(WorkflowModule.class, WorkflowModuleMixIn.class);
-        mapper.addMixIn(WorkflowModule.WorkflowModuleBuilder.class, WorkflowModuleMixIn.WorkflowModuleMixInBuilder.class);
         mapper.addMixIn(WorkflowPageResult.class, WorkflowPageResultMixIn.class);
         mapper.addMixIn(WorkflowPageResult.WorkflowPageResultBuilder.class, WorkflowPageResultMixIn.WorkflowPageResultMixInBuilder.class);
         mapper.addMixIn(WorkflowParameter.class, WorkflowParameterMixIn.class);

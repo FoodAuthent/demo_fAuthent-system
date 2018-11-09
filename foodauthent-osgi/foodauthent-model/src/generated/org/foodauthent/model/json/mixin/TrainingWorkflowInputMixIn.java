@@ -4,7 +4,6 @@
 package org.foodauthent.model.json.mixin;
 
 import org.foodauthent.model.json.mixin.FingerprintSetMixIn;
-import org.foodauthent.model.json.mixin.WorkflowModuleInputMixIn;
 import org.foodauthent.model.json.mixin.WorkflowParameterMixIn;
 
 import java.util.UUID;
@@ -58,9 +57,6 @@ public interface TrainingWorkflowInputMixIn {
     @JsonProperty("fingerprintset-URI")
     public String getFingerprintsetURI();
     
-    @JsonProperty("module-inputs")
-    public java.util.List<WorkflowModuleInputMixIn> getModuleInputs();
-    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -88,9 +84,6 @@ public interface TrainingWorkflowInputMixIn {
         
         @JsonProperty("fingerprintset-URI")
         public TrainingWorkflowInputMixInBuilder setFingerprintsetURI(final String fingerprintsetURI);
-        
-        @JsonProperty("module-inputs")
-        public TrainingWorkflowInputMixInBuilder setModuleInputs(final java.util.List<WorkflowModuleInputMixIn> moduleInputs);
         
     }
 

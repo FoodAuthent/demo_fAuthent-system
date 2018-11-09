@@ -3,11 +3,7 @@ package org.foodauthent.internal.impl.job.knime;
 import java.io.IOException;
 import java.io.StringReader;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import javax.json.Json;
 import javax.json.JsonValue;
@@ -31,9 +27,6 @@ import org.foodauthent.model.TrainingWorkflowInput;
 import org.foodauthent.model.TrainingWorkflowOutput;
 import org.foodauthent.model.Workflow;
 import org.foodauthent.model.Workflow.RepresentationEnum;
-import org.foodauthent.model.WorkflowModule;
-import org.foodauthent.model.WorkflowModuleInput;
-import org.foodauthent.model.WorkflowModuleInput.ModuleTypeEnum;
 import org.foodauthent.model.json.ObjectMapperUtil;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -79,9 +72,8 @@ public class LocalKnimeJobService implements JobService {
 			throw new InitJobException("Referenced workflow is not a knime workflow");
 		}
 
-		List<WorkflowModuleInput> moduleInputs;
 		try {
-			moduleInputs = loadWorkflowAndPrepareInputs(workflow);
+			loadWorkflow(workflow);
 		} catch (LoadingFailedException e1) {
 			throw new InitJobException("Problem initializing job", e1);
 		}
@@ -98,8 +90,8 @@ public class LocalKnimeJobService implements JobService {
 		// assemble workflow input
 		PredictionWorkflowInput workflowInput = PredictionWorkflowInput.builder()
 				.setFingerprintsetURI("TODO:fingerprintURI").setModelURI("TODO:modelURI")
-				.setFingerprintsetMetadata(fingerprintSet).setParameters(workflow.getParameters())
-				.setModuleInputs(moduleInputs).build();
+				.setFingerprintsetMetadata(fingerprintSet).setParameters(workflow.getParameters()).build();
+
 		// TODO doesn't work, but should
 		// JsonValue jsonInput =
 		// ObjectMapperUtil.getObjectMapper().convertValue(workflowInput,
@@ -164,9 +156,8 @@ public class LocalKnimeJobService implements JobService {
 			throw new InitJobException("Referenced workflow is not a knime workflow");
 		}
 
-		List<WorkflowModuleInput> moduleInputs;
 		try {
-			moduleInputs = loadWorkflowAndPrepareInputs(workflow);
+			loadWorkflow(workflow);
 		} catch (LoadingFailedException e1) {
 			throw new InitJobException("Problem initializing job", e1);
 		}
@@ -176,7 +167,7 @@ public class LocalKnimeJobService implements JobService {
 		// assemble workflow input
 		TrainingWorkflowInput workflowInput = TrainingWorkflowInput.builder()
 				.setFingerprintsetURI("TODO:fingerprintURI").setFingerprintsetMetadata(fingerprintSet)
-				.setParameters(workflow.getParameters()).setModuleInputs(moduleInputs).build();
+				.setParameters(workflow.getParameters()).build();
 		// TODO doesn't work, but should
 		// JsonValue jsonInput =
 		// ObjectMapperUtil.getObjectMapper().convertValue(workflowInput,
@@ -235,28 +226,9 @@ public class LocalKnimeJobService implements JobService {
 		return trainingJob;
 	}
 
-	private List<WorkflowModuleInput> loadWorkflowAndPrepareInputs(Workflow workflow) throws LoadingFailedException {
+	private void loadWorkflow(Workflow workflow) throws LoadingFailedException {
 		Blob wfFile = persistenceService.getBlobByUUID(workflow.getFileId());
 		FileMetadata fileMeta = persistenceService.getFaModelByUUID(workflow.getFileId(), FileMetadata.class);
-		List<WorkflowModuleInput> moduleInputs = null;
-		if (workflow.getModules().isEmpty()) {
-			knimeExecutor.loadWorkflow(workflow.getFaId(), fileMeta, wfFile);
-		} else {
-			FileMetadata[] mMetadata = workflow.getModules().stream()
-					.map(m -> persistenceService.getFaModelByUUID(m.getFileId(), FileMetadata.class))
-					.toArray(size -> new FileMetadata[size]);
-			Blob[] mData = workflow.getModules().stream().map(m -> persistenceService.getBlobByUUID(m.getFileId()))
-					.toArray(size -> new Blob[size]);
-			String[] moduleRefs = knimeExecutor.loadWorkflowWithModules(workflow.getFaId(), fileMeta, wfFile, mMetadata,
-					mData);
-			moduleInputs = new ArrayList<WorkflowModuleInput>();
-			for (int i = 0; i < moduleRefs.length; i++) {
-				WorkflowModule m = workflow.getModules().get(i);
-				moduleInputs.add(WorkflowModuleInput.builder().setModuleParameters(m.getModuleParameters())
-						.setModuleType(ModuleTypeEnum.valueOf(m.getModuleType().toString().toUpperCase()))
-						.setWorkflowURI(moduleRefs[i]).build());
-			}
-		}
-		return moduleInputs;
+		knimeExecutor.loadWorkflow(workflow.getFaId(), fileMeta, wfFile);
 	}
 }

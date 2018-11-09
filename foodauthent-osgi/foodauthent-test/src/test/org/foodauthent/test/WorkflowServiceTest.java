@@ -26,7 +26,6 @@ import org.foodauthent.model.Workflow;
 import org.foodauthent.model.Workflow.ModelTypeEnum;
 import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.Workflow.WorkflowBuilder;
-import org.foodauthent.model.WorkflowModule;
 import org.foodauthent.model.WorkflowParameter;
 import org.foodauthent.model.WorkflowParameter.TypeEnum;
 import org.glassfish.jersey.media.multipart.MultiPart;
@@ -218,80 +217,6 @@ public class WorkflowServiceTest extends AbstractITTest {
 	trainingJob = wt.path("workflow/training/job/" + trainingJob.getFaId()).request(MediaType.APPLICATION_JSON)
 		.get(TrainingJob.class);
 	assertEquals("Execution failed: " + trainingJob.getStatusMessage(),
-		org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS, trainingJob.getStatus());
-	Model model = wt.path("model/" + trainingJob.getModelId()).request(MediaType.APPLICATION_JSON).get(Model.class);
-	assertEquals(model.getType(), org.foodauthent.model.Model.TypeEnum.KNIME_WORKFLOW);
-    }
-    
-    //@Test
-    public void testUploadAndRunModularTrainingWorkflow() throws InterruptedException {
-
-	/* upload workflow modules */
-	// upload workflow module file 
-	FileMetadata fileMeta = FileMetadata.builder().setName("WorkflowModule").setDate(LocalDate.now())
-		.setDescription("file description of the workflow module").setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW)
-		.setVersion(0).build();
-	UUID fileId = wt.path("file").request(MediaType.APPLICATION_JSON).post(Entity.entity(fileMeta, MediaType.APPLICATION_JSON),
-		UUID.class);
-	MultiPart multiPart = new MultiPart();
-	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-	FileDataBodyPart filePart = new FileDataBodyPart("upfile", new File("files/workflows/WorkflowModule.knwf"),
-		MediaType.APPLICATION_OCTET_STREAM_TYPE);
-	multiPart.bodyPart(filePart);
-	wt.path("file/" + fileId + "/data").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
-	
-	// create module entitiy 
-	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("module_param1").setRequired(false)
-		.setValue("paramValue1").setType(TypeEnum.NUMBER).build();
-	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("module_param2").setRequired(true).setValue("paramValue2")
-		.setType(TypeEnum.STRING).build();
-	WorkflowModule wfModule = WorkflowModule.builder()
-		.setModuleParameters(Arrays.asList(wfp1, wfp2))
-		.setFileId(fileId)
-		.setModuleType(org.foodauthent.model.WorkflowModule.ModuleTypeEnum.BINNING).build();
-
-	/* upload workflow */
-	
-	// upload workflow file
-	fileMeta = FileMetadata.builder().setName("ModularTrainingWorkflow").setDate(LocalDate.now())
-		.setDescription("file description").setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW)
-		.setVersion(0).build();
-	fileId = wt.path("file").request(MediaType.APPLICATION_JSON).post(Entity.entity(fileMeta, MediaType.APPLICATION_JSON),
-		UUID.class);
-	multiPart = new MultiPart();
-	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-	filePart = new FileDataBodyPart("upfile", new File("files/workflows/ModularTrainingWorkflow.knwf"),
-		MediaType.APPLICATION_OCTET_STREAM_TYPE);
-	multiPart.bodyPart(filePart);
-	wt.path("file/" + fileId + "/data").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
-	
-	// upload workflow metadata
-	wfp1 = WorkflowParameter.builder().setName("param1").setRequired(false)
-		.setValue("paramValue1").setType(TypeEnum.NUMBER).build();
-	wfp2 = WorkflowParameter.builder().setName("param2").setRequired(true).setValue("paramValue2")
-		.setType(TypeEnum.STRING).build();
-	Workflow wf = Workflow.builder().setName("my modular_training workflow").setDescription("desc")
-		.setParameters(Arrays.asList(wfp1, wfp2))
-		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW)
-		.setFileId(fileId)
-		.setRepresentation(RepresentationEnum.KNIME)
-		.setModelType(ModelTypeEnum.KNIME_WORKFLOW)
-		.setModules(Arrays.asList(wfModule)).build(); // TODO set more (or even all) properties
-	UUID wfId = wt.path("workflow").request(MediaType.APPLICATION_JSON)
-		.post(Entity.entity(wf, MediaType.APPLICATION_JSON), UUID.class);
-
-	/* run training workflow */
-	TrainingJob trainingJob = wt.path("workflow/training/job").queryParam("workflow-id", wfId)
-		.queryParam("fingerprintset-id", fingerprintSetId).request(MediaType.APPLICATION_JSON)
-		.post(null, TrainingJob.class);
-	assertEquals(org.foodauthent.model.TrainingJob.StatusEnum.RUNNING, trainingJob.getStatus());
-	// let the job finish the training
-	Thread.sleep(3000);
-
-	/* retrieve training result */
-	trainingJob = wt.path("workflow/training/job/" + trainingJob.getFaId()).request(MediaType.APPLICATION_JSON)
-		.get(TrainingJob.class);
-	assertEquals("Workflow execution failed: " + trainingJob.getStatusMessage(),
 		org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS, trainingJob.getStatus());
 	Model model = wt.path("model/" + trainingJob.getModelId()).request(MediaType.APPLICATION_JSON).get(Model.class);
 	assertEquals(model.getType(), org.foodauthent.model.Model.TypeEnum.KNIME_WORKFLOW);

@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.foodauthent.model.FingerprintSet;
-import org.foodauthent.model.WorkflowModuleInput;
 import org.foodauthent.model.WorkflowParameter;
 
 
@@ -27,7 +26,6 @@ public class TrainingWorkflowInput   extends FaModel {
   private java.util.List<WorkflowParameter> parameters;
   private FingerprintSet fingerprintsetMetadata;
   private String fingerprintsetURI;
-  private java.util.List<WorkflowModuleInput> moduleInputs;
   
   public String getTypeID() {
     return "TrainingWorkflowInput";
@@ -44,7 +42,6 @@ public class TrainingWorkflowInput   extends FaModel {
     parameters = immutable(builder.parameters);
     fingerprintsetMetadata = immutable(builder.fingerprintsetMetadata);
     fingerprintsetURI = immutable(builder.fingerprintsetURI);
-    moduleInputs = immutable(builder.moduleInputs);
     
     
   }
@@ -64,7 +61,7 @@ public class TrainingWorkflowInput   extends FaModel {
             return false;
         }
         TrainingWorkflowInput ent = (TrainingWorkflowInput)o;
-        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprintsetMetadata, ent.fingerprintsetMetadata) && Objects.equals(fingerprintsetURI, ent.fingerprintsetURI) && Objects.equals(moduleInputs, ent.moduleInputs);
+        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprintsetMetadata, ent.fingerprintsetMetadata) && Objects.equals(fingerprintsetURI, ent.fingerprintsetURI);
     }
 
 
@@ -92,14 +89,6 @@ public class TrainingWorkflowInput   extends FaModel {
         return fingerprintsetURI;
     }
     
-  /**
-   * optional list of modules used within the training workfow.
-   * @return moduleInputs 
-   */
-  public java.util.List<WorkflowModuleInput> getModuleInputs() {
-        return moduleInputs;
-    }
-    
   
  	/**
   	 * @return a newly created builder
@@ -121,7 +110,6 @@ public class TrainingWorkflowInput   extends FaModel {
         builder.parameters = entity.parameters;
         builder.fingerprintsetMetadata = entity.fingerprintsetMetadata;
         builder.fingerprintsetURI = entity.fingerprintsetURI;
-        builder.moduleInputs = entity.moduleInputs;
  		return builder;
   	}
   	
@@ -135,7 +123,6 @@ public class TrainingWorkflowInput   extends FaModel {
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
         private FingerprintSet fingerprintsetMetadata = null;
         private String fingerprintsetURI = null;
-        private java.util.List<WorkflowModuleInput> moduleInputs = new java.util.ArrayList<>();
 
         /**
          * The workflow parameters as given provided by the Workflow-entity.
@@ -161,15 +148,6 @@ public class TrainingWorkflowInput   extends FaModel {
          */
         public TrainingWorkflowInputBuilder setFingerprintsetURI(String fingerprintsetURI) {
              this.fingerprintsetURI = fingerprintsetURI;
-             return this;
-        }
-
-        /**
-         * optional list of modules used within the training workfow.
-         * @return moduleInputs 
-         */
-        public TrainingWorkflowInputBuilder setModuleInputs(java.util.List<WorkflowModuleInput> moduleInputs) {
-             this.moduleInputs = moduleInputs;
              return this;
         }
 

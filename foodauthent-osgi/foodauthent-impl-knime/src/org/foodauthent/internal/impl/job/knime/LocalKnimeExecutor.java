@@ -61,26 +61,6 @@ public class LocalKnimeExecutor implements KnimeExecutor {
 		m_workflowMap.put(workflowId, wfm);
 	}
 
-	@Override
-	public String[] loadWorkflowWithModules(UUID workflowId, FileMetadata workflowMetadata, Blob workflowData,
-			FileMetadata[] modulesMetadata, Blob[] modulesData) throws LoadingFailedException {
-		assert modulesMetadata.length == modulesData.length;
-		WorkflowManager wfm = loadWorkflowInternal(workflowId, workflowMetadata, workflowData);
-		String[] refs = new String[modulesMetadata.length];
-		for (int i = 0; i < modulesMetadata.length; i++) {
-			// make sure to unzip the modules into the same dir as the master workflow
-			try {
-				File dir = unzipToTempDir(workflowId, modulesData[i].getData(), modulesMetadata[i].getName());
-				refs[i] = "/" + dir.getName();
-			} catch (IOException e) {
-				throw new LoadingFailedException(
-						"Problem unzipping workflow module '" + modulesMetadata[i].getName() + "'", e);
-			}
-		}
-		m_workflowMap.put(workflowId, wfm);
-		return refs;
-	}
-
 	private void disposeWorkflow(UUID workflowId) {
 		m_workflowMap.remove(workflowId);
 		// TODO

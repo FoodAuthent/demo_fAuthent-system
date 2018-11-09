@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/FingerprintSet', '../model/WorkflowModuleInput', '../model/WorkflowParameter'], factory);
+    define(['../ApiClient', '../model/FingerprintSet', '../model/WorkflowParameter'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./FingerprintSet'), require('./WorkflowModuleInput'), require('./WorkflowParameter'));
+    module.exports = factory(require('../ApiClient'), require('./FingerprintSet'), require('./WorkflowParameter'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.TrainingWorkflowInput = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FingerprintSet, root.FoodAuthentSwaggerApi.WorkflowModuleInput, root.FoodAuthentSwaggerApi.WorkflowParameter);
+    root.FoodAuthentSwaggerApi.TrainingWorkflowInput = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FingerprintSet, root.FoodAuthentSwaggerApi.WorkflowParameter);
   }
-}(this, function(ApiClient, FingerprintSet, WorkflowModuleInput, WorkflowParameter) {
+}(this, function(ApiClient, FingerprintSet, WorkflowParameter) {
   'use strict';
 
 
@@ -48,7 +48,6 @@
    */
   var exports = function() {
     var _this = this;
-
 
 
 
@@ -75,9 +74,6 @@
       if (data.hasOwnProperty('fingerprintset-URI')) {
         obj['fingerprintset-URI'] = ApiClient.convertToType(data['fingerprintset-URI'], 'String');
       }
-      if (data.hasOwnProperty('module-inputs')) {
-        obj['module-inputs'] = ApiClient.convertToType(data['module-inputs'], [WorkflowModuleInput]);
-      }
     }
     return obj;
   }
@@ -97,11 +93,6 @@
    * @member {String} fingerprintset-URI
    */
   exports.prototype['fingerprintset-URI'] = undefined;
-  /**
-   * optional list of modules used within the training workfow.
-   * @member {Array.<module:model/WorkflowModuleInput>} module-inputs
-   */
-  exports.prototype['module-inputs'] = undefined;
 
 
 
