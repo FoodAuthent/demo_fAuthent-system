@@ -9,9 +9,11 @@ var MyObject = function () {
 
   var getProducts = function (self) {
     console.log('Get Products');
+    console.log('Self: ',self);
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
+      self.resultsCount = data.resultCount;
       if (error) {
         //this.response = data;
         console.error(error);
@@ -28,8 +30,8 @@ var MyObject = function () {
       }
     };
     var opt = {
-      pageNumber: 0,
-      pageSize: 100
+      pageNumber: self.currentPage,
+      pageSize: self.perPage
     };
     productApi.findProductByKeyword(
       opt,

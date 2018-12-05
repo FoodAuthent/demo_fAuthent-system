@@ -54,10 +54,17 @@
 
 <script>
 var getPredictions = require("@/utils/workflowFunction.js").default.getPredictions;
+import jsonschema from "@/generated/schema/prediction.json";
 export default {
   name: "Workflow",
   data() {
     return {
+      model: {},
+      schema: jsonschema,
+      formOptions: {
+        validateAfterLoad: true,
+        validateAfterChanged: true
+      },
       items: [],
       selected: {},
       fields: [],
