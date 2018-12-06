@@ -222,6 +222,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<id>com.ftrace:javax.inject.repackage:jar:1.0.0.201811241306</id>
 											<source>false</source>
 										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.javassist:javassist:jar:3.24.0-GA</id>
+											<source>false</source>
+										</artifact>
 									</artifacts>
 								</feature>
 								<feature>
