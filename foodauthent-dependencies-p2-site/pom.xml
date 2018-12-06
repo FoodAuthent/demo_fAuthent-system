@@ -11,8 +11,7 @@
 		<tycho.version>1.2.0</tycho.version>
 		<!-- p2 repositories -->
 		<equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a</equinox-oxygen-repo.url>
-		<!-- <p2-maven-repo.url>http://repository.foodauthent.net/p2/p2-maven-1.0.0-SNAPSHOT</p2-maven-repo.url> -->
-		<p2-maven-repo.url>file:/Users/sven/Documents/projects/foodauthent-java/foodauthent-dependencies-p2-site/p2-maven/target/repository/</p2-maven-repo.url>
+		<p2-maven-repo.url>http://repository.foodauthent.net/p2/p2-maven-1.0.1-SNAPSHOT</p2-maven-repo.url>
 		<knime-analytics-platform.url>http://update.knime.com/analytics-platform/3.6/</knime-analytics-platform.url>
 		<p2-openchrom-platform.url>http://update.openchrom.net/repositories/community/latest/platform</p2-openchrom-platform.url>
 		<p2-openchrom-converter.url>http://update.openchrom.net/repositories/community/latest/converter</p2-openchrom-converter.url>
