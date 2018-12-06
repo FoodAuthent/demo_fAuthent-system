@@ -34,34 +34,26 @@
 
    <features>
       <feature id="org.foodauthent.feature"/>
-      <feature id="org.eclipse.equinox.server.core"/>
+      <feature id="org.eclipse.equinox.core.feature"/>
+      <feature id="org.elasticsearch.client.feature"/>
+      <feature id="io.minio.feature"/>
+      <feature id="org.apache.commons.feature"/>
+      <feature id="org.apache.httpcomponents.feature"/>
+      <feature id="org.glassfish.jersey.feature"/>
+      <feature id="org.joda.time.feature"/>
       <feature id="org.eclipse.equinox.server.jetty"/>
-      <feature id="org.foodauthent.knime.feature"/>
       <feature id="org.foodauthent.openchrom.feature"/>
-      <feature id="org.eclipse.ecf.filetransfer.httpclient4.feature"/>
-      <feature id="org.eclipse.help"/>
-      <feature id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature"/>
-      <feature id="org.eclipse.emf.common"/>
-      <feature id="org.eclipse.equinox.p2.core.feature"/>
-      <feature id="org.knime.features.base.source"/>
-      <feature id="org.eclipse.ecf.core.ssl.feature"/>
-      <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
-      <feature id="org.eclipse.gef"/>
-      <feature id="org.eclipse.draw2d"/>
-      <feature id="net.openchrom.platform.feature"/>
-      <feature id="org.eclipse.emf.ecore"/>
-      <feature id="org.eclipse.equinox.p2.user.ui"/>
-      <feature id="org.eclipse.equinox.p2.extras.feature"/>
-      <feature id="org.knime.features.json"/>
-      <feature id="org.eclipse.rcp"/>
-      <feature id="org.eclipse.ecf.core.feature"/>
-      <feature id="org.eclipse.equinox.p2.rcp.feature"/>
-      <feature id="org.eclipse.ecf.filetransfer.feature"/>
-      <feature id="org.eclipse.platform"/>
-      <feature id="org.knime.features.json.source"/>
+      <feature id="org.eclipse.core.runtime.feature"/>
       <feature id="net.openchrom.converter.feature"/>
-      <feature id="org.knime.features.base"/>
-      <feature id="org.eclipse.e4.rcp"/>
+      <feature id="net.openchrom.platform.feature"/>
+      <feature id="org.eclipse.equinox.server.core"/>
+      <feature id="org.eclipse.platform"/>
+      <feature id="org.eclipse.emf.ecore"/>
+      <feature id="org.eclipse.emf.common"/>
+      <feature id="org.eclipse.ecf.core.feature"/>
+      <feature id="org.eclipse.ecf.core.ssl.feature"/>
+      <feature id="org.eclipse.ecf.filetransfer.feature"/>
+      <feature id="org.glassfish.hk2.feature"/>
    </features>
 
    <configurations>
@@ -91,8 +83,12 @@
       <plugin id="org.eclipse.swt" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.ui.workbench" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.common" autoStart="true" startLevel="2" />
+      <plugin id="org.foodauthent.config" autoStart="true" startLevel="2" />
+      <plugin id="org.foodauthent.persistence.impl.elasticsearch" autoStart="true" startLevel="3" />
+      <plugin id="org.foodauthent.persistence.impl.simple" autoStart="false" startLevel="0" />
       <plugin id="org.foodauthent.rest.api" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.rest.impl" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.storage.impl.s3" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.swaggerui" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.ui.vuejs" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.hk2.osgi-resource-locator" autoStart="true" startLevel="0" />
