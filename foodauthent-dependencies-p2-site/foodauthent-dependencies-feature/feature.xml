@@ -53,7 +53,7 @@
          version="0.0.0"/>
 
    <includes
-         id="org.glassfish.hk.feature.source"
+         id="org.glassfish.hk2.feature.source"
          version="0.0.0"/>
 
 </feature>
