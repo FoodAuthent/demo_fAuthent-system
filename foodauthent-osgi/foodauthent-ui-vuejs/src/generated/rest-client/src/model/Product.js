@@ -52,6 +52,9 @@
 
 
 
+
+
+
   };
 
   /**
@@ -71,6 +74,15 @@
       if (data.hasOwnProperty('gtin')) {
         obj['gtin'] = ApiClient.convertToType(data['gtin'], 'String');
       }
+      if (data.hasOwnProperty('name')) {
+        obj['name'] = ApiClient.convertToType(data['name'], 'String');
+      }
+      if (data.hasOwnProperty('description')) {
+        obj['description'] = ApiClient.convertToType(data['description'], 'String');
+      }
+      if (data.hasOwnProperty('ingredients')) {
+        obj['ingredients'] = ApiClient.convertToType(data['ingredients'], 'String');
+      }
       if (data.hasOwnProperty('brand')) {
         obj['brand'] = ApiClient.convertToType(data['brand'], 'String');
       }
@@ -87,6 +99,18 @@
    * @member {String} gtin
    */
   exports.prototype['gtin'] = undefined;
+  /**
+   * @member {String} name
+   */
+  exports.prototype['name'] = undefined;
+  /**
+   * @member {String} description
+   */
+  exports.prototype['description'] = undefined;
+  /**
+   * @member {String} ingredients
+   */
+  exports.prototype['ingredients'] = undefined;
   /**
    * @member {String} brand
    */

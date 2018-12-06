@@ -38,9 +38,30 @@
       <feature id="org.eclipse.equinox.server.jetty"/>
       <feature id="org.foodauthent.knime.feature"/>
       <feature id="org.foodauthent.openchrom.feature"/>
-      <feature id="org.eclipse.platform"/>
+      <feature id="org.eclipse.ecf.filetransfer.httpclient4.feature"/>
+      <feature id="org.eclipse.help"/>
+      <feature id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature"/>
+      <feature id="org.eclipse.emf.common"/>
+      <feature id="org.eclipse.equinox.p2.core.feature"/>
+      <feature id="org.knime.features.base.source"/>
+      <feature id="org.eclipse.ecf.core.ssl.feature"/>
+      <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
+      <feature id="org.eclipse.gef"/>
+      <feature id="org.eclipse.draw2d"/>
+      <feature id="net.openchrom.platform.feature"/>
+      <feature id="org.eclipse.emf.ecore"/>
+      <feature id="org.eclipse.equinox.p2.user.ui"/>
+      <feature id="org.eclipse.equinox.p2.extras.feature"/>
+      <feature id="org.knime.features.json"/>
+      <feature id="org.eclipse.rcp"/>
       <feature id="org.eclipse.ecf.core.feature"/>
+      <feature id="org.eclipse.equinox.p2.rcp.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
+      <feature id="org.eclipse.platform"/>
+      <feature id="org.knime.features.json.source"/>
+      <feature id="net.openchrom.converter.feature"/>
+      <feature id="org.knime.features.base"/>
+      <feature id="org.eclipse.e4.rcp"/>
    </features>
 
    <configurations>

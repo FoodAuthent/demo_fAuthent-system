@@ -45,4 +45,9 @@ public class ProductServiceImpl implements ProductService {
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
 
+    @Override
+    public Product updatedProduct(Product product) {
+	return persistenceService.update(product);
+    }
+
 }

@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import org.foodauthent.api.internal.exception.EntityExistsException;
+import org.foodauthent.api.internal.exception.EntityNotFoundException;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
 
@@ -32,6 +33,17 @@ public interface PersistenceService {
      */
     <T extends FaModel> T save(T entity) throws EntityExistsException;
 
+    /**
+     * Update given entity.
+     *
+     * @param entity
+     *            Entity to update
+     * @return entity with new attributes
+     * @throws EntityNotFoundException
+     *             if entity with given fa-id does not exist
+     */
+    <T extends FaModel> T update(T entity) throws EntityNotFoundException;
+    
     /**
      * Replaces an existing entity with the passed one.
      * 

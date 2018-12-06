@@ -359,7 +359,29 @@ paths:
           schema:
             type: string
             format: uuid
-             
+
+    put:
+      tags:
+        - product
+      summary: Update existing product entity. 
+      description: TODO
+      operationId: updatedProduct
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: product
+        description: TODO
+        schema:
+          $ref: "#/definitions/Product" 
+      responses:
+        200:
+          description: Product has been updated successfully and is being returned with new details.
+          schema:
+            $ref: "#/definitions/Product" 
+                         
   /product/findByGtin:
     get:
       tags:
@@ -1103,6 +1125,9 @@ definitions:
     type: object
     x-ui-vue.js:
       - name: gtin
+      - name: name
+      - name: description
+      - name: ingredients
       - name: brand
     properties:
       fa-id:
@@ -1111,6 +1136,12 @@ definitions:
         format: uuid
         example: ""
       gtin:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      ingredients:
         type: string
       brand:
         type: string

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FoodAuthent File Storage Services
+Bundle-SymbolicName: org.foodauthent.storage
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: org.foodauthent.storage
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.foodauthent.storage

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?><target name="knime" sequenceNumber="7">
+<locations>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="com.knime.features.explorer.serverspace.feature.group" version="4.7.0.v201810251948"/>
+<unit id="org.knime.features.base.feature.group" version="3.6.2.v201811051556"/>
+<unit id="org.knime.features.base.source.feature.group" version="3.6.2.v201811051556"/>
+<unit id="org.knime.features.json.feature.group" version="3.6.1.v201808311614"/>
+<unit id="org.knime.features.json.source.feature.group" version="3.6.1.v201808311614"/>
+<unit id="org.knime.features.python2.feature.group" version="3.6.2.v201811051558"/>
+<unit id="org.knime.features.python2.source.feature.group" version="3.6.2.v201811051558"/>
+<repository location="http://update.knime.com/analytics-platform/3.6"/>
+</location>
+</locations>
+</target>

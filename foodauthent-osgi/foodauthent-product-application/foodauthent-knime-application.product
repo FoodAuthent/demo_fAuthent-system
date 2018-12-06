@@ -36,9 +36,9 @@
 
    <features>
       <feature id="org.foodauthent.knime.feature" version="1.0.0.qualifier"/>
-      <feature id="org.knime.features.base" version="3.6.0.v201807100940"/>
-      <feature id="org.knime.features.json" version="3.6.0.v201807061527"/>
-      <feature id="org.knime.features.python2" version="3.6.0.v201807061638"/>
+      <feature id="org.knime.features.base"/>
+      <feature id="org.knime.features.json"/>
+      <feature id="org.knime.features.python2"/>
       <feature id="org.eclipse.ecf.filetransfer.httpclient4.feature"/>
       <feature id="org.eclipse.help"/>
       <feature id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature"/>

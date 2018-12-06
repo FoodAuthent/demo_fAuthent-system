@@ -76,7 +76,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   /**
    * save model entity to Elasticsearch
    *
-   * @tparam T entity type
+   * @param T entity type
    * @param id optional id
    * @param value model entity
    * @param target implicit Elasticsearch target with index name and type
@@ -90,7 +90,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   /**
    * save model entity to Elasticsearch without implicit Target
    *
-   * @tparam T entity type
+   * @param T entity type
    * @param indexName name of Elasticsearch index
    * @param typeName of Elasticsearch type
    * @param id optional id
@@ -115,7 +115,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   /**
    * get model entity from Elasticsearch
    *
-   * @tparam T entity type
+   * @param T entity type
    * @param id
    * @param target implicit Elasticsearch target with index name and type
    * @param value model entity
@@ -128,7 +128,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   /**
    * get model entity from Elasticsearch without implicit Target
    *
-   * @tparam T entity type
+   * @param T entity type
    * @param indexName name of Elasticsearch index
    * @param typeName of Elasticsearch type
    * @param id
@@ -147,7 +147,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   /**
    * get multiple model entities from Elasticsearch
    *
-   * @tparam T entity type
+   * @param T entity type
    * @param ids
    * @param target implicit Elasticsearch target with index name and type
    * @param value model entity
@@ -160,7 +160,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   /**
    * get multiple model entities from Elasticsearch without implicit Target
    *
-   * @tparam T entity type
+   * @param T entity type
    * @param indexName name of Elasticsearch index
    * @param typeName of Elasticsearch type
    * @param ids
@@ -190,7 +190,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   /**
    * update model entity in Elasticsearch
    *
-   * @tparam T entity type
+   * @param T entity type
    * @param id
    * @param value model entity
    * @param target implicit Elasticsearch target with index name and type
@@ -203,7 +203,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   /**
    * update model entity in Elasticsearch without implicit Target
    *
-   * @tparam T entity type
+   * @param T entity type
    * @param indexName name of Elasticsearch index
    * @param typeName of Elasticsearch type
    * @param id
@@ -220,7 +220,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   /**
    * patch model entity in Elasticsearch
    *
-   * @tparam T entity type (generally a map)
+   * @param T entity type (generally a map)
    * @param id
    * @param value model entity
    * @param target implicit Elasticsearch target with index name and type
@@ -233,7 +233,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   /**
    * patch model entity in Elasticsearch without implicit Target
    *
-   * @tparam T entity type (generally a map)
+   * @param T entity type (generally a map)
    * @param indexName name of Elasticsearch index
    * @param typeName of Elasticsearch type
    * @param id
@@ -279,7 +279,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   /**
    * perform matchAll query for model entity on Elasticsearch
    *
-   * @tparam T entity type to be returned in list
+   * @param T entity type to be returned in list
    * @param from elasticsearch search from paramater
    * @param size elasticsearch search size paramater
    * @param target implicit Elasticsearch target with index name and type
@@ -292,7 +292,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   /**
    * perform matchAll query for model entity on Elasticsearch without implicit Target
    *
-   * @tparam T entity type to be returned in list
+   * @param T entity type to be returned in list
    * @param indexName name of Elasticsearch index
    * @param typeName of Elasticsearch type
    * @param from elasticsearch search from paramater
@@ -350,7 +350,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
    * Perform SearchRequest on Elasticsearch.
    * Results will be returned SearchResult which provides information for hits.
    *
-   * @tparam T entity type to be used in result
+   * @param T entity type to be used in result
    * @param request Elasticsearch SearchRequest for executing search
    * @param target implicit Elasticsearch target with index name and type
    * @return SearchResult with totalHits and list of results
@@ -369,7 +369,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
    * Perform search on Elasticsearch using QueryBuilder.
    * Results will be returned as simple list without additional information
    *
-   * @tparam T entity type to be used in result
+   * @param T entity type to be used in result
    * @param query Elasticsearch QueryBuilder for executing search
    * @param target implicit Elasticsearch target with index name and type
    * @return list of results
@@ -403,7 +403,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
    * Perform search on Elasticsearch using QueryBuilder without implicit Target.
    * Results will be returned as simple list without additional information
    *
-   * @tparam T entity type to be used in result
+   * @param T entity type to be used in result
    * @param indexName name of Elasticsearch index
    * @param typeName of Elasticsearch type
    * @param query Elasticsearch QueryBuilder for executing search
@@ -427,7 +427,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
    * Perform search and sort on Elasticsearch using QueryBuilder and FieldSortBuilder.
    * Results will be returned as simple list without additional information
    *
-   * @tparam T entity type to be used in result
+   * @param T entity type to be used in result
    * @param query Elasticsearch QueryBuilder for executing search
    * @param sort Elasticsearch FieldSortBuilder for sorting
    * @param target implicit Elasticsearch target with index name and type
@@ -441,7 +441,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
    * Perform search and sort on Elasticsearch using QueryBuilder and FieldSortBuilder without implicit Target.
    * Results will be returned as simple list without additional information on totalHits
    *
-   * @tparam T entity type to be used in result
+   * @param T entity type to be used in result
    * @param query Elasticsearch QueryBuilder for executing search
    * @param sort Elasticsearch FieldSortBuilder for sorting
    * @param indexName name of Elasticsearch index
@@ -466,7 +466,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   /**
    * get model entity from Elasticsearch
    *
-   * @tparam T entity type
+   * @param T entity type
    * @param id
    * @param target implicit Elasticsearch target with index name and type
    * @param value model entity

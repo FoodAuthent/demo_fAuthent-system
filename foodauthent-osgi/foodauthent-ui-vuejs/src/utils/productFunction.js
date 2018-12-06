@@ -28,7 +28,7 @@ var MyObject = function () {
       }
     };
     var opt = {
-      pageNumber: 0,
+      pageNumber: 1,
       pageSize: 100
     };
     productApi.findProductByKeyword(

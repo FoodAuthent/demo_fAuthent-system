@@ -394,7 +394,7 @@ public class ApiClient {
 			return formatDate((Date) param);
 		} else if (param instanceof Collection) {
 			StringBuilder b = new StringBuilder();
-			for (Object o : (Collection) param) {
+			for (Object o : (Collection<?>) param) {
 				if (b.length() > 0) {
 					b.append(',');
 				}
@@ -424,9 +424,9 @@ public class ApiClient {
 		if (name == null || name.isEmpty() || value == null)
 			return params;
 
-		Collection valueCollection;
+		Collection<?> valueCollection;
 		if (value instanceof Collection) {
-			valueCollection = (Collection) value;
+			valueCollection = (Collection<?>) value;
 		} else {
 			params.add(new Pair(name, parameterToString(value)));
 			return params;

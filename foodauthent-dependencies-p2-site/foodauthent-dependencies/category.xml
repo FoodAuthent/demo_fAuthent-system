@@ -21,15 +21,6 @@
    <feature url="features/org.eclipse.equinox.server.jetty_1.3.1.v20160829-1338.jar" id="org.eclipse.equinox.server.jetty" version="0.0.0">
       <category name="eclipse.equinox.oxygen"/>
    </feature>
-   <feature url="features/com.eclipsesource.jaxrs.feature_1.0.0.qualifier.jar" id="com.eclipsesource.jaxrs.feature" version="0.0.0">
-      <category name="org.foodauthent.custom"/>
-   </feature>
-   <feature url="features/org.knime.features.base_3.6.0.v201807100939.jar" id="org.knime.features.base" version="0.0.0">
-      <category name="org.knime.platform"/>
-   </feature>
-   <feature url="features/org.knime.features.base.source_3.6.0.v201807100939.jar" id="org.knime.features.base.source" version="0.0.0">
-      <category name="org.knime.platform"/>
-   </feature>
    <feature url="features/com.fasterxml.jackson.feature_2.8.10.20180710004005.jar" id="com.fasterxml.jackson.feature" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
@@ -54,52 +45,106 @@
    <feature url="features/org.scala-lang.feature.source_2.12.3.20180711213428.jar" id="org.scala-lang.feature.source" version="0.0.0">
       <category name="org.scala-lang"/>
    </feature>
-   <feature url="features/org.knime.features.json_3.6.0.v201807061527.jar" id="org.knime.features.json" version="0.0.0">
-      <category name="org.knime.platform"/>
-   </feature>
-   <feature url="features/org.knime.features.json.source_3.6.0.v201807061527.jar" id="org.knime.features.json.source" version="0.0.0">
-      <category name="org.knime.platform"/>
-   </feature>
-   <feature url="features/org.knime.features.python2_3.6.0.v201807061638.jar" id="org.knime.features.python2" version="0.0.0">
-      <category name="org.knime.platform"/>
-   </feature>
-   <feature url="features/org.knime.features.python2.source_3.6.0.v201807061638.jar" id="org.knime.features.python2.source" version="0.0.0">
-      <category name="org.knime.platform"/>
-   </feature>
-   <feature url="features/com.knime.features.enterprise.client_4.7.0.v201807091120.jar" id="com.knime.features.enterprise.client" version="0.0.0">
-      <category name="org.knime.platform"/>
-   </feature>
-   <feature url="features/com.knime.features.enterprise.server.ws.client_4.7.0.v201807091120.jar" id="com.knime.features.enterprise.server.ws.client" version="0.0.0">
-      <category name="org.knime.platform"/>
-   </feature>
-   <feature url="features/com.knime.features.explorer.serverspace_4.7.0.v201807061420.jar" id="com.knime.features.explorer.serverspace" version="0.0.0">
-      <category name="org.knime.platform"/>
-   </feature>
    <feature url="features/net.openchrom.converter.feature_1.0.0.qualifier.jar" id="net.openchrom.converter.feature" version="0.0.0">
       <category name="net.openchrom"/>
    </feature>
    <feature url="features/net.openchrom.platform.feature_1.0.0.qualifier.jar" id="net.openchrom.platform.feature" version="0.0.0">
       <category name="net.openchrom"/>
    </feature>
-   <feature url="features/org.junit_4.12.0.20180806174446.jar" id="org.junit" version="0.0.0">
-      <category name="org.foodauthent.maven"/>
-   </feature>
    <feature url="features/org.elasticsearch.client.feature_6.3.1.20180807122933.jar" id="org.elasticsearch.client.feature" version="0.0.0">
-      <category name="org.foodauthent.maven"/>
-   </feature>
-   <feature url="features/org.junit_4.12.0.20180807122933.jar" id="org.junit" version="0.0.0">
-      <category name="org.foodauthent.maven"/>
-   </feature>
-   <feature url="features/org.apache.httpcomponents_4.4.10.20180807122933.jar" id="org.apache.httpcomponents" version="0.0.0">
-      <category name="org.foodauthent.maven"/>
-   </feature>
-   <feature url="features/org.apache.httpcomponents.source_4.4.10.20180807122933.jar" id="org.apache.httpcomponents.source" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
    <feature url="features/io.swagger.feature_1.5.20.20180807122933.jar" id="io.swagger.feature" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
    <feature url="features/io.swagger.feature.source_1.5.20.20180807122933.jar" id="io.swagger.feature.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/com.eclipsesource.jaxrs.feature_1.0.0.qualifier.jar" id="com.eclipsesource.jaxrs.feature" version="0.0.0">
+      <category name="org.foodauthent.custom"/>
+   </feature>
+   <feature url="features/org.knime.features.base_3.6.2.v201811051556.jar" id="org.knime.features.base" version="0.0.0">
+      <category name="org.knime.platform"/>
+   </feature>
+   <feature url="features/org.knime.features.python2_3.6.2.v201811051558.jar" id="org.knime.features.python2" version="0.0.0">
+      <category name="org.knime.platform"/>
+   </feature>
+   <feature url="features/org.knime.features.json_3.6.1.v201808311614.jar" id="org.knime.features.json" version="0.0.0">
+      <category name="org.knime.platform"/>
+   </feature>
+   <feature url="features/org.knime.features.json.source_3.6.1.v201808311614.jar" id="org.knime.features.json.source" version="0.0.0">
+      <category name="org.knime.platform"/>
+   </feature>
+   <feature url="features/org.knime.features.base.source_3.6.2.v201811051556.jar" id="org.knime.features.base.source" version="0.0.0">
+      <category name="org.knime.platform"/>
+   </feature>
+   <feature url="features/org.knime.features.python2.source_3.6.2.v201811051558.jar" id="org.knime.features.python2.source" version="0.0.0">
+      <category name="org.knime.platform"/>
+   </feature>
+   <feature url="features/org.apache.commons.feature_1.1.0.20181205102904.jar" id="org.apache.commons.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.apache.commons.feature.source_1.1.0.20181205102904.jar" id="org.apache.commons.feature.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.joda.time.feature_2.10.1.20181205102904.jar" id="org.joda.time.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.joda.time.feature.source_2.10.1.20181205102904.jar" id="org.joda.time.feature.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/com.typesafe.feature_1.3.3.20181205102904.jar" id="com.typesafe.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/com.typesafe.feature.source_1.3.3.20181205102904.jar" id="com.typesafe.feature.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.eclipse.jdt.junit5.runtime.feature_1.0.200.20181205102904.jar" id="org.eclipse.jdt.junit5.runtime.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.scala-lang.feature_2.12.3.20181205102904.jar" id="org.scala-lang.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.scala-lang.feature.source_2.12.3.20181205102904.jar" id="org.scala-lang.feature.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.apache.httpcomponents.feature_4.4.10.20181205102904.jar" id="org.apache.httpcomponents.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.apache.httpcomponents.feature.source_4.4.10.20181205102904.jar" id="org.apache.httpcomponents.feature.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/io.minio.feature_5.0.3.20181205102904.jar" id="io.minio.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.elasticsearch.client.feature_6.5.1.20181205102904.jar" id="org.elasticsearch.client.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.joda.time.feature_2.10.1.20181205102904.jar" id="org.joda.time.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.joda.time.feature.source_2.10.1.20181205102904.jar" id="org.joda.time.feature.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.apache.commons.feature_1.1.0.20181205102904.jar" id="org.apache.commons.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.apache.commons.feature.source_1.1.0.20181205102904.jar" id="org.apache.commons.feature.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.scala-lang.feature_2.12.3.20181205102904.jar" id="org.scala-lang.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.scala-lang.feature.source_2.12.3.20181205102904.jar" id="org.scala-lang.feature.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.slf4j.feature_1.7.25.20181205102904.jar" id="org.slf4j.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.slf4j.feature.source_1.7.25.20181205102904.jar" id="org.slf4j.feature.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/io.minio.feature_5.0.3.20181205153202.jar" id="io.minio.feature" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
    <category-def name="org.foodauthent.custom" label="FoodAuthent Custom Dependencies"/>

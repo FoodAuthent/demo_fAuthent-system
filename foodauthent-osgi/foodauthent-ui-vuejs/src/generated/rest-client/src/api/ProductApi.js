@@ -191,6 +191,50 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
+
+    /**
+     * Callback function to receive the result of the updatedProduct operation.
+     * @callback module:api/ProductApi~updatedProductCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/Product} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Update existing product entity.
+     * TODO
+     * @param {Object} opts Optional parameters
+     * @param {module:model/Product} opts.product TODO
+     * @param {module:api/ProductApi~updatedProductCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/Product}
+     */
+    this.updatedProduct = function(opts, callback) {
+      opts = opts || {};
+      var postBody = opts['product'];
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = Product;
+
+      return this.apiClient.callApi(
+        '/product', 'PUT',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
   };
 
   return exports;

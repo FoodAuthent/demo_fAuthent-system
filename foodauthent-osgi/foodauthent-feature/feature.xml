@@ -403,20 +403,6 @@
          unpack="false"/>
 
    <plugin
-         id="com.github.joschi.jackson.jackson-datatype-threetenbp"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.threeten.bp"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="io.swagger.annotations"
          download-size="0"
          install-size="0"
@@ -474,6 +460,20 @@
 
    <plugin
          id="org.foodauthent.impl.openchrom"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.foodauthent.config"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.typesafe.config"
          download-size="0"
          install-size="0"
          version="0.0.0"

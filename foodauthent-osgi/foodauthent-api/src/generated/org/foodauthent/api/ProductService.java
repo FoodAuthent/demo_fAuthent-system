@@ -45,4 +45,13 @@ public interface ProductService {
      */
     ProductPageResult findProductByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
+    /**
+     * TODO
+     *
+     * @param product TODO
+     *
+     * @return the result
+     */
+    Product updatedProduct(Product product);
+        
 }

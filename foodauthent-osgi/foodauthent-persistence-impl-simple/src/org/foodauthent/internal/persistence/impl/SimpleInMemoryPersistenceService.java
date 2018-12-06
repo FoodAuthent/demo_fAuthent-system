@@ -10,6 +10,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.foodauthent.api.internal.exception.EntityExistsException;
+import org.foodauthent.api.internal.exception.EntityNotFoundException;
 import org.foodauthent.api.internal.exception.NoSuchIDException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
@@ -126,28 +127,28 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 
 	@Override
 	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
-	        int pageNumber, int pageSize) {
-	List<T> res = findByKeywords(keywords, modelType);
-	int start = pageNumber * pageSize;
-	List<T> page = res.stream().skip(start).limit(pageSize).collect(Collectors.toList());
-	    return new ResultPage<T>() {
-	
-	    @Override
-	    public int getTotalNumPages() {
-		return res.size() / pageSize;
-	    }
-	    
-	    @Override
-	    public int getTotalNumEntries() {
-	        return res.size();
-	    }
-	
-	    @Override
-	    public List<T> getResult() {
-		return page;
-	    }
-	        
-	    };
+			int pageNumber, int pageSize) {
+		List<T> res = findByKeywords(keywords, modelType);
+		int start = pageNumber * pageSize;
+		List<T> page = res.stream().skip(start).limit(pageSize).collect(Collectors.toList());
+		return new ResultPage<T>() {
+
+			@Override
+			public int getTotalNumPages() {
+				return res.size() / pageSize;
+			}
+
+			@Override
+			public int getTotalNumEntries() {
+				return res.size();
+			}
+
+			@Override
+			public List<T> getResult() {
+				return page;
+			}
+
+		};
 	}
 
 	@Override
@@ -171,13 +172,13 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 			throw new NoSuchElementException(e.getLocalizedMessage());
 		}
 	}
-	
+
 	@Override
 	public void removeFaModelByUUID(UUID uuid, Class<?> modelType) {
 		entities.remove(uuid);
 	}
-	
-    /**
+
+	/**
 	 * Returns the last used entity ID.
 	 *
 	 * @return the last used entity ID
@@ -217,7 +218,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	}
 
 	@Override
-	public <T extends FaModel> T replace(final T  entity) throws NoSuchElementException {
+	public <T extends FaModel> T replace(final T entity) throws NoSuchElementException {
 		if (!entities.containsKey(entity.getFaId())) {
 			throw new NoSuchElementException("No entity to replace for the given fa-id.");
 		}
@@ -232,6 +233,20 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 		} catch (final NoSuchIDException e) {
 			throw new NoSuchElementException(e.getLocalizedMessage());
 		}
+	}
+
+	@Override
+	public <T extends FaModel> T update(T obj) throws EntityNotFoundException {
+		if (obj instanceof FaModel) {
+			if (!entities.containsKey(obj.getFaId())) {
+				throw new EntityNotFoundException("An entity with the given does not exist.");
+			}
+			entities.put(obj.getFaId(), (FaModel) obj);
+		} else {
+			throw new IllegalArgumentException("Objects of type '" + obj.getClass().getSimpleName()
+					+ "' + not supported by the persistence service.");
+		}
+		return obj;
 	}
 
 }

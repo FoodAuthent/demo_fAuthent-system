@@ -17,9 +17,17 @@
 
 
 		<!-- p2 repositories -->
+		<!--
 		<foodauthent-dependencies.url>http://repository.foodauthent.net/p2/foodauthent-dependencies-1.0.0-SNAPSHOT/</foodauthent-dependencies.url>
+		  -->
+		<foodauthent-dependencies.url>file:/Users/sven/Documents/projects/foodauthent-java/foodauthent-dependencies-p2-site/foodauthent-dependencies/target/repository/</foodauthent-dependencies.url>
+		<!--
+		<foodauthent-addon.url>http://repository.foodauthent.net/p2/p2-addon/</foodauthent-addon.url>
+		-->
+		<foodauthent-addon.url>file:/Users/sven/Documents/projects/foodauthent-java/foodauthent-dependencies-addons/target/repository/</foodauthent-addon.url>
+		<!-- 
 		<knime-analytics-platform.url>http://update.knime.com/analytics-platform/3.6/</knime-analytics-platform.url>
-		
+		 -->
 		<!-- use UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -32,10 +40,17 @@
 			<layout>p2</layout>
 		</repository>
 		<repository>
+			<id>foodauthent-addon</id>
+			<url>${foodauthent-addon.url}</url>
+			<layout>p2</layout>
+		</repository>
+		<!-- 
+		<repository>
 			<id>knime-analytics-platform</id>
 			<url>${knime-analytics-platform.url}</url>
 			<layout>p2</layout>
 		</repository>
+		 -->
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -187,6 +202,7 @@
 	</build>
 	<modules>
 		<module>foodauthent-common</module>
+		<module>foodauthent-config</module>
 		<module>foodauthent-model</module>
 		<module>foodauthent-api</module>
 		<module>foodauthent-api-internal</module>
@@ -194,6 +210,8 @@
 		<module>foodauthent-rest-api</module>
 		<module>foodauthent-rest-impl</module>
 		<module>foodauthent-swaggerui</module>
+		<module>foodauthent-storage</module>
+		<module>foodauthent-storage-impl-s3</module>
 		<module>foodauthent-persistence-impl-simple</module>
 		<module>foodauthent-persistence-impl-elasticsearch</module>
 		<module>foodauthent-oneworldsync-client</module>
