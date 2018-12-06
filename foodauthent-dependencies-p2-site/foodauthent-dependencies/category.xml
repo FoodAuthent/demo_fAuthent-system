@@ -147,6 +147,12 @@
    <feature url="features/io.minio.feature_5.0.3.20181205153202.jar" id="io.minio.feature" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
+   <feature url="features/org.glassfish.hk2.feature_2.5.0.20181206161328.jar" id="org.glassfish.hk2.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/org.glassfish.hk2.feature.source_2.5.0.20181206161328.jar" id="org.glassfish.hk2.feature.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
    <category-def name="org.foodauthent.custom" label="FoodAuthent Custom Dependencies"/>
    <category-def name="org.foodauthent.maven" label="FoodAuthent Maven Dependencies"/>
    <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime"/>

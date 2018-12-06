@@ -48,4 +48,12 @@
          id="org.elasticsearch.client.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.glassfish.hk2.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.glassfish.hk.feature.source"
+         version="0.0.0"/>
+
 </feature>
