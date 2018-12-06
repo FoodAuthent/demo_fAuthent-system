@@ -4,14 +4,15 @@
     <!-- UPDATE -->
     <b-row>
         <b-col>
-           <b-btn variant="primary" size="sm" @click="loadTableData"><md-icon>autorenew</md-icon></b-btn>
+           <b-btn id="refreshTable" variant="primary" size="sm" @click="loadTableData"><md-icon>autorenew</md-icon></b-btn>
         </b-col>
               <!-- PER PAGE -->
       <b-col class="my-1">
       <b-form-group horizontal label="PER PAGE" class="mb-0">
-          <b-form-select :options="pageOptionsPerPage" v-model="perPage" />
+          <b-form-select @change="perPagehandler($event)" :options="pageOptionsPerPage" v-model="perPage" />
         </b-form-group>
       </b-col>
+      
         <!-- SEARCH -->
       <b-col class="my-1">
    <b-form-group horizontal label="SEARCH" class="mb-50">
@@ -44,7 +45,7 @@
 </b-table>
 
 <!-- PAGINATION -->
-<b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" />
+<b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page="perPage" v-model="currentPage" />
 
 <!-- MODAL EDIT -->
   <b-modal id="modalEdit" title="Edit" @ok="handleEditOk">
@@ -85,8 +86,9 @@ export default {
       selected: {},
       fields: [],
       currentPage: 1,
+      resultsCount: null,
       perPage: 10,
-      sortBy: "id",
+      sortBy: "brand",
       shownItems: null,
       sortDesc: false,
       filter: null,
@@ -107,8 +109,25 @@ export default {
   methods: {
     loadTableData() {
       let self = this;
+      console.log("Actual page", self.currentPage);
       getProducts(self);
     },
+    //Manage when the number of items displayed on the table change
+    perPagehandler(newObjectState){
+    let self = this;
+    self.currentPage = 0; //just a workaround to go back in page 1
+    self.perPage = newObjectState;
+    document.getElementById("refreshTable").click();
+   // self.loadTableData();
+    },
+    //Manage the pagination, when a page number is pressed this call the API to get the results for the new page
+    myPaginationHandler(page){
+    let self = this;
+    self.currentPage = page;
+    getProducts(self);
+    self.currentPage = 1;
+    },
+    //Manage the ok button to confirm the edit action
     handleEditOk() {
     let self = this;
       //console.log("selected", this.selected);
@@ -118,6 +137,7 @@ export default {
       updateProducts(this.model, self);
       //product.data.tabIndex = 1;
     },
+    //Manage the ok button to confirm the delete action
     handleDeleteOk() {
       let self = this;
       console.log("fa-id:", this.selected["fa-id"]);

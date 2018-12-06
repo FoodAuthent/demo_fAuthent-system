@@ -66,10 +66,17 @@ var getFingerprints = require("@/utils/fingerprintFunction.js").default
   .getFingerprints;
 var deleteFingerprints = require("@/utils/fingerprintFunction.js").default
   .deleteFingerprints;
+import jsonschema from "@/generated/schema/fingerprintset.json";
 export default {
   name: "Fingerprints",
   data() {
     return {
+      model: {},
+      schema: jsonschema,
+      formOptions: {
+        validateAfterLoad: true,
+        validateAfterChanged: true
+      },
       items: [],
       selected: {},
       fields: [],
