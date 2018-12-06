@@ -148,6 +148,83 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 									</artifacts>
 								</feature>
 								<feature>
+									<id>org.glassfish.hk2.feature</id>
+									<version>2.5.0.qualifier</version>
+									<label>GlassFish HK2 2.5.0 Feature</label>
+									<providerName>https://glassfish.java.net</providerName>
+									<copyright>Oracle Corporation</copyright>
+									<license>
+										CDDL + GPLv2 with classpath exception
+									</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.glassfish.hk2:hk2-api:jar:2.5.0-b42</id>
+											<source>true</source>
+											<override>true</override>
+											<instructions>
+												<Export-Package>org.glassfish.hk2.api;version="2.5.0";uses:="javax.inj
+													ect,org.aopalliance.intercept,org.glassfish.hk2.extension,org.glassfi
+													sh.hk2.utilities,org.jvnet.hk2.annotations",org.glassfish.hk2.api.mes
+													saging;version="2.5.0";uses:="javax.inject,org.glassfish.hk2.api,org.
+													jvnet.hk2.annotations",org.glassfish.hk2.extension;version="2.5.0";us
+													es:="org.glassfish.hk2.api",org.glassfish.hk2.utilities;version="2.5.
+													0";uses:="javax.inject,org.glassfish.hk2.api,org.glassfish.hk2.utilit
+													ies.binding,org.jvnet.hk2.annotations",org.glassfish.hk2.utilities.bi
+													nding;version="2.5.0";uses:="org.glassfish.hk2.api,org.glassfish.hk2.
+													utilities",org.jvnet.hk2.annotations;version="2.5.0";uses:="org.glass
+													fish.hk2.api",com.sun.hk2.component;version="2.5.0"</Export-Package>
+												<Import-Package>
+													javax.inject,org.aopalliance.intercept;version="[1.0,2
+													)",org.glassfish.hk2.extension;version="[2.5,3)",org.glassfish.hk2.os
+													giresourcelocator;version="[2.0,3)";resolution:=optional,org.glassfis
+													h.hk2.utilities.general;version="[2.5,3)",org.glassfish.hk2.utilities
+													.reflection;version="[2.5,3)",org.jvnet.hk2.component;version="[2.5,3
+													)"</Import-Package>
+												<DynamicImport-Package>*</DynamicImport-Package>
+												<Bundle-Vendor>Oracle Corporation</Bundle-Vendor>
+												<Bundle-Version>2.5.0.b42</Bundle-Version>
+												<Bundle-License>https://glassfish.java.net/nonav/public/CDDL+GPL_1_1.html</Bundle-License>
+												<Bundle-Description>HK2 API module</Bundle-Description>
+												<Bundle-SymbolicName>org.glassfish.hk2.api</Bundle-SymbolicName>
+												<Bundle-DocURL>http://www.oracle.com</Bundle-DocURL>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.glassfish.hk2:hk2-utils:jar:2.5.0-b42</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.glassfish.hk2:hk2-locator:jar:2.5.0-b42</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.glassfish.hk2:osgi-resource-locator:jar:2.5.0-b42</id>
+											<source>true</source>
+											<override>true</override>
+											<instructions>
+												<Export-Package>org.glassfish.hk2.osgiresourcelocator;uses:="org.osgi.framework";version="2.5.0"</Export-Package>
+												<Import-Package>org.osgi.framework;version="[1.7,2)</Import-Package>
+												<Bundle-Activator>org.glassfish.hk2.osgiresourcelocator.Activator</Bundle-Activator>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.glassfish.hk2.external:aopalliance-repackaged:jar:2.5.0-b42</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>com.ftrace:javax.inject.repackage:jar:1.0.0.201811241306</id>
+											<source>false</source>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
 									<id>org.glassfish.jersey.feature</id>
 									<version>2.27.0.qualifier</version>
 									<label>GlassFish Jersey 2.27 Feature</label>
@@ -163,47 +240,78 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 									<generateSourceFeature>true</generateSourceFeature>
 									<artifacts>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.media:jersey-media-json-jackson:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.connectors:jersey-apache-connector:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.containers:jersey-container-servlet:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.core:jersey-client:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.core:jersey-server:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>org.glassfish.jersey.core:jersey-common:jar:2.27</id>
-											<source>true</source>
+											<transitive>false</transitive>
+											<id>org.glassfish.jersey.core:jersey-common:jar:2.27.1.201811241306</id>
+											<source>false</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.ext:jersey-entity-filtering:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.media:jersey-media-multipart:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.inject:jersey-hk2:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.ext:jersey-proxy-client:jar:2.27</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>javax.ws.rs:javax.ws.rs-api:jar:2.1.1</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.jvnet.mimepull:mimepull:jar:1.9.10</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>javax.validation:validation-api:jar:1.1.0.Final</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>javax.annotation:javax.annotation-api:jar:1.3.2</id>
 											<source>true</source>
 										</artifact>
 									</artifacts>
@@ -503,11 +611,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<source>false</source>
 											<transitive>false</transitive>
 										</artifact>
-										<artifact>
-											<id>jakarta-regexp:jakarta-regexp:jar:1.4</id>
-											<source>false</source>
-											<transitive>false</transitive>
-										</artifact>
 									</artifacts>
 								</feature>
 							</featureDefinitions>
@@ -557,5 +660,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 		<module>org.elasticsearch.client.rest</module>
 		<module>org.json4s_2.12</module>
 		<module>io.minio</module>
+		<module>javax.inject</module>
+		<module>jersey-common</module>
 	</modules>
 </project>
