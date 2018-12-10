@@ -153,6 +153,9 @@
    <feature url="features/org.glassfish.hk2.feature.source_2.5.0.20181206161328.jar" id="org.glassfish.hk2.feature.source" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
+   <feature url="features/org.foodauthent.knime.dependencies.feature_1.0.1.qualifier.jar" id="org.foodauthent.knime.dependencies.feature" version="1.0.1.qualifier">
+      <category name="org.knime.platform"/>
+   </feature>
    <category-def name="org.foodauthent.custom" label="FoodAuthent Custom Dependencies"/>
    <category-def name="org.foodauthent.maven" label="FoodAuthent Maven Dependencies"/>
    <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime"/>
