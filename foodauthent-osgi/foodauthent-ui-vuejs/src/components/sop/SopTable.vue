@@ -4,12 +4,12 @@
     <!-- UPDATE -->
     <b-row>
         <b-col>
-           <b-btn variant="primary" size="sm" @click="loadTableData"><md-icon>autorenew</md-icon></b-btn>
+           <b-btn id="refreshTable" variant="primary" size="sm" @click="loadTableData"><md-icon>autorenew</md-icon></b-btn>
         </b-col>
               <!-- PER PAGE -->
       <b-col class="my-1">
       <b-form-group horizontal label="PER PAGE" class="mb-0">
-          <b-form-select :options="pageOptionsPerPage" v-model="perPage" />
+          <b-form-select @change="perPagehandler($event)" :options="pageOptionsPerPage" v-model="perPage" />
         </b-form-group>
       </b-col>
         <!-- SEARCH -->
@@ -44,7 +44,7 @@
 </b-table>
 
 <!-- PAGINATION -->
-<b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" />
+<b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page="perPage" v-model="currentPage" />
 
 <!-- MODAL EDIT -->
   <b-modal id="modalEdit" title="Edit" @ok="handleEditOk">
@@ -78,13 +78,15 @@ export default {
       items: [],
       selected: {},
       fields: [],
+      currentPage: 1,
+      resultsCount: 1,
+      pageCount: 0,
+      perPage: 10,
       //fields: [
       //{ key: 'fa-id', sortable: true },
       //{ key: 'actions', sortable: false }
       // ],
-      currentPage: 1,
-      perPage: 10,
-      sortBy: "id",
+      sortBy: "name",
       sortDesc: false,
       filter: null,
       pageOptionsPerPage: [10, 25, 50, 100]
@@ -106,6 +108,25 @@ export default {
       console.log("Load table data");
       let self = this;
       getSops(self);
+    },
+    clearSearch(){
+    this.filter = "";
+    document.getElementById("refreshTable").click();
+    },
+    //Manage when the number of items displayed on the table change
+    perPagehandler(newObjectState){
+    let self = this;
+    self.currentPage = 0; //just a workaround to go back in page 1
+    self.perPage = newObjectState;
+    document.getElementById("refreshTable").click();
+   // self.loadTableData();
+    },
+    //Manage the pagination, when a page number is pressed this call the API to get the results for the new page
+    myPaginationHandler(page){
+    let self = this;
+    self.currentPage = page;
+    getSops(self);
+    self.currentPage = 1;
     },
     handleDeleteOk() {
       let self = this;

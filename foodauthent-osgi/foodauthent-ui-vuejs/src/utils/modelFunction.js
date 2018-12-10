@@ -12,6 +12,8 @@ var MyObject = function () {
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
+     self.resultsCount = data.resultCount;
+      self.pageCount = response.body.pageCount;
       if (error) {
         //this.response = data;
         console.error(error);
@@ -22,15 +24,15 @@ var MyObject = function () {
         for (var i = 0; i < length; i++) {
           // console.log(jsonResult[i]);
           jsonResult[i]['actions'] = '';
-          console.log(jsonResult[i]);
+          //console.log(jsonResult[i]);
         }
         self.items = data.results;
         console.log("API called successfully. Returned data: ", data);
       }
     };
     var opt = {
-      pageNumber: 0,
-      pageSize: 100
+     pageNumber: self.currentPage,
+     pageSize: self.perPage
     };
     modelApi.findModelByKeyword(
       opt,

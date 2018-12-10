@@ -17,9 +17,11 @@
       <b-col class="my-1">
    <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
-            <b-form-input v-model="filter" placeholder="Type to Search" />
+            <b-form-input v-model="filter" placeholder="Type to Search for gtin or keyword" />
             <b-input-group-append>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+            <b-btn :disabled="!filter" @click="searchProduct">Search</b-btn>
+            <!--<b-btn :disabled="!filter" @click="searchProductByGtin">Search by Gtin</b-btn> -->
+              <b-btn :disabled="!filter" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -35,7 +37,7 @@
          :fields="fields"
          :current-page="currentPage"
          :per-page="perPage"
-         :filter="filter"
+
          @row-clicked="myRowClickHandler"
 >
   <template slot="actions" slot-scope="row">
@@ -69,6 +71,8 @@ var getProducts = require("@/utils/productFunction.js").default.getProducts;
 var deleteProducts = require("@/utils/productFunction.js").default
   .deleteProducts;
 var updateProducts = require("@/utils/productFunction.js").default.updateProducts;
+var findProductByKeyword = require("@/utils/productFunction.js").default.findProductByKeyword;
+var findProductByGtin = require("@/utils/productFunction.js").default.findProductByGtin;
 import productForm from "@/components/product/ProductForm";
 import product from "@/components/product/Product";
 import jsonschema from "@/generated/schema/product.json";
@@ -86,12 +90,12 @@ export default {
       selected: {},
       fields: [],
       currentPage: 1,
-      resultsCount: null,
+      resultsCount: 1,
       perPage: 10,
       sortBy: "brand",
       shownItems: null,
       sortDesc: false,
-      filter: null,
+      filter:null,
       pageOptionsPerPage: [5, 10, 25, 50, 100]
     };
   },
@@ -100,7 +104,7 @@ export default {
   },
   computed: {
     sortOptions() {
-      // Create an options list from our fields
+       //Create an options list from our fields
       return this.fields.filter(f => f.sortable).map(f => {
         return { text: f.label, value: f.key };
       });
@@ -109,8 +113,30 @@ export default {
   methods: {
     loadTableData() {
       let self = this;
-      console.log("Actual page", self.currentPage);
       getProducts(self);
+    },
+    //Search product before for gtin and then for keywords
+    searchProduct(){
+    let self = this;
+    self.searchProductByGtin();
+    console.log("searchProductByGtin check ",self.items);
+    if(self.items.length <= 0){
+    self.searchProductByKeywords();
+    console.log("searchProductByKeywords check ",self.items);
+    }
+    },
+    searchProductByKeywords(){
+    let self = this;
+    findProductByKeyword(self);
+    //document.getElementById("refreshTable").click();
+    },
+    searchProductByGtin(){
+    let self = this;
+    findProductByGtin(self);
+    },
+    clearSearch(){
+    this.filter = "";
+    document.getElementById("refreshTable").click();
     },
     //Manage when the number of items displayed on the table change
     perPagehandler(newObjectState){
@@ -153,11 +179,11 @@ export default {
       this.model = item;
       this.$root.$emit('bv::show::modal', 'modalEdit', button);
     },
-    onFiltered(filteredItems) {
+   // onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    }
+      //this.totalRows = filteredItems.length;
+     // this.currentPage = 1;
+   // }
   }
 };
 </script>

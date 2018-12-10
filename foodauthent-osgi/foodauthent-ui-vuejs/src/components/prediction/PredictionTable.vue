@@ -4,12 +4,12 @@
     <!-- UPDATE -->
     <b-row>
         <b-col>
-           <b-btn variant="primary" size="sm" @click="loadTableData"><md-icon>autorenew</md-icon></b-btn>
+           <b-btn id="refreshTable" variant="primary" size="sm" @click="loadTableData"><md-icon>autorenew</md-icon></b-btn>
         </b-col>
               <!-- PER PAGE -->
       <b-col class="my-1">
       <b-form-group horizontal label="PER PAGE" class="mb-0">
-          <b-form-select :options="pageOptionsPerPage" v-model="perPage" />
+          <b-form-select @change="perPagehandler($event)" :options="pageOptionsPerPage" v-model="perPage" />
         </b-form-group>
       </b-col>
         <!-- SEARCH -->
@@ -41,7 +41,7 @@
 </b-table>
 
 <!-- PAGINATION -->
-<b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" />
+<b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page="perPage" v-model="currentPage" />
 
 <!-- MODAL DETAILS -->
   <b-modal id="modal1" title="Details">
@@ -75,6 +75,8 @@ export default {
       // { key: 'actions', sortable: false }
       //],
       currentPage: 1,
+      resultsCount: 1,
+      pageCount: 0,
       perPage: 10,
       sortBy: "id",
       shownItems: null,
@@ -98,6 +100,25 @@ export default {
      loadTableData() {
       let self = this;
       getPredictions(self);
+    },
+    clearSearch(){
+    this.filter = "";
+    document.getElementById("refreshTable").click();
+    },
+    //Manage when the number of items displayed on the table change
+    perPagehandler(newObjectState){
+    let self = this;
+    self.currentPage = 0; //just a workaround to go back in page 1
+    self.perPage = newObjectState;
+    document.getElementById("refreshTable").click();
+   // self.loadTableData();
+    },
+    //Manage the pagination, when a page number is pressed this call the API to get the results for the new page
+    myPaginationHandler(page){
+    let self = this;
+    self.currentPage = page;
+    getPredictions(self);
+    self.currentPage = 1;
     },
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items

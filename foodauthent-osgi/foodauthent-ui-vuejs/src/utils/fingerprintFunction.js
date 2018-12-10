@@ -13,6 +13,8 @@ var Fingerprints = function () {
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
+      self.resultsCount = data.resultCount;
+      self.pageCount = response.body.pageCount;
       if (error) {
         //this.response = data;
         console.error(error);
@@ -34,8 +36,8 @@ var Fingerprints = function () {
       }
     };
     var opt = {
-      pageNumber: 0,
-      pageSize: 10
+     pageNumber: self.currentPage,
+     pageSize: self.perPage
     };
     fingerprintApi.findFingerprintSetByKeyword(
       opt,

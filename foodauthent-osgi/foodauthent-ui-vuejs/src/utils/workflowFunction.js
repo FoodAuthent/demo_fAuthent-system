@@ -12,6 +12,8 @@ var MyObject = function () {
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
+      self.resultsCount = data.resultCount;
+      self.pageCount = response.body.pageCount;
       if (error) {
         //this.response = data;
         console.error(error);
@@ -42,6 +44,8 @@ var MyObject = function () {
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
+      self.resultsCount = data.resultCount;
+      self.pageCount = response.body.pageCount;
       if (error) {
         //this.response = data;
         console.error(error);
@@ -51,8 +55,8 @@ var MyObject = function () {
       }
     };
     var opt = {
-      pageNumber: 0,
-      pageSize: 100
+      pageNumber: self.currentPage,
+      pageSize: self.perPage
     };
     workflowApi.findPredictionWorkflows(
       opt,
@@ -65,6 +69,8 @@ var MyObject = function () {
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
+      self.resultsCount = data.resultCount;
+      self.pageCount = response.body.pageCount;
       if (error) {
         //this.response = data;
         console.error(error);
@@ -74,8 +80,8 @@ var MyObject = function () {
       }
     };
     var opt = {
-      pageNumber: 0,
-      pageSize: 100
+    pageNumber: self.currentPage,
+    pageSize: self.perPage
     };
     workflowApi.findPredictionJobs(
       opt,
@@ -88,6 +94,8 @@ var MyObject = function () {
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
+      self.resultsCount = data.resultCount;
+      self.pageCount = response.body.pageCount;
       if (error) {
         //this.response = data;
         console.error(error);
@@ -97,8 +105,8 @@ var MyObject = function () {
       }
     };
     var opt = {
-      pageNumber: 0,
-      pageSize: 100
+      pageNumber: self.currentPage,
+      pageSize: self.perPage
     };
     workflowApi.findTrainingJobs(
       opt,
