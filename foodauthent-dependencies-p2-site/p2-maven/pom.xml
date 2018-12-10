@@ -617,6 +617,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 										</artifact>
 									</artifacts>
 								</feature>
+								<!-- 
 								<feature>
 									<id>org.apache.aries.blueprint.feature</id>
 									<version>1.10.0.qualifier</version>
@@ -632,6 +633,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 										</artifact>
 									</artifacts>
 								</feature>
+								 -->
 							</featureDefinitions>
 						</configuration>
 					</execution>
