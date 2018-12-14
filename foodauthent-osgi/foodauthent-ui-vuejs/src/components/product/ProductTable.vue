@@ -14,14 +14,14 @@
       </b-col>
       
         <!-- SEARCH -->
-      <b-col class="my-1">
+  <b-col class="my-1 col-sm-6">
    <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
-            <b-form-input v-model="filter" placeholder="Type to Search for gtin or keyword" />
+            <b-form-input v-model="filter" placeholder="Search for gtin or keywords" />
             <b-input-group-append>
-            <b-btn :disabled="!filter" @click="searchProduct">Search</b-btn>
-            <!--<b-btn :disabled="!filter" @click="searchProductByGtin">Search by Gtin</b-btn> -->
-              <b-btn :disabled="!filter" @click="clearSearch">Clear</b-btn>
+            <b-btn :disabled="!filter" variant="primary" @click="searchProductByKeywords">Keywords</b-btn>
+            <b-btn :disabled="!filter" variant="success" @click="searchProductByGtin">Gtin</b-btn>
+              <b-btn :disabled="!filter" variant="warning" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -115,16 +115,6 @@ export default {
       let self = this;
       getProducts(self);
     },
-    //Search product before for gtin and then for keywords
-    searchProduct(){
-    let self = this;
-    self.searchProductByGtin();
-    console.log("searchProductByGtin check ",self.items);
-    if(self.items.length <= 0){
-    self.searchProductByKeywords();
-    console.log("searchProductByKeywords check ",self.items);
-    }
-    },
     searchProductByKeywords(){
     let self = this;
     findProductByKeyword(self);
@@ -132,6 +122,7 @@ export default {
     },
     searchProductByGtin(){
     let self = this;
+    //findProductByKeyword(self);//TEST DELETE IT
     findProductByGtin(self);
     },
     clearSearch(){

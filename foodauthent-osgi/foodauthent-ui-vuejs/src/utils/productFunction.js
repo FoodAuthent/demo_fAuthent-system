@@ -113,12 +113,20 @@ var MyObject = function () {
   
    
   var findProductByKeyword = function (self) {
-	  	var filterArray = self.filter.split(" ");
-	    console.log('Search Products for Keywords: ',filterArray);
+	  	//var filterArray = self.filter.split(",");
+	  	var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+	    //console.log('Search Products for Keywords: ',filterArray);
 	    var callback = function (error, data, response) {
-	      console.log("data:", data);
-	      console.log("response:", response);
-	      self.resultsCount = data.resultCount;
+	      if(data !== undefined && data !== null){
+	    	  self.resultsCount = data.resultCount; 
+	      }else{
+	    	  self.resultsCount = 0;
+	      }
+	      if(response.body !== null){
+	    	  self.pageCount = response.body.pageCount; 
+	      }else{
+	    	  self.pageCount = 0;
+	      }
 	      if (error) {
 	        //this.response = data;
 	        console.error(error);
@@ -129,7 +137,7 @@ var MyObject = function () {
 	          jsonResult[i]['actions'] = '';
 	        }
 	        self.items = data.results;
-	        console.log("Items For KEYWORDS are: ",self.items);
+	        //console.log("Items For KEYWORDS are: ",self.items);
 	        console.log("API called successfully. Returned data: ", data);
 	      }
 	    };
@@ -149,18 +157,24 @@ var MyObject = function () {
 		    var callback = function (error, data, response) {
 		      console.log("data:", data);
 		      console.log("response:", response);
-		      self.resultsCount = data.resultCount;
-		      console.log("Result count:",data.resultCount);
+		      if(data !== undefined && data !== null){
+		    	  self.resultsCount = data.resultCount; 
+		      }else{
+		    	  self.resultsCount = 0;
+		      }
+		      if(response.body !== null){
+		    	  self.pageCount = response.body.pageCount; 
+		      }else{
+		    	  self.pageCount = 0;
+		      }
 		      if (error) {
 		        //this.response = data;
 		        console.error(error);
+		        self.items=[];
 		      } else {
 		        var jsonResult = [];
 		        jsonResult.push(response.body);
-		        var length = data.lenght;
-		        for (var i = 0; i < length; i++) {
-		          jsonResult[i]['actions'] = '';
-		        }
+		        jsonResult[0]['actions'] = '';
 		        self.items = jsonResult;
 		        console.log("Items For GTIN are: ",self.items);
 		        console.log("API called successfully. Returned data: ", data);
