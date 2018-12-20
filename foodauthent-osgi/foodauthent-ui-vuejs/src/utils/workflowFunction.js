@@ -12,8 +12,16 @@ var MyObject = function () {
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
-      self.resultsCount = data.resultCount;
-      self.pageCount = response.body.pageCount;
+      if(data !== undefined && data !== null){
+    	  self.resultsCount = data.resultCount; 
+      }else{
+    	  self.resultsCount = 0;
+      }
+      if(response.body !== null){
+    	  self.pageCount = response.body.pageCount; 
+      }else{
+    	  self.pageCount = 0;
+      }
       if (error) {
         //this.response = data;
         console.error(error);
@@ -38,14 +46,98 @@ var MyObject = function () {
       callback
     );
   };
+  
+
+  var findWorkflowByKeyword = function (self) {
+	var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+  console.log('Search Workflow for Keywords: ',filterArray);
+  var callback = function (error, data, response) {
+    if(data !== undefined && data !== null){
+  	  self.resultsCount = data.resultCount; 
+    }else{
+  	  self.resultsCount = 0;
+    }
+    if(response.body !== null){
+  	  self.pageCount = response.body.pageCount; 
+    }else{
+  	  self.pageCount = 0;
+    }
+    if (error) {
+      //this.response = data;
+      console.error(error);
+    } else {
+      var jsonResult = data.results;
+      var length = jsonResult.length;
+      for (var i = 0; i < length; i++) {
+        jsonResult[i]['actions'] = '';
+      }
+      self.items = data.results;
+      //console.log("Items For KEYWORDS are: ",self.items);
+      console.log("API called successfully. Returned data: ", data);
+    }
+  };
+  var opt = {
+    pageNumber: self.currentPage,
+    pageSize: self.perPage,
+    keywords: filterArray
+  };
+  workflowApi.findWorkflowByKeyword(
+    opt,
+    callback
+  );
+};
+
+var findWorkflowById = function (self) {
+    console.log('Search Workflow for ID: ',self.filter);
+    var callback = function (error, data, response) {
+      console.log("data:", data);
+      console.log("response:", response);
+      if(data !== undefined && data !== null){
+    	  self.resultsCount = data.resultCount; 
+      }else{
+    	  self.resultsCount = 0;
+      }
+      if(response.body !== null){
+    	  self.pageCount = response.body.pageCount; 
+      }else{
+    	  self.pageCount = 0;
+      }
+      if (error) {
+        //this.response = data;
+        console.error(error);
+        self.items=[];
+      } else {
+        var jsonResult = [];
+        jsonResult.push(response.body);
+        jsonResult[0]['actions'] = '';
+        self.items = jsonResult;
+        console.log("Items For ID are: ",self.items);
+        console.log("API called successfully. Returned data: ", data);
+      }
+    };
+    var workflowId = self.filter;
+    workflowApi.getWorkflowById(
+     workflowId,
+      callback
+    );
+  };
+
 
   var getPredictions = function (self) {
     console.log('Get  Prediction');
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
-      self.resultsCount = data.resultCount;
-      self.pageCount = response.body.pageCount;
+      if(data !== undefined && data !== null){
+    	  self.resultsCount = data.resultCount; 
+      }else{
+    	  self.resultsCount = 0;
+      }
+      if(response.body !== null){
+    	  self.pageCount = response.body.pageCount; 
+      }else{
+    	  self.pageCount = 0;
+      }
       if (error) {
         //this.response = data;
         console.error(error);
@@ -63,6 +155,79 @@ var MyObject = function () {
       callback
     );
   };
+  
+  var findPredictionByKeyword = function (self) {
+	  	var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+	    console.log('Search Prediction for Keywords: ',filterArray);
+	    var callback = function (error, data, response) {
+	      if(data !== undefined && data !== null){
+	    	  self.resultsCount = data.resultCount; 
+	      }else{
+	    	  self.resultsCount = 0;
+	      }
+	      if(response.body !== null){
+	    	  self.pageCount = response.body.pageCount; 
+	      }else{
+	    	  self.pageCount = 0;
+	      }
+	      if (error) {
+	        console.error(error);
+	      } else {
+	        var jsonResult = data.results;
+	        var length = jsonResult.length;
+	        for (var i = 0; i < length; i++) {
+	          jsonResult[i]['actions'] = '';
+	        }
+	        self.items = data.results;
+	        //console.log("Items For KEYWORDS are: ",self.items);
+	        console.log("API called successfully. Returned data: ", data);
+	      }
+	    };
+	    var opt = {
+	      pageNumber: self.currentPage,
+	      pageSize: self.perPage,
+	      keywords: filterArray
+	    };
+	     workflowApi.findPredictionWorkflows(
+	      opt,
+	      callback
+	    );
+	  };
+	  
+	  var findPredictionById = function (self) {
+		    console.log('Search Prediction for ID: ',self.filter);
+		    var callback = function (error, data, response) {
+		      console.log("data:", data);
+		      console.log("response:", response);
+		      if(data !== undefined && data !== null){
+		    	  self.resultsCount = data.resultCount; 
+		      }else{
+		    	  self.resultsCount = 0;
+		      }
+		      if(response.body !== null){
+		    	  self.pageCount = response.body.pageCount; 
+		      }else{
+		    	  self.pageCount = 0;
+		      }
+		      if (error) {
+		        //this.response = data;
+		        console.error(error);
+		        self.items=[];
+		      } else {
+		        var jsonResult = [];
+		        jsonResult.push(response.body);
+		        jsonResult[0]['actions'] = '';
+		        self.items = jsonResult;
+		        console.log("Items For GTIN are: ",self.items);
+		        console.log("API called successfully. Returned data: ", data);
+		      }
+		    };
+		    var predictionId = self.filter;
+		    workflowApi.getPredictionResult(
+		      predictionId,
+		      callback
+		    );
+		  };
 
   var getPredictionJobs = function (self) {
     console.log('Get Prediction Job');
@@ -88,6 +253,83 @@ var MyObject = function () {
       callback
     );
   };
+  
+  
+  
+  var findPredictionJobsByKeyword = function (self) {
+	  	var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+	    console.log('Search Prediction for Keywords: ',filterArray);
+	    var callback = function (error, data, response) {
+	      if(data !== undefined && data !== null){
+	    	  self.resultsCount = data.resultCount; 
+	      }else{
+	    	  self.resultsCount = 0;
+	      }
+	      if(response.body !== null){
+	    	  self.pageCount = response.body.pageCount; 
+	      }else{
+	    	  self.pageCount = 0;
+	      }
+	      if (error) {
+	        console.error(error);
+	      } else {
+	        var jsonResult = data.results;
+	        var length = jsonResult.length;
+	        for (var i = 0; i < length; i++) {
+	          jsonResult[i]['actions'] = '';
+	        }
+	        self.items = data.results;
+	        //console.log("Items For KEYWORDS are: ",self.items);
+	        console.log("API called successfully. Returned data: ", data);
+	      }
+	    };
+	    var opt = {
+	      pageNumber: self.currentPage,
+	      pageSize: self.perPage,
+	      keywords: filterArray
+	    };
+	     workflowApi.findPredictionJobs(
+	      opt,
+	      callback
+	    );
+	  };
+  
+ 
+  var findPredictionJobById = function (self) {
+	    console.log('Search Prediction for ID: ',self.filter);
+	    var callback = function (error, data, response) {
+	      console.log("data:", data);
+	      console.log("response:", response);
+	      if(data !== undefined && data !== null){
+	    	  self.resultsCount = data.resultCount; 
+	      }else{
+	    	  self.resultsCount = 0;
+	      }
+	      if(response.body !== null){
+	    	  self.pageCount = response.body.pageCount; 
+	      }else{
+	    	  self.pageCount = 0;
+	      }
+	      if (error) {
+	        //this.response = data;
+	        console.error(error);
+	        self.items=[];
+	      } else {
+	        var jsonResult = [];
+	        jsonResult.push(response.body);
+	        jsonResult[0]['actions'] = '';
+	        self.items = jsonResult;
+	        console.log("Items For GTIN are: ",self.items);
+	        console.log("API called successfully. Returned data: ", data);
+	      }
+	    };
+	    var jobId = self.filter;
+	    workflowApi.getPredictionJob(
+	      jobId,
+	      callback
+	    );
+	  };
+	  
 
   var getTrainingJobs = function (self) {
     console.log('Get Trainingjob');
@@ -113,6 +355,82 @@ var MyObject = function () {
       callback
     );
   };
+  
+  
+  var findTrainingJobsByKeyword = function (self) {
+	  	var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+	    console.log('Search Training JOb for Keywords: ',filterArray);
+	    var callback = function (error, data, response) {
+	      if(data !== undefined && data !== null){
+	    	  self.resultsCount = data.resultCount; 
+	      }else{
+	    	  self.resultsCount = 0;
+	      }
+	      if(response.body !== null){
+	    	  self.pageCount = response.body.pageCount; 
+	      }else{
+	    	  self.pageCount = 0;
+	      }
+	      if (error) {
+	        console.error(error);
+	      } else {
+	        var jsonResult = data.results;
+	        var length = jsonResult.length;
+	        for (var i = 0; i < length; i++) {
+	          jsonResult[i]['actions'] = '';
+	        }
+	        self.items = data.results;
+	        //console.log("Items For KEYWORDS are: ",self.items);
+	        console.log("API called successfully. Returned data: ", data);
+	      }
+	    };
+	    var opt = {
+	      pageNumber: self.currentPage,
+	      pageSize: self.perPage,
+	      keywords: filterArray
+	    };
+	     workflowApi.findTrainingJobs(
+	      opt,
+	      callback
+	    );
+	  };
+	  
+	  
+	  
+	  var findPredictionJobById = function (self) {
+		    console.log('Search Training Job for ID: ',self.filter);
+		    var callback = function (error, data, response) {
+		      console.log("data:", data);
+		      console.log("response:", response);
+		      if(data !== undefined && data !== null){
+		    	  self.resultsCount = data.resultCount; 
+		      }else{
+		    	  self.resultsCount = 0;
+		      }
+		      if(response.body !== null){
+		    	  self.pageCount = response.body.pageCount; 
+		      }else{
+		    	  self.pageCount = 0;
+		      }
+		      if (error) {
+		        //this.response = data;
+		        console.error(error);
+		        self.items=[];
+		      } else {
+		        var jsonResult = [];
+		        jsonResult.push(response.body);
+		        jsonResult[0]['actions'] = '';
+		        self.items = jsonResult;
+		        console.log("Items For ID are: ",self.items);
+		        console.log("API called successfully. Returned data: ", data);
+		      }
+		    };
+		    var jobId = self.filter;
+		    workflowApi.getTrainingJob(
+		      jobId,
+		      callback
+		    );
+		  };
 
 
   var saveWorkflow = function (json, self) {
@@ -215,7 +533,15 @@ var MyObject = function () {
     savePredictionJob: savePredictionJob,
     saveTrainingJob: saveTrainingJob,
     saveWorkflow: saveWorkflow,
-    deleteWorkflow: deleteWorkflow
+    deleteWorkflow: deleteWorkflow,
+    findPredictionById: findPredictionById,
+    findPredictionByKeyword: findPredictionByKeyword,
+    findPredictionJobById: findPredictionJobById,
+    findPredictionJobsByKeyword: findPredictionJobsByKeyword,
+    findTrainingJobsByKeyword: findTrainingJobsByKeyword,
+    findPredictionJobById: findPredictionJobById,
+    findWorkflowByKeyword: findWorkflowByKeyword,
+    findWorkflowById: findWorkflowById
   }
 }();
 

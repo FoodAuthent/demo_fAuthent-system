@@ -13,12 +13,13 @@
         </b-form-group>
       </b-col>
         <!-- SEARCH -->
-      <b-col class="my-1">
-   <b-form-group horizontal label="SEARCH" class="mb-50">
+  <b-col class="my-1 col-sm-6">   <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search" />
             <b-input-group-append>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+              <b-btn :disabled="!filter" variant="primary" @click="searchPredictionByKeywords">Keywords</b-btn>
+            <b-btn :disabled="!filter" variant="success" @click="searchPredictionById">ID</b-btn>
+              <b-btn :disabled="!filter" variant="warning" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -54,6 +55,8 @@
 
 <script>
 var getPredictions = require("@/utils/workflowFunction.js").default.getPredictions;
+var findPredictionById = require("@/utils/workflowFunction.js").default.getPredictions;
+var findPredictionByKeywords = require("@/utils/workflowFunction.js").default.findPredictionByKeyword;
 import jsonschema from "@/generated/schema/prediction.json";
 export default {
   name: "Workflow",
@@ -101,6 +104,15 @@ export default {
       let self = this;
       getPredictions(self);
     },
+   searchPredictionByKeywords(){
+    let self = this;
+    findPredictionByKeywords(self);
+    //document.getElementById("refreshTable").click();
+    },
+    searchPredictionById(){
+    let self = this;
+    findPredictionById(self);
+    },
     clearSearch(){
     this.filter = "";
     document.getElementById("refreshTable").click();
@@ -130,11 +142,11 @@ export default {
       this.model = item;
       this.$root.$emit('bv::show::modal', 'modalEdit', button);
     },
-    onFiltered(filteredItems) {
+   // onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    }
+     // this.totalRows = filteredItems.length;
+     // this.currentPage = 1;
+    //}
   }
 };
 </script>

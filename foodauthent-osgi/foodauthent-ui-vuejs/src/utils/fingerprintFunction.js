@@ -13,8 +13,18 @@ var Fingerprints = function () {
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
-      self.resultsCount = data.resultCount;
-      self.pageCount = response.body.pageCount;
+      if(data !== undefined){
+    	  self.resultsCount = data.resultCount; 
+      }else{
+    	  self.resultsCount = 0;
+      }
+      if(response.body !== null){
+    	  self.pageCount = response.body.pageCount; 
+      }else{
+    	  self.pageCount = 0;
+      }
+      //self.resultsCount = data.resultCount;
+      //self.pageCount = response.body.pageCount;
       if (error) {
         //this.response = data;
         console.error(error);
@@ -71,6 +81,82 @@ var Fingerprints = function () {
       callback
     );
   }
+  
+  var findFingerprintByKeyword = function (self) {
+	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+	    console.log('Search Fingerprint for Keywords: ',filterArray);
+	    var callback = function (error, data, response) {
+	      console.log("data:", data);
+	      console.log("response:", response);
+	      if(data !== undefined && data !== null){
+	    	  self.resultsCount = data.resultCount; 
+	      }else{
+	    	  self.resultsCount = 0;
+	      }
+	      if(response.body !== null){
+	    	  self.pageCount = response.body.pageCount; 
+	      }else{
+	    	  self.pageCount = 0;
+	      }
+	      if (error) {
+	        //this.response = data;
+	        console.error(error);
+	      } else {
+	        var jsonResult = data.results;
+	        var length = jsonResult.length;
+	        for (var i = 0; i < length; i++) {
+	          jsonResult[i]['actions'] = '';
+	        }
+	        self.items = data.results;
+	        console.log("Items For KEYWORDS are: ",self.items);
+	        console.log("API called successfully. Returned data: ", data);
+	      }
+	    };
+	    var opt = {
+	      pageNumber: self.currentPage,
+	      pageSize: self.perPage,
+	      keywords: filterArray
+	    };
+	    fingerprintApi.findFingerprintSetByKeyword(
+	      opt,
+	      callback
+	    );
+	  };
+	  
+	  var findFingerprintById = function (self) {
+		    console.log('Search Fingerprint for id: ',self.filter);
+		    var callback = function (error, data, response) {
+		      console.log("data:", data);
+		      console.log("response:", response);
+		      if(data !== undefined && data !== null){
+		    	  self.resultsCount = data.resultCount; 
+		      }else{
+		    	  self.resultsCount = 0;
+		      }
+		      if(response.body !== null){
+		    	  self.pageCount = response.body.pageCount; 
+		      }else{
+		    	  self.pageCount = 0;
+		      }
+		      if (error) {
+		        //this.response = data;
+		        console.error(error);
+		      } else {
+		        var jsonResult = [];
+		        jsonResult.push(response.body);
+		        jsonResult[0]['actions'] = '';
+		        self.items = jsonResult;
+		        //console.log("Items For ID are: ",self.items);
+		        console.log("API called successfully. Returned data: ", data);
+		      }
+		    };
+		    var fingerprintsetId = self.filter;
+		    fingerprintApi.getFingerprintSetById(
+		      fingerprintsetId,
+		      callback
+		    );
+		  };
+
 
   var deleteFingerprint = function (id, self) {
     console.log('Delete fingerprint');
@@ -99,7 +185,9 @@ var Fingerprints = function () {
   return {
     getFingerprints: getFingerprints,
     saveFingerprints: saveFingerprints,
-    deleteFingerprint: deleteFingerprint
+    deleteFingerprint: deleteFingerprint,
+    findFingerprintById: findFingerprintById,
+    findFingerprintByKeyword: findFingerprintByKeyword
   }
 
 }();

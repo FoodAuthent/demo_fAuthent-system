@@ -13,12 +13,14 @@
         </b-form-group>
       </b-col>
         <!-- SEARCH -->
-      <b-col class="my-1">
+  <b-col class="my-1 col-sm-6">
    <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search" />
             <b-input-group-append>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+            <b-btn :disabled="!filter" variant="primary" @click="searchPredictionJobByKeywords">Keywords</b-btn>
+            <b-btn :disabled="!filter" variant="success" @click="searchPredictionJobById">ID</b-btn>
+             <b-btn :disabled="!filter" variant="warning" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -34,7 +36,7 @@
          :fields="fields"
          :current-page="currentPage"
          :per-page="perPage"
-         :filter="filter"
+
          @row-clicked="myRowClickHandler"
 >
   <template slot="actions" slot-scope="row">
@@ -62,6 +64,8 @@
 
 <script>
 var getPredictionJobs = require("@/utils/workflowFunction.js").default.getPredictionJobs;
+var findPredictionJobsByKeyword = require("@/utils/workflowFunction.js").default.findPredictionJobsByKeyword;
+var findPredictionJobById = require("@/utils/workflowFunction.js").default.findPredictionJobById;
 export default {
   name: "Workflow",
   data() {
@@ -101,6 +105,15 @@ export default {
     loadTableData() {
       let self = this;
       getPredictionJobs(self);
+    },
+    searchPredictionJobByKeywords(){
+    let self = this;
+    findPredictionJobsByKeyword(self);
+    //document.getElementById("refreshTable").click();
+    },
+    searchPredictionJobById(){
+    let self = this;
+    findPredictionJobById(self);
     },
     clearSearch(){
     this.filter = "";

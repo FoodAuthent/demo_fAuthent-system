@@ -6,7 +6,7 @@
         <b-col>
            <b-btn id="refreshTable" variant="primary" size="sm" @click="loadTableData"><md-icon>autorenew</md-icon></b-btn>
         </b-col>
-              <!-- PER PAGE -->
+     <!-- PER PAGE -->
       <b-col class="my-1">
       <b-form-group horizontal label="PER PAGE" class="mb-0">
           <b-form-select @change="perPagehandler($event)" :options="pageOptionsPerPage" v-model="perPage" />
@@ -68,10 +68,8 @@
 
 <script>
 var getProducts = require("@/utils/productFunction.js").default.getProducts;
-var deleteProducts = require("@/utils/productFunction.js").default
-  .deleteProducts;
+var deleteProducts = require("@/utils/productFunction.js").default.deleteProducts;
 var updateProducts = require("@/utils/productFunction.js").default.updateProducts;
-var findProductByKeyword = require("@/utils/productFunction.js").default.findProductByKeyword;
 var findProductByGtin = require("@/utils/productFunction.js").default.findProductByGtin;
 import productForm from "@/components/product/ProductForm";
 import product from "@/components/product/Product";
@@ -117,16 +115,15 @@ export default {
     },
     searchProductByKeywords(){
     let self = this;
-    findProductByKeyword(self);
-    //document.getElementById("refreshTable").click();
+   // findProductByKeyword(self);
+    getProducts(self);
     },
     searchProductByGtin(){
     let self = this;
-    //findProductByKeyword(self);//TEST DELETE IT
     findProductByGtin(self);
     },
     clearSearch(){
-    this.filter = "";
+    this.filter = null;
     document.getElementById("refreshTable").click();
     },
     //Manage when the number of items displayed on the table change

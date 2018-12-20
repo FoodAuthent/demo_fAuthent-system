@@ -13,12 +13,14 @@
         </b-form-group>
       </b-col>
         <!-- SEARCH -->
-      <b-col class="my-1">
+  <b-col class="my-1 col-sm-6">
    <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
-            <b-form-input v-model="filter" placeholder="Type to Search" />
+            <b-form-input v-model="filter" placeholder="Type to Search for gtin or keyword" />
             <b-input-group-append>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+            <b-btn :disabled="!filter" variant="primary" @click="searchSopByKeywords">Search</b-btn>
+            <b-btn :disabled="!filter" variant="success" @click="searchSopById">ID</b-btn>
+              <b-btn :disabled="!filter" variant="warning" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -34,7 +36,7 @@
          :fields="fields"
          :current-page="currentPage"
          :per-page="perPage"
-         :filter="filter"
+
          @row-clicked="myRowClickHandler"
 >
   <template slot="actions" slot-scope="row">
@@ -64,6 +66,8 @@
 var getSops = require("@/utils/sopFunction.js").default.getSops;
 var deleteSop = require("@/utils/sopFunction.js").default.deleteSop;
 var updateSop = require("@/utils/sopFunction.js").default.updateSop;
+var findSopByKeywords = require("@/utils/sopFunction.js").default.findSopByKeyword;
+var findSopById = require("@/utils/sopFunction.js").default.findSopById;
 import jsonschema from "@/generated/schema/sop.json";
 export default {
   name: "Sop",
@@ -109,6 +113,16 @@ export default {
       let self = this;
       getSops(self);
     },
+   //Search SOP for id or keywords
+    searchSopByKeywords(){
+    let self = this;
+    findSopByKeywords(self);
+    //document.getElementById("refreshTable").click();
+    },
+    searchSopById(){
+    let self = this;
+    findSopById(self);
+    },
     clearSearch(){
     this.filter = "";
     document.getElementById("refreshTable").click();
@@ -150,11 +164,11 @@ export default {
       console.log("This is the model in the new method", this.model);
       this.$root.$emit('bv::show::modal', 'modalEdit', button);
     },
-    onFiltered(filteredItems) {
+    //onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    }
+    //  this.totalRows = filteredItems.length;
+    //  this.currentPage = 1;
+   // }
   }
 };
 </script>

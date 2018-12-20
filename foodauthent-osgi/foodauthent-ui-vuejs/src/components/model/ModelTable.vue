@@ -13,12 +13,14 @@
         </b-form-group>
       </b-col>
         <!-- SEARCH -->
-      <b-col class="my-1">
+   <b-col class="my-1 col-sm-6">
    <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
-            <b-form-input v-model="filter" placeholder="Type to Search" />
+            <b-form-input v-model="filter" placeholder="Type to Search for id or keyword" />
             <b-input-group-append>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+            <b-btn :disabled="!filter" variant="primary" @click="searchModelByKeywords">Search</b-btn>
+             <b-btn :disabled="!filter" variant="success" @click="searchModelById">ID</b-btn>
+              <b-btn :disabled="!filter" variant="warning" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -65,6 +67,8 @@
 var getModels = require("@/utils/modelFunction.js").default.getModels;
 var deleteModel = require("@/utils/modelFunction.js").default.deleteModel;
 var updateModel = require("@/utils/modelFunction.js").default.updateModel;
+var findModelByKeyword = require("@/utils/modelFunction.js").default.findModelByKeyword;
+var findModelById = require("@/utils/modelFunction.js").default.findModelById;
 import jsonschema from "@/generated/schema/model.json";
 export default {
   name: "Workflow",
@@ -118,6 +122,17 @@ export default {
       //updateModel(JSON.stringify(this.model, undefined, 4), self);
       updateModel(this.model, self);
       },
+    //Search Model for id or keywords
+    searchModelByKeywords(){
+    let self = this;
+    self.items=[];
+    findModelByKeyword(self);
+    //document.getElementById("refreshTable").click();
+    },
+    searchModelById(){
+    let self = this;
+    findModelById(self);
+    },
     clearSearch(){
     this.filter = "";
     document.getElementById("refreshTable").click();

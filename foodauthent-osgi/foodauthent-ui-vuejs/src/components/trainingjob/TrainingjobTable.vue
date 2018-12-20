@@ -13,12 +13,14 @@
         </b-form-group>
       </b-col>
         <!-- SEARCH -->
-      <b-col class="my-1">
+  <b-col class="my-1 col-sm-6">
    <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search" />
             <b-input-group-append>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+            <b-btn :disabled="!filter" variant="primary" @click="searchTrainingJobByKeywords">Keywords</b-btn>
+            <b-btn :disabled="!filter" variant="success" @click="searchTrainingJobById">Id</b-btn>
+             <b-btn :disabled="!filter" variant="warning" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -34,7 +36,7 @@
          :fields="fields"
          :current-page="currentPage"
          :per-page="perPage"
-         :filter="filter"
+
          @row-clicked="myRowClickHandler"
 >
   <template slot="actions" slot-scope="row">
@@ -45,6 +47,7 @@
 
 <!-- PAGINATION -->
 <b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page="perPage" v-model="currentPage" />
+
 
 <!-- MODAL DETAILS -->
   <b-modal id="modal1" title="Details">
@@ -57,6 +60,8 @@
 
 <script>
 var getTrainingJobs = require("@/utils/workflowFunction.js").default.getTrainingJobs;
+var findTrainingJobsByKeyword = require("@/utils/workflowFunction.js").default.findTrainingJobsByKeyword;
+var findPredictionJobById = require("@/utils/workflowFunction.js").default.findPredictionJobById;
 export default {
   data() {
     return {
@@ -95,6 +100,14 @@ export default {
       let self = this;
       getTrainingJobs(self);
     },
+    searchTrainingJobByKeywords(){
+    let self = this;
+    findTrainingJobsByKeyword(self);
+    },
+    searchTrainingJobById(){
+    let self = this;
+    findPredictionJobById(self);
+    },
     clearSearch(){
     this.filter = "";
     document.getElementById("refreshTable").click();
@@ -124,11 +137,11 @@ export default {
       this.model = item;
       this.$root.$emit('bv::show::modal', 'modalEdit', button);
     },
-    onFiltered(filteredItems) {
+    //onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    }
+     // this.totalRows = filteredItems.length;
+     // this.currentPage = 1;
+   // }
   }
 };
 </script>

@@ -9,6 +9,12 @@ var MyObject = function () {
 
   var getProducts = function (self) {
     console.log('Get Products');
+    console.log('self Filter ',self.filter);
+    var filterArray = null;
+    if(self.filter !== null){
+    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+    }
+    console.log('Filter ',filterArray);
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -24,7 +30,6 @@ var MyObject = function () {
         for (var i = 0; i < length; i++) {
           // console.log(jsonResult[i]);
           jsonResult[i]['actions'] = '';
-          // console.log(jsonResult[i]);
         }
         self.items = data.results;
         console.log("API called successfully. Returned data: ", data);
@@ -32,7 +37,8 @@ var MyObject = function () {
     };
     var opt = {
       pageNumber: self.currentPage,
-      pageSize: self.perPage
+      pageSize: self.perPage,
+      keywords: filterArray
     };
     productApi.findProductByKeyword(
       opt,
@@ -110,47 +116,7 @@ var MyObject = function () {
     //   callback
     // );
   };
-  
-   
-  var findProductByKeyword = function (self) {
-	  	//var filterArray = self.filter.split(",");
-	  	var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
-	    //console.log('Search Products for Keywords: ',filterArray);
-	    var callback = function (error, data, response) {
-	      if(data !== undefined && data !== null){
-	    	  self.resultsCount = data.resultCount; 
-	      }else{
-	    	  self.resultsCount = 0;
-	      }
-	      if(response.body !== null){
-	    	  self.pageCount = response.body.pageCount; 
-	      }else{
-	    	  self.pageCount = 0;
-	      }
-	      if (error) {
-	        //this.response = data;
-	        console.error(error);
-	      } else {
-	        var jsonResult = data.results;
-	        var length = jsonResult.length;
-	        for (var i = 0; i < length; i++) {
-	          jsonResult[i]['actions'] = '';
-	        }
-	        self.items = data.results;
-	        //console.log("Items For KEYWORDS are: ",self.items);
-	        console.log("API called successfully. Returned data: ", data);
-	      }
-	    };
-	    var opt = {
-	      pageNumber: self.currentPage,
-	      pageSize: self.perPage,
-	      keywords: filterArray
-	    };
-	    productApi.findProductByKeyword(
-	      opt,
-	      callback
-	    );
-	  };
+ 
 	  
 	  var findProductByGtin = function (self) {
 		    console.log('Search Products for Gtin: ',self.filter);
@@ -193,7 +159,6 @@ var MyObject = function () {
     saveProducts: saveProducts,
     deleteProducts: deleteProducts,
     updateProducts: updateProducts,
-    findProductByKeyword: findProductByKeyword,
     findProductByGtin: findProductByGtin
   }
 }();
