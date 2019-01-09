@@ -107,7 +107,8 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 				}
 			} else if (modelType.equals(Product.class) && o instanceof Product) {
 				final Product p = (Product) o;
-				if (keywords.isEmpty() || keywords.contains(p.getBrand())) {
+//				if (keywords.isEmpty() || keywords.contains(p.getBrand())) {
+				if (keywords.isEmpty() || containsAKeyword(p.getBrand(),keywords)) {
 					result.add((T) p);
 				}
 			} else if (modelType.equals(Model.class) && o instanceof Model) {
@@ -233,5 +234,14 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 			throw new NoSuchElementException(e.getLocalizedMessage());
 		}
 	}
+	
+	public boolean containsAKeyword(String key, Collection<String> keywords){
+		   for(String keyword : keywords){
+		      if(key.contains(keyword)){
+		         return true; // Match found
+		      }
+		   }
+		   return false; // Never found match.
+		}
 
 }
