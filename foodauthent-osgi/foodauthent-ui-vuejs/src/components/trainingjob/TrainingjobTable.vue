@@ -18,9 +18,8 @@
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search" />
             <b-input-group-append>
-            <b-btn :disabled="!filter" variant="primary" @click="searchTrainingJobByKeywords">Keywords</b-btn>
-            <b-btn :disabled="!filter" variant="success" @click="searchTrainingJobById">Id</b-btn>
-             <b-btn :disabled="!filter" variant="warning" @click="clearSearch">Clear</b-btn>
+            <b-btn :disabled="!filter" variant="primary" @click="search">Search</b-btn>
+             <b-btn :disabled="!filter" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -100,13 +99,15 @@ export default {
       let self = this;
       getTrainingJobs(self);
     },
-    searchTrainingJobByKeywords(){
+    search(){
     let self = this;
-    findTrainingJobsByKeyword(self);
-    },
-    searchTrainingJobById(){
-    let self = this;
+    //check if it is a valid UUID
+	var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
+	if (re.test(self.filter)) {
     findPredictionJobById(self);
+	} else {
+    findTrainingJobsByKeyword(self);
+	}
     },
     clearSearch(){
     this.filter = "";

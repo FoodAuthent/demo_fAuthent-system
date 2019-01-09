@@ -19,9 +19,8 @@
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Search for gtin or keywords" />
             <b-input-group-append>
-            <b-btn :disabled="!filter" variant="primary" @click="searchProductByKeywords">Keywords</b-btn>
-            <b-btn :disabled="!filter" variant="success" @click="searchProductByGtin">Gtin</b-btn>
-              <b-btn :disabled="!filter" variant="warning" @click="clearSearch">Clear</b-btn>
+            <b-btn :disabled="!filter" variant="primary" @click="search">Search</b-btn>
+              <b-btn :disabled="!filter" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -113,15 +112,17 @@ export default {
       let self = this;
       getProducts(self);
     },
-    searchProductByKeywords(){
+    search(){
+    const regex = /\b\d{8}(?:\d{4,6})?\b/;
     let self = this;
-   // findProductByKeyword(self);
-    getProducts(self);
-    },
-    searchProductByGtin(){
-    let self = this;
-    findProductByGtin(self);
-    },
+	var str = self.filter;
+	let m;
+	if ((m = regex.exec(str)) !== null) {
+	findProductByGtin(self);
+	}else{
+	getProducts(self);
+	}
+	},
     clearSearch(){
     this.filter = null;
     document.getElementById("refreshTable").click();

@@ -18,9 +18,10 @@
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search for gtin or keyword" />
             <b-input-group-append>
-            <b-btn :disabled="!filter" variant="primary" @click="searchSopByKeywords">Search</b-btn>
-            <b-btn :disabled="!filter" variant="success" @click="searchSopById">ID</b-btn>
-              <b-btn :disabled="!filter" variant="warning" @click="clearSearch">Clear</b-btn>
+            <b-btn :disabled="!filter" variant="primary" @click="search">Search</b-btn>
+          <!--  <b-btn :disabled="!filter" variant="primary" @click="searchSopByKeywords">Search</b-btn>
+            <b-btn :disabled="!filter" variant="success" @click="searchSopById">ID</b-btn> -->
+              <b-btn :disabled="!filter" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -113,16 +114,26 @@ export default {
       let self = this;
       getSops(self);
     },
-   //Search SOP for id or keywords
-    searchSopByKeywords(){
+    search(){
     let self = this;
-    findSopByKeywords(self);
-    //document.getElementById("refreshTable").click();
-    },
-    searchSopById(){
-    let self = this;
+    //check if it is a valid UUID
+	var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
+	if (re.test(self.filter)) {
     findSopById(self);
+	} else {
+    findSopByKeywords(self);
+	}
     },
+   //Search SOP for keywords
+  //  searchSopByKeywords(){
+   // let self = this;
+  //  findSopByKeywords(self);
+ //   },
+    //Search SOP for id
+   // searchSopById(){
+   // let self = this;
+   // findSopById(self);
+   // },
     clearSearch(){
     this.filter = "";
     document.getElementById("refreshTable").click();

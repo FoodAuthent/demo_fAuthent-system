@@ -148,10 +148,7 @@ var MyObject = function () {
 		      } else {
 		        var jsonResult = [];
 		        jsonResult.push(response.body);
-		        var length = data.lenght;
-		        for (var i = 0; i < length; i++) {
-		          jsonResult[i]['actions'] = '';
-		        }
+		        jsonResult[0]['actions'] = '';
 		        self.items = jsonResult;
 		        console.log("Items For Id are: ",self.items);
 		        console.log("API called successfully. Returned data: ", data);
