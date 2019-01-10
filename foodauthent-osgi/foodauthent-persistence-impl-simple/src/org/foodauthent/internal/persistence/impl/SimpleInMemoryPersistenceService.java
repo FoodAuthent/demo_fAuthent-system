@@ -70,50 +70,34 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 
 			if (modelType.equals(Workflow.class) && o instanceof Workflow) {
 				final Workflow wf = (Workflow) o;
-				if (keywords.isEmpty()) {
+				if (keywords.isEmpty() || containsAKeyword(wf.getDescription(), keywords)
+						|| containsAKeyword(wf.getName(), keywords)) {
 					result.add((T) wf);
 				} else {
-					if (keywords.contains(wf.getDescription())) {
-						result.add((T) wf);
-					}
-					if (keywords.contains(wf.getName())) {
-						result.add((T) wf);
-					} else {
-						if (logger.isDebugEnabled()) {
-							logger.debug("Ignoring " + o);
-						}
+					if (logger.isDebugEnabled()) {
+						logger.debug("Ignoring " + o);
 					}
 				}
 			} else if (modelType.equals(SOP.class) && o instanceof SOP) {
 				final SOP sop = (SOP) o;
-				if (keywords.isEmpty()) {
+				if (keywords.isEmpty() || containsAKeyword(sop.getDescription(), keywords)
+						|| containsAKeyword(sop.getName(), keywords)) {
 					result.add((T) sop);
-				} else {
-					if (keywords.contains(sop.getDescription())) {
-						result.add((T) sop);
-					}
-					if (keywords.contains(sop.getName())) {
-						result.add((T) sop);
-					}
 				}
 			} else if (modelType.equals(FingerprintSet.class) && o instanceof FingerprintSet) {
 				final FingerprintSet fs = (FingerprintSet) o;
-				if (keywords.isEmpty()) {
+				if (keywords.isEmpty() || containsAKeyword(fs.getName(), keywords)) {
 					result.add((T) fs);
-				} else {
-					if (keywords.contains(fs.getName())) {
-						result.add((T) fs);
-					}
 				}
 			} else if (modelType.equals(Product.class) && o instanceof Product) {
 				final Product p = (Product) o;
-//				if (keywords.isEmpty() || keywords.contains(p.getBrand())) {
-				if (keywords.isEmpty() || containsAKeyword(p.getBrand(),keywords)) {
+				if (keywords.isEmpty() || containsAKeyword(p.getBrand(), keywords)) {
 					result.add((T) p);
 				}
 			} else if (modelType.equals(Model.class) && o instanceof Model) {
 				final Model m = (Model) o;
-				if (keywords.isEmpty() || keywords.contains(m.getDescription()) || keywords.contains(m.getName())) {
+				if (keywords.isEmpty() || containsAKeyword(m.getDescription(), keywords)
+						|| containsAKeyword(m.getName(), keywords)) {
 					result.add((T) m);
 				}
 			} else {
@@ -127,28 +111,28 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 
 	@Override
 	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
-	        int pageNumber, int pageSize) {
-	List<T> res = findByKeywords(keywords, modelType);
-	int start = (pageNumber-1) * pageSize;
-	List<T> page = res.stream().skip(start).limit(pageSize).collect(Collectors.toList());
-	    return new ResultPage<T>() {
-	
-	    @Override
-	    public int getTotalNumPages() {
-		return res.size() / pageSize;
-	    }
-	    
-	    @Override
-	    public int getTotalNumEntries() {
-	        return res.size();
-	    }
-	
-	    @Override
-	    public List<T> getResult() {
-		return page;
-	    }
-	        
-	    };
+			int pageNumber, int pageSize) {
+		List<T> res = findByKeywords(keywords, modelType);
+		int start = (pageNumber - 1) * pageSize;
+		List<T> page = res.stream().skip(start).limit(pageSize).collect(Collectors.toList());
+		return new ResultPage<T>() {
+
+			@Override
+			public int getTotalNumPages() {
+				return res.size() / pageSize;
+			}
+
+			@Override
+			public int getTotalNumEntries() {
+				return res.size();
+			}
+
+			@Override
+			public List<T> getResult() {
+				return page;
+			}
+
+		};
 	}
 
 	@Override
@@ -172,13 +156,13 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 			throw new NoSuchElementException(e.getLocalizedMessage());
 		}
 	}
-	
+
 	@Override
 	public void removeFaModelByUUID(UUID uuid, Class<?> modelType) {
 		entities.remove(uuid);
 	}
-	
-    /**
+
+	/**
 	 * Returns the last used entity ID.
 	 *
 	 * @return the last used entity ID
@@ -218,7 +202,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	}
 
 	@Override
-	public <T extends FaModel> T replace(final T  entity) throws NoSuchElementException {
+	public <T extends FaModel> T replace(final T entity) throws NoSuchElementException {
 		if (!entities.containsKey(entity.getFaId())) {
 			throw new NoSuchElementException("No entity to replace for the given fa-id.");
 		}
@@ -234,14 +218,22 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 			throw new NoSuchElementException(e.getLocalizedMessage());
 		}
 	}
-	
-	public boolean containsAKeyword(String key, Collection<String> keywords){
-		   for(String keyword : keywords){
-		      if(key.contains(keyword)){
-		         return true; // Match found
-		      }
-		   }
-		   return false; // Never found match.
+
+	/**
+	 * 
+	 * @param key
+	 * @param keywords
+	 * @return Check if there is a match for a keyword list
+	 */	
+	public boolean containsAKeyword(String key, Collection<String> keywords) {
+		//Remove empty keywords
+		keywords.removeIf(item -> item == null || "".equals(item));
+		//check for matching
+		if (keywords.stream().map(s -> s.toLowerCase()).anyMatch(key.toLowerCase()::contains)) {
+			return true;
+		} else {
+			return false;
 		}
+	}
 
 }
