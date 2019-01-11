@@ -113,7 +113,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
 			int pageNumber, int pageSize) {
 		List<T> res = findByKeywords(keywords, modelType);
-		int start = (pageNumber - 1) * pageSize;
+		int start = pageNumber * pageSize;
 		List<T> page = res.stream().skip(start).limit(pageSize).collect(Collectors.toList());
 		return new ResultPage<T>() {
 

@@ -47,7 +47,7 @@ public class TestUtils {
     public static Response uploadFileData(WebTarget wt, UUID fileMetaID, File file) {
 	MultiPart multiPart = new MultiPart();
 	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-	FileDataBodyPart filePart = new FileDataBodyPart("upfile", file,
+	FileDataBodyPart filePart = new FileDataBodyPart("filedata", file,
 		MediaType.APPLICATION_OCTET_STREAM_TYPE);
 	multiPart.bodyPart(filePart);
 	return wt.path("/file/" + fileMetaID + "/data").request()
