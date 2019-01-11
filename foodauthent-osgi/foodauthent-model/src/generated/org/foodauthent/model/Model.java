@@ -228,17 +228,17 @@ public class Model   extends FaModel {
             
         }
     
-        private java.util.UUID faId = null;
-        private String name = null;
-        private String description = null;
-        private String author = null;
-        private LocalDate date = null;
-        private Integer version = null;
-        private TypeEnum type = null;
+        private java.util.UUID faId;
+        private String name;
+        private String description;
+        private String author;
+        private LocalDate date;
+        private Integer version;
+        private TypeEnum type;
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
-        private java.util.UUID fileId = null;
-        private java.util.UUID productId = null;
-        private java.util.UUID workflowId = null;
+        private java.util.UUID fileId;
+        private java.util.UUID productId;
+        private java.util.UUID workflowId;
 
         /**
          * A global id within the FoodAuthent-system.

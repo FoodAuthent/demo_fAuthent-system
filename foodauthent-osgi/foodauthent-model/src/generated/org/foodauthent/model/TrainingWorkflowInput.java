@@ -74,7 +74,7 @@ public class TrainingWorkflowInput   extends FaModel {
     }
     
   /**
-   * The fingerprint set metadata.
+   * Get fingerprintsetMetadata
    * @return fingerprintsetMetadata 
    */
   public FingerprintSet getFingerprintsetMetadata() {
@@ -122,7 +122,7 @@ public class TrainingWorkflowInput   extends FaModel {
     
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
         private FingerprintSet fingerprintsetMetadata = null;
-        private String fingerprintsetURI = null;
+        private String fingerprintsetURI;
 
         /**
          * The workflow parameters as given provided by the Workflow-entity.
@@ -134,7 +134,7 @@ public class TrainingWorkflowInput   extends FaModel {
         }
 
         /**
-         * The fingerprint set metadata.
+         * Get fingerprintsetMetadata
          * @return fingerprintsetMetadata 
          */
         public TrainingWorkflowInputBuilder setFingerprintsetMetadata(FingerprintSet fingerprintsetMetadata) {

@@ -96,7 +96,7 @@ public class TrainingWorkflowOutput   extends FaModel {
             
         }
     
-        private String modelUri = null;
+        private String modelUri;
 
         /**
          * URI pointing to the created model file.

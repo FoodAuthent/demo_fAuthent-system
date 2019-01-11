@@ -34,12 +34,12 @@ public class SopRestServiceImpl implements SopRestService {
     /**
      * TODO
      *
-     * @param sop TODO
+     * @param SOP TODO
      * @return the response
      */
-    public Response createNewSOP(SOP sop) {
+    public Response createNewSOP(SOP SOP) {
         
-            Object res = service.createNewSOP(sop);
+            Object res = service.createNewSOP(SOP);
             return Response.ok(res).build();
     }
 

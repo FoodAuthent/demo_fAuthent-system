@@ -98,7 +98,7 @@ public class WorkflowParameter   extends FaModel {
    * whether the parameter is required
    * @return required 
    */
-  public Boolean Required() {
+  public Boolean isRequired() {
         return required;
     }
     
@@ -150,10 +150,10 @@ public class WorkflowParameter   extends FaModel {
             
         }
     
-        private String name = null;
-        private Boolean required = null;
-        private TypeEnum type = null;
-        private String value = null;
+        private String name;
+        private Boolean required;
+        private TypeEnum type;
+        private String value;
 
         /**
          * the parameter name

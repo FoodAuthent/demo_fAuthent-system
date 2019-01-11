@@ -51,7 +51,7 @@ public interface WorkflowParameterMixIn {
     public String getName();
     
     @JsonProperty("required")
-    public Boolean Required();
+    public Boolean isRequired();
     
     @JsonProperty("type")
     public TypeEnum getType();

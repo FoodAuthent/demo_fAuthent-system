@@ -137,11 +137,11 @@ public class Prediction   extends FaModel {
             
         }
     
-        private java.util.UUID faId = null;
+        private java.util.UUID faId;
         private java.util.Map<String, Float> confidenceMap = new java.util.HashMap<>();
-        private java.util.UUID workflowId = null;
-        private java.util.UUID fingerprintSetId = null;
-        private java.util.UUID modelId = null;
+        private java.util.UUID workflowId;
+        private java.util.UUID fingerprintSetId;
+        private java.util.UUID modelId;
 
         /**
          * A global id within the FoodAuthent-system.

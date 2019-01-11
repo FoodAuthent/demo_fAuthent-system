@@ -19,11 +19,11 @@ public interface SopService {
     /**
      * TODO
      *
-     * @param sop TODO
+     * @param SOP TODO
      *
      * @return the result
      */
-    java.util.UUID createNewSOP(SOP sop);
+    java.util.UUID createNewSOP(SOP SOP);
         
     /**
      * Muliple tags can be provided with comma separated strings. Use keyword1, keyword2, keyword3 for testing. If no keyword is specified, all entries will be considered.

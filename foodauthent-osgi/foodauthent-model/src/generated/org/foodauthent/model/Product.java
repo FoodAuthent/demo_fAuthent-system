@@ -115,9 +115,9 @@ public class Product   extends FaModel {
             
         }
     
-        private java.util.UUID faId = null;
-        private String gtin = null;
-        private String brand = null;
+        private java.util.UUID faId;
+        private String gtin;
+        private String brand;
 
         /**
          * A global id within the FoodAuthent-system.

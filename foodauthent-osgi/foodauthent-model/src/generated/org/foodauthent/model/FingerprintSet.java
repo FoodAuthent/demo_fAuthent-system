@@ -166,12 +166,12 @@ public class FingerprintSet   extends FaModel {
             
         }
     
-        private java.util.UUID faId = null;
-        private java.util.UUID productId = null;
+        private java.util.UUID faId;
+        private java.util.UUID productId;
         private java.util.List<Fingerprint> fingerprints = new java.util.ArrayList<>();
-        private java.util.UUID fileId = null;
-        private String name = null;
-        private String metadata = null;
+        private java.util.UUID fileId;
+        private String name;
+        private String metadata;
         private java.util.Map<String, String> additionalProperties = new java.util.HashMap<>();
 
         /**

@@ -76,7 +76,7 @@ public class PredictionWorkflowInput   extends FaModel {
     }
     
   /**
-   * The fingerprint set metadata.
+   * Get fingerprintsetMetadata
    * @return fingerprintsetMetadata 
    */
   public FingerprintSet getFingerprintsetMetadata() {
@@ -133,8 +133,8 @@ public class PredictionWorkflowInput   extends FaModel {
     
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
         private FingerprintSet fingerprintsetMetadata = null;
-        private String fingerprintsetURI = null;
-        private String modelURI = null;
+        private String fingerprintsetURI;
+        private String modelURI;
 
         /**
          * The workflow parameters as given provided by the Workflow-entity.
@@ -146,7 +146,7 @@ public class PredictionWorkflowInput   extends FaModel {
         }
 
         /**
-         * The fingerprint set metadata.
+         * Get fingerprintsetMetadata
          * @return fingerprintsetMetadata 
          */
         public PredictionWorkflowInputBuilder setFingerprintsetMetadata(FingerprintSet fingerprintsetMetadata) {

@@ -149,10 +149,10 @@ public class TrainingJob   extends FaModel {
             
         }
     
-        private java.util.UUID faId = null;
-        private java.util.UUID modelId = null;
-        private StatusEnum status = null;
-        private String statusMessage = null;
+        private java.util.UUID faId;
+        private java.util.UUID modelId;
+        private StatusEnum status;
+        private String statusMessage;
 
         /**
          * A global id within the FoodAuthent-system.

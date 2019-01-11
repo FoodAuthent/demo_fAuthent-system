@@ -31,14 +31,14 @@ public interface SopRestService{
     /**
      * TODO
      *
-     * @param sop TODO
+     * @param SOP TODO
      * @return the response
      */
     @POST
     @Path("/sop")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    public Response createNewSOP(SOP sop
+    public Response createNewSOP(SOP SOP
 );
 
     /**

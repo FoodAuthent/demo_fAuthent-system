@@ -137,11 +137,11 @@ public class SOP   extends FaModel {
             
         }
     
-        private java.util.UUID faId = null;
-        private java.util.UUID fileId = null;
-        private String name = null;
-        private String description = null;
-        private java.util.UUID productId = null;
+        private java.util.UUID faId;
+        private java.util.UUID fileId;
+        private String name;
+        private String description;
+        private java.util.UUID productId;
 
         /**
          * A global id within the FoodAuthent-system.

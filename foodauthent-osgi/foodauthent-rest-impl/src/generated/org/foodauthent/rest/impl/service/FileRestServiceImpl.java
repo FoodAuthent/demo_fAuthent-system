@@ -71,12 +71,12 @@ public class FileRestServiceImpl implements FileRestService {
      * TODO
      *
      * @param fileId 
-     * @param upfile The file to upload.
+     * @param filedata The binary file data.
      * @return the response
      */
-    public Response saveFileData(java.util.UUID fileId, java.io.InputStream upfile, org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail) {
+    public Response saveFileData(java.util.UUID fileId, java.io.InputStream filedata, org.glassfish.jersey.media.multipart.FormDataContentDisposition filedataDetail) {
         try { 
-            Object res = service.saveFileData(fileId, upfile, upfileDetail);
+            Object res = service.saveFileData(fileId, filedata, filedataDetail);
             return Response.ok(res).build();
          } 
         catch(FAExceptions.InvalidDataException e) {
@@ -84,7 +84,7 @@ public class FileRestServiceImpl implements FileRestService {
         }
         
         catch(FAExceptions.InvalidInputException e) {
-           return Response.status(433).entity(e.getMessage()).build();
+           return Response.status(434).entity(e.getMessage()).build();
         }
         
         catch(FAExceptions.FAException e) {

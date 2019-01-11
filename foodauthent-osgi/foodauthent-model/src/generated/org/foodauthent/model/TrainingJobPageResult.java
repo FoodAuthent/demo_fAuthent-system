@@ -130,9 +130,9 @@ public class TrainingJobPageResult   extends FaModel {
             
         }
     
-        private Integer pageNumber = null;
-        private Integer pageCount = null;
-        private Integer resultCount = null;
+        private Integer pageNumber;
+        private Integer pageCount;
+        private Integer resultCount;
         private java.util.List<TrainingJob> results = new java.util.ArrayList<>();
 
         /**

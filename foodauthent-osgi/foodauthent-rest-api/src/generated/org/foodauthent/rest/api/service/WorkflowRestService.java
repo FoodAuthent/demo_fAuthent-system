@@ -71,6 +71,7 @@ public interface WorkflowRestService{
     @POST
     @Path("/workflow")
     @Consumes({ "application/json" })
+    @Produces({ "application/json" })
     public Response createWorkflow(Workflow workflow
 );
 
@@ -188,6 +189,7 @@ public interface WorkflowRestService{
      */
     @GET
     @Path("/prediction/{prediction-id}")
+    @Produces({ "application/json" })
     public Response getPredictionResult(@PathParam("prediction-id") java.util.UUID predictionId
 );
 
