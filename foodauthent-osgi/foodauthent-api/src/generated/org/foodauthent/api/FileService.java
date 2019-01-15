@@ -47,13 +47,13 @@ public interface FileService {
      * TODO
      *
      * @param fileId 
-     * @param upfile The file to upload.
+     * @param filedata The binary file data.
      *
      * @return the result
      * @throws InvalidDataException Invalid data was uploaded.
      * @throws InvalidInputException Invalid input was provided.
      * @throws FAException Unspecified exception.
      */
-    java.util.UUID saveFileData(java.util.UUID fileId, java.io.InputStream upfile, org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail) throws FAExceptions.InvalidDataException, FAExceptions.InvalidInputException, FAExceptions.FAException;
+    java.util.UUID saveFileData(java.util.UUID fileId, java.io.InputStream filedata, org.glassfish.jersey.media.multipart.FormDataContentDisposition filedataDetail) throws FAExceptions.InvalidDataException, FAExceptions.InvalidInputException, FAExceptions.FAException;
         
 }

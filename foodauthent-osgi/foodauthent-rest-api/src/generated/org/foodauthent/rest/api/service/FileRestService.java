@@ -69,7 +69,7 @@ public interface FileRestService{
      * TODO
      *
      * @param fileId 
-     * @param upfile The file to upload.
+     * @param filedata The binary file data.
      * @return the response
      */
     @PUT
@@ -78,8 +78,8 @@ public interface FileRestService{
     @Produces({ "application/json" })
     public Response saveFileData(@PathParam("file-id") java.util.UUID fileId
 , 
-            @org.glassfish.jersey.media.multipart.FormDataParam("upfile") java.io.InputStream upfile,
-            @org.glassfish.jersey.media.multipart.FormDataParam("upfile") org.glassfish.jersey.media.multipart.FormDataContentDisposition upfileDetail
+            @org.glassfish.jersey.media.multipart.FormDataParam("filedata") java.io.InputStream filedata,
+            @org.glassfish.jersey.media.multipart.FormDataParam("filedata") org.glassfish.jersey.media.multipart.FormDataContentDisposition filedataDetail
 );
 }
 

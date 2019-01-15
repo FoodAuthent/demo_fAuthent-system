@@ -23,9 +23,6 @@ public class Product   extends FaModel {
 
   private java.util.UUID faId;
   private String gtin;
-  private String name;
-  private String description;
-  private String ingredients;
   private String brand;
   
   public String getTypeID() {
@@ -38,9 +35,6 @@ public class Product   extends FaModel {
     
     faId = immutable(builder.faId);
     gtin = immutable(builder.gtin);
-    name = immutable(builder.name);
-    description = immutable(builder.description);
-    ingredients = immutable(builder.ingredients);
     brand = immutable(builder.brand);
     
     faId = generateFaIdIfMissing(faId);
@@ -62,7 +56,7 @@ public class Product   extends FaModel {
             return false;
         }
         Product ent = (Product)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(gtin, ent.gtin) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(ingredients, ent.ingredients) && Objects.equals(brand, ent.brand);
+        return Objects.equals(faId, ent.faId) && Objects.equals(gtin, ent.gtin) && Objects.equals(brand, ent.brand);
     }
 
 
@@ -80,30 +74,6 @@ public class Product   extends FaModel {
    */
   public String getGtin() {
         return gtin;
-    }
-    
-  /**
-   * Get name
-   * @return name 
-   */
-  public String getName() {
-        return name;
-    }
-    
-  /**
-   * Get description
-   * @return description 
-   */
-  public String getDescription() {
-        return description;
-    }
-    
-  /**
-   * Get ingredients
-   * @return ingredients 
-   */
-  public String getIngredients() {
-        return ingredients;
     }
     
   /**
@@ -134,9 +104,6 @@ public class Product   extends FaModel {
 		ProductBuilder builder = builder();
         builder.faId = entity.faId;
         builder.gtin = entity.gtin;
-        builder.name = entity.name;
-        builder.description = entity.description;
-        builder.ingredients = entity.ingredients;
         builder.brand = entity.brand;
  		return builder;
   	}
@@ -148,12 +115,9 @@ public class Product   extends FaModel {
             
         }
     
-        private java.util.UUID faId = null;
-        private String gtin = null;
-        private String name = null;
-        private String description = null;
-        private String ingredients = null;
-        private String brand = null;
+        private java.util.UUID faId;
+        private String gtin;
+        private String brand;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -170,33 +134,6 @@ public class Product   extends FaModel {
          */
         public ProductBuilder setGtin(String gtin) {
              this.gtin = gtin;
-             return this;
-        }
-
-        /**
-         * Get name
-         * @return name 
-         */
-        public ProductBuilder setName(String name) {
-             this.name = name;
-             return this;
-        }
-
-        /**
-         * Get description
-         * @return description 
-         */
-        public ProductBuilder setDescription(String description) {
-             this.description = description;
-             return this;
-        }
-
-        /**
-         * Get ingredients
-         * @return ingredients 
-         */
-        public ProductBuilder setIngredients(String ingredients) {
-             this.ingredients = ingredients;
              return this;
         }
 

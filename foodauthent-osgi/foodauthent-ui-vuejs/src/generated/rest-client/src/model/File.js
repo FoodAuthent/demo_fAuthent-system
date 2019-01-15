@@ -26,7 +26,7 @@
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.PredictionWorkflowOutput = factory(root.FoodAuthentSwaggerApi.ApiClient);
+    root.FoodAuthentSwaggerApi.File = factory(root.FoodAuthentSwaggerApi.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -34,44 +34,46 @@
 
 
   /**
-   * The PredictionWorkflowOutput model module.
-   * @module model/PredictionWorkflowOutput
+   * The File model module.
+   * @module model/File
    * @version 1.0.0
    */
 
   /**
-   * Constructs a new <code>PredictionWorkflowOutput</code>.
-   * Describes the outputs delivered by a prediction workflow.
-   * @alias module:model/PredictionWorkflowOutput
+   * Constructs a new <code>File</code>.
+   * A file, e.g. to be uploaded
+   * @alias module:model/File
    * @class
+   * @param filedata {File} The binary file data.
    */
-  var exports = function() {
+  var exports = function(filedata) {
     var _this = this;
 
+    _this['filedata'] = filedata;
   };
 
   /**
-   * Constructs a <code>PredictionWorkflowOutput</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>File</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/PredictionWorkflowOutput} obj Optional instance to populate.
-   * @return {module:model/PredictionWorkflowOutput} The populated <code>PredictionWorkflowOutput</code> instance.
+   * @param {module:model/File} obj Optional instance to populate.
+   * @return {module:model/File} The populated <code>File</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
-      if (data.hasOwnProperty('confidence-map')) {
-        obj['confidence-map'] = ApiClient.convertToType(data['confidence-map'], Object);
+      if (data.hasOwnProperty('filedata')) {
+        obj['filedata'] = ApiClient.convertToType(data['filedata'], File);
       }
     }
     return obj;
   }
 
   /**
-   * The confidences for each fingerprint, mapped from the fingerprint-id.
-   * @member {Object.<String, Number>} confidence-map
+   * The binary file data.
+   * @member {File} filedata
    */
-  exports.prototype['confidence-map'] = undefined;
+  exports.prototype['filedata'] = undefined;
 
 
 

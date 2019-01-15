@@ -4,21 +4,21 @@
     <!-- UPDATE -->
     <b-row>
         <b-col>
-           <b-btn variant="primary" size="sm" @click="loadTableData"><md-icon>autorenew</md-icon></b-btn>
+           <b-btn id="refreshTable" variant="primary" size="sm" @click="loadTableData"><md-icon>autorenew</md-icon></b-btn>
         </b-col>
               <!-- PER PAGE -->
       <b-col class="my-1">
       <b-form-group horizontal label="PER PAGE" class="mb-0">
-          <b-form-select :options="pageOptionsPerPage" v-model="perPage" />
+          <b-form-select @change="perPagehandler($event)" :options="pageOptionsPerPage" v-model="perPage" />
         </b-form-group>
       </b-col>
         <!-- SEARCH -->
-      <b-col class="my-1">
-   <b-form-group horizontal label="SEARCH" class="mb-50">
+  <b-col class="my-1 col-sm-6">   <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search" />
             <b-input-group-append>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+              <b-btn :disabled="!filter" variant="primary" @click="search">Search</b-btn>
+              <b-btn :disabled="!filter" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -41,7 +41,7 @@
 </b-table>
 
 <!-- PAGINATION -->
-<b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" />
+<b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page="perPage" v-model="currentPage" />
 
 <!-- MODAL DETAILS -->
   <b-modal id="modal1" title="Details">
@@ -54,6 +54,8 @@
 
 <script>
 var getPredictions = require("@/utils/workflowFunction.js").default.getPredictions;
+var findPredictionById = require("@/utils/workflowFunction.js").default.getPredictions;
+var findPredictionByKeywords = require("@/utils/workflowFunction.js").default.findPredictionByKeyword;
 import jsonschema from "@/generated/schema/prediction.json";
 export default {
   name: "Workflow",
@@ -75,6 +77,8 @@ export default {
       // { key: 'actions', sortable: false }
       //],
       currentPage: 1,
+      resultsCount: 1,
+      pageCount: 0,
       perPage: 10,
       sortBy: "id",
       shownItems: null,
@@ -99,6 +103,35 @@ export default {
       let self = this;
       getPredictions(self);
     },
+    search(){
+    let self = this;
+    //check if it is a valid UUID
+	var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
+	if (re.test(self.filter)) {
+    findPredictionById(self);
+	} else {
+   	findPredictionByKeywords(self);
+	}
+    },
+    clearSearch(){
+    this.filter = "";
+    document.getElementById("refreshTable").click();
+    },
+    //Manage when the number of items displayed on the table change
+    perPagehandler(newObjectState){
+    let self = this;
+    self.currentPage = 0; //just a workaround to go back in page 1
+    self.perPage = newObjectState;
+    document.getElementById("refreshTable").click();
+   // self.loadTableData();
+    },
+    //Manage the pagination, when a page number is pressed this call the API to get the results for the new page
+    myPaginationHandler(page){
+    let self = this;
+    self.currentPage = page;
+    getPredictions(self);
+    self.currentPage = 1;
+    },
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items
       // `index` will be the visible row number (available in the v-model 'shownItems')
@@ -109,11 +142,11 @@ export default {
       this.model = item;
       this.$root.$emit('bv::show::modal', 'modalEdit', button);
     },
-    onFiltered(filteredItems) {
+   // onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    }
+     // this.totalRows = filteredItems.length;
+     // this.currentPage = 1;
+    //}
   }
 };
 </script>

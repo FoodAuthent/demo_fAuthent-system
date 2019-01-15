@@ -209,15 +209,15 @@ public class FileMetadata   extends FaModel {
             
         }
     
-        private java.util.UUID faId = null;
-        private TypeEnum type = null;
-        private String name = null;
-        private String uploadName = null;
-        private String description = null;
-        private String author = null;
-        private LocalDate date = null;
-        private LocalDate uploadDate = null;
-        private Integer version = null;
+        private java.util.UUID faId;
+        private TypeEnum type;
+        private String name;
+        private String uploadName;
+        private String description;
+        private String author;
+        private LocalDate date;
+        private LocalDate uploadDate;
+        private Integer version;
 
         /**
          * A global id within the FoodAuthent-system.

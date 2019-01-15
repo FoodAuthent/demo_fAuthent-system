@@ -13,12 +13,13 @@
         </b-form-group>
       </b-col>
         <!-- SEARCH -->
-      <b-col class="my-1">
+  <b-col class="my-1 col-sm-6">
    <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search" />
             <b-input-group-append>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+            <b-btn :disabled="!filter" variant="primary" @click="search">Search</b-btn>
+             <b-btn :disabled="!filter" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -34,7 +35,7 @@
          :fields="fields"
          :current-page="currentPage"
          :per-page="perPage"
-         :filter="filter"
+
          @row-clicked="myRowClickHandler"
 >
   <template slot="actions" slot-scope="row">
@@ -58,8 +59,8 @@
 
 <script>
 var getWorkflows = require("@/utils/workflowFunction.js").default.getWorkflows;
-var deleteWorkflow = require("@/utils/workflowFunction.js").default
-  .deleteWorkflow;
+var deleteWorkflow = require("@/utils/workflowFunction.js").default.deleteWorkflow;
+var findWorkflowById = require("@/utils/workflowFunction.js").default.findWorkflowById;
 export default {
   name: "Workflow",
   data() {
@@ -91,13 +92,29 @@ export default {
       let self = this;
       getWorkflows(self);
     },
+     search(){
+    let self = this;
+    //check if it is a valid UUID
+	var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
+	if (re.test(self.filter)) {
+    findWorkflowById(self);
+	} else {
+   	 getWorkflows(self);
+	}
+    },
+    clearSearch(){
+    this.filter = "";
+    document.getElementById("refreshTable").click();
+    },
     handleDeleteOk() {
       let self = this;
       console.log("fa-id:", this.selected["fa-id"]);
-      deleteProducts(this.selected["fa-id"], self);
+      deleteWorkflow(this.selected["fa-id"], self);
     },
     handleEditOk() {
-
+    let self = this;
+      console.log("This is the model", this.model);
+      //updateWorkflow(this.model, self);
     },
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items
@@ -109,11 +126,11 @@ export default {
       this.model = item;
       this.$root.$emit('bv::show::modal', 'modalEdit', button);
     },
-    onFiltered(filteredItems) {
+   // onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    }
+     // this.totalRows = filteredItems.length;
+     // this.currentPage = 1;
+   // }
   }
 };
 </script>

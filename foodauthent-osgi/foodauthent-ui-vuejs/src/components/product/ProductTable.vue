@@ -6,7 +6,7 @@
         <b-col>
            <b-btn id="refreshTable" variant="primary" size="sm" @click="loadTableData"><md-icon>autorenew</md-icon></b-btn>
         </b-col>
-              <!-- PER PAGE -->
+     <!-- PER PAGE -->
       <b-col class="my-1">
       <b-form-group horizontal label="PER PAGE" class="mb-0">
           <b-form-select @change="perPagehandler($event)" :options="pageOptionsPerPage" v-model="perPage" />
@@ -14,12 +14,13 @@
       </b-col>
       
         <!-- SEARCH -->
-      <b-col class="my-1">
+  <b-col class="my-1 col-sm-6">
    <b-form-group horizontal label="SEARCH" class="mb-50">
           <b-input-group>
-            <b-form-input v-model="filter" placeholder="Type to Search" />
+            <b-form-input v-model="filter" placeholder="Search for gtin or keywords" />
             <b-input-group-append>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+            <b-btn :disabled="!filter" variant="primary" @click="search">Search</b-btn>
+              <b-btn :disabled="!filter" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -35,7 +36,7 @@
          :fields="fields"
          :current-page="currentPage"
          :per-page="perPage"
-         :filter="filter"
+
          @row-clicked="myRowClickHandler"
 >
   <template slot="actions" slot-scope="row">
@@ -66,9 +67,10 @@
 
 <script>
 var getProducts = require("@/utils/productFunction.js").default.getProducts;
-var deleteProducts = require("@/utils/productFunction.js").default
-  .deleteProducts;
+var deleteProducts = require("@/utils/productFunction.js").default.deleteProducts;
 var updateProducts = require("@/utils/productFunction.js").default.updateProducts;
+var findProductByGtin = require("@/utils/productFunction.js").default.findProductByGtin;
+
 import productForm from "@/components/product/ProductForm";
 import product from "@/components/product/Product";
 import jsonschema from "@/generated/schema/product.json";
@@ -86,12 +88,12 @@ export default {
       selected: {},
       fields: [],
       currentPage: 1,
-      resultsCount: null,
+      resultsCount: 1,
       perPage: 10,
       sortBy: "brand",
       shownItems: null,
       sortDesc: false,
-      filter: null,
+      filter:null,
       pageOptionsPerPage: [5, 10, 25, 50, 100]
     };
   },
@@ -100,7 +102,7 @@ export default {
   },
   computed: {
     sortOptions() {
-      // Create an options list from our fields
+       //Create an options list from our fields
       return this.fields.filter(f => f.sortable).map(f => {
         return { text: f.label, value: f.key };
       });
@@ -109,8 +111,22 @@ export default {
   methods: {
     loadTableData() {
       let self = this;
-      console.log("Actual page", self.currentPage);
       getProducts(self);
+    },
+    search(){
+    const regex = /\b\d{8}(?:\d{4,6})?\b/;
+    let self = this;
+	var str = self.filter;
+	let m;
+	if ((m = regex.exec(str)) !== null) {
+	findProductByGtin(self);
+	}else{
+	getProducts(self);
+	}
+	},
+    clearSearch(){
+    this.filter = null;
+    document.getElementById("refreshTable").click();
     },
     //Manage when the number of items displayed on the table change
     perPagehandler(newObjectState){
@@ -153,11 +169,11 @@ export default {
       this.model = item;
       this.$root.$emit('bv::show::modal', 'modalEdit', button);
     },
-    onFiltered(filteredItems) {
+   // onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    }
+      //this.totalRows = filteredItems.length;
+     // this.currentPage = 1;
+   // }
   }
 };
 </script>

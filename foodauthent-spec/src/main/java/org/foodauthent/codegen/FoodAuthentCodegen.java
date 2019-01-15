@@ -3,27 +3,31 @@ package org.foodauthent.codegen;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
+import org.openapitools.codegen.CodegenOperation;
+import org.openapitools.codegen.CodegenProperty;
+import org.openapitools.codegen.CodegenType;
+import org.openapitools.codegen.SupportingFile;
+import org.openapitools.codegen.languages.AbstractJavaCodegen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.swagger.codegen.CodegenOperation;
-import io.swagger.codegen.CodegenProperty;
-import io.swagger.codegen.CodegenType;
-import io.swagger.codegen.SupportingFile;
-import io.swagger.codegen.languages.AbstractJavaCodegen;
-import io.swagger.models.Operation;
-import io.swagger.models.Swagger;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.responses.ApiResponse;
 
 /**
  * TODO
@@ -35,6 +39,9 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
 	static Logger LOGGER = LoggerFactory.getLogger(FoodAuthentCodegen.class);
 
 	private final Map<String, String> m_tagDescriptions = new HashMap<String, String>();
+
+    private final Map<String, List<Map<String, String>>> m_operationFaExceptions =
+            new HashMap<String, List<Map<String, String>>>();
 
 	private String m_apiTemplateFile;
 
@@ -49,6 +56,9 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
 	@Override
 	public void processOpts() {
 		super.processOpts();
+		 
+		setBooleanGetterPrefix("is");	
+
 		apiTemplateFiles.clear();
 		m_apiTemplateFile = getPropertyAsString("apiTemplateFile").orElse(null);
 		if (m_apiTemplateFile != null) {
@@ -112,46 +122,43 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
 	}
 
 	@Override
-	public void preprocessSwagger(final Swagger swagger) {
-		super.preprocessSwagger(swagger);
+	public void preprocessOpenAPI(final OpenAPI openAPI) {
+		super.preprocessOpenAPI(openAPI);
 
-		// Collect all pre-defined exceptions (x-fa-exceptions section
-		// in the swagger
-		// file) - a 'vendor extension'
-		Map<String, Object> faExceptions = (Map<String, Object>) swagger.getVendorExtensions().get("x-fa-exceptions");
-		// TODO null-check for required properties
-		additionalProperties().put("faExceptions", faExceptions.values().stream().collect(Collectors.toList()));
+        //extract and collect the fa-exceptions from responses for each operation individually
+		//(for easier access the in the code templates later on)
+        List<Operation> operations = openAPI.getPaths().values().stream().flatMap(
+            pi -> Arrays.asList(pi.getGet(), pi.getPut(), pi.getPost(), pi.getDelete(), pi.getHead()).stream())
+            .filter(o -> o != null).collect(Collectors.toList());
+        operations.forEach(o -> {
+            String operationId = o.getOperationId();
+            for (Entry<String, ApiResponse> res : o.getResponses().entrySet()) {
+                String code = res.getKey();
+                Map<String, Object> extensions = res.getValue().getExtensions();
+                if(extensions != null) {
+                    List<Map<String, String>> faExceptions =
+                        (List<Map<String, String>>)extensions.get("x-fa-exceptions");
+                    if (faExceptions != null) {
+                        faExceptions.forEach(e -> {
+                            e.put("code", code);
+                            if (!e.containsKey("description")) {
+                                e.put("description", res.getValue().getDescription());
+                            }
+                            m_operationFaExceptions.computeIfAbsent(operationId, k -> new ArrayList<>()).add(e);
+                        });
+                    }
+               }
+            }
 
-		// 'manually' map x-fa-exceptions cross-references since
-		// swagger doesn't support cross-references for vendor extensions
-		// there might be a more elegant way ...
-		swagger.getPaths().values().stream().flatMap(p -> p.getOperations().stream()).forEach(op -> {
-			resolveExceptionReference(op, faExceptions);
-		});
-	}
+        });
 
-	private void resolveExceptionReference(final Operation operation, final Map<String, Object> exceptions) {
-		List<Object> opExceptions = (List<Object>) operation.getVendorExtensions().get("x-fa-exceptions");
-		String prefix = "#/x-fa-exceptions/";
-		if (opExceptions != null) {
-			// replace reference by predefined objects (in case it's a
-			// reference)
-			for (int i = 0; i < opExceptions.size(); i++) {
-				Map<String, Object> ex = (Map<String, Object>) opExceptions.get(i);
-				String ref = (String) ex.get("$ref");
-				Integer code = (Integer) ex.get("code");
-				String key = ref.substring(prefix.length());
-				Object o2 = exceptions.get(key);
-				if (o2 != null) {
-					opExceptions.set(i, o2);
-					// set response code
-					((Map<String, Object>) o2).put("code", code);
-					((Map<String, Object>) o2).put("name", key);
-				} else {
-					throw new RuntimeException("Reference '" + key + "' cannot be resolved.");
-				}
-			}
-		}
+        //collect all 'x-fa-exceptions' extensions of possible responses and make them globally available
+        List<Entry<String, Object>> responseExtensions = openAPI.getComponents().getResponses().values().stream()
+            .flatMap(r -> r.getExtensions().entrySet().stream()).collect(Collectors.toList());
+        List<Object> faException =
+            responseExtensions.stream().filter(e -> e.getKey().equals("x-fa-exceptions"))
+                .flatMap(e -> ((List<Object>)e.getValue()).stream()).collect(Collectors.toList());
+        additionalProperties().put("x-fa-exceptions", faException);
 	}
 
 	@Override
@@ -184,6 +191,11 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
 		if (tagDesc != null) {
 			m_tagDescriptions.put(tag.toLowerCase(), tagDesc);
 		}
+		
+		// add exceptions thrown by the operation
+        co.vendorExtensions.put("x-fa-exceptions",
+            m_operationFaExceptions.get(operation.getOperationId()));
+
 		super.addOperationToGroup(tag, resourcePath, operation, co, operations);
 	}
 
@@ -195,8 +207,6 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
 		if ((tagDesc != null)) {
 			objs.put("tagDescription", tagDesc);
 		}
-
-		// collect and provide the exceptions for each operation
 
 		return super.postProcessOperations(objs);
 	}
@@ -273,7 +283,7 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
 		if (m_modelPropertyNamePattern != null) {
 			// TODO hacky but works!
 			super.updatePropertyForMap(property, innerProperty);
-			property.datatype = property.datatypeWithEnum = "java.util.Map<String, " + innerProperty.datatype + ">";
+			property.dataType = property.datatypeWithEnum = "java.util.Map<String, " + innerProperty.dataType + ">";
 		} else {
 			super.updatePropertyForMap(property, innerProperty);
 		}
@@ -284,7 +294,7 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
 		if (m_modelPropertyNamePattern != null) {
 			// TODO hacky but works!
 			super.updatePropertyForArray(property, innerProperty);
-			property.datatype = property.datatypeWithEnum = "java.util.List<" + innerProperty.datatype + ">";
+			property.dataType = property.datatypeWithEnum = "java.util.List<" + innerProperty.dataType + ">";
 		} else {
 			super.updatePropertyForArray(property, innerProperty);
 		}

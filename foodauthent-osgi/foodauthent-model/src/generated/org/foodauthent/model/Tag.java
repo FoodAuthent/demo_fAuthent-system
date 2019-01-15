@@ -151,10 +151,10 @@ public class Tag   extends FaModel {
             
         }
     
-        private java.util.UUID faId = null;
-        private String name = null;
-        private String description = null;
-        private TypeEnum type = null;
+        private java.util.UUID faId;
+        private String name;
+        private String description;
+        private TypeEnum type;
 
         /**
          * A global id within the FoodAuthent-system.

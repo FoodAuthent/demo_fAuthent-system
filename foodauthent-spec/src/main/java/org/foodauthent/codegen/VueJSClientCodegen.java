@@ -1,36 +1,27 @@
 package org.foodauthent.codegen;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Map.Entry;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.openapitools.codegen.CodegenConfig;
+import org.openapitools.codegen.CodegenType;
+import org.openapitools.codegen.DefaultCodegen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import io.swagger.codegen.CodegenConfig;
-import io.swagger.codegen.CodegenType;
-import io.swagger.codegen.DefaultCodegen;
-import io.swagger.codegen.SupportingFile;
-import io.swagger.models.Model;
-import io.swagger.models.Swagger;
-import io.swagger.models.properties.ArrayProperty;
-import io.swagger.models.properties.DateProperty;
-import io.swagger.models.properties.Property;
 import io.swagger.models.properties.RefProperty;
-import io.swagger.models.properties.StringProperty;
-import io.swagger.models.properties.UUIDProperty;
 import io.swagger.util.Json;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.media.ArraySchema;
+import io.swagger.v3.oas.models.media.Schema;
+import io.swagger.v3.oas.models.media.StringSchema;
 
 /**
  * Code generator for vue.js-forms json-files (see, e.g.,
@@ -82,14 +73,15 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 	}
 
 	@Override
-	public void processSwagger(Swagger swagger) {
-		for (Entry<String, Model> def : swagger.getDefinitions().entrySet()) {
-			if (def.getValue().getVendorExtensions().containsKey(VUE_JS_FORMS_EXTENSION)) {
+	public void processOpenAPI(OpenAPI openApi) {
+		for (Entry<String, Schema> def : openApi.getComponents().getSchemas().entrySet()) {
+			Map extensions = def.getValue().getExtensions();
+			if (extensions != null && extensions.containsKey(VUE_JS_FORMS_EXTENSION)) {
 				try {
 					// write vue form
 					ObjectNode vueForm = Json.mapper().createObjectNode();
 					ArrayNode fields = Json.mapper().createArrayNode();
-					addFieldsInfo(def.getValue(), fields, swagger.getDefinitions());
+					addFieldsInfo(def.getValue(), fields, openApi.getComponents().getSchemas());
 					vueForm.set("fields", fields);
 
 					String vueFormString = Json.pretty(vueForm);
@@ -116,30 +108,33 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 		}
 	}
 
-	private void addFieldsInfo(Model model, ArrayNode fields, Map<String, Model> models) {
-		List<Map<String, String>> uiInfo = (List<Map<String, String>>) model.getVendorExtensions()
+	private void addFieldsInfo(Schema model, ArrayNode fields, Map<String, Schema> models) {
+		List<Map<String, String>> uiInfo = (List<Map<String, String>>) model.getExtensions()
 				.get(VUE_JS_FORMS_EXTENSION);
 		if (uiInfo == null) {
 			throw new IllegalStateException("No " + VUE_JS_FORMS_EXTENSION
 					+ " vendor extension defined for model with description" + model.getDescription());
 		}
+
+		Map<String, Schema> properties = model.getProperties();
 		for (Map<String, String> m : uiInfo) {
 			String name = m.get("name");
-			if (model.getProperties().get(name) == null) {
+			if (properties.get(name) == null) {
 				throw new IllegalStateException("No property '" + name + "'");
 			}
 			ObjectNode field = Json.mapper().createObjectNode();
-			addFieldInfo(m, model.getProperties().get(name), field, models);
+			boolean required = model.getRequired() != null && model.getRequired().contains(name);
+			addFieldInfo(m, properties.get(name), field, models, required);
 			fields.add(field);
 		}
 	}
 
-	private void addFieldInfo(Map<String, String> uiInfo, Property prop, ObjectNode field, Map<String, Model> models) {
+	private void addFieldInfo(Map<String, String> uiInfo, Schema prop, ObjectNode field, Map<String, Schema> models, boolean required) {
 		String name = uiInfo.get("name");
 		// properties that have all fields in common
 		field.put("label", StringUtils.capitalize(name));
 		field.put("model", name);
-		field.put("required", prop.getRequired());
+		field.put("required", required);
 
 		if (uiInfo.containsKey("id-provider")) {
 			field.put("idprovider", uiInfo.get("id-provider"));
@@ -161,7 +156,7 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 				addStaticProperties(field, STRING_STATIC_FIELDS);
 			}
 		} else if (prop.getType().equals("string")) {
-			StringProperty stringProp = (StringProperty) prop;
+			StringSchema stringProp = (StringSchema) prop;
 			if (stringProp.getEnum() == null) {
 				// simple string
 				addStaticProperties(field, STRING_STATIC_FIELDS);
@@ -180,7 +175,7 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 			}
 		} else if (prop.getType().equals("array")) {
 			// array
-			ArrayProperty arrayProp = (ArrayProperty) prop;
+			ArraySchema arrayProp = (ArraySchema) prop;
 			// add static props
 			addStaticProperties(field, ARRAY_STATIC_FIELDS);
 			field.put("inputName", name);
@@ -191,7 +186,9 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 			items.set("schema", schema);
 			ArrayNode fields = Json.mapper().createArrayNode();
 			schema.set("fields", fields);
-			addFieldsInfo(models.get(((RefProperty) arrayProp.getItems()).getSimpleRef()), fields, models);
+			String[] tmp = arrayProp.getItems().get$ref().split("/");
+			String itemSchemaName = tmp[tmp.length - 1];
+			addFieldsInfo(models.get(itemSchemaName), fields, models);
 		} else if (prop.getType().equals("boolean")) {
 			addStaticProperties(field, BOOLEAN_STATIC_FIELDS);
 		} else if(prop.getType().equals("integer")) {

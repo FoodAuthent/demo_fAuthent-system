@@ -71,14 +71,15 @@ public interface WorkflowRestService{
     @POST
     @Path("/workflow")
     @Consumes({ "application/json" })
+    @Produces({ "application/json" })
     public Response createWorkflow(Workflow workflow
 );
 
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber 
-     * @param pageSize 
+     * @param pageNumber the page number starting at 0
+     * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
      */
@@ -93,8 +94,8 @@ public interface WorkflowRestService{
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber 
-     * @param pageSize 
+     * @param pageNumber the page number starting at 0
+     * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
      */
@@ -109,8 +110,8 @@ public interface WorkflowRestService{
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber 
-     * @param pageSize 
+     * @param pageNumber the page number starting at 0
+     * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
      */
@@ -125,8 +126,8 @@ public interface WorkflowRestService{
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber 
-     * @param pageSize 
+     * @param pageNumber the page number starting at 0
+     * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
      */
@@ -141,8 +142,8 @@ public interface WorkflowRestService{
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber 
-     * @param pageSize 
+     * @param pageNumber the page number starting at 0
+     * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
      */
@@ -157,8 +158,8 @@ public interface WorkflowRestService{
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber 
-     * @param pageSize 
+     * @param pageNumber the page number starting at 0
+     * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
      */
@@ -188,6 +189,7 @@ public interface WorkflowRestService{
      */
     @GET
     @Path("/prediction/{prediction-id}")
+    @Produces({ "application/json" })
     public Response getPredictionResult(@PathParam("prediction-id") java.util.UUID predictionId
 );
 

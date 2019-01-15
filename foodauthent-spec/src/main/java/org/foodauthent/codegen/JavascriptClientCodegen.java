@@ -1,41 +1,5 @@
 package org.foodauthent.codegen;
 
-import com.google.common.base.Strings;
-
-import io.swagger.codegen.CliOption;
-import io.swagger.codegen.CodegenConfig;
-import io.swagger.codegen.CodegenConstants;
-import io.swagger.codegen.CodegenModel;
-import io.swagger.codegen.CodegenOperation;
-import io.swagger.codegen.CodegenParameter;
-import io.swagger.codegen.CodegenProperty;
-import io.swagger.codegen.CodegenType;
-import io.swagger.codegen.SupportingFile;
-import io.swagger.codegen.DefaultCodegen;
-import io.swagger.models.ArrayModel;
-import io.swagger.models.Info;
-import io.swagger.models.License;
-import io.swagger.models.Model;
-import io.swagger.models.ModelImpl;
-import io.swagger.models.Operation;
-import io.swagger.models.Swagger;
-import io.swagger.models.properties.ArrayProperty;
-import io.swagger.models.properties.BooleanProperty;
-import io.swagger.models.properties.DateProperty;
-import io.swagger.models.properties.DateTimeProperty;
-import io.swagger.models.properties.DoubleProperty;
-import io.swagger.models.properties.FloatProperty;
-import io.swagger.models.properties.IntegerProperty;
-import io.swagger.models.properties.LongProperty;
-import io.swagger.models.properties.MapProperty;
-import io.swagger.models.properties.Property;
-import io.swagger.models.properties.RefProperty;
-import io.swagger.models.properties.StringProperty;
-
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,6 +7,36 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+import org.openapitools.codegen.CliOption;
+import org.openapitools.codegen.CodegenConfig;
+import org.openapitools.codegen.CodegenConstants;
+import org.openapitools.codegen.CodegenModel;
+import org.openapitools.codegen.CodegenOperation;
+import org.openapitools.codegen.CodegenParameter;
+import org.openapitools.codegen.CodegenProperty;
+import org.openapitools.codegen.CodegenType;
+import org.openapitools.codegen.DefaultCodegen;
+import org.openapitools.codegen.SupportingFile;
+import org.openapitools.codegen.utils.ModelUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Strings;
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.media.ArraySchema;
+import io.swagger.v3.oas.models.media.BooleanSchema;
+import io.swagger.v3.oas.models.media.DateSchema;
+import io.swagger.v3.oas.models.media.DateTimeSchema;
+import io.swagger.v3.oas.models.media.IntegerSchema;
+import io.swagger.v3.oas.models.media.MapSchema;
+import io.swagger.v3.oas.models.media.NumberSchema;
+import io.swagger.v3.oas.models.media.Schema;
+import io.swagger.v3.oas.models.media.StringSchema;
 
 /**
  * Copied from swagger and adopted.
@@ -255,11 +249,11 @@ public class JavascriptClientCodegen extends DefaultCodegen implements CodegenCo
     }
 
     @Override
-    public void preprocessSwagger(Swagger swagger) {
-        super.preprocessSwagger(swagger);
+    public void preprocessOpenAPI(OpenAPI openAPI) {
+        super.preprocessOpenAPI(openAPI);
 
-        if (swagger.getInfo() != null) {
-            Info info = swagger.getInfo();
+        if (openAPI.getInfo() != null) {
+            Info info = openAPI.getInfo();
             if (StringUtils.isBlank(projectName) && info.getTitle() != null) {
                 // when projectName is not specified, generate it from info.title
                 projectName = sanitizeName(dashize(info.getTitle()));
@@ -322,7 +316,7 @@ public class JavascriptClientCodegen extends DefaultCodegen implements CodegenCo
             supportingFiles.add(new SupportingFile(supportingTemplateFile[0], "", supportingTemplateFile[1]));
         }
         
-        additionalProperties.put("basePathWithoutHost", swagger.getBasePath());
+        additionalProperties.put("basePathWithoutHost", openAPI.getServers().get(0).getUrl());
         
     }
 
@@ -549,52 +543,42 @@ public class JavascriptClientCodegen extends DefaultCodegen implements CodegenCo
     }
 
     @Override
-    public String getTypeDeclaration(Property p) {
-        if (p instanceof ArrayProperty) {
-            ArrayProperty ap = (ArrayProperty) p;
-            Property inner = ap.getItems();
+    public String getTypeDeclaration(Schema s) {
+        if (s instanceof ArraySchema) {
+            ArraySchema as = (ArraySchema) s;
+            Schema inner = as.getItems();
             return "[" + getTypeDeclaration(inner) + "]";
-        } else if (p instanceof MapProperty) {
-            MapProperty mp = (MapProperty) p;
-            Property inner = mp.getAdditionalProperties();
+        } else if (s instanceof MapSchema) {
+            MapSchema ms = (MapSchema) s;
+            Schema inner = (Schema) ms.getAdditionalProperties();
             return "{String: " + getTypeDeclaration(inner) + "}";
         }
-        return super.getTypeDeclaration(p);
+        return super.getTypeDeclaration(s);
     }
 
     @Override
-    public String toDefaultValue(Property p) {
-        if (p instanceof StringProperty) {
-            StringProperty dp = (StringProperty) p;
-            if (dp.getDefault() != null) {
-                return "'" + dp.getDefault() + "'";
+    public String toDefaultValue(Schema s) {
+        if (s instanceof StringSchema) {
+            StringSchema ds = (StringSchema) s;
+            if (ds.getDefault() != null) {
+                return "'" + ds.getDefault() + "'";
             }
-        } else if (p instanceof BooleanProperty) {
-            BooleanProperty dp = (BooleanProperty) p;
+        } else if (s instanceof BooleanSchema) {
+            BooleanSchema dp = (BooleanSchema) s;
             if (dp.getDefault() != null) {
                 return dp.getDefault().toString();
             }
-        } else if (p instanceof DateProperty) {
+        } else if (s instanceof DateSchema) {
             // TODO
-        } else if (p instanceof DateTimeProperty) {
+        } else if (s instanceof DateTimeSchema) {
             // TODO
-        } else if (p instanceof DoubleProperty) {
-            DoubleProperty dp = (DoubleProperty) p;
+        } else if (s instanceof NumberSchema) {
+            NumberSchema dp = (NumberSchema) s;
             if (dp.getDefault() != null) {
                 return dp.getDefault().toString();
             }
-        } else if (p instanceof FloatProperty) {
-            FloatProperty dp = (FloatProperty) p;
-            if (dp.getDefault() != null) {
-                return dp.getDefault().toString();
-            }
-        } else if (p instanceof IntegerProperty) {
-            IntegerProperty dp = (IntegerProperty) p;
-            if (dp.getDefault() != null) {
-                return dp.getDefault().toString();
-            }
-        } else if (p instanceof LongProperty) {
-            LongProperty dp = (LongProperty) p;
+        } else if (s instanceof IntegerSchema) {
+            IntegerSchema dp = (IntegerSchema) s;
             if (dp.getDefault() != null) {
                 return dp.getDefault().toString();
             }
@@ -604,9 +588,9 @@ public class JavascriptClientCodegen extends DefaultCodegen implements CodegenCo
     }
 
     @Override
-    public String toDefaultValueWithParam(String name, Property p) {
-        String type = normalizeType(getTypeDeclaration(p));
-        if (p instanceof RefProperty) {
+    public String toDefaultValueWithParam(String name, Schema s) {
+        String type = normalizeType(getTypeDeclaration(s));
+        if (!StringUtils.isEmpty(s.get$ref())) {
             return " = " + type + ".constructFromObject(data['" + name + "']);";
         } else {
           return " = ApiClient.convertToType(data['" + name + "'], " + type + ");";
@@ -682,8 +666,8 @@ public class JavascriptClientCodegen extends DefaultCodegen implements CodegenCo
     }
 
     @Override
-    public String getSwaggerType(Property p) {
-        String swaggerType = super.getSwaggerType(p);
+    public String getSchemaType(Schema p) {
+        String swaggerType = super.getSchemaType(p);
         String type = null;
         if (typeMapping.containsKey(swaggerType)) {
             type = typeMapping.get(swaggerType);
@@ -694,7 +678,7 @@ public class JavascriptClientCodegen extends DefaultCodegen implements CodegenCo
             type = swaggerType;
         }
         if (null == type) {
-            LOGGER.error("No Type defined for Property " + p);
+            LOGGER.error("No Type defined for Schema " + p);
         }
         return toModelName(type);
     }
@@ -719,68 +703,35 @@ public class JavascriptClientCodegen extends DefaultCodegen implements CodegenCo
     }
 
     @Override
-    public CodegenOperation fromOperation(String path, String httpMethod, Operation operation, Map<String, Model> definitions, Swagger swagger) {
-      CodegenOperation op = super.fromOperation(path, httpMethod, operation, definitions, swagger);
-      if (op.returnType != null) {
-        op.returnType = normalizeType(op.returnType);
-      }
-
-      //path is an unescaped variable in the mustache template api.mustache line 82 '<&path>'    
-      op.path = sanitizePath(op.path);
-
-      // Set vendor-extension to be used in template:
-      //     x-codegen-hasMoreRequired
-      //     x-codegen-hasMoreOptional
-      //     x-codegen-hasRequiredParams
-      CodegenParameter lastRequired = null;
-      CodegenParameter lastOptional = null;
-      for (CodegenParameter p : op.allParams) {
-          if (p.required) {
-              lastRequired = p;
-          } else {
-              lastOptional = p;
-          }
-      }
-      for (CodegenParameter p : op.allParams) {
-          if (p == lastRequired) {
-              p.vendorExtensions.put("x-codegen-hasMoreRequired", false);
-          } else if (p == lastOptional) {
-              p.vendorExtensions.put("x-codegen-hasMoreOptional", false);
-          } else {
-              p.vendorExtensions.put("x-codegen-hasMoreRequired", true);
-              p.vendorExtensions.put("x-codegen-hasMoreOptional", true);
-          }
-      }
-      op.vendorExtensions.put("x-codegen-hasRequiredParams", lastRequired != null);
-
-      return op;
-    }
-
-    @Override
-    public CodegenModel fromModel(String name, Model model, Map<String, Model> allDefinitions) {
+    public CodegenModel fromModel(String name, Schema model, Map<String, Schema> allDefinitions) {
         CodegenModel codegenModel = super.fromModel(name, model, allDefinitions);
 
         if (allDefinitions != null && codegenModel != null && codegenModel.parent != null && codegenModel.hasEnums) {
-            final Model parentModel = allDefinitions.get(codegenModel.parentSchema);
+            final Schema parentModel = allDefinitions.get(codegenModel.parentSchema);
             final CodegenModel parentCodegenModel = super.fromModel(codegenModel.parent, parentModel, allDefinitions);
             codegenModel = JavascriptClientCodegen.reconcileInlineEnums(codegenModel, parentCodegenModel);
         }
-        if (model instanceof ArrayModel) {
-            ArrayModel am = (ArrayModel) model;
+        if (ModelUtils.isArraySchema(model)) {
+            ArraySchema am = (ArraySchema) model;
             if (am.getItems() != null) {
-                codegenModel.vendorExtensions.put("x-isArray", true);
-                codegenModel.vendorExtensions.put("x-itemType", getSwaggerType(am.getItems()));
+                codegenModel.getVendorExtensions().put("x-isArray", true);
+                codegenModel.getVendorExtensions().put("x-itemType", getSchemaType(am.getItems()));
             }
-        } else if (model instanceof ModelImpl) {
-            ModelImpl mm = (ModelImpl)model;
-            if (mm.getAdditionalProperties() != null) {
-                codegenModel.vendorExtensions.put("x-isMap", true);
-                codegenModel.vendorExtensions.put("x-itemType", getSwaggerType(mm.getAdditionalProperties()));
+        } else if (ModelUtils.isMapSchema(model)) {
+            if (ModelUtils.getAdditionalProperties(model) != null) {
+                codegenModel.getVendorExtensions().put("x-isMap", true);
+                codegenModel.getVendorExtensions().put("x-itemType", getSchemaType(ModelUtils.getAdditionalProperties(model)));
+            } else {
+                String type = model.getType();
+                if (isPrimitiveType(type)){
+                    codegenModel.vendorExtensions.put("x-isPrimitive", true);
+                }
             }
         }
 
         return codegenModel;
     }
+
 
     private String sanitizePath(String p) {
         //prefer replace a ', instead of a fuLL URL encode for readability
@@ -821,7 +772,7 @@ public class JavascriptClientCodegen extends DefaultCodegen implements CodegenCo
 
     private boolean isModelledType(CodegenProperty cp) {
         // N.B. enums count as modelled types, file is not modelled (SuperAgent uses some 3rd party library).
-        return cp.isEnum || !languageSpecificPrimitives.contains(cp.baseType == null ? cp.datatype : cp.baseType);
+        return cp.isEnum || !languageSpecificPrimitives.contains(cp.baseType == null ? cp.dataType : cp.baseType);
     }
 
     private String getJSDocType(CodegenParameter cp) {
@@ -858,6 +809,11 @@ public class JavascriptClientCodegen extends DefaultCodegen implements CodegenCo
     private boolean isModelledType(CodegenOperation co) {
         // This seems to be the only way to tell whether an operation return type is modelled.
         return !Boolean.TRUE.equals(co.returnTypeIsPrimitive);
+    }
+    
+    private boolean isPrimitiveType(String type) {
+        final String[] primitives = {"number", "integer", "string", "boolean", "null"};
+        return Arrays.asList(primitives).contains(type);
     }
 
     @SuppressWarnings("unchecked")

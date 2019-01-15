@@ -48,7 +48,7 @@ public class Workflow   extends FaModel {
   }
 
   /**
-   * The type of the workflow. IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity.
+   * The type of the workflow.  IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity.
    */
   public static enum TypeEnum {
     PREDICTION_WORKFLOW("prediction_workflow"),
@@ -188,7 +188,7 @@ public class Workflow   extends FaModel {
     }
     
   /**
-   * The type of the workflow. IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity.
+   * The type of the workflow.  IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity.
    * @return type , never <code>null</code>
    */
   public TypeEnum getType() {
@@ -264,15 +264,15 @@ public class Workflow   extends FaModel {
             
         }
     
-        private java.util.UUID faId = null;
-        private String name = null;
-        private String description = null;
-        private RepresentationEnum representation = null;
-        private TypeEnum type = null;
+        private java.util.UUID faId;
+        private String name;
+        private String description;
+        private RepresentationEnum representation;
+        private TypeEnum type;
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
-        private java.util.UUID fileId = null;
-        private ModelTypeEnum modelType = null;
+        private java.util.UUID fileId;
+        private ModelTypeEnum modelType;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -317,7 +317,7 @@ public class Workflow   extends FaModel {
         }
 
         /**
-         * The type of the workflow. IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity.
+         * The type of the workflow.  IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity.
          * @return type , never <code>null</code>
          */
         public WorkflowBuilder setType(TypeEnum type) {

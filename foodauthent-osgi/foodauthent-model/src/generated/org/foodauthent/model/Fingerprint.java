@@ -115,8 +115,8 @@ public class Fingerprint   extends FaModel {
             
         }
     
-        private java.util.UUID faId = null;
-        private String metadata = null;
+        private java.util.UUID faId;
+        private String metadata;
         private java.util.Map<String, String> additionalProperties = new java.util.HashMap<>();
 
         /**
