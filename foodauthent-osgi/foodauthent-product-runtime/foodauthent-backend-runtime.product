@@ -52,7 +52,6 @@
       <feature id="org.eclipse.equinox.core.feature"/>
       <feature id="org.glassfish.hk2.feature"/>
       <feature id="org.elasticsearch.client.feature"/>
-      <feature id="com.fasterxml.jackson.feature.source"/>
       <feature id="org.foodauthent.dependencies.feature"/>
    </features>
 

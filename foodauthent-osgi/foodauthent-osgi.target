@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="FoodAuthent Equinox-Oxygen" sequenceNumber="123">
+<?pde version="3.8"?><target name="FoodAuthent Equinox-Oxygen" sequenceNumber="127">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="com.eclipsesource.jaxrs.feature.feature.group" version="1.0.1.201812101257"/>
-<unit id="com.fasterxml.jackson.feature.feature.group" version="2.9.7.20181210094623"/>
-<unit id="com.fasterxml.jackson.feature.source.feature.group" version="2.9.7.20181210094623"/>
+<unit id="com.eclipsesource.jaxrs.feature.feature.group" version="1.0.1.201901151222"/>
+<unit id="com.fasterxml.jackson.feature.feature.group" version="2.9.7.20190115131752"/>
+<unit id="com.fasterxml.jackson.feature.source.feature.group" version="2.9.7.20190115131752"/>
 <unit id="com.knime.features.enterprise.client.feature.group" version="4.7.2.v201810241600"/>
 <unit id="com.knime.features.enterprise.server.ws.client.feature.group" version="4.7.2.v201809270902"/>
 <unit id="com.knime.features.explorer.serverspace.feature.group" version="4.7.0.v201810251948"/>
-<unit id="com.typesafe.feature.feature.group" version="1.3.3.20181210094623"/>
-<unit id="com.typesafe.feature.source.feature.group" version="1.3.3.20181210094623"/>
-<unit id="io.minio.feature.feature.group" version="5.0.3.20181210094623"/>
-<unit id="io.swagger.feature.feature.group" version="1.5.20.20181210094623"/>
-<unit id="io.swagger.feature.source.feature.group" version="1.5.20.20181210094623"/>
-<unit id="net.openchrom.converter.feature.feature.group" version="1.0.1.201812101257"/>
-<unit id="net.openchrom.platform.feature.feature.group" version="1.0.1.201812101257"/>
-<unit id="org.apache.commons.feature.feature.group" version="1.1.0.20181210094623"/>
-<unit id="org.apache.commons.feature.source.feature.group" version="1.1.0.20181210094623"/>
-<unit id="org.apache.httpcomponents.feature.feature.group" version="4.4.10.20181210094623"/>
-<unit id="org.apache.httpcomponents.feature.source.feature.group" version="4.4.10.20181210094623"/>
+<unit id="com.typesafe.feature.feature.group" version="1.3.3.20190115131752"/>
+<unit id="com.typesafe.feature.source.feature.group" version="1.3.3.20190115131752"/>
+<unit id="io.minio.feature.feature.group" version="5.0.3.20190115131752"/>
+<unit id="io.swagger.feature.feature.group" version="1.5.20.20190115131752"/>
+<unit id="io.swagger.feature.source.feature.group" version="1.5.20.20190115131752"/>
+<unit id="net.openchrom.converter.feature.feature.group" version="1.0.1.201901151222"/>
+<unit id="net.openchrom.platform.feature.feature.group" version="1.0.1.201901151222"/>
+<unit id="org.apache.commons.feature.feature.group" version="1.1.0.20190115131752"/>
+<unit id="org.apache.commons.feature.source.feature.group" version="1.1.0.20190115131752"/>
+<unit id="org.apache.httpcomponents.feature.feature.group" version="4.4.10.20190115131752"/>
+<unit id="org.apache.httpcomponents.feature.source.feature.group" version="4.4.10.20190115131752"/>
 <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.2.2.v20180210-1608"/>
 <unit id="org.eclipse.draw2d.feature.group" version="3.10.100.201606061308"/>
 <unit id="org.eclipse.e4.rcp.feature.group" version="1.6.3.v20180329-0507"/>
@@ -44,15 +44,15 @@
 <unit id="org.eclipse.jdt.junit5.runtime.feature.feature.group" version="1.0.200.20181210094623"/>
 <unit id="org.eclipse.platform.feature.group" version="4.7.3.v20180330-0640"/>
 <unit id="org.eclipse.rcp.feature.group" version="4.7.3.v20180330-0640"/>
-<unit id="org.elasticsearch.client.feature.feature.group" version="6.5.1.20181210094623"/>
-<unit id="org.foodauthent.dependencies.feature.feature.group" version="1.0.1.201812101257"/>
-<unit id="org.foodauthent.knime.dependencies.feature.feature.group" version="1.0.1.201812101257"/>
-<unit id="org.glassfish.hk2.feature.feature.group" version="2.5.0.20181210094623"/>
-<unit id="org.glassfish.hk2.feature.source.feature.group" version="2.5.0.20181210094623"/>
-<unit id="org.glassfish.jersey.feature.feature.group" version="2.27.0.20181210094623"/>
-<unit id="org.glassfish.jersey.feature.source.feature.group" version="2.27.0.20181210094623"/>
-<unit id="org.joda.time.feature.feature.group" version="2.10.1.20181210094623"/>
-<unit id="org.joda.time.feature.source.feature.group" version="2.10.1.20181210094623"/>
+<unit id="org.elasticsearch.client.feature.feature.group" version="6.5.2.20190115131752"/>
+<unit id="org.foodauthent.dependencies.feature.feature.group" version="1.0.1.201901151222"/>
+<unit id="org.foodauthent.knime.dependencies.feature.feature.group" version="1.0.1.201901151222"/>
+<unit id="org.glassfish.hk2.feature.feature.group" version="2.5.0.20190115131752"/>
+<unit id="org.glassfish.hk2.feature.source.feature.group" version="2.5.0.20190115131752"/>
+<unit id="org.glassfish.jersey.feature.feature.group" version="2.27.0.20190115131752"/>
+<unit id="org.glassfish.jersey.feature.source.feature.group" version="2.27.0.20190115131752"/>
+<unit id="org.joda.time.feature.feature.group" version="2.10.1.20190115131752"/>
+<unit id="org.joda.time.feature.source.feature.group" version="2.10.1.20190115131752"/>
 <unit id="org.knime.features.base.feature.group" version="3.6.2.v201811051556"/>
 <unit id="org.knime.features.base.source.feature.group" version="3.6.2.v201811051556"/>
 <unit id="org.knime.features.externals.feature.group" version="3.6.0.v201808300856"/>
@@ -60,10 +60,10 @@
 <unit id="org.knime.features.json.source.feature.group" version="3.6.1.v201808311614"/>
 <unit id="org.knime.features.python2.feature.group" version="3.6.2.v201811051558"/>
 <unit id="org.knime.features.python2.source.feature.group" version="3.6.2.v201811051558"/>
-<unit id="org.scala-lang.feature.feature.group" version="2.12.3.20181210094623"/>
-<unit id="org.scala-lang.feature.source.feature.group" version="2.12.3.20181210094623"/>
-<unit id="org.slf4j.feature.feature.group" version="1.7.25.20181210094623"/>
-<unit id="org.slf4j.feature.source.feature.group" version="1.7.25.20181210094623"/>
+<unit id="org.scala-lang.feature.feature.group" version="2.12.3.20190115131752"/>
+<unit id="org.scala-lang.feature.source.feature.group" version="2.12.3.20190115131752"/>
+<unit id="org.slf4j.feature.feature.group" version="1.7.25.20190115131752"/>
+<unit id="org.slf4j.feature.source.feature.group" version="1.7.25.20190115131752"/>
 <repository location="http://repository.foodauthent.net/p2/foodauthent-dependencies-1.0.1-SNAPSHOT/"/>
 </location>
 </locations>

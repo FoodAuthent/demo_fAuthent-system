@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>javax</groupId>
-	<artifactId>inject.repackage</artifactId>
-	<version>1.0.0.201812061738</version>
+	<artifactId>javax.inject.repackage</artifactId>
+	<version>1.0.0.201901151316</version>
 	<packaging>bundle</packaging>
 
 	<name>javax.inject OSGi Bundle</name>

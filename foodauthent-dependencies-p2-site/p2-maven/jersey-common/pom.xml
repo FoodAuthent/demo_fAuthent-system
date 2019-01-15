@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.glassfish.jersey.core</groupId>
 	<artifactId>jersey-common</artifactId>
-	<version>2.27.1.201811241306</version>
+	<version>2.27.1.201901151307</version>
 	<packaging>bundle</packaging>
 
 	<name>Glassfish jersey-common OSGi Bundle</name>
