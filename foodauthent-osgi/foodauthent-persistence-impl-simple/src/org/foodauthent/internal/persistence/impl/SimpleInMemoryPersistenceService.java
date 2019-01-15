@@ -10,6 +10,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.foodauthent.api.internal.exception.EntityExistsException;
+import org.foodauthent.api.internal.exception.EntityNotFoundException;
 import org.foodauthent.api.internal.exception.NoSuchIDException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
@@ -236,6 +237,30 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public <T extends FaModel> T update(T entity) throws EntityNotFoundException {
+		update(entity, entity.getFaId());
+		return entity;
+	}
+	
+	private <T extends Object> boolean update(final T obj, UUID faId) throws EntityExistsException {
+		if (obj instanceof FaModel) {
+			if (!entities.containsKey(faId)) {
+				throw new EntityNotFoundException("An entity with the given id already exists.");
+			}
+			entities.put(faId, (FaModel) obj);
+		} else if (obj instanceof Blob) {
+			if (!blobs.containsKey(faId)) {
+				throw new EntityNotFoundException("A blob with the given id already exists.");
+			}
+			blobs.put(faId, (Blob) obj);
+		} else {
+			throw new IllegalArgumentException("Objects of type '" + obj.getClass().getSimpleName()
+					+ "' + not supported by the persistence service.");
+		}
+		return true;
 	}
 
 }
