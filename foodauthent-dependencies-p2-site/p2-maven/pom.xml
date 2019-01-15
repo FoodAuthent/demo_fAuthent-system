@@ -76,14 +76,14 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 								</feature>
 								<feature>
 									<id>org.elasticsearch.client.feature</id>
-									<version>6.5.1.qualifier</version>
-									<label>Elasticsearch 6.5.1 Client Feature</label>
+									<version>6.5.2.qualifier</version>
+									<label>Elasticsearch 6.5.2 Client Feature</label>
 									<providerName>elastic.co</providerName>
 									<copyright>elastic.co</copyright>
 									<license>Elastic License</license>
 									<artifacts>
 										<artifact>
-											<id>org.foodauthent:org.elasticsearch.client.rest:jar:6.5.1.v20181205-0</id>
+											<id>org.foodauthent:org.elasticsearch.client.rest:jar:6.5.2.v20181210-0</id>
 											<transitive>false</transitive>
 										</artifact>
 									</artifacts>

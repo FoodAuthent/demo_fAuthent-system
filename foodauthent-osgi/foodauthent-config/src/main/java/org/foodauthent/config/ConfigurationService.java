@@ -1,9 +1,12 @@
 package org.foodauthent.config;
 
+import java.io.InputStream;
+import java.io.Reader;
 import java.time.Duration;
 import java.time.Period;
 import java.time.temporal.TemporalAmount;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -64,5 +67,19 @@ public interface ConfigurationService {
 	List<Duration> getDurationList(String path);
 
 	List<? extends Config> getConfigList(String path);
+
+	void load(ClassLoader loader, String resourceBasename);
+
+	void load(Reader reader);
+
+	void load(Map<String, ? extends Object> values);
+
+	void load(InputStream in);
+
+	void reload(InputStream in);
+
+	void reload(Reader reader);
+
+	void reload(ClassLoader loader, String resourceBasename);
 
 }

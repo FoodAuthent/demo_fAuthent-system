@@ -7,7 +7,8 @@ Bundle-Vendor: Lablicate GmbH
 Require-Bundle: org.eclipse.core.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Import-Package: net.openchrom.nmr.converter.supplier.bruker.model,
+Import-Package: net.openchrom.nmr.converter.supplier.bruker.core,
+ net.openchrom.nmr.converter.supplier.bruker.io,
  org.apache.commons.io,
  org.apache.log4j,
  org.eclipse.chemclipse.converter.chromatogram,

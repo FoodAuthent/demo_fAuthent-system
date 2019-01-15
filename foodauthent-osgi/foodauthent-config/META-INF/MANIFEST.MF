@@ -6,7 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.foodauthent.config.impl.Activator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: org.foodauthent.config
-Import-Package: org.osgi.framework;version="1.3.0"
+Import-Package: org.osgi.framework;version="1.3.0",
+ org.slf4j
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.typesafe.config;bundle-version="1.3.3",
  org.scala-lang.scala-library,

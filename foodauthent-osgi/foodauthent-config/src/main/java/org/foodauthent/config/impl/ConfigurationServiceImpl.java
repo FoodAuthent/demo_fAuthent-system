@@ -1,23 +1,72 @@
 package org.foodauthent.config.impl;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.time.Duration;
 import java.time.Period;
 import java.time.temporal.TemporalAmount;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import org.foodauthent.config.ConfigUtil;
 import org.foodauthent.config.ConfigurationService;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import org.foodauthent.config.ConfigUtil;
 
 public class ConfigurationServiceImpl implements ConfigurationService {
 
 	private Config config;
 
 	public ConfigurationServiceImpl() {
+	}
+	
+	@Override
+	public void load(ClassLoader loader, String resourceBasename) {
+		loadWithFallback(ConfigFactory.load(loader, resourceBasename));
+	}
+
+	@Override
+	public void load(Reader reader) {
+		loadWithFallback(ConfigFactory.parseReader(reader));
+	}
+	
+	@Override
+	public void load(Map<String, ? extends Object> values) {
+		loadWithFallback(ConfigFactory.parseMap(values));
+	}
+	
+	@Override
+	public void load(InputStream in) {
+		load(new InputStreamReader(in));
+	}
+
+	private void loadWithFallback(final Config config) {
+		if (this.config == null) {
+			this.config = config;
+		} else {
+			this.config = this.config.withFallback(config).resolve();
+		}
+	}
+
+	@Override
+	public void reload(InputStream in) {
+		reload(new InputStreamReader(in));
+	}
+
+	@Override
+	public void reload(Reader reader) {
+		ConfigFactory.invalidateCaches();
+		this.config = ConfigFactory.parseReader(reader);
+	}
+
+	@Override
+	public void reload(ClassLoader loader, String resourceBasename) {
+		ConfigFactory.invalidateCaches();
+		this.config = ConfigFactory.load(loader, resourceBasename);
 	}
 
 	@Override
@@ -155,5 +204,5 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	public List<? extends Config> getConfigList(String path) {
 		return config.getConfigList(path);
 	}
-	
+
 }

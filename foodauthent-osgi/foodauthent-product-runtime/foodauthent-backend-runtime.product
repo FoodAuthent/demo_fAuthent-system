@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product uid="org.foodauthent.knime.runtime" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product uid="org.foodauthent.backend.runtime" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -34,26 +34,26 @@
 
    <features>
       <feature id="org.foodauthent.feature"/>
-      <feature id="org.eclipse.equinox.core.feature"/>
-      <feature id="org.elasticsearch.client.feature"/>
-      <feature id="io.minio.feature"/>
+      <feature id="io.swagger.feature"/>
+      <feature id="org.glassfish.jersey.feature"/>
+      <feature id="org.slf4j.feature"/>
+      <feature id="org.joda.time.feature"/>
       <feature id="org.apache.commons.feature"/>
       <feature id="org.apache.httpcomponents.feature"/>
-      <feature id="org.glassfish.jersey.feature"/>
-      <feature id="org.joda.time.feature"/>
       <feature id="org.eclipse.equinox.server.jetty"/>
-      <feature id="org.foodauthent.openchrom.feature"/>
-      <feature id="org.eclipse.core.runtime.feature"/>
-      <feature id="net.openchrom.converter.feature"/>
-      <feature id="net.openchrom.platform.feature"/>
+      <feature id="com.typesafe.feature"/>
       <feature id="org.eclipse.equinox.server.core"/>
-      <feature id="org.eclipse.platform"/>
-      <feature id="org.eclipse.emf.ecore"/>
-      <feature id="org.eclipse.emf.common"/>
-      <feature id="org.eclipse.ecf.core.feature"/>
-      <feature id="org.eclipse.ecf.core.ssl.feature"/>
-      <feature id="org.eclipse.ecf.filetransfer.feature"/>
+      <feature id="io.minio.feature"/>
+      <feature id="com.eclipsesource.jaxrs.feature"/>
+      <feature id="com.fasterxml.jackson.feature"/>
+      <feature id="org.scala-lang.feature"/>
+      <feature id="org.eclipse.equinox.executable"/>
+      <feature id="org.eclipse.core.runtime.feature"/>
+      <feature id="org.eclipse.equinox.core.feature"/>
       <feature id="org.glassfish.hk2.feature"/>
+      <feature id="org.elasticsearch.client.feature"/>
+      <feature id="com.fasterxml.jackson.feature.source"/>
+      <feature id="org.foodauthent.dependencies.feature"/>
    </features>
 
    <configurations>
@@ -85,7 +85,6 @@
       <plugin id="org.foodauthent.common" autoStart="true" startLevel="2" />
       <plugin id="org.foodauthent.config" autoStart="true" startLevel="2" />
       <plugin id="org.foodauthent.persistence.impl.elasticsearch" autoStart="true" startLevel="3" />
-      <plugin id="org.foodauthent.persistence.impl.simple" autoStart="false" startLevel="0" />
       <plugin id="org.foodauthent.rest.api" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.rest.impl" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.storage.impl.s3" autoStart="true" startLevel="0" />

@@ -21,7 +21,6 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.openchrom.nmr.converter.supplier.bruker.model.IVendorScanNMR;
 
 @Component(service = RawFileReader.class)
 public class OpenChromRawFileReader implements RawFileReader {
@@ -106,15 +105,17 @@ public class OpenChromRawFileReader implements RawFileReader {
 			}
 		} else {
 			Object processingResult = processingInfo.getProcessingResult();
-			// System.err.println(processingResult.getClass());
-			if(processingResult instanceof IVendorScanNMR) {
-				IVendorScanNMR scan = (IVendorScanNMR)processingResult;
+			System.err.println(processingResult.getClass());
+			/*
+			if(processingResult instanceof IVendorScaNMR) {
+				IVendorScanNMR scan = (IVendorScanNMW)processingResult;
 				result.putAll(scan.getHeaderDataMap());
 			} else {
 				if(logger.isErrorEnabled()) {
 					logger.error("Processing failed");
 				}
 			}
+			*/
 		}
 
 		return result;
