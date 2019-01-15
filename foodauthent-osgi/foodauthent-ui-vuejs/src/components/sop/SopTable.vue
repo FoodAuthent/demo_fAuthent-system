@@ -67,7 +67,6 @@
 var getSops = require("@/utils/sopFunction.js").default.getSops;
 var deleteSop = require("@/utils/sopFunction.js").default.deleteSop;
 var updateSop = require("@/utils/sopFunction.js").default.updateSop;
-var findSopByKeywords = require("@/utils/sopFunction.js").default.findSopByKeyword;
 var findSopById = require("@/utils/sopFunction.js").default.findSopById;
 import jsonschema from "@/generated/schema/sop.json";
 export default {
@@ -121,19 +120,9 @@ export default {
 	if (re.test(self.filter)) {
     findSopById(self);
 	} else {
-    findSopByKeywords(self);
+    getSops(self);
 	}
     },
-   //Search SOP for keywords
-  //  searchSopByKeywords(){
-   // let self = this;
-  //  findSopByKeywords(self);
- //   },
-    //Search SOP for id
-   // searchSopById(){
-   // let self = this;
-   // findSopById(self);
-   // },
     clearSearch(){
     this.filter = "";
     document.getElementById("refreshTable").click();

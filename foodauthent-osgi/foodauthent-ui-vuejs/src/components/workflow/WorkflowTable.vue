@@ -60,7 +60,6 @@
 <script>
 var getWorkflows = require("@/utils/workflowFunction.js").default.getWorkflows;
 var deleteWorkflow = require("@/utils/workflowFunction.js").default.deleteWorkflow;
-var findWorkflowByKeyword = require("@/utils/workflowFunction.js").default.findWorkflowByKeyword;
 var findWorkflowById = require("@/utils/workflowFunction.js").default.findWorkflowById;
 export default {
   name: "Workflow",
@@ -100,7 +99,7 @@ export default {
 	if (re.test(self.filter)) {
     findWorkflowById(self);
 	} else {
-   	 findWorkflowByKeyword(self);
+   	 getWorkflows(self);
 	}
     },
     clearSearch(){

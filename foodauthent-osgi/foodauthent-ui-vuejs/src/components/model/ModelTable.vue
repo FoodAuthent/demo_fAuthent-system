@@ -66,7 +66,6 @@
 var getModels = require("@/utils/modelFunction.js").default.getModels;
 var deleteModel = require("@/utils/modelFunction.js").default.deleteModel;
 var updateModel = require("@/utils/modelFunction.js").default.updateModel;
-var findModelByKeyword = require("@/utils/modelFunction.js").default.findModelByKeyword;
 var findModelById = require("@/utils/modelFunction.js").default.findModelById;
 import jsonschema from "@/generated/schema/model.json";
 export default {
@@ -126,9 +125,10 @@ export default {
     //check if it is a valid UUID
 	var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
 	if (re.test(self.filter)) {
-    findModelById(self);
+    	findModelById(self);
 	} else {
-   findModelByKeyword(self);
+   	//findModelByKeyword(self);
+   		getModels(self);
 	}
     },
     //Search Model for id or keywords

@@ -57,8 +57,8 @@ public interface WorkflowService {
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber 
-     * @param pageSize 
+     * @param pageNumber the page number starting at 0
+     * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *
      * @return the result
@@ -68,8 +68,8 @@ public interface WorkflowService {
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber 
-     * @param pageSize 
+     * @param pageNumber the page number starting at 0
+     * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *
      * @return the result
@@ -79,8 +79,8 @@ public interface WorkflowService {
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber 
-     * @param pageSize 
+     * @param pageNumber the page number starting at 0
+     * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *
      * @return the result
@@ -90,8 +90,8 @@ public interface WorkflowService {
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber 
-     * @param pageSize 
+     * @param pageNumber the page number starting at 0
+     * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *
      * @return the result
@@ -101,8 +101,8 @@ public interface WorkflowService {
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber 
-     * @param pageSize 
+     * @param pageNumber the page number starting at 0
+     * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *
      * @return the result
@@ -112,8 +112,8 @@ public interface WorkflowService {
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber 
-     * @param pageSize 
+     * @param pageNumber the page number starting at 0
+     * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *
      * @return the result

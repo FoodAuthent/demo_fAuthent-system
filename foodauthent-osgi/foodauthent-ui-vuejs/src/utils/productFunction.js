@@ -6,45 +6,48 @@ var MyObject = function () {
   //only for test---
   var ProductApi = require("../generated/rest-client/src/api/ProductApi.js");
   var productApi = new ProductApi(apiClient);
-
+  
+  
   var getProducts = function (self) {
-    console.log('Get Products');
-    console.log('self Filter ',self.filter);
-    var filterArray = null;
-    if(self.filter !== null){
-    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
-    }
-    console.log('Filter ',filterArray);
-    var callback = function (error, data, response) {
-      console.log("data:", data);
-      console.log("response:", response);
-      self.resultsCount = data.resultCount;
-      self.pageCount = response.body.pageCount;
-      console.log("Page count", response.body.pageCount);
-      if (error) {
-        //this.response = data;
-        console.error(error);
-      } else {
-        var jsonResult = data.results;
-        var length = jsonResult.length;
-        for (var i = 0; i < length; i++) {
-          // console.log(jsonResult[i]);
-          jsonResult[i]['actions'] = '';
-        }
-        self.items = data.results;
-        console.log("API called successfully. Returned data: ", data);
-      }
-    };
-    var opt = {
-      pageNumber: self.currentPage,
-      pageSize: self.perPage,
-      keywords: filterArray
-    };
-    productApi.findProductByKeyword(
-      opt,
-      callback
-    );
-  };
+	    console.log('Get Products');
+	    console.log('self Filter ',self.filter);
+	    var filterArray = null;
+	    if(self.filter !== null){
+	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+	    }
+	    console.log('Filter ',filterArray);
+	    var callback = function (error, data, response) {
+	      console.log("data:", data);
+	      console.log("response:", response);
+	      self.resultsCount = data.resultCount;
+	      self.pageCount = response.body.pageCount;
+	      console.log("Page count", response.body.pageCount);
+	      if (error) {
+	        //this.response = data;
+	        console.error(error);
+	      } else {
+	        var jsonResult = data.results;
+	        var length = jsonResult.length;
+	        for (var i = 0; i < length; i++) {
+	          // console.log(jsonResult[i]);
+	          jsonResult[i]['actions'] = '';
+	        }
+	        self.items = data.results;
+	        console.log("API called successfully. Returned data: ", data);
+	      }
+	    };
+	    var opt = {
+	      pageNumber: self.currentPage,
+	      pageSize: self.perPage,
+	      keywords: filterArray
+	    };
+	    productApi.findProductByKeyword(
+	      opt,
+	      callback
+	    );
+	  };
+
+  
   var saveProducts = function (json, self) {
     console.log('Save Products');
     var callback = function (error, data, response) {

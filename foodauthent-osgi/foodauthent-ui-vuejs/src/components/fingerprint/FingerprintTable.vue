@@ -66,7 +66,6 @@
 var getFingerprints = require("@/utils/fingerprintFunction.js").default.getFingerprints;
 var deleteFingerprints = require("@/utils/fingerprintFunction.js").default.deleteFingerprints;
 var findFingerprintSetById = require("@/utils/fingerprintFunction.js").default.findFingerprintById;
-var findFingerprintSetByKeyword = require("@/utils/fingerprintFunction.js").default.findFingerprintByKeyword;
 import jsonschema from "@/generated/schema/fingerprintset.json";
 export default {
   name: "Fingerprints",
@@ -112,11 +111,11 @@ export default {
     let self = this;
     //check if it is a valid UUID
 	var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
-	if (re.test(self.filter)) {
-   	findFingerprintSetById(self);
-	} else {
-    findFingerprintSetByKeyword(self);
-	}
+		if (re.test(self.filter)) {
+	   		findFingerprintSetById(self);
+		} else {
+	    	getFingerprints(self);
+		}
     },
     clearSearch(){
     this.filter = "";

@@ -70,6 +70,7 @@ var getProducts = require("@/utils/productFunction.js").default.getProducts;
 var deleteProducts = require("@/utils/productFunction.js").default.deleteProducts;
 var updateProducts = require("@/utils/productFunction.js").default.updateProducts;
 var findProductByGtin = require("@/utils/productFunction.js").default.findProductByGtin;
+
 import productForm from "@/components/product/ProductForm";
 import product from "@/components/product/Product";
 import jsonschema from "@/generated/schema/product.json";

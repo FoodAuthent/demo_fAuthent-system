@@ -6,86 +6,48 @@ var MyObject = function () {
   //only for test---
   var WorkflowApi = require("../generated/rest-client/src/api/WorkflowApi.js");
   var workflowApi = new WorkflowApi(apiClient);
-
-  var getWorkflows = function (self) {
-    console.log('Get Workflow');
-    var callback = function (error, data, response) {
-      console.log("data:", data);
-      console.log("response:", response);
-      if(data !== undefined && data !== null){
-    	  self.resultsCount = data.resultCount; 
-      }else{
-    	  self.resultsCount = 0;
-      }
-      if(response.body !== null){
-    	  self.pageCount = response.body.pageCount; 
-      }else{
-    	  self.pageCount = 0;
-      }
-      if (error) {
-        //this.response = data;
-        console.error(error);
-      } else {
-        var jsonResult = data.results;
-        var length = jsonResult.length;
-        for (var i = 0; i < length; i++) {
-          // console.log(jsonResult[i]);
-          jsonResult[i]['actions'] = '';
-          console.log(jsonResult[i]);
-        }
-        self.items = data.results;
-        console.log("API called successfully. Returned data: ", data);
-      }
-    };
-    var opt = {
-      pageNumber: 0,
-      pageSize: 100
-    };
-    workflowApi.findWorkflowByKeyword(
-      opt,
-      callback
-    );
-  };
   
+  
+  var getWorkflows = function (self) {
+	    console.log('Get Workflows');
+	    console.log('self Filter ',self.filter);
+	    var filterArray = null;
+	    if(self.filter !== null){
+	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+	    }
+	    console.log('Filter ',filterArray);
+	    var callback = function (error, data, response) {
+	      console.log("data:", data);
+	      console.log("response:", response);
+	      self.resultsCount = data.resultCount;
+	      self.pageCount = response.body.pageCount;
+	      console.log("Page count", response.body.pageCount);
+	      if (error) {
+	        //this.response = data;
+	        console.error(error);
+	      } else {
+	        var jsonResult = data.results;
+	        var length = jsonResult.length;
+	        for (var i = 0; i < length; i++) {
+	          // console.log(jsonResult[i]);
+	          jsonResult[i]['actions'] = '';
+	        }
+	        self.items = data.results;
+	        console.log("API called successfully. Returned data: ", data);
+	      }
+	    };
+	    var opt = {
+	      pageNumber: self.currentPage,
+	      pageSize: self.perPage,
+	      keywords: filterArray
+	    };
+	    workflowApi.findWorkflowByKeyword(
+	      opt,
+	      callback
+	    );
+	  };
 
-  var findWorkflowByKeyword = function (self) {
-	var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
-  console.log('Search Workflow for Keywords: ',filterArray);
-  var callback = function (error, data, response) {
-    if(data !== undefined && data !== null){
-  	  self.resultsCount = data.resultCount; 
-    }else{
-  	  self.resultsCount = 0;
-    }
-    if(response.body !== null){
-  	  self.pageCount = response.body.pageCount; 
-    }else{
-  	  self.pageCount = 0;
-    }
-    if (error) {
-      //this.response = data;
-      console.error(error);
-    } else {
-      var jsonResult = data.results;
-      var length = jsonResult.length;
-      for (var i = 0; i < length; i++) {
-        jsonResult[i]['actions'] = '';
-      }
-      self.items = data.results;
-      //console.log("Items For KEYWORDS are: ",self.items);
-      console.log("API called successfully. Returned data: ", data);
-    }
-  };
-  var opt = {
-    pageNumber: self.currentPage,
-    pageSize: self.perPage,
-    keywords: filterArray
-  };
-  workflowApi.findWorkflowByKeyword(
-    opt,
-    callback
-  );
-};
+  
 
 var findWorkflowById = function (self) {
     console.log('Search Workflow for ID: ',self.filter);
@@ -540,7 +502,6 @@ var findWorkflowById = function (self) {
     findPredictionJobsByKeyword: findPredictionJobsByKeyword,
     findTrainingJobsByKeyword: findTrainingJobsByKeyword,
     findPredictionJobById: findPredictionJobById,
-    findWorkflowByKeyword: findWorkflowByKeyword,
     findWorkflowById: findWorkflowById
   }
 }();

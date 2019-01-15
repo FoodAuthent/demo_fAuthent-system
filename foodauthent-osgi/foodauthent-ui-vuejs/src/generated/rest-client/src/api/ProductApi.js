@@ -152,8 +152,8 @@
      * Finds Products by some key words or return all Products.
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber 
-     * @param {Number} opts.pageSize 
+     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/ProductApi~findProductByKeywordCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/ProductPageResult}

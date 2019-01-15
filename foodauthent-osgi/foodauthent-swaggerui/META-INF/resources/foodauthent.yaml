@@ -723,11 +723,13 @@ servers:
 components:
   parameters:
     pageNumber:
+      description: the page number starting at 0
       name: pageNumber
       in: query
       schema:
         type: integer
     pageSize: 
+      description: entries per page, minimum 1
       name: pageSize
       in: query
       schema:
