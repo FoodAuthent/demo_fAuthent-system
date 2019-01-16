@@ -18,7 +18,7 @@
 
 		<!-- p2 repositories -->
 		<foodauthent-dependencies.url>http://repository.foodauthent.net/p2/foodauthent-dependencies-1.0.1-SNAPSHOT/</foodauthent-dependencies.url>
-		<foodauthent-addon.url>file:/Users/sven/Documents/projects/foodauthent-java/foodauthent-dependencies-addons/target/repository/</foodauthent-addon.url>
+
 		<!-- use UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -200,6 +200,8 @@
 		<module>foodauthent-knime-feature</module>
 		<module>foodauthent-openchrom-feature</module>
 		<module>foodauthent-product-runtime</module>
+		<!-- 
 		<module>foodauthent-product-application</module>
+		 -->
 	</modules>
 </project>

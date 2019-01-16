@@ -94,8 +94,8 @@
 				<configuration>
 					<products>
 						<product>
-							<id>org.foodauthent.runtime</id>
-							<attachId>foodauthent-knime-runtime</attachId>
+							<id>org.foodauthent.backend.runtime</id>
+							<attachId>foodauthent-backend-runtime</attachId>
 						</product>
 					</products>
 					<formats>
