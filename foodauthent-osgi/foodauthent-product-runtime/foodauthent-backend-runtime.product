@@ -10,6 +10,7 @@
       <programArgs>-consoleLog -console
       </programArgs>
       <vmArgs>-Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dorg.osgi.service.http.port=9090
+-Xdebug -Xrunjdwp:transport=dt_socket,address=9091,server=y,suspend=y
       </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
@@ -53,6 +54,7 @@
       <feature id="org.glassfish.hk2.feature"/>
       <feature id="org.elasticsearch.client.feature"/>
       <feature id="org.foodauthent.dependencies.feature"/>
+      <feature id="com.fasterxml.jackson.feature.source"/>
    </features>
 
    <configurations>
@@ -83,6 +85,7 @@
       <plugin id="org.eclipse.ui.workbench" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.common" autoStart="true" startLevel="2" />
       <plugin id="org.foodauthent.config" autoStart="true" startLevel="2" />
+      <plugin id="org.foodauthent.impl.openchrom" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.persistence.impl.elasticsearch" autoStart="true" startLevel="3" />
       <plugin id="org.foodauthent.rest.api" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.rest.impl" autoStart="true" startLevel="0" />

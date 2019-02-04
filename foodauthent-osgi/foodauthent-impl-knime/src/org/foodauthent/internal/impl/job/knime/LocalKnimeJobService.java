@@ -49,7 +49,7 @@ public class LocalKnimeJobService implements JobService {
 
 	@Reference
 	void bindPersistenceService(PersistenceService persistenceService) {
-		this.persistenceService = persistenceService;
+		LocalKnimeJobService.persistenceService = persistenceService;
 	}
 
 	@Override

@@ -45,11 +45,13 @@ public class WorkflowServiceImpl implements WorkflowService {
     void bindJobService(JobService jobService) {
 	WorkflowServiceImpl.jobService = jobService;
     }
+    
 
     @Reference
     void bindPersistenceService(PersistenceService persistenceService) {
-	WorkflowServiceImpl.persistenceService = persistenceService;
+	 WorkflowServiceImpl.persistenceService = persistenceService;
     }
+    
     
     @Override
     public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId, UUID modelId)
