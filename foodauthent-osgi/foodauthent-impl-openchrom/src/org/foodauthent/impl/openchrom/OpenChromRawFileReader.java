@@ -51,7 +51,7 @@ public class OpenChromRawFileReader implements RawFileReader {
 				result.putAll(readBrukerMetadata(file));
 				break;
 			default:
-				throw new RuntimeException();
+				throw new IllegalArgumentException("Unsupported file " + fileType);
 		}
 
 		return result;
