@@ -12,36 +12,48 @@ import org.foodauthent.common.exception.FAExceptions;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface CustommetadataService {
+public interface CustomMetadataService {
 
     /**
      * TODO
      *
-     * @param entityId 
+     * @param modelId 
      * @param schemaId 
      * @param faId 
      *
      * @return the result
      */
-    String getCustomMetadata(String entityId, String schemaId, java.util.UUID faId);
+    String getCustomMetadata(String modelId, String schemaId, java.util.UUID faId);
         
     /**
      * TODO
      *
-     * @param entityId 
+     * @param modelId 
      * @param schemaId 
      *
      * @return the result
      */
-    String getCustomMetadataSchema(String entityId, String schemaId);
+    String getCustomMetadataSchema(String modelId, String schemaId);
         
     /**
      * TODO
      *
-     * @param entityId 
+     * @param modelId 
      *
      * @return the result
      */
-    java.util.List<String> getCustomMetadataSchemas(String entityId);
+    java.util.List<String> getCustomMetadataSchemas(String modelId);
+        
+    /**
+     * TODO
+     *
+     * @param modelId 
+     * @param schemaId 
+     * @param faId 
+     * @param body 
+     *
+     * 
+     */
+    void saveCustomMetadata(String modelId, String schemaId, java.util.UUID faId, String body);
         
 }
