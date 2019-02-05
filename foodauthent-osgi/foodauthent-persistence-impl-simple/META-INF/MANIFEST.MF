@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.foodauthent.persistence.impl.simple
 Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: org.foodauthent.persistence.simple
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: org.foodauthent.api.internal.exception,
+Import-Package: com.fasterxml.jackson.databind;version="2.8.10",
+ org.foodauthent.api.internal.exception,
  org.foodauthent.api.internal.persistence,
  org.foodauthent.common.exception,
  org.foodauthent.model,
