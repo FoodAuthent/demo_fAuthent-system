@@ -1,0 +1,1603 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://foodauthent.net/finterprintset/foodauthent_v0.json",
+  "type": "object",
+  "title": "FoodAuthent Fingerprintset Schema v0",
+      "properties": {
+        "Comment[Created With Configuration]": {
+          "$id": "#/properties/investigation/properties/Comment[Created With Configuration]",
+          "type": "string",
+          "title": "The Comment[created with configuration] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Comment[Last Opened With Configuration]": {
+          "$id": "#/properties/investigation/properties/Comment[Last Opened With Configuration]",
+          "type": "string",
+          "title": "The Comment[last opened with configuration] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Description": {
+          "$id": "#/properties/investigation/properties/Investigation Description",
+          "type": "string",
+          "title": "The Investigation description Schema",
+          "default": "",
+          "examples": [
+            "Long String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Identifier": {
+          "$id": "#/properties/investigation/properties/Investigation Identifier",
+          "type": "string",
+          "title": "The Investigation identifier Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Person Address": {
+          "$id": "#/properties/investigation/properties/Investigation Person Address",
+          "type": "string",
+          "title": "The Investigation person address Schema",
+          "default": "",
+          "examples": [
+            "Long String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Person Affiliation": {
+          "$id": "#/properties/investigation/properties/Investigation Person Affiliation",
+          "type": "string",
+          "title": "The Investigation person affiliation Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Person Email": {
+          "$id": "#/properties/investigation/properties/Investigation Person Email",
+          "type": "string",
+          "title": "The Investigation person email Schema",
+          "default": "",
+          "examples": [
+            "Long String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Person Fax": {
+          "$id": "#/properties/investigation/properties/Investigation Person Fax",
+          "type": "string",
+          "title": "The Investigation person fax Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Person First Name": {
+          "$id": "#/properties/investigation/properties/Investigation Person First Name",
+          "type": "string",
+          "title": "The Investigation person first name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Person Last Name": {
+          "$id": "#/properties/investigation/properties/Investigation Person Last Name",
+          "type": "string",
+          "title": "The Investigation person last name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Person Mid Initials": {
+          "$id": "#/properties/investigation/properties/Investigation Person Mid Initials",
+          "type": "string",
+          "title": "The Investigation person mid initials Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Person Phone": {
+          "$id": "#/properties/investigation/properties/Investigation Person Phone",
+          "type": "string",
+          "title": "The Investigation person phone Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Person Roles": {
+          "$id": "#/properties/investigation/properties/Investigation Person Roles",
+          "type": "string",
+          "title": "The Investigation person roles Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation PubMed ID": {
+          "$id": "#/properties/investigation/properties/Investigation PubMed ID",
+          "type": "string",
+          "title": "The Investigation pubmed id Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Public Release Date": {
+          "$id": "#/properties/investigation/properties/Investigation Public Release Date",
+          "type": "string",
+          "title": "The Investigation public release date Schema",
+          "default": "",
+          "examples": [
+            "Date"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Publication Author List": {
+          "$id": "#/properties/investigation/properties/Investigation Publication Author List",
+          "type": "string",
+          "title": "The Investigation publication author list Schema",
+          "default": "",
+          "examples": [
+            "Long String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Publication DOI": {
+          "$id": "#/properties/investigation/properties/Investigation Publication DOI",
+          "type": "string",
+          "title": "The Investigation publication doi Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Publication Status": {
+          "$id": "#/properties/investigation/properties/Investigation Publication Status",
+          "type": "string",
+          "title": "The Investigation publication status Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Publication Title": {
+          "$id": "#/properties/investigation/properties/Investigation Publication Title",
+          "type": "string",
+          "title": "The Investigation publication title Schema",
+          "default": "",
+          "examples": [
+            "Long String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Submission Date": {
+          "$id": "#/properties/investigation/properties/Investigation Submission Date",
+          "type": "string",
+          "title": "The Investigation submission date Schema",
+          "default": "",
+          "examples": [
+            "Date"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Investigation Title": {
+          "$id": "#/properties/investigation/properties/Investigation Title",
+          "type": "string",
+          "title": "The Investigation title Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Assay File Name": {
+          "$id": "#/properties/investigation/properties/Study Assay File Name",
+          "type": "string",
+          "title": "The Study assay file name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Assay Measurement Type": {
+          "$id": "#/properties/investigation/properties/Study Assay Measurement Type",
+          "type": "string",
+          "title": "The Study assay measurement type Schema",
+          "default": "",
+          "examples": [
+            "List"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Assay Technology Type": {
+          "$id": "#/properties/investigation/properties/Study Assay Technology Type",
+          "type": "string",
+          "title": "The Study assay technology type Schema",
+          "default": "",
+          "examples": [
+            "List"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Description": {
+          "$id": "#/properties/investigation/properties/Study Description",
+          "type": "string",
+          "title": "The Study description Schema",
+          "default": "",
+          "examples": [
+            "Long String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Design Type (repeatable)": {
+          "$id": "#/properties/investigation/properties/Study Design Type (repeatable)",
+          "type": "string",
+          "title": "The Study design type (repeatable) Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study File Name": {
+          "$id": "#/properties/investigation/properties/Study File Name",
+          "type": "string",
+          "title": "The Study file name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Identifier": {
+          "$id": "#/properties/investigation/properties/Study Identifier",
+          "type": "string",
+          "title": "The Study identifier Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Person Address": {
+          "$id": "#/properties/investigation/properties/Study Person Address",
+          "type": "string",
+          "title": "The Study person address Schema",
+          "default": "",
+          "examples": [
+            "Long String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Person Affiliation": {
+          "$id": "#/properties/investigation/properties/Study Person Affiliation",
+          "type": "string",
+          "title": "The Study person affiliation Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Person Email": {
+          "$id": "#/properties/investigation/properties/Study Person Email",
+          "type": "string",
+          "title": "The Study person email Schema",
+          "default": "",
+          "examples": [
+            "Long String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Person Fax": {
+          "$id": "#/properties/investigation/properties/Study Person Fax",
+          "type": "string",
+          "title": "The Study person fax Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Person First Name": {
+          "$id": "#/properties/investigation/properties/Study Person First Name",
+          "type": "string",
+          "title": "The Study person first name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Person Last Name": {
+          "$id": "#/properties/investigation/properties/Study Person Last Name",
+          "type": "string",
+          "title": "The Study person last name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Person Mid Initials": {
+          "$id": "#/properties/investigation/properties/Study Person Mid Initials",
+          "type": "string",
+          "title": "The Study person mid initials Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Person Phone": {
+          "$id": "#/properties/investigation/properties/Study Person Phone",
+          "type": "string",
+          "title": "The Study person phone Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Person Roles": {
+          "$id": "#/properties/investigation/properties/Study Person Roles",
+          "type": "string",
+          "title": "The Study person roles Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Protocol Components Name": {
+          "$id": "#/properties/investigation/properties/Study Protocol Components Name",
+          "type": "string",
+          "title": "The Study protocol components name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Protocol Components Type": {
+          "$id": "#/properties/investigation/properties/Study Protocol Components Type",
+          "type": "string",
+          "title": "The Study protocol components type Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Protocol Description": {
+          "$id": "#/properties/investigation/properties/Study Protocol Description",
+          "type": "string",
+          "title": "The Study protocol description Schema",
+          "default": "",
+          "examples": [
+            "Long String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Protocol Name": {
+          "$id": "#/properties/investigation/properties/Study Protocol Name",
+          "type": "string",
+          "title": "The Study protocol name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Protocol Parameters Name": {
+          "$id": "#/properties/investigation/properties/Study Protocol Parameters Name",
+          "type": "string",
+          "title": "The Study protocol parameters name Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Protocol Type": {
+          "$id": "#/properties/investigation/properties/Study Protocol Type",
+          "type": "string",
+          "title": "The Study protocol type Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Protocol URI": {
+          "$id": "#/properties/investigation/properties/Study Protocol URI",
+          "type": "string",
+          "title": "The Study protocol uri Schema",
+          "default": "",
+          "examples": [
+            "Long String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Protocol Version": {
+          "$id": "#/properties/investigation/properties/Study Protocol Version",
+          "type": "string",
+          "title": "The Study protocol version Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study PubMed ID": {
+          "$id": "#/properties/investigation/properties/Study PubMed ID",
+          "type": "string",
+          "title": "The Study pubmed id Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Public Release Date": {
+          "$id": "#/properties/investigation/properties/Study Public Release Date",
+          "type": "string",
+          "title": "The Study public release date Schema",
+          "default": "",
+          "examples": [
+            "Date"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Publication Author List": {
+          "$id": "#/properties/investigation/properties/Study Publication Author List",
+          "type": "string",
+          "title": "The Study publication author list Schema",
+          "default": "",
+          "examples": [
+            "Long String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Publication DOI": {
+          "$id": "#/properties/investigation/properties/Study Publication DOI",
+          "type": "string",
+          "title": "The Study publication doi Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Publication Status": {
+          "$id": "#/properties/investigation/properties/Study Publication Status",
+          "type": "string",
+          "title": "The Study publication status Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Publication Title": {
+          "$id": "#/properties/investigation/properties/Study Publication Title",
+          "type": "string",
+          "title": "The Study publication title Schema",
+          "default": "",
+          "examples": [
+            "Long String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Submission Date": {
+          "$id": "#/properties/investigation/properties/Study Submission Date",
+          "type": "string",
+          "title": "The Study submission date Schema",
+          "default": "",
+          "examples": [
+            "Date"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Study Title": {
+          "$id": "#/properties/investigation/properties/Study Title",
+          "type": "string",
+          "title": "The Study title Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "factors": {
+          "$id": "#/properties/investigation/properties/factors",
+          "type": "string",
+          "title": "The Factors Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "metaboliteprofiling_ftir": {
+      "$id": "#/properties/metaboliteprofiling_ftir",
+      "type": "object",
+      "title": "The Metaboliteprofiling_ftir Schema",
+      "properties": {
+        "\"Operator details (name": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/\"Operator details (name",
+          "type": "string",
+          "title": "The \"operator details (name Schema",
+          "default": "",
+          "examples": [
+            "age"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Acquisition Parameter Data File": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Acquisition Parameter Data File",
+          "type": "string",
+          "title": "The Acquisition parameter data file Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Data Transformation Name": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Data Transformation Name",
+          "type": "string",
+          "title": "The Data transformation name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Derived Spectral Data File": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Derived Spectral Data File",
+          "type": "string",
+          "title": "The Derived spectral data file Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Extract Name": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Extract Name",
+          "type": "string",
+          "title": "The Extract name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "FTIR Assay Name": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/FTIR Assay Name",
+          "type": "string",
+          "title": "The Ftir assay name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Normalization Name": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Normalization Name",
+          "type": "string",
+          "title": "The Normalization name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Extraction Method]": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Parameter Value[Extraction Method]",
+          "type": "string",
+          "title": "The Parameter value[extraction method] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Solvent]": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Parameter Value[Solvent]",
+          "type": "string",
+          "title": "The Parameter value[solvent] Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Temperature]": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Parameter Value[Temperature]",
+          "type": "string",
+          "title": "The Parameter value[temperature] Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Protocol REF",
+          "type": "string",
+          "title": "The Protocol ref Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(1)": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Protocol REF(1)",
+          "type": "string",
+          "title": "The Protocol ref(1) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(2)": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Protocol REF(2)",
+          "type": "string",
+          "title": "The Protocol ref(2) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(3)": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Protocol REF(3)",
+          "type": "string",
+          "title": "The Protocol ref(3) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(4)": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Protocol REF(4)",
+          "type": "string",
+          "title": "The Protocol ref(4) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Sample Name": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/Sample Name",
+          "type": "string",
+          "title": "The Sample name Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "factors": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/factors",
+          "type": "string",
+          "title": "The Factors Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "metaboliteprofiling_irms": {
+      "$id": "#/properties/metaboliteprofiling_irms",
+      "type": "object",
+      "title": "The Metaboliteprofiling_irms Schema",
+      "properties": {
+        "\"Operator details (name": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/\"Operator details (name",
+          "type": "string",
+          "title": "The \"operator details (name Schema",
+          "default": "",
+          "examples": [
+            "age"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Data File": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Data File",
+          "type": "string",
+          "title": "The Data file Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Data File Calibration": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Data File Calibration",
+          "type": "string",
+          "title": "The Data file calibration Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Extract Name": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Extract Name",
+          "type": "string",
+          "title": "The Extract name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value [MS]": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Parameter Value [MS]",
+          "type": "string",
+          "title": "The Parameter value [ms] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value [instrument]": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Parameter Value [instrument]",
+          "type": "string",
+          "title": "The Parameter value [instrument] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value [principle of measurement]": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Parameter Value [principle of measurement]",
+          "type": "string",
+          "title": "The Parameter value [principle of measurement] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Certificate Reference substances]": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Parameter Value[Certificate Reference substances]",
+          "type": "string",
+          "title": "The Parameter value[certificate reference substances] Schema",
+          "default": "",
+          "examples": [
+            "String (Path to file)"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Isotope]": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Parameter Value[Isotope]",
+          "type": "string",
+          "title": "The Parameter value[isotope] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Reference substances]": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Parameter Value[Reference substances]",
+          "type": "string",
+          "title": "The Parameter value[reference substances] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[SamplePreatreatment]": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Parameter Value[SamplePreatreatment]",
+          "type": "string",
+          "title": "The Parameter value[samplepreatreatment] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Unit]": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Parameter Value[Unit]",
+          "type": "string",
+          "title": "The Parameter value[unit] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Protocol REF",
+          "type": "string",
+          "title": "The Protocol ref Schema",
+          "default": "",
+          "examples": [
+            "String (Path to file)"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(1)": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Protocol REF(1)",
+          "type": "string",
+          "title": "The Protocol ref(1) Schema",
+          "default": "",
+          "examples": [
+            "String (Path to file)"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(2)": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Protocol REF(2)",
+          "type": "string",
+          "title": "The Protocol ref(2) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Sample Name": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/Sample Name",
+          "type": "string",
+          "title": "The Sample name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "factors": {
+          "$id": "#/properties/metaboliteprofiling_irms/properties/factors",
+          "type": "string",
+          "title": "The Factors Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "metaboliteprofiling_ms": {
+      "$id": "#/properties/metaboliteprofiling_ms",
+      "type": "object",
+      "title": "The Metaboliteprofiling_ms Schema",
+      "properties": {
+        "\"Operator details (name": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/\"Operator details (name",
+          "type": "string",
+          "title": "The \"operator details (name Schema",
+          "default": "",
+          "examples": [
+            "time"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Data Transformation Name": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Data Transformation Name",
+          "type": "string",
+          "title": "The Data transformation name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Derived Spectral Data File": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Derived Spectral Data File",
+          "type": "string",
+          "title": "The Derived spectral data file Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Extract Name": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Extract Name",
+          "type": "string",
+          "title": "The Extract name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Label": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Label",
+          "type": "string",
+          "title": "The Label Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Labeled Extract Name": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Labeled Extract Name",
+          "type": "string",
+          "title": "The Labeled extract name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "MS Assay Name": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/MS Assay Name",
+          "type": "string",
+          "title": "The Ms assay name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Metabolite Assignment File": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Metabolite Assignment File",
+          "type": "string",
+          "title": "The Metabolite assignment file Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Normalization Name": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Normalization Name",
+          "type": "string",
+          "title": "The Normalization name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Chromatography Instrument]": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Parameter Value[Chromatography Instrument]",
+          "type": "string",
+          "title": "The Parameter value[chromatography instrument] Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Column model]": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Parameter Value[Column model]",
+          "type": "string",
+          "title": "The Parameter value[column model] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Column type]": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Parameter Value[Column type]",
+          "type": "string",
+          "title": "The Parameter value[column type] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Derivatization]": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Parameter Value[Derivatization]",
+          "type": "string",
+          "title": "The Parameter value[derivatization] Schema",
+          "default": "",
+          "examples": [
+            "List"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Instrument]": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Parameter Value[Instrument]",
+          "type": "string",
+          "title": "The Parameter value[instrument] Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Ion source]": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Parameter Value[Ion source]",
+          "type": "string",
+          "title": "The Parameter value[ion source] Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Mass analyzer]": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Parameter Value[Mass analyzer]",
+          "type": "string",
+          "title": "The Parameter value[mass analyzer] Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Post Extraction]": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Parameter Value[Post Extraction]",
+          "type": "string",
+          "title": "The Parameter value[post extraction] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Scan m/z range]": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Parameter Value[Scan m/z range]",
+          "type": "string",
+          "title": "The Parameter value[scan m/z range] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Scan polarity]": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Parameter Value[Scan polarity]",
+          "type": "string",
+          "title": "The Parameter value[scan polarity] Schema",
+          "default": "",
+          "examples": [
+            "List"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Protocol REF",
+          "type": "string",
+          "title": "The Protocol ref Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(1)": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Protocol REF(1)",
+          "type": "string",
+          "title": "The Protocol ref(1) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(2)": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Protocol REF(2)",
+          "type": "string",
+          "title": "The Protocol ref(2) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(3)": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Protocol REF(3)",
+          "type": "string",
+          "title": "The Protocol ref(3) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(4)": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Protocol REF(4)",
+          "type": "string",
+          "title": "The Protocol ref(4) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Raw Spectral Data File": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Raw Spectral Data File",
+          "type": "string",
+          "title": "The Raw spectral data file Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Sample Name": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/Sample Name",
+          "type": "string",
+          "title": "The Sample name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "factors": {
+          "$id": "#/properties/metaboliteprofiling_ms/properties/factors",
+          "type": "string",
+          "title": "The Factors Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "metaboliteprofiling_nmr": {
+      "$id": "#/properties/metaboliteprofiling_nmr",
+      "type": "object",
+      "title": "The Metaboliteprofiling_nmr Schema",
+      "properties": {
+        "\"Operator details (name": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/\"Operator details (name",
+          "type": "string",
+          "title": "The \"operator details (name Schema",
+          "default": "",
+          "examples": [
+            "age"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Acquisition Parameter Data File": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Acquisition Parameter Data File",
+          "type": "string",
+          "title": "The Acquisition parameter data file Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Data Transformation Name": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Data Transformation Name",
+          "type": "string",
+          "title": "The Data transformation name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Derived Spectral Data File": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Derived Spectral Data File",
+          "type": "string",
+          "title": "The Derived spectral data file Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Extract Name": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Extract Name",
+          "type": "string",
+          "title": "The Extract name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Free Induction Decay Data File": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Free Induction Decay Data File",
+          "type": "string",
+          "title": "The Free induction decay data file Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Label": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Label",
+          "type": "string",
+          "title": "The Label Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Labeled Extract Name": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Labeled Extract Name",
+          "type": "string",
+          "title": "The Labeled extract name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Metabolite Assignment File": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Metabolite Assignment File",
+          "type": "string",
+          "title": "The Metabolite assignment file Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "NMR Assay Name": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/NMR Assay Name",
+          "type": "string",
+          "title": "The Nmr assay name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Normalization Name": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Normalization Name",
+          "type": "string",
+          "title": "The Normalization name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Extraction Method]": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Parameter Value[Extraction Method]",
+          "type": "string",
+          "title": "The Parameter value[extraction method] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Instrument]": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Parameter Value[Instrument]",
+          "type": "string",
+          "title": "The Parameter value[instrument] Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Magnetic field strength]": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Parameter Value[Magnetic field strength]",
+          "type": "string",
+          "title": "The Parameter value[magnetic field strength] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[NMR Probe]": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Parameter Value[NMR Probe]",
+          "type": "string",
+          "title": "The Parameter value[nmr probe] Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[NMR tube type]": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Parameter Value[NMR tube type]",
+          "type": "string",
+          "title": "The Parameter value[nmr tube type] Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Number of transients]": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Parameter Value[Number of transients]",
+          "type": "string",
+          "title": "The Parameter value[number of transients] Schema",
+          "default": "",
+          "examples": [
+            "Integer"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Pulse sequence name]": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Parameter Value[Pulse sequence name]",
+          "type": "string",
+          "title": "The Parameter value[pulse sequence name] Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Sample pH]": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Parameter Value[Sample pH]",
+          "type": "string",
+          "title": "The Parameter value[sample ph] Schema",
+          "default": "",
+          "examples": [
+            "Double"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Solvent]": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Parameter Value[Solvent]",
+          "type": "string",
+          "title": "The Parameter value[solvent] Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Parameter Value[Temperature]": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Parameter Value[Temperature]",
+          "type": "string",
+          "title": "The Parameter value[temperature] Schema",
+          "default": "",
+          "examples": [
+            "Double"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Protocol REF",
+          "type": "string",
+          "title": "The Protocol ref Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(1)": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Protocol REF(1)",
+          "type": "string",
+          "title": "The Protocol ref(1) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(2)": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Protocol REF(2)",
+          "type": "string",
+          "title": "The Protocol ref(2) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(3)": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Protocol REF(3)",
+          "type": "string",
+          "title": "The Protocol ref(3) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(4)": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Protocol REF(4)",
+          "type": "string",
+          "title": "The Protocol ref(4) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(5)": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Protocol REF(5)",
+          "type": "string",
+          "title": "The Protocol ref(5) Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Sample Name": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/Sample Name",
+          "type": "string",
+          "title": "The Sample name Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "factors": {
+          "$id": "#/properties/metaboliteprofiling_nmr/properties/factors",
+          "type": "string",
+          "title": "The Factors Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "studySample": {
+      "$id": "#/properties/studySample",
+      "type": "object",
+      "title": "The Studysample Schema",
+      "properties": {
+        "\"Operator details (name": {
+          "$id": "#/properties/studySample/properties/\"Operator details (name",
+          "type": "string",
+          "title": "The \"operator details (name Schema",
+          "default": "",
+          "examples": [
+            "  time"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Characteristics[Organism part]": {
+          "$id": "#/properties/studySample/properties/Characteristics[Organism part]",
+          "type": "string",
+          "title": "The Characteristics[organism part] Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Characteristics[Organism]": {
+          "$id": "#/properties/studySample/properties/Characteristics[Organism]",
+          "type": "string",
+          "title": "The Characteristics[organism] Schema",
+          "default": "",
+          "examples": [
+            "Ontology term"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF": {
+          "$id": "#/properties/studySample/properties/Protocol REF",
+          "type": "string",
+          "title": "The Protocol ref Schema",
+          "default": "",
+          "examples": [
+            "Reference to a doc"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Protocol REF(1)": {
+          "$id": "#/properties/studySample/properties/Protocol REF(1)",
+          "type": "string",
+          "title": "The Protocol ref(1) Schema",
+          "default": "",
+          "examples": [
+            "Reference to a doc"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Sample Name": {
+          "$id": "#/properties/studySample/properties/Sample Name",
+          "type": "string",
+          "title": "The Sample name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Source Name": {
+          "$id": "#/properties/studySample/properties/Source Name",
+          "type": "string",
+          "title": "The Source name Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Source Name ID": {
+          "$id": "#/properties/studySample/properties/Source Name ID",
+          "type": "string",
+          "title": "The Source name id Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "characteristics": {
+          "$id": "#/properties/studySample/properties/characteristics",
+          "type": "string",
+          "title": "The Characteristics Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "factors": {
+          "$id": "#/properties/studySample/properties/factors",
+          "type": "string",
+          "title": "The Factors Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    " investigation": {
+      "$id": "#/properties/ investigation",
+      "type": "object",
+      "title": "The  investigation Schema",
+      "properties": {
+        "Study Assay Technology Platform": {
+          "$id": "#/properties/ investigation/properties/Study Assay Technology Platform",
+          "type": "string",
+          "title": "The Study assay technology platform Schema",
+          "default": "",
+          "examples": [
+            "String"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    }
+  }
+}

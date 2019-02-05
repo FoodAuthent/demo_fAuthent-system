@@ -24,6 +24,7 @@ public class ServiceUtil {
         res.add(WorkflowRestServiceImpl.class);
         res.add(FingerprintRestServiceImpl.class);
         res.add(ProductRestServiceImpl.class);
+        res.add(CustomMetadataRestServiceImpl.class);
         res.add(ModelRestServiceImpl.class);
         return res;
     }
