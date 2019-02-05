@@ -92,6 +92,38 @@
          id="org.scala-lang.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.apacheds.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.apacheds.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.ldaptive.osgi.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.ldaptive.osgi.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="com.auth0.java-jwt.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="com.auth0.java-jwt.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="com.google.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="com.noscendo.amazonaws.feature"
+         version="0.0.0"/>
+
    <plugin
          id="javax.annotation"
          download-size="0"

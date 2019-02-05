@@ -6,6 +6,10 @@ package org.foodauthent.rest.impl.service;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+
 import java.io.File;
 import org.foodauthent.model.FileMetadata;
 
@@ -26,9 +30,11 @@ import org.foodauthent.common.exception.FAExceptions;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
+@Component(service = FileRestService.class, immediate = true)
 public class FileRestServiceImpl implements FileRestService {
 
-    private final FileService service = ServiceRegistry.get(FileService.class);
+	@Reference(cardinality = ReferenceCardinality.MANDATORY)
+    private FileService service;
 
 
     /**

@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 
 /**
@@ -299,4 +300,5 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
 			super.updatePropertyForArray(property, innerProperty);
 		}
 	}
+		
 }

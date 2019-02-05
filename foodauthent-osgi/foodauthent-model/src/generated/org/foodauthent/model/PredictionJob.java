@@ -12,6 +12,7 @@ import java.util.Objects;
 
 
 
+
 /**
  * Represents prediction job.
  *
@@ -44,16 +45,18 @@ public class PredictionJob   extends FaModel {
   }
 
 
-  private java.util.UUID faId;
-  private java.util.UUID predictionId;
-  private StatusEnum status;
-  private String statusMessage;
+  protected java.util.UUID faId;
+  protected java.util.UUID predictionId;
+  protected StatusEnum status;
+  protected String statusMessage;
   
   public String getTypeID() {
     return "PredictionJob";
   }
   
 
+  
+  protected PredictionJob() {}
   
   private PredictionJob(PredictionJobBuilder builder) {
     
@@ -145,7 +148,7 @@ public class PredictionJob   extends FaModel {
   
     public static class PredictionJobBuilder {
     
-        private PredictionJobBuilder(){
+        protected PredictionJobBuilder(){
             
         }
     

@@ -8,6 +8,7 @@ import java.time.temporal.TemporalAmount;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import com.typesafe.config.Config;
@@ -81,5 +82,7 @@ public interface ConfigurationService {
 	void reload(Reader reader);
 
 	void reload(ClassLoader loader, String resourceBasename);
+	
+	Optional<Properties> getProperties(String path);
 
 }

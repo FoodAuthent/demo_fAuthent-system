@@ -13,6 +13,7 @@ import java.util.Objects;
 import org.foodauthent.model.TrainingJob;
 
 
+
 /**
  * TrainingJobPageResult
  *
@@ -22,10 +23,10 @@ import org.foodauthent.model.TrainingJob;
 public class TrainingJobPageResult   extends FaModel {
 
 
-  private Integer pageNumber;
-  private Integer pageCount;
-  private Integer resultCount;
-  private java.util.List<TrainingJob> results;
+  protected Integer pageNumber;
+  protected Integer pageCount;
+  protected Integer resultCount;
+  protected java.util.List<TrainingJob> results;
   
   public String getTypeID() {
     return "TrainingJobPageResult";
@@ -36,6 +37,8 @@ public class TrainingJobPageResult   extends FaModel {
   public java.util.UUID getFaId() {
   	return null;
   }
+  
+  protected TrainingJobPageResult() {}
   
   private TrainingJobPageResult(TrainingJobPageResultBuilder builder) {
     
@@ -126,7 +129,7 @@ public class TrainingJobPageResult   extends FaModel {
   
     public static class TrainingJobPageResultBuilder {
     
-        private TrainingJobPageResultBuilder(){
+        protected TrainingJobPageResultBuilder(){
             
         }
     

@@ -9,6 +9,7 @@ import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,12 +23,8 @@ public class FingerprintServiceImpl implements FingerprintService {
 
     private static final Logger logger = LoggerFactory.getLogger(FingerprintServiceImpl.class);
 
-    private static PersistenceService persistenceService;
-
-    @Reference
-    void setPersistenceService(PersistenceService persistenceService) {
-	FingerprintServiceImpl.persistenceService = persistenceService;
-    }
+    @Reference(cardinality=ReferenceCardinality.MANDATORY)
+    private PersistenceService persistenceService;
 
     @Override
     public UUID createFingerprintSet(final FingerprintSet fingerprintSet) {

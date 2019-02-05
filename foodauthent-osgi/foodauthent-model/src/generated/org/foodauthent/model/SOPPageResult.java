@@ -13,6 +13,7 @@ import java.util.Objects;
 import org.foodauthent.model.SOP;
 
 
+
 /**
  * SOPPageResult
  *
@@ -22,10 +23,10 @@ import org.foodauthent.model.SOP;
 public class SOPPageResult   extends FaModel {
 
 
-  private Integer pageNumber;
-  private Integer pageCount;
-  private Integer resultCount;
-  private java.util.List<SOP> results;
+  protected Integer pageNumber;
+  protected Integer pageCount;
+  protected Integer resultCount;
+  protected java.util.List<SOP> results;
   
   public String getTypeID() {
     return "SOPPageResult";
@@ -36,6 +37,8 @@ public class SOPPageResult   extends FaModel {
   public java.util.UUID getFaId() {
   	return null;
   }
+  
+  protected SOPPageResult() {}
   
   private SOPPageResult(SOPPageResultBuilder builder) {
     
@@ -126,7 +129,7 @@ public class SOPPageResult   extends FaModel {
   
     public static class SOPPageResultBuilder {
     
-        private SOPPageResultBuilder(){
+        protected SOPPageResultBuilder(){
             
         }
     

@@ -20,6 +20,7 @@ import org.foodauthent.model.Workflow;
 import org.foodauthent.model.WorkflowPageResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,23 +35,15 @@ public class WorkflowServiceImpl implements WorkflowService {
     @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(WorkflowServiceImpl.class);
 
-    private static PersistenceService persistenceService;
+    @Reference(cardinality=ReferenceCardinality.MANDATORY)
+    private PersistenceService persistenceService;
 
-    private static JobService jobService;
+    @Reference(cardinality=ReferenceCardinality.MANDATORY)
+    private JobService jobService;
 
     public WorkflowServiceImpl() {
     }
 
-    @Reference
-    void bindJobService(JobService jobService) {
-	WorkflowServiceImpl.jobService = jobService;
-    }
-
-    @Reference
-    void bindPersistenceService(PersistenceService persistenceService) {
-	WorkflowServiceImpl.persistenceService = persistenceService;
-    }
-    
     @Override
     public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId, UUID modelId)
 	    throws InitJobException {

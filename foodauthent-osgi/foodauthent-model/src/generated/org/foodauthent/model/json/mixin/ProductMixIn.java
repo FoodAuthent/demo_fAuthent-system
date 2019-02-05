@@ -50,15 +50,6 @@ public interface ProductMixIn {
     @JsonProperty("gtin")
     public String getGtin();
     
-    @JsonProperty("name")
-    public String getName();
-    
-    @JsonProperty("description")
-    public String getDescription();
-    
-    @JsonProperty("ingredients")
-    public String getIngredients();
-    
     @JsonProperty("brand")
     public String getBrand();
     
@@ -86,15 +77,6 @@ public interface ProductMixIn {
         
         @JsonProperty("gtin")
         public ProductMixInBuilder setGtin(final String gtin);
-        
-        @JsonProperty("name")
-        public ProductMixInBuilder setName(final String name);
-        
-        @JsonProperty("description")
-        public ProductMixInBuilder setDescription(final String description);
-        
-        @JsonProperty("ingredients")
-        public ProductMixInBuilder setIngredients(final String ingredients);
         
         @JsonProperty("brand")
         public ProductMixInBuilder setBrand(final String brand);

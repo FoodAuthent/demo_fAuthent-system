@@ -68,18 +68,5 @@ public interface ProductRestService{
 , @QueryParam("pageSize")Integer pageSize
 , @QueryParam("keywords")java.util.List<String> keywords
 );
-
-    /**
-     * TODO
-     *
-     * @param product TODO
-     * @return the response
-     */
-    @PUT
-    @Path("/product")
-    @Consumes({ "application/json" })
-    @Produces({ "application/json" })
-    public Response updatedProduct(Product product
-);
 }
 

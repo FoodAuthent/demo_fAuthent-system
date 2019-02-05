@@ -14,6 +14,7 @@ import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.WorkflowParameter;
 
 
+
 /**
  * Describes the input required by a training workflow.
  *
@@ -23,9 +24,9 @@ import org.foodauthent.model.WorkflowParameter;
 public class TrainingWorkflowInput   extends FaModel {
 
 
-  private java.util.List<WorkflowParameter> parameters;
-  private FingerprintSet fingerprintsetMetadata;
-  private String fingerprintsetURI;
+  protected java.util.List<WorkflowParameter> parameters;
+  protected FingerprintSet fingerprintsetMetadata;
+  protected String fingerprintsetURI;
   
   public String getTypeID() {
     return "TrainingWorkflowInput";
@@ -36,6 +37,8 @@ public class TrainingWorkflowInput   extends FaModel {
   public java.util.UUID getFaId() {
   	return null;
   }
+  
+  protected TrainingWorkflowInput() {}
   
   private TrainingWorkflowInput(TrainingWorkflowInputBuilder builder) {
     
@@ -116,7 +119,7 @@ public class TrainingWorkflowInput   extends FaModel {
   
     public static class TrainingWorkflowInputBuilder {
     
-        private TrainingWorkflowInputBuilder(){
+        protected TrainingWorkflowInputBuilder(){
             
         }
     

@@ -12,6 +12,7 @@ import java.util.Objects;
 
 
 
+
 /**
  * Global product metadata, e.g., country of origin, etc. There can be multiple fingerprints for one product.
  *
@@ -21,15 +22,17 @@ import java.util.Objects;
 public class Product   extends FaModel {
 
 
-  private java.util.UUID faId;
-  private String gtin;
-  private String brand;
+  protected java.util.UUID faId;
+  protected String gtin;
+  protected String brand;
   
   public String getTypeID() {
     return "Product";
   }
   
 
+  
+  protected Product() {}
   
   private Product(ProductBuilder builder) {
     
@@ -111,7 +114,7 @@ public class Product   extends FaModel {
   
     public static class ProductBuilder {
     
-        private ProductBuilder(){
+        protected ProductBuilder(){
             
         }
     

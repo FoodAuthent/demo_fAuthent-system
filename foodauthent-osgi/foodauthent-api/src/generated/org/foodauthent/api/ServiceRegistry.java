@@ -1,36 +1,28 @@
 package org.foodauthent.api;
 
-import org.foodauthent.impl.sop.SopServiceImpl;
-import org.foodauthent.impl.file.FileServiceImpl;
-import org.foodauthent.impl.workflow.WorkflowServiceImpl;
-import org.foodauthent.impl.fingerprint.FingerprintServiceImpl;
-import org.foodauthent.impl.product.ProductServiceImpl;
-import org.foodauthent.impl.model.ModelServiceImpl;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
 
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public class ServiceRegistry {
-	
-	public static <S> S get(Class<S> serviceClass) {
-		if(serviceClass == SopService.class) {
-			return (S) new SopServiceImpl();
-		} 
-		if(serviceClass == FileService.class) {
-			return (S) new FileServiceImpl();
-		} 
-		if(serviceClass == WorkflowService.class) {
-			return (S) new WorkflowServiceImpl();
-		} 
-		if(serviceClass == FingerprintService.class) {
-			return (S) new FingerprintServiceImpl();
-		} 
-		if(serviceClass == ProductService.class) {
-			return (S) new ProductServiceImpl();
-		} 
-		if(serviceClass == ModelService.class) {
-			return (S) new ModelServiceImpl();
-		} 
-		throw new IllegalArgumentException(
-			"No implementation available for service " + serviceClass.getSimpleName());
-	
+
+	public static <T> T get(Class<T> clazz) {
+		Bundle bundle = FrameworkUtil.getBundle(ServiceRegistry.class);
+		if (bundle != null) {
+			ServiceTracker<T, T> st = new ServiceTracker<T, T>(bundle.getBundleContext(), clazz, null);
+			st.open();
+			if (st != null) {
+				try {
+					// give the runtime some time to startup
+					final T s = st.waitForService(60000);
+					return s;
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
 	}
+
 }

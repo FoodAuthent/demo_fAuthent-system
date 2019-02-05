@@ -222,6 +222,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<id>javax:javax.inject.repackage:jar:1.0.0.201901151316</id>
 											<source>false</source>
 										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.javassist:javassist:jar:3.24.1-GA</id>
+											<source>true</source>
+										</artifact>
 									</artifacts>
 								</feature>
 								<feature>
@@ -349,7 +354,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 								</feature>
 								<feature>
 									<id>org.scala-lang.feature</id>
-									<version>2.12.3.qualifier</version>
+									<version>2.12.8.qualifier</version>
 									<label>Scala Feature</label>
 									<providerName>org.scala-lang</providerName>
 									<copyright>https://www.scala-lang.org</copyright>
@@ -357,7 +362,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 									<generateSourceFeature>true</generateSourceFeature>
 									<artifacts>
 										<artifact>
-											<id>org.scala-lang:scala-library:jar:2.12.6</id>
+											<id>org.scala-lang:scala-library:jar:2.12.8</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>org.scala-lang:scala-reflect:jar:2.12.8</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
@@ -427,7 +436,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 										</artifact>
 										<artifact>
 											<transitive>true</transitive>
-											<id>org.eclipse.jdt:org.eclipse.jdt.junit.runtime:jar:3.4.800</id>
+											<id>org.eclipse.jdt:org.eclipse.jdt.junit.runtime:jar:3.4.900</id>
 											<source>false</source>
 										</artifact>
 										<artifact>
@@ -613,11 +622,117 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 										</artifact>
 									</artifacts>
 								</feature>
-								<!-- <feature> <id>org.apache.aries.blueprint.feature</id> <version>1.10.0.qualifier</version> 
-									<label>Apache Aries Blueprint Core Feature</label> <providerName>apache.org</providerName> 
-									<copyright>https://www.apache.org</copyright> <license>Apache</license> <generateSourceFeature>true</generateSourceFeature> 
-									<artifacts> <artifact> <id>org.apache.aries.blueprint:org.apache.aries.blueprint.core:jar:1.10.0</id> 
-									<source>true</source> </artifact> </artifacts> </feature> -->
+								<feature>
+									<id>com.auth0.java-jwt.feature</id>
+									<version>3.4.1.qualifier</version>
+									<label>Java implementation of JSON Web Token (JWT) Feature</label>
+									<providerName>jwt.io</providerName>
+									<copyright>https://www.jwt.io</copyright>
+									<license>MIT License (MIT)</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>com.auth0:java-jwt:jar:3.4.1</id>
+											<source>true</source>
+											<transitive>false</transitive>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>com.noscendo.amazonaws.feature</id>
+									<version>1.11.475.qualifier</version>
+									<label>Amazon AWS OSGi Feature</label>
+									<providerName>jwt.io</providerName>
+									<copyright>https://aws.amazon.com/sdkforjava</copyright>
+									<license>Apache License, Version 2.0</license>
+									<generateSourceFeature>false</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>org.foodauthent:com.amazonaws.nos-osgi:1.11.479.v20190108-0</id>
+											<source>true</source>
+											<transitive>false</transitive>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>com.google.feature</id>
+									<version>27.0.1.qualifier</version>
+									<label>Google Guava, GSON and Code</label>
+									<providerName>Google</providerName>
+									<copyright>http://www.apache.org/licenses/LICENSE-2.0.txt</copyright>
+									<license>Apache License, Version 2.0</license>
+									<generateSourceFeature>false</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>com.google.guava:guava:jar:27.0.1-jre</id>
+											<source>false</source>
+											<transitive>true</transitive>
+										</artifact>
+										<artifact>
+											<id>com.google.http-client:google-http-client-xml:jar:1.27.0</id>
+											<source>false</source>
+											<transitive>false</transitive>
+										</artifact>
+										<artifact>
+											<id>com.google.http-client:google-http-client:jar:1.27.0</id>
+											<source>false</source>
+											<transitive>false</transitive>
+											<override>true</override>
+											<instructions>
+												<Import-Package>com.google.common.base;version="[20.0,28)",javax.net.s
+													sl,org.apache.commons.codec.binary;version="[1.10,2)",org.apache.http
+													,org.apache.http.client,org.apache.http.client.methods,org.apache.htt
+													p.conn,org.apache.http.conn.params,org.apache.http.conn.routing,org.a
+													pache.http.conn.scheme,org.apache.http.conn.ssl,org.apache.http.entit
+													y,org.apache.http.impl.client,org.apache.http.impl.conn,org.apache.ht
+													tp.impl.conn.tsccm,org.apache.http.message,org.apache.http.params,org
+													.apache.http.protocol</Import-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<id>com.github.rholder:guava-retrying:jar:2.0.0</id>
+											<source>true</source>
+											<transitive>false</transitive>
+										</artifact>
+										<artifact>
+											<id>com.google.code.gson:gson:jar:2.8.5</id>
+											<source>true</source>
+											<transitive>false</transitive>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>org.apacheds.feature</id>
+									<version>1.0.2.qualifier</version>
+									<label>ApacheDS API Feautre</label>
+									<providerName>ldaptive.org</providerName>
+									<copyright>https://directory.apache.org</copyright>
+									<license>Apache License, Version 2.0 and LGPL</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>org.foodauthent:org.apacheds.api-all:jar:1.0.2.v20190111-0</id>
+											<source>false</source>
+											<transitive>false</transitive>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>org.ldaptive.osgi.feature</id>
+									<version>1.2.3.qualifier</version>
+									<label>ldaptive LDAP Tooling Feature</label>
+									<providerName>ldaptive.org</providerName>
+									<copyright>https://www.ldaptive.org</copyright>
+									<license>Apache License, Version 2.0 and LGPL</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>org.foodauthent:org.ldaptive:jar:1.2.3.v20190108-0</id>
+											<source>false</source>
+											<transitive>false</transitive>
+										</artifact>
+									</artifacts>
+								</feature>
 							</featureDefinitions>
 						</configuration>
 					</execution>
@@ -668,5 +783,8 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 		<module>javax.inject</module>
 		<module>javax.annotation</module>
 		<module>jersey-common</module>
+		<module>com.amazonaws</module>
+		<module>org.apacheds.api-all</module>
+		<module>org.ldaptive</module>
 	</modules>
 </project>

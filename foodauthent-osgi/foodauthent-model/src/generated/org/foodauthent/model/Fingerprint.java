@@ -12,6 +12,7 @@ import java.util.Objects;
 
 
 
+
 /**
  * A fingerprint object representing its metadata.
  *
@@ -21,15 +22,17 @@ import java.util.Objects;
 public class Fingerprint   extends FaModel {
 
 
-  private java.util.UUID faId;
-  private String metadata;
-  private java.util.Map<String, String> additionalProperties;
+  protected java.util.UUID faId;
+  protected String metadata;
+  protected java.util.Map<String, String> additionalProperties;
   
   public String getTypeID() {
     return "Fingerprint";
   }
   
 
+  
+  protected Fingerprint() {}
   
   private Fingerprint(FingerprintBuilder builder) {
     
@@ -111,7 +114,7 @@ public class Fingerprint   extends FaModel {
   
     public static class FingerprintBuilder {
     
-        private FingerprintBuilder(){
+        protected FingerprintBuilder(){
             
         }
     

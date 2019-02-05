@@ -8,6 +8,10 @@ import com.typesafe.config.ConfigRenderOptions
 import java.io.File
 import java.util.Optional
 import scala.reflect.ManifestFactory
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.apache.commons.lang3.StringUtils
+import scala.reflect.runtime.{ currentMirror => cm }
+import com.fasterxml.jackson.databind.DeserializationFeature
 
 /**
  * @author sboeckelmann@benelog.com
@@ -19,6 +23,8 @@ import scala.reflect.ManifestFactory
 object ConfigUtil {
 
   implicit val formats = DefaultFormats
+
+  val objectMapper: ObjectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
   /**
    * load config from url
@@ -54,13 +60,20 @@ object ConfigUtil {
    * @param path config path to read config class from
    */
   def get[T <: AnyRef](clazz: Class[T], config: Config, path: String): Optional[T] = {
-    val mf: Manifest[T] = ManifestFactory.classType(clazz)
-    val v = get[T](config, path)(mf)
-    if (v.isDefined) {
-      Optional.of(v.get)
+    val symbol = cm.classSymbol(clazz)
+    if (symbol.isCaseClass) {
+      val mf: Manifest[T] = ManifestFactory.classType(clazz)
+      val v = get[T](config, path)(mf)
+      if (v.isDefined) {
+        return Optional.of(v.get)
+      }
     } else {
-      Optional.empty()
+      val cfg = config.getValue(path).render(ConfigRenderOptions.concise())
+      if (!StringUtils.isEmpty(cfg)) {
+        return Optional.of(objectMapper.readValue(cfg, clazz))
+      }
     }
+    Optional.empty()
   }
 
 }

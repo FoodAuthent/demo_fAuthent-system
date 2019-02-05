@@ -6,6 +6,10 @@ package org.foodauthent.rest.impl.service;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
 
@@ -26,9 +30,11 @@ import org.foodauthent.common.exception.FAExceptions;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
+@Component(service = FingerprintRestService.class, immediate = true)
 public class FingerprintRestServiceImpl implements FingerprintRestService {
 
-    private final FingerprintService service = ServiceRegistry.get(FingerprintService.class);
+	@Reference(cardinality = ReferenceCardinality.MANDATORY)
+    private FingerprintService service;
 
 
     /**

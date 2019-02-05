@@ -1,0 +1,111 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>org.foodauthent.common.tests.parent</artifactId>
+	<packaging>pom</packaging>
+
+
+	<parent>
+		<relativePath>../pom.xml</relativePath>
+		<groupId>org.foodauthent</groupId>
+		<artifactId>foodauthent-osgi</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<properties>
+		<nos-common.bundle.version>1.0.0-SNAPSHOT</nos-common.bundle.version>
+
+		<!-- this will be overridden in jacoco profile with tycho.testArgLine, 
+			which, in turn, will be set by Jacoco prepare-agent goal. This property can 
+			then be used in argLine for custom tycho-surefire configuration, both when 
+			Jacoco is used and when it is not used. -->
+		<additionalTestArgLine></additionalTestArgLine>
+
+		<!-- Workaround for https://bugs.eclipse.org/bugs/show_bug.cgi?id=397015 -->
+		<sonar.sources></sonar.sources>
+		<sonar.tests>src</sonar.tests>
+		<!-- Always refer to the corresponding tests project (if it exists) otherwise 
+			Sonarqube won't be able to collect code coverage. For example, when analyzing 
+			project foo it wouldn't find code coverage information if it doesn't use 
+			foo.tests jacoco.exec. -->
+		<sonar.jacoco.reportPaths>
+			../${project.artifactId}.tests/target/jacoco.exec
+		</sonar.jacoco.reportPaths>
+
+	</properties>
+	<profiles>
+		<profile>
+			<id>jacoco</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<!-- This will be set by Jacoco prepare-agent goal -->
+				<additionalTestArgLine>${tycho.testArgLine}</additionalTestArgLine>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${jacoco-maven-plugin.version}</version>
+						<configuration>
+							<excludes>
+								<exclude>**/plugin1/Main.class</exclude>
+							</excludes>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<argLine>${additionalTestArgLine} -DbuildingWithTycho=true</argLine>
+					<providerHint>junit5</providerHint>
+					<testFailureIgnore>true</testFailureIgnore>
+					<dependencies>
+						<dependency>
+							<type>p2-installable-unit</type>
+							<artifactId>org.eclipse.equinox.ds</artifactId>
+						</dependency>
+					</dependencies>
+					<bundleStartLevel>
+						<bundle>
+							<id>org.eclipse.equinox.ds</id>
+							<level>1</level>
+							<autoStart>true</autoStart>
+						</bundle>
+						<bundle>
+							<id>org.foodauthent.config</id>
+							<level>2</level>
+							<autoStart>true</autoStart>
+						</bundle>
+						<bundle>
+							<id>org.foodauthent.auth</id>
+							<level>4</level>
+							<autoStart>true</autoStart>
+						</bundle>
+						<bundle>
+							<id>org.foodauthent.ldap</id>
+							<level>4</level>
+							<autoStart>true</autoStart>
+						</bundle>
+					</bundleStartLevel>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

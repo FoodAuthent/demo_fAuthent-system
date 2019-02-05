@@ -1,9 +1,13 @@
 package org.foodauthent.config.impl;
 
+import org.foodauthent.config.ConfigurationListener;
 import org.foodauthent.config.ConfigurationService;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
+import org.osgi.util.tracker.ServiceTracker;
+import org.osgi.util.tracker.ServiceTrackerCustomizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +18,8 @@ public class Activator implements BundleActivator {
 	private ServiceRegistration<ConfigurationService> configurationServiceRegistration;
 
 	private ConfigurationServiceImpl configurationService;
+
+	private ServiceTracker<ConfigurationListener, ConfigurationListener> configurationListenerTracker;
 
 	private static final String[] TYPESAFE_CONFIG_PROPERTIES = new String[] { "config.resource", "config.file",
 			"config.url" };
@@ -46,6 +52,11 @@ public class Activator implements BundleActivator {
 		}
 		this.configurationServiceRegistration = bundleContext.registerService(ConfigurationService.class,
 				this.configurationService, null);
+
+		configurationListenerTracker = new ServiceTracker<>(bundleContext, ConfigurationListener.class,
+				configListenerTrackerCustomizer(bundleContext));
+		configurationListenerTracker.open();
+
 	}
 
 	private String configProperty() {
@@ -69,4 +80,25 @@ public class Activator implements BundleActivator {
 		Activator.context = null;
 	}
 
+	private ServiceTrackerCustomizer<ConfigurationListener, ConfigurationListener> configListenerTrackerCustomizer(
+			final BundleContext context) {
+		return new ServiceTrackerCustomizer<ConfigurationListener, ConfigurationListener>() {
+
+			@Override
+			public ConfigurationListener addingService(ServiceReference<ConfigurationListener> ref) {
+				final ConfigurationListener l = context.getService(ref);
+				l.loaded(configurationService);
+				return l;
+			}
+
+			@Override
+			public void modifiedService(ServiceReference<ConfigurationListener> ref, ConfigurationListener l) {
+			}
+
+			@Override
+			public void removedService(ServiceReference<ConfigurationListener> ref, ConfigurationListener l) {
+			}
+
+		};
+	}
 }

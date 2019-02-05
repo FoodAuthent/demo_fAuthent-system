@@ -14,6 +14,8 @@ import {{import}};
 
 {{#models}}
 {{#model}}
+{{#isEnum}}{{>modelEnum}}{{/isEnum}}
+{{^isEnum}}
 
 /**
  * {{#description}}{{.}}{{/description}}{{^description}}{{classname}}{{/description}}
@@ -39,7 +41,7 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}
   {{/vars}}
 
   {{#vars}}
-  private {{{datatypeWithEnum}}} {{name}};
+  protected {{{datatypeWithEnum}}} {{name}};
   {{/vars}}
   
   public String getTypeID() {
@@ -55,6 +57,8 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}
   }
   {{/vendorExtensions.x-no-faid}}
 {{/parent}}
+  
+  protected {{classname}}() {}
   
   private {{classname}}({{classname}}Builder builder) {
     {{#parent}}super();{{/parent}}
@@ -143,9 +147,9 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}
   	}
   	
   
-    public static class {{classname}}Builder {
+    public static class {{classname}}Builder {{#parent}}extends {{{parent}}}Builder {{/parent}}{
     
-        private {{classname}}Builder(){
+        protected {{classname}}Builder(){
             {{#parent}}super();{{/parent}}
         }
     
@@ -212,5 +216,6 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}
     
 
 }
+{{/isEnum}}
 {{/model}}
 {{/models}}

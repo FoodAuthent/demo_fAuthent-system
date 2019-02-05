@@ -83,6 +83,8 @@
       <plugin id="org.eclipse.ui.workbench" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.common" autoStart="true" startLevel="2" />
       <plugin id="org.foodauthent.config" autoStart="true" startLevel="2" />
+      <plugin id="org.foodauthent.jersey.filter" autoStart="true" startLevel="3" />
+      <plugin id="org.foodauthent.logging.osgi" autoStart="true" startLevel="1" />
       <plugin id="org.foodauthent.persistence.impl.elasticsearch" autoStart="true" startLevel="3" />
       <plugin id="org.foodauthent.rest.api" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.rest.impl" autoStart="true" startLevel="0" />

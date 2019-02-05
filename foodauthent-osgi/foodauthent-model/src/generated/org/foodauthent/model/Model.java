@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import org.foodauthent.model.Tag;
 
 
+
 /**
  * A model created via training and used for prediction. Can also be a workflow.
  *
@@ -46,23 +47,25 @@ public class Model   extends FaModel {
   }
 
 
-  private java.util.UUID faId;
-  private String name;
-  private String description;
-  private String author;
-  private LocalDate date;
-  private Integer version;
-  private TypeEnum type;
-  private java.util.List<Tag> tags;
-  private java.util.UUID fileId;
-  private java.util.UUID productId;
-  private java.util.UUID workflowId;
+  protected java.util.UUID faId;
+  protected String name;
+  protected String description;
+  protected String author;
+  protected LocalDate date;
+  protected Integer version;
+  protected TypeEnum type;
+  protected java.util.List<Tag> tags;
+  protected java.util.UUID fileId;
+  protected java.util.UUID productId;
+  protected java.util.UUID workflowId;
   
   public String getTypeID() {
     return "Model";
   }
   
 
+  
+  protected Model() {}
   
   private Model(ModelBuilder builder) {
     
@@ -224,7 +227,7 @@ public class Model   extends FaModel {
   
     public static class ModelBuilder {
     
-        private ModelBuilder(){
+        protected ModelBuilder(){
             
         }
     

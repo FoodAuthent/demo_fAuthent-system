@@ -13,6 +13,7 @@ import java.util.Objects;
 import org.foodauthent.model.Model;
 
 
+
 /**
  * ModelPageResult
  *
@@ -22,10 +23,10 @@ import org.foodauthent.model.Model;
 public class ModelPageResult   extends FaModel {
 
 
-  private Integer pageNumber;
-  private Integer pageCount;
-  private Integer resultCount;
-  private java.util.List<Model> results;
+  protected Integer pageNumber;
+  protected Integer pageCount;
+  protected Integer resultCount;
+  protected java.util.List<Model> results;
   
   public String getTypeID() {
     return "ModelPageResult";
@@ -36,6 +37,8 @@ public class ModelPageResult   extends FaModel {
   public java.util.UUID getFaId() {
   	return null;
   }
+  
+  protected ModelPageResult() {}
   
   private ModelPageResult(ModelPageResultBuilder builder) {
     
@@ -126,7 +129,7 @@ public class ModelPageResult   extends FaModel {
   
     public static class ModelPageResultBuilder {
     
-        private ModelPageResultBuilder(){
+        protected ModelPageResultBuilder(){
             
         }
     

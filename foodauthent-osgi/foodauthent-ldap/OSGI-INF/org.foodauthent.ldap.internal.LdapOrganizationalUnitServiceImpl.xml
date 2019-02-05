@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" activate="activate" name="org.foodauthent.ldap.internal.LdapOrganizationalUnitServiceImpl">
+   <service scope="singleton">
+      <provide interface="org.foodauthent.ldap.LdapOrganizationalUnitService"/>
+   </service>
+   <reference cardinality="1..1" field="config" interface="org.foodauthent.ldap.config.LDAPConfig" name="config"/>
+   <reference cardinality="1..1" field="ldapOperationManager" interface="org.foodauthent.ldap.LdapOperationManager" name="ldapOperationManager"/>
+   <implementation class="org.foodauthent.ldap.internal.LdapOrganizationalUnitServiceImpl"/>
+</scr:component>

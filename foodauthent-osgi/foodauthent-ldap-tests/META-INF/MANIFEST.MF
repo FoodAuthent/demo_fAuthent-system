@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: LDAP Tests
+Bundle-SymbolicName: org.foodauthent.ldap.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: FoodAuthent
+Automatic-Module-Name: org.foodauthent.ldap.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.foodauthent.ldap;bundle-version="1.0.0",
+ org.ldaptive.osgi;bundle-version="1.2.3",
+ org.foodauthent.common.tests.base;bundle-version="1.0.0",
+ org.foodauthent.config;bundle-version="1.0.0",
+ org.junit;bundle-version="4.12.0"
+Import-Package: org.foodauthent.common.exception,
+ org.foodauthent.people,
+ org.junit.jupiter.api;version="5.3.1",
+ org.junit.jupiter.api.function,
+ org.junit.platform.commons.annotation;version="1.3.1",
+ org.junit.platform.runner,
+ org.junit.platform.suite.api,
+ org.osgi.framework;version="1.8.0",
+ org.osgi.util.tracker;version="1.5.1"
+Export-Package: org.foodauthent.ldap.tests
+Bundle-ActivationPolicy: lazy
+

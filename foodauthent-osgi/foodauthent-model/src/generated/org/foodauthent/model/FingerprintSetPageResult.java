@@ -13,6 +13,7 @@ import java.util.Objects;
 import org.foodauthent.model.FingerprintSet;
 
 
+
 /**
  * FingerprintSetPageResult
  *
@@ -22,10 +23,10 @@ import org.foodauthent.model.FingerprintSet;
 public class FingerprintSetPageResult   extends FaModel {
 
 
-  private Integer pageNumber;
-  private Integer pageCount;
-  private Integer resultCount;
-  private java.util.List<FingerprintSet> results;
+  protected Integer pageNumber;
+  protected Integer pageCount;
+  protected Integer resultCount;
+  protected java.util.List<FingerprintSet> results;
   
   public String getTypeID() {
     return "FingerprintSetPageResult";
@@ -36,6 +37,8 @@ public class FingerprintSetPageResult   extends FaModel {
   public java.util.UUID getFaId() {
   	return null;
   }
+  
+  protected FingerprintSetPageResult() {}
   
   private FingerprintSetPageResult(FingerprintSetPageResultBuilder builder) {
     
@@ -126,7 +129,7 @@ public class FingerprintSetPageResult   extends FaModel {
   
     public static class FingerprintSetPageResultBuilder {
     
-        private FingerprintSetPageResultBuilder(){
+        protected FingerprintSetPageResultBuilder(){
             
         }
     

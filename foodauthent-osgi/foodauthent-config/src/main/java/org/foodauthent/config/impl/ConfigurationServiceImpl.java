@@ -9,6 +9,7 @@ import java.time.temporal.TemporalAmount;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.foodauthent.config.ConfigUtil;
@@ -203,6 +204,18 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	@Override
 	public List<? extends Config> getConfigList(String path) {
 		return config.getConfigList(path);
+	}
+
+	@Override
+	public Optional<Properties> getProperties(String path) {
+		if (hasPath(path)) {
+		    final Properties p = new Properties();
+		    getConfig(path).entrySet().forEach(e -> {
+			p.setProperty(e.getKey(), e.getValue().unwrapped().toString());
+		    });
+		    return Optional.of(p);
+		}
+		return Optional.empty();
 	}
 
 }

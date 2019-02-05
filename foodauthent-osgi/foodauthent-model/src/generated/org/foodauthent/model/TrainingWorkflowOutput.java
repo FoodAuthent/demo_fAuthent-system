@@ -12,6 +12,7 @@ import java.util.Objects;
 
 
 
+
 /**
  * Describes the outputs delivered by a training workflow.
  *
@@ -21,7 +22,7 @@ import java.util.Objects;
 public class TrainingWorkflowOutput   extends FaModel {
 
 
-  private String modelUri;
+  protected String modelUri;
   
   public String getTypeID() {
     return "TrainingWorkflowOutput";
@@ -32,6 +33,8 @@ public class TrainingWorkflowOutput   extends FaModel {
   public java.util.UUID getFaId() {
   	return null;
   }
+  
+  protected TrainingWorkflowOutput() {}
   
   private TrainingWorkflowOutput(TrainingWorkflowOutputBuilder builder) {
     
@@ -92,7 +95,7 @@ public class TrainingWorkflowOutput   extends FaModel {
   
     public static class TrainingWorkflowOutputBuilder {
     
-        private TrainingWorkflowOutputBuilder(){
+        protected TrainingWorkflowOutputBuilder(){
             
         }
     

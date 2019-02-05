@@ -24,6 +24,8 @@ public class ModelUtil {
      */
     public static final void addModelMixIns(final ObjectMapper mapper) {
     
+        mapper.addMixIn(ChangePasswordRequest.class, ChangePasswordRequestMixIn.class);
+        mapper.addMixIn(ChangePasswordRequest.ChangePasswordRequestBuilder.class, ChangePasswordRequestMixIn.ChangePasswordRequestMixInBuilder.class);
         mapper.addMixIn(FileMetadata.class, FileMetadataMixIn.class);
         mapper.addMixIn(FileMetadata.FileMetadataBuilder.class, FileMetadataMixIn.FileMetadataMixInBuilder.class);
         mapper.addMixIn(Fingerprint.class, FingerprintMixIn.class);
@@ -36,6 +38,16 @@ public class ModelUtil {
         mapper.addMixIn(Model.ModelBuilder.class, ModelMixIn.ModelMixInBuilder.class);
         mapper.addMixIn(ModelPageResult.class, ModelPageResultMixIn.class);
         mapper.addMixIn(ModelPageResult.ModelPageResultBuilder.class, ModelPageResultMixIn.ModelPageResultMixInBuilder.class);
+        mapper.addMixIn(OrganizationBase.class, OrganizationBaseMixIn.class);
+        mapper.addMixIn(OrganizationBase.OrganizationBaseBuilder.class, OrganizationBaseMixIn.OrganizationBaseMixInBuilder.class);
+        mapper.addMixIn(OrganizationCreateRequest.class, OrganizationCreateRequestMixIn.class);
+        mapper.addMixIn(OrganizationCreateRequest.OrganizationCreateRequestBuilder.class, OrganizationCreateRequestMixIn.OrganizationCreateRequestMixInBuilder.class);
+        mapper.addMixIn(Organization.class, OrganizationMixIn.class);
+        mapper.addMixIn(Organization.OrganizationBuilder.class, OrganizationMixIn.OrganizationMixInBuilder.class);
+        mapper.addMixIn(OrganizationalPostalAddress.class, OrganizationalPostalAddressMixIn.class);
+        mapper.addMixIn(OrganizationalPostalAddress.OrganizationalPostalAddressBuilder.class, OrganizationalPostalAddressMixIn.OrganizationalPostalAddressMixInBuilder.class);
+        mapper.addMixIn(PostalAddress.class, PostalAddressMixIn.class);
+        mapper.addMixIn(PostalAddress.PostalAddressBuilder.class, PostalAddressMixIn.PostalAddressMixInBuilder.class);
         mapper.addMixIn(PredictionJob.class, PredictionJobMixIn.class);
         mapper.addMixIn(PredictionJob.PredictionJobBuilder.class, PredictionJobMixIn.PredictionJobMixInBuilder.class);
         mapper.addMixIn(PredictionJobPageResult.class, PredictionJobPageResultMixIn.class);
@@ -68,6 +80,20 @@ public class ModelUtil {
         mapper.addMixIn(TrainingWorkflowInput.TrainingWorkflowInputBuilder.class, TrainingWorkflowInputMixIn.TrainingWorkflowInputMixInBuilder.class);
         mapper.addMixIn(TrainingWorkflowOutput.class, TrainingWorkflowOutputMixIn.class);
         mapper.addMixIn(TrainingWorkflowOutput.TrainingWorkflowOutputBuilder.class, TrainingWorkflowOutputMixIn.TrainingWorkflowOutputMixInBuilder.class);
+        mapper.addMixIn(UserAuthenticationRequest.class, UserAuthenticationRequestMixIn.class);
+        mapper.addMixIn(UserAuthenticationRequest.UserAuthenticationRequestBuilder.class, UserAuthenticationRequestMixIn.UserAuthenticationRequestMixInBuilder.class);
+        mapper.addMixIn(UserBase.class, UserBaseMixIn.class);
+        mapper.addMixIn(UserBase.UserBaseBuilder.class, UserBaseMixIn.UserBaseMixInBuilder.class);
+        mapper.addMixIn(UserCreateRequest.class, UserCreateRequestMixIn.class);
+        mapper.addMixIn(UserCreateRequest.UserCreateRequestBuilder.class, UserCreateRequestMixIn.UserCreateRequestMixInBuilder.class);
+        mapper.addMixIn(UserGroupBase.class, UserGroupBaseMixIn.class);
+        mapper.addMixIn(UserGroupBase.UserGroupBaseBuilder.class, UserGroupBaseMixIn.UserGroupBaseMixInBuilder.class);
+        mapper.addMixIn(UserGroupCreateRequest.class, UserGroupCreateRequestMixIn.class);
+        mapper.addMixIn(UserGroupCreateRequest.UserGroupCreateRequestBuilder.class, UserGroupCreateRequestMixIn.UserGroupCreateRequestMixInBuilder.class);
+        mapper.addMixIn(UserGroup.class, UserGroupMixIn.class);
+        mapper.addMixIn(UserGroup.UserGroupBuilder.class, UserGroupMixIn.UserGroupMixInBuilder.class);
+        mapper.addMixIn(User.class, UserMixIn.class);
+        mapper.addMixIn(User.UserBuilder.class, UserMixIn.UserMixInBuilder.class);
         mapper.addMixIn(Workflow.class, WorkflowMixIn.class);
         mapper.addMixIn(Workflow.WorkflowBuilder.class, WorkflowMixIn.WorkflowMixInBuilder.class);
         mapper.addMixIn(WorkflowPageResult.class, WorkflowPageResultMixIn.class);

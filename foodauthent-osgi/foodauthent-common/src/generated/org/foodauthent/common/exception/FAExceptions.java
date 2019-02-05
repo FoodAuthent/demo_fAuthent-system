@@ -60,5 +60,70 @@ public final class FAExceptions {
         }
     }
     
+    /**
+    * Invalid input was provided, entity already exists.
+    */
+    public static class EntityAlreadyExistsResponse extends Exception {
+        public EntityAlreadyExistsResponse(String message) {
+            super(message);
+        }
+        
+        public EntityAlreadyExistsResponse(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+    
+    /**
+    * Response thrown when an entity could not be found.
+    */
+    public static class EntityNotFoundResponse extends Exception {
+        public EntityNotFoundResponse(String message) {
+            super(message);
+        }
+        
+        public EntityNotFoundResponse(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+    
+    /**
+    * Access to resource is not allowed.
+    */
+    public static class ForbiddenAccessResponse extends Exception {
+        public ForbiddenAccessResponse(String message) {
+            super(message);
+        }
+        
+        public ForbiddenAccessResponse(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+    
+    /**
+    * Requested operation is not supported.
+    */
+    public static class InvalidOperationResponse extends Exception {
+        public InvalidOperationResponse(String message) {
+            super(message);
+        }
+        
+        public InvalidOperationResponse(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+    
+    /**
+    * Unauthorized access.
+    */
+    public static class UnauthorizedResponse extends Exception {
+        public UnauthorizedResponse(String message) {
+            super(message);
+        }
+        
+        public UnauthorizedResponse(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+    
     
 }

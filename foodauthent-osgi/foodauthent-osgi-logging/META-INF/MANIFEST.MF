@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FoodAuthent Logging for OSGi
+Bundle-SymbolicName: org.foodauthent.logging.osgi
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: org.foodauthent.logging.osgi
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: ch.qos.logback.classic;bundle-version="1.2.3",
+ ch.qos.logback.core;bundle-version="1.2.3"
+Import-Package: org.osgi.framework;version="1.3.0",
+ org.osgi.service.component.annotations;version="1.3.0";resolution:=optional,
+ org.osgi.util.tracker;version="1.5.1",
+ org.slf4j;version="1.7.2"
+Bundle-Activator: org.foodauthent.logging.internal.LoggingActivator
+Bundle-Vendor: FoodAuthent
+
