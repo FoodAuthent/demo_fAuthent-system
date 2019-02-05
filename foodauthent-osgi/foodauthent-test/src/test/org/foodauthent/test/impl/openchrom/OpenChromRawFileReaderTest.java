@@ -8,7 +8,6 @@ import static org.junit.Assert.assertThat;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.foodauthent.impl.openchrom.OpenChromRawFileReader;
 import org.foodauthent.model.FileMetadata.TypeEnum;
@@ -54,7 +53,7 @@ public class OpenChromRawFileReaderTest {
 
 	assertThat(map.isEmpty(), is(false));
 
-	System.err.println(map.entrySet().stream().map(Object::toString).collect(Collectors.joining("\n")));
+	assertThat(map.size(), is(1281));
 
     }
 
@@ -69,8 +68,7 @@ public class OpenChromRawFileReaderTest {
 
 	assertThat(map.isEmpty(), is(false));
 
-	System.err.println(map.entrySet().stream().map(Object::toString).collect(Collectors.joining("\n")));
-
+	assertThat(map.size(), is(1281));
     }
 
 }
