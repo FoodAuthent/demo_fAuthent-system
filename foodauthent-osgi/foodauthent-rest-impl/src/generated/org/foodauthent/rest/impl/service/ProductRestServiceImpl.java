@@ -68,5 +68,31 @@ public class ProductRestServiceImpl implements ProductRestService {
             Object res = service.findProductByKeyword(pageNumber, pageSize, keywords);
             return Response.ok(res).build();
     }
+
+    /**
+     * TODO
+     *
+     * @param gtin 
+     * @return the response
+     */
+    public Response removeProductByGtin(java.util.UUID gtin) {
+        
+            service.removeProductByGtin(gtin);
+            
+                return Response.ok().build();
+    }
+
+    /**
+     * TODO
+     *
+     * @param product TODO
+     * @return the response
+     */
+    public Response updatedProduct(Product product) {
+        
+            service.updatedProduct(product);
+            
+                return Response.ok().build();
+    }
 }
 

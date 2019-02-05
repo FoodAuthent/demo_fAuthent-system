@@ -48,10 +48,19 @@ public interface ProductService {
     /**
      * TODO
      *
+     * @param gtin 
+     *
+     * 
+     */
+    void removeProductByGtin(java.util.UUID gtin);
+        
+    /**
+     * TODO
+     *
      * @param product TODO
      *
-     * @return the result
+     * 
      */
-    Product updatedProduct(Product product);
+    void updatedProduct(Product product);
         
 }

@@ -19,7 +19,7 @@
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Search for gtin or keywords" />
             <b-input-group-append>
-            <b-btn :disabled="!filter" variant="primary" @click="search">Search</b-btn>
+            <b-btn :disabled="!filter" variant="primary" @click="search">Search Test</b-btn>
               <b-btn :disabled="!filter" @click="clearSearch">Clear</b-btn>
             </b-input-group-append>
           </b-input-group>
