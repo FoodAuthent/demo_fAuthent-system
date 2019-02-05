@@ -9,8 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.foodauthent.api.internal.exception.EntityExistsException;
-import org.foodauthent.api.internal.exception.EntityNotFoundException;
+import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.api.internal.exception.NoSuchIDException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
@@ -23,6 +22,8 @@ import org.foodauthent.model.Workflow;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * A simple persistence service, that holds objects in memory.
@@ -49,13 +50,16 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	/**
 	 * Mimics a database and/ or a file system.
 	 */
-	private final Map<UUID, FaModel> entities;
+	private final Map<UUID, FaModel> models;
+	
+	private final Map<UUID, JsonNode> customModels;
 
 	private final Map<UUID, Blob> blobs;
 
 	public SimpleInMemoryPersistenceService() {
-		this.entities = new LinkedHashMap<UUID, FaModel>();
+		this.models = new LinkedHashMap<UUID, FaModel>();
 		this.blobs = new LinkedHashMap<UUID, Blob>();
+		this.customModels = new LinkedHashMap<UUID, JsonNode>();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -67,7 +71,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 			logger.debug("Seaching fields: name, descrption");
 		}
 
-		for (final Object o : entities.values()) {
+		for (final Object o : models.values()) {
 
 			if (modelType.equals(Workflow.class) && o instanceof Workflow) {
 				final Workflow wf = (Workflow) o;
@@ -140,7 +144,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 
 	@Override
 	public Product findProductByGtin(final String gtin) {
-		for (final Object o : entities.values()) {
+		for (final Object o : models.values()) {
 			if (o instanceof Product) {
 				final Product p = (Product) o;
 				if (gtin.equals(p.getGtin())) {
@@ -154,7 +158,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	@Override
 	public <T extends FaModel> T getFaModelByUUID(final UUID uuid, Class<T> modelType) throws NoSuchElementException {
 		try {
-			return (T) entities.get(uuid);
+			return (T) models.get(uuid);
 		} catch (final NoSuchIDException e) {
 			throw new NoSuchElementException(e.getLocalizedMessage());
 		}
@@ -162,39 +166,51 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 
 	@Override
 	public void removeFaModelByUUID(UUID uuid, Class<?> modelType) {
-		entities.remove(uuid);
+		models.remove(uuid);
 	}
 
 	/**
-	 * Returns the last used entity ID.
+	 * Returns the last used model ID.
 	 *
-	 * @return the last used entity ID
+	 * @return the last used model ID
 	 */
 	protected long getLastPersistenceId() {
 		return persistenceIdCounter;
 	}
 
 	@Override
-	public UUID save(final Blob blob) throws EntityExistsException {
+	public UUID save(final Blob blob) throws ModelExistsException {
 		save(blob, blob.getFaId());
 		return blob.getFaId();
 	}
 
 	@Override
-	public <T extends FaModel> T save(final T entity) throws EntityExistsException {
-		save(entity, entity.getFaId());
-		return entity;
+	public <T extends FaModel> T save(final T model) throws ModelExistsException {
+		save(model, model.getFaId());
+		return model;
 	}
 
-	private <T extends Object> boolean save(final T obj, UUID faId) throws EntityExistsException {
+	@Override
+	public UUID saveCustomModel(JsonNode model, String typeId) {
+		UUID randomUUID = UUID.randomUUID();
+		this.customModels.put(randomUUID, model);
+		return randomUUID;
+	}
+	
+	@Override
+	public JsonNode getCustomModelByUUID(UUID uuid) {
+		return this.customModels.get(uuid);
+	}
+
+	private <T extends Object> boolean save(final T obj, UUID faId) throws ModelExistsException {
 		if (obj instanceof FaModel) {
-			if (entities.containsKey(faId)) {
-				throw new EntityExistsException("An entity with the given id already exists.");
+			if (models.containsKey(faId)) {
+				throw new ModelExistsException("An model with the given id already exists.");
 			}
-			entities.put(faId, (FaModel) obj);
+			models.put(faId, (FaModel) obj);
 		} else if (obj instanceof Blob) {
 			if (blobs.containsKey(faId)) {
-				throw new EntityExistsException("A blob with the given id already exists.");
+				throw new ModelExistsException("A blob with the given id already exists.");
 			}
 			blobs.put(faId, (Blob) obj);
 		} else {
@@ -205,12 +221,12 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	}
 
 	@Override
-	public <T extends FaModel> T replace(final T entity) throws NoSuchElementException {
-		if (!entities.containsKey(entity.getFaId())) {
-			throw new NoSuchElementException("No entity to replace for the given fa-id.");
+	public <T extends FaModel> T replace(final T model) throws NoSuchElementException {
+		if (!models.containsKey(model.getFaId())) {
+			throw new NoSuchElementException("No model to replace for the given fa-id.");
 		}
-		entities.replace(entity.getFaId(), entity);
-		return entity;
+		models.replace(model.getFaId(), model);
+		return model;
 	}
 
 	@Override
@@ -237,30 +253,6 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 		} else {
 			return false;
 		}
-	}
-
-	@Override
-	public <T extends FaModel> T update(T entity) throws EntityNotFoundException {
-		update(entity, entity.getFaId());
-		return entity;
-	}
-	
-	private <T extends Object> boolean update(final T obj, UUID faId) throws EntityExistsException {
-		if (obj instanceof FaModel) {
-			if (!entities.containsKey(faId)) {
-				throw new EntityNotFoundException("An entity with the given id already exists.");
-			}
-			entities.put(faId, (FaModel) obj);
-		} else if (obj instanceof Blob) {
-			if (!blobs.containsKey(faId)) {
-				throw new EntityNotFoundException("A blob with the given id already exists.");
-			}
-			blobs.put(faId, (Blob) obj);
-		} else {
-			throw new IllegalArgumentException("Objects of type '" + obj.getClass().getSimpleName()
-					+ "' + not supported by the persistence service.");
-		}
-		return true;
 	}
 
 }

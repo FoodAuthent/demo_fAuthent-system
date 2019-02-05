@@ -87,6 +87,9 @@
       if (data.hasOwnProperty('version')) {
         obj['version'] = ApiClient.convertToType(data['version'], 'Number');
       }
+      if (data.hasOwnProperty('additional-properties')) {
+        obj['additional-properties'] = ApiClient.convertToType(data['additional-properties'], Object);
+      }
     }
     return obj;
   }
@@ -136,6 +139,11 @@
    * @member {Number} version
    */
   exports.prototype['version'] = undefined;
+  /**
+   * Key-value-map for additional properties.
+   * @member {Object.<String, String>} additional-properties
+   */
+  exports.prototype['additional-properties'] = undefined;
 
 
   /**

@@ -13,6 +13,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.eclipse.chemclipse.nmr.converter.core.ScanConverterNMR;
+import org.eclipse.chemclipse.nmr.model.core.IMeasurementNMR;
 import org.eclipse.chemclipse.processing.core.IProcessingInfo;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.foodauthent.api.internal.filereader.RawFileReader;
@@ -20,6 +21,7 @@ import org.foodauthent.model.FileMetadata;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 
 @Component(service = RawFileReader.class)
@@ -46,10 +48,10 @@ public class OpenChromRawFileReader implements RawFileReader {
 		Map<String, String> result = new LinkedHashMap<>();
 		switch(fileType) {
 			case FINGERPRINTS_BRUKER:
-				result.putAll(readBruker(file));
+				result.putAll(readBrukerMetadata(file));
 				break;
 			default:
-				throw new RuntimeException();
+				throw new IllegalArgumentException("Unsupported file " + fileType);
 		}
 
 		return result;
@@ -92,12 +94,13 @@ public class OpenChromRawFileReader implements RawFileReader {
 		
 	}
 
-	private Map<String, String> readBruker(File file) {
+	private Map<String, String> readBrukerMetadata(File file) {
 
 		if(logger.isDebugEnabled()) {
 			logger.debug("Reading " + file.getName());
 		}
 		Map<String, String> result = new LinkedHashMap<>();
+
 		final IProcessingInfo processingInfo = ScanConverterNMR.convert(file, new NullProgressMonitor());
 		if(processingInfo == null) {
 			if(logger.isErrorEnabled()) {
@@ -105,20 +108,16 @@ public class OpenChromRawFileReader implements RawFileReader {
 			}
 		} else {
 			Object processingResult = processingInfo.getProcessingResult();
-			System.err.println(processingResult.getClass());
-			/*
-			if(processingResult instanceof IVendorScaNMR) {
-				IVendorScanNMR scan = (IVendorScanNMW)processingResult;
+			// System.err.println(processingResult.getClass());
+			if(processingResult instanceof IMeasurementNMR) {
+				IMeasurementNMR scan = (IMeasurementNMR)processingResult;
 				result.putAll(scan.getHeaderDataMap());
 			} else {
 				if(logger.isErrorEnabled()) {
 					logger.error("Processing failed");
 				}
 			}
-			*/
 		}
-
 		return result;
-
 	}
 }

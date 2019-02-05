@@ -4,12 +4,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.UUID;
 
 import org.foodauthent.api.FileService;
 import org.foodauthent.api.internal.exception.FARuntimeException;
 import org.foodauthent.api.internal.exception.ServiceNotAvailableException;
+import org.foodauthent.api.internal.filereader.RawFileReader;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.FAExceptions;
@@ -36,6 +40,9 @@ public class FileServiceImpl implements FileService {
 
     @Reference(cardinality=ReferenceCardinality.MANDATORY)
     private PersistenceService persistenceService;
+
+    @Reference
+    private RawFileReader rawFileReader;
 
     public FileServiceImpl() {
     }
@@ -71,20 +78,24 @@ public class FileServiceImpl implements FileService {
 
 	validateFileType(fileMeta.getType(), upfileDetail);
 
-
 	fileMeta = FileMetadata.builder(fileMeta).setUploadName(upfileDetail.getFileName()).setUploadDate(LocalDate.now()).build();
 	persistenceService.replace(fileMeta);
 
 	try {
+	if (TypeEnum.FINGERPRINTS_BRUKER.equals(fileMeta.getType())) {
+		updateFinterprintMetadata(fileMeta, upfile);
+	}
+
 	    // new uuid for the blob (the same id as the one of metadata!)
 	    persistenceService
 		    .save(new Blob(fileId, toByteArray(upfile)));
+
 	    return fileId;
 	} catch (Exception e) {
 	    throw new FARuntimeException(e);
 	}
     }
-    
+
     private void validateFileType(TypeEnum type, FormDataContentDisposition upfile) throws InvalidDataException {
 	switch (type) {
 	case KNIME_WORKFLOW:
@@ -94,7 +105,9 @@ public class FileServiceImpl implements FileService {
 	    }
 	    break;
 	case FINGERPRINTS_BRUKER:
-	    // TODO: cannot be validated without acutally trying to convert the data.
+	    // TODO: cannot be validated without actually trying to convert the data. We try
+	    // to extract finterprint metadata later, so if that works, all is good, if not,
+	    // exception is thrown.
 	    break;
 	default:
 	}
@@ -111,6 +124,15 @@ public class FileServiceImpl implements FileService {
 
 	buffer.flush();
 	return buffer.toByteArray();
+    }
+
+    private void updateFinterprintMetadata(FileMetadata fileMeta, InputStream upfile) throws IOException {
+	if (rawFileReader == null) {
+	    throw new IllegalStateException("Raw file reader is not available");
+	}
+	Path tmpFile = Files.createTempFile("rawfile-tmp", ".tmp");
+	Map<String, String> metaMap = rawFileReader.getAllFileMetadata(fileMeta.getType(), tmpFile.toFile());
+	fileMeta.getAdditionalProperties().putAll(metaMap);
     }
 
     @Override

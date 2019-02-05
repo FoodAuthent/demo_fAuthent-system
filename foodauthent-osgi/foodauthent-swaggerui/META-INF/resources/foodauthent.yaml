@@ -25,6 +25,8 @@ tags:
     description: 'All endpoints to deal with tags, i.e. query, delete, add, ...'
   - name: file
     description: All endpoint that deal with files.
+  - name: custom-metadata
+    description: Endpoints that deal with custom metadata.
   - name: authentication
     description: Authentication endpoint.
   - name: user
@@ -1251,6 +1253,97 @@ paths:
           $ref: "#/components/responses/FAException"    
 
                           
+  '/custommetadata/{model-id}':
+    get:
+      tags:
+        - custom-metadata
+      summary: Returns all available schema ids for a model id.
+      description: >-
+        TODO
+      operationId: getCustomMetadataSchemas
+      parameters:
+        - $ref: "#/components/parameters/model-id"
+      responses:
+        '200':
+          description: The list of schema-ids available for this type of entity.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                
+  '/custommetadata/{model-id}/{schema-id}':
+    get:
+      tags:
+        - custom-metadata
+      summary: Returns the json-schema for a given schema- and model-id.
+      description: >-
+        TODO
+      operationId: getCustomMetadataSchema
+      parameters:
+        - $ref: "#/components/parameters/model-id"
+        - $ref: "#/components/parameters/schema-id"
+      responses:
+        '200':
+          description: TODO
+          content:
+            application/schema+json:
+              schema:
+                type: string 
+                
+  '/custommetadata/{model-id}/{schema-id}/{fa-id}':
+    get:
+      tags:
+        - custom-metadata
+      summary: Returns the custom metadata for a specific model, schema and model-instance.
+      description: >-
+        TODO
+      operationId: getCustomMetadata
+      parameters:
+        - $ref: "#/components/parameters/model-id"
+        - $ref: "#/components/parameters/schema-id"
+        - in: path
+          name: fa-id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: TODO
+          content:
+            application/json:
+              schema:
+                type: string 
+    post:
+      tags:
+        - custom-metadata
+      summary: Adds custom metadata for a specific model, schema and model-instance.
+      description: >-
+        TODO
+      operationId: saveCustomMetadata
+      parameters:
+        - $ref: "#/components/parameters/model-id"
+        - $ref: "#/components/parameters/schema-id"
+        - in: path
+          name: fa-id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '201':
+          description: Custom metadata successfully added
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: The object representing the custom metadata for a model with the given fa-id.
+              type: string
+                
+
+
 servers:
   - url: /v0/foodauthent
 
@@ -1278,6 +1371,21 @@ components:
         type: array
         items:
           type: string
+    model-id:
+      name: model-id
+      in: path
+      required: true
+      schema:
+        enum:
+          - product
+          - fingerprintset
+          - sop
+    schema-id:
+      name: schema-id
+      in: path
+      required: true
+      schema:
+        type: string               
 
   responses:
     FAException:
@@ -1430,6 +1538,12 @@ components:
         version:
           description: The file's version.
           type: integer
+        additional-properties:
+          description: Key-value-map for additional properties.
+          #string to string map
+          type: object
+          additionalProperties:
+            type: string
           
     File:
       description: A file, e.g. to be uploaded
@@ -2323,5 +2437,3 @@ components:
           description: new password
           type: string
           nullable: false
-
-               

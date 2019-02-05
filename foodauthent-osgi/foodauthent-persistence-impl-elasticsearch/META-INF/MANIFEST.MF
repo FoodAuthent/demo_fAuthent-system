@@ -14,7 +14,8 @@ Require-Bundle: org.scala-lang.scala-library,
  org.foodauthent.common,
  org.foodauthent.api.internal,
  org.foodauthent.model,
- com.typesafe.config
+ com.typesafe.config,
+ org.scala-lang.scala-reflect;bundle-version="2.12.8"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: org.foodauthent.api.elasticsearch
 Import-Package: com.google.common.io;version="16.0.0",

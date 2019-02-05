@@ -10,7 +10,9 @@ Export-Package: org.foodauthent.api,
  org.foodauthent.impl.sop,
  org.foodauthent.impl.workflow
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: org.foodauthent.api.internal.exception,
+Import-Package: org.apache.commons.io,
+ org.foodauthent.api.internal.exception,
+ org.foodauthent.api.internal.filereader,
  org.foodauthent.api.internal.job,
  org.foodauthent.api.internal.persistence,
  org.foodauthent.auth,
@@ -34,8 +36,11 @@ Service-Component: OSGI-INF/org.foodauthent.impl.workflow.WorkflowServiceImpl.xm
  OSGI-INF/org.foodauthent.impl.file.FileServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.user.UserServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.organization.OrganizationServiceImpl.xml,
- OSGI-INF/org.foodauthent.impl.authentication.AuthenticationServiceImpl.xml
+ OSGI-INF/org.foodauthent.impl.authentication.AuthenticationServiceImpl.xml,
+ OSGI-INF/org.foodauthent.impl.custommetadata.CustomMetadataServiceImpl.xml
 Require-Capability: osgi.extender;
  filter:="(&(osgi.extender=osgi.component)(version>=1.2)(!(version>=2.0)))"
 Require-Bundle: org.foodauthent.ldap;bundle-version="1.0.0",
- com.google.guava;bundle-version="17.0.0"
+ com.google.guava;bundle-version="17.0.0",
+ com.fasterxml.jackson.core.jackson-core;bundle-version="2.9.7",
+ com.fasterxml.jackson.core.jackson-databind;bundle-version="2.9.7"

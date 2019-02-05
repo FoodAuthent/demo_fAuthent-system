@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
-import org.foodauthent.api.internal.exception.EntityExistsException;
-import org.foodauthent.api.internal.exception.EntityNotFoundException;
+import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * Persistence Service. Implementations persist entities to a database, for
@@ -23,48 +24,36 @@ import org.foodauthent.model.Product;
 public interface PersistenceService {
 
     /**
-     * Save given entity.
+     * Save given model.
      *
-     * @param entity
-     *            Entity to save
+     * @param model
+     *            model to save
      * @return the database Id
-     * @throws EntityExistsException
-     *             if an entity with the same fa-id already exists
+     * @throws ModelExistsException
+     *             if an model with the same fa-id already exists
      */
-    <T extends FaModel> T save(T entity) throws EntityExistsException;
+    <T extends FaModel> T save(T model) throws ModelExistsException;
 
     /**
-     * Update given entity.
-     *
-     * @param entity
-     *            Entity to update
-     * @return entity with new attributes
-     * @throws EntityNotFoundException
-     *             if entity with given fa-id does not exist
-     */
-    <T extends FaModel> T update(T entity) throws EntityNotFoundException;
-    
-    /**
-     * Replaces an existing entity with the passed one.
+     * Replaces an existing model with the passed one.
      * 
-     * @param entity
-     *            the new entity
+     * @param model
+     *            the new model
      * @return the database id
      * @throws NoSuchElementException
-     *             if there is no entity with the same fa-id to replace
+     *             if there is no model with the same fa-id to replace
      */
-    <T extends FaModel> T replace(T entity) throws NoSuchElementException;
-
-
+    <T extends FaModel> T replace(T model) throws NoSuchElementException;
+    
     /**
      * 
      * Important note: uuid's of blobs do intentionally overlap with uuid's of fa-models!!
      * 
      * @param blob
      * @return
-     * @throws EntityExistsException
+     * @throws ModelExistsException
      */
-    UUID save(Blob blob) throws EntityExistsException;
+    UUID save(Blob blob) throws ModelExistsException;
 
     /**
      * Returns a {@link Product} that is associated to given GTIN.
@@ -116,6 +105,22 @@ public interface PersistenceService {
      */
     //TODO rename to getFileByUUID??
     Blob getBlobByUUID(UUID uuid);
+    
+    /**
+     * Saves an entity represented by a {@link JsonNode} and a type id
+     * @param model the actual entity instance
+     * @param typeId an id uniquely describing the object type represented by the json node
+     * @return the fa-id for later retrieval
+     */
+    UUID saveCustomModel(JsonNode model, String typeId);
+    
+    /**
+     * Returns the custom model for the given uuid.
+     * 
+     * @param uuid
+     * @return
+     */
+    JsonNode getCustomModelByUUID(UUID uuid);
     
     /**
      * Result in pages.

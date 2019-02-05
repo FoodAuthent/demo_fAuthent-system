@@ -59,6 +59,7 @@ public class FileMetadata   extends FaModel {
   protected LocalDate date;
   protected LocalDate uploadDate;
   protected Integer version;
+  protected java.util.Map<String, String> additionalProperties;
   
   public String getTypeID() {
     return "FileMetadata";
@@ -79,6 +80,7 @@ public class FileMetadata   extends FaModel {
     date = immutable(builder.date);
     uploadDate = immutable(builder.uploadDate);
     version = immutable(builder.version);
+    additionalProperties = immutable(builder.additionalProperties);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -99,7 +101,7 @@ public class FileMetadata   extends FaModel {
             return false;
         }
         FileMetadata ent = (FileMetadata)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(type, ent.type) && Objects.equals(name, ent.name) && Objects.equals(uploadName, ent.uploadName) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(uploadDate, ent.uploadDate) && Objects.equals(version, ent.version);
+        return Objects.equals(faId, ent.faId) && Objects.equals(type, ent.type) && Objects.equals(name, ent.name) && Objects.equals(uploadName, ent.uploadName) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(uploadDate, ent.uploadDate) && Objects.equals(version, ent.version) && Objects.equals(additionalProperties, ent.additionalProperties);
     }
 
 
@@ -175,6 +177,14 @@ public class FileMetadata   extends FaModel {
         return version;
     }
     
+  /**
+   * Key-value-map for additional properties.
+   * @return additionalProperties 
+   */
+  public java.util.Map<String, String> getAdditionalProperties() {
+        return additionalProperties;
+    }
+    
   
  	/**
   	 * @return a newly created builder
@@ -202,6 +212,7 @@ public class FileMetadata   extends FaModel {
         builder.date = entity.date;
         builder.uploadDate = entity.uploadDate;
         builder.version = entity.version;
+        builder.additionalProperties = entity.additionalProperties;
  		return builder;
   	}
   	
@@ -221,6 +232,7 @@ public class FileMetadata   extends FaModel {
         private LocalDate date;
         private LocalDate uploadDate;
         private Integer version;
+        private java.util.Map<String, String> additionalProperties = new java.util.HashMap<>();
 
         /**
          * A global id within the FoodAuthent-system.
@@ -300,6 +312,15 @@ public class FileMetadata   extends FaModel {
          */
         public FileMetadataBuilder setVersion(Integer version) {
              this.version = version;
+             return this;
+        }
+
+        /**
+         * Key-value-map for additional properties.
+         * @return additionalProperties 
+         */
+        public FileMetadataBuilder setAdditionalProperties(java.util.Map<String, String> additionalProperties) {
+             this.additionalProperties = additionalProperties;
              return this;
         }
 

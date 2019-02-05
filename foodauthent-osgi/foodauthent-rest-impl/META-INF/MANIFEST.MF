@@ -42,5 +42,6 @@ Service-Component: OSGI-INF/org.foodauthent.rest.impl.service.SopRestServiceImpl
  OSGI-INF/org.foodauthent.rest.impl.service.FileRestServiceImpl.xml,
  OSGI-INF/org.foodauthent.rest.impl.service.ModelRestServiceImpl.xml,
  OSGI-INF/org.foodauthent.rest.impl.service.OrganizationRestServiceImpl.xml,
- OSGI-INF/org.foodauthent.rest.impl.service.WorkflowRestServiceImpl.xml
+ OSGI-INF/org.foodauthent.rest.impl.service.WorkflowRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.CustomMetadataRestServiceImpl.xml
 Bundle-ActivationPolicy: lazy

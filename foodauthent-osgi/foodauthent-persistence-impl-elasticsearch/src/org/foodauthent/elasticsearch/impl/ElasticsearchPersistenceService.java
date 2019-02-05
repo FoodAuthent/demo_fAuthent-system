@@ -15,8 +15,7 @@ import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.foodauthent.api.internal.exception.EntityExistsException;
-import org.foodauthent.api.internal.exception.EntityNotFoundException;
+import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.elasticsearch.ClientService;
@@ -32,6 +31,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.CharStreams;
 
@@ -82,10 +82,10 @@ public class ElasticsearchPersistenceService implements PersistenceService, Clie
 	}
 
 	@Override
-	public <T extends FaModel> T save(T entity) throws EntityExistsException {
+	public <T extends FaModel> T save(T entity) throws ModelExistsException {
 		final Target target = classTarget(entity.getClass());
 		if (op.exists(QueryBuilders.idsQuery().addIds(entity.getFaId().toString()), target).isDefined()) {
-			throw new EntityExistsException("An entity with the given id already exists.");
+			throw new ModelExistsException("An entity with the given id already exists.");
 		}
 		if (op.save(Option.apply(entity.getFaId().toString()), entity, target)) {
 			return entity;
@@ -102,7 +102,7 @@ public class ElasticsearchPersistenceService implements PersistenceService, Clie
 	}
 
 	@Override
-	public UUID save(Blob blob) throws EntityExistsException {
+	public UUID save(Blob blob) throws ModelExistsException {
 		if (fileStorageService != null) {
 			return saveToFileStorageService(blob);
 		} else {
@@ -110,10 +110,10 @@ public class ElasticsearchPersistenceService implements PersistenceService, Clie
 		}
 	}
 
-	private UUID saveToFileStorageService(Blob blob) throws EntityExistsException {
+	private UUID saveToFileStorageService(Blob blob) throws ModelExistsException {
 		try {
 			if (fileStorageService.exists(blob.getFaId())) {
-				throw new EntityExistsException("An entity with the given id already exists.");
+				throw new ModelExistsException("An entity with the given id already exists.");
 			}
 			fileStorageService.save(blob.getFaId(), new ByteArrayInputStream(blob.getData()));
 			return blob.getFaId();
@@ -123,10 +123,10 @@ public class ElasticsearchPersistenceService implements PersistenceService, Clie
 		}
 	}
 
-	private UUID saveToElasticsearch(Blob blob) throws EntityExistsException {
+	private UUID saveToElasticsearch(Blob blob) throws ModelExistsException {
 		Target target = blobTarget();
 		if (op.exists(QueryBuilders.idsQuery().addIds(blob.getFaId().toString()), target).isDefined()) {
-			throw new EntityExistsException("An entity with the given id already exists.");
+			throw new ModelExistsException("An entity with the given id already exists.");
 		}
 		ESBlob es = new ESBlob(blob);
 		if (op.save(Option.apply(blob.getFaId().toString()), es, target)) {
@@ -263,13 +263,15 @@ public class ElasticsearchPersistenceService implements PersistenceService, Clie
 	}
 
 	@Override
-	public <T extends FaModel> T update(T entity) throws EntityNotFoundException {
-		final Target target = classTarget(entity.getClass());
-		if (op.update(entity.getFaId().toString(), entity, target)) {
-			return entity;
-		} else {
-			throw new EntityNotFoundException("An entity with the given id does not exist.");
-		}
+	public UUID saveCustomModel(JsonNode model, String typeId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public JsonNode getCustomModelByUUID(UUID uuid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
