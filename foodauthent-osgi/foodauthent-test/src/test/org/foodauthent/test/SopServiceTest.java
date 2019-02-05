@@ -29,13 +29,13 @@ public class SopServiceTest extends AbstractITTest {
 	SopRestService s = restService(SopRestService.class);
 	
 	// remove all sops first
-	List<SOP> allSops = s.findSOPByKeyword(0, Integer.MAX_VALUE, Collections.emptyList())
+	List<SOP> allSops = s.findSOPByKeyword(1, Integer.MAX_VALUE, Collections.emptyList())
 		.readEntity(SOPPageResult.class).getResults();
 	allSops.forEach(sop -> s.removeSOPById(sop.getFaId()));
 	
 	//test what happens when there are no sops
-	SOPPageResult sopPage = s.findSOPByKeyword(0, 10, null).readEntity(SOPPageResult.class);
-	assertEquals(0, sopPage.getPageNumber().intValue());
+	SOPPageResult sopPage = s.findSOPByKeyword(1, 10, null).readEntity(SOPPageResult.class);
+	assertEquals(1, sopPage.getPageNumber().intValue());
 	assertEquals(0, sopPage.getResults().size());
 	assertEquals(0, sopPage.getResultCount().intValue());
 
@@ -52,7 +52,7 @@ public class SopServiceTest extends AbstractITTest {
 	assertEquals(3, sopPage.getResults().size());
 	assertEquals(20, sopPage.getResultCount().intValue());
 	
-	sopPage = s.findSOPByKeyword(9, 10, Collections.emptyList()).readEntity(SOPPageResult.class);
+	sopPage = s.findSOPByKeyword(10, 10, Collections.emptyList()).readEntity(SOPPageResult.class);
 	assertEquals(5, sopPage.getResults().size());
 	assertEquals(95, sopPage.getResultCount().intValue());
 
