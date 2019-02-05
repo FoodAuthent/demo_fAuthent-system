@@ -1,5 +1,6 @@
 package org.foodauthent.api.internal.job;
 
+
 import org.foodauthent.common.exception.FAExceptions.InitJobException;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;

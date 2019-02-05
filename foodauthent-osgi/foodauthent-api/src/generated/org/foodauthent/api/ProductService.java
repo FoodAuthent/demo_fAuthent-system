@@ -45,4 +45,22 @@ public interface ProductService {
      */
     ProductPageResult findProductByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
+    /**
+     * TODO
+     *
+     * @param gtin 
+     *
+     * 
+     */
+    void removeProductByGtin(java.util.UUID gtin);
+        
+    /**
+     * TODO
+     *
+     * @param product TODO
+     *
+     * 
+     */
+    void updatedProduct(Product product);
+        
 }

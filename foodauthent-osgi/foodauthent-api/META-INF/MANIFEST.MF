@@ -28,8 +28,9 @@ Import-Package: org.apache.commons.io,
 Bundle-ClassPath: .
 Automatic-Module-Name: org.foodauthent.api
 Bundle-ActivationPolicy: lazy
-Service-Component: OSGI-INF/org.foodauthent.impl.workflow.WorkflowServiceImpl.xml,
+Service-Component: 
  OSGI-INF/org.foodauthent.impl.product.ProductServiceImpl.xml,
+ OSGI-INF/org.foodauthent.impl.workflow.WorkflowServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.sop.SopServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.fingerprint.FingerprintServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.model.ModelServiceImpl.xml,

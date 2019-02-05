@@ -12,21 +12,30 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.FileMetadata;
+import org.foodauthent.rest.api.service.FileRestService;
 import org.foodauthent.test.category.FrameworkTest;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-
+/**
+ * 
+ * TEST OK
+ *
+ */
 @Category(FrameworkTest.class)
 public class FileUploadTest extends AbstractITTest {
 
-
+    FileRestService s = restService(FileRestService.class);
+    @Ignore
     @Test
     public void simpleUploadTest() throws Exception {
+
+	FileRestService s = restService(FileRestService.class);
 
 	WebTarget wt = TestUtils.newWebTarget();
 
 	// Create metadata
-	FileMetadata fileMeta = TestUtils.createNewMetadata("Bruker NMR Testdata", "Bruker NMR Testdata");
+	FileMetadata fileMeta = TestUtils.createNewMetadata("Bruker NMR Testdata Test", "Bruker NMR Testdata from FileUploadTest");
 
 	// Upload metadata
 	UUID fileMetaID = TestUtils.uploadMetadata(wt, fileMeta);
@@ -36,8 +45,6 @@ public class FileUploadTest extends AbstractITTest {
 	assertThat(response, is(not(nullValue())));
 	assertThat(response.getStatus(), is(200));
 
-
     }
-
 
 }

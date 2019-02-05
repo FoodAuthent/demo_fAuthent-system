@@ -40,18 +40,15 @@ public class TestUtils {
     }
 
     public static UUID uploadMetadata(WebTarget wt, FileMetadata fileMeta) {
-	return wt.path("file").request(MediaType.APPLICATION_JSON)
-		.post(Entity.entity(fileMeta, MediaType.APPLICATION_JSON), UUID.class);
+	return wt.path("file").request(MediaType.APPLICATION_JSON).post(Entity.entity(fileMeta, MediaType.APPLICATION_JSON), UUID.class);
     }
 
     public static Response uploadFileData(WebTarget wt, UUID fileMetaID, File file) {
 	MultiPart multiPart = new MultiPart();
 	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-	FileDataBodyPart filePart = new FileDataBodyPart("filedata", file,
-		MediaType.APPLICATION_OCTET_STREAM_TYPE);
+	FileDataBodyPart filePart = new FileDataBodyPart("filedata", file, MediaType.APPLICATION_OCTET_STREAM_TYPE);
 	multiPart.bodyPart(filePart);
-	return wt.path("/file/" + fileMetaID + "/data").request()
-		.put(Entity.entity(multiPart, multiPart.getMediaType()));
+	return wt.path("/file/" + fileMetaID + "/data").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
 
     }
 }

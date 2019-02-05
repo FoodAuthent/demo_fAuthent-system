@@ -285,7 +285,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FingerprintSet'
-
+  '/product/{gtin}':
+    delete:
+      tags:
+        - product
+      summary: Delete a product specified by gtin.
+      description: TODO
+      operationId: removeProductByGtin
+      parameters:
+        - name: gtin
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Product successfully deleted.
+          
+          
   /product:
     get:
       tags:
@@ -328,7 +346,22 @@ paths:
             schema:
               $ref: '#/components/schemas/Product'
         description: TODO
-
+    put:
+      tags:
+        - product
+      summary: update a new product entity.
+      description: TODO
+      operationId: updatedProduct
+      responses:
+        '200':
+          description: SOP successfully deleted.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        description: TODO
+  
   /product/findByGtin:
     get:
       tags:
