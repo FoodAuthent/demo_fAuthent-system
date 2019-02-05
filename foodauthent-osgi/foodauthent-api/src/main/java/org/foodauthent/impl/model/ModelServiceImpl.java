@@ -13,6 +13,7 @@ import org.foodauthent.model.SOPPageResult;
 import org.foodauthent.model.WorkflowPageResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 
 /**
  * 
@@ -22,14 +23,10 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service=ModelService.class)
 public class ModelServiceImpl implements ModelService {
 
-    private static PersistenceService persistenceService;
+    @Reference(cardinality=ReferenceCardinality.MANDATORY)
+    private PersistenceService persistenceService;
 
     public ModelServiceImpl() {
-    }
-
-    @Reference
-    void setPersistenceService(PersistenceService persistenceService) {
-	ModelServiceImpl.persistenceService = persistenceService;
     }
 
     @Override

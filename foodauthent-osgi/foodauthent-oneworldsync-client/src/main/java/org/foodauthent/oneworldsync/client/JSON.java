@@ -1,13 +1,13 @@
 package org.foodauthent.oneworldsync.client;
 
-import org.threeten.bp.*;
-import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.datatype.threetenbp.ThreeTenModule;
-
 import java.text.DateFormat;
 
 import javax.ws.rs.ext.ContextResolver;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-07-25T20:10:55.785Z")
 public class JSON implements ContextResolver<ObjectMapper> {
@@ -22,11 +22,6 @@ public class JSON implements ContextResolver<ObjectMapper> {
 		mapper.enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
 		mapper.enable(DeserializationFeature.READ_ENUMS_USING_TO_STRING);
 		mapper.setDateFormat(new RFC3339DateFormat());
-		ThreeTenModule module = new ThreeTenModule();
-		module.addDeserializer(Instant.class, CustomInstantDeserializer.INSTANT);
-		module.addDeserializer(OffsetDateTime.class, CustomInstantDeserializer.OFFSET_DATE_TIME);
-		module.addDeserializer(ZonedDateTime.class, CustomInstantDeserializer.ZONED_DATE_TIME);
-		mapper.registerModule(module);
 	}
 
 	/**

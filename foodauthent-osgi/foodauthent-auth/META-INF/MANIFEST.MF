@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Core Authentication Interfaces
+Bundle-SymbolicName: org.foodauthent.auth
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: FoodAuthent
+Automatic-Module-Name: org.foodauthent.auth
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.foodauthent.auth,
+ org.foodauthent.auth.service
+Import-Package: org.foodauthent.common.exception

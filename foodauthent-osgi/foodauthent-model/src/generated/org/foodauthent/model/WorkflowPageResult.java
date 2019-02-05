@@ -13,6 +13,7 @@ import java.util.Objects;
 import org.foodauthent.model.Workflow;
 
 
+
 /**
  * WorkflowPageResult
  *
@@ -22,10 +23,10 @@ import org.foodauthent.model.Workflow;
 public class WorkflowPageResult   extends FaModel {
 
 
-  private Integer pageNumber;
-  private Integer pageCount;
-  private Integer resultCount;
-  private java.util.List<Workflow> results;
+  protected Integer pageNumber;
+  protected Integer pageCount;
+  protected Integer resultCount;
+  protected java.util.List<Workflow> results;
   
   public String getTypeID() {
     return "WorkflowPageResult";
@@ -36,6 +37,8 @@ public class WorkflowPageResult   extends FaModel {
   public java.util.UUID getFaId() {
   	return null;
   }
+  
+  protected WorkflowPageResult() {}
   
   private WorkflowPageResult(WorkflowPageResultBuilder builder) {
     
@@ -126,7 +129,7 @@ public class WorkflowPageResult   extends FaModel {
   
     public static class WorkflowPageResultBuilder {
     
-        private WorkflowPageResultBuilder(){
+        protected WorkflowPageResultBuilder(){
             
         }
     

@@ -3,7 +3,7 @@
    <service>
       <provide interface="org.foodauthent.api.FileService"/>
    </service>
-   <reference bind="setPersistenceService" interface="org.foodauthent.api.internal.persistence.PersistenceService" name="PersistenceService"/>
+   <reference cardinality="1..1" field="persistenceService" interface="org.foodauthent.api.internal.persistence.PersistenceService" name="persistenceService"/>
    <reference cardinality="1..1" field="rawFileReader" interface="org.foodauthent.api.internal.filereader.RawFileReader" name="rawFileReader"/>
    <implementation class="org.foodauthent.impl.file.FileServiceImpl"/>
 </scr:component>

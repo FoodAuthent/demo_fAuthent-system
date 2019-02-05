@@ -1,0 +1,12 @@
+version: 1
+
+#!RESULT ERROR
+#!CONNECTION ldap://localhost:10389
+#!DATE 2019-02-05T13:15:01.556
+#!ERROR [LDAP: error code 32 - NO_SUCH_OBJECT: failed for MessageType : ADD_REQUEST Message ID : 17     Add Request : Entry     dn[n]: dc=org     objectClass: extensibleObject     objectClass: domain     objectClass: top     dc: org : ERR_268 Cannot find a partition for dc=org]
+dn: dc=org
+objectClass: extensibleObject
+objectClass: domain
+objectClass: top
+dc: org
+

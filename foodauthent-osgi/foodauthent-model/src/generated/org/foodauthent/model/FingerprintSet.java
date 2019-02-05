@@ -13,6 +13,7 @@ import java.util.Objects;
 import org.foodauthent.model.Fingerprint;
 
 
+
 /**
  * A set of fingerprints with its own id.
  *
@@ -22,19 +23,21 @@ import org.foodauthent.model.Fingerprint;
 public class FingerprintSet   extends FaModel {
 
 
-  private java.util.UUID faId;
-  private java.util.UUID productId;
-  private java.util.List<Fingerprint> fingerprints;
-  private java.util.UUID fileId;
-  private String name;
-  private String metadata;
-  private java.util.Map<String, String> additionalProperties;
+  protected java.util.UUID faId;
+  protected java.util.UUID productId;
+  protected java.util.List<Fingerprint> fingerprints;
+  protected java.util.UUID fileId;
+  protected String name;
+  protected String metadata;
+  protected java.util.Map<String, String> additionalProperties;
   
   public String getTypeID() {
     return "FingerprintSet";
   }
   
 
+  
+  protected FingerprintSet() {}
   
   private FingerprintSet(FingerprintSetBuilder builder) {
     
@@ -162,7 +165,7 @@ public class FingerprintSet   extends FaModel {
   
     public static class FingerprintSetBuilder {
     
-        private FingerprintSetBuilder(){
+        protected FingerprintSetBuilder(){
             
         }
     

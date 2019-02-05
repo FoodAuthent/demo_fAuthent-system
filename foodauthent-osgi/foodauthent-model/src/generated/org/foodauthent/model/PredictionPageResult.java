@@ -13,6 +13,7 @@ import java.util.Objects;
 import org.foodauthent.model.Prediction;
 
 
+
 /**
  * PredictionPageResult
  *
@@ -22,10 +23,10 @@ import org.foodauthent.model.Prediction;
 public class PredictionPageResult   extends FaModel {
 
 
-  private Integer pageNumber;
-  private Integer pageCount;
-  private Integer resultCount;
-  private java.util.List<Prediction> results;
+  protected Integer pageNumber;
+  protected Integer pageCount;
+  protected Integer resultCount;
+  protected java.util.List<Prediction> results;
   
   public String getTypeID() {
     return "PredictionPageResult";
@@ -36,6 +37,8 @@ public class PredictionPageResult   extends FaModel {
   public java.util.UUID getFaId() {
   	return null;
   }
+  
+  protected PredictionPageResult() {}
   
   private PredictionPageResult(PredictionPageResultBuilder builder) {
     
@@ -126,7 +129,7 @@ public class PredictionPageResult   extends FaModel {
   
     public static class PredictionPageResultBuilder {
     
-        private PredictionPageResultBuilder(){
+        protected PredictionPageResultBuilder(){
             
         }
     

@@ -12,6 +12,7 @@ import java.util.Objects;
 
 
 
+
 /**
  * A tag/label for objects.
  *
@@ -46,16 +47,18 @@ public class Tag   extends FaModel {
   }
 
 
-  private java.util.UUID faId;
-  private String name;
-  private String description;
-  private TypeEnum type;
+  protected java.util.UUID faId;
+  protected String name;
+  protected String description;
+  protected TypeEnum type;
   
   public String getTypeID() {
     return "Tag";
   }
   
 
+  
+  protected Tag() {}
   
   private Tag(TagBuilder builder) {
     
@@ -147,7 +150,7 @@ public class Tag   extends FaModel {
   
     public static class TagBuilder {
     
-        private TagBuilder(){
+        protected TagBuilder(){
             
         }
     

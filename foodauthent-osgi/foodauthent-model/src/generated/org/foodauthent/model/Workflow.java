@@ -14,6 +14,7 @@ import org.foodauthent.model.Tag;
 import org.foodauthent.model.WorkflowParameter;
 
 
+
 /**
  * A workflow for a certain task.
  *
@@ -92,21 +93,23 @@ public class Workflow   extends FaModel {
   }
 
 
-  private java.util.UUID faId;
-  private String name;
-  private String description;
-  private RepresentationEnum representation;
-  private TypeEnum type;
-  private java.util.List<WorkflowParameter> parameters;
-  private java.util.List<Tag> tags;
-  private java.util.UUID fileId;
-  private ModelTypeEnum modelType;
+  protected java.util.UUID faId;
+  protected String name;
+  protected String description;
+  protected RepresentationEnum representation;
+  protected TypeEnum type;
+  protected java.util.List<WorkflowParameter> parameters;
+  protected java.util.List<Tag> tags;
+  protected java.util.UUID fileId;
+  protected ModelTypeEnum modelType;
   
   public String getTypeID() {
     return "Workflow";
   }
   
 
+  
+  protected Workflow() {}
   
   private Workflow(WorkflowBuilder builder) {
     
@@ -260,7 +263,7 @@ public class Workflow   extends FaModel {
   
     public static class WorkflowBuilder {
     
-        private WorkflowBuilder(){
+        protected WorkflowBuilder(){
             
         }
     

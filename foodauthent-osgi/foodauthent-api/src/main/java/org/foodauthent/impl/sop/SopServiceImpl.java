@@ -10,6 +10,7 @@ import org.foodauthent.model.SOP;
 import org.foodauthent.model.SOPPageResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,15 +24,12 @@ public class SopServiceImpl implements SopService {
 
     private static final Logger logger = LoggerFactory.getLogger(SopServiceImpl.class);
 
-    private static PersistenceService persistenceService;
+    @Reference(cardinality=ReferenceCardinality.MANDATORY)
+    private PersistenceService persistenceService;
 
     public SopServiceImpl() {
     }
 
-    @Reference
-    void setPersistenceService(PersistenceService persistenceService) {
-	SopServiceImpl.persistenceService = persistenceService;
-    }
     
     @Override
     public UUID createNewSOP(final SOP sop) {

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" immediate="true" name="org.foodauthent.rest.impl.service.FingerprintRestServiceImpl">
+   <service>
+      <provide interface="org.foodauthent.rest.api.service.FingerprintRestService"/>
+   </service>
+   <reference cardinality="1..1" field="service" interface="org.foodauthent.api.FingerprintService" name="service"/>
+   <implementation class="org.foodauthent.rest.impl.service.FingerprintRestServiceImpl"/>
+</scr:component>

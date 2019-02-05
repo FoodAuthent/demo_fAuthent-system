@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.foodauthent.elasticsearch.impl.ClientServiceImpl">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" immediate="true" name="org.foodauthent.elasticsearch.impl.ClientServiceImpl">
    <service>
       <provide interface="org.foodauthent.elasticsearch.ClientService"/>
    </service>
+   <reference bind="bindConfigurationService" cardinality="1..1" field="configurationService" interface="org.foodauthent.config.ConfigurationService" name="configurationService" unbind="unbindConfigurationService"/>
    <implementation class="org.foodauthent.elasticsearch.impl.ClientServiceImpl"/>
 </scr:component>

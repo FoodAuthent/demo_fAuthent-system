@@ -11,15 +11,14 @@
 		<foodauthent.release.version>1.0.0</foodauthent.release.version>
 
 		<!-- Plugin Versions -->
-		<tycho.version>1.2.0</tycho.version>
+		<tycho.version>1.3.0</tycho.version>
 		<maven-scala-plugin.version>2.15.2</maven-scala-plugin.version>
 		<scala.version>2.12.6</scala.version>
 
 
 		<!-- p2 repositories -->
-		<foodauthent-dependencies.url>http://repository.foodauthent.net/p2/foodauthent-dependencies-1.0.0-SNAPSHOT/</foodauthent-dependencies.url>
-		<knime-analytics-platform.url>http://update.knime.com/analytics-platform/3.6/</knime-analytics-platform.url>
-		
+		<foodauthent-dependencies.url>http://repository.foodauthent.net/p2/foodauthent-dependencies-1.0.1-SNAPSHOT/</foodauthent-dependencies.url>
+
 		<!-- use UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -31,11 +30,6 @@
 			<url>${foodauthent-dependencies.url}</url>
 			<layout>p2</layout>
 		</repository>
-		<repository>
-			<id>knime-analytics-platform</id>
-			<url>${knime-analytics-platform.url}</url>
-			<layout>p2</layout>
-		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -44,6 +38,7 @@
 			<version>${scala.version}</version>
 		</dependency>
 	</dependencies>
+	
 	
 	<profiles>
 		<profile>
@@ -184,9 +179,11 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		
 	</build>
 	<modules>
 		<module>foodauthent-common</module>
+		<module>foodauthent-config</module>
 		<module>foodauthent-model</module>
 		<module>foodauthent-api</module>
 		<module>foodauthent-api-internal</module>
@@ -194,6 +191,8 @@
 		<module>foodauthent-rest-api</module>
 		<module>foodauthent-rest-impl</module>
 		<module>foodauthent-swaggerui</module>
+		<module>foodauthent-storage</module>
+		<module>foodauthent-storage-impl-s3</module>
 		<module>foodauthent-persistence-impl-simple</module>
 		<module>foodauthent-persistence-impl-elasticsearch</module>
 		<module>foodauthent-oneworldsync-client</module>
@@ -203,6 +202,9 @@
 		<module>foodauthent-knime-feature</module>
 		<module>foodauthent-openchrom-feature</module>
 		<module>foodauthent-product-runtime</module>
+		 <module>foodauthent-test</module>
+		<!-- 
 		<module>foodauthent-product-application</module>
+		 -->
 	</modules>
 </project>

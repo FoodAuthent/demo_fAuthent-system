@@ -27,6 +27,12 @@ tags:
     description: All endpoint that deal with files.
   - name: custom-metadata
     description: Endpoints that deal with custom metadata.
+  - name: authentication
+    description: Authentication endpoint.
+  - name: user
+    description: All user related endpoints.
+  - name: organization
+    description: All organization related endpoints.
 
 paths:
   /sop:
@@ -279,7 +285,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FingerprintSet'
-
+  '/product/{gtin}':
+    delete:
+      tags:
+        - product
+      summary: Delete a product specified by gtin.
+      description: TODO
+      operationId: removeProductByGtin
+      parameters:
+        - name: gtin
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Product successfully deleted.
+          
+          
   /product:
     get:
       tags:
@@ -322,7 +346,22 @@ paths:
             schema:
               $ref: '#/components/schemas/Product'
         description: TODO
-
+    put:
+      tags:
+        - product
+      summary: update a new product entity.
+      description: TODO
+      operationId: updatedProduct
+      responses:
+        '200':
+          description: SOP successfully deleted.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        description: TODO
+  
   /product/findByGtin:
     get:
       tags:
@@ -720,6 +759,533 @@ paths:
               schema:
                 $ref: '#/components/schemas/PredictionJob'
                 
+  /authenticate/jwt:
+    post:
+      tags:
+        - authentication
+      summary: Authenticate user.
+      description: TODO
+      operationId: authenticateUserJSONWebToken
+      responses:
+        200:
+          description: JSON Web Token for authenticated user successfully.
+          content:
+            text/plain:
+              schema:
+                type: string
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        500:
+          $ref: "#/components/responses/FAException"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAuthenticationRequest'
+        description: TODO
+        required: true
+
+  /authenticate/jwt/verify:
+    post:
+      tags:
+        - authentication
+      summary: verify JSON Web Token.
+      description: TODO
+      operationId: verifyJSONWebToken
+      responses:
+        200:
+          description: Token verified successfully.
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        500:
+          $ref: "#/components/responses/FAException"
+      requestBody:
+        description: JWT token to be verfied
+        required: true   
+        content:     
+          text/plain:
+            schema:
+              type: string
+
+  /authenticate/jwt/refresh:
+    post:
+      tags:
+        - authentication
+      summary: refresh JSON Web Token to extend expirtation time
+      description: TODO
+      operationId: refreshJSONWebToken
+      responses:
+        200:
+          description: Updated JSON Web Token for authenticated user's token.
+          content:
+            text/plain:
+              schema:
+                type: string
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        500:
+          $ref: "#/components/responses/FAException"
+      requestBody:
+        description: User's JSON Web Token to refresh
+        required: true   
+        content:     
+          text/plain:
+            schema:
+              type: string
+
+            
+  /user:
+    post:
+      tags:
+        - user
+      summary: create new user.
+      description: TODO
+      operationId: createUser
+      responses:
+        200:
+          description: details of successfully created user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        409:
+          $ref: "#/components/responses/EntityAlreadyExistsResponse" 
+        415:
+          $ref: "#/components/responses/InvalidOperationResponse"
+        500:
+          $ref: "#/components/responses/FAException"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+        description: TODO
+        required: true
+
+
+  /user/{dn}:        
+    get:
+      tags:
+        - user
+      summary: get existing user.
+      description: TODO
+      operationId: getUser
+      parameters:
+        - in: path
+          name: dn
+          required: true 
+          schema:
+            type: string
+          description: The user's LDAP dn     
+      responses:
+        200:
+          description: User details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        404:
+          $ref: "#/components/responses/EntityNotFoundResponse" 
+        500:
+          $ref: "#/components/responses/FAException"    
+
+    put:
+      tags:
+        - user
+      summary: update existing user.
+      description: TODO
+      operationId: updateUser
+      parameters:
+        - in: path
+          name: dn
+          required: true 
+          schema:
+            type: string
+          description: The user's LDAP dn           
+      responses:
+        200:
+          description: updated user details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        404:
+          $ref: "#/components/responses/EntityNotFoundResponse"
+        415:
+          $ref: "#/components/responses/InvalidOperationResponse"
+        500:
+          $ref: "#/components/responses/FAException"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserBase'
+        description: TODO
+        required: true   
+
+    delete:
+      tags:
+        - user
+      summary: delete existing user.
+      description: TODO
+      operationId: deleteUser
+      parameters:
+        - in: path
+          name: dn
+          required: true 
+          schema:
+            type: string
+          description: The user's LDAP dn     
+      responses:
+        200:
+          description: User deleted.
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        404:
+          $ref: "#/components/responses/EntityNotFoundResponse" 
+        415:
+          $ref: "#/components/responses/InvalidOperationResponse"
+        500:
+          $ref: "#/components/responses/FAException"  
+
+  /user/{dn}/pwgen:        
+    get:
+      tags:
+        - user
+      summary: generate password for user.
+      description: TODO
+      operationId: generatePassword
+      parameters:
+        - in: path
+          name: dn
+          required: true 
+          schema:
+            type: string
+          description: The user's LDAP dn    
+        - in: query
+          name: length
+          required: false 
+          schema:
+            type: integer
+          description: length of generated password     
+      responses:
+        200:
+          description: new password
+          content:
+            text/plain:
+              schema:
+                type: string        
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        404:
+          $ref: "#/components/responses/EntityNotFoundResponse" 
+        500:
+          $ref: "#/components/responses/FAException"  
+
+  /user/{dn}/pwset:        
+    post:
+      tags:
+        - user
+      summary: set password for user.
+      description: TODO
+      operationId: setPassword
+      parameters:
+        - in: path
+          name: dn
+          required: true 
+          schema:
+            type: string
+          description: The user's LDAP dn
+      responses:
+        200:
+          description: new password was set
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        404:
+          $ref: "#/components/responses/EntityNotFoundResponse" 
+        500:
+          $ref: "#/components/responses/FAException"  
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+        description: TODO
+        required: true   
+
+  /user/group:
+    post:
+      tags:
+        - user
+      summary: create new user group.
+      description: TODO
+      operationId: createUserGroup
+      responses:
+        200:
+          description: details of successfully created user group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGroup'
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        409:
+          $ref: "#/components/responses/EntityAlreadyExistsResponse" 
+        415:
+          $ref: "#/components/responses/InvalidOperationResponse"                    
+        500:
+          $ref: "#/components/responses/FAException"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserGroupCreateRequest'
+        description: TODO
+        required: true
+
+  /user/group/{dn}:        
+    get:
+      tags:
+        - user
+      summary: get existing user group.
+      description: TODO
+      operationId: getUserGroup
+      parameters:
+        - in: path
+          name: dn
+          required: true 
+          schema:
+            type: string
+          description: The user group's LDAP dn     
+      responses:
+        200:
+          description: User group details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGroup'
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        404:
+          $ref: "#/components/responses/EntityNotFoundResponse" 
+        500:
+          $ref: "#/components/responses/FAException"    
+
+    put:
+      tags:
+        - user
+      summary: update existing user group.
+      description: TODO
+      operationId: updateUserGroup
+      parameters:
+        - in: path
+          name: dn
+          required: true 
+          schema:
+            type: string
+          description: The user group's LDAP dn           
+      responses:
+        200:
+          description: updated user group details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGroup'
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        404:
+          $ref: "#/components/responses/EntityNotFoundResponse" 
+        415:
+          $ref: "#/components/responses/InvalidOperationResponse"                    
+        500:
+          $ref: "#/components/responses/FAException"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserGroupBase'
+        description: TODO
+        required: true   
+
+    delete:
+      tags:
+        - user
+      summary: delete existing user group.
+      description: TODO
+      operationId: deleteUserGroup
+      parameters:
+        - in: path
+          name: dn
+          required: true 
+          schema:
+            type: string
+          description: The user group's LDAP dn     
+      responses:
+        200:
+          description: User deleted.
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        404:
+          $ref: "#/components/responses/EntityNotFoundResponse" 
+        415:
+          $ref: "#/components/responses/InvalidOperationResponse"
+        500:
+          $ref: "#/components/responses/FAException"  
+
+  /organization:
+    post:
+      tags:
+        - organization
+      summary: create new organization.
+      description: TODO
+      operationId: createOrganization
+      responses:
+        200:
+          description: details of successfully created organization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        409:
+          $ref: "#/components/responses/EntityAlreadyExistsResponse" 
+        415:
+          $ref: "#/components/responses/InvalidOperationResponse"          
+        500:
+          $ref: "#/components/responses/FAException"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationCreateRequest'
+        description: TODO
+        required: true
+
+  /organization/{dn}:        
+    get:
+      tags:
+        - organization
+      summary: get existing organization.
+      description: TODO
+      operationId: getOrganization
+      parameters:
+        - in: path
+          name: dn
+          required: true 
+          schema:
+            type: string
+          description: The organization's LDAP dn     
+      responses:
+        200:
+          description: Organization details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        404:
+          $ref: "#/components/responses/EntityNotFoundResponse" 
+        500:
+          $ref: "#/components/responses/FAException"    
+
+    put:
+      tags:
+        - organization
+      summary: update existing organization.
+      description: TODO
+      operationId: updateOrganization
+      parameters:
+        - in: path
+          name: dn
+          required: true 
+          schema:
+            type: string
+          description: The organization's LDAP dn     
+      responses:
+        200:
+          description: updated organization details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        404:
+          $ref: "#/components/responses/EntityNotFoundResponse" 
+        415:
+          $ref: "#/components/responses/InvalidOperationResponse"          
+        500:
+          $ref: "#/components/responses/FAException"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationBase'
+        description: TODO
+        required: true   
+        
+    delete:
+      tags:
+        - organization
+      summary: delete existing organization.
+      description: TODO
+      operationId: deleteOrganization
+      parameters:
+        - in: path
+          name: dn
+          required: true 
+          schema:
+            type: string
+          description: The organization's LDAP dn     
+      responses:
+        200:
+          description: Organization deleted.
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        403:
+          $ref: "#/components/responses/ForbiddenAccessResponse" 
+        404:
+          $ref: "#/components/responses/EntityNotFoundResponse" 
+        415:
+          $ref: "#/components/responses/InvalidOperationResponse"
+        500:
+          $ref: "#/components/responses/FAException"    
+
+                          
   '/custommetadata/{model-id}':
     get:
       tags:
@@ -809,6 +1375,8 @@ paths:
               description: The object representing the custom metadata for a model with the given fa-id.
               type: string
                 
+
+
 servers:
   - url: /v0/foodauthent
 
@@ -835,7 +1403,7 @@ components:
       schema:
         type: array
         items:
-         type: string
+          type: string
     model-id:
       name: model-id
       in: path
@@ -850,7 +1418,7 @@ components:
       in: path
       required: true
       schema:
-        type: string
+        type: string               
 
   responses:
     FAException:
@@ -869,7 +1437,46 @@ components:
       description: Invalid data was uploaded.
       x-fa-exceptions:
         - name: InvalidDataException
-  
+    EntityAlreadyExistsResponse:
+      description: Invalid input was provided, entity already exists.
+      content:
+        text/plain:
+          schema:
+            type: string        
+      x-fa-exceptions:
+        - name: EntityAlreadyExistsResponse
+    EntityNotFoundResponse:
+      description: Response thrown when an entity could not be found.
+      content:
+        text/plain:
+          schema:
+            type: string        
+      x-fa-exceptions:
+        - name: EntityNotFoundResponse
+    ForbiddenAccessResponse:
+      description: Access to resource is not allowed.
+      content:
+        text/plain:
+          schema:
+            type: string        
+      x-fa-exceptions:
+        - name: ForbiddenAccessResponse
+    InvalidOperationResponse:
+      description: Requested operation is not supported.
+      content:
+        text/plain:
+          schema:
+            type: string        
+      x-fa-exceptions:
+        - name: InvalidOperationResponse
+    UnauthorizedResponse:
+      content:
+        text/plain:
+          schema:
+            type: string        
+      description: Unauthorized access.
+      x-fa-exceptions:
+        - name: UnauthorizedResponse
   schemas:
     SOPPageResult:
       type: object
@@ -997,6 +1604,12 @@ components:
         metadata:
           description: Placeholder for the actual metadata.
           type: string
+        additional-properties:
+          description: Key-value-map for additional properties.
+          #string to string map
+          type: object
+          additionalProperties:
+            type: string
 
     FingerprintSetPageResult:
       type: object
@@ -1548,3 +2161,312 @@ components:
           description: URI pointing to the created model file.
           type: string
           format: uri
+
+    UserAuthenticationRequest:
+      description: Request Object for User authentication
+      type: object
+      x-no-faid: true
+      required:
+        - user
+        - password
+      properties:
+        user:
+          type: string
+        password:
+          type: string
+          
+    PostalAddress:
+      description: postal address object
+      type: object
+      x-no-faid: true
+      required:
+        - street
+        - postalCode
+        - localityName
+      properties:
+        otherRecipientInformation:
+          description: recipient address part
+          type: string
+        street:
+          description: street address part
+          type: string
+        postalCode:
+          description: postalCode address part
+          type: string
+        localityName:
+          description: locality/city address part
+          type: string
+        stateOrProvinceName:
+          description: stateOrProvinceName address part
+          type: string
+        country:
+          description: country address part
+          type: string
+
+    OrganizationalPostalAddress:
+      description: organizational postal address object
+      type: object
+      x-no-faid: true
+      allOf:
+        - $ref: '#/components/schemas/PostalAddress'
+        - type: object
+          x-no-faid: true
+          properties:
+            recipientName:
+              description: recipient address part
+              type: string
+
+    UserBase:
+      description:  User Base Object 
+      type: object
+      x-no-faid: true
+      required:
+        - lastName
+        - givenName
+      properties:
+        title:
+          description: title
+          type: string
+          nullable: true
+        givenName:
+          description: givenName / first name
+          type: string
+          nullable: true
+        lastName:
+          description: last name
+          type: string
+          nullable: true
+        mail:
+          description: email addresses
+          type: array
+          items:
+            type: string
+          nullable: true
+        description:
+          description: verbose description
+          type: string
+          nullable: true
+        faxNumbers:
+          description: fax numbers
+          type: array
+          items:
+            type: string
+          nullable: true
+        phoneNumbers:
+          description: phone numbers
+          type: array
+          items:
+            type: string
+          nullable: true
+        homePhoneNumbers:
+          description: home phone numbers
+          type: array
+          items:
+            type: string
+          nullable: true
+        mobilePhoneNumbers:
+          description: mobile phone numbers
+          type: array
+          items:
+            type: string
+          nullable: true
+        businessCategory:
+          description: business category
+          type: string
+          nullable: true
+        postalAddress:
+          $ref: '#/components/schemas/PostalAddress'
+        billingAddress:
+          $ref: '#/components/schemas/PostalAddress'
+        secretary:
+          description: secretary
+          type: string
+          nullable: true
+        employeeType:
+          description: employee type
+          type: string
+          nullable: true
+        employeeNumber:
+          description: employee number
+          type: string
+          nullable: true
+        labeledURI:
+          description: URIs
+          type: array
+          items:
+            type: string
+          nullable: true
+
+    User:
+      description:  User Object 
+      x-no-faid: true
+      allOf:
+        - type: object
+          required:
+            - dn
+            - userName
+          properties:
+            dn:
+              description: LDAP dn
+              type: string
+              nullable: false
+            userName:
+              description: unique userid
+              type: string
+              nullable: false
+        - $ref: '#/components/schemas/UserBase'
+
+    UserCreateRequest:
+      description:  User Object 
+      x-no-faid: true
+      allOf:
+        - type: object
+          required:
+            - parentDn
+            - userName
+          properties:
+            parentDn:
+              description: parent organization's LDAP dn
+              type: string
+              nullable: false
+            userName:
+              description: unique userid
+              type: string
+              nullable: false
+        - $ref: '#/components/schemas/UserBase'
+       
+    UserGroupBase:
+      description:  UserGroup Base Object 
+      type: object
+      x-no-faid: true
+      required:
+        - members
+      properties:
+        description:
+          description: verbose description
+          type: string
+          nullable: true
+        members:
+          description: list of members user dn
+          type: array
+          items:
+            type: string
+
+    UserGroup:
+      description:  UserGroup Object 
+      x-no-faid: true
+      allOf:
+        - type: object
+          required:
+            - dn
+            - name
+          properties:
+            dn:
+              description: LDAP dn
+              type: string
+              nullable: false
+            name:
+              description: unique group name
+              type: string
+              nullable: false  
+        - $ref: '#/components/schemas/UserGroupBase'
+
+    UserGroupCreateRequest:
+      description:  UserGroup Object for creating new groups
+      x-no-faid: true
+      allOf:
+        - type: object
+          required:
+            - name
+          properties:
+            name:
+              description: unique group name
+              type: string
+              nullable: false  
+        - $ref: '#/components/schemas/UserGroupBase'
+        
+              
+    OrganizationBase:
+      description:  Organization Base Object 
+      type: object
+      x-no-faid: true
+      properties:
+        description:
+          description: verbose description
+          type: string
+          nullable: true
+        faxNumbers:
+          description: fax numbers
+          type: array
+          items:
+            type: string
+          nullable: true
+        phoneNumbers:
+          description: phone numbers
+          type: array
+          items:
+            type: string
+          nullable: true
+        businessCategory:
+          description: business category
+          type: string
+          nullable: true
+        postalAddress:
+          $ref: '#/components/schemas/OrganizationalPostalAddress'
+        billingAddress:
+          $ref: '#/components/schemas/OrganizationalPostalAddress'
+
+    Organization:
+      description:  Organization Object 
+      x-no-faid: true
+      allOf:
+        - type: object
+          required:
+            - dn
+            - organizationName
+          properties:
+            dn:
+              description: organization's LDAP dn
+              type: string
+              nullable: false
+            organizationName:
+              description: unique OrganizationalUnit name
+              type: string
+              nullable: false
+        - $ref: '#/components/schemas/OrganizationBase'
+
+    OrganizationCreateRequest:
+      description:  Organization Object 
+      x-no-faid: true
+      allOf:
+        - type: object
+          required:
+            - parentDn
+            - organizationName
+          properties:
+            parentDn:
+              description: parent organization's LDAP dn
+              type: string
+              nullable: false
+            organizationName:
+              description: unique OrganizationalUnit name
+              type: string
+              nullable: false              
+        - $ref: '#/components/schemas/OrganizationBase'
+               
+    ChangePasswordRequest:
+      description: change password request object
+      type: object
+      x-no-faid: true
+      required:
+       - current
+       - new
+      properties:
+        current:
+          description: current password
+          type: string
+          nullable: true
+        new:
+          description: new password
+          type: string
+          nullable: false

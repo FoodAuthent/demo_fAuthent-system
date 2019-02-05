@@ -12,6 +12,7 @@ import java.util.Objects;
 
 
 
+
 /**
  * Describes the outputs delivered by a prediction workflow.
  *
@@ -21,7 +22,7 @@ import java.util.Objects;
 public class PredictionWorkflowOutput   extends FaModel {
 
 
-  private java.util.Map<String, Float> confidenceMap;
+  protected java.util.Map<String, Float> confidenceMap;
   
   public String getTypeID() {
     return "PredictionWorkflowOutput";
@@ -32,6 +33,8 @@ public class PredictionWorkflowOutput   extends FaModel {
   public java.util.UUID getFaId() {
   	return null;
   }
+  
+  protected PredictionWorkflowOutput() {}
   
   private PredictionWorkflowOutput(PredictionWorkflowOutputBuilder builder) {
     
@@ -92,7 +95,7 @@ public class PredictionWorkflowOutput   extends FaModel {
   
     public static class PredictionWorkflowOutputBuilder {
     
-        private PredictionWorkflowOutputBuilder(){
+        protected PredictionWorkflowOutputBuilder(){
             
         }
     

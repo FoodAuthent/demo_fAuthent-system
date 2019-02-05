@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" immediate="true" name="org.foodauthent.impl.organization.OrganizationServiceImpl">
+   <service>
+      <provide interface="org.foodauthent.api.OrganizationService"/>
+   </service>
+   <reference cardinality="1..1" field="ldapOrganizationalUnitService" interface="org.foodauthent.ldap.LdapOrganizationalUnitService" name="ldapOrganizationalUnitService"/>
+   <implementation class="org.foodauthent.impl.organization.OrganizationServiceImpl"/>
+</scr:component>

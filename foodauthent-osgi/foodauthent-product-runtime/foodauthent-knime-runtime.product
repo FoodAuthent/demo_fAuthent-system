@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product uid="org.foodauthent.runtime" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product uid="org.foodauthent.knime.runtime" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+
 
    <configIni use="default">
    </configIni>
@@ -10,6 +11,7 @@
       <programArgs>-consoleLog -console
       </programArgs>
       <vmArgs>-Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dorg.osgi.service.http.port=9090
+-Xdebug -Xrunjdwp:transport=dt_socket,address=9091,server=y,suspend=y
       </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
@@ -17,11 +19,13 @@
 
    <windowImages/>
 
+
    <launcher name="FoodAuthent KNIME Equinox">
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
       <linux include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
@@ -34,13 +38,26 @@
 
    <features>
       <feature id="org.foodauthent.feature"/>
-      <feature id="org.eclipse.equinox.server.core"/>
+      <feature id="org.eclipse.equinox.core.feature"/>
+      <feature id="org.elasticsearch.client.feature"/>
+      <feature id="io.minio.feature"/>
+      <feature id="org.apache.commons.feature"/>
+      <feature id="org.apache.httpcomponents.feature"/>
+      <feature id="org.glassfish.jersey.feature"/>
+      <feature id="org.joda.time.feature"/>
       <feature id="org.eclipse.equinox.server.jetty"/>
-      <feature id="org.foodauthent.knime.feature"/>
       <feature id="org.foodauthent.openchrom.feature"/>
+      <feature id="org.eclipse.core.runtime.feature"/>
+      <feature id="net.openchrom.converter.feature"/>
+      <feature id="net.openchrom.platform.feature"/>
+      <feature id="org.eclipse.equinox.server.core"/>
       <feature id="org.eclipse.platform"/>
+      <feature id="org.eclipse.emf.ecore"/>
+      <feature id="org.eclipse.emf.common"/>
       <feature id="org.eclipse.ecf.core.feature"/>
+      <feature id="org.eclipse.ecf.core.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
+      <feature id="org.glassfish.hk2.feature"/>
    </features>
 
    <configurations>
@@ -70,8 +87,13 @@
       <plugin id="org.eclipse.swt" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.ui.workbench" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.common" autoStart="true" startLevel="2" />
+      <plugin id="org.foodauthent.config" autoStart="true" startLevel="2" />
+      <plugin id="org.foodauthent.impl.knime" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.persistence.impl.elasticsearch" autoStart="true" startLevel="3" />
+      <plugin id="org.foodauthent.persistence.impl.simple" autoStart="false" startLevel="0" />
       <plugin id="org.foodauthent.rest.api" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.rest.impl" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.storage.impl.s3" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.swaggerui" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.ui.vuejs" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.hk2.osgi-resource-locator" autoStart="true" startLevel="0" />

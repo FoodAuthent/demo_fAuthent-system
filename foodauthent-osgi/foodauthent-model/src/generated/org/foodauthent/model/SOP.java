@@ -12,6 +12,7 @@ import java.util.Objects;
 
 
 
+
 /**
  * SOP
  *
@@ -21,17 +22,19 @@ import java.util.Objects;
 public class SOP   extends FaModel {
 
 
-  private java.util.UUID faId;
-  private java.util.UUID fileId;
-  private String name;
-  private String description;
-  private java.util.UUID productId;
+  protected java.util.UUID faId;
+  protected java.util.UUID fileId;
+  protected String name;
+  protected String description;
+  protected java.util.UUID productId;
   
   public String getTypeID() {
     return "SOP";
   }
   
 
+  
+  protected SOP() {}
   
   private SOP(SOPBuilder builder) {
     
@@ -133,7 +136,7 @@ public class SOP   extends FaModel {
   
     public static class SOPBuilder {
     
-        private SOPBuilder(){
+        protected SOPBuilder(){
             
         }
     

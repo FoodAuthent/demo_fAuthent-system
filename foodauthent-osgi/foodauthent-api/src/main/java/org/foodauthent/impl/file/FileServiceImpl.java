@@ -24,6 +24,7 @@ import org.foodauthent.model.FileMetadata.TypeEnum;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +38,8 @@ public class FileServiceImpl implements FileService {
     
     private static final Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);
 
-    private static PersistenceService persistenceService;
+    @Reference(cardinality=ReferenceCardinality.MANDATORY)
+    private PersistenceService persistenceService;
 
     @Reference
     private RawFileReader rawFileReader;
@@ -45,10 +47,6 @@ public class FileServiceImpl implements FileService {
     public FileServiceImpl() {
     }
 
-    @Reference
-    public void setPersistenceService(PersistenceService persistenceService) {
-	FileServiceImpl.persistenceService = persistenceService;
-    }
     @Override
     public UUID createFileMetadata(FileMetadata fileMetadata) {
 	if (persistenceService == null) {

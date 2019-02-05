@@ -20,7 +20,8 @@ public class TestServices {
     }
 
     private void linkServices() {
-	fileService.setPersistenceService(persistenceService);
+	// TODO: use service trackes in tests
+	//fileService.setPersistenceService(persistenceService);
 
 
     }

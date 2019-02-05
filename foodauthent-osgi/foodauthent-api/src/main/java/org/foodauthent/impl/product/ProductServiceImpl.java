@@ -10,22 +10,18 @@ import org.foodauthent.model.Product;
 import org.foodauthent.model.ProductPageResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 
 /**
  *
  * @author Alexander Kerner, Lablicate GmbH
  *
  */
-@Component(service=ProductService.class)
+@Component(service = ProductService.class)
 public class ProductServiceImpl implements ProductService {
 
-    private static PersistenceService persistenceService;
-
-    
-    @Reference
-    void bindPersistenceService(PersistenceService persistenceService) {
-	ProductServiceImpl.persistenceService = persistenceService;
-    }
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
+    private PersistenceService persistenceService;
 
     @Override
     public UUID createProduct(final Product product) {
@@ -41,7 +37,18 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductPageResult findProductByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
 	ResultPage<Product> res = persistenceService.findByKeywordsPaged(keywords, Product.class, pageNumber, pageSize);
-	return ProductPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber).setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
+	return ProductPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
+    }
+
+    @Override
+    public void removeProductByGtin(UUID gtin) {
+	persistenceService.removeFaModelByUUID(gtin, Product.class);
+    }
+
+    @Override
+    public void updatedProduct(Product product) {
+	persistenceService.replace(product);
     }
 
 }

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.foodauthent</groupId>
 	<artifactId>org.json4s_2.12</artifactId>
-	<version>3.5.4.v20180724</version>
+	<version>3.5.4.v20181204</version>
 	<packaging>bundle</packaging>
 
 	<name>JSON4Scala OSGi Bundle</name>
@@ -44,7 +44,7 @@
 					<instructions>
 						<Bundle-SymbolicName>org.json4s.osgi_2.12</Bundle-SymbolicName>
 						<Import-Package>
-							com.fasterxml.jackson.*;version=2.8.10,
+							com.fasterxml.jackson.*;version="[2.8.10,3.0.0)",
 							scala.*;version=2.12.0
 						</Import-Package>
 						<Export-Package>org.json4s.*;version=3.5.4</Export-Package>

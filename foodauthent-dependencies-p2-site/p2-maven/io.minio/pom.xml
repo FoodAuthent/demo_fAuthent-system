@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.foodauthent</groupId>
+	<artifactId>io.minio</artifactId>
+	<version>5.0.3.v201812051622</version>
+	<packaging>bundle</packaging>
+
+	<name>Minio OSGi Bundle</name>
+	<description>OSGi Bundle for Minio dependencies.</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.minio</groupId>
+			<artifactId>minio</artifactId>
+			<version>5.0.3</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Include all dependencies -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>3.5.1</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>io.minio.osgi</Bundle-SymbolicName>
+						<Bundle-Version>5.0.3.201812051622</Bundle-Version>
+						<Import-Package>
+							com.google.*;version="0.0.0",
+							org.xmlpull.*;version="0.0.0",
+							org.joda.time.*;version="[2.7,3.0.0)"
+						</Import-Package>
+						<Export-Package>io.minio.*;version=5.0.3</Export-Package>
+						<Embed-Transitive>true</Embed-Transitive>
+						<Embed-Dependency>*;scope=compile|runtime;inline=true;groupId=!com.fasterxml.jackson.dataformat|com.fasterxml.jackson.core|com.google.guava|com.google.http-client|joda-time</Embed-Dependency>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

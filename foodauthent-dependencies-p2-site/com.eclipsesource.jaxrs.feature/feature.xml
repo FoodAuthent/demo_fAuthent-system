@@ -2,7 +2,7 @@
 <feature
       id="com.eclipsesource.jaxrs.feature"
       label="EclipseSource JAXRS Feature"
-      version="1.0.0.qualifier"
+      version="1.0.1.qualifier"
       provider-name="ECLIPSESOURCE">
 
    <description url="http://www.example.com/description">

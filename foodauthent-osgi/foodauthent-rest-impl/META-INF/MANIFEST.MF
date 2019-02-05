@@ -28,8 +28,20 @@ Import-Package: com.eclipsesource.jaxrs.publisher;version="5.3.1",
  org.glassfish.jersey.server;version="2.22.1",
  org.osgi.framework;version="[1.5.0,2.0.0)",
  org.osgi.service.cm;version="[1.2.0,2.0.0)",
+ org.osgi.service.component.annotations;version="1.3.0";resolution:=optional,
  org.osgi.service.http;version="1.2.1",
  org.slf4j;version="1.7.10"
 Bundle-Activator: org.foodauthent.rest.impl.Activator
 Automatic-Module-Name: org.foodauthent.rest
 Export-Package: org.foodauthent.rest.impl.json
+Service-Component: OSGI-INF/org.foodauthent.rest.impl.service.SopRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.AuthenticationRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.UserRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.ProductRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.FingerprintRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.FileRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.ModelRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.OrganizationRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.WorkflowRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.CustomMetadataRestServiceImpl.xml
+Bundle-ActivationPolicy: lazy

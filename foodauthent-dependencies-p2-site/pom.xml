@@ -1,16 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.foodauthent.p2</groupId>
 	<artifactId>foodauthent-dependencies-p2-site</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
 		<!-- Plugin Versions -->
 		<tycho.version>1.2.0</tycho.version>
 		<!-- p2 repositories -->
 		<equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a</equinox-oxygen-repo.url>
-		<p2-maven-repo.url>http://repository.foodauthent.net/p2/p2-maven-1.0.0-SNAPSHOT</p2-maven-repo.url>
+		<p2-maven-repo.url>http://repository.foodauthent.net/p2/p2-maven-1.0.1-SNAPSHOT</p2-maven-repo.url>
 		<knime-analytics-platform.url>http://update.knime.com/analytics-platform/3.6/</knime-analytics-platform.url>
 		<p2-openchrom-platform.url>http://update.openchrom.net/repositories/community/latest/platform</p2-openchrom-platform.url>
 		<p2-openchrom-converter.url>http://update.openchrom.net/repositories/community/latest/converter</p2-openchrom-converter.url>
@@ -39,12 +40,12 @@
 			<id>openchrom-platform</id>
 			<url>${p2-openchrom-platform.url}</url>
 			<layout>p2</layout>
-		</repository>			
+		</repository>
 		<repository>
 			<id>openchrom-converter</id>
 			<url>${p2-openchrom-converter.url}</url>
 			<layout>p2</layout>
-		</repository>				
+		</repository>
 	</repositories>
 	<build>
 		<plugins>
@@ -56,6 +57,11 @@
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-versions-plugin</artifactId>
+				<version>${tycho.version}</version><!--$NO-MVN-MAN-VER$-->
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
@@ -63,7 +69,7 @@
 						<artifact>
 							<groupId>org.foodauthent.p2</groupId>
 							<artifactId>foodauthent-dependencies</artifactId>
-							<version>1.0.0-SNAPSHOT</version>
+							<version>1.0.1-SNAPSHOT</version>
 						</artifact>
 					</target>
 					<environments>
@@ -115,6 +121,11 @@
 						<target>1.8</target>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-versions-plugin</artifactId>
+					<version>${tycho.version}</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -122,6 +133,7 @@
 		<module>com.eclipsesource.jaxrs.publisher</module>
 		<module>com.eclipsesource.jaxrs.consumer</module>
 		<module>com.eclipsesource.jaxrs.feature</module>
+		<module>foodauthent-knime-dependencies-feature</module>
 		<module>net.openchrom.platform.feature</module>
 		<module>net.openchrom.converter.feature</module>
 		<module>foodauthent-dependencies-feature</module>

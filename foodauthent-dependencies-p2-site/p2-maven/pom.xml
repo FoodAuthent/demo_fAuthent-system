@@ -6,14 +6,13 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<groupId>org.foodauthent.repository</groupId>
 	<artifactId>p2-maven</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
 
 	<properties>
 		<tycho.version>1.2.0</tycho.version>
 	</properties>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -30,7 +29,26 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 						<configuration>
 							<featureDefinitions>
 								<feature>
-									<id>org.apache.httpcomponents</id>
+									<id>org.apache.commons.feature</id>
+									<version>1.1.0.qualifier</version>
+									<label>Apache Commons Feature</label>
+									<providerName>apache.org</providerName>
+									<copyright>https://www.apache.org</copyright>
+									<license>Apache</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>commons-codec:commons-codec:jar:1.11</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>commons-logging:commons-logging:jar:1.2</id>
+											<source>true</source>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>org.apache.httpcomponents.feature</id>
 									<version>4.4.10.qualifier</version>
 									<label>Apache HTTP Components Feature</label>
 									<providerName>apache.org</providerName>
@@ -55,82 +73,160 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 											<source>true</source>
 										</artifact>
 									</artifacts>
-								</feature>							
+								</feature>
 								<feature>
 									<id>org.elasticsearch.client.feature</id>
-									<version>6.3.1.qualifier</version>
-									<label>Elasticsearch 6.3.1 Client Feature</label>
+									<version>6.5.2.qualifier</version>
+									<label>Elasticsearch 6.5.2 Client Feature</label>
 									<providerName>elastic.co</providerName>
 									<copyright>elastic.co</copyright>
 									<license>Elastic License</license>
 									<artifacts>
 										<artifact>
-											<id>org.foodauthent:org.elasticsearch.client.rest:jar:6.3.1.v20180724-0</id>
+											<id>org.foodauthent:org.elasticsearch.client.rest:jar:6.5.2.v20181210-0</id>
 											<transitive>false</transitive>
 										</artifact>
 									</artifacts>
-								</feature>							
+								</feature>
 								<feature>
 									<id>com.fasterxml.jackson.feature</id>
-									<version>2.8.10.qualifier</version>
-									<label>FasterXML Jackson 2.8.10 Feature</label>
+									<version>2.9.7.qualifier</version>
+									<label>FasterXML Jackson 2.9.7 Feature</label>
 									<providerName>fasterxml.com</providerName>
 									<copyright>fasterxml.com</copyright>
 									<license>The Apache Software License, Version 2.0</license>
 									<generateSourceFeature>true</generateSourceFeature>
 									<artifacts>
 										<artifact>
-											<id>com.fasterxml.jackson.core:jackson-core:jar:2.8.10</id>
+											<id>com.fasterxml.jackson.core:jackson-core:jar:2.9.7</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>com.fasterxml.jackson.core:jackson-databind:jar:2.8.10</id>
+											<id>com.fasterxml.jackson.core:jackson-databind:jar:2.9.7</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.8.10</id>
+											<id>com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.7</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.8.10</id>
+											<id>com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.7</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.8.10</id>
+											<id>com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.7</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.8.10</id>
+											<id>com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.7</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.8.10</id>
+											<id>com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.7</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.10</id>
+											<id>com.fasterxml.jackson.core:jackson-annotations:jar:2.9.7</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.8.10</id>
+											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.7</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:jar:2.8.10</id>
+											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:jar:2.9.7</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-smile:jar:2.8.10</id>
+											<id>com.fasterxml.jackson.dataformat:jackson-dataformat-smile:jar:2.9.7</id>
 											<source>true</source>
-										</artifact>			
+										</artifact>
 										<artifact>
-											<id>com.fasterxml.jackson.datatype:jackson-datatype-jsr353:jar:2.8.10</id>
+											<id>com.fasterxml.jackson.datatype:jackson-datatype-jsr353:jar:2.9.7</id>
 											<source>true</source>
-										</artifact>														
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>org.glassfish.hk2.feature</id>
+									<version>2.5.0.qualifier</version>
+									<label>GlassFish HK2 2.5.0 Feature</label>
+									<providerName>https://glassfish.java.net</providerName>
+									<copyright>Oracle Corporation</copyright>
+									<license>
+										CDDL + GPLv2 with classpath exception
+									</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
 										<artifact>
-											<id>com.github.joschi.jackson:jackson-datatype-threetenbp:jar:2.8.4</id>
+											<transitive>false</transitive>
+											<id>org.glassfish.hk2:hk2-api:jar:2.5.0-b42</id>
 											<source>true</source>
-										</artifact>							
+											<override>true</override>
+											<instructions>
+												<Export-Package>org.glassfish.hk2.api;version="2.5.0";uses:="javax.inj
+													ect,org.aopalliance.intercept,org.glassfish.hk2.extension,org.glassfi
+													sh.hk2.utilities,org.jvnet.hk2.annotations",org.glassfish.hk2.api.mes
+													saging;version="2.5.0";uses:="javax.inject,org.glassfish.hk2.api,org.
+													jvnet.hk2.annotations",org.glassfish.hk2.extension;version="2.5.0";us
+													es:="org.glassfish.hk2.api",org.glassfish.hk2.utilities;version="2.5.
+													0";uses:="javax.inject,org.glassfish.hk2.api,org.glassfish.hk2.utilit
+													ies.binding,org.jvnet.hk2.annotations",org.glassfish.hk2.utilities.bi
+													nding;version="2.5.0";uses:="org.glassfish.hk2.api,org.glassfish.hk2.
+													utilities",org.jvnet.hk2.annotations;version="2.5.0";uses:="org.glass
+													fish.hk2.api",com.sun.hk2.component;version="2.5.0"</Export-Package>
+												<Import-Package>
+													javax.inject,org.aopalliance.intercept;version="[1.0,2
+													)",org.glassfish.hk2.extension;version="[2.5,3)",org.glassfish.hk2.os
+													giresourcelocator;version="[2.0,3)";resolution:=optional,org.glassfis
+													h.hk2.utilities.general;version="[2.5,3)",org.glassfish.hk2.utilities
+													.reflection;version="[2.5,3)",org.jvnet.hk2.component;version="[2.5,3
+													)"</Import-Package>
+												<DynamicImport-Package>*</DynamicImport-Package>
+												<Bundle-Vendor>Oracle Corporation</Bundle-Vendor>
+												<Bundle-Version>2.5.0.b42</Bundle-Version>
+												<Bundle-License>https://glassfish.java.net/nonav/public/CDDL+GPL_1_1.html</Bundle-License>
+												<Bundle-Description>HK2 API module</Bundle-Description>
+												<Bundle-SymbolicName>org.glassfish.hk2.api</Bundle-SymbolicName>
+												<Bundle-DocURL>http://www.oracle.com</Bundle-DocURL>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.glassfish.hk2:hk2-utils:jar:2.5.0-b42</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.glassfish.hk2:hk2-locator:jar:2.5.0-b42</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.glassfish.hk2:osgi-resource-locator:jar:2.5.0-b42</id>
+											<source>true</source>
+											<override>true</override>
+											<instructions>
+												<Export-Package>org.glassfish.hk2.osgiresourcelocator;uses:="org.osgi.framework";version="2.5.0"</Export-Package>
+												<Import-Package>org.osgi.framework;version="[1.7,2)</Import-Package>
+												<Bundle-Activator>org.glassfish.hk2.osgiresourcelocator.Activator</Bundle-Activator>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.glassfish.hk2.external:aopalliance-repackaged:jar:2.5.0-b42</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>javax:javax.inject.repackage:jar:1.0.0.201901151316</id>
+											<source>false</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.javassist:javassist:jar:3.24.1-GA</id>
+											<source>true</source>
+										</artifact>
 									</artifacts>
 								</feature>
 								<feature>
@@ -149,49 +245,80 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 									<generateSourceFeature>true</generateSourceFeature>
 									<artifacts>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.media:jersey-media-json-jackson:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.connectors:jersey-apache-connector:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.containers:jersey-container-servlet:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.core:jersey-client:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.core:jersey-server:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>org.glassfish.jersey.core:jersey-common:jar:2.27</id>
-											<source>true</source>
+											<transitive>false</transitive>
+											<id>org.glassfish.jersey.core:jersey-common:jar:2.27.1.201901151307</id>
+											<source>false</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.ext:jersey-entity-filtering:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.media:jersey-media-multipart:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.inject:jersey-hk2:jar:2.27</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
+											<transitive>false</transitive>
 											<id>org.glassfish.jersey.ext:jersey-proxy-client:jar:2.27</id>
 											<source>true</source>
-										</artifact>										
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>javax.ws.rs:javax.ws.rs-api:jar:2.1.1</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>org.jvnet.mimepull:mimepull:jar:1.9.10</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>javax.validation:validation-api:jar:1.1.0.Final</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<transitive>false</transitive>
+											<id>javax.annotation:javax.annotation-api:jar:1.2</id>
+											<source>true</source>
+										</artifact>
 									</artifacts>
 								</feature>
 								<feature>
@@ -227,7 +354,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 								</feature>
 								<feature>
 									<id>org.scala-lang.feature</id>
-									<version>2.12.3.qualifier</version>
+									<version>2.12.8.qualifier</version>
 									<label>Scala Feature</label>
 									<providerName>org.scala-lang</providerName>
 									<copyright>https://www.scala-lang.org</copyright>
@@ -235,13 +362,17 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 									<generateSourceFeature>true</generateSourceFeature>
 									<artifacts>
 										<artifact>
-											<id>org.scala-lang:scala-library:jar:2.12.6</id>
+											<id>org.scala-lang:scala-library:jar:2.12.8</id>
 											<source>true</source>
 										</artifact>
 										<artifact>
-											<id>org.foodauthent:org.json4s_2.12:jar:3.5.4.v20180724</id>
+											<id>org.scala-lang:scala-reflect:jar:2.12.8</id>
+											<source>true</source>
+										</artifact>
+										<artifact>
+											<id>org.foodauthent:org.json4s_2.12:jar:3.5.4.v20181204</id>
 											<transitive>false</transitive>
-										</artifact>										
+										</artifact>
 									</artifacts>
 								</feature>
 								<feature>
@@ -260,24 +391,348 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 									</artifacts>
 								</feature>
 								<feature>
-									<id>org.junit</id>
-									<version>4.12.0.qualifier</version>
-									<label>Testing Feature</label>
-									<providerName>org.junit</providerName>
-									<copyright>https://www.junit.org</copyright>
-									<license></license>
-									<generateSourceFeature>true</generateSourceFeature>
+									<id>org.eclipse.jdt.junit5.runtime.feature</id>
+									<version>1.0.200.qualifier</version>
+									<label>Java Development Tools JUnit5 Runtime Support</label>
+									<providerName>http://www.eclipse.org/jdt</providerName>
+									<copyright>http://junit.org</copyright>
+									<license>Eclipse Public License v2.0</license>
+									<generateSourceFeature>false</generateSourceFeature>
 									<artifacts>
 										<artifact>
+											<transitive>true</transitive>
+											<id>org.eclipse.jdt:org.eclipse.jdt.junit5.runtime:jar:1.0.200</id>
+											<source>false</source>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
+											<id>org.junit.jupiter:junit-jupiter-api:jar:5.3.1</id>
+											<source>false</source>
+											<override>true</override>
+											<instructions>
+												<Bundle-SymbolicName>org.junit.jupiter.api</Bundle-SymbolicName>
+												<Export-Package>*;version=5.3.1</Export-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
+											<id>org.apiguardian:apiguardian-api:jar:1.0.0</id>
+											<source>false</source>
+											<override>true</override>
+											<instructions>
+												<Bundle-SymbolicName>org.apiguardian</Bundle-SymbolicName>
+												<Export-Package>*;version=1.0.0</Export-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
+											<id>org.junit.platform:junit-platform-commons:jar:1.3.1</id>
+											<source>false</source>
+											<override>true</override>
+											<instructions>
+												<Bundle-SymbolicName>org.junit.platform.commons</Bundle-SymbolicName>
+												<Export-Package>*;version=1.3.1</Export-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
+											<id>org.eclipse.jdt:org.eclipse.jdt.junit.runtime:jar:3.4.900</id>
+											<source>false</source>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
+											<id>org.junit.jupiter:junit-jupiter-engine:jar:5.3.1</id>
+											<source>false</source>
+											<override>true</override>
+											<instructions>
+												<Bundle-SymbolicName>org.junit.jupiter.engine</Bundle-SymbolicName>
+												<Export-Package>*;version=5.3.1</Export-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
+											<id>org.junit.jupiter:junit-jupiter-migrationsupport:jar:5.3.1</id>
+											<source>false</source>
+											<override>true</override>
+											<instructions>
+												<Bundle-SymbolicName>org.junit.jupiter.migrationsupport</Bundle-SymbolicName>
+												<Export-Package>*;version=5.3.1</Export-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
+											<id>org.junit.jupiter:junit-jupiter-params:jar:5.3.1</id>
+											<source>false</source>
+											<override>true</override>
+											<instructions>
+												<Bundle-SymbolicName>org.junit.jupiter.params</Bundle-SymbolicName>
+												<Export-Package>*;version=5.3.1</Export-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
+											<id>org.junit.platform:junit-platform-engine:jar:1.3.1</id>
+											<source>false</source>
+											<override>true</override>
+											<instructions>
+												<Bundle-SymbolicName>org.junit.platform.engine</Bundle-SymbolicName>
+												<Export-Package>*;version=1.3.1</Export-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
+											<id>org.junit.platform:junit-platform-launcher:jar:1.3.1</id>
+											<source>false</source>
+											<override>true</override>
+											<instructions>
+												<Bundle-SymbolicName>org.junit.platform.launcher</Bundle-SymbolicName>
+												<Export-Package>*;version=1.3.1</Export-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
+											<id>org.junit.platform:junit-platform-runner:jar:1.3.1</id>
+											<source>false</source>
+											<override>true</override>
+											<instructions>
+												<Bundle-SymbolicName>org.junit.platform.runner</Bundle-SymbolicName>
+												<Export-Package>*;version=1.3.1</Export-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
+											<id>org.junit.platform:junit-platform-suite-api:jar:1.3.1</id>
+											<source>false</source>
+											<override>true</override>
+											<instructions>
+												<Bundle-SymbolicName>org.junit.platform.suite.api</Bundle-SymbolicName>
+												<Export-Package>*;version=1.3.1</Export-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
+											<id>org.junit.vintage:junit-vintage-engine:jar:5.3.1</id>
+											<source>false</source>
+											<override>true</override>
+											<instructions>
+												<Bundle-SymbolicName>org.junit.vintage.engine</Bundle-SymbolicName>
+												<Export-Package>*;version=5.3.1</Export-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
+											<id>org.opentest4j:opentest4j:jar:1.1.1</id>
+											<source>false</source>
+											<override>true</override>
+											<instructions>
+												<Export-Package>*;version=1.1.1</Export-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<transitive>true</transitive>
 											<id>junit:junit:jar:4.12</id>
 											<source>false</source>
+											<override>true</override>
+											<instructions>
+												<Bundle-SymbolicName>org.junit</Bundle-SymbolicName>
+												<Export-Package>*;version=4.12.0</Export-Package>
+											</instructions>
 										</artifact>
 										<artifact>
 											<id>org.hamcrest:hamcrest-core:jar:1.3</id>
 											<source>false</source>
 										</artifact>
 									</artifacts>
-								</feature>								
+								</feature>
+								<feature>
+									<id>com.typesafe.feature</id>
+									<version>1.3.3.qualifier</version>
+									<label>Typesafe Config 1.3.3 Feature</label>
+									<providerName>lightbend</providerName>
+									<copyright>https://github.com/lightbend/config</copyright>
+									<license>Apache License Version 2.0</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>com.typesafe:config:jar:1.3.3</id>
+											<source>true</source>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>org.joda.time.feature</id>
+									<version>2.10.1.qualifier</version>
+									<label>Joda Time 2.10.1 Feature</label>
+									<providerName>Joda.org</providerName>
+									<copyright>https://www.joda.org/joda-time/</copyright>
+									<license>Apache License Version 2.0</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>joda-time:joda-time:jar:2.10.1</id>
+											<source>true</source>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>io.minio.feature</id>
+									<version>5.0.3.qualifier</version>
+									<label>Minio Java SDK for Amazon S3 Compatible Cloud Storage
+										Feature</label>
+									<providerName>https://github.com/minio/minio-java</providerName>
+									<copyright>https://github.com/minio/minio-java</copyright>
+									<license>Apache License Version 2.0</license>
+									<generateSourceFeature>false</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>org.foodauthent:io.minio:jar:5.0.3.v201812051622</id>
+											<source>false</source>
+											<transitive>false</transitive>
+										</artifact>
+										<artifact>
+											<id>com.google.guava:guava:jar:27.0.1-jre</id>
+											<source>false</source>
+											<transitive>true</transitive>
+										</artifact>
+										<artifact>
+											<id>com.google.http-client:google-http-client-xml:jar:1.27.0</id>
+											<source>false</source>
+											<transitive>false</transitive>
+										</artifact>
+										<artifact>
+											<id>com.google.http-client:google-http-client:jar:1.27.0</id>
+											<source>false</source>
+											<transitive>false</transitive>
+											<override>true</override>
+											<instructions>
+												<Import-Package>com.google.common.base;version="[20.0,28)",javax.net.s
+													sl,org.apache.commons.codec.binary;version="[1.10,2)",org.apache.http
+													,org.apache.http.client,org.apache.http.client.methods,org.apache.htt
+													p.conn,org.apache.http.conn.params,org.apache.http.conn.routing,org.a
+													pache.http.conn.scheme,org.apache.http.conn.ssl,org.apache.http.entit
+													y,org.apache.http.impl.client,org.apache.http.impl.conn,org.apache.ht
+													tp.impl.conn.tsccm,org.apache.http.message,org.apache.http.params,org
+													.apache.http.protocol</Import-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<id>org.ogce:xpp3:jar:1.1.6</id>
+											<source>false</source>
+											<transitive>false</transitive>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>com.auth0.java-jwt.feature</id>
+									<version>3.4.1.qualifier</version>
+									<label>Java implementation of JSON Web Token (JWT) Feature</label>
+									<providerName>jwt.io</providerName>
+									<copyright>https://www.jwt.io</copyright>
+									<license>MIT License (MIT)</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>com.auth0:java-jwt:jar:3.4.1</id>
+											<source>true</source>
+											<transitive>false</transitive>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>com.noscendo.amazonaws.feature</id>
+									<version>1.11.475.qualifier</version>
+									<label>Amazon AWS OSGi Feature</label>
+									<providerName>jwt.io</providerName>
+									<copyright>https://aws.amazon.com/sdkforjava</copyright>
+									<license>Apache License, Version 2.0</license>
+									<generateSourceFeature>false</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>org.foodauthent:com.amazonaws.nos-osgi:1.11.479.v20190108-0</id>
+											<source>true</source>
+											<transitive>false</transitive>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>com.google.feature</id>
+									<version>27.0.1.qualifier</version>
+									<label>Google Guava, GSON and Code</label>
+									<providerName>Google</providerName>
+									<copyright>http://www.apache.org/licenses/LICENSE-2.0.txt</copyright>
+									<license>Apache License, Version 2.0</license>
+									<generateSourceFeature>false</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>com.google.guava:guava:jar:27.0.1-jre</id>
+											<source>false</source>
+											<transitive>true</transitive>
+										</artifact>
+										<artifact>
+											<id>com.google.http-client:google-http-client-xml:jar:1.27.0</id>
+											<source>false</source>
+											<transitive>false</transitive>
+										</artifact>
+										<artifact>
+											<id>com.google.http-client:google-http-client:jar:1.27.0</id>
+											<source>false</source>
+											<transitive>false</transitive>
+											<override>true</override>
+											<instructions>
+												<Import-Package>com.google.common.base;version="[20.0,28)",javax.net.s
+													sl,org.apache.commons.codec.binary;version="[1.10,2)",org.apache.http
+													,org.apache.http.client,org.apache.http.client.methods,org.apache.htt
+													p.conn,org.apache.http.conn.params,org.apache.http.conn.routing,org.a
+													pache.http.conn.scheme,org.apache.http.conn.ssl,org.apache.http.entit
+													y,org.apache.http.impl.client,org.apache.http.impl.conn,org.apache.ht
+													tp.impl.conn.tsccm,org.apache.http.message,org.apache.http.params,org
+													.apache.http.protocol</Import-Package>
+											</instructions>
+										</artifact>
+										<artifact>
+											<id>com.github.rholder:guava-retrying:jar:2.0.0</id>
+											<source>true</source>
+											<transitive>false</transitive>
+										</artifact>
+										<artifact>
+											<id>com.google.code.gson:gson:jar:2.8.5</id>
+											<source>true</source>
+											<transitive>false</transitive>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>org.apacheds.feature</id>
+									<version>1.0.2.qualifier</version>
+									<label>ApacheDS API Feautre</label>
+									<providerName>ldaptive.org</providerName>
+									<copyright>https://directory.apache.org</copyright>
+									<license>Apache License, Version 2.0 and LGPL</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>org.foodauthent:org.apacheds.api-all:jar:1.0.2.v20190111-0</id>
+											<source>false</source>
+											<transitive>false</transitive>
+										</artifact>
+									</artifacts>
+								</feature>
+								<feature>
+									<id>org.ldaptive.osgi.feature</id>
+									<version>1.2.3.qualifier</version>
+									<label>ldaptive LDAP Tooling Feature</label>
+									<providerName>ldaptive.org</providerName>
+									<copyright>https://www.ldaptive.org</copyright>
+									<license>Apache License, Version 2.0 and LGPL</license>
+									<generateSourceFeature>true</generateSourceFeature>
+									<artifacts>
+										<artifact>
+											<id>org.foodauthent:org.ldaptive:jar:1.2.3.v20190108-0</id>
+											<source>false</source>
+											<transitive>false</transitive>
+										</artifact>
+									</artifacts>
+								</feature>
 							</featureDefinitions>
 						</configuration>
 					</execution>
@@ -324,5 +779,12 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modules>
 		<module>org.elasticsearch.client.rest</module>
 		<module>org.json4s_2.12</module>
+		<module>io.minio</module>
+		<module>javax.inject</module>
+		<module>javax.annotation</module>
+		<module>jersey-common</module>
+		<module>com.amazonaws</module>
+		<module>org.apacheds.api-all</module>
+		<module>org.ldaptive</module>
 	</modules>
 </project>

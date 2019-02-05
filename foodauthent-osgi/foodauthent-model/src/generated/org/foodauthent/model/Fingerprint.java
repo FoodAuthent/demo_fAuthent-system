@@ -12,6 +12,7 @@ import java.util.Objects;
 
 
 
+
 /**
  * A fingerprint object representing its metadata.
  *
@@ -21,8 +22,9 @@ import java.util.Objects;
 public class Fingerprint   extends FaModel {
 
 
-  private java.util.UUID faId;
-  private String metadata;
+  protected java.util.UUID faId;
+  protected String metadata;
+  protected java.util.Map<String, String> additionalProperties;
   
   public String getTypeID() {
     return "Fingerprint";
@@ -30,10 +32,13 @@ public class Fingerprint   extends FaModel {
   
 
   
+  protected Fingerprint() {}
+  
   private Fingerprint(FingerprintBuilder builder) {
     
     faId = immutable(builder.faId);
     metadata = immutable(builder.metadata);
+    additionalProperties = immutable(builder.additionalProperties);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -54,7 +59,7 @@ public class Fingerprint   extends FaModel {
             return false;
         }
         Fingerprint ent = (Fingerprint)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(metadata, ent.metadata);
+        return Objects.equals(faId, ent.faId) && Objects.equals(metadata, ent.metadata) && Objects.equals(additionalProperties, ent.additionalProperties);
     }
 
 
@@ -72,6 +77,14 @@ public class Fingerprint   extends FaModel {
    */
   public String getMetadata() {
         return metadata;
+    }
+    
+  /**
+   * Key-value-map for additional properties.
+   * @return additionalProperties 
+   */
+  public java.util.Map<String, String> getAdditionalProperties() {
+        return additionalProperties;
     }
     
   
@@ -94,18 +107,20 @@ public class Fingerprint   extends FaModel {
 		FingerprintBuilder builder = builder();
         builder.faId = entity.faId;
         builder.metadata = entity.metadata;
+        builder.additionalProperties = entity.additionalProperties;
  		return builder;
   	}
   	
   
     public static class FingerprintBuilder {
     
-        private FingerprintBuilder(){
+        protected FingerprintBuilder(){
             
         }
     
         private java.util.UUID faId;
         private String metadata;
+        private java.util.Map<String, String> additionalProperties = new java.util.HashMap<>();
 
         /**
          * A global id within the FoodAuthent-system.
@@ -122,6 +137,15 @@ public class Fingerprint   extends FaModel {
          */
         public FingerprintBuilder setMetadata(String metadata) {
              this.metadata = metadata;
+             return this;
+        }
+
+        /**
+         * Key-value-map for additional properties.
+         * @return additionalProperties 
+         */
+        public FingerprintBuilder setAdditionalProperties(java.util.Map<String, String> additionalProperties) {
+             this.additionalProperties = additionalProperties;
              return this;
         }
 

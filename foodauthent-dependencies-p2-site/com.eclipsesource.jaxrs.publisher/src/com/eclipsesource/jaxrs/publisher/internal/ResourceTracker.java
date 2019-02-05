@@ -36,8 +36,14 @@ public class ResourceTracker extends ServiceTracker {
 
   @Override
   public Object addingService( ServiceReference reference ) {
+	try {
     Object service = context.getService( reference );
     return delegateAddService( reference, service );
+	}
+	catch (Exception e) {
+		e.printStackTrace();
+		return null;
+	}
   }
 
   private Object delegateAddService( ServiceReference reference, Object service ) {

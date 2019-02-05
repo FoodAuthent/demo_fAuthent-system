@@ -29,6 +29,9 @@
    </launcher>
 
    <vm>
+      <linux include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
+      <macos include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</macos>
+      <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</windows>
    </vm>
 
    <plugins>
@@ -36,12 +39,10 @@
 
    <features>
       <feature id="org.foodauthent.knime.feature" version="1.0.0.qualifier"/>
-      <feature id="org.knime.features.base" version="3.6.0.v201807100940"/>
-      <feature id="org.knime.features.json" version="3.6.0.v201807061527"/>
-      <feature id="org.knime.features.python2" version="3.6.0.v201807061638"/>
-      <feature id="org.eclipse.ecf.filetransfer.httpclient4.feature"/>
+      <feature id="org.knime.features.base"/>
+      <feature id="org.knime.features.json"/>
+      <feature id="org.knime.features.python2"/>
       <feature id="org.eclipse.help"/>
-      <feature id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature"/>
       <feature id="org.eclipse.emf.common"/>
       <feature id="org.eclipse.equinox.p2.core.feature"/>
       <feature id="org.knime.features.base.source"/>
@@ -61,6 +62,23 @@
       <feature id="org.foodauthent.feature" version="1.0.0.qualifier"/>
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
+      <feature id="com.eclipsesource.jaxrs.feature"/>
+      <feature id="com.fasterxml.jackson.feature" version="2.9.7.20181206175215"/>
+      <feature id="com.typesafe.feature" version="1.3.3.20181206175215"/>
+      <feature id="io.minio.feature" version="5.0.3.20181206175215"/>
+      <feature id="io.swagger.feature" version="1.5.20.20181206175215"/>
+      <feature id="org.apache.commons.feature" version="1.1.0.20181206175215"/>
+      <feature id="org.apache.httpcomponents.feature" version="4.4.10.20181206175215"/>
+      <feature id="org.joda.time.feature" version="2.10.1.20181206175215"/>
+      <feature id="org.foodauthent.openchrom.feature" version="1.0.0.qualifier"/>
+      <feature id="org.glassfish.hk2.feature" version="2.5.0.20181206175215"/>
+      <feature id="org.glassfish.jersey.feature" version="2.27.0.20181206175215"/>
+      <feature id="com.knime.features.enterprise.client"/>
+      <feature id="org.foodauthent.knime.dependencies.feature"/>
+      <feature id="net.openchrom.platform.feature"/>
+      <feature id="com.knime.features.enterprise.server.ws.client"/>
+      <feature id="net.openchrom.converter.feature"/>
+      <feature id="com.knime.features.explorer.serverspace"/>
    </features>
 
    <configurations>
@@ -207,7 +225,6 @@
       <plugin id="org.glassfish.jersey.core.jersey-server" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.jersey.ext.jersey-entity-filtering" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.jersey.inject.jersey-hk2" autoStart="true" startLevel="0" />
-      <plugin id="org.glassfish.jersey.media.jersey-media-jaxb" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.jersey.media.jersey-media-json-jackson" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.jersey.media.jersey-media-multipart" autoStart="true" startLevel="0" />
       <plugin id="org.jvnet.mimepull" autoStart="true" startLevel="0" />

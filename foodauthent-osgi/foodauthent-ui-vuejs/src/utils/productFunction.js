@@ -72,7 +72,6 @@ var MyObject = function () {
   };
 
     var deleteProducts = function (id, self) {
-    console.log('Delete Products');
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -85,14 +84,10 @@ var MyObject = function () {
         console.log("API called successfully. Returned data: ", data);
       }
     };
-    var opt = {
-      id: id
-    };
-    alert("When the Api will support thie features it will work and delete this id: "+id);
-    // productApi.deleteProduct(
-    //   opt,
-    //   callback
-    // );
+     productApi.removeProductByGtin(
+       id,
+       callback
+     );
   };
   
     var updateProducts = function (json, self) {

@@ -14,6 +14,7 @@ import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.WorkflowParameter;
 
 
+
 /**
  * Describes the input required by a prediction workflow.
  *
@@ -23,10 +24,10 @@ import org.foodauthent.model.WorkflowParameter;
 public class PredictionWorkflowInput   extends FaModel {
 
 
-  private java.util.List<WorkflowParameter> parameters;
-  private FingerprintSet fingerprintsetMetadata;
-  private String fingerprintsetURI;
-  private String modelURI;
+  protected java.util.List<WorkflowParameter> parameters;
+  protected FingerprintSet fingerprintsetMetadata;
+  protected String fingerprintsetURI;
+  protected String modelURI;
   
   public String getTypeID() {
     return "PredictionWorkflowInput";
@@ -37,6 +38,8 @@ public class PredictionWorkflowInput   extends FaModel {
   public java.util.UUID getFaId() {
   	return null;
   }
+  
+  protected PredictionWorkflowInput() {}
   
   private PredictionWorkflowInput(PredictionWorkflowInputBuilder builder) {
     
@@ -127,7 +130,7 @@ public class PredictionWorkflowInput   extends FaModel {
   
     public static class PredictionWorkflowInputBuilder {
     
-        private PredictionWorkflowInputBuilder(){
+        protected PredictionWorkflowInputBuilder(){
             
         }
     

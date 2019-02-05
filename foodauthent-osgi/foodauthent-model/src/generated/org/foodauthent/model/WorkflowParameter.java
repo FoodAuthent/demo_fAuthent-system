@@ -12,6 +12,7 @@ import java.util.Objects;
 
 
 
+
 /**
  * Represents a workflow parameter.
  *
@@ -42,10 +43,10 @@ public class WorkflowParameter   extends FaModel {
   }
 
 
-  private String name;
-  private Boolean required;
-  private TypeEnum type;
-  private String value;
+  protected String name;
+  protected Boolean required;
+  protected TypeEnum type;
+  protected String value;
   
   public String getTypeID() {
     return "WorkflowParameter";
@@ -56,6 +57,8 @@ public class WorkflowParameter   extends FaModel {
   public java.util.UUID getFaId() {
   	return null;
   }
+  
+  protected WorkflowParameter() {}
   
   private WorkflowParameter(WorkflowParameterBuilder builder) {
     
@@ -146,7 +149,7 @@ public class WorkflowParameter   extends FaModel {
   
     public static class WorkflowParameterBuilder {
     
-        private WorkflowParameterBuilder(){
+        protected WorkflowParameterBuilder(){
             
         }
     

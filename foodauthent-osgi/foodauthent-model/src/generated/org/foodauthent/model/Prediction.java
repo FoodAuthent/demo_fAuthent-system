@@ -12,6 +12,7 @@ import java.util.Objects;
 
 
 
+
 /**
  * Prediction
  *
@@ -21,17 +22,19 @@ import java.util.Objects;
 public class Prediction   extends FaModel {
 
 
-  private java.util.UUID faId;
-  private java.util.Map<String, Float> confidenceMap;
-  private java.util.UUID workflowId;
-  private java.util.UUID fingerprintSetId;
-  private java.util.UUID modelId;
+  protected java.util.UUID faId;
+  protected java.util.Map<String, Float> confidenceMap;
+  protected java.util.UUID workflowId;
+  protected java.util.UUID fingerprintSetId;
+  protected java.util.UUID modelId;
   
   public String getTypeID() {
     return "Prediction";
   }
   
 
+  
+  protected Prediction() {}
   
   private Prediction(PredictionBuilder builder) {
     
@@ -133,7 +136,7 @@ public class Prediction   extends FaModel {
   
     public static class PredictionBuilder {
     
-        private PredictionBuilder(){
+        protected PredictionBuilder(){
             
         }
     

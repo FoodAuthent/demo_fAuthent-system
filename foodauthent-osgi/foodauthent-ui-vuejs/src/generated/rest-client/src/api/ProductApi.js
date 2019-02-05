@@ -191,6 +191,96 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
+
+    /**
+     * Callback function to receive the result of the removeProductByGtin operation.
+     * @callback module:api/ProductApi~removeProductByGtinCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Delete a product specified by gtin.
+     * TODO
+     * @param {String} gtin 
+     * @param {module:api/ProductApi~removeProductByGtinCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.removeProductByGtin = function(gtin, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'gtin' is set
+      if (gtin === undefined || gtin === null) {
+        throw new Error("Missing the required parameter 'gtin' when calling removeProductByGtin");
+      }
+
+
+      var pathParams = {
+        'gtin': gtin
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = [];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/product/{gtin}', 'DELETE',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the updatedProduct operation.
+     * @callback module:api/ProductApi~updatedProductCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * update a new product entity.
+     * TODO
+     * @param {Object} opts Optional parameters
+     * @param {module:model/Product} opts.product TODO
+     * @param {module:api/ProductApi~updatedProductCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.updatedProduct = function(opts, callback) {
+      opts = opts || {};
+      var postBody = opts['product'];
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = ['application/json'];
+      var accepts = [];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/product', 'PUT',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
   };
 
   return exports;

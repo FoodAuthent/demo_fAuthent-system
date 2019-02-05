@@ -12,6 +12,7 @@ import java.util.Objects;
 
 
 
+
 /**
  * Represents model training job.
  *
@@ -44,16 +45,18 @@ public class TrainingJob   extends FaModel {
   }
 
 
-  private java.util.UUID faId;
-  private java.util.UUID modelId;
-  private StatusEnum status;
-  private String statusMessage;
+  protected java.util.UUID faId;
+  protected java.util.UUID modelId;
+  protected StatusEnum status;
+  protected String statusMessage;
   
   public String getTypeID() {
     return "TrainingJob";
   }
   
 
+  
+  protected TrainingJob() {}
   
   private TrainingJob(TrainingJobBuilder builder) {
     
@@ -145,7 +148,7 @@ public class TrainingJob   extends FaModel {
   
     public static class TrainingJobBuilder {
     
-        private TrainingJobBuilder(){
+        protected TrainingJobBuilder(){
             
         }
     

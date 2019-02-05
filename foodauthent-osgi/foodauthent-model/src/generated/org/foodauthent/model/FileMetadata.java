@@ -13,6 +13,7 @@ import java.util.Objects;
 import java.time.LocalDate;
 
 
+
 /**
  * Metadata of a file in the FoodAuthent-system.
  *
@@ -49,22 +50,24 @@ public class FileMetadata   extends FaModel {
   }
 
 
-  private java.util.UUID faId;
-  private TypeEnum type;
-  private String name;
-  private String uploadName;
-  private String description;
-  private String author;
-  private LocalDate date;
-  private LocalDate uploadDate;
-  private Integer version;
-  private java.util.Map<String, String> additionalProperties;
+  protected java.util.UUID faId;
+  protected TypeEnum type;
+  protected String name;
+  protected String uploadName;
+  protected String description;
+  protected String author;
+  protected LocalDate date;
+  protected LocalDate uploadDate;
+  protected Integer version;
+  protected java.util.Map<String, String> additionalProperties;
   
   public String getTypeID() {
     return "FileMetadata";
   }
   
 
+  
+  protected FileMetadata() {}
   
   private FileMetadata(FileMetadataBuilder builder) {
     
@@ -216,7 +219,7 @@ public class FileMetadata   extends FaModel {
   
     public static class FileMetadataBuilder {
     
-        private FileMetadataBuilder(){
+        protected FileMetadataBuilder(){
             
         }
     

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" name="org.foodauthent.ldap.internal.LdapAuthenticationServiceImpl">
+   <service scope="singleton">
+      <provide interface="org.foodauthent.ldap.LdapAuthenticationService"/>
+   </service>
+   <reference bind="bindLDAPConfig" cardinality="1..1" interface="org.foodauthent.ldap.config.LDAPConfig" name="LDAPConfig"/>
+   <reference bind="bindLdapPersonService" cardinality="1..1" interface="org.foodauthent.ldap.LdapPersonService" name="LdapPersonService" unbind="unbindLdapPersonService"/>
+   <reference bind="bindPooledLdapOperationService" cardinality="1..1" interface="org.foodauthent.ldap.LdapOperationManager" name="PooledLdapOperationService" unbind="unbindPooledLdapOperationService"/>
+   <implementation class="org.foodauthent.ldap.internal.LdapAuthenticationServiceImpl"/>
+</scr:component>

@@ -13,6 +13,7 @@ import java.util.Objects;
 import org.foodauthent.model.Tag;
 
 
+
 /**
  * TagPageResult
  *
@@ -22,10 +23,10 @@ import org.foodauthent.model.Tag;
 public class TagPageResult   extends FaModel {
 
 
-  private Integer pageNumber;
-  private Integer pageCount;
-  private Integer resultCount;
-  private java.util.List<Tag> results;
+  protected Integer pageNumber;
+  protected Integer pageCount;
+  protected Integer resultCount;
+  protected java.util.List<Tag> results;
   
   public String getTypeID() {
     return "TagPageResult";
@@ -36,6 +37,8 @@ public class TagPageResult   extends FaModel {
   public java.util.UUID getFaId() {
   	return null;
   }
+  
+  protected TagPageResult() {}
   
   private TagPageResult(TagPageResultBuilder builder) {
     
@@ -126,7 +129,7 @@ public class TagPageResult   extends FaModel {
   
     public static class TagPageResultBuilder {
     
-        private TagPageResultBuilder(){
+        protected TagPageResultBuilder(){
             
         }
     

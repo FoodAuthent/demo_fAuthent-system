@@ -14,7 +14,6 @@ import org.foodauthent.api.internal.exception.NoSuchIDException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.model.FaModel;
-import org.foodauthent.model.FaModel;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.Product;

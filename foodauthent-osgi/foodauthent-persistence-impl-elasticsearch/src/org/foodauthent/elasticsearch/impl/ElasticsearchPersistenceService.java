@@ -1,5 +1,6 @@
 package org.foodauthent.elasticsearch.impl;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collection;
@@ -11,19 +12,27 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.foodauthent.api.internal.exception.EntityExistsException;
+import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.elasticsearch.ClientService;
+import org.foodauthent.elasticsearch.ClientServiceListener;
 import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResult;
 import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResultItem;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
+import org.foodauthent.storage.FileStorageService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.io.ByteStreams;
 import com.google.common.io.CharStreams;
 
 import scala.Option;
@@ -34,23 +43,49 @@ import scala.Option;
  * @author Sven Böckelmann
  *
  */
-@Component(service = PersistenceService.class)
-public class ElasticsearchPersistenceService implements PersistenceService {
+@Component(service = { PersistenceService.class, ClientServiceListener.class }, immediate = true)
+public class ElasticsearchPersistenceService implements PersistenceService, ClientServiceListener {
+
+	@Reference(service = FileStorageService.class, bind = "bindFileStorageService", unbind = "unbindFileStorageService")
+	private FileStorageService fileStorageService;
 
 	private ElasticsearchOperation op;
 
 	private Map<Class<?>, Target> targets = new HashMap<Class<?>, Target>();
 
-	@Reference
-	public void bindClientService(ClientService clientService) {
-		op = new ElasticsearchOperation(clientService.getClient());
+	private static final Logger LOG = LoggerFactory.getLogger(ElasticsearchPersistenceService.class);
+
+	public ElasticsearchPersistenceService() {
 	}
 
 	@Override
-	public <T extends FaModel> T save(T entity) throws EntityExistsException {
+	public void clientChanged(RestHighLevelClient client) {
+		if (client == null) {
+			this.op = null;
+		} else {
+			final ElasticsearchOperation op = new ElasticsearchOperation(client);
+			this.op = op;
+		}
+	}
+
+	@Reference(service = ClientService.class, cardinality = ReferenceCardinality.MANDATORY)
+	public void bindClientService(ClientService clientService) {
+		clientChanged(clientService.getClient());
+	}
+
+	public void bindFileStorageService(FileStorageService fileStorageService) {
+		this.fileStorageService = fileStorageService;
+	}
+
+	public void unbindFileStorageService(FileStorageService fileStorageService) {
+		this.fileStorageService = null;
+	}
+
+	@Override
+	public <T extends FaModel> T save(T entity) throws ModelExistsException {
 		final Target target = classTarget(entity.getClass());
 		if (op.exists(QueryBuilders.idsQuery().addIds(entity.getFaId().toString()), target).isDefined()) {
-			throw new EntityExistsException("An entity with the given id already exists.");
+			throw new ModelExistsException("An entity with the given id already exists.");
 		}
 		if (op.save(Option.apply(entity.getFaId().toString()), entity, target)) {
 			return entity;
@@ -67,10 +102,31 @@ public class ElasticsearchPersistenceService implements PersistenceService {
 	}
 
 	@Override
-	public UUID save(Blob blob) throws EntityExistsException {
+	public UUID save(Blob blob) throws ModelExistsException {
+		if (fileStorageService != null) {
+			return saveToFileStorageService(blob);
+		} else {
+			return saveToElasticsearch(blob);
+		}
+	}
+
+	private UUID saveToFileStorageService(Blob blob) throws ModelExistsException {
+		try {
+			if (fileStorageService.exists(blob.getFaId())) {
+				throw new ModelExistsException("An entity with the given id already exists.");
+			}
+			fileStorageService.save(blob.getFaId(), new ByteArrayInputStream(blob.getData()));
+			return blob.getFaId();
+		} catch (IOException e) {
+			LOG.error("unable to save blob " + blob.getFaId().toString(), e);
+			throw new RuntimeException(e);
+		}
+	}
+
+	private UUID saveToElasticsearch(Blob blob) throws ModelExistsException {
 		Target target = blobTarget();
 		if (op.exists(QueryBuilders.idsQuery().addIds(blob.getFaId().toString()), target).isDefined()) {
-			throw new EntityExistsException("An entity with the given id already exists.");
+			throw new ModelExistsException("An entity with the given id already exists.");
 		}
 		ESBlob es = new ESBlob(blob);
 		if (op.save(Option.apply(blob.getFaId().toString()), es, target)) {
@@ -106,6 +162,27 @@ public class ElasticsearchPersistenceService implements PersistenceService {
 
 	@Override
 	public Blob getBlobByUUID(UUID uuid) {
+		if (fileStorageService != null) {
+			return getBlobByUUIDFromFileStorageService(uuid);
+		} else {
+			return getBlobByUUIDFromElasticsearch(uuid);
+		}
+	}
+
+	private Blob getBlobByUUIDFromFileStorageService(UUID uuid) {
+		try {
+			if (!fileStorageService.exists(uuid)) {
+				throw new NoSuchElementException();
+			}
+			final byte[] data = ByteStreams.toByteArray(fileStorageService.load(uuid));
+			return new Blob(uuid, data);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private Blob getBlobByUUIDFromElasticsearch(UUID uuid) {
+
 		Option<ESBlob> es = op.get(uuid.toString(), blobTarget(), op.manifest(ESBlob.class));
 		if (es.isDefined()) {
 			return es.get().toBlob(uuid);
@@ -118,6 +195,9 @@ public class ElasticsearchPersistenceService implements PersistenceService {
 		if (t == null) {
 			t = new Target(cls.getSimpleName().toLowerCase(), "data");
 			targets.put(cls, t);
+			if (!ElasticsearchUtil.indexExists(op.client(), t.indexName())) {
+				ElasticsearchUtil.setupIndex(op.client(), t.indexName(), Option.empty());
+			}
 		}
 		return t;
 	}
@@ -145,8 +225,12 @@ public class ElasticsearchPersistenceService implements PersistenceService {
 			int pageNumber, int pageSize) {
 		final SearchRequest request = op.searchRequest(classTarget(modelType));
 		final SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
-		sourceBuilder.query(QueryBuilders.simpleQueryStringQuery(String.join(" AND ", keywords)));
-		sourceBuilder.from(pageNumber * pageSize);
+		if (keywords.isEmpty()) {
+			sourceBuilder.query(QueryBuilders.matchAllQuery());
+		} else {
+			sourceBuilder.query(QueryBuilders.simpleQueryStringQuery(String.join(" AND ", keywords)));
+		}
+		sourceBuilder.from((pageNumber - 1) * pageSize);
 		sourceBuilder.size(pageSize);
 		request.source(sourceBuilder);
 		final SearchResult<T> result = op.search(request, op.manifest(modelType));
@@ -155,7 +239,8 @@ public class ElasticsearchPersistenceService implements PersistenceService {
 
 			@Override
 			public int getTotalNumPages() {
-				return (int) result.resultTotalCount() / pageSize;
+				return result.resultTotalCount() == 0 ? 0
+						: (int) Math.ceil((float) (result.resultTotalCount() / (float) pageSize));
 			}
 
 			@Override
@@ -175,6 +260,18 @@ public class ElasticsearchPersistenceService implements PersistenceService {
 	@Override
 	public void removeFaModelByUUID(UUID uuid, Class<?> modelType) {
 		op.delete(uuid.toString(), classTarget(modelType));
+	}
+
+	@Override
+	public UUID saveCustomModel(JsonNode model, String typeId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public JsonNode getCustomModelByUUID(UUID uuid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
