@@ -66,9 +66,6 @@
       if (data.hasOwnProperty('metadata')) {
         obj['metadata'] = ApiClient.convertToType(data['metadata'], 'String');
       }
-      if (data.hasOwnProperty('additional-properties')) {
-        obj['additional-properties'] = ApiClient.convertToType(data['additional-properties'], Object);
-      }
     }
     return obj;
   }
@@ -83,11 +80,6 @@
    * @member {String} metadata
    */
   exports.prototype['metadata'] = undefined;
-  /**
-   * Key-value-map for additional properties.
-   * @member {Object.<String, String>} additional-properties
-   */
-  exports.prototype['additional-properties'] = undefined;
 
 
 

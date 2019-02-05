@@ -73,7 +73,6 @@ public class FileServiceImpl implements FileService {
 
 	validateFileType(fileMeta.getType(), upfileDetail);
 
-
 	fileMeta = FileMetadata.builder(fileMeta).setUploadName(upfileDetail.getFileName()).setUploadDate(LocalDate.now()).build();
 	persistenceService.replace(fileMeta);
 

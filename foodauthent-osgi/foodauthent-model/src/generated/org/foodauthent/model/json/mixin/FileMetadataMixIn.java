@@ -73,6 +73,9 @@ public interface FileMetadataMixIn {
     @JsonProperty("version")
     public Integer getVersion();
     
+    @JsonProperty("additional-properties")
+    public java.util.Map<String, String> getAdditionalProperties();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -118,6 +121,9 @@ public interface FileMetadataMixIn {
         
         @JsonProperty("version")
         public FileMetadataMixInBuilder setVersion(final Integer version);
+        
+        @JsonProperty("additional-properties")
+        public FileMetadataMixInBuilder setAdditionalProperties(final java.util.Map<String, String> additionalProperties);
         
     }
 

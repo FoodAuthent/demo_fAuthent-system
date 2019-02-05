@@ -50,9 +50,6 @@ public interface FingerprintMixIn {
     @JsonProperty("metadata")
     public String getMetadata();
     
-    @JsonProperty("additional-properties")
-    public java.util.Map<String, String> getAdditionalProperties();
-    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -77,9 +74,6 @@ public interface FingerprintMixIn {
         
         @JsonProperty("metadata")
         public FingerprintMixInBuilder setMetadata(final String metadata);
-        
-        @JsonProperty("additional-properties")
-        public FingerprintMixInBuilder setAdditionalProperties(final java.util.Map<String, String> additionalProperties);
         
     }
 
