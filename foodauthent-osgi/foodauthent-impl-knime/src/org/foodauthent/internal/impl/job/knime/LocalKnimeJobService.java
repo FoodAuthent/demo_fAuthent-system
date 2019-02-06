@@ -1,5 +1,7 @@
 package org.foodauthent.internal.impl.job.knime;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.time.LocalDate;
@@ -8,6 +10,7 @@ import java.util.UUID;
 import javax.json.Json;
 import javax.json.JsonValue;
 
+import org.apache.commons.io.IOUtils;
 import org.foodauthent.api.internal.job.JobService;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
@@ -30,26 +33,23 @@ import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.json.ObjectMapperUtil;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 /**
  * @author Martin Horn, University of Konstanz
  */
-@Component(service = JobService.class)
+@Component(service = JobService.class, immediate = true)
 public class LocalKnimeJobService implements JobService {
 
-	private static PersistenceService persistenceService;
+	@Reference(cardinality = ReferenceCardinality.MANDATORY)
+	private PersistenceService persistenceService;
 
 	private KnimeExecutor knimeExecutor;
 
 	public LocalKnimeJobService() {
 		knimeExecutor = new LocalKnimeExecutor();
-	}
-
-	@Reference
-	void bindPersistenceService(PersistenceService persistenceService) {
-		LocalKnimeJobService.persistenceService = persistenceService;
 	}
 
 	@Override
@@ -162,11 +162,24 @@ public class LocalKnimeJobService implements JobService {
 			throw new InitJobException("Problem initializing job", e1);
 		}
 
-		// TODO get fingerprint set file(s)
+		// get fingerprint set file(s) and store it to the temp directory
+		Blob fingerprintSetFile = persistenceService.getBlobByUUID(fingerprintSet.getFileId());
+		File tmpFile;
+		try {
+			tmpFile = File.createTempFile("fa_finterprintset_" + fingerprintSetFile.getFaId(), "");
+			FileOutputStream out = new FileOutputStream(tmpFile);
+			IOUtils.copy(fingerprintSetFile.getData(), out);
+			out.flush();
+			out.close();
+			//TODO delete the tmp file eventually!
+		} catch (IOException e1) {
+			// TODO
+			throw new RuntimeException(e1);
+		}
 
 		// assemble workflow input
 		TrainingWorkflowInput workflowInput = TrainingWorkflowInput.builder()
-				.setFingerprintsetURI("TODO:fingerprintURI").setFingerprintsetMetadata(fingerprintSet)
+				.setFingerprintsetURI(tmpFile.toURI().toString()).setFingerprintsetMetadata(fingerprintSet)
 				.setParameters(workflow.getParameters()).build();
 		// TODO doesn't work, but should
 		// JsonValue jsonInput =
