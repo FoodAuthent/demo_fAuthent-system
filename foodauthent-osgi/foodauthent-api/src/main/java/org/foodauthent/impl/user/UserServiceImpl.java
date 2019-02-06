@@ -46,11 +46,6 @@ public class UserServiceImpl implements UserService {
     @Reference(cardinality = ReferenceCardinality.MANDATORY)
     private LdapGroupService ldapGroupService;
     
-    @Activate
-    public void activate(final BundleContext context) {
-	System.out.println(context.getBundle().getSymbolicName());
-    }
-
     @Override
     public User createUser(UserCreateRequest userCreateRequest) throws UnauthorizedResponse, ForbiddenAccessResponse,
 	    EntityAlreadyExistsResponse, InvalidOperationResponse, FAException {

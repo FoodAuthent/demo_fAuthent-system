@@ -17,7 +17,7 @@
 
    <windowImages/>
 
-   <launcher name="FoodAuthent KNIME Equinox">
+   <launcher name="FoodAuthent Backend Equinox">
       <win useIco="false">
          <bmp/>
       </win>
