@@ -34,6 +34,7 @@ public abstract class AbstractITTest {
 	}
     }
 
+    @Deprecated
     protected final WebTarget webTarget() {
 	return TestUtils.newWebTarget();
     }
