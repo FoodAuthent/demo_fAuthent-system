@@ -115,7 +115,7 @@ public class ElasticsearchPersistenceService implements PersistenceService, Clie
 			if (fileStorageService.exists(blob.getFaId())) {
 				throw new ModelExistsException("An entity with the given id already exists.");
 			}
-			fileStorageService.save(blob.getFaId(), new ByteArrayInputStream(blob.getData()));
+			fileStorageService.save(blob.getFaId(), blob.getData());
 			return blob.getFaId();
 		} catch (IOException e) {
 			LOG.error("unable to save blob " + blob.getFaId().toString(), e);
@@ -174,8 +174,7 @@ public class ElasticsearchPersistenceService implements PersistenceService, Clie
 			if (!fileStorageService.exists(uuid)) {
 				throw new NoSuchElementException();
 			}
-			final byte[] data = ByteStreams.toByteArray(fileStorageService.load(uuid));
-			return new Blob(uuid, data);
+			return new Blob(uuid, fileStorageService.load(uuid));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

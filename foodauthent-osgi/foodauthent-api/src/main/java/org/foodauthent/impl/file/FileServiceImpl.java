@@ -88,7 +88,7 @@ public class FileServiceImpl implements FileService {
 
 	    // new uuid for the blob (the same id as the one of metadata!)
 	    persistenceService
-		    .save(new Blob(fileId, toByteArray(upfile)));
+		    .save(new Blob(fileId, upfile));
 
 	    return fileId;
 	} catch (Exception e) {

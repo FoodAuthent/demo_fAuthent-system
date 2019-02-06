@@ -1,5 +1,6 @@
 package org.foodauthent.api.internal.persistence;
 
+import java.io.InputStream;
 import java.util.UUID;
 
 /**
@@ -7,28 +8,23 @@ import java.util.UUID;
  * @author Alexander Kerner, Lablicate GmbH
  *
  */
-public class Blob  {
+public class Blob {
 
-    private byte[] data;
+	private InputStream data;
 
-    private UUID faId;
+	private UUID faId;
 
-    public Blob(UUID faId, final byte[] data) {
-	super();
-	this.faId = faId;
-	this.data = data;
-    }
+	public Blob(UUID faId, final InputStream data) {
+		super();
+		this.faId = faId;
+		this.data = data;
+	}
 
-    public UUID getFaId() {
-	return faId;
-    }
+	public UUID getFaId() {
+		return faId;
+	}
 
-    public byte[] getData() {
-	return data;
-    }
-
-    public void setData(final byte[] data) {
-	this.data = data;
-    }
-
+	public InputStream getData() {
+		return data;
+	}
 }

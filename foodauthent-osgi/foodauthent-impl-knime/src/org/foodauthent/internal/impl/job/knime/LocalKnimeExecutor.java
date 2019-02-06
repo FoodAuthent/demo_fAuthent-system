@@ -3,6 +3,7 @@ package org.foodauthent.internal.impl.job.knime;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -147,9 +148,9 @@ public class LocalKnimeExecutor implements KnimeExecutor {
 		return loadRes.getWorkflowManager();
 	}
 
-	private static File unzipToTempDir(UUID blobId, final byte[] workflowBlob, String workflowName) throws IOException {
+	private static File unzipToTempDir(UUID blobId, final InputStream workflowBlob, String workflowName) throws IOException {
 		String prefix = "fa_workflow_";
-		ZipInputStream zipStream = new ZipInputStream(new ByteArrayInputStream(workflowBlob));
+		ZipInputStream zipStream = new ZipInputStream(workflowBlob);
 		File destDir = new File(KNIMEConstants.getKNIMETempPath().toFile(), prefix + blobId.toString());
 		FileUtil.unzip(zipStream, destDir, 0);
 		// go to workflow level
