@@ -87,6 +87,12 @@
    <feature id="org.apache.commons.feature.source" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
+   <feature id="de.unirostock.sems.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature id="de.unirostock.sems.feature.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
    <feature id="org.joda.time.feature" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
