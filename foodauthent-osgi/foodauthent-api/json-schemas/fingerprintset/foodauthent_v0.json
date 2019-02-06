@@ -1,10 +1,17 @@
 {
   "definitions": {},
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://foodauthent.net/finterprintset/foodauthent_v0.json",
+  "$id": "http://example.com/root.json",
   "type": "object",
-  "title": "FoodAuthent Fingerprintset Schema v0",
-      "properties": {
+  "title": "The Root Schema",
+  "required": [],
+  "properties": {
+    "investigation": {
+      "$id": "#/properties/investigation",
+      "type": "object",
+      "title": "The Investigation Schema",
+      "required": [],
+        "properties": {
         "Comment[Created With Configuration]": {
           "$id": "#/properties/investigation/properties/Comment[Created With Configuration]",
           "type": "string",
@@ -551,7 +558,8 @@
       "$id": "#/properties/metaboliteprofiling_ftir",
       "type": "object",
       "title": "The Metaboliteprofiling_ftir Schema",
-      "properties": {
+      "required": [],
+        "properties": {
         "\"Operator details (name": {
           "$id": "#/properties/metaboliteprofiling_ftir/properties/\"Operator details (name",
           "type": "string",
@@ -728,7 +736,8 @@
       "$id": "#/properties/metaboliteprofiling_irms",
       "type": "object",
       "title": "The Metaboliteprofiling_irms Schema",
-      "properties": {
+      "required": [],
+        "properties": {
         "\"Operator details (name": {
           "$id": "#/properties/metaboliteprofiling_irms/properties/\"Operator details (name",
           "type": "string",
@@ -905,7 +914,8 @@
       "$id": "#/properties/metaboliteprofiling_ms",
       "type": "object",
       "title": "The Metaboliteprofiling_ms Schema",
-      "properties": {
+      "required": [],
+       "properties": {
         "\"Operator details (name": {
           "$id": "#/properties/metaboliteprofiling_ms/properties/\"Operator details (name",
           "type": "string",
@@ -1182,7 +1192,8 @@
       "$id": "#/properties/metaboliteprofiling_nmr",
       "type": "object",
       "title": "The Metaboliteprofiling_nmr Schema",
-      "properties": {
+      "required": [],
+       "properties": {
         "\"Operator details (name": {
           "$id": "#/properties/metaboliteprofiling_nmr/properties/\"Operator details (name",
           "type": "string",
@@ -1479,7 +1490,8 @@
       "$id": "#/properties/studySample",
       "type": "object",
       "title": "The Studysample Schema",
-      "properties": {
+      "required": [],
+       "properties": {
         "\"Operator details (name": {
           "$id": "#/properties/studySample/properties/\"Operator details (name",
           "type": "string",
@@ -1586,7 +1598,8 @@
       "$id": "#/properties/ investigation",
       "type": "object",
       "title": "The  investigation Schema",
-      "properties": {
+      "required": [],
+       "properties": {
         "Study Assay Technology Platform": {
           "$id": "#/properties/ investigation/properties/Study Assay Technology Platform",
           "type": "string",
