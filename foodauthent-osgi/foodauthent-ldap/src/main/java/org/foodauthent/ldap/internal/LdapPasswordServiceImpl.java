@@ -7,7 +7,6 @@ import org.apache.directory.api.ldap.model.password.PasswordUtil;
 import org.foodauthent.common.exception.ServiceException;
 import org.foodauthent.common.exception.UnauthorizedException;
 import org.foodauthent.ldap.LdapOperationManager;
-import org.foodauthent.ldap.LdapPasswordService;
 import org.ldaptive.AttributeModification;
 import org.ldaptive.AttributeModificationType;
 import org.ldaptive.Connection;
@@ -25,8 +24,10 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ServiceScope;
 
-@Component(service = { LdapPasswordService.class }, scope = ServiceScope.SINGLETON)
-public class LdapPasswordServiceImpl implements LdapPasswordService {
+import com.foodauthent.api.internal.people.PasswordService;
+
+@Component(service = { PasswordService.class }, scope = ServiceScope.SINGLETON)
+public class LdapPasswordServiceImpl implements PasswordService {
 
 	private LdapOperationManager ldapService;
 

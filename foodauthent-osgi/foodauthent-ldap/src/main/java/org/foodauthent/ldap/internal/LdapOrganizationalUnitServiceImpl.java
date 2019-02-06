@@ -24,7 +24,9 @@ import org.osgi.service.component.annotations.ServiceScope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component(service = { LdapOrganizationalUnitService.class }, scope = ServiceScope.SINGLETON)
+import com.foodauthent.api.internal.people.OrganizationalUnitService;
+
+@Component(service = { LdapOrganizationalUnitService.class, OrganizationalUnitService.class }, scope = ServiceScope.SINGLETON)
 public class LdapOrganizationalUnitServiceImpl extends AbstractLdapEntryService<LdapOrganizationalUnit>
 		implements LdapOrganizationalUnitService {
 
@@ -99,6 +101,13 @@ public class LdapOrganizationalUnitServiceImpl extends AbstractLdapEntryService<
 			super.delete(new LdapOrganizationalUnit(String.join(",", LdapOrganizationalUnit.OU_GROUPS, v.getDn())));
 		}
 		super.delete(v);
+	}
+
+	@Override
+	public LdapOrganizationalUnit newEntryInstance(String identifier) {
+		final LdapOrganizationalUnit instance = super.newEntryInstance();
+		instance.setDn(identifier);
+		return instance;
 	}
 
 }

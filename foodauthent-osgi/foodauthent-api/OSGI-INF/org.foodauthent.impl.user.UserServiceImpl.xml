@@ -3,9 +3,9 @@
    <service>
       <provide interface="org.foodauthent.api.UserService"/>
    </service>
-   <reference cardinality="1..1" field="ldapAuthenticationService" interface="org.foodauthent.ldap.LdapAuthenticationService" name="ldapAuthenticationService"/>
-   <reference cardinality="1..1" field="ldapGroupService" interface="org.foodauthent.ldap.LdapGroupService" name="ldapGroupService"/>
-   <reference cardinality="1..1" field="ldapPasswordService" interface="org.foodauthent.ldap.LdapPasswordService" name="ldapPasswordService"/>
-   <reference cardinality="1..1" field="ldapPersonService" interface="org.foodauthent.ldap.LdapPersonService" name="ldapPersonService"/>
+   <reference cardinality="1..1" field="authenticationService" interface="org.foodauthent.auth.service.AuthenticationService" name="authenticationService"/>
+   <reference cardinality="1..1" field="groupService" interface="com.foodauthent.api.internal.people.GroupService" name="groupService"/>
+   <reference cardinality="1..1" field="passwordService" interface="com.foodauthent.api.internal.people.PasswordService" name="passwordService"/>
+   <reference cardinality="1..1" field="personService" interface="com.foodauthent.api.internal.people.PersonService" name="personService"/>
    <implementation class="org.foodauthent.impl.user.UserServiceImpl"/>
 </scr:component>

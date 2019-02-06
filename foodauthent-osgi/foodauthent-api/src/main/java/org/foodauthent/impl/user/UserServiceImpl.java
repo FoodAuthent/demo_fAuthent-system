@@ -2,6 +2,7 @@ package org.foodauthent.impl.user;
 
 import org.foodauthent.api.UserService;
 import org.foodauthent.api.internal.exception.EntityNotFoundException;
+import org.foodauthent.auth.service.AuthenticationService;
 import org.foodauthent.common.exception.EntityAlreadyExistsException;
 import org.foodauthent.common.exception.FAExceptions.EntityAlreadyExistsResponse;
 import org.foodauthent.common.exception.FAExceptions.EntityNotFoundResponse;
@@ -12,12 +13,6 @@ import org.foodauthent.common.exception.FAExceptions.UnauthorizedResponse;
 import org.foodauthent.common.exception.InvalidOperationException;
 import org.foodauthent.common.exception.ServiceException;
 import org.foodauthent.common.exception.UnauthorizedException;
-import org.foodauthent.ldap.LdapAuthenticationService;
-import org.foodauthent.ldap.LdapGroupService;
-import org.foodauthent.ldap.LdapPasswordService;
-import org.foodauthent.ldap.LdapPersonService;
-import org.foodauthent.ldap.beans.LdapGroup;
-import org.foodauthent.ldap.beans.LdapPerson;
 import org.foodauthent.model.ChangePasswordRequest;
 import org.foodauthent.model.User;
 import org.foodauthent.model.UserBase;
@@ -25,27 +20,31 @@ import org.foodauthent.model.UserCreateRequest;
 import org.foodauthent.model.UserGroup;
 import org.foodauthent.model.UserGroupBase;
 import org.foodauthent.model.UserGroupCreateRequest;
-import org.osgi.framework.BundleContext;
-import org.osgi.service.component.annotations.Activate;
+import org.foodauthent.people.Group;
+import org.foodauthent.people.Person;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+
+import com.foodauthent.api.internal.people.GroupService;
+import com.foodauthent.api.internal.people.PasswordService;
+import com.foodauthent.api.internal.people.PersonService;
 
 @Component(service = UserService.class, immediate = true)
 public class UserServiceImpl implements UserService {
 
     @Reference(cardinality = ReferenceCardinality.MANDATORY)
-    private LdapPersonService ldapPersonService;
+    private PersonService<Person> personService;
 
     @Reference(cardinality = ReferenceCardinality.MANDATORY)
-    private LdapPasswordService ldapPasswordService;
+    private PasswordService passwordService;
 
     @Reference(cardinality = ReferenceCardinality.MANDATORY)
-    private LdapAuthenticationService ldapAuthenticationService;
+    private AuthenticationService authenticationService;
 
     @Reference(cardinality = ReferenceCardinality.MANDATORY)
-    private LdapGroupService ldapGroupService;
-    
+    private GroupService<Group> groupService;
+
     @Override
     public User createUser(UserCreateRequest userCreateRequest) throws UnauthorizedResponse, ForbiddenAccessResponse,
 	    EntityAlreadyExistsResponse, InvalidOperationResponse, FAException {
@@ -53,9 +52,9 @@ public class UserServiceImpl implements UserService {
 	// add ou=users if required
 		+ (userCreateRequest.getParentDn().startsWith("ou=users") ? "" : "ou=users,") //
 		+ userCreateRequest.getParentDn();
-	final LdapPerson person = Convert.toLdapPerson(dn, userCreateRequest);
+	final Person person = Convert.toPerson(dn, userCreateRequest, personService);
 	try {
-	    return Convert.toRestUser(ldapPersonService.add(person));
+	    return Convert.toRestUser(personService.add(person));
 	} catch (EntityAlreadyExistsException e) {
 	    throw new EntityAlreadyExistsResponse(e.getMessage(), e);
 	} catch (ServiceException e) {
@@ -67,8 +66,8 @@ public class UserServiceImpl implements UserService {
     public UserGroup createUserGroup(UserGroupCreateRequest userGroupCreateRequest) throws UnauthorizedResponse,
 	    ForbiddenAccessResponse, EntityAlreadyExistsResponse, InvalidOperationResponse, FAException {
 	try {
-	    final LdapGroup ldapGroup = Convert.toLdapGroup(userGroupCreateRequest);
-	    return Convert.toRestUserGroup(ldapGroupService.add(ldapGroup));
+	    final Group ldapGroup = Convert.toLdapGroup(userGroupCreateRequest, groupService);
+	    return Convert.toRestUserGroup(groupService.add(ldapGroup));
 	} catch (EntityAlreadyExistsException e) {
 	    throw new EntityAlreadyExistsResponse(e.getMessage(), e);
 	} catch (ServiceException e) {
@@ -80,7 +79,7 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(String dn) throws UnauthorizedResponse, ForbiddenAccessResponse, EntityNotFoundResponse,
 	    InvalidOperationResponse, FAException {
 	try {
-	    ldapPersonService.delete(ldapPersonService.get(dn));
+	    personService.delete(personService.get(dn));
 	} catch (EntityNotFoundException e) {
 	    throw new EntityNotFoundResponse(e.getMessage(), e);
 	} catch (InvalidOperationException e) {
@@ -94,7 +93,7 @@ public class UserServiceImpl implements UserService {
     public void deleteUserGroup(String dn) throws UnauthorizedResponse, ForbiddenAccessResponse, EntityNotFoundResponse,
 	    InvalidOperationResponse, FAException {
 	try {
-	    ldapGroupService.delete(ldapGroupService.get(dn));
+	    groupService.delete(groupService.get(dn));
 	} catch (EntityNotFoundException e) {
 	    throw new EntityNotFoundResponse(e.getMessage(), e);
 	} catch (InvalidOperationException e) {
@@ -109,7 +108,7 @@ public class UserServiceImpl implements UserService {
 	    throws UnauthorizedResponse, ForbiddenAccessResponse, EntityNotFoundResponse, FAException {
 	try {
 	    final int pwlen = length != null ? length.intValue() : 8;
-	    return ldapPasswordService.generatePassword(dn, pwlen);
+	    return passwordService.generatePassword(dn, pwlen);
 	} catch (UnauthorizedException e) {
 	    throw new UnauthorizedResponse(e.getMessage(), e);
 	} catch (ServiceException e) {
@@ -121,7 +120,7 @@ public class UserServiceImpl implements UserService {
     public User getUser(String dn)
 	    throws UnauthorizedResponse, ForbiddenAccessResponse, EntityNotFoundResponse, FAException {
 	try {
-	    final LdapPerson person = ldapPersonService.get(dn);
+	    final Person person = personService.get(dn);
 	    return Convert.toRestUser(person);
 	} catch (EntityNotFoundException e) {
 	    throw new EntityNotFoundResponse(e.getMessage(), e);
@@ -134,7 +133,7 @@ public class UserServiceImpl implements UserService {
     public UserGroup getUserGroup(String dn)
 	    throws UnauthorizedResponse, ForbiddenAccessResponse, EntityNotFoundResponse, FAException {
 	try {
-	    return Convert.toRestUserGroup(ldapGroupService.get(dn));
+	    return Convert.toRestUserGroup(groupService.get(dn));
 	} catch (EntityNotFoundException e) {
 	    throw new EntityNotFoundResponse(e.getMessage(), e);
 	} catch (ServiceException e) {
@@ -146,15 +145,15 @@ public class UserServiceImpl implements UserService {
     public void setPassword(String dn, ChangePasswordRequest changePasswordRequest)
 	    throws UnauthorizedResponse, ForbiddenAccessResponse, EntityNotFoundResponse, FAException {
 	try {
-		final LdapPerson ldapPerson = ldapPersonService.get(dn);
-		ldapAuthenticationService.authenticate(ldapPerson.getUserName(), changePasswordRequest.getCurrent());
-		ldapPasswordService.setPassword(dn, changePasswordRequest.getNew());
+	    final Person ldapPerson = personService.get(dn);
+	    authenticationService.authenticate(ldapPerson.getUserName(), changePasswordRequest.getCurrent());
+	    passwordService.setPassword(dn, changePasswordRequest.getNew());
 	} catch (UnauthorizedException e) {
-		throw new UnauthorizedResponse(e.getMessage(), e);
+	    throw new UnauthorizedResponse(e.getMessage(), e);
 	} catch (EntityNotFoundException e) {
-		throw new EntityNotFoundResponse(e.getMessage(), e);
+	    throw new EntityNotFoundResponse(e.getMessage(), e);
 	} catch (ServiceException e) {
-		throw new FAException(e.getMessage(), e);
+	    throw new FAException(e.getMessage(), e);
 	}
     }
 
@@ -162,12 +161,12 @@ public class UserServiceImpl implements UserService {
     public User updateUser(String dn, UserBase userBase) throws UnauthorizedResponse, ForbiddenAccessResponse,
 	    EntityNotFoundResponse, InvalidOperationResponse, FAException {
 	try {
-		final LdapPerson person = Convert.toLdapPerson(dn, userBase);
-		return Convert.toRestUser(ldapPersonService.update(person));
+	    final Person person = Convert.toPerson(dn, userBase, personService);
+	    return Convert.toRestUser(personService.update(person));
 	} catch (EntityNotFoundException e) {
-		throw new EntityNotFoundResponse(e.getMessage(), e);
+	    throw new EntityNotFoundResponse(e.getMessage(), e);
 	} catch (ServiceException e) {
-		throw new FAException(e.getMessage(), e);
+	    throw new FAException(e.getMessage(), e);
 	}
     }
 
@@ -175,11 +174,11 @@ public class UserServiceImpl implements UserService {
     public UserGroup updateUserGroup(String dn, UserGroupBase userGroupBase) throws UnauthorizedResponse,
 	    ForbiddenAccessResponse, EntityNotFoundResponse, InvalidOperationResponse, FAException {
 	try {
-		return Convert.toRestUserGroup(ldapGroupService.update(Convert.toLdapGroup(userGroupBase, dn)));
+	    return Convert.toRestUserGroup(groupService.update(Convert.toLdapGroup(userGroupBase, dn, groupService)));
 	} catch (EntityNotFoundException e) {
-		throw new EntityNotFoundResponse(e.getMessage(), e);
+	    throw new EntityNotFoundResponse(e.getMessage(), e);
 	} catch (ServiceException e) {
-		throw new FAException(e.getMessage(), e);
+	    throw new FAException(e.getMessage(), e);
 	}
     }
 }

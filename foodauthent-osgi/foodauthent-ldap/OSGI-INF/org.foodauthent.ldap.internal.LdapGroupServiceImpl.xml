@@ -2,6 +2,7 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" activate="activate" name="org.foodauthent.ldap.internal.LdapGroupServiceImpl">
    <service scope="singleton">
       <provide interface="org.foodauthent.ldap.LdapGroupService"/>
+      <provide interface="com.foodauthent.api.internal.people.GroupService"/>
    </service>
    <reference cardinality="1..1" field="config" interface="org.foodauthent.ldap.config.LDAPConfig" name="config"/>
    <reference cardinality="1..1" field="ldapOperationManager" interface="org.foodauthent.ldap.LdapOperationManager" name="ldapOperationManager"/>

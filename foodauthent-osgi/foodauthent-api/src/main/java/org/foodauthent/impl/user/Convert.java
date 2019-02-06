@@ -7,8 +7,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.foodauthent.ldap.beans.LdapGroup;
-import org.foodauthent.ldap.beans.LdapPerson;
 import org.foodauthent.model.PostalAddress;
 import org.foodauthent.model.PostalAddress.PostalAddressBuilder;
 import org.foodauthent.model.User;
@@ -17,44 +15,48 @@ import org.foodauthent.model.UserBase;
 import org.foodauthent.model.UserGroup;
 import org.foodauthent.model.UserGroupBase;
 import org.foodauthent.model.UserGroupCreateRequest;
+import org.foodauthent.people.Group;
+import org.foodauthent.people.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.foodauthent.api.internal.people.GroupService;
+import com.foodauthent.api.internal.people.PersonService;
 import com.google.common.base.Strings;
 
 class Convert {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Convert.class);
 
-    public static final LdapPerson toLdapPerson(final String dn, final UserBase userBase) {
-	final LdapPerson.Builder builder = LdapPerson.builder() //
-		.withCommonName(userBase.getGivenName() + " " + userBase.getLastName()) //
-		.withDescription(userBase.getDescription()) //
-		.withDn(dn) //
-		.withBusinessCategory(userBase.getBusinessCategory()) //
-		.withDescription(userBase.getDescription()) //
-		.withEmployeeNumber(userBase.getEmployeeNumber()) //
-		.withEmployeeType(userBase.getEmployeeType()) //
-		.withFacsimileTelephoneNumber(userBase.getFaxNumbers()) //
-		.withGivenName(userBase.getGivenName()) //
-		.withHomePhone(userBase.getHomePhoneNumbers()) //
-		.withLabeledURI(userBase.getLabeledURI()) //
-		.withLastName(userBase.getLastName()) //
-		.withMail(userBase.getMail()) //
-		.withMobile(userBase.getMobilePhoneNumbers()) //
-		.withTelephoneNumber(userBase.getPhoneNumbers());
+    public static final Person toPerson(final String dn, final UserBase userBase,
+	    final PersonService<Person> personService) {
+	final Person person = personService.newEntryInstance(dn);
+	person.setCommonName(userBase.getGivenName() + " " + userBase.getLastName());
+	person.setDescription(userBase.getDescription());
+	person.setBusinessCategory(userBase.getBusinessCategory());
+	person.setDescription(userBase.getDescription());
+	person.setEmployeeNumber(userBase.getEmployeeNumber());
+	person.setEmployeeType(userBase.getEmployeeType());
+	person.setFacsimileTelephoneNumber(userBase.getFaxNumbers());
+	person.setGivenName(userBase.getGivenName());
+	person.setHomePhone(userBase.getHomePhoneNumbers());
+	person.setLabeledURI(userBase.getLabeledURI());
+	person.setLastName(userBase.getLastName());
+	person.setMail(userBase.getMail());
+	person.setMobile(userBase.getMobilePhoneNumbers());
+	person.setTelephoneNumber(userBase.getPhoneNumbers());
 	final PostalAddress postalAddress = userBase.getPostalAddress();
 	if (postalAddress != null) {
-	    builder.withLocalityName(Arrays.asList(postalAddress.getLocalityName()));
-	    builder.withPostalCode(Arrays.asList(postalAddress.getPostalCode()));
-	    builder.withStateOrProvinceName(Arrays.asList(postalAddress.getStateOrProvinceName()));
-	    builder.withPostalAddress(toAddressList(postalAddress));
+	    person.setLocalityName(Arrays.asList(postalAddress.getLocalityName()));
+	    person.setPostalCode(Arrays.asList(postalAddress.getPostalCode()));
+	    person.setStateOrProvinceName(Arrays.asList(postalAddress.getStateOrProvinceName()));
+	    person.setPostalAddress(toAddressList(postalAddress));
 	}
 	final PostalAddress billingAddress = userBase.getBillingAddress();
 	if (billingAddress != null) {
-	    builder.withRegisteredAddress(toAddressList(billingAddress));
+	    person.setRegisteredAddress(toAddressList(billingAddress));
 	}
-	return builder.build();
+	return person;
     }
 
     public static final List<String> toAddressList(final PostalAddress postalAddress) {
@@ -69,30 +71,28 @@ class Convert {
 		String.join("$", address.stream().map(a -> a.isEmpty() ? " " : a).collect(Collectors.toList())));
     }
 
-    public static final User toRestUser(LdapPerson ldapUser) {
+    public static final User toRestUser(Person person) {
 	final UserBuilder builder = User.builder() //
-		.setDescription(ldapUser.getDescription()) //
-		.setDn(ldapUser.getDn()) //
-		.setBusinessCategory(ldapUser.getBusinessCategory()) //
-		.setDescription(ldapUser.getDescription()) //
-		.setEmployeeNumber(ldapUser.getEmployeeNumber()) //
-		.setEmployeeType(ldapUser.getEmployeeType()) //
-		.setFaxNumbers(ldapUser.getFacsimileTelephoneNumber() == null ? null
-			: new ArrayList<String>(ldapUser.getFacsimileTelephoneNumber())) //
-		.setGivenName(ldapUser.getGivenName()) //
+		.setDescription(person.getDescription()) //
+		.setDn(person.getDn()) //
+		.setBusinessCategory(person.getBusinessCategory()) //
+		.setDescription(person.getDescription()) //
+		.setEmployeeNumber(person.getEmployeeNumber()) //
+		.setEmployeeType(person.getEmployeeType()) //
+		.setFaxNumbers(person.getFacsimileTelephoneNumber() == null ? null
+			: new ArrayList<String>(person.getFacsimileTelephoneNumber())) //
+		.setGivenName(person.getGivenName()) //
 		.setHomePhoneNumbers(
-			ldapUser.getHomePhone() == null ? null : new ArrayList<String>(ldapUser.getHomePhone())) //
-		.setLabeledURI(
-			ldapUser.getLabeledURI() == null ? null : new ArrayList<String>(ldapUser.getLabeledURI())) //
-		.setLastName(ldapUser.getLastName()) //
-		.setMail(ldapUser.getMail() == null ? null : new ArrayList<String>(ldapUser.getMail())) //
-		.setMobilePhoneNumbers(
-			ldapUser.getMobile() == null ? null : new ArrayList<String>(ldapUser.getMobile())) //
-		.setPhoneNumbers(ldapUser.getTelephoneNumber() == null ? null
-			: new ArrayList<String>(ldapUser.getTelephoneNumber())) //
-		.setPostalAddress(toRestPostalAddress(ldapUser.getPostalAddress())) //
-		.setUserName(ldapUser.getUserName()) //
-		.setBillingAddress(toRestPostalAddress(ldapUser.getRegisteredAddress()));
+			person.getHomePhone() == null ? null : new ArrayList<String>(person.getHomePhone())) //
+		.setLabeledURI(person.getLabeledURI() == null ? null : new ArrayList<String>(person.getLabeledURI())) //
+		.setLastName(person.getLastName()) //
+		.setMail(person.getMail() == null ? null : new ArrayList<String>(person.getMail())) //
+		.setMobilePhoneNumbers(person.getMobile() == null ? null : new ArrayList<String>(person.getMobile())) //
+		.setPhoneNumbers(
+			person.getTelephoneNumber() == null ? null : new ArrayList<String>(person.getTelephoneNumber())) //
+		.setPostalAddress(toRestPostalAddress(person.getPostalAddress())) //
+		.setUserName(person.getUserName()) //
+		.setBillingAddress(toRestPostalAddress(person.getRegisteredAddress()));
 	return builder.build();
     }
 
@@ -161,30 +161,31 @@ class Convert {
 	}
     }
 
-    public static final LdapGroup toLdapGroup(final UserGroupCreateRequest userGroupCreateRequest) {
-	return LdapGroup.builder() //
-		.withName(userGroupCreateRequest.getName()) //
-		.withDescription(userGroupCreateRequest.getDescription()) //
-		.withGroupMembers(userGroupCreateRequest.getMembers()) //
-		.build();
+    public static final Group toLdapGroup(final UserGroupCreateRequest userGroupCreateRequest,
+	    final GroupService<Group> groupService) {
+	final Group group = groupService.newEntryInstance(null);
+	group.setName(userGroupCreateRequest.getName());
+	group.setDescription(userGroupCreateRequest.getDescription());
+	group.setGroupMembers(userGroupCreateRequest.getMembers());
+	return group;
     }
 
-    public static final UserGroup toRestUserGroup(final LdapGroup ldapGroup) {
+    public static final UserGroup toRestUserGroup(final Group group) {
 	return UserGroup.builder() //
-		.setDn(ldapGroup.getDn()) //
-		.setName(ldapGroup.getName()) //
-		.setDescription(ldapGroup.getDescription()) //
-		.setMembers(ldapGroup.getGroupMembers() == null ? Collections.emptyList()
-			: new ArrayList<String>(ldapGroup.getGroupMembers())) //
+		.setDn(group.getDn()) //
+		.setName(group.getName()) //
+		.setDescription(group.getDescription()) //
+		.setMembers(group.getGroupMembers() == null ? Collections.emptyList()
+			: new ArrayList<String>(group.getGroupMembers())) //
 		.build();
     }
 
-    public static final LdapGroup toLdapGroup(final UserGroupBase userGroupBase, final String dn) {
-	return LdapGroup.builder() //
-		.withDn(dn) //
-		.withDescription(userGroupBase.getDescription()) //
-		.withGroupMembers(userGroupBase.getMembers()) //
-		.build();
+    public static final Group toLdapGroup(final UserGroupBase userGroupBase, final String dn,
+	    final GroupService<Group> groupService) {
+	final Group group = groupService.newEntryInstance(dn);
+	group.setDescription(userGroupBase.getDescription());
+	group.setGroupMembers(userGroupBase.getMembers());
+	return group;
     }
 
 }

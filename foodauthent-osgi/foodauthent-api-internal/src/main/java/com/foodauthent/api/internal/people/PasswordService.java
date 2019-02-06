@@ -1,9 +1,9 @@
-package org.foodauthent.ldap;
+package com.foodauthent.api.internal.people;
 
 import org.foodauthent.common.exception.ServiceException;
 import org.foodauthent.common.exception.UnauthorizedException;
 
-public interface LdapPasswordService {
+public interface PasswordService {
 
 	void modifyPassword(String dn, String oldPassword, String newPassword)
 			throws UnauthorizedException, ServiceException;

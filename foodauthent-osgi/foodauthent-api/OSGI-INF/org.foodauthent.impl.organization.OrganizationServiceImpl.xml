@@ -3,6 +3,6 @@
    <service>
       <provide interface="org.foodauthent.api.OrganizationService"/>
    </service>
-   <reference cardinality="1..1" field="ldapOrganizationalUnitService" interface="org.foodauthent.ldap.LdapOrganizationalUnitService" name="ldapOrganizationalUnitService"/>
+   <reference cardinality="1..1" field="organizationalUnitService" interface="com.foodauthent.api.internal.people.OrganizationalUnitService" name="organizationalUnitService"/>
    <implementation class="org.foodauthent.impl.organization.OrganizationServiceImpl"/>
 </scr:component>

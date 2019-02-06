@@ -22,7 +22,9 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ServiceScope;
 
-@Component(service = { LdapGroupService.class }, scope = ServiceScope.SINGLETON)
+import com.foodauthent.api.internal.people.GroupService;
+
+@Component(service = { LdapGroupService.class, GroupService.class }, scope = ServiceScope.SINGLETON)
 public class LdapGroupServiceImpl extends AbstractLdapEntryService<LdapGroup> implements LdapGroupService {
 
 	private static final String OBJECT_CLASS_FILTER = "(objectClass=groupOfUniqueNames)";
@@ -118,6 +120,13 @@ public class LdapGroupServiceImpl extends AbstractLdapEntryService<LdapGroup> im
 	public LdapGroup add(LdapGroup ldapGroup) throws EntityAlreadyExistsException, ServiceException {
 		ldapGroup.setDn(DnUtil.buildDn(config.getGroupDn(), "cn", ldapGroup.getName()));
 		return super.add(ldapGroup);
+	}
+
+	@Override
+	public LdapGroup newEntryInstance(String identifier) {
+		final LdapGroup instance = super.newEntryInstance();
+		instance.setDescription(identifier);
+		return instance;
 	}
 
 }

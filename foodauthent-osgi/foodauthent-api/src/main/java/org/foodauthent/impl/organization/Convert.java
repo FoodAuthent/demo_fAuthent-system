@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.foodauthent.ldap.beans.LdapOrganizationalUnit;
 import org.foodauthent.model.Organization;
 import org.foodauthent.model.Organization.OrganizationBuilder;
 import org.foodauthent.model.OrganizationBase;
@@ -15,31 +14,31 @@ import org.foodauthent.model.OrganizationalPostalAddress.OrganizationalPostalAdd
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.foodauthent.api.internal.people.OrganizationalUnitService;
 import com.google.common.base.Strings;
 
 class Convert {
     private static final Logger LOGGER = LoggerFactory.getLogger(Convert.class);
 
-    public static final LdapOrganizationalUnit toLdapOrganizationalUnit(final String dn,
-	    final OrganizationBase organizationBase) {
-	final LdapOrganizationalUnit.Builder builder = LdapOrganizationalUnit.builder() //
-		.withBusinessCategory(organizationBase.getBusinessCategory()) //
-		.withDescription(organizationBase.getDescription()) //
-		.withDn(dn) //
-		.withFacsimileTelephoneNumber(organizationBase.getFaxNumbers()) //
-		.withTelephoneNumber(organizationBase.getPhoneNumbers());
+    public static final org.foodauthent.people.Organization toOrganization(final String dn,
+	    final OrganizationBase organizationBase, final OrganizationalUnitService<org.foodauthent.people.Organization> organizationalUnitService) {
+	final org.foodauthent.people.Organization org = organizationalUnitService.newEntryInstance(dn);
+		org.setBusinessCategory(organizationBase.getBusinessCategory());
+		org.setDescription(organizationBase.getDescription());
+		org.setFacsimileTelephoneNumber(organizationBase.getFaxNumbers());
+		org.setTelephoneNumber(organizationBase.getPhoneNumbers());
 	final OrganizationalPostalAddress billingAddress = organizationBase.getBillingAddress();
 	if (billingAddress != null) {
-	    builder.withRegisteredAddress(toAddressList(billingAddress));
+	    org.setRegisteredAddress(toAddressList(billingAddress));
 	}
 	final OrganizationalPostalAddress postalAddress = organizationBase.getPostalAddress();
 	if (postalAddress != null) {
-	    builder.withLocalityName(postalAddress.getLocalityName());
-	    builder.withPostalCode(postalAddress.getPostalCode());
-	    builder.withStateOrProvinceName(postalAddress.getStateOrProvinceName());
-	    builder.withPostalAddress(toAddressList(postalAddress));
+	    org.setLocalityName(postalAddress.getLocalityName());
+	    org.setPostalCode(postalAddress.getPostalCode());
+	    org.setStateOrProvinceName(postalAddress.getStateOrProvinceName());
+	    org.setPostalAddress(toAddressList(postalAddress));
 	}
-	return builder.build();
+	return org;
     }
 
     public static final List<String> toAddressList(final OrganizationalPostalAddress organizationalPostalAddress) {
@@ -56,18 +55,18 @@ class Convert {
 
     }
 
-    public static final Organization toRestOrganization(LdapOrganizationalUnit ldapOrganizationalUnit) {
+    public static final Organization toRestOrganization(org.foodauthent.people.Organization organization) {
 	final OrganizationBuilder builder = Organization.builder() //
-		.setBusinessCategory(ldapOrganizationalUnit.getBusinessCategory()) //
-		.setDescription(ldapOrganizationalUnit.getDescription()) //
-		.setDn(ldapOrganizationalUnit.getDn()) //
-		.setFaxNumbers(ldapOrganizationalUnit.getFacsimileTelephoneNumber() == null ? null
-			: new ArrayList<String>(ldapOrganizationalUnit.getFacsimileTelephoneNumber())) //
-		.setPhoneNumbers(ldapOrganizationalUnit.getTelephoneNumber() == null ? null
-			: new ArrayList<String>(ldapOrganizationalUnit.getTelephoneNumber())) //
-		.setOrganizationName(ldapOrganizationalUnit.getName()) //
-		.setBillingAddress(toRestOrganizationalPostalAddress(ldapOrganizationalUnit.getRegisteredAddress())) //
-		.setPostalAddress(toRestOrganizationalPostalAddress(ldapOrganizationalUnit.getPostalAddress()));
+		.setBusinessCategory(organization.getBusinessCategory()) //
+		.setDescription(organization.getDescription()) //
+		.setDn(organization.getDn()) //
+		.setFaxNumbers(organization.getFacsimileTelephoneNumber() == null ? null
+			: new ArrayList<String>(organization.getFacsimileTelephoneNumber())) //
+		.setPhoneNumbers(organization.getTelephoneNumber() == null ? null
+			: new ArrayList<String>(organization.getTelephoneNumber())) //
+		.setOrganizationName(organization.getName()) //
+		.setBillingAddress(toRestOrganizationalPostalAddress(organization.getRegisteredAddress())) //
+		.setPostalAddress(toRestOrganizationalPostalAddress(organization.getPostalAddress()));
 	return builder.build();
     }
 

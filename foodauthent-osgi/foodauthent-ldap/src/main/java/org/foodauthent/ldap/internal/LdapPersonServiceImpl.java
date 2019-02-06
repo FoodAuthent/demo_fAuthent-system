@@ -19,7 +19,9 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ServiceScope;
 
-@Component(service = { LdapPersonService.class }, scope = ServiceScope.SINGLETON)
+import com.foodauthent.api.internal.people.PersonService;
+
+@Component(service = { LdapPersonService.class, PersonService.class }, scope = ServiceScope.SINGLETON)
 public class LdapPersonServiceImpl extends AbstractLdapEntryService<LdapPerson> implements LdapPersonService {
 
 	private static final String OBJECT_CLASS_FILTER = "(&(objectClass=inetOrgPerson)(objectClass=organizationalPerson)(objectClass=person))";
@@ -89,6 +91,13 @@ public class LdapPersonServiceImpl extends AbstractLdapEntryService<LdapPerson> 
 				throw new ServiceException(e.getMessage());
 			}
 		}
+	}
+
+	@Override
+	public LdapPerson newEntryInstance(String identifier) {
+		final LdapPerson instance = super.newEntryInstance();
+		instance.setDn(identifier);
+		return instance;
 	}
 
 }

@@ -7,13 +7,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.foodauthent.common.exception.UnauthorizedException;
 import org.foodauthent.ldap.LdapAuthenticationService;
 import org.foodauthent.ldap.LdapOperationManager;
-import org.foodauthent.ldap.LdapPasswordService;
 import org.foodauthent.ldap.LdapPersonService;
 import org.foodauthent.ldap.beans.LdapPerson;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import com.foodauthent.api.internal.people.PasswordService;
 
 public class LdapAuthenticationServiceTest extends AbstractLdapServiceTest {
 
@@ -23,14 +24,14 @@ public class LdapAuthenticationServiceTest extends AbstractLdapServiceTest {
 
 	private static LdapAuthenticationService ldapAuthService;
 
-	private static LdapPasswordService ldapPassService;
+	private static PasswordService ldapPassService;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		pooledLdapOperationService = getService(LdapOperationManager.class);
 		ldapPersonService = getService(LdapPersonService.class);
 		ldapAuthService = getService(LdapAuthenticationService.class);
-		ldapPassService = getService(LdapPasswordService.class);
+		ldapPassService = getService(PasswordService.class);
 	}
 
 	@AfterAll

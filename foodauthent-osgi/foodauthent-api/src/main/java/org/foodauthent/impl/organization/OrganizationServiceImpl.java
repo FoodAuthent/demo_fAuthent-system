@@ -11,8 +11,6 @@ import org.foodauthent.common.exception.FAExceptions.InvalidOperationResponse;
 import org.foodauthent.common.exception.FAExceptions.UnauthorizedResponse;
 import org.foodauthent.common.exception.InvalidOperationException;
 import org.foodauthent.common.exception.ServiceException;
-import org.foodauthent.ldap.LdapOrganizationalUnitService;
-import org.foodauthent.ldap.beans.LdapOrganizationalUnit;
 import org.foodauthent.model.Organization;
 import org.foodauthent.model.OrganizationBase;
 import org.foodauthent.model.OrganizationCreateRequest;
@@ -20,11 +18,13 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+import com.foodauthent.api.internal.people.OrganizationalUnitService;
+
 @Component(service = OrganizationService.class, immediate = true)
 public class OrganizationServiceImpl implements OrganizationService {
 
     @Reference(cardinality = ReferenceCardinality.MANDATORY)
-    private LdapOrganizationalUnitService ldapOrganizationalUnitService;
+    private OrganizationalUnitService<org.foodauthent.people.Organization> organizationalUnitService;
 
     @Override
     public Organization createOrganization(OrganizationCreateRequest organizationCreateRequest)
@@ -32,9 +32,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 	    FAException {
 	final String dn = "ou=" + organizationCreateRequest.getOrganizationName() + ","
 		+ organizationCreateRequest.getParentDn();
-	final LdapOrganizationalUnit org = Convert.toLdapOrganizationalUnit(dn, organizationCreateRequest);
+	final org.foodauthent.people.Organization org = Convert.toOrganization(dn, organizationCreateRequest, organizationalUnitService);
 	try {
-	    return Convert.toRestOrganization(ldapOrganizationalUnitService.add(org));
+	    return Convert.toRestOrganization(organizationalUnitService.add(org));
 	} catch (EntityAlreadyExistsException e) {
 	    throw new EntityAlreadyExistsResponse(e.getMessage(), e);
 	} catch (ServiceException e) {
@@ -46,7 +46,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     public void deleteOrganization(String dn) throws UnauthorizedResponse, ForbiddenAccessResponse,
 	    EntityNotFoundResponse, InvalidOperationResponse, FAException {
 	try {
-	    ldapOrganizationalUnitService.delete(ldapOrganizationalUnitService.get(dn));
+	    organizationalUnitService.delete(organizationalUnitService.get(dn));
 	} catch (EntityNotFoundException e) {
 	    throw new EntityNotFoundResponse(e.getMessage(), e);
 	} catch (InvalidOperationException e) {
@@ -60,7 +60,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     public Organization getOrganization(String dn)
 	    throws UnauthorizedResponse, ForbiddenAccessResponse, EntityNotFoundResponse, FAException {
 	try {
-	    final LdapOrganizationalUnit org = ldapOrganizationalUnitService.get(dn);
+	    final org.foodauthent.people.Organization org = organizationalUnitService.get(dn);
 	    return Convert.toRestOrganization(org);
 	} catch (EntityNotFoundException e) {
 	    throw new EntityNotFoundResponse(e.getMessage(), e);
@@ -73,8 +73,8 @@ public class OrganizationServiceImpl implements OrganizationService {
     public Organization updateOrganization(String dn, OrganizationBase organizationBase) throws UnauthorizedResponse,
 	    ForbiddenAccessResponse, EntityNotFoundResponse, InvalidOperationResponse, FAException {
 	try {
-	    final LdapOrganizationalUnit org = Convert.toLdapOrganizationalUnit(dn, organizationBase);
-	    return Convert.toRestOrganization(ldapOrganizationalUnitService.update(org));
+	    final org.foodauthent.people.Organization org = Convert.toOrganization(dn, organizationBase, organizationalUnitService);
+	    return Convert.toRestOrganization(organizationalUnitService.update(org));
 	} catch (EntityNotFoundException e) {
 	    throw new EntityNotFoundResponse(e.getMessage(), e);
 	} catch (ServiceException e) {

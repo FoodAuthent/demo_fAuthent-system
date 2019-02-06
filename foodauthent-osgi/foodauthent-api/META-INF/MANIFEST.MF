@@ -10,7 +10,8 @@ Export-Package: org.foodauthent.api,
  org.foodauthent.impl.sop,
  org.foodauthent.impl.workflow
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: org.apache.commons.io,
+Import-Package: com.foodauthent.api.internal.people,
+ org.apache.commons.io,
  org.foodauthent.api.internal.exception,
  org.foodauthent.api.internal.filereader,
  org.foodauthent.api.internal.job,
@@ -20,6 +21,7 @@ Import-Package: org.apache.commons.io,
  org.foodauthent.common.exception,
  org.foodauthent.jwt,
  org.foodauthent.model,
+ org.foodauthent.people,
  org.glassfish.jersey.media.multipart;version="2.22.1",
  org.osgi.framework;version="1.5.0",
  org.osgi.service.component.annotations;version="[1.2.0,2.0.0)";resolution:=optional,
@@ -43,5 +45,4 @@ Require-Capability: osgi.extender;
  filter:="(&(osgi.extender=osgi.component)(version>=1.2)(!(version>=2.0)))"
 Require-Bundle: com.google.guava;bundle-version="17.0.0",
  com.fasterxml.jackson.core.jackson-core;bundle-version="2.9.7",
- com.fasterxml.jackson.core.jackson-databind;bundle-version="2.9.7",
- org.foodauthent.ldap;bundle-version="1.0.0"
+ com.fasterxml.jackson.core.jackson-databind;bundle-version="2.9.7"
