@@ -100,7 +100,7 @@ public class WorkflowServiceTest extends AbstractITTest {
 		.post(Entity.entity(m, MediaType.APPLICATION_JSON), UUID.class);
 	// TODO upload model file
     }
-    @Ignore
+
     @Test
     public void testUploadAndRunPredictionWorkflow() throws InterruptedException {
 
@@ -142,7 +142,6 @@ public class WorkflowServiceTest extends AbstractITTest {
 
     }
     
-    @Ignore
     @Test
     public void testFailInitPredictionWorkflow() {
 	
@@ -181,7 +180,6 @@ public class WorkflowServiceTest extends AbstractITTest {
 	assertTrue(message.contains("not a prediction workflow"));
     } 
     
-    @Ignore
     @Test
     public void testUploadAndRunTrainingWorkflow() throws InterruptedException {
 
