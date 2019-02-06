@@ -182,9 +182,14 @@
 		
 	</build>
 	<modules>
+		<module>foodauthent-jwt</module>
+		<module>foodauthent-auth</module>
 		<module>foodauthent-common</module>
 		<module>foodauthent-config</module>
+		<module>foodauthent-ldap</module> 
 		<module>foodauthent-model</module>
+		<module>foodauthent-jersey-filter</module>
+		<module>foodauthent-osgi-logging</module>
 		<module>foodauthent-api</module>
 		<module>foodauthent-api-internal</module>
 		<module>foodauthent-impl-knime</module>
@@ -202,7 +207,9 @@
 		<module>foodauthent-knime-feature</module>
 		<module>foodauthent-openchrom-feature</module>
 		<module>foodauthent-product-runtime</module>
+		<!-- 
 		 <module>foodauthent-test</module>
+		  -->
 		<!-- 
 		<module>foodauthent-product-application</module>
 		 -->
