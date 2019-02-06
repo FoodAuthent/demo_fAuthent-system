@@ -17,7 +17,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.api.internal.persistence.Blob;
-import org.foodauthent.api.internal.persistence.PersistenceService;
+import org.foodauthent.api.internal.persistence.PersistenceServiceProvider;
 import org.foodauthent.elasticsearch.ClientService;
 import org.foodauthent.elasticsearch.ClientServiceListener;
 import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResult;
@@ -43,15 +43,15 @@ import scala.Option;
  * @author Sven Böckelmann
  *
  */
-@Component(service = { PersistenceService.class, ClientServiceListener.class }, immediate = true)
-public class ElasticsearchPersistenceService implements PersistenceService, ClientServiceListener {
+@Component(service = { PersistenceServiceProvider.class, ClientServiceListener.class }, immediate = true)
+public class ElasticsearchPersistenceService implements PersistenceServiceProvider, ClientServiceListener {
 
 	@Reference(service = FileStorageService.class, bind = "bindFileStorageService", unbind = "unbindFileStorageService")
 	private FileStorageService fileStorageService;
 
 	private ElasticsearchOperation op;
 
-	private Map<Class<?>, Target> targets = new HashMap<Class<?>, Target>();
+	private Map<String, Target> targets = new HashMap<String, Target>();
 
 	private static final Logger LOG = LoggerFactory.getLogger(ElasticsearchPersistenceService.class);
 
@@ -182,7 +182,6 @@ public class ElasticsearchPersistenceService implements PersistenceService, Clie
 	}
 
 	private Blob getBlobByUUIDFromElasticsearch(UUID uuid) {
-
 		Option<ESBlob> es = op.get(uuid.toString(), blobTarget(), op.manifest(ESBlob.class));
 		if (es.isDefined()) {
 			return es.get().toBlob(uuid);
@@ -191,10 +190,23 @@ public class ElasticsearchPersistenceService implements PersistenceService, Clie
 	}
 
 	private Target classTarget(Class<?> cls) {
-		Target t = targets.get(cls);
+		Target t = targets.get(cls.getName());
 		if (t == null) {
 			t = new Target(cls.getSimpleName().toLowerCase(), "data");
-			targets.put(cls, t);
+			targets.put(cls.getName(), t);
+			if (!ElasticsearchUtil.indexExists(op.client(), t.indexName())) {
+				ElasticsearchUtil.setupIndex(op.client(), t.indexName(), Option.empty());
+			}
+		}
+		return t;
+	}
+
+	private Target customModelTarget(String modelId, String schemaId) {
+		final String targetKey = String.join("-", modelId, schemaId).toLowerCase();
+		Target t = targets.get(targetKey);
+		if (t == null) {
+			t = new Target(targetKey, "data");
+			targets.put(targetKey, t);
 			if (!ElasticsearchUtil.indexExists(op.client(), t.indexName())) {
 				ElasticsearchUtil.setupIndex(op.client(), t.indexName(), Option.empty());
 			}
@@ -203,7 +215,7 @@ public class ElasticsearchPersistenceService implements PersistenceService, Clie
 	}
 
 	private Target blobTarget() {
-		Target t = targets.get(Blob.class);
+		Target t = targets.get(Blob.class.getName());
 		if (t == null) {
 			t = new Target(Blob.class.getSimpleName().toLowerCase(), "data");
 			String mapping;
@@ -211,7 +223,7 @@ public class ElasticsearchPersistenceService implements PersistenceService, Clie
 				mapping = CharStreams.toString(new InputStreamReader(
 						getClass().getResourceAsStream("/META-INF/mapping/blob-mapping.json"), "UTF-8"));
 				ElasticsearchUtil.setupIndex(op.client(), t.indexName(), Option.apply(mapping));
-				targets.put(Blob.class, t);
+				targets.put(Blob.class.getName(), t);
 			} catch (IOException e) {
 				e.printStackTrace();
 				return null;
@@ -263,15 +275,24 @@ public class ElasticsearchPersistenceService implements PersistenceService, Clie
 	}
 
 	@Override
-	public UUID saveCustomModel(JsonNode model, String typeId) {
-		// TODO Auto-generated method stub
-		return null;
+	public void saveCustomModel(String modelId, String schemaId, UUID uuid, JsonNode model) {
+		final Target target = customModelTarget(modelId, schemaId);
+		op.save(Option.apply(uuid.toString()), model, target);
 	}
 
 	@Override
-	public JsonNode getCustomModelByUUID(UUID uuid) {
-		// TODO Auto-generated method stub
-		return null;
+	public JsonNode getCustomModelByUUID(String modelId, String schemaId, UUID uuid) {
+		final Target target = customModelTarget(modelId, schemaId);
+		Option<JsonNode> es = op.get(uuid.toString(), target, op.manifest(JsonNode.class));
+		if (es.isDefined()) {
+			return es.get();
+		}
+		throw new NoSuchElementException();
+	}
+
+	@Override
+	public int getPriority() {
+		return 1;
 	}
 
 }

@@ -30,6 +30,7 @@ import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.json.ObjectMapperUtil;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -39,17 +40,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 @Component(service = JobService.class)
 public class LocalKnimeJobService implements JobService {
 
-	private static PersistenceService persistenceService;
-
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
+    private PersistenceService persistenceService;
+    
 	private KnimeExecutor knimeExecutor;
 
 	public LocalKnimeJobService() {
 		knimeExecutor = new LocalKnimeExecutor();
-	}
-
-	@Reference
-	void bindPersistenceService(PersistenceService persistenceService) {
-		LocalKnimeJobService.persistenceService = persistenceService;
 	}
 
 	@Override

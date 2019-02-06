@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="org.foodauthent.api.internal.persistence.PersistenceServiceProviderProxy">
+   <service>
+      <provide interface="org.foodauthent.api.internal.persistence.PersistenceService"/>
+   </service>
+   <reference bind="bindPersistenceServiceProvider" cardinality="1..n" interface="org.foodauthent.api.internal.persistence.PersistenceServiceProvider" name="PersistenceServiceProvider" policy="dynamic" unbind="unbindPersistenceServiceProvider"/>
+   <implementation class="org.foodauthent.api.internal.persistence.PersistenceServiceProviderProxy"/>
+</scr:component>

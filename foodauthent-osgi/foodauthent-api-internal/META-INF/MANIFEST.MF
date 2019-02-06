@@ -20,3 +20,4 @@ Automatic-Module-Name: org.foodauthent.api.internal
 Bundle-ActivationPolicy: lazy
 Require-Capability: osgi.extender;
  filter:="(&(osgi.extender=osgi.component)(version>=1.2)(!(version>=2.0)))"
+Service-Component: OSGI-INF/org.foodauthent.api.internal.persistence.PersistenceServiceProviderProxy.xml

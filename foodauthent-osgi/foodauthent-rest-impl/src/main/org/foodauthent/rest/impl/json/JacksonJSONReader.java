@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Feature;
@@ -12,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 
+import org.apache.commons.io.IOUtils;
 import org.foodauthent.model.json.ObjectMapperUtil;
 
 import com.fasterxml.jackson.core.JsonParser;
@@ -31,9 +33,15 @@ public class JacksonJSONReader implements MessageBodyReader<Object>, Feature {
     public Object readFrom(final Class<Object> type, final Type genericType, final Annotation[] annotations,
 	    final MediaType mediaType, final MultivaluedMap<String, String> httpHeaders, final InputStream entityStream)
 	    throws IOException, WebApplicationException {
+    // TODO: please improve
+    // return string type without any parsing
+    if (String.class.isAssignableFrom(type)) {
+    	return IOUtils.toString(entityStream, StandardCharsets.UTF_8);
+    }
 	ObjectReader reader = mapper.readerFor(type);
 	JsonParser jp = reader.getFactory().createParser(entityStream);
-	return reader.readValue(jp);
+	final Object o = reader.readValue(jp);
+	return o;
     }
 
     @Override

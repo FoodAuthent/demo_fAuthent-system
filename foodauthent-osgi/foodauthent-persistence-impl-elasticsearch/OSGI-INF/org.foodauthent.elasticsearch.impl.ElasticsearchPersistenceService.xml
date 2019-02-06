@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" immediate="true" name="org.foodauthent.elasticsearch.impl.ElasticsearchPersistenceService">
    <service>
-      <provide interface="org.foodauthent.api.internal.persistence.PersistenceService"/>
+      <provide interface="org.foodauthent.api.internal.persistence.PersistenceServiceProvider"/>
       <provide interface="org.foodauthent.elasticsearch.ClientServiceListener"/>
    </service>
    <reference bind="bindClientService" cardinality="1..1" interface="org.foodauthent.elasticsearch.ClientService" name="ClientService"/>

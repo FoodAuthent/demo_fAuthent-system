@@ -112,7 +112,7 @@ public interface PersistenceService {
      * @param typeId an id uniquely describing the object type represented by the json node
      * @return the fa-id for later retrieval
      */
-    UUID saveCustomModel(JsonNode model, String typeId);
+    void saveCustomModel(String modelId, String schemaId, UUID uuid, JsonNode model);
     
     /**
      * Returns the custom model for the given uuid.
@@ -120,7 +120,7 @@ public interface PersistenceService {
      * @param uuid
      * @return
      */
-    JsonNode getCustomModelByUUID(UUID uuid);
+    JsonNode getCustomModelByUUID(String modelId, String schemaId, UUID uuid);
     
     /**
      * Result in pages.

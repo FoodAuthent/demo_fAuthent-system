@@ -10,6 +10,8 @@ import java.time.LocalDate;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.xml.ws.Action;
+
 import org.foodauthent.api.FileService;
 import org.foodauthent.api.internal.exception.FARuntimeException;
 import org.foodauthent.api.internal.exception.ServiceNotAvailableException;
@@ -22,9 +24,11 @@ import org.foodauthent.common.exception.FAExceptions.InvalidInputException;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ServiceScope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,15 +37,15 @@ import org.slf4j.LoggerFactory;
  * @author Martin Horn, University of Konstanz
  *
  */
-@Component(service=FileService.class)
+@Component(service = FileService.class, immediate = true, scope = ServiceScope.SINGLETON)
 public class FileServiceImpl implements FileService {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);
 
-    @Reference(cardinality=ReferenceCardinality.MANDATORY)
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
     private PersistenceService persistenceService;
 
-    @Reference
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
     private RawFileReader rawFileReader;
 
     public FileServiceImpl() {
@@ -59,7 +63,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public File getFileData(UUID fileId) {
 	Blob blob = persistenceService.getBlobByUUID(fileId);
-	//TODO
+	// TODO
 	return null;
     }
 
@@ -78,17 +82,17 @@ public class FileServiceImpl implements FileService {
 
 	validateFileType(fileMeta.getType(), upfileDetail);
 
-	fileMeta = FileMetadata.builder(fileMeta).setUploadName(upfileDetail.getFileName()).setUploadDate(LocalDate.now()).build();
+	fileMeta = FileMetadata.builder(fileMeta).setUploadName(upfileDetail.getFileName())
+		.setUploadDate(LocalDate.now()).build();
 	persistenceService.replace(fileMeta);
 
 	try {
-	if (TypeEnum.FINGERPRINTS_BRUKER.equals(fileMeta.getType())) {
+	    if (TypeEnum.FINGERPRINTS_BRUKER.equals(fileMeta.getType())) {
 		updateFinterprintMetadata(fileMeta, upfile);
-	}
+	    }
 
 	    // new uuid for the blob (the same id as the one of metadata!)
-	    persistenceService
-		    .save(new Blob(fileId, toByteArray(upfile)));
+	    persistenceService.save(new Blob(fileId, toByteArray(upfile)));
 
 	    return fileId;
 	} catch (Exception e) {
@@ -112,7 +116,7 @@ public class FileServiceImpl implements FileService {
 	default:
 	}
     }
-    
+
     private static byte[] toByteArray(InputStream in) throws IOException {
 	// would be cool to be able to use apache's IOUtils
 	ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -139,7 +143,5 @@ public class FileServiceImpl implements FileService {
     public FileMetadata getFileMetadata(UUID fileId) {
 	return persistenceService.getFaModelByUUID(fileId, FileMetadata.class);
     }
-
-
 
 }
