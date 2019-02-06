@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.foodauthent.model.PostalAddress;
-import org.foodauthent.model.UserBase;
 
 
 
@@ -162,8 +161,8 @@ public class User extends UserBase  {
         private java.util.List<String> homePhoneNumbers = new java.util.ArrayList<>();
         private java.util.List<String> mobilePhoneNumbers = new java.util.ArrayList<>();
         private String businessCategory;
-        private PostalAddress postalAddress = null;
-        private PostalAddress billingAddress = null;
+        private PostalAddress postalAddress;
+        private PostalAddress billingAddress;
         private String secretary;
         private String employeeType;
         private String employeeNumber;

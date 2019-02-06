@@ -281,8 +281,8 @@ public class UserBase   extends FaModel {
         private java.util.List<String> homePhoneNumbers = new java.util.ArrayList<>();
         private java.util.List<String> mobilePhoneNumbers = new java.util.ArrayList<>();
         private String businessCategory;
-        private PostalAddress postalAddress = null;
-        private PostalAddress billingAddress = null;
+        private PostalAddress postalAddress;
+        private PostalAddress billingAddress;
         private String secretary;
         private String employeeType;
         private String employeeNumber;

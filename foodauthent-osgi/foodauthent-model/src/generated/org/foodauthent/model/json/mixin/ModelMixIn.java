@@ -4,7 +4,7 @@
 package org.foodauthent.model.json.mixin;
 
 import java.time.LocalDate;
-import org.foodauthent.model.json.mixin.TagMixIn;
+import org.foodauthent.model.Tag;
 
 import java.util.UUID;
 
@@ -69,7 +69,7 @@ public interface ModelMixIn {
     public TypeEnum getType();
     
     @JsonProperty("tags")
-    public java.util.List<TagMixIn> getTags();
+    public java.util.List<Tag> getTags();
     
     @JsonProperty("file-id")
     public java.util.UUID getFileId();
@@ -121,7 +121,7 @@ public interface ModelMixIn {
         public ModelMixInBuilder setType(final TypeEnum type);
         
         @JsonProperty("tags")
-        public ModelMixInBuilder setTags(final java.util.List<TagMixIn> tags);
+        public ModelMixInBuilder setTags(final java.util.List<Tag> tags);
         
         @JsonProperty("file-id")
         public ModelMixInBuilder setFileId(final java.util.UUID fileId);

@@ -3,7 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.json.mixin.FingerprintSetMixIn;
+import org.foodauthent.model.FingerprintSet;
 
 import java.util.UUID;
 
@@ -57,7 +57,7 @@ public interface FingerprintSetPageResultMixIn {
     public Integer getResultCount();
     
     @JsonProperty("results")
-    public java.util.List<FingerprintSetMixIn> getResults();
+    public java.util.List<FingerprintSet> getResults();
     
 
     /**
@@ -88,7 +88,7 @@ public interface FingerprintSetPageResultMixIn {
         public FingerprintSetPageResultMixInBuilder setResultCount(final Integer resultCount);
         
         @JsonProperty("results")
-        public FingerprintSetPageResultMixInBuilder setResults(final java.util.List<FingerprintSetMixIn> results);
+        public FingerprintSetPageResultMixInBuilder setResults(final java.util.List<FingerprintSet> results);
         
     }
 

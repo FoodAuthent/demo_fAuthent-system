@@ -17,6 +17,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
+import org.openapitools.codegen.CodegenModel;
+import org.openapitools.codegen.CodegenModelFactory;
+import org.openapitools.codegen.CodegenModelType;
 import org.openapitools.codegen.CodegenOperation;
 import org.openapitools.codegen.CodegenProperty;
 import org.openapitools.codegen.CodegenType;
@@ -36,6 +39,8 @@ import io.swagger.v3.oas.models.responses.ApiResponse;
  * @author Martin Horn, University of Konstanz
  */
 public class FoodAuthentCodegen extends AbstractJavaCodegen {
+
+	private static final String NAME_PLACEHOLDER = "##name##";
 
 	static Logger LOGGER = LoggerFactory.getLogger(FoodAuthentCodegen.class);
 
@@ -173,9 +178,33 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
 				itr.remove();
 			}
 		}
+		
+		//replace packages of property-models
+		if (m_modelPropertyPackage != null) {
+			for (Map<String, String> i : imports) {
+				i.put("import", i.get("import").replaceFirst(objs.get("package").toString(), m_modelPropertyPackage));
+			}
+		}
+		
+		//remove parent classes from import
+		List<Map<String, Object>> models = (List<Map<String, Object>>) objs.get("models");
+		for(Map<String, Object> model : models) {
+			CodegenModel codegenModel = (CodegenModel) model.get("model");
+			final String parent = codegenModel.getParent();
+			imports = imports.stream().filter(i -> {
+				String tmp = i.get("import");
+				if(tmp == null || parent == null) {
+					return true;
+				} else {
+					return !tmp.contains(parent);
+				}
+			}).collect(Collectors.toList());
+		}
+		objs.put("imports", imports);
+		
 		return super.postProcessModels(objs);
 	}
-
+	
 	@Override
 	public void addOperationToGroup(final String tag, final String resourcePath, final Operation operation,
 			final CodegenOperation co, final Map<String, List<CodegenOperation>> operations) {
@@ -227,7 +256,7 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
 			tags.add(tag);
 		}
 		if (m_apiNamePattern != null) {
-			return m_apiNamePattern.replace("##name##", camelize(name));
+			return m_apiNamePattern.replace(NAME_PLACEHOLDER, camelize(name));
 		} else {
 			return name;
 		}
@@ -236,7 +265,7 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
 	@Override
 	public String toModelName(final String name) {
 		if (m_modelNamePattern != null) {
-			return m_modelNamePattern.replace("##name##", name);
+			return m_modelNamePattern.replace(NAME_PLACEHOLDER, name);
 		} else {
 			return name;
 		}
@@ -250,34 +279,36 @@ public class FoodAuthentCodegen extends AbstractJavaCodegen {
 			return super.toBooleanGetter(name);
 		}
 	}
+	
+	@Override
+	public CodegenProperty fromProperty(final String name, final Schema p) {
+		// enables properties to have another name then the property they are
+		// part of
+		// e.g. DefaultNodeEnt.getNodeMessage() returns NodeMessageEnt instead
+		// of DefaultNodeMessageEnt
+		if (m_modelPropertyNamePattern != null && p.get$ref() != null) {
+			CodegenProperty property = CodegenModelFactory.newInstance(CodegenModelType.PROPERTY);
+			property.name = toVarName(name);
+			property.baseName = name;
+			property.nameInCamelCase = camelize(property.name, false);
+			property.description = escapeText(p.getDescription());
+			property.unescapedDescription = p.getDescription();
+			property.title = p.getTitle();
+			property.getter = toGetter(name);
+			property.setter = toSetter(name);
+			property.baseType = property.dataType = property.datatypeWithEnum = m_modelPropertyNamePattern
+					.replace(NAME_PLACEHOLDER, extractNameFromRef(p.get$ref()));
+			//importMapping.put(property.dataType, m_modelPropertyPackage + "." + property.dataType);
+			return property;
+		} else {
+			return super.fromProperty(name, p);
+		}
+	}
+	
+    private String extractNameFromRef(final String ref) {
+        return ref.substring(ref.lastIndexOf("schemas/") + 8);
+    }
 
-	// @Override
-	// public CodegenProperty fromProperty(final String name, final Property p) {
-	// // enables properties to have another name then the property they are
-	// // part of
-	// // e.g. DefaultNodeEnt.getNodeMessage() returns NodeMessageEnt instead
-	// // of DefaultNodeMessageEnt
-	// if (m_modelPropertyNamePattern != null && p instanceof RefProperty) {
-	// CodegenProperty property =
-	// CodegenModelFactory.newInstance(CodegenModelType.PROPERTY);
-	// property.name = toVarName(name);
-	// property.baseName = name;
-	// property.nameInCamelCase = camelize(property.name, false);
-	// property.description = escapeText(p.getDescription());
-	// property.unescapedDescription = p.getDescription();
-	// property.title = p.getTitle();
-	// property.getter = toGetter(name);
-	// property.setter = toSetter(name);
-	// property.baseType = property.datatype = property.datatypeWithEnum =
-	// m_modelPropertyNamePattern
-	// .replace("##name##", ((RefProperty) p).getSimpleRef());
-	// importMapping.put(property.datatype, m_modelPropertyPackage + "." +
-	// property.datatype);
-	// return property;
-	// } else {
-	// return super.fromProperty(name, p);
-	// }
-	// }
 
 	@Override
 	protected void updatePropertyForMap(final CodegenProperty property, final CodegenProperty innerProperty) {

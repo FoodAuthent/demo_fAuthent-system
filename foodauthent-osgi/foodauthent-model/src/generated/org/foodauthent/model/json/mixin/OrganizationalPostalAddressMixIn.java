@@ -3,7 +3,6 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.json.mixin.PostalAddressMixIn;
 
 import java.util.UUID;
 
