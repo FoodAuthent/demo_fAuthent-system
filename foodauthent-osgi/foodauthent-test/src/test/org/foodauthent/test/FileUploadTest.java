@@ -26,7 +26,7 @@ import org.junit.experimental.categories.Category;
 public class FileUploadTest extends AbstractITTest {
 
     FileRestService s = restService(FileRestService.class);
-    @Ignore
+
     @Test
     public void simpleUploadTest() throws Exception {
 
