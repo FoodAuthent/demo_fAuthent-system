@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product uid="org.foodauthent.backend.knime.runtime" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <programArgs>-consoleLog -console
+      </programArgs>
+      <vmArgs>-Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dorg.osgi.service.http.port=9090
+      </vmArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
+   </launcherArgs>
+
+   <windowImages/>
+
+   <launcher name="FoodAuthent Backend Equinox">
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+   <vm>
+      <linux include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
+      <macos include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</macos>
+      <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</windows>
+   </vm>
+
+   <plugins>
+   </plugins>
+
+   <features>
+      <feature id="io.swagger.feature"/>
+      <feature id="org.glassfish.jersey.feature"/>
+      <feature id="org.slf4j.feature"/>
+      <feature id="org.joda.time.feature"/>
+      <feature id="org.apache.commons.feature"/>
+      <feature id="org.apache.httpcomponents.feature"/>
+      <feature id="org.eclipse.equinox.server.jetty"/>
+      <feature id="com.typesafe.feature"/>
+      <feature id="org.eclipse.equinox.server.core"/>
+      <feature id="io.minio.feature"/>
+      <feature id="com.eclipsesource.jaxrs.feature"/>
+      <feature id="com.fasterxml.jackson.feature"/>
+      <feature id="org.scala-lang.feature"/>
+      <feature id="org.eclipse.equinox.executable"/>
+      <feature id="org.eclipse.core.runtime.feature"/>
+      <feature id="org.eclipse.equinox.core.feature"/>
+      <feature id="org.glassfish.hk2.feature"/>
+      <feature id="org.elasticsearch.client.feature"/>
+      <feature id="org.foodauthent.dependencies.feature"/>
+      <feature id="org.foodauthent.openchrom.feature"/>
+      <feature id="org.apacheds.feature"/>
+      <feature id="com.google.feature"/>
+      <feature id="net.openchrom.platform.feature"/>
+      <feature id="com.noscendo.amazonaws.feature"/>
+      <feature id="org.ldaptive.osgi.feature"/>
+      <feature id="com.auth0.java-jwt.feature"/>
+      <feature id="net.openchrom.converter.feature"/>
+      <feature id="org.foodauthent.knime.feature"/>
+      <feature id="org.eclipse.e4.rcp"/>
+      <feature id="org.foodauthent.base.feature"/>
+   </features>
+
+   <configurations>
+      <plugin id="com.eclipsesource.jaxrs.publisher" autoStart="true" startLevel="0" />
+      <plugin id="org.apache.felix.gogo.command" autoStart="true" startLevel="0" />
+      <plugin id="org.apache.felix.gogo.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.apache.felix.gogo.shell" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.app" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.bidi" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.cm" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.concurrent" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.console" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.http.jetty" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.http.registry" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.http.servlet" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.launcher" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.preferences" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.registry" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.security" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+      <plugin id="org.eclipse.equinox.util" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.osgi" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.osgi.services" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.swt" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.ui.workbench" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.common" autoStart="true" startLevel="2" />
+      <plugin id="org.foodauthent.config" autoStart="true" startLevel="2" />
+      <plugin id="org.foodauthent.jersey.filter" autoStart="true" startLevel="3" />
+      <plugin id="org.foodauthent.logging.osgi" autoStart="true" startLevel="1" />
+      <plugin id="org.foodauthent.persistence.impl.elasticsearch" autoStart="true" startLevel="3" />
+      <plugin id="org.foodauthent.rest.api" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.rest.impl" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.storage.impl.s3" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.swaggerui" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.ui.vuejs" autoStart="true" startLevel="0" />
+      <plugin id="org.glassfish.hk2.osgi-resource-locator" autoStart="true" startLevel="0" />
+      <plugin id="org.glassfish.jersey.containers.jersey-container-servlet" autoStart="true" startLevel="0" />
+      <plugin id="org.glassfish.jersey.containers.jersey-container-servlet-core" autoStart="true" startLevel="0" />
+      <plugin id="org.glassfish.jersey.core.jersey-server" autoStart="true" startLevel="0" />
+      <plugin id="org.glassfish.jersey.inject.jersey-hk2" autoStart="true" startLevel="0" />
+   </configurations>
+
+   <preferencesInfo>
+      <targetfile overwrite="false"/>
+   </preferencesInfo>
+
+   <cssInfo>
+   </cssInfo>
+
+</product>
