@@ -19,12 +19,11 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.foodauthent.api.internal.filereader.RawFileReader;
 import org.foodauthent.model.FileMetadata;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ServiceScope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-
-@Component(service = RawFileReader.class)
+@Component(service = RawFileReader.class, immediate = true, scope = ServiceScope.SINGLETON)
 public class OpenChromRawFileReader implements RawFileReader {
 
 	private static final Logger logger = LoggerFactory.getLogger(OpenChromRawFileReader.class);
@@ -32,26 +31,25 @@ public class OpenChromRawFileReader implements RawFileReader {
 	private static final byte[] buffer = new byte[1024];
 
 	public OpenChromRawFileReader() {
-
 	}
 
 	@Override
 	public Map<String, String> getAllFileMetadata(FileMetadata.TypeEnum fileType, File file) throws IOException {
 
-		if(!file.exists()) {
+		if (!file.exists()) {
 			throw new FileNotFoundException(file.toString());
 		}
-		if(logger.isDebugEnabled()) {
+		if (logger.isDebugEnabled()) {
 			logger.debug("Reading metadata from " + file);
 		}
 
 		Map<String, String> result = new LinkedHashMap<>();
-		switch(fileType) {
-			case FINGERPRINTS_BRUKER:
-				result.putAll(readBrukerMetadata(file));
-				break;
-			default:
-				throw new IllegalArgumentException("Unsupported file " + fileType);
+		switch (fileType) {
+		case FINGERPRINTS_BRUKER:
+			result.putAll(readBrukerMetadata(file));
+			break;
+		default:
+			throw new IllegalArgumentException("Unsupported file " + fileType);
 		}
 
 		return result;
@@ -61,27 +59,27 @@ public class OpenChromRawFileReader implements RawFileReader {
 
 		try (FileOutputStream output = new FileOutputStream(outpath)) {
 			int len;
-			while((len = stream.read(buffer)) > 0) {
+			while ((len = stream.read(buffer)) > 0) {
 				output.write(buffer, 0, len);
 			}
 		}
 	}
 
 	@Override
-	public Map<String, String> getAllFileMetadata(FileMetadata.TypeEnum fileType, FileInputStream stream2) throws IOException {
+	public Map<String, String> getAllFileMetadata(FileMetadata.TypeEnum fileType, FileInputStream stream2)
+			throws IOException {
 
 		ZipInputStream stream = new ZipInputStream(stream2);
 		Path tmpDir = Files.createTempDirectory(getClass().getSimpleName());
 
-		if(logger.isDebugEnabled()) {
+		if (logger.isDebugEnabled()) {
 			logger.debug("Extracting to tmp dir " + tmpDir);
 		}
 		ZipEntry entry;
-		while((entry = stream.getNextEntry()) != null) {
-			if(entry.isDirectory()) {
-				if(new File(tmpDir.toFile(), entry.getName()).mkdirs()) {
-				}
-				else {
+		while ((entry = stream.getNextEntry()) != null) {
+			if (entry.isDirectory()) {
+				if (new File(tmpDir.toFile(), entry.getName()).mkdirs()) {
+				} else {
 					throw new IOException("Failed to create directory " + entry.getName());
 				}
 			} else {
@@ -91,29 +89,29 @@ public class OpenChromRawFileReader implements RawFileReader {
 		}
 
 		return getAllFileMetadata(fileType, new File(tmpDir.toFile(), "fid"));
-		
+
 	}
 
 	private Map<String, String> readBrukerMetadata(File file) {
 
-		if(logger.isDebugEnabled()) {
+		if (logger.isDebugEnabled()) {
 			logger.debug("Reading " + file.getName());
 		}
 		Map<String, String> result = new LinkedHashMap<>();
 
 		final IProcessingInfo processingInfo = ScanConverterNMR.convert(file, new NullProgressMonitor());
-		if(processingInfo == null) {
-			if(logger.isErrorEnabled()) {
+		if (processingInfo == null) {
+			if (logger.isErrorEnabled()) {
 				logger.error("Processing failed");
 			}
 		} else {
 			Object processingResult = processingInfo.getProcessingResult();
 			// System.err.println(processingResult.getClass());
-			if(processingResult instanceof IMeasurementNMR) {
-				IMeasurementNMR scan = (IMeasurementNMR)processingResult;
+			if (processingResult instanceof IMeasurementNMR) {
+				IMeasurementNMR scan = (IMeasurementNMR) processingResult;
 				result.putAll(scan.getHeaderDataMap());
 			} else {
-				if(logger.isErrorEnabled()) {
+				if (logger.isErrorEnabled()) {
 					logger.error("Processing failed");
 				}
 			}

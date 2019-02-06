@@ -29,7 +29,7 @@ import org.osgi.framework.ServiceReference;
  */
 @Category(FrameworkTest.class)
 public class ServiceReferenceTest extends AbstractITTest {
-    @Ignore
+
     @Test
     public void test01() throws Exception {
 

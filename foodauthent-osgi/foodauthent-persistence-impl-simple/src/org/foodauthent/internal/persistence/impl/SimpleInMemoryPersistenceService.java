@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.api.internal.exception.NoSuchIDException;
 import org.foodauthent.api.internal.persistence.Blob;
-import org.foodauthent.api.internal.persistence.PersistenceService;
+import org.foodauthent.api.internal.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
@@ -37,8 +37,8 @@ import com.fasterxml.jackson.databind.JsonNode;
  * @author Alexander Kerner
  *
  */
-@Component(service = PersistenceService.class)
-public class SimpleInMemoryPersistenceService implements PersistenceService {
+@Component(service = PersistenceServiceProvider.class)
+public class SimpleInMemoryPersistenceService implements PersistenceServiceProvider {
 
 	private static final Logger logger = LoggerFactory.getLogger(SimpleInMemoryPersistenceService.class);
 
@@ -51,15 +51,15 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	 * Mimics a database and/ or a file system.
 	 */
 	private final Map<UUID, FaModel> models;
-	
-	private final Map<UUID, JsonNode> customModels;
+
+	private final Map<String, JsonNode> customModels;
 
 	private final Map<UUID, Blob> blobs;
 
 	public SimpleInMemoryPersistenceService() {
 		this.models = new LinkedHashMap<UUID, FaModel>();
 		this.blobs = new LinkedHashMap<UUID, Blob>();
-		this.customModels = new LinkedHashMap<UUID, JsonNode>();
+		this.customModels = new LinkedHashMap<String, JsonNode>();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -118,9 +118,9 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
 			int pageNumber, int pageSize) {
 		List<T> res = findByKeywords(keywords, modelType);
-//		Please don't override otherwise the research and paginations doesn't work
-//		int start = pageNumber * pageSize;
-		int start = (pageNumber-1) * pageSize;
+		// Please don't override otherwise the research and paginations doesn't work
+		// int start = pageNumber * pageSize;
+		int start = (pageNumber - 1) * pageSize;
 		List<T> page = res.stream().skip(start).limit(pageSize).collect(Collectors.toList());
 		return new ResultPage<T>() {
 
@@ -191,15 +191,17 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	}
 
 	@Override
-	public UUID saveCustomModel(JsonNode model, String typeId) {
-		UUID randomUUID = UUID.randomUUID();
-		this.customModels.put(randomUUID, model);
-		return randomUUID;
+	public void saveCustomModel(String modelId, String schemaId, UUID uuid, JsonNode model) {
+		this.customModels.put(customModelKey(modelId, schemaId, uuid), model);
 	}
-	
+
 	@Override
-	public JsonNode getCustomModelByUUID(UUID uuid) {
-		return this.customModels.get(uuid);
+	public JsonNode getCustomModelByUUID(String modelId, String schemaId, UUID uuid) {
+		return this.customModels.get(customModelKey(modelId, schemaId, uuid));
+	}
+
+	private String customModelKey(String modelId, String schemaId, UUID uuid) {
+		return modelId + "-" + schemaId + "-" + uuid.toString();
 	}
 
 	private <T extends Object> boolean save(final T obj, UUID faId) throws ModelExistsException {
@@ -243,16 +245,21 @@ public class SimpleInMemoryPersistenceService implements PersistenceService {
 	 * @param key
 	 * @param keywords
 	 * @return Check if there is a match for a keyword list
-	 */	
+	 */
 	public boolean containsAKeyword(String key, Collection<String> keywords) {
-		//Remove empty keywords
+		// Remove empty keywords
 		keywords.removeIf(item -> item == null || "".equals(item));
-		//check for matching
+		// check for matching
 		if (keywords.stream().map(s -> s.toLowerCase()).anyMatch(key.toLowerCase()::contains)) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public int getPriority() {
+		return 0;
 	}
 
 }

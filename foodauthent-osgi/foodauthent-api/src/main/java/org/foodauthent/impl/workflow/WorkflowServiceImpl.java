@@ -21,6 +21,7 @@ import org.foodauthent.model.WorkflowPageResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ServiceScope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,16 +30,16 @@ import org.slf4j.LoggerFactory;
  * @author Alexander Kerner, Lablicate GmbH
  *
  */
-@Component(service=WorkflowService.class)
+@Component(service = WorkflowService.class, immediate = true, scope = ServiceScope.SINGLETON)
 public class WorkflowServiceImpl implements WorkflowService {
 
     @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(WorkflowServiceImpl.class);
 
-    @Reference(cardinality=ReferenceCardinality.MANDATORY)
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
     private PersistenceService persistenceService;
 
-    @Reference(cardinality=ReferenceCardinality.MANDATORY)
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
     private JobService jobService;
 
     public WorkflowServiceImpl() {
@@ -57,7 +58,8 @@ public class WorkflowServiceImpl implements WorkflowService {
     @Override
     public TrainingJob createTrainingJob(final UUID workflowId, final UUID fingerprintSetId) throws InitJobException {
 	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId, Workflow.class);
-	final FingerprintSet fingerprintSet = persistenceService.getFaModelByUUID(fingerprintSetId, FingerprintSet.class);
+	final FingerprintSet fingerprintSet = persistenceService.getFaModelByUUID(fingerprintSetId,
+		FingerprintSet.class);
 	final TrainingJob job = jobService.createNewTrainingJob(workflow, fingerprintSet);
 	return job;
     }
@@ -87,14 +89,14 @@ public class WorkflowServiceImpl implements WorkflowService {
 	persistenceService.save(workflow);
 	return workflow.getFaId();
     }
-    
+
     @Override
     public WorkflowPageResult findWorkflowByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
 	ResultPage<Workflow> res = persistenceService.findByKeywordsPaged(keywords, Workflow.class, pageNumber,
 		pageSize);
 	return WorkflowPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
-   }
+    }
 
     @Override
     public PredictionPageResult findModelByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {

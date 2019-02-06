@@ -34,13 +34,14 @@ import org.foodauthent.model.json.ObjectMapperUtil;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ServiceScope;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 /**
  * @author Martin Horn, University of Konstanz
  */
-@Component(service = JobService.class, immediate = true)
+@Component(service = JobService.class, immediate = true, scope = ServiceScope.SINGLETON)
 public class LocalKnimeJobService implements JobService {
 
 	@Reference(cardinality = ReferenceCardinality.MANDATORY)
