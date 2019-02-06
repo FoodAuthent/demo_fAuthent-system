@@ -54,16 +54,13 @@ public class Activator implements BundleActivator {
 				}
 			}
 			/*
-			for (Class<?> cls : ServiceUtil.getRestServiceClasses()) {
-				try {
-					registrations.add(context.registerService(cls.getName(), cls.newInstance(), null));
-					LOG.info(String.format("registered REST service class %s", cls.getName()));
-				} catch (Throwable e) {
-					LOG.error(String.format("unable to register REST service class %s", cls.getName()));
-					throw new Exception(e);
-				}
-			}
-			*/
+			 * for (Class<?> cls : ServiceUtil.getRestServiceClasses()) { try {
+			 * registrations.add(context.registerService(cls.getName(), cls.newInstance(),
+			 * null)); LOG.info(String.format("registered REST service class %s",
+			 * cls.getName())); } catch (Throwable e) {
+			 * LOG.error(String.format("unable to register REST service class %s",
+			 * cls.getName())); throw new Exception(e); } }
+			 */
 		} catch (Exception e) {
 			LOG.error("unable to activate foodauthent-rest bundle", e);
 			stop(context);
@@ -73,12 +70,14 @@ public class Activator implements BundleActivator {
 
 	private void configureJaxRSBridge(BundleContext context) throws Exception {
 		final ServiceReference<ConfigurationAdmin> reference = context.getServiceReference(ConfigurationAdmin.class);
-		final ConfigurationAdmin configAdmin = context.getService(reference);
-		final Configuration configuration = configAdmin.getConfiguration("com.eclipsesource.jaxrs.connector", null);
-		final Dictionary<String, Object> properties = new Hashtable<>();
-		properties.put("root", "/");
-		configuration.update(properties);
-		context.ungetService(reference);
+		if (reference != null) {
+			final ConfigurationAdmin configAdmin = context.getService(reference);
+			final Configuration configuration = configAdmin.getConfiguration("com.eclipsesource.jaxrs.connector", null);
+			final Dictionary<String, Object> properties = new Hashtable<>();
+			properties.put("root", "/");
+			configuration.update(properties);
+			context.ungetService(reference);
+		}
 	}
 
 	@Override
