@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.foodauthent.model.OrganizationBase;
 import org.foodauthent.model.OrganizationalPostalAddress;
 
 
@@ -130,8 +129,8 @@ public class OrganizationCreateRequest extends OrganizationBase  {
         private java.util.List<String> faxNumbers = new java.util.ArrayList<>();
         private java.util.List<String> phoneNumbers = new java.util.ArrayList<>();
         private String businessCategory;
-        private OrganizationalPostalAddress postalAddress = null;
-        private OrganizationalPostalAddress billingAddress = null;
+        private OrganizationalPostalAddress postalAddress;
+        private OrganizationalPostalAddress billingAddress;
         private String parentDn;
         private String organizationName;
 

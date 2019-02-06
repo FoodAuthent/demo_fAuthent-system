@@ -1,8 +1,12 @@
 package org.foodauthent.elasticsearch.impl;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Base64;
 import java.util.UUID;
 
+import org.apache.commons.io.IOUtils;
 import org.foodauthent.api.internal.persistence.Blob;
 
 /**
@@ -21,7 +25,12 @@ public class ESBlob {
 	}
 
 	public ESBlob(Blob blob) {
-		this.data = Base64.getEncoder().encodeToString(blob.getData());
+		try {
+			this.data = Base64.getEncoder().encodeToString(IOUtils.toByteArray(blob.getData()));
+		} catch (IOException e) {
+			//TODO
+			throw new RuntimeException();
+		}
 	}
 
 	public String getData() {
@@ -33,6 +42,6 @@ public class ESBlob {
 	}
 
 	public Blob toBlob(UUID faId) {
-		return new Blob(faId, Base64.getDecoder().decode(data));
+		return new Blob(faId, new ByteArrayInputStream(Base64.getDecoder().decode(data)));
 	}
 }

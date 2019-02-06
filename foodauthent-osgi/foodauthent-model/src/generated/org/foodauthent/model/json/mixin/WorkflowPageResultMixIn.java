@@ -3,7 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.json.mixin.WorkflowMixIn;
+import org.foodauthent.model.Workflow;
 
 import java.util.UUID;
 
@@ -57,7 +57,7 @@ public interface WorkflowPageResultMixIn {
     public Integer getResultCount();
     
     @JsonProperty("results")
-    public java.util.List<WorkflowMixIn> getResults();
+    public java.util.List<Workflow> getResults();
     
 
     /**
@@ -88,7 +88,7 @@ public interface WorkflowPageResultMixIn {
         public WorkflowPageResultMixInBuilder setResultCount(final Integer resultCount);
         
         @JsonProperty("results")
-        public WorkflowPageResultMixInBuilder setResults(final java.util.List<WorkflowMixIn> results);
+        public WorkflowPageResultMixInBuilder setResults(final java.util.List<Workflow> results);
         
     }
 

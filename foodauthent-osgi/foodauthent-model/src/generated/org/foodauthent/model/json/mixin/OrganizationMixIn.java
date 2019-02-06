@@ -3,8 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.json.mixin.OrganizationBaseMixIn;
-import org.foodauthent.model.json.mixin.OrganizationalPostalAddressMixIn;
+import org.foodauthent.model.OrganizationalPostalAddress;
 
 import java.util.UUID;
 
@@ -61,10 +60,10 @@ public interface OrganizationMixIn {
     public String getBusinessCategory();
     
     @JsonProperty("postalAddress")
-    public OrganizationalPostalAddressMixIn getPostalAddress();
+    public OrganizationalPostalAddress getPostalAddress();
     
     @JsonProperty("billingAddress")
-    public OrganizationalPostalAddressMixIn getBillingAddress();
+    public OrganizationalPostalAddress getBillingAddress();
     
     @JsonProperty("dn")
     public String getDn();
@@ -104,10 +103,10 @@ public interface OrganizationMixIn {
         public OrganizationMixInBuilder setBusinessCategory(final String businessCategory);
         
         @JsonProperty("postalAddress")
-        public OrganizationMixInBuilder setPostalAddress(final OrganizationalPostalAddressMixIn postalAddress);
+        public OrganizationMixInBuilder setPostalAddress(final OrganizationalPostalAddress postalAddress);
         
         @JsonProperty("billingAddress")
-        public OrganizationMixInBuilder setBillingAddress(final OrganizationalPostalAddressMixIn billingAddress);
+        public OrganizationMixInBuilder setBillingAddress(final OrganizationalPostalAddress billingAddress);
         
         @JsonProperty("dn")
         public OrganizationMixInBuilder setDn(final String dn);

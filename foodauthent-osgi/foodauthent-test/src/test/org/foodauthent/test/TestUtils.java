@@ -26,10 +26,11 @@ public class TestUtils {
 		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINTS_BRUKER).setVersion(0).build();
     }
 
+    @Deprecated
     public static WebTarget newWebTarget() {
 	Client client = ClientBuilder.newClient().register(JacksonJSONWriter.class, Integer.MAX_VALUE)
 		.register(JacksonJSONReader.class, Integer.MAX_VALUE).register(MultiPartFeature.class);
-	return client.target("http://localhost:9090/v0/foodauthent");
+	return client.target("http://localhost:9090/v0/foodauthent/");
     }
     
     public static <S> S createClientProxy(Class<S> serviceClass) {

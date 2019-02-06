@@ -3,8 +3,8 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.json.mixin.TagMixIn;
-import org.foodauthent.model.json.mixin.WorkflowParameterMixIn;
+import org.foodauthent.model.Tag;
+import org.foodauthent.model.WorkflowParameter;
 
 import java.util.UUID;
 
@@ -65,10 +65,10 @@ public interface WorkflowMixIn {
     public TypeEnum getType();
     
     @JsonProperty("parameters")
-    public java.util.List<WorkflowParameterMixIn> getParameters();
+    public java.util.List<WorkflowParameter> getParameters();
     
     @JsonProperty("tags")
-    public java.util.List<TagMixIn> getTags();
+    public java.util.List<Tag> getTags();
     
     @JsonProperty("file-id")
     public java.util.UUID getFileId();
@@ -111,10 +111,10 @@ public interface WorkflowMixIn {
         public WorkflowMixInBuilder setType(final TypeEnum type);
         
         @JsonProperty("parameters")
-        public WorkflowMixInBuilder setParameters(final java.util.List<WorkflowParameterMixIn> parameters);
+        public WorkflowMixInBuilder setParameters(final java.util.List<WorkflowParameter> parameters);
         
         @JsonProperty("tags")
-        public WorkflowMixInBuilder setTags(final java.util.List<TagMixIn> tags);
+        public WorkflowMixInBuilder setTags(final java.util.List<Tag> tags);
         
         @JsonProperty("file-id")
         public WorkflowMixInBuilder setFileId(final java.util.UUID fileId);

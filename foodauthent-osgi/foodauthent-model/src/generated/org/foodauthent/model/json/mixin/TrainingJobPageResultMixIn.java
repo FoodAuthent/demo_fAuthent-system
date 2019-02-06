@@ -3,7 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.json.mixin.TrainingJobMixIn;
+import org.foodauthent.model.TrainingJob;
 
 import java.util.UUID;
 
@@ -57,7 +57,7 @@ public interface TrainingJobPageResultMixIn {
     public Integer getResultCount();
     
     @JsonProperty("results")
-    public java.util.List<TrainingJobMixIn> getResults();
+    public java.util.List<TrainingJob> getResults();
     
 
     /**
@@ -88,7 +88,7 @@ public interface TrainingJobPageResultMixIn {
         public TrainingJobPageResultMixInBuilder setResultCount(final Integer resultCount);
         
         @JsonProperty("results")
-        public TrainingJobPageResultMixInBuilder setResults(final java.util.List<TrainingJobMixIn> results);
+        public TrainingJobPageResultMixInBuilder setResults(final java.util.List<TrainingJob> results);
         
     }
 

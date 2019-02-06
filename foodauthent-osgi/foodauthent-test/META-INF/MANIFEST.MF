@@ -29,7 +29,7 @@ Import-Package: javax.ws.rs.client,
  org.glassfish.jersey.inject.hk2,
  org.glassfish.jersey.media.multipart,
  org.glassfish.jersey.media.multipart.file,
- org.hamcrest;core=split,
+ org.hamcrest,
  org.osgi.framework,
  org.slf4j
 Automatic-Module-Name: org.foodauthent.test

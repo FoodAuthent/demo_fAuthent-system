@@ -124,7 +124,7 @@ public class TrainingWorkflowInput   extends FaModel {
         }
     
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
-        private FingerprintSet fingerprintsetMetadata = null;
+        private FingerprintSet fingerprintsetMetadata;
         private String fingerprintsetURI;
 
         /**

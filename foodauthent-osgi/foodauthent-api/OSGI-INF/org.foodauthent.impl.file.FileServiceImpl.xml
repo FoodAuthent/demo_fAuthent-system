@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" immediate="true" name="org.foodauthent.impl.file.FileServiceImpl">
-   <service scope="singleton">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" name="org.foodauthent.impl.file.FileServiceImpl">
+   <service>
       <provide interface="org.foodauthent.api.FileService"/>
    </service>
    <reference cardinality="1..1" field="persistenceService" interface="org.foodauthent.api.internal.persistence.PersistenceService" name="persistenceService"/>

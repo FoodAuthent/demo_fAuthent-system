@@ -159,8 +159,8 @@ public class OrganizationBase   extends FaModel {
         private java.util.List<String> faxNumbers = new java.util.ArrayList<>();
         private java.util.List<String> phoneNumbers = new java.util.ArrayList<>();
         private String businessCategory;
-        private OrganizationalPostalAddress postalAddress = null;
-        private OrganizationalPostalAddress billingAddress = null;
+        private OrganizationalPostalAddress postalAddress;
+        private OrganizationalPostalAddress billingAddress;
 
         /**
          * verbose description
