@@ -5,7 +5,7 @@ var MyObject = function () {
 	  apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
 	  //only for test---
 	
-////////////
+/////////////GET METADATA SCHEMA
 	  var CustomMetadataApi = require("@/generated/rest-client/src/api/CustomMetadataApi.js");
 	  var customMetadataApi = new CustomMetadataApi(apiClient);
 
@@ -56,6 +56,10 @@ var MyObject = function () {
 		    	        		        		}
 		    	        		        		newUISchema["fields"].push(UIField);
 		    	        		        		newUISchema["title"] = currentSchema.title;
+		    	        		        		newUISchema["model"] = {};
+		    	        		        		newUISchema["modelID"] = modelID;
+		    	        		        		newUISchema["schemaID"] = schemaID;
+		    	        		        		newUISchema["key"] = nestedSchemaKeys[nestedindex]
 		    	        		        		
 		    	        		        }
 		    	        		        
@@ -73,6 +77,47 @@ var MyObject = function () {
 		  }
 		  customMetadataApi.getCustomMetadataSchemas(modelID,getCustomMetadataSchemasCallback);
 	  }
+	  //////////////
+	  
+	  /////////////SAVE METADATA
+		  var saveCustomMetadata = function (schemas, faId) {
+			  console.log("faId",faId);
+			  var dataModel = {}
+			  var schemaID ;
+			  var modelID ;
+			  for(var index = 0; index < schemas.length;index++){
+				  var currentSchema = schemas[index];
+				  var model= currentSchema.model;
+				  var schemaID = currentSchema.schemaID;
+				  var modelID = currentSchema.modelID;
+				  dataModel[currentSchema.key] = currentSchema.model ;
+			  }
+			    console.log('Save Custom Metadata Schemas ',schemas);
+			    var callback = function (error, data, response) {
+			      console.log("data:", data);
+			      console.log("response:", response);
+			      if (error) {
+			        console.error(error);
+			        self.showError = true;
+			      } else {
+			        self.response = data.results;
+			        console.log("Data", data);
+			        saveMetadata(data);
+			        self.showSuccess = true;
+			        console.log("API called successfully. Returned data: ", data);
+			      }
+			    };
+			    var opt = {
+			      body : dataModel
+			    };
+			    customMetadataApi.saveCustomMetadata(
+			    modelID,
+			    schemaID,
+			    faId,
+			      opt,
+			      callback
+			    );
+			  };
 	  //////////////
 	 
   var renderCustomField = function (self, jsonschema) {
@@ -107,7 +152,8 @@ var MyObject = function () {
 
   return {
     renderCustomField: renderCustomField,
-    getModelSchemas: getModelSchemas
+    getModelSchemas: getModelSchemas,
+    saveCustomMetadata : saveCustomMetadata
   }
 }();
 

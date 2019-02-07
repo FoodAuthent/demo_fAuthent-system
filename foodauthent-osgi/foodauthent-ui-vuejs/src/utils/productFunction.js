@@ -5,6 +5,7 @@ var MyObject = function () {
   apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
   //only for test---
   var ProductApi = require("../generated/rest-client/src/api/ProductApi.js");
+  var saveCustomMetadata = require("@/utils/commonFunction.js").default.saveCustomMetadata;
   var productApi = new ProductApi(apiClient);
   
   
@@ -67,7 +68,7 @@ var MyObject = function () {
       } else {
         self.response = data.results;
         console.log("Data", data);
-        saveMetadata(data);
+        saveCustomMetadata(self.schemas,data);
         self.showSuccess = true;
         console.log("API called successfully. Returned data: ", data);
       }
