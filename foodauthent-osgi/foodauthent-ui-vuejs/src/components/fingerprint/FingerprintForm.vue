@@ -56,7 +56,7 @@
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
 import jsonschema from "@/generated/schema/fingerprintset.json";
-var getModelSchemas = require("@/utils/fingerprintFunction.js").default.getModelSchemas;
+var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
 
 function getFun(val) {
   return function() {
@@ -106,7 +106,7 @@ export default {
   mounted(){
   	
   	getModelSchemas("fingerprintset",schemas);
-  	console.log("xxxxxxxxxxxxxxxxxxx",schemas);
+  	console.log("Schemas",schemas);
   },
   methods: {
     save() {

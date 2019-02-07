@@ -19,8 +19,16 @@ var MyObject = function () {
 	    var callback = function (error, data, response) {
 	      console.log("data:", data);
 	      console.log("response:", response);
-	      self.resultsCount = data.resultCount;
-	      self.pageCount = response.body.pageCount;
+	      if(data !== undefined && data !== null){
+	    	  self.resultsCount = data.resultCount; 
+	      }else{
+	    	  self.resultsCount = 0;
+	      }
+	      if(response.body !== null){
+	    	  self.pageCount = response.body.pageCount; 
+	      }else{
+	    	  self.pageCount = 0;
+	      }
 	      console.log("Page count", response.body.pageCount);
 	      if (error) {
 	        //this.response = data;
@@ -46,7 +54,7 @@ var MyObject = function () {
 	      callback
 	    );
 	  };
-
+	  
   
   var saveProducts = function (json, self) {
     console.log('Save Products');
@@ -58,6 +66,8 @@ var MyObject = function () {
         self.showError = true;
       } else {
         self.response = data.results;
+        console.log("Data", data);
+        saveMetadata(data);
         self.showSuccess = true;
         console.log("API called successfully. Returned data: ", data);
       }

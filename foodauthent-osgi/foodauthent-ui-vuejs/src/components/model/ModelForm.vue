@@ -33,7 +33,11 @@
         <pre v-if="model" v-html="prettyJSON(schema)"></pre>
       </div>
     </div> -->
+    
   </div>
+  
+  
+  
 </template>
 
 <script>
@@ -49,6 +53,12 @@ export default {
       showSuccess: false,
       showError: false,
       response: "",
+      text: "TEST text",
+          todos: [
+      { id: '1',  displayName: 'First' }, 
+      { id: '2', displayName: 'Second' }, 
+      { id: '3',  displayName: 'Third'}
+    ],
       formOptions: {
         validateAfterLoad: true,
         validateAfterChanged: true
@@ -67,3 +77,8 @@ export default {
   }
 };
 </script>
+<style>
+.collapse{
+margin: 15px;
+}
+</style>
