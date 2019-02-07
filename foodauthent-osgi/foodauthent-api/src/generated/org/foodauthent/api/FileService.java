@@ -18,15 +18,6 @@ import org.foodauthent.common.exception.FAExceptions;
 public interface FileService {
 
     /**
-     * Import FoodAuthent components from an existing ZIP file and return the ids of the components.
-     *
-     * @param fileId 
-     *
-     * @return the result
-     */
-    ImportResult callImport(java.util.UUID fileId);
-        
-    /**
      * Creates a new file by posting the file metadata first.
      *
      * @param fileMetadata The actual metadata object.
@@ -52,6 +43,15 @@ public interface FileService {
      * @return the result
      */
     FileMetadata getFileMetadata(java.util.UUID fileId);
+        
+    /**
+     * Import FoodAuthent components from an existing ZIP file and return the ids of the components.
+     *
+     * @param fileId 
+     *
+     * @return the result
+     */
+    ImportResult importFile(java.util.UUID fileId);
         
     /**
      * Uploads (and replaces) the actual file-data for the given file id

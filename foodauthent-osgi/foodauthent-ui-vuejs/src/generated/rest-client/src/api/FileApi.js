@@ -49,54 +49,6 @@
 
 
     /**
-     * Callback function to receive the result of the callImport operation.
-     * @callback module:api/FileApi~callImportCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ImportResult} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Import a ZIP file
-     * Import FoodAuthent components from an existing ZIP file and return the ids of the components.
-     * @param {String} fileId 
-     * @param {module:api/FileApi~callImportCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ImportResult}
-     */
-    this.callImport = function(fileId, callback) {
-      var postBody = null;
-
-      // verify the required parameter 'fileId' is set
-      if (fileId === undefined || fileId === null) {
-        throw new Error("Missing the required parameter 'fileId' when calling callImport");
-      }
-
-
-      var pathParams = {
-        'file-id': fileId
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = [];
-      var contentTypes = [];
-      var accepts = ['application/json'];
-      var returnType = ImportResult;
-
-      return this.apiClient.callApi(
-        '/file/{file-id}/import', 'GET',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
      * Callback function to receive the result of the createFileMetadata operation.
      * @callback module:api/FileApi~createFileMetadataCallback
      * @param {String} error Error message, if any.
@@ -231,6 +183,54 @@
 
       return this.apiClient.callApi(
         '/file/{file-id}', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the importFile operation.
+     * @callback module:api/FileApi~importFileCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/ImportResult} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Import a ZIP file
+     * Import FoodAuthent components from an existing ZIP file and return the ids of the components.
+     * @param {String} fileId 
+     * @param {module:api/FileApi~importFileCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/ImportResult}
+     */
+    this.importFile = function(fileId, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'fileId' is set
+      if (fileId === undefined || fileId === null) {
+        throw new Error("Missing the required parameter 'fileId' when calling importFile");
+      }
+
+
+      var pathParams = {
+        'file-id': fileId
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = ImportResult;
+
+      return this.apiClient.callApi(
+        '/file/{file-id}/import', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
