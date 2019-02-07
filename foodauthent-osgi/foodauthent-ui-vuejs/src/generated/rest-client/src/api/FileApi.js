@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/FileMetadata'], factory);
+    define(['../ApiClient', '../model/FileMetadata', '../model/ImportResult'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/FileMetadata'));
+    module.exports = factory(require('../ApiClient'), require('../model/FileMetadata'), require('../model/ImportResult'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.FileApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FileMetadata);
+    root.FoodAuthentSwaggerApi.FileApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FileMetadata, root.FoodAuthentSwaggerApi.ImportResult);
   }
-}(this, function(ApiClient, FileMetadata) {
+}(this, function(ApiClient, FileMetadata, ImportResult) {
   'use strict';
 
   /**
@@ -47,6 +47,54 @@
   var exports = function(apiClient) {
     this.apiClient = apiClient || ApiClient.instance;
 
+
+    /**
+     * Callback function to receive the result of the callImport operation.
+     * @callback module:api/FileApi~callImportCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/ImportResult} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Import a ZIP file
+     * Import FoodAuthent components from an existing ZIP file and return the ids of the components.
+     * @param {String} fileId 
+     * @param {module:api/FileApi~callImportCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/ImportResult}
+     */
+    this.callImport = function(fileId, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'fileId' is set
+      if (fileId === undefined || fileId === null) {
+        throw new Error("Missing the required parameter 'fileId' when calling callImport");
+      }
+
+
+      var pathParams = {
+        'file-id': fileId
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = ImportResult;
+
+      return this.apiClient.callApi(
+        '/file/{file-id}/import', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
 
     /**
      * Callback function to receive the result of the createFileMetadata operation.

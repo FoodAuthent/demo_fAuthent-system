@@ -8,6 +8,7 @@ import javax.ws.rs.core.Response;
 
 import java.io.File;
 import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.ImportResult;
 
 import org.foodauthent.api.FileService;
 import org.foodauthent.api.ServiceRegistry;
@@ -27,6 +28,18 @@ import org.foodauthent.common.exception.FAExceptions;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public interface FileRestService{
 
+
+    /**
+     * Import FoodAuthent components from an existing ZIP file and return the ids of the components.
+     *
+     * @param fileId 
+     * @return the response
+     */
+    @GET
+    @Path("/file/{file-id}/import")
+    @Produces({ "application/json" })
+    public Response callImport(@PathParam("file-id") java.util.UUID fileId
+);
 
     /**
      * Creates a new file by posting the file metadata first.

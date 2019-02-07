@@ -5,6 +5,7 @@ package org.foodauthent.api;
 
 import java.io.File;
 import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.ImportResult;
 
 import org.foodauthent.common.exception.FAExceptions;
 
@@ -16,6 +17,15 @@ import org.foodauthent.common.exception.FAExceptions;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public interface FileService {
 
+    /**
+     * Import FoodAuthent components from an existing ZIP file and return the ids of the components.
+     *
+     * @param fileId 
+     *
+     * @return the result
+     */
+    ImportResult callImport(java.util.UUID fileId);
+        
     /**
      * Creates a new file by posting the file metadata first.
      *
