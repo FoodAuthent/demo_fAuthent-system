@@ -6,14 +6,17 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import org.foodauthent.model.Fingerprint;
+import org.foodauthent.impl.product.ProductServiceImpl;
+import org.foodauthent.impl.sop.SopServiceImpl;
+import org.foodauthent.model.FaObjectSet;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.SOP;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -26,51 +29,49 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class ZipImporter implements ImporterI {
 
-	@Override
-	public List<Fingerprint> importFingerprints(File file) {
-		return importComponents("fingerprints/", file);
-	}
+    @Override
+    public FaObjectSet importData(File file) {
+	
+	List<Product> products = new ArrayList<>();
+	List<SOP> sops = new ArrayList<>();
+	
+	ZipFile zipFile;
+	try {
+	    zipFile = new ZipFile(file);
+	    Enumeration<? extends ZipEntry> entries = zipFile.entries();
 
-	@Override
-	public List<Product> importProducts(File file) {
-		return importComponents("products/", file);
-	}
+	    ObjectMapper mapper = new ObjectMapper();
 
-	@Override
-	public List<SOP> importSop(File file) {
-		return importComponents("sops/", file);
-	}
+	    while (entries.hasMoreElements()) {
+		ZipEntry entry = entries.nextElement();
 
-	private <T> List<T> importComponents(String subfolder, File file) {
-
-		List<T> components = new ArrayList<>();
-
-		ZipFile zipFile;
-		try {
-			zipFile = new ZipFile(file);
-			Enumeration<? extends ZipEntry> entries = zipFile.entries();
-
-			ObjectMapper mapper = new ObjectMapper();
-
-			// Required to deserialize to generic
-			TypeReference<T> typeRef = new TypeReference<T>() {
-			};
-
-			while (entries.hasMoreElements()) {
-				ZipEntry entry = entries.nextElement();
-
-				if (entry.getName().startsWith(subfolder)) {
-					try (InputStream stream = zipFile.getInputStream(entry)) {
-						T component = mapper.readValue(stream, typeRef);
-						components.add(component);
-					}
-				}
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (entry.getName().startsWith("products/")) {
+		    try (InputStream stream = zipFile.getInputStream(entry)) {
+			products.add(mapper.readValue(stream, Product.class));
+		    }
+		} else if (entry.getName().startsWith("sops/")) {
+		    try (InputStream stream = zipFile.getInputStream(entry)) {
+			sops.add(mapper.readValue(stream, SOP.class));
+		    }
 		}
-
-		return components;
+	    }
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
 	}
+	
+	// Add components to FoodAuthent
+	ProductServiceImpl productService = new ProductServiceImpl();
+	products.forEach(productService::createProduct);
+
+	SopServiceImpl sopService = new SopServiceImpl();
+	sops.forEach(sopService::createNewSOP);
+	
+	// Collect ids in a FaObjectSet
+	List<UUID> productIds = products.stream().map(Product::getFaId).collect(Collectors.toList());
+	List<UUID> sopIds = sops.stream().map(SOP::getFaId).collect(Collectors.toList());
+	
+	FaObjectSet objectSet = FaObjectSet.builder().setProducts(productIds).setSops(sopIds).build();
+	return objectSet;
+    }
 }

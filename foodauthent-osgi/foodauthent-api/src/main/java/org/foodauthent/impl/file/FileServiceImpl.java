@@ -8,10 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.foodauthent.api.FileService;
 import org.foodauthent.api.internal.exception.FARuntimeException;
@@ -26,14 +24,10 @@ import org.foodauthent.impl.io.ExporterI;
 import org.foodauthent.impl.io.ImporterI;
 import org.foodauthent.impl.io.ZipExporter;
 import org.foodauthent.impl.io.ZipImporter;
-import org.foodauthent.impl.product.ProductServiceImpl;
-import org.foodauthent.impl.sop.SopServiceImpl;
 import org.foodauthent.model.FaObjectSet;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
 import org.foodauthent.model.ImportResult;
-import org.foodauthent.model.Product;
-import org.foodauthent.model.SOP;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -175,29 +169,7 @@ public class FileServiceImpl implements FileService {
 	}
 
 	File file = getFileData(fileId);
-//	List<Fingerprint> fingerprints = importer.importFingerprints(file);
-	List<Product> products = importer.importProducts(file);
-	List<SOP> sops = importer.importSop(file);
-	file.delete(); // Delete temporary file
-
-	// Add imported components to FoodAuthent
-
-	// TODO: add components
-	// FingerprintServiceImpl fingerprintService = new FingerprintServiceImpl();
-	// fingerprints.forEach(fingerprintService::);
-
-	ProductServiceImpl productService = new ProductServiceImpl();
-	products.forEach(productService::createProduct);
-
-	SopServiceImpl sopService = new SopServiceImpl();
-	sops.forEach(sopService::createNewSOP);
-
-	// Return ids of imported components
-	// TODO: fingerprint
-
-	List<UUID> productIds = products.stream().map(Product::getFaId).collect(Collectors.toList());
-	List<UUID> sopIds = sops.stream().map(SOP::getFaId).collect(Collectors.toList());
-	FaObjectSet importedObjects = FaObjectSet.builder().setProducts(productIds).setSops(sopIds).build();
+	FaObjectSet importedObjects = importer.importData(file);
 	ImportResult result = ImportResult.builder().setImportedObjects(importedObjects).build();
 
 	return result;
