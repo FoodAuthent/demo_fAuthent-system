@@ -86,10 +86,8 @@ public class ProductsApiTest {
 		}).collect(Collectors.toList()));
 		System.out.println(brandOwner + ", " + productName + ", " + itemIdentifier);
 		try {
-			//mapper.writerWithDefaultPrettyPrinter().writeValue(System.out, r);
-			JsonSchema schema = mapper.generateJsonSchema(r.getClass());
 			File file = new File("/Users/sven/Downloads/schema-"+itemIdentifier+".json");
-			mapper.writerWithDefaultPrettyPrinter().writeValue(file,schema);
+			mapper.writerWithDefaultPrettyPrinter().writeValue(file, r);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
