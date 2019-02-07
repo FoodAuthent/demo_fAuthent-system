@@ -30,11 +30,17 @@ Import-Package: javax.ws.rs.client,
  org.glassfish.jersey.media.multipart,
  org.glassfish.jersey.media.multipart.file,
  org.hamcrest,
+ org.jvnet.mimepull;version="1.9.10",
  org.osgi.framework,
  org.slf4j
 Automatic-Module-Name: org.foodauthent.test
 Export-Package: org.foodauthent.test,
  org.foodauthent.test.category,
  org.foodauthent.test.impl.openchrom
-Require-Bundle: org.junit;bundle-version="4.12.0"
+Require-Bundle: org.junit;bundle-version="4.12.0",
+ javax.annotation,
+ org.glassfish.hk2.api;bundle-version="2.5.0",
+ org.glassfish.hk2.locator;bundle-version="2.5.0",
+ org.glassfish.hk2.utils;bundle-version="2.5.0",
+ org.glassfish.jersey.inject.jersey-hk2;bundle-version="2.27.0"
 Bundle-ActivationPolicy: lazy
