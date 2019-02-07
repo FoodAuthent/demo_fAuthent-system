@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/Product'], factory);
+    define(['../ApiClient'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./Product'));
+    module.exports = factory(require('../ApiClient'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.ImportResult = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.Product);
+    root.FoodAuthentSwaggerApi.ImportResult = factory(root.FoodAuthentSwaggerApi.ApiClient);
   }
-}(this, function(ApiClient, Product) {
+}(this, function(ApiClient) {
   'use strict';
 
 
@@ -60,14 +60,14 @@
     if (data) {
       obj = obj || new exports();
       if (data.hasOwnProperty('products')) {
-        obj['products'] = ApiClient.convertToType(data['products'], [Product]);
+        obj['products'] = ApiClient.convertToType(data['products'], ['String']);
       }
     }
     return obj;
   }
 
   /**
-   * @member {Array.<module:model/Product>} products
+   * @member {Array.<String>} products
    */
   exports.prototype['products'] = undefined;
 

@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
 import org.foodauthent.api.FileService;
@@ -155,7 +156,7 @@ public class FileServiceImpl implements FileService {
     public FileMetadata getFileMetadata(UUID fileId) {
 	return persistenceService.getFaModelByUUID(fileId, FileMetadata.class);
     }
-    
+
     @Override
     public ImportResult importFile(UUID fileId) {
 
@@ -164,21 +165,22 @@ public class FileServiceImpl implements FileService {
 	ProductServiceImpl productService = new ProductServiceImpl();
 	File file = getFileData(fileId);
 	try {
-	    
+
 	    // Extract products from Zip file
 	    List<Product> products = Fakx.importProducts(new ZipFile(file));
-	    
+
 	    // Add imported products to FoodAuthent
 	    products.forEach(productService::createProduct);
-	    
+
+	    List<UUID> productIds = products.stream().map(Product::getFaId).collect(Collectors.toList());
+
 	    // Return imported products
-	    result = ImportResult.builder().setProducts(products).build();
-	    return result;
+	    result = ImportResult.builder().setProducts(productIds).build();
 
 	} catch (IOException e) {
 	    result = ImportResult.builder().build(); // Empty result
 	}
-	
+
 	file.delete(); // Delete temporary file
 
 	return result;

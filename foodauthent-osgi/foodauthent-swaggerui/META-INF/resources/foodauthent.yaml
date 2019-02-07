@@ -2487,5 +2487,5 @@ components:
          products:
             type: array
             items:
-               # TODO: replace with ids
-               $ref: '#/components/schemas/Product'
+               type: string
+               format: uuid
