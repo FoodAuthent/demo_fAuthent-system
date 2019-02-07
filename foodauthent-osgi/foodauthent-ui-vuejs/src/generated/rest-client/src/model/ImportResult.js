@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient'], factory);
+    define(['../ApiClient', '../model/FaObjectSet'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./FaObjectSet'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.ImportResult = factory(root.FoodAuthentSwaggerApi.ApiClient);
+    root.FoodAuthentSwaggerApi.ImportResult = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FaObjectSet);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, FaObjectSet) {
   'use strict';
 
 
@@ -59,31 +59,24 @@
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
-      if (data.hasOwnProperty('fingerprints')) {
-        obj['fingerprints'] = ApiClient.convertToType(data['fingerprints'], ['String']);
+      if (data.hasOwnProperty('problems')) {
+        obj['problems'] = ApiClient.convertToType(data['problems'], ['String']);
       }
-      if (data.hasOwnProperty('products')) {
-        obj['products'] = ApiClient.convertToType(data['products'], ['String']);
-      }
-      if (data.hasOwnProperty('sops')) {
-        obj['sops'] = ApiClient.convertToType(data['sops'], ['String']);
+      if (data.hasOwnProperty('imported-objects')) {
+        obj['imported-objects'] = FaObjectSet.constructFromObject(data['imported-objects']);
       }
     }
     return obj;
   }
 
   /**
-   * @member {Array.<String>} fingerprints
+   * @member {Array.<String>} problems
    */
-  exports.prototype['fingerprints'] = undefined;
+  exports.prototype['problems'] = undefined;
   /**
-   * @member {Array.<String>} products
+   * @member {module:model/FaObjectSet} imported-objects
    */
-  exports.prototype['products'] = undefined;
-  /**
-   * @member {Array.<String>} sops
-   */
-  exports.prototype['sops'] = undefined;
+  exports.prototype['imported-objects'] = undefined;
 
 
 

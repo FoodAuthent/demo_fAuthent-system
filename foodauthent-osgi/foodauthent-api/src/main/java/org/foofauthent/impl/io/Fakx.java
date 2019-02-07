@@ -1,4 +1,4 @@
-package org.foodauthent.fakx;
+package org.foofauthent.impl.io;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -55,6 +55,8 @@ public class Fakx {
 				
 				byte[] lovelyBytes = mapper.writeValueAsBytes(product);
 				zipOutStream.write(lovelyBytes);
+						
+//				mapper.writeValue(zipOutStream, product);
 				
 				zipOutStream.closeEntry();
 			}

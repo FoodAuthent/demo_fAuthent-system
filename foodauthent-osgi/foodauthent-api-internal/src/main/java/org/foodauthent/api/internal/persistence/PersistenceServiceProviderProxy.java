@@ -73,6 +73,11 @@ public class PersistenceServiceProviderProxy implements PersistenceService {
 	public Product findProductByGtin(String gtin) {
 		return provider.findProductByGtin(gtin);
 	}
+	
+	@Override
+	public Product findProductById(UUID id) {
+		return provider.findProductById(id);
+	}
 
 	public <T extends FaModel> T getFaModelByUUID(UUID uuid, Class<T> modelType) {
 		return provider.getFaModelByUUID(uuid, modelType);

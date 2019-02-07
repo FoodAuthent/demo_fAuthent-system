@@ -35,6 +35,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product findProductById(UUID id) {
+	return persistenceService.findProductById(id);
+    }
+
+    @Override
     public ProductPageResult findProductByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
 	ResultPage<Product> res = persistenceService.findByKeywordsPaged(keywords, Product.class, pageNumber, pageSize);
 	return ProductPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)

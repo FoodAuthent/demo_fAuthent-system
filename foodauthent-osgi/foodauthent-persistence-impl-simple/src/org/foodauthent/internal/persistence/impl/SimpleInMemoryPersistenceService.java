@@ -156,6 +156,11 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 		}
 		throw new NoSuchElementException("No product found for " + gtin);
 	}
+	
+	@Override
+	public Product findProductById(UUID id) {
+		return getFaModelByUUID(id, Product.class);
+	}
 
 	@Override
 	public <T extends FaModel> T getFaModelByUUID(final UUID uuid, Class<T> modelType) throws NoSuchElementException {

@@ -139,6 +139,53 @@
     }
 
     /**
+     * Callback function to receive the result of the findProductById operation.
+     * @callback module:api/ProductApi~findProductByIdCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/Product} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Find product by id.
+     * @param {String} id The id to find the product for.
+     * @param {module:api/ProductApi~findProductByIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/Product}
+     */
+    this.findProductById = function(id, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling findProductById");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'id': id,
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = Product;
+
+      return this.apiClient.callApi(
+        '/product/findById', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the findProductByKeyword operation.
      * @callback module:api/ProductApi~findProductByKeywordCallback
      * @param {String} error Error message, if any.

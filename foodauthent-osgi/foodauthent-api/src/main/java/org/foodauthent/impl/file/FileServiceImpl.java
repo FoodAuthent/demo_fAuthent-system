@@ -22,16 +22,18 @@ import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.FAExceptions;
 import org.foodauthent.common.exception.FAExceptions.InvalidDataException;
 import org.foodauthent.common.exception.FAExceptions.InvalidInputException;
-import org.foodauthent.fakx.ImporterI;
-import org.foodauthent.fakx.ZipImporter;
 import org.foodauthent.impl.product.ProductServiceImpl;
 import org.foodauthent.impl.sop.SopServiceImpl;
+import org.foodauthent.model.FaObjectSet;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
-import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.ImportResult;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.SOP;
+import org.foofauthent.impl.io.ExporterI;
+import org.foofauthent.impl.io.ImporterI;
+import org.foofauthent.impl.io.ZipExporter;
+import org.foofauthent.impl.io.ZipImporter;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -192,11 +194,31 @@ public class FileServiceImpl implements FileService {
 
 	// Return ids of imported components
 	// TODO: fingerprint
+
 	List<UUID> productIds = products.stream().map(Product::getFaId).collect(Collectors.toList());
 	List<UUID> sopIds = sops.stream().map(SOP::getFaId).collect(Collectors.toList());
-	ImportResult result = ImportResult.builder().setProducts(productIds).setSops(sopIds).build();
+	FaObjectSet importedObjects = FaObjectSet.builder().setProducts(productIds).setSops(sopIds).build();
+	ImportResult result = ImportResult.builder().setImportedObjects(importedObjects).build();
 
 	return result;
     }
-
+    
+    @Override
+    public File exportFile(String fileType, FaObjectSet faObjectSet) {
+        
+	ExporterI exporter;
+	if (fileType.equals("zip")) {
+	    exporter = new ZipExporter();
+	} else {
+	    return null;
+	}
+	
+	try {
+	    File file = File.createTempFile("file", ".zip");
+	    exporter.export(faObjectSet, file);
+	    return file;
+	} catch (IOException e) {
+	    return null;
+	}
+    }
 }

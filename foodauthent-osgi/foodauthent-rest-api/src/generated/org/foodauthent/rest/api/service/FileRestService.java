@@ -6,6 +6,7 @@ package org.foodauthent.rest.api.service;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
+import org.foodauthent.model.FaObjectSet;
 import java.io.File;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.ImportResult;
@@ -40,6 +41,21 @@ public interface FileRestService{
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createFileMetadata(FileMetadata fileMetadata
+);
+
+    /**
+     * Export FoodAuthent components
+     *
+     * @param fileType 
+     * @param faObjectSet Specifies a set of fa-objects to be exported.
+     * @return the response
+     */
+    @GET
+    @Path("/file/{file-id}/export")
+    @Consumes({ "application/json" })
+    @Produces({ "application/binary" })
+    public Response exportFile(@QueryParam("file-type")String fileType
+, FaObjectSet faObjectSet
 );
 
     /**

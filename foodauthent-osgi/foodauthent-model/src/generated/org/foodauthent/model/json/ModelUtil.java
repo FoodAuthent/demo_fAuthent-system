@@ -26,6 +26,8 @@ public class ModelUtil {
     
         mapper.addMixIn(ChangePasswordRequest.class, ChangePasswordRequestMixIn.class);
         mapper.addMixIn(ChangePasswordRequest.ChangePasswordRequestBuilder.class, ChangePasswordRequestMixIn.ChangePasswordRequestMixInBuilder.class);
+        mapper.addMixIn(FaObjectSet.class, FaObjectSetMixIn.class);
+        mapper.addMixIn(FaObjectSet.FaObjectSetBuilder.class, FaObjectSetMixIn.FaObjectSetMixInBuilder.class);
         mapper.addMixIn(FileMetadata.class, FileMetadataMixIn.class);
         mapper.addMixIn(FileMetadata.FileMetadataBuilder.class, FileMetadataMixIn.FileMetadataMixInBuilder.class);
         mapper.addMixIn(Fingerprint.class, FingerprintMixIn.class);

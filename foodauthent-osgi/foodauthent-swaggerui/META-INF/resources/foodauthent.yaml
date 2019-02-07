@@ -180,7 +180,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImportResult'
+                
+  '/file/{file-id}/export':
+    get:
+      tags:
+      - file
+      summary: Import a file
+      description: >-
+        Export FoodAuthent components
+      operationId: exportFile
+      parameters:
+      - name: file-type
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaObjectSet'
+        description: Specifies a set of fa-objects to be exported.
+        required: true
+      responses:
+        '200':
+          description: The exported file data.
+          content:
+            application/binary:
+              schema:
+                type: string
+                format: binary
 
+  
   '/file/{file-id}/data':
     get:
       tags:
@@ -387,6 +418,30 @@ paths:
           required: true
           schema:
             type: string
+      responses:
+        '200':
+          description: The found product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
+          description: TODO, add response reference
+  
+  /product/findById:
+    get:
+      tags:
+        - product
+      description: Find product by id.
+      operationId: findProductById
+      parameters:
+        - in: query
+          name: id
+          description: The id to find the product for.
+          required: true
+          schema:
+            type: string
+            format: uuid
       responses:
         '200':
           description: The found product.
@@ -2485,6 +2540,17 @@ components:
       type: object
       x-no-faid: true
       properties:
+        problems:
+          type: array
+          items:
+            type: string
+        imported-objects:
+          $ref: "#/components/schemas/FaObjectSet"
+          
+    FaObjectSet:
+      type: object
+      x-no-faid: true
+      properties:
         fingerprints:
           type: array
           items:
@@ -2496,6 +2562,16 @@ components:
             type: string
             format: uuid
         sops:
+          type: array
+          items:
+            type: string
+            format: uuid
+        workflows:
+          type: array
+          items:
+            type: string
+            format: uuid
+        files:
           type: array
           items:
             type: string

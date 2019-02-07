@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/FileMetadata', '../model/ImportResult'], factory);
+    define(['../ApiClient', '../model/FaObjectSet', '../model/FileMetadata', '../model/ImportResult'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/FileMetadata'), require('../model/ImportResult'));
+    module.exports = factory(require('../ApiClient'), require('../model/FaObjectSet'), require('../model/FileMetadata'), require('../model/ImportResult'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.FileApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FileMetadata, root.FoodAuthentSwaggerApi.ImportResult);
+    root.FoodAuthentSwaggerApi.FileApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FaObjectSet, root.FoodAuthentSwaggerApi.FileMetadata, root.FoodAuthentSwaggerApi.ImportResult);
   }
-}(this, function(ApiClient, FileMetadata, ImportResult) {
+}(this, function(ApiClient, FaObjectSet, FileMetadata, ImportResult) {
   'use strict';
 
   /**
@@ -89,6 +89,60 @@
 
       return this.apiClient.callApi(
         '/file', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the exportFile operation.
+     * @callback module:api/FileApi~exportFileCallback
+     * @param {String} error Error message, if any.
+     * @param {File} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Import a file
+     * Export FoodAuthent components
+     * @param {String} fileType 
+     * @param {module:model/FaObjectSet} faObjectSet Specifies a set of fa-objects to be exported.
+     * @param {module:api/FileApi~exportFileCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link File}
+     */
+    this.exportFile = function(fileType, faObjectSet, callback) {
+      var postBody = faObjectSet;
+
+      // verify the required parameter 'fileType' is set
+      if (fileType === undefined || fileType === null) {
+        throw new Error("Missing the required parameter 'fileType' when calling exportFile");
+      }
+
+      // verify the required parameter 'faObjectSet' is set
+      if (faObjectSet === undefined || faObjectSet === null) {
+        throw new Error("Missing the required parameter 'faObjectSet' when calling exportFile");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'file-type': fileType,
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/binary'];
+      var returnType = File;
+
+      return this.apiClient.callApi(
+        '/file/{file-id}/export', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

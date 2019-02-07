@@ -3,6 +3,7 @@
  */
 package org.foodauthent.api;
 
+import org.foodauthent.model.FaObjectSet;
 import java.io.File;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.ImportResult;
@@ -25,6 +26,16 @@ public interface FileService {
      * @return the result
      */
     java.util.UUID createFileMetadata(FileMetadata fileMetadata);
+        
+    /**
+     * Export FoodAuthent components
+     *
+     * @param fileType 
+     * @param faObjectSet Specifies a set of fa-objects to be exported.
+     *
+     * @return the result
+     */
+    File exportFile(String fileType, FaObjectSet faObjectSet);
         
     /**
      * Let one download the actual file data.

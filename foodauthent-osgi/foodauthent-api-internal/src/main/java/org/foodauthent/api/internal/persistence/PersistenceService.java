@@ -65,6 +65,17 @@ public interface PersistenceService {
      *             if there is no product matching given GTIN
      */
     Product findProductByGtin(String gtin);
+    
+    /**
+     * Returns a {@link Product} that is associated to given ID.
+     *
+     * @param id
+     *            the id
+     * @return a {@link Product} that is associated to given id
+     * @throws NoSuchElementException
+     *             if there is no product matching given id
+     */
+    Product findProductById(UUID id);
 
     /**
      * Queries a fa-model by uuid.

@@ -3,6 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
+import org.foodauthent.model.FaObjectSet;
 
 import java.util.UUID;
 
@@ -46,14 +47,11 @@ public interface ImportResultMixIn {
   	public UUID getFaId();
     
 
-    @JsonProperty("fingerprints")
-    public java.util.List<java.util.UUID> getFingerprints();
+    @JsonProperty("problems")
+    public java.util.List<String> getProblems();
     
-    @JsonProperty("products")
-    public java.util.List<java.util.UUID> getProducts();
-    
-    @JsonProperty("sops")
-    public java.util.List<java.util.UUID> getSops();
+    @JsonProperty("imported-objects")
+    public FaObjectSet getImportedObjects();
     
 
     /**
@@ -74,14 +72,11 @@ public interface ImportResultMixIn {
     
         public ImportResultMixIn build();
     
-        @JsonProperty("fingerprints")
-        public ImportResultMixInBuilder setFingerprints(final java.util.List<java.util.UUID> fingerprints);
+        @JsonProperty("problems")
+        public ImportResultMixInBuilder setProblems(final java.util.List<String> problems);
         
-        @JsonProperty("products")
-        public ImportResultMixInBuilder setProducts(final java.util.List<java.util.UUID> products);
-        
-        @JsonProperty("sops")
-        public ImportResultMixInBuilder setSops(final java.util.List<java.util.UUID> sops);
+        @JsonProperty("imported-objects")
+        public ImportResultMixInBuilder setImportedObjects(final FaObjectSet importedObjects);
         
     }
 

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.foodauthent.model.FaObjectSet;
 
 
 
@@ -22,9 +23,8 @@ import java.util.Objects;
 public class ImportResult   extends FaModel {
 
 
-  protected java.util.List<java.util.UUID> fingerprints;
-  protected java.util.List<java.util.UUID> products;
-  protected java.util.List<java.util.UUID> sops;
+  protected java.util.List<String> problems;
+  protected FaObjectSet importedObjects;
   
   public String getTypeID() {
     return "ImportResult";
@@ -40,9 +40,8 @@ public class ImportResult   extends FaModel {
   
   private ImportResult(ImportResultBuilder builder) {
     
-    fingerprints = immutable(builder.fingerprints);
-    products = immutable(builder.products);
-    sops = immutable(builder.sops);
+    problems = immutable(builder.problems);
+    importedObjects = immutable(builder.importedObjects);
     
     
   }
@@ -62,32 +61,24 @@ public class ImportResult   extends FaModel {
             return false;
         }
         ImportResult ent = (ImportResult)o;
-        return Objects.equals(fingerprints, ent.fingerprints) && Objects.equals(products, ent.products) && Objects.equals(sops, ent.sops);
+        return Objects.equals(problems, ent.problems) && Objects.equals(importedObjects, ent.importedObjects);
     }
 
 
   /**
-   * Get fingerprints
-   * @return fingerprints 
+   * Get problems
+   * @return problems 
    */
-  public java.util.List<java.util.UUID> getFingerprints() {
-        return fingerprints;
+  public java.util.List<String> getProblems() {
+        return problems;
     }
     
   /**
-   * Get products
-   * @return products 
+   * Get importedObjects
+   * @return importedObjects 
    */
-  public java.util.List<java.util.UUID> getProducts() {
-        return products;
-    }
-    
-  /**
-   * Get sops
-   * @return sops 
-   */
-  public java.util.List<java.util.UUID> getSops() {
-        return sops;
+  public FaObjectSet getImportedObjects() {
+        return importedObjects;
     }
     
   
@@ -108,9 +99,8 @@ public class ImportResult   extends FaModel {
 	 */
 	public static ImportResultBuilder builder(ImportResult entity) {
 		ImportResultBuilder builder = builder();
-        builder.fingerprints = entity.fingerprints;
-        builder.products = entity.products;
-        builder.sops = entity.sops;
+        builder.problems = entity.problems;
+        builder.importedObjects = entity.importedObjects;
  		return builder;
   	}
   	
@@ -121,34 +111,24 @@ public class ImportResult   extends FaModel {
             
         }
     
-        private java.util.List<java.util.UUID> fingerprints = new java.util.ArrayList<>();
-        private java.util.List<java.util.UUID> products = new java.util.ArrayList<>();
-        private java.util.List<java.util.UUID> sops = new java.util.ArrayList<>();
+        private java.util.List<String> problems = new java.util.ArrayList<>();
+        private FaObjectSet importedObjects;
 
         /**
-         * Get fingerprints
-         * @return fingerprints 
+         * Get problems
+         * @return problems 
          */
-        public ImportResultBuilder setFingerprints(java.util.List<java.util.UUID> fingerprints) {
-             this.fingerprints = fingerprints;
+        public ImportResultBuilder setProblems(java.util.List<String> problems) {
+             this.problems = problems;
              return this;
         }
 
         /**
-         * Get products
-         * @return products 
+         * Get importedObjects
+         * @return importedObjects 
          */
-        public ImportResultBuilder setProducts(java.util.List<java.util.UUID> products) {
-             this.products = products;
-             return this;
-        }
-
-        /**
-         * Get sops
-         * @return sops 
-         */
-        public ImportResultBuilder setSops(java.util.List<java.util.UUID> sops) {
-             this.sops = sops;
+        public ImportResultBuilder setImportedObjects(FaObjectSet importedObjects) {
+             this.importedObjects = importedObjects;
              return this;
         }
 

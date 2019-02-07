@@ -10,6 +10,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+import org.foodauthent.model.FaObjectSet;
 import java.io.File;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.ImportResult;
@@ -47,6 +48,19 @@ public class FileRestServiceImpl implements FileRestService {
     public Response createFileMetadata(FileMetadata fileMetadata) {
         
             Object res = service.createFileMetadata(fileMetadata);
+            return Response.ok(res).build();
+    }
+
+    /**
+     * Export FoodAuthent components
+     *
+     * @param fileType 
+     * @param faObjectSet Specifies a set of fa-objects to be exported.
+     * @return the response
+     */
+    public Response exportFile(String fileType, FaObjectSet faObjectSet) {
+        
+            Object res = service.exportFile(fileType, faObjectSet);
             return Response.ok(res).build();
     }
 
