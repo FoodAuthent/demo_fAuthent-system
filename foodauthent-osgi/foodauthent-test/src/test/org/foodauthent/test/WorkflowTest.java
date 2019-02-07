@@ -28,13 +28,13 @@ import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.Workflow.WorkflowBuilder;
 import org.foodauthent.model.WorkflowParameter;
 import org.foodauthent.model.WorkflowParameter.TypeEnum;
+import org.foodauthent.rest.api.service.FileRestService;
+import org.foodauthent.rest.api.service.FingerprintRestService;
 import org.foodauthent.rest.api.service.ModelRestService;
 import org.foodauthent.rest.api.service.ProductRestService;
 import org.foodauthent.rest.api.service.WorkflowRestService;
 import org.glassfish.jersey.media.multipart.MultiPart;
 import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
-import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -129,15 +129,10 @@ public class WorkflowTest extends AbstractITTest {
         	.setVersion(0).build();
         UUID predictionWorkflowFileId = webTarget.path("file").request(MediaType.APPLICATION_JSON)
         	.post(Entity.entity(fileMeta, MediaType.APPLICATION_JSON), UUID.class);
-        MultiPart multiPart = new MultiPart();
-        multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-        FileDataBodyPart filePart = new FileDataBodyPart("filedata", new File("files/workflows/PredictionWorkflow.knwf"),
-        	MediaType.APPLICATION_OCTET_STREAM_TYPE);
-        multiPart.bodyPart(filePart);
-        Response response = webTarget.path("/file/" + predictionWorkflowFileId + "/data").request()
-        	.put(Entity.entity(multiPart, multiPart.getMediaType()));
-        assertEquals(200, response.getStatus());
-        return predictionWorkflowFileId;
+	Response response = TestUtils.uploadFileData(webTarget, fileMeta.getFaId(),
+		new File("files/workflows/PredictionWorkflow.knwf"));
+	assertEquals(200, response.getStatus());
+	       return predictionWorkflowFileId;
     }
 
 
@@ -150,14 +145,8 @@ public class WorkflowTest extends AbstractITTest {
 	FileMetadata fileMeta = FileMetadata.builder().setName("TrainingWorkflow").setDate(LocalDate.now())
 		.setDescription("file description").setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW)
 		.setVersion(0).build();
-	UUID fileId = webTarget.path("file").request(MediaType.APPLICATION_JSON).post(Entity.entity(fileMeta, MediaType.APPLICATION_JSON),
-		UUID.class);
-	MultiPart multiPart = new MultiPart();
-	multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-	FileDataBodyPart filePart = new FileDataBodyPart("filedata", new File("files/workflows/TrainingWorkflow.knwf"),
-		MediaType.APPLICATION_OCTET_STREAM_TYPE);
-	multiPart.bodyPart(filePart);
-	webTarget.path("file/" + fileId + "/data").request().put(Entity.entity(multiPart, multiPart.getMediaType()));
+	UUID fileId = restService(FileRestService.class).createFileMetadata(fileMeta).readEntity(UUID.class);
+	TestUtils.uploadFileData(webTarget, fileId, new File("files/workflows/TrainingWorkflow.knwf"));
 
 	// upload workflow metadata
 	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("train_param1").setRequired(false)
@@ -195,16 +184,17 @@ public class WorkflowTest extends AbstractITTest {
         Product p = Product.builder().setBrand("my_product").setGtin("1234").build();
         UUID productId = restService(ProductRestService.class).createProduct(p).readEntity(UUID.class);
         
-        // TODO upload fingerprint set file
-        // use some random id for now
-        UUID fpsFileId = UUID.randomUUID();
-        
+        // upload fingerprint set file
+	FileMetadata fileMeta = FileMetadata.builder().setName("fingerprintset")
+		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINTS_BRUKER).build();
+	restService(FileRestService.class).createFileMetadata(fileMeta);
+	TestUtils.uploadFileData(webTarget, fileMeta.getFaId(), new File("files/bruker-nmr/1.zip"));
+      
         // upload fingerprint set
         Fingerprint fp = Fingerprint.builder().setMetadata("fp metadata").build();
         FingerprintSet fps = FingerprintSet.builder().setName("myset").setProductId(productId)
-        	.setFingerprints(Arrays.asList(fp)).setFileId(fpsFileId).build();
-        return webTarget.path("fingerprintset").request(MediaType.APPLICATION_JSON)
-        	.post(Entity.entity(fps, MediaType.APPLICATION_JSON), UUID.class);
+        	.setFingerprints(Arrays.asList(fp)).setFileId(fileMeta.getFaId()).build();
+        return restService(FingerprintRestService.class).createFingerprintSet(fps).readEntity(UUID.class);
     }
 
     private UUID uploadModel() {

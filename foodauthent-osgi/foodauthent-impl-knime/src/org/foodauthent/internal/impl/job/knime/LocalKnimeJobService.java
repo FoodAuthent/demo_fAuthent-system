@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -79,18 +80,19 @@ public class LocalKnimeJobService implements JobService {
 			throw new InitJobException("Problem initializing job", e1);
 		}
 
-		// TODO get fingerprint set file(s)
-
 		// check whether the model is compatible with the workflow
 		assert workflow.getModelType().toString().equals(model.getType().toString());
 		// TODO otherwise throw proper exception
+
+		// get fingerprint set file(s)
+		URI tempFingerprintSetFileURI = saveTemporaryFingerprintSetFile(fingerprintSet);
 
 		// TODO get actual model file
 		// persistenceService.getBlobByUUID(model.getModelFileId());
 
 		// assemble workflow input
 		PredictionWorkflowInput workflowInput = PredictionWorkflowInput.builder()
-				.setFingerprintsetURI("TODO:fingerprintURI").setModelURI("TODO:modelURI")
+				.setFingerprintsetURI(tempFingerprintSetFileURI.toString()).setModelURI("TODO:modelURI")
 				.setFingerprintsetMetadata(fingerprintSet).setParameters(workflow.getParameters()).build();
 
 		// TODO doesn't work, but should
@@ -162,25 +164,12 @@ public class LocalKnimeJobService implements JobService {
 		} catch (LoadingFailedException e1) {
 			throw new InitJobException("Problem initializing job", e1);
 		}
-
-		// get fingerprint set file(s) and store it to the temp directory
-		Blob fingerprintSetFile = persistenceService.getBlobByUUID(fingerprintSet.getFileId());
-		File tmpFile;
-		try {
-			tmpFile = File.createTempFile("fa_finterprintset_" + fingerprintSetFile.getFaId(), "");
-			FileOutputStream out = new FileOutputStream(tmpFile);
-			IOUtils.copy(fingerprintSetFile.getData(), out);
-			out.flush();
-			out.close();
-			//TODO delete the tmp file eventually!
-		} catch (IOException e1) {
-			// TODO
-			throw new RuntimeException(e1);
-		}
+		
+		URI tmpFileURI = saveTemporaryFingerprintSetFile(fingerprintSet);
 
 		// assemble workflow input
 		TrainingWorkflowInput workflowInput = TrainingWorkflowInput.builder()
-				.setFingerprintsetURI(tmpFile.toURI().toString()).setFingerprintsetMetadata(fingerprintSet)
+				.setFingerprintsetURI(tmpFileURI.toString()).setFingerprintsetMetadata(fingerprintSet)
 				.setParameters(workflow.getParameters()).build();
 		// TODO doesn't work, but should
 		// JsonValue jsonInput =
@@ -238,6 +227,23 @@ public class LocalKnimeJobService implements JobService {
 				});
 		persistenceService.save(trainingJob);
 		return trainingJob;
+	}
+	
+	private URI saveTemporaryFingerprintSetFile(FingerprintSet fingerprintSet) {
+		Blob fingerprintSetFile = persistenceService.getBlobByUUID(fingerprintSet.getFileId());
+		File tmpFile;
+		try {
+			tmpFile = File.createTempFile("fa_fingerprintset_" + fingerprintSetFile.getFaId(), "");
+			FileOutputStream out = new FileOutputStream(tmpFile);
+			IOUtils.copy(fingerprintSetFile.getData(), out);
+			out.flush();
+			out.close();
+			return tmpFile.toURI();
+			//TODO delete tmp files
+		} catch (IOException e1) {
+			// TODO
+			throw new RuntimeException(e1);
+		}
 	}
 
 	private void loadWorkflow(Workflow workflow) throws LoadingFailedException {
