@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="FoodAuthent Equinox-Oxygen" sequenceNumber="135">
+<?pde version="3.8"?><target name="FoodAuthent Equinox-Oxygen" sequenceNumber="136">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="com.auth0.java-jwt.feature.feature.group" version="0.0.0"/>
@@ -14,11 +14,14 @@
 <unit id="com.noscendo.amazonaws.feature.feature.group" version="0.0.0"/>
 <unit id="com.typesafe.feature.feature.group" version="0.0.0"/>
 <unit id="com.typesafe.feature.source.feature.group" version="0.0.0"/>
+<unit id="de.unirostock.sems.feature.feature.group" version="0.0.0"/>
+<unit id="de.unirostock.sems.feature.source.feature.group" version="0.0.0"/>
 <unit id="io.minio.feature.feature.group" version="0.0.0"/>
 <unit id="io.swagger.feature.feature.group" version="0.0.0"/>
 <unit id="io.swagger.feature.source.feature.group" version="0.0.0"/>
 <unit id="net.openchrom.converter.feature.feature.group" version="0.0.0"/>
 <unit id="net.openchrom.platform.feature.feature.group" version="0.0.0"/>
+<unit id="net.openchrom.xxd.process.supplier.knime.feature.feature.group" version="0.0.0"/>
 <unit id="org.apache.commons.feature.feature.group" version="0.0.0"/>
 <unit id="org.apache.commons.feature.source.feature.group" version="0.0.0"/>
 <unit id="org.apache.httpcomponents.feature.feature.group" version="0.0.0"/>
@@ -50,6 +53,7 @@
 <unit id="org.eclipse.jdt.junit5.runtime.feature.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.rcp.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.swtchart.feature.feature.group" version="0.0.0"/>
 <unit id="org.elasticsearch.client.feature.feature.group" version="0.0.0"/>
 <unit id="org.foodauthent.dependencies.feature.feature.group" version="0.0.0"/>
 <unit id="org.foodauthent.knime.dependencies.feature.feature.group" version="0.0.0"/>

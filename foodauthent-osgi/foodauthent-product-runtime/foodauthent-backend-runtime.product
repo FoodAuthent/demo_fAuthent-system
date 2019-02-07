@@ -45,14 +45,13 @@
       <feature id="org.eclipse.equinox.server.core"/>
       <feature id="io.minio.feature"/>
       <feature id="com.eclipsesource.jaxrs.feature"/>
-      <feature id="com.fasterxml.jackson.feature"/>
       <feature id="org.scala-lang.feature"/>
       <feature id="org.eclipse.equinox.executable"/>
       <feature id="org.eclipse.core.runtime.feature"/>
       <feature id="org.eclipse.equinox.core.feature"/>
       <feature id="org.glassfish.hk2.feature"/>
       <feature id="org.elasticsearch.client.feature"/>
-      <feature id="org.foodauthent.dependencies.feature"/>
+      <feature id="org.knime.features.base" version="3.6.2.v201811051556"/>
    </features>
 
    <configurations>
