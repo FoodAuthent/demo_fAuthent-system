@@ -66,6 +66,7 @@
 var getFingerprints = require("@/utils/fingerprintFunction.js").default.getFingerprints;
 var deleteFingerprints = require("@/utils/fingerprintFunction.js").default.deleteFingerprints;
 var findFingerprintSetById = require("@/utils/fingerprintFunction.js").default.findFingerprintById;
+
 import jsonschema from "@/generated/schema/fingerprintset.json";
 export default {
   name: "Fingerprints",
