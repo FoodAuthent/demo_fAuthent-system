@@ -17,6 +17,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Fakx {
 	
+	/**
+	 * @deprecated Use {@link ImporterI#importProducts(File)} instead
+	 */
+	@Deprecated
 	public static List<Product> importProducts(ZipFile file) {
 		List<Product> products = new ArrayList<>();
 		

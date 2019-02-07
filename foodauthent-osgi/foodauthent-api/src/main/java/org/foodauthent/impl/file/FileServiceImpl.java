@@ -7,13 +7,11 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.zip.ZipFile;
 
 import org.foodauthent.api.FileService;
 import org.foodauthent.api.internal.exception.FARuntimeException;
@@ -24,7 +22,8 @@ import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.FAExceptions;
 import org.foodauthent.common.exception.FAExceptions.InvalidDataException;
 import org.foodauthent.common.exception.FAExceptions.InvalidInputException;
-import org.foodauthent.fakx.Fakx;
+import org.foodauthent.fakx.ImporterI;
+import org.foodauthent.fakx.ZipImporter;
 import org.foodauthent.impl.product.ProductServiceImpl;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
@@ -161,32 +160,25 @@ public class FileServiceImpl implements FileService {
     @Override
     public ImportResult importFile(UUID fileId) {
 
-	List<Product> products = new ArrayList<>();
-
 	FileMetadata fileMeta = new FileServiceImpl().getFileMetadata(fileId);
 
+	ImporterI importer;
 	if (fileMeta.getType() == FileMetadata.TypeEnum.ZIP) {
-
-	    File file = getFileData(fileId);
-
-	    // Extract products from Zip file
-	    try {
-		products.addAll(Fakx.importProducts(new ZipFile(file)));
-	    } catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-
-	    file.delete(); // Delete temporary file
+	    importer = new ZipImporter();
+	} else {
+	    return null;
 	}
+
+	File file = getFileData(fileId);
+	List<Product> products = importer.importProducts(file);
+	file.delete(); // Delete temporary file
 
 	// Add imported products to FoodAuthent
 	ProductServiceImpl productService = new ProductServiceImpl();
 	products.forEach(productService::createProduct);
 
+	// Return ids of imported components
 	List<UUID> productIds = products.stream().map(Product::getFaId).collect(Collectors.toList());
-
-	// Return imported products
 	ImportResult result = ImportResult.builder().setProducts(productIds).build();
 
 	return result;

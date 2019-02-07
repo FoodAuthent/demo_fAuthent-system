@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.foodauthent.model.Product;
 
-//import org.foodauthent.fakx.model.Product;
-
 public class CreateExample {
 
 	public static void main(String[] args) throws IOException {
