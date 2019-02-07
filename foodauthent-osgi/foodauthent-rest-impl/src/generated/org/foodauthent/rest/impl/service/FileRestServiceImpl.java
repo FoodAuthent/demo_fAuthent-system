@@ -3,22 +3,18 @@
  */
 package org.foodauthent.rest.impl.service;
 
-import javax.ws.rs.*;
+import javax.ws.rs.core.Feature;
+import javax.ws.rs.core.FeatureContext;
 import javax.ws.rs.core.Response;
 
+import org.foodauthent.api.FileService;
+import org.foodauthent.common.exception.FAExceptions;
+import org.foodauthent.model.FileMetadata;
+import org.foodauthent.rest.api.service.FileRestService;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
-
-import java.io.File;
-import org.foodauthent.model.FileMetadata;
-
-import org.foodauthent.api.FileService;
-import org.foodauthent.api.ServiceRegistry;
-
-import org.foodauthent.rest.api.service.FileRestService;
-
-import org.foodauthent.common.exception.FAExceptions;
 
 /**
  * FoodAuthent Swagger API
@@ -31,7 +27,7 @@ import org.foodauthent.common.exception.FAExceptions;
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 @Component(service = FileRestService.class, immediate = true)
-public class FileRestServiceImpl implements FileRestService {
+public class FileRestServiceImpl implements FileRestService, Feature {
 
 	@Reference(cardinality = ReferenceCardinality.MANDATORY)
     private FileService service;
@@ -97,5 +93,12 @@ public class FileRestServiceImpl implements FileRestService {
            return Response.status(500).entity(e.getMessage()).build();
         }
     }
+    
+	@Override
+	public boolean configure(FeatureContext context) {
+		context.register(MultiPartFeature.class);
+		return true;
+	}
+    
 }
 
