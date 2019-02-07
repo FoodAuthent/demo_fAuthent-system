@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -160,28 +161,33 @@ public class FileServiceImpl implements FileService {
     @Override
     public ImportResult importFile(UUID fileId) {
 
-	ImportResult result;
+	List<Product> products = new ArrayList<>();
 
-	ProductServiceImpl productService = new ProductServiceImpl();
-	File file = getFileData(fileId);
-	try {
+	FileMetadata fileMeta = new FileServiceImpl().getFileMetadata(fileId);
+
+	if (fileMeta.getType() == FileMetadata.TypeEnum.ZIP) {
+
+	    File file = getFileData(fileId);
 
 	    // Extract products from Zip file
-	    List<Product> products = Fakx.importProducts(new ZipFile(file));
+	    try {
+		products.addAll(Fakx.importProducts(new ZipFile(file)));
+	    } catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
 
-	    // Add imported products to FoodAuthent
-	    products.forEach(productService::createProduct);
-
-	    List<UUID> productIds = products.stream().map(Product::getFaId).collect(Collectors.toList());
-
-	    // Return imported products
-	    result = ImportResult.builder().setProducts(productIds).build();
-
-	} catch (IOException e) {
-	    result = ImportResult.builder().build(); // Empty result
+	    file.delete(); // Delete temporary file
 	}
 
-	file.delete(); // Delete temporary file
+	// Add imported products to FoodAuthent
+	ProductServiceImpl productService = new ProductServiceImpl();
+	products.forEach(productService::createProduct);
+
+	List<UUID> productIds = products.stream().map(Product::getFaId).collect(Collectors.toList());
+
+	// Return imported products
+	ImportResult result = ImportResult.builder().setProducts(productIds).build();
 
 	return result;
     }

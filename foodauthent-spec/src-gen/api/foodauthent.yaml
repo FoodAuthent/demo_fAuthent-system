@@ -1555,6 +1555,7 @@ components:
             - python_script
             - sop_pdf
             - fingerprints_bruker
+            - zip
         name:
           description: A name for the file.
           type: string
