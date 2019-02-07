@@ -16,6 +16,10 @@
       [Enter License Description here.]
    </license>
 
+   <includes
+         id="org.foodauthent.base.feature"
+         version="0.0.0"/>
+
    <plugin
          id="org.foodauthent.persistence.impl.elasticsearch"
          download-size="0"

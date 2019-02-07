@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product uid="org.foodauthent.backend.knime.runtime" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product uid="org.foodauthent.backend.knime.openchrom.test.runtime" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -33,6 +33,7 @@
    </plugins>
 
    <features>
+      <feature id="org.foodauthent.feature"/>
       <feature id="io.swagger.feature"/>
       <feature id="org.glassfish.jersey.feature"/>
       <feature id="org.slf4j.feature"/>
@@ -52,7 +53,7 @@
       <feature id="org.glassfish.hk2.feature"/>
       <feature id="org.elasticsearch.client.feature"/>
       <feature id="org.foodauthent.dependencies.feature"/>
-      <feature id="org.foodauthent.openchrom.feature"/>
+      <feature id="org.foodauthent.openchrom.feature" version="1.0.0.qualifier"/>
       <feature id="org.apacheds.feature"/>
       <feature id="com.google.feature"/>
       <feature id="net.openchrom.platform.feature"/>
@@ -60,9 +61,8 @@
       <feature id="org.ldaptive.osgi.feature"/>
       <feature id="com.auth0.java-jwt.feature"/>
       <feature id="net.openchrom.converter.feature"/>
-      <feature id="org.foodauthent.knime.feature"/>
-      <feature id="org.eclipse.e4.rcp"/>
-      <feature id="org.foodauthent.base.feature"/>
+      <feature id="org.foodauthent.knime.feature" version="1.0.0.qualifier"/>
+      <feature id="org.eclipse.e4.rcp" version="1.6.3.v20180329-0507"/>
    </features>
 
    <configurations>

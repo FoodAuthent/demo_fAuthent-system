@@ -113,13 +113,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.foodauthent.persistence.impl.elasticsearch"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.foodauthent.rest.api"
          download-size="0"
          install-size="0"
@@ -135,13 +128,6 @@
 
    <plugin
          id="org.foodauthent.storage"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.foodauthent.storage.impl.s3"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -191,13 +177,6 @@
 
    <plugin
          id="org.foodauthent.auth"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.foodauthent.ldap"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -352,6 +331,13 @@
 
    <plugin
          id="javax.activation"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.foodauthent.persistence.impl.simple"
          download-size="0"
          install-size="0"
          version="0.0.0"

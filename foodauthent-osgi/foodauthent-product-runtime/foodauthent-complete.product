@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product uid="org.foodauthent.backend.knime.runtime" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product uid="org.foodauthent.complete.runtime" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -63,6 +63,9 @@
       <feature id="net.openchrom.converter.feature"/>
       <feature id="org.foodauthent.knime.feature" version="1.0.0.qualifier"/>
       <feature id="org.eclipse.e4.rcp" version="1.6.3.v20180329-0507"/>
+      <feature id="org.foodauthent.elasticsearch.feature" version="1.0.0.qualifier"/>
+      <feature id="org.foodauthent.auth.feature" version="1.0.0.qualifier"/>
+      <feature id="org.foodauthent.base.feature" version="1.0.0.qualifier"/>
    </features>
 
    <configurations>
