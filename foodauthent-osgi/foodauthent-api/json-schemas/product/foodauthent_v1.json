@@ -1,0 +1,83 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [],
+  "properties": {
+   "product_metadata": {
+      "$id": "#/properties/product_metadata",
+      "type": "object",
+      "title": "product_metadata",
+      "required": [],
+        "\"Product metadata test": {
+          "$id": "#/properties/product_metadata/properties/\"product metadata test",
+          "type": "string",
+          "title": "Product metadata test",
+          "default": "",
+          "pattern": "^(.*)$"
+        },
+        "Product metadata test1_1": {
+          "$id": "#/properties/product_metadata2/properties/\"product metadata test1_1",
+          "type": "string",
+          "title": "Product metadata test1_1",
+          "default": "",
+          "pattern": "^(.*)$"
+        },
+        "Product metadata test1_2": {
+          "$id": "#/properties/product_metadata2/properties/\"product metadata test1_2",
+          "type": "string",
+          "title": "Product metadata test1_2",
+          "default": "",
+          "pattern": "^(.*)$"
+        },
+        "Product metadata test1_3": {
+          "$id": "#/properties/product_metadata2/properties/\"product metadata test1_3",
+          "type": "string",
+          "title": "Product metadata test1_3",
+          "default": "",
+          "pattern": "^(.*)$"
+        },
+    "product_metadata2": {
+      "$id": "#/properties/product_metadata2",
+      "type": "object",
+      "title": "Product_metadata2",
+      "required": [],
+        "properties": {
+        "\"Product metadata test1": {
+          "$id": "#/properties/product_metadata2/properties/\"product metadata test1",
+          "type": "string",
+          "title": "Product metadata test1",
+          "default": "",
+          "pattern": "^(.*)$"
+        },
+        "Product metadata test2": {
+          "$id": "#/properties/product_metadata2/properties/\"product metadata test2",
+          "type": "string",
+          "title": "Product metadata test2",
+          "default": "",
+          "pattern": "^(.*)$"
+        },
+        "Product metadata test3": {
+          "$id": "#/properties/product_metadata2/properties/\"product metadata test3",
+          "type": "string",
+          "title": "Product metadata test3",
+          "default": "",
+          "pattern": "^(.*)$"
+        },
+        "factors": {
+          "$id": "#/properties/metaboliteprofiling_ftir/properties/factors",
+          "type": "string",
+          "title": "The Factors Schema",
+          "default": "",
+          "examples": [
+            "?"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    }
+  }
+}
+}
