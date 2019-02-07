@@ -25,11 +25,11 @@ public interface OrganizationService {
      * @return the result
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityAlreadyExistsResponse Invalid input was provided, entity already exists.
+     * @throws ModelAlreadyExistsResponse Invalid input was provided, model already exists.
      * @throws InvalidOperationResponse Requested operation is not supported.
      * @throws FAException Unspecified exception.
      */
-    Organization createOrganization(OrganizationCreateRequest organizationCreateRequest) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityAlreadyExistsResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
+    Organization createOrganization(OrganizationCreateRequest organizationCreateRequest) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelAlreadyExistsResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
         
     /**
      * TODO
@@ -39,11 +39,11 @@ public interface OrganizationService {
      * 
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityNotFoundResponse Response thrown when an entity could not be found.
+     * @throws ModelNotFoundResponse Response thrown when an model could not be found.
      * @throws InvalidOperationResponse Requested operation is not supported.
      * @throws FAException Unspecified exception.
      */
-    void deleteOrganization(String dn) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityNotFoundResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
+    void deleteOrganization(String dn) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelNotFoundResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
         
     /**
      * TODO
@@ -53,10 +53,10 @@ public interface OrganizationService {
      * @return the result
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityNotFoundResponse Response thrown when an entity could not be found.
+     * @throws ModelNotFoundResponse Response thrown when an model could not be found.
      * @throws FAException Unspecified exception.
      */
-    Organization getOrganization(String dn) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityNotFoundResponse, FAExceptions.FAException;
+    Organization getOrganization(String dn) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelNotFoundResponse, FAExceptions.FAException;
         
     /**
      * TODO
@@ -67,10 +67,10 @@ public interface OrganizationService {
      * @return the result
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityNotFoundResponse Response thrown when an entity could not be found.
+     * @throws ModelNotFoundResponse Response thrown when an model could not be found.
      * @throws InvalidOperationResponse Requested operation is not supported.
      * @throws FAException Unspecified exception.
      */
-    Organization updateOrganization(String dn, OrganizationBase organizationBase) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityNotFoundResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
+    Organization updateOrganization(String dn, OrganizationBase organizationBase) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelNotFoundResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
         
 }

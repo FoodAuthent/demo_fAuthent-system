@@ -17,7 +17,7 @@ import org.foodauthent.common.exception.FAExceptions;
 public interface SopService {
 
     /**
-     * TODO
+     * Creates a new SOP.
      *
      * @param SOP TODO
      *
@@ -37,7 +37,7 @@ public interface SopService {
     SOPPageResult findSOPByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
     /**
-     * TODO
+     * Get the sop an id.
      *
      * @param sopId 
      *
@@ -46,7 +46,7 @@ public interface SopService {
     SOP getSOPById(java.util.UUID sopId);
         
     /**
-     * TODO
+     * Delete a sop specified by id.
      *
      * @param sopId 
      *

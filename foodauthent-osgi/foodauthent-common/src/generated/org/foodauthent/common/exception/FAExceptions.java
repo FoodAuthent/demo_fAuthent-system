@@ -61,27 +61,27 @@ public final class FAExceptions {
     }
     
     /**
-    * Invalid input was provided, entity already exists.
+    * Invalid input was provided, model already exists.
     */
-    public static class EntityAlreadyExistsResponse extends Exception {
-        public EntityAlreadyExistsResponse(String message) {
+    public static class ModelAlreadyExistsResponse extends Exception {
+        public ModelAlreadyExistsResponse(String message) {
             super(message);
         }
         
-        public EntityAlreadyExistsResponse(String message, Throwable cause) {
+        public ModelAlreadyExistsResponse(String message, Throwable cause) {
             super(message, cause);
         }
     }
     
     /**
-    * Response thrown when an entity could not be found.
+    * Response thrown when an model could not be found.
     */
-    public static class EntityNotFoundResponse extends Exception {
-        public EntityNotFoundResponse(String message) {
+    public static class ModelNotFoundResponse extends Exception {
+        public ModelNotFoundResponse(String message) {
             super(message);
         }
         
-        public EntityNotFoundResponse(String message, Throwable cause) {
+        public ModelNotFoundResponse(String message, Throwable cause) {
             super(message, cause);
         }
     }

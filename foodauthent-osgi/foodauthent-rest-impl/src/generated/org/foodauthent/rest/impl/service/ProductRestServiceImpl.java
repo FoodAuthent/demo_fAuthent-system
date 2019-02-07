@@ -38,7 +38,7 @@ public class ProductRestServiceImpl implements ProductRestService {
 
 
     /**
-     * TODO
+     * Create a new product entity.
      *
      * @param product TODO
      * @return the response
@@ -50,9 +50,9 @@ public class ProductRestServiceImpl implements ProductRestService {
     }
 
     /**
-     * TODO
+     * Find product by gtin.
      *
-     * @param gtin TODO
+     * @param gtin The gtin to find the product for.
      * @return the response
      */
     public Response findProductByGtin(String gtin) {
@@ -62,7 +62,7 @@ public class ProductRestServiceImpl implements ProductRestService {
     }
 
     /**
-     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     * Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.
      *
      * @param pageNumber the page number starting at 0
      * @param pageSize entries per page, minimum 1
@@ -76,7 +76,7 @@ public class ProductRestServiceImpl implements ProductRestService {
     }
 
     /**
-     * TODO
+     * Delete a product specified by gtin.
      *
      * @param gtin 
      * @return the response

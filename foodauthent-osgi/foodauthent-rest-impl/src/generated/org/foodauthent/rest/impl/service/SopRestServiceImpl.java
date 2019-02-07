@@ -38,7 +38,7 @@ public class SopRestServiceImpl implements SopRestService {
 
 
     /**
-     * TODO
+     * Creates a new SOP.
      *
      * @param SOP TODO
      * @return the response
@@ -64,7 +64,7 @@ public class SopRestServiceImpl implements SopRestService {
     }
 
     /**
-     * TODO
+     * Get the sop an id.
      *
      * @param sopId 
      * @return the response
@@ -76,7 +76,7 @@ public class SopRestServiceImpl implements SopRestService {
     }
 
     /**
-     * TODO
+     * Delete a sop specified by id.
      *
      * @param sopId 
      * @return the response

@@ -58,7 +58,6 @@
 
     /**
      * Create a new product entity.
-     * TODO
      * @param {Object} opts Optional parameters
      * @param {module:model/Product} opts.product TODO
      * @param {module:api/ProductApi~createProductCallback} callback The callback function, accepting three arguments: error, data, response
@@ -102,8 +101,7 @@
 
     /**
      * Find product by gtin.
-     * TODO
-     * @param {String} gtin TODO
+     * @param {String} gtin The gtin to find the product for.
      * @param {module:api/ProductApi~findProductByGtinCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/Product}
      */
@@ -150,7 +148,7 @@
 
     /**
      * Finds Products by some key words or return all Products.
-     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     * Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.pageNumber the page number starting at 0
      * @param {Number} opts.pageSize entries per page, minimum 1
@@ -202,7 +200,6 @@
 
     /**
      * Delete a product specified by gtin.
-     * TODO
      * @param {String} gtin 
      * @param {module:api/ProductApi~removeProductByGtinCallback} callback The callback function, accepting three arguments: error, data, response
      */

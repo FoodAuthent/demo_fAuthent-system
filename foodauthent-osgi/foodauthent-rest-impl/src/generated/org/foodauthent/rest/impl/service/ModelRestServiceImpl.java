@@ -50,7 +50,7 @@ public class ModelRestServiceImpl implements ModelRestService {
     }
 
     /**
-     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     * Muliple keywords can be provided with comma separated strings, e.g. keyword1, keyword2.
      *
      * @param pageNumber the page number starting at 0
      * @param pageSize entries per page, minimum 1

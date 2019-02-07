@@ -58,7 +58,6 @@
 
     /**
      * Creates a new SOP.
-     * TODO
      * @param {module:model/SOP} SOP TODO
      * @param {module:api/SopApi~createNewSOPCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link String}
@@ -157,7 +156,6 @@
 
     /**
      * Get the sop an id.
-     * TODO
      * @param {String} sopId 
      * @param {module:api/SopApi~getSOPByIdCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/SOP}
@@ -205,7 +203,6 @@
 
     /**
      * Delete a sop specified by id.
-     * TODO
      * @param {String} sopId 
      * @param {module:api/SopApi~removeSOPByIdCallback} callback The callback function, accepting three arguments: error, data, response
      */

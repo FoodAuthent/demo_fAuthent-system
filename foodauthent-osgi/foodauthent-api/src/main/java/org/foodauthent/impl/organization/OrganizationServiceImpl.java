@@ -3,8 +3,8 @@ package org.foodauthent.impl.organization;
 import org.foodauthent.api.OrganizationService;
 import org.foodauthent.api.internal.exception.EntityNotFoundException;
 import org.foodauthent.common.exception.EntityAlreadyExistsException;
-import org.foodauthent.common.exception.FAExceptions.EntityAlreadyExistsResponse;
-import org.foodauthent.common.exception.FAExceptions.EntityNotFoundResponse;
+import org.foodauthent.common.exception.FAExceptions.ModelAlreadyExistsResponse;
+import org.foodauthent.common.exception.FAExceptions.ModelNotFoundResponse;
 import org.foodauthent.common.exception.FAExceptions.FAException;
 import org.foodauthent.common.exception.FAExceptions.ForbiddenAccessResponse;
 import org.foodauthent.common.exception.FAExceptions.InvalidOperationResponse;
@@ -28,7 +28,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public Organization createOrganization(OrganizationCreateRequest organizationCreateRequest)
-	    throws UnauthorizedResponse, ForbiddenAccessResponse, EntityAlreadyExistsResponse, InvalidOperationResponse,
+	    throws UnauthorizedResponse, ForbiddenAccessResponse, ModelAlreadyExistsResponse, InvalidOperationResponse,
 	    FAException {
 	final String dn = "ou=" + organizationCreateRequest.getOrganizationName() + ","
 		+ organizationCreateRequest.getParentDn();
@@ -36,7 +36,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 	try {
 	    return Convert.toRestOrganization(organizationalUnitService.add(org));
 	} catch (EntityAlreadyExistsException e) {
-	    throw new EntityAlreadyExistsResponse(e.getMessage(), e);
+	    throw new ModelAlreadyExistsResponse(e.getMessage(), e);
 	} catch (ServiceException e) {
 	    throw new FAException(e.getMessage(), e);
 	}
@@ -44,11 +44,11 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public void deleteOrganization(String dn) throws UnauthorizedResponse, ForbiddenAccessResponse,
-	    EntityNotFoundResponse, InvalidOperationResponse, FAException {
+	    ModelNotFoundResponse, InvalidOperationResponse, FAException {
 	try {
 	    organizationalUnitService.delete(organizationalUnitService.get(dn));
 	} catch (EntityNotFoundException e) {
-	    throw new EntityNotFoundResponse(e.getMessage(), e);
+	    throw new ModelNotFoundResponse(e.getMessage(), e);
 	} catch (InvalidOperationException e) {
 	    throw new InvalidOperationResponse(e.getMessage(), e);
 	} catch (ServiceException e) {
@@ -58,12 +58,12 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public Organization getOrganization(String dn)
-	    throws UnauthorizedResponse, ForbiddenAccessResponse, EntityNotFoundResponse, FAException {
+	    throws UnauthorizedResponse, ForbiddenAccessResponse, ModelNotFoundResponse, FAException {
 	try {
 	    final org.foodauthent.people.Organization org = organizationalUnitService.get(dn);
 	    return Convert.toRestOrganization(org);
 	} catch (EntityNotFoundException e) {
-	    throw new EntityNotFoundResponse(e.getMessage(), e);
+	    throw new ModelNotFoundResponse(e.getMessage(), e);
 	} catch (ServiceException e) {
 	    throw new FAException(e.getMessage(), e);
 	}
@@ -71,12 +71,12 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public Organization updateOrganization(String dn, OrganizationBase organizationBase) throws UnauthorizedResponse,
-	    ForbiddenAccessResponse, EntityNotFoundResponse, InvalidOperationResponse, FAException {
+	    ForbiddenAccessResponse, ModelNotFoundResponse, InvalidOperationResponse, FAException {
 	try {
 	    final org.foodauthent.people.Organization org = Convert.toOrganization(dn, organizationBase, organizationalUnitService);
 	    return Convert.toRestOrganization(organizationalUnitService.update(org));
 	} catch (EntityNotFoundException e) {
-	    throw new EntityNotFoundResponse(e.getMessage(), e);
+	    throw new ModelNotFoundResponse(e.getMessage(), e);
 	} catch (ServiceException e) {
 	    throw new FAException(e.getMessage(), e);
 	}

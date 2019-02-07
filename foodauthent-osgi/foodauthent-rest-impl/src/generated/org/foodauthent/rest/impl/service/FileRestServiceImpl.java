@@ -38,7 +38,7 @@ public class FileRestServiceImpl implements FileRestService {
 
 
     /**
-     * TODO
+     * Creates a new file by posting the file metadata first.
      *
      * @param fileMetadata The actual metadata object.
      * @return the response
@@ -50,7 +50,7 @@ public class FileRestServiceImpl implements FileRestService {
     }
 
     /**
-     * TODO
+     * Let one download the actual file data.
      *
      * @param fileId 
      * @return the response
@@ -62,7 +62,7 @@ public class FileRestServiceImpl implements FileRestService {
     }
 
     /**
-     * TODO
+     * Returns the file metadata.
      *
      * @param fileId 
      * @return the response
@@ -74,7 +74,7 @@ public class FileRestServiceImpl implements FileRestService {
     }
 
     /**
-     * TODO
+     * Uploads (and replaces) the actual file-data for the given file id
      *
      * @param fileId 
      * @param filedata The binary file data.
