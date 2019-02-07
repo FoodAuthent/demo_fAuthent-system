@@ -59,17 +59,31 @@
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
+      if (data.hasOwnProperty('fingerprints')) {
+        obj['fingerprints'] = ApiClient.convertToType(data['fingerprints'], ['String']);
+      }
       if (data.hasOwnProperty('products')) {
         obj['products'] = ApiClient.convertToType(data['products'], ['String']);
+      }
+      if (data.hasOwnProperty('sops')) {
+        obj['sops'] = ApiClient.convertToType(data['sops'], ['String']);
       }
     }
     return obj;
   }
 
   /**
+   * @member {Array.<String>} fingerprints
+   */
+  exports.prototype['fingerprints'] = undefined;
+  /**
    * @member {Array.<String>} products
    */
   exports.prototype['products'] = undefined;
+  /**
+   * @member {Array.<String>} sops
+   */
+  exports.prototype['sops'] = undefined;
 
 
 

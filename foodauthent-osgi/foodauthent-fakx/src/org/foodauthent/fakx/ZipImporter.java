@@ -9,8 +9,11 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.Product;
+import org.foodauthent.model.SOP;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -23,9 +26,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class ZipImporter implements ImporterI {
 
-	public List<Product> importProducts(File file) {
+	@Override
+	public List<Fingerprint> importFingerprints(File file) {
+		return importComponents("fingerprints/", file);
+	}
 
-		List<Product> products = new ArrayList<>();
+	@Override
+	public List<Product> importProducts(File file) {
+		return importComponents("products/", file);
+	}
+
+	@Override
+	public List<SOP> importSop(File file) {
+		return importComponents("sops/", file);
+	}
+
+	private <T> List<T> importComponents(String subfolder, File file) {
+
+		List<T> components = new ArrayList<>();
 
 		ZipFile zipFile;
 		try {
@@ -34,13 +52,17 @@ public class ZipImporter implements ImporterI {
 
 			ObjectMapper mapper = new ObjectMapper();
 
+			// Required to deserialize to generic
+			TypeReference<T> typeRef = new TypeReference<T>() {
+			};
+
 			while (entries.hasMoreElements()) {
 				ZipEntry entry = entries.nextElement();
 
-				if (entry.getName().startsWith("products/")) {
+				if (entry.getName().startsWith(subfolder)) {
 					try (InputStream stream = zipFile.getInputStream(entry)) {
-						Product product = mapper.readValue(stream, Product.class);
-						products.add(product);
+						T component = mapper.readValue(stream, typeRef);
+						components.add(component);
 					}
 				}
 			}
@@ -49,6 +71,6 @@ public class ZipImporter implements ImporterI {
 			e.printStackTrace();
 		}
 
-		return products;
+		return components;
 	}
 }

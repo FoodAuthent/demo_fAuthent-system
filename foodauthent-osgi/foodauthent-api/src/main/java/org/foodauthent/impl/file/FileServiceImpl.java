@@ -25,10 +25,13 @@ import org.foodauthent.common.exception.FAExceptions.InvalidInputException;
 import org.foodauthent.fakx.ImporterI;
 import org.foodauthent.fakx.ZipImporter;
 import org.foodauthent.impl.product.ProductServiceImpl;
+import org.foodauthent.impl.sop.SopServiceImpl;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
+import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.ImportResult;
 import org.foodauthent.model.Product;
+import org.foodauthent.model.SOP;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -170,16 +173,28 @@ public class FileServiceImpl implements FileService {
 	}
 
 	File file = getFileData(fileId);
+//	List<Fingerprint> fingerprints = importer.importFingerprints(file);
 	List<Product> products = importer.importProducts(file);
+	List<SOP> sops = importer.importSop(file);
 	file.delete(); // Delete temporary file
 
-	// Add imported products to FoodAuthent
+	// Add imported components to FoodAuthent
+
+	// TODO: add components
+	// FingerprintServiceImpl fingerprintService = new FingerprintServiceImpl();
+	// fingerprints.forEach(fingerprintService::);
+
 	ProductServiceImpl productService = new ProductServiceImpl();
 	products.forEach(productService::createProduct);
 
+	SopServiceImpl sopService = new SopServiceImpl();
+	sops.forEach(sopService::createNewSOP);
+
 	// Return ids of imported components
+	// TODO: fingerprint
 	List<UUID> productIds = products.stream().map(Product::getFaId).collect(Collectors.toList());
-	ImportResult result = ImportResult.builder().setProducts(productIds).build();
+	List<UUID> sopIds = sops.stream().map(SOP::getFaId).collect(Collectors.toList());
+	ImportResult result = ImportResult.builder().setProducts(productIds).setSops(sopIds).build();
 
 	return result;
     }

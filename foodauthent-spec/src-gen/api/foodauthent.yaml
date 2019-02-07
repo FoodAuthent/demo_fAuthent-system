@@ -2485,8 +2485,18 @@ components:
       type: object
       x-no-faid: true
       properties:
-         products:
-            type: array
-            items:
-               type: string
-               format: uuid
+        fingerprints:
+          type: array
+          items:
+            type: string
+            format: uuid
+        products:
+          type: array
+          items:
+            type: string
+            format: uuid
+        sops:
+          type: array
+          items:
+            type: string
+            format: uuid
