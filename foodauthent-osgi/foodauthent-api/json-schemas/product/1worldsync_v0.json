@@ -1,0 +1,4160 @@
+{
+  "type" : "object",
+  "properties" : {
+    "item" : {
+      "type" : "object",
+      "properties" : {
+        "bfradditionalIdentificationCode" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "fda510KPremarketAuthorization" : {
+          "type" : "string"
+        },
+        "fdamedicalDeviceListing" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "fdasupplementNumber" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "gdsntradeItemClassification" : {
+          "type" : "object",
+          "properties" : {
+            "gdsntradeItemClassificationAttribute" : {
+              "type" : "array"
+            },
+            "additionalTradeItemClassification" : {
+              "type" : "array"
+            },
+            "gDSNTradeItemClassificationAttribute" : {
+              "type" : "array"
+            },
+            "gpcCategoryCode" : {
+              "type" : "string"
+            },
+            "gpcCategoryDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "ghsclassificationStatement" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "gmdncode" : {
+          "type" : "string"
+        },
+        "hibccode" : {
+          "type" : "string"
+        },
+        "hsnoapprovalNumber" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "hsnoclassification" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "mp3FeaturesSupported" : {
+          "type" : "string"
+        },
+        "wsinumber" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "amtcontaineredTradeProductPackCode" : {
+          "type" : "string"
+        },
+        "artgid" : {
+          "type" : "string"
+        },
+        "pbsformularyAllocationCode" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "pbsitemCode" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "pbsmanufacturerCode" : {
+          "type" : "string"
+        },
+        "pbsorRPBS" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "pbspackSize" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "pbsscheduleCode" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "pbsstartDate" : {
+          "type" : "string"
+        },
+        "tgariskClassification" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "tgasponsor" : {
+          "type" : "string"
+        },
+        "tgatype" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "itemDefinitions" : {
+          "type" : "object",
+          "properties" : {
+            "definitions" : {
+              "type" : "array"
+            }
+          }
+        },
+        "U01" : {
+          "type" : "string"
+        },
+        "U11" : {
+          "type" : "string"
+        },
+        "U122" : {
+          "type" : "string"
+        },
+        "U14" : {
+          "type" : "string"
+        },
+        "U224" : {
+          "type" : "string"
+        },
+        "U311" : {
+          "type" : "string"
+        },
+        "U366" : {
+          "type" : "string"
+        },
+        "U58" : {
+          "type" : "string"
+        },
+        "U78" : {
+          "type" : "string"
+        },
+        "U85" : {
+          "type" : "string"
+        },
+        "aMTContaineredTradeProductPackCode" : {
+          "type" : "string"
+        },
+        "aRTGID" : {
+          "type" : "string"
+        },
+        "additionalPackagingMarkedLabelAccreditation" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "additionalTradeItemIdentificationGroup" : {
+          "type" : "array"
+        },
+        "additiveStatementFormattingPattern" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "additivesDeclarationObligatory1" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory10" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory11" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory12" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory13" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory14" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory15" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory2" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory3" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory4" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory5" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory6" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory7" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory8" : {
+          "type" : "string"
+        },
+        "additivesDeclarationObligatory9" : {
+          "type" : "string"
+        },
+        "additivesEnumbers1" : {
+          "type" : "string"
+        },
+        "additivesEnumbers10" : {
+          "type" : "string"
+        },
+        "additivesEnumbers11" : {
+          "type" : "string"
+        },
+        "additivesEnumbers12" : {
+          "type" : "string"
+        },
+        "additivesEnumbers13" : {
+          "type" : "string"
+        },
+        "additivesEnumbers14" : {
+          "type" : "string"
+        },
+        "additivesEnumbers15" : {
+          "type" : "string"
+        },
+        "additivesEnumbers16" : {
+          "type" : "string"
+        },
+        "additivesEnumbers17" : {
+          "type" : "string"
+        },
+        "additivesEnumbers18" : {
+          "type" : "string"
+        },
+        "additivesEnumbers19" : {
+          "type" : "string"
+        },
+        "additivesEnumbers2" : {
+          "type" : "string"
+        },
+        "additivesEnumbers20" : {
+          "type" : "string"
+        },
+        "additivesEnumbers21" : {
+          "type" : "string"
+        },
+        "additivesEnumbers22" : {
+          "type" : "string"
+        },
+        "additivesEnumbers23" : {
+          "type" : "string"
+        },
+        "additivesEnumbers24" : {
+          "type" : "string"
+        },
+        "additivesEnumbers25" : {
+          "type" : "string"
+        },
+        "additivesEnumbers26" : {
+          "type" : "string"
+        },
+        "additivesEnumbers27" : {
+          "type" : "string"
+        },
+        "additivesEnumbers28" : {
+          "type" : "string"
+        },
+        "additivesEnumbers29" : {
+          "type" : "string"
+        },
+        "additivesEnumbers3" : {
+          "type" : "string"
+        },
+        "additivesEnumbers30" : {
+          "type" : "string"
+        },
+        "additivesEnumbers31" : {
+          "type" : "string"
+        },
+        "additivesEnumbers32" : {
+          "type" : "string"
+        },
+        "additivesEnumbers33" : {
+          "type" : "string"
+        },
+        "additivesEnumbers34" : {
+          "type" : "string"
+        },
+        "additivesEnumbers35" : {
+          "type" : "string"
+        },
+        "additivesEnumbers36" : {
+          "type" : "string"
+        },
+        "additivesEnumbers37" : {
+          "type" : "string"
+        },
+        "additivesEnumbers38" : {
+          "type" : "string"
+        },
+        "additivesEnumbers39" : {
+          "type" : "string"
+        },
+        "additivesEnumbers4" : {
+          "type" : "string"
+        },
+        "additivesEnumbers40" : {
+          "type" : "string"
+        },
+        "additivesEnumbers5" : {
+          "type" : "string"
+        },
+        "additivesEnumbers6" : {
+          "type" : "string"
+        },
+        "additivesEnumbers7" : {
+          "type" : "string"
+        },
+        "additivesEnumbers8" : {
+          "type" : "string"
+        },
+        "additivesEnumbers9" : {
+          "type" : "string"
+        },
+        "alcoholProductsClosingTypeOfBottle" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "alcoholicProductBeverageType" : {
+          "type" : "string"
+        },
+        "alcoholicProductColour" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "alcoholicProductRegion" : {
+          "type" : "string"
+        },
+        "alcoholicProductVineVariety" : {
+          "type" : "string"
+        },
+        "alcoholicProductsTypeOfTaste" : {
+          "type" : "string"
+        },
+        "allergenStatementFormattingPattern" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "amountOfMemoryIncluded" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "amplifierClass" : {
+          "type" : "string"
+        },
+        "aryztaIngredientNumber" : {
+          "type" : "string"
+        },
+        "auLabelName" : {
+          "type" : "string"
+        },
+        "bFRAdditionalIdentificationCode" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "biometricSecurityFeatures" : {
+          "type" : "string"
+        },
+        "brandDistributionTradeItemType" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "brandOwner" : {
+          "type" : "array"
+        },
+        "catchDateTime" : {
+          "type" : "string"
+        },
+        "catchMethod" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "cheeseColouring" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "cheeseSaltContentPercentage" : {
+          "type" : "string"
+        },
+        "cheeseTypeOfSalt" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "chemicalClass" : {
+          "type" : "string"
+        },
+        "chemicalPropertyTypeBioHazard" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "classOfDangerousGoodsSubsidiaryCode" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "classificationCodeOtherATC" : {
+          "type" : "string"
+        },
+        "clinicalSizeText" : {
+          "type" : "string"
+        },
+        "clinicalSizeText2" : {
+          "type" : "string"
+        },
+        "clinicalSizeText3" : {
+          "type" : "string"
+        },
+        "clinicalSizeText4" : {
+          "type" : "string"
+        },
+        "clinicalSizeType" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "clinicalSizeType2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "clinicalSizeType3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "clinicalSizeType4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "clinicalSizeValue" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "clinicalSizeValue2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "clinicalSizeValue3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "clinicalSizeValue4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "commercialType" : {
+          "type" : "string"
+        },
+        "consumerSupportNumber" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "consumerUsageCode" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "consumerUsageDescription" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "consumerUsageInstructionsFormattingPattern" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "consumerUsageLabelAgency" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "consumerUsageLabelStandard" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "contactName" : {
+          "type" : "string"
+        },
+        "contextIdentification" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "controlOfHazardousSubstancesDataElectronicAddress" : {
+          "type" : "string"
+        },
+        "cordlessFrequency" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "countableItemsC1D1" : {
+          "type" : "string"
+        },
+        "countableItemsC1D2" : {
+          "type" : "string"
+        },
+        "countableItemsC1D3" : {
+          "type" : "string"
+        },
+        "countableItemsC1D4" : {
+          "type" : "string"
+        },
+        "countableItemsC1D5" : {
+          "type" : "string"
+        },
+        "countableItemsC2D1" : {
+          "type" : "string"
+        },
+        "countableItemsC2D2" : {
+          "type" : "string"
+        },
+        "countableItemsC2D3" : {
+          "type" : "string"
+        },
+        "countableItemsC2D4" : {
+          "type" : "string"
+        },
+        "countableItemsC2D5" : {
+          "type" : "string"
+        },
+        "countableItemsC3D1" : {
+          "type" : "string"
+        },
+        "countableItemsC3D2" : {
+          "type" : "string"
+        },
+        "countableItemsC3D3" : {
+          "type" : "string"
+        },
+        "countableItemsC3D4" : {
+          "type" : "string"
+        },
+        "countableItemsC3D5" : {
+          "type" : "string"
+        },
+        "countableItemsC4D1" : {
+          "type" : "string"
+        },
+        "countableItemsC4D2" : {
+          "type" : "string"
+        },
+        "countableItemsC4D3" : {
+          "type" : "string"
+        },
+        "countableItemsC4D4" : {
+          "type" : "string"
+        },
+        "countableItemsC4D5" : {
+          "type" : "string"
+        },
+        "countableItemsC5D1" : {
+          "type" : "string"
+        },
+        "countableItemsC5D2" : {
+          "type" : "string"
+        },
+        "countableItemsC5D3" : {
+          "type" : "string"
+        },
+        "countableItemsC5D4" : {
+          "type" : "string"
+        },
+        "countableItemsC5D5" : {
+          "type" : "string"
+        },
+        "countryOfSettlement" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "dailyValueIntakePercentMeasurementPrecisionCode" : {
+          "type" : "string"
+        },
+        "dangerousGoodsClassificationCode" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceHazardSymbols1" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceHazardSymbols2" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceHazardSymbols3" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceHazardSymbols4" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase1" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase10" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase11" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase12" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase13" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase14" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase15" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase2" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase3" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase4" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase5" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase6" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase7" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase8" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceRPhrase9" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase1" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase10" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase11" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase12" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase13" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase14" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase15" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase2" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase3" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase4" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase5" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase6" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase7" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase8" : {
+          "type" : "string"
+        },
+        "dangerousSubstanceSPhrase9" : {
+          "type" : "string"
+        },
+        "dateOfCatchProcessTypeCode" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "departementActivite" : {
+          "type" : "string"
+        },
+        "digitalId" : {
+          "type" : "string"
+        },
+        "directPartMarking" : {
+          "type" : "string"
+        },
+        "displayUnitInformation" : {
+          "type" : "array"
+        },
+        "doesTradeItemCarryUSDAChildNutritionLabel" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "doesTradeItemContainHumanTissue" : {
+          "type" : "string"
+        },
+        "donationIdentificationNumberMarked" : {
+          "type" : "string"
+        },
+        "dosageRecommendation" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "dosageRestrictionLimits" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "dunsNumber" : {
+          "type" : "string"
+        },
+        "dunsPlusFour" : {
+          "type" : "string"
+        },
+        "exemptFromDirectMarkingReasonCode" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "exemptFromFDAPreMarketAuthorization" : {
+          "type" : "string"
+        },
+        "extendedImportClassification" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "fDA510KPremarketAuthorization" : {
+          "type" : "string"
+        },
+        "fDAMedicalDeviceListing" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "fDASupplementNumber" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "finalBatchExpiryDate" : {
+          "type" : "string"
+        },
+        "flashPointType" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "gDSNTradeItemClassification" : {
+          "type" : "object",
+          "properties" : {
+            "gdsntradeItemClassificationAttribute" : {
+              "type" : "array"
+            },
+            "additionalTradeItemClassification" : {
+              "type" : "array"
+            },
+            "gDSNTradeItemClassificationAttribute" : {
+              "type" : "array"
+            },
+            "gpcCategoryCode" : {
+              "type" : "string"
+            },
+            "gpcCategoryDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "gHSClassificationStatement" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "gMDNCode" : {
+          "type" : "string"
+        },
+        "germanFoodCodeAndNutrientBase" : {
+          "type" : "string"
+        },
+        "graphics" : {
+          "type" : "string"
+        },
+        "groupeTarifaire" : {
+          "type" : "string"
+        },
+        "groupedProduct" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "gtinName" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array"
+            },
+            "languageDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "hIBCCode" : {
+          "type" : "string"
+        },
+        "hSNOApprovalNumber" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "hSNOClassification" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "hasAllergenControlPolicy" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "hasComparativeClaim" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "hazardPackType" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "hazardousDangerousPackagingType" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "hazardousDangerousUnitVolume" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "hazardousIdentifier" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "hazardousUnitSize" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "healthcareComponentTypeC1" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "healthcareComponentTypeC2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "healthcareComponentTypeC3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "healthcareComponentTypeC4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "healthcareComponentTypeC5" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "informationProviderOfTradeItem" : {
+          "type" : "object",
+          "properties" : {
+            "additionalPartyIdentification" : {
+              "type" : "array"
+            },
+            "informationProviderId" : {
+              "type" : "string"
+            },
+            "informationProviderType" : {
+              "type" : "object",
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "valueDefinition" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "partyAddress" : {
+              "type" : "string"
+            },
+            "partyName" : {
+              "type" : "string"
+            },
+            "partyRoleCode" : {
+              "type" : "object",
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "valueDefinition" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "ingredientRelevantDataProvided" : {
+          "type" : "string"
+        },
+        "ingredientStatementFormattingPattern" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "ingredients1" : {
+          "type" : "string"
+        },
+        "ingredients2" : {
+          "type" : "string"
+        },
+        "ingredients3" : {
+          "type" : "string"
+        },
+        "ingredients4" : {
+          "type" : "string"
+        },
+        "ingredients5" : {
+          "type" : "string"
+        },
+        "ingredients6" : {
+          "type" : "string"
+        },
+        "ingredients7" : {
+          "type" : "string"
+        },
+        "ingredients8" : {
+          "type" : "string"
+        },
+        "ingredients9" : {
+          "type" : "string"
+        },
+        "innerFleshColourCode" : {
+          "type" : "string"
+        },
+        "isAllergenRelevantDataProvided" : {
+          "type" : "string"
+        },
+        "isHealthCareItem" : {
+          "type" : "string"
+        },
+        "isItemFlavouring" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "isItemHypoallergenic" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "isPackageMarkedWithManufactureDate" : {
+          "type" : "string"
+        },
+        "isPartOfBrandNameFamily" : {
+          "type" : "string"
+        },
+        "isPartOfModelFamily" : {
+          "type" : "string"
+        },
+        "isPrivate" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "isSubwooferBoxEnclosed" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "isTradeItemABaseUnit" : {
+          "type" : "string"
+        },
+        "isTradeItemAConsumerUnit" : {
+          "type" : "string"
+        },
+        "isTradeItemADangerousGood" : {
+          "type" : "string"
+        },
+        "isTradeItemADespatchUnitGroup" : {
+          "type" : "array"
+        },
+        "isTradeItemAFreeItem" : {
+          "type" : "string"
+        },
+        "isTradeItemAHazardousGood" : {
+          "type" : "string"
+        },
+        "isTradeItemAPromotionalItem" : {
+          "type" : "string"
+        },
+        "isTradeItemAService" : {
+          "type" : "string"
+        },
+        "isTradeItemAnInvoiceUnitGroup" : {
+          "type" : "array"
+        },
+        "isTradeItemAnOrderableUnitGroup" : {
+          "type" : "array"
+        },
+        "isTradeItemCrossContaminated" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "isTradeItemDirectShippable" : {
+          "type" : "string"
+        },
+        "isTradeItemManagedByManufactureDate" : {
+          "type" : "string"
+        },
+        "isTradeItemMarkedWithBiocide" : {
+          "type" : "string"
+        },
+        "isTradeItemMedicalDevice" : {
+          "type" : "string"
+        },
+        "isTradeItemNonphysical" : {
+          "type" : "string"
+        },
+        "isTradeItemPrePackedFoodAdditive" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "isTradeItemPreviouslyFrozen" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "isTradeItemRecalled" : {
+          "type" : "string"
+        },
+        "isTradeItemReinstated" : {
+          "type" : "string"
+        },
+        "isTradeItemWildCaught" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "itemDescriptionPrefix" : {
+          "type" : "string"
+        },
+        "itemDescriptionSuffix" : {
+          "type" : "string"
+        },
+        "itemIdentificationInformation" : {
+          "type" : "object",
+          "properties" : {
+            "informationProvider" : {
+              "type" : "array"
+            },
+            "itemIdentifier" : {
+              "type" : "array"
+            },
+            "itemReferenceIdInformation" : {
+              "type" : "object",
+              "properties" : {
+                "itemReferenceId" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "productName" : {
+              "type" : "object",
+              "properties" : {
+                "values" : {
+                  "type" : "array"
+                },
+                "languageDefinition" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "targetMarket" : {
+              "type" : "object",
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "valueDefinition" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "itemUsageType" : {
+          "type" : "string"
+        },
+        "labellingAdditionalPhrase" : {
+          "type" : "string"
+        },
+        "labellingAustralianContentPercentage" : {
+          "type" : "string"
+        },
+        "labellingCountryOfOrigin" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "labellingGetDetails" : {
+          "type" : "string"
+        },
+        "labellingIngredientStatement" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "labellingLogos" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "labellingPackedStatement" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "labellingProductName" : {
+          "type" : "string"
+        },
+        "lastPermittedSalesDate" : {
+          "type" : "string"
+        },
+        "licenseCharacter" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array"
+            },
+            "languageDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "licenseTitle" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array"
+            },
+            "languageDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "lwrinPrefix" : {
+          "type" : "string"
+        },
+        "lwrinSuffix" : {
+          "type" : "string"
+        },
+        "mP3FeaturesSupported" : {
+          "type" : "string"
+        },
+        "manufacturerInternalReference" : {
+          "type" : "string"
+        },
+        "manufacturerOfTradeItem" : {
+          "type" : "array"
+        },
+        "marketingStatus" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "mcdClassification" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC1D1" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC1D2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC1D3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC1D4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC1D5" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC2D1" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC2D2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC2D3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC2D4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC2D5" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC3D1" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC3D2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC3D3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC3D4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC3D5" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC4D1" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC4D2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC4D3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC4D4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC4D5" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC5D1" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC5D2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC5D3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC5D4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicationFormCodeC5D5" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicineContainerTypeCodeC1" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicineContainerTypeCodeC2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicineContainerTypeCodeC3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicineContainerTypeCodeC4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicineContainerTypeCodeC5" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medicineDeviceUnitNameC1D1" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC1D2" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC1D3" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC1D4" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC1D5" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC2D1" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC2D2" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC2D3" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC2D4" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC2D5" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC3D1" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC3D2" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC3D3" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC3D4" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC3D5" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC4D1" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC4D2" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC4D3" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC4D4" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC4D5" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC5D1" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC5D2" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC5D3" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC5D4" : {
+          "type" : "string"
+        },
+        "medicineDeviceUnitNameC5D5" : {
+          "type" : "string"
+        },
+        "medsafeRegulatoryClassification" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medsafeRiskClassification" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "medsafeSponsor" : {
+          "type" : "string"
+        },
+        "menuItemUsage" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "mightControlOfHazardousSubstancesRegulationsApplyToTheProduct" : {
+          "type" : "string"
+        },
+        "milkFatInMilkContent" : {
+          "type" : "string"
+        },
+        "milkProducts" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "mustTradeItemBeChilled" : {
+          "type" : "string"
+        },
+        "netVolume" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "nextLowerLevelTradeItemInformation" : {
+          "type" : "array"
+        },
+        "noOfIdenticalMedicineContainersOrDevicesC1" : {
+          "type" : "string"
+        },
+        "noOfIdenticalMedicineContainersOrDevicesC2" : {
+          "type" : "string"
+        },
+        "noOfIdenticalMedicineContainersOrDevicesC3" : {
+          "type" : "string"
+        },
+        "noOfIdenticalMedicineContainersOrDevicesC4" : {
+          "type" : "string"
+        },
+        "noOfIdenticalMedicineContainersOrDevicesC5" : {
+          "type" : "string"
+        },
+        "nonFoodCompulsoryAdditionalLabelInformation" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array"
+            },
+            "languageDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "nonFoodIngredientStatement" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "notSignificantSourceOfNutrient" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionName1" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionName10" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionName11" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionName2" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionName3" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionName4" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionName5" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionName6" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionName7" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionName8" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionName9" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionPercent1" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionPercent10" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionPercent11" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionPercent2" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionPercent3" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionPercent4" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionPercent5" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionPercent6" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionPercent7" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionPercent8" : {
+          "type" : "string"
+        },
+        "nutritionalCompositionPercent9" : {
+          "type" : "string"
+        },
+        "nutritionalContent1" : {
+          "type" : "string"
+        },
+        "nutritionalContent2" : {
+          "type" : "string"
+        },
+        "nutritionalContent3" : {
+          "type" : "string"
+        },
+        "nutritionalContent4" : {
+          "type" : "string"
+        },
+        "nutritionalContent5" : {
+          "type" : "string"
+        },
+        "nutritionalContent6" : {
+          "type" : "string"
+        },
+        "nutritionalContent7" : {
+          "type" : "string"
+        },
+        "nutritionalContent8" : {
+          "type" : "string"
+        },
+        "nutritionalContentValue1" : {
+          "type" : "string"
+        },
+        "nutritionalContentValue2" : {
+          "type" : "string"
+        },
+        "nutritionalContentValue3" : {
+          "type" : "string"
+        },
+        "nutritionalContentValue4" : {
+          "type" : "string"
+        },
+        "nutritionalContentValue5" : {
+          "type" : "string"
+        },
+        "nutritionalContentValue6" : {
+          "type" : "string"
+        },
+        "nutritionalContentValue7" : {
+          "type" : "string"
+        },
+        "nutritionalContentValue8" : {
+          "type" : "string"
+        },
+        "nutritionalProperties1" : {
+          "type" : "string"
+        },
+        "nutritionalProperties10" : {
+          "type" : "string"
+        },
+        "nutritionalProperties11" : {
+          "type" : "string"
+        },
+        "nutritionalProperties12" : {
+          "type" : "string"
+        },
+        "nutritionalProperties13" : {
+          "type" : "string"
+        },
+        "nutritionalProperties14" : {
+          "type" : "string"
+        },
+        "nutritionalProperties15" : {
+          "type" : "string"
+        },
+        "nutritionalProperties16" : {
+          "type" : "string"
+        },
+        "nutritionalProperties17" : {
+          "type" : "string"
+        },
+        "nutritionalProperties18" : {
+          "type" : "string"
+        },
+        "nutritionalProperties19" : {
+          "type" : "string"
+        },
+        "nutritionalProperties2" : {
+          "type" : "string"
+        },
+        "nutritionalProperties20" : {
+          "type" : "string"
+        },
+        "nutritionalProperties3" : {
+          "type" : "string"
+        },
+        "nutritionalProperties4" : {
+          "type" : "string"
+        },
+        "nutritionalProperties5" : {
+          "type" : "string"
+        },
+        "nutritionalProperties6" : {
+          "type" : "string"
+        },
+        "nutritionalProperties7" : {
+          "type" : "string"
+        },
+        "nutritionalProperties8" : {
+          "type" : "string"
+        },
+        "nutritionalProperties9" : {
+          "type" : "string"
+        },
+        "nzMedicinesTerminologyCode" : {
+          "type" : "string"
+        },
+        "organicProductCountryOfOriginFarming" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "organicProductPlaceOfFarming" : {
+          "type" : "string"
+        },
+        "pBSFormularyAllocationCode" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "pBSItemCode" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "pBSManufacturerCode" : {
+          "type" : "string"
+        },
+        "pBSOrRPBS" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "pBSPackSize" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "pBSScheduleCode" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "pBSStartDate" : {
+          "type" : "string"
+        },
+        "packageDateReasonType" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "packagingMaterialPerformance" : {
+          "type" : "string"
+        },
+        "palletGrossWeight" : {
+          "type" : "string"
+        },
+        "palletGrossWeightUOM" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "palletHeight" : {
+          "type" : "string"
+        },
+        "palletHeightUOM" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "partyInRole" : {
+          "type" : "array"
+        },
+        "partyReceivingPrivateData1" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData10" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData11" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData12" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData13" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData14" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData15" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData2" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData3" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData4" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData5" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData6" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData7" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData8" : {
+          "type" : "string"
+        },
+        "partyReceivingPrivateData9" : {
+          "type" : "string"
+        },
+        "portionControl" : {
+          "type" : "string"
+        },
+        "preliminaryItemStatusCode" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "preparationInstructionsFormattingPattern" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "produceSeedPresenceTypeCode" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produceVarietyType" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "productCategory" : {
+          "type" : "array"
+        },
+        "productInformationLegalDisclaimer" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array"
+            },
+            "languageDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "productServingSize" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "productionFacilityGln" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "productionFacilityName" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "productionMethodForFishAndSeafoodCode" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC1D1" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC1D2" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC1D3" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC1D4" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC1D5" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC2D1" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC2D2" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC2D3" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC2D4" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC2D5" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC3D1" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC3D2" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC3D3" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC3D4" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC3D5" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC4D1" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC4D2" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC4D3" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC4D4" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC4D5" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC5D1" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC5D2" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC5D3" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC5D4" : {
+          "type" : "string"
+        },
+        "proprietaryMedicationDoseFormC5D5" : {
+          "type" : "string"
+        },
+        "prosthesesRebateCode" : {
+          "type" : "string"
+        },
+        "publisherName" : {
+          "type" : "string"
+        },
+        "publisherNameGLN" : {
+          "type" : "string"
+        },
+        "qualitySupplierFileNumber" : {
+          "type" : "string"
+        },
+        "qualitySupplierFileVersionNumber" : {
+          "type" : "string"
+        },
+        "quantityOfDisplayLines" : {
+          "type" : "string"
+        },
+        "quantityOfFrontAuxillaryInputs" : {
+          "type" : "string"
+        },
+        "quantityOfRearAuxillaryInputs" : {
+          "type" : "string"
+        },
+        "referencedTradeItemGroup" : {
+          "type" : "array"
+        },
+        "requestorLocale" : {
+          "type" : "string"
+        },
+        "requiredPowerSupplyWattage" : {
+          "type" : "string"
+        },
+        "retailerDependentAVPGroup" : {
+          "type" : "array"
+        },
+        "saCommonAllergenName" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saCompoundIngredient1" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient10" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient11" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient12" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient13" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient14" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient15" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient2" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient3" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient4" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient5" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient6" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient7" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient8" : {
+          "type" : "string"
+        },
+        "saCompoundIngredient9" : {
+          "type" : "string"
+        },
+        "saContainsGluten" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saContainsThickener" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIngredientPartOfPlant" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientAnimal" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientCommonAllergen" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientFish" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientFlavourEnhancer" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientFlavourant" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientFoodColourant" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientHydrogenated" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientIrradiated" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientMarine" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientNonVegetable" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientOilColdOrMechanicallyPressed" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientPreservative" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientReconstituted" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientSeasonal" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsIngredientVegetable" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saIsingredientInVariableProportions" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "saLevelOfContainment" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "safetyDataSheetURL" : {
+          "type" : "string"
+        },
+        "scheduleCode" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "sdsIssueDate" : {
+          "type" : "string"
+        },
+        "servingSizeGramWeight" : {
+          "type" : "string"
+        },
+        "servingSizeWeight" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "servingsPerPackage" : {
+          "type" : "string"
+        },
+        "shapeGroup" : {
+          "type" : "array"
+        },
+        "sinfosPackagingTypeCode" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "speciesForFisheryStatisticsPurposesCode" : {
+          "type" : "string"
+        },
+        "speciesForFisheryStatisticsPurposesName" : {
+          "type" : "string"
+        },
+        "storageEnvironmentAtmosphericPressureMaximum" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "storageEnvironmentAtmosphericPressureMinimum" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "storageStateCode" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "suggestedServingSize" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "tGARiskClassification" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "tGASponsor" : {
+          "type" : "string"
+        },
+        "tGAType" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "targetMarket" : {
+          "type" : "array"
+        },
+        "technoChemicalProperties1" : {
+          "type" : "string"
+        },
+        "technoChemicalProperties10" : {
+          "type" : "string"
+        },
+        "technoChemicalProperties2" : {
+          "type" : "string"
+        },
+        "technoChemicalProperties3" : {
+          "type" : "string"
+        },
+        "technoChemicalProperties4" : {
+          "type" : "string"
+        },
+        "technoChemicalProperties5" : {
+          "type" : "string"
+        },
+        "technoChemicalProperties6" : {
+          "type" : "string"
+        },
+        "technoChemicalProperties7" : {
+          "type" : "string"
+        },
+        "technoChemicalProperties8" : {
+          "type" : "string"
+        },
+        "technoChemicalProperties9" : {
+          "type" : "string"
+        },
+        "tempZone" : {
+          "type" : "string"
+        },
+        "thirdPartyContent" : {
+          "type" : "string"
+        },
+        "topcoGroup" : {
+          "type" : "array"
+        },
+        "tradeItemContactInformation" : {
+          "type" : "array"
+        },
+        "tradeItemGramMeasureDeclaration" : {
+          "type" : "string"
+        },
+        "tradeItemInformation" : {
+          "type" : "array"
+        },
+        "tradeItemSynchronisationDatesGroup" : {
+          "type" : "array"
+        },
+        "tradeItemTotalEnergyDeclaration" : {
+          "type" : "string"
+        },
+        "tradeItemTradeChannelCodeGroup" : {
+          "type" : "array"
+        },
+        "tradeItemUnitDescriptorCode" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "transTasmanID" : {
+          "type" : "string"
+        },
+        "transportationEnvironmentAtmosphericPressureMaximum" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "transportationEnvironmentAtmosphericPressureMinimum" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "unitLoadGrossWeight" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "unitLoadHeight" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "unitOfUseGTINC1D1" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC1D2" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC1D3" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC1D4" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC1D5" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC2D1" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC2D2" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC2D3" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC2D4" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC2D5" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC3D1" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC3D2" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC3D3" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC3D4" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC3D5" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC4D1" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC4D2" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC4D3" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC4D4" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC4D5" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC5D1" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC5D2" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC5D3" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC5D4" : {
+          "type" : "string"
+        },
+        "unitOfUseGTINC5D5" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName1" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName10" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName11" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName12" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName13" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName14" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName15" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName2" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName3" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName4" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName5" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName6" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName7" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName8" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsName9" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA1" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA10" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA11" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA12" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA13" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA14" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA15" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA2" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA3" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA4" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA5" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA6" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA7" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA8" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsRDA9" : {
+          "type" : "string"
+        },
+        "vitaminsMineralsValue1" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue10" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue11" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue12" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue13" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue14" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue15" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue5" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue6" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue7" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue8" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "vitaminsMineralsValue9" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "qual" : {
+              "type" : "string"
+            },
+            "qualDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "voiceCoilType" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC1D1" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC1D2" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC1D3" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC1D4" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC1D5" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC2D1" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC2D2" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC2D3" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC2D4" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC2D5" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC3D1" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC3D2" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC3D3" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC3D4" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC3D5" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC4D1" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC4D2" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC4D3" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC4D4" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC4D5" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC5D1" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC5D2" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC5D3" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC5D4" : {
+          "type" : "string"
+        },
+        "volumeWeightAmountC5D5" : {
+          "type" : "string"
+        },
+        "volumeWeightUnitC1D1" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC1D2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC1D3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC1D4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC1D5" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC2D1" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC2D2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC2D3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC2D4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC2D5" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC3D1" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC3D2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC3D3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC3D4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC3D5" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC4D1" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC4D2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC4D3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC4D4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC4D5" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC5D1" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC5D2" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC5D3" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC5D4" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "volumeWeightUnitC5D5" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "valueDefinition" : {
+              "type" : "string"
+            }
+          }
+        },
+        "wSINumber" : {
+          "type" : "object",
+          "properties" : {
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "wandNumber" : {
+          "type" : "string"
+        },
+        "waterHazardAgencyName" : {
+          "type" : "string"
+        },
+        "waterHazardType" : {
+          "type" : "string"
+        },
+        "wrinPrefix" : {
+          "type" : "string"
+        },
+        "wrinSuffix" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

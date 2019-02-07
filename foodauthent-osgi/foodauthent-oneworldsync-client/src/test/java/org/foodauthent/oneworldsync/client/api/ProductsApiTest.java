@@ -12,20 +12,21 @@
 
 package org.foodauthent.oneworldsync.client.api;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.foodauthent.oneworldsync.client.ApiException;
-import org.foodauthent.oneworldsync.client.model.InformationProviderOfTradeItem;
 import org.foodauthent.oneworldsync.client.model.Item;
 import org.foodauthent.oneworldsync.client.model.ItemIdentificationInformation;
 import org.foodauthent.oneworldsync.client.model.LanguageLabel;
-import org.foodauthent.oneworldsync.client.model.ManufacturerOfTradeItem;
 import org.foodauthent.oneworldsync.client.model.Response;
 import org.foodauthent.oneworldsync.client.model.Result;
 import org.junit.Test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
 import com.fasterxml.jackson.databind.util.ISO8601Utils;
 
 /**
@@ -34,12 +35,14 @@ import com.fasterxml.jackson.databind.util.ISO8601Utils;
 public class ProductsApiTest {
 
 	private final ProductsApi api = new ProductsApi();
+	
+	private ObjectMapper mapper = new ObjectMapper();
 
 	@Test
 	public void productsGetGtin() throws ApiException {
 		String appId = "6e987765";
 		String searchType = "freeTextSearch";
-		String query = "Olivenöl";
+		String query = "08100090000293";
 		String accessMdm = "computer";
 		String TIMESTAMP = ISO8601Utils.format(new Date(), false);
 		Integer rows = null;
@@ -56,6 +59,7 @@ public class ProductsApiTest {
 
 		for (final Result r : response.getResults()) {
 			printResult(r);
+			
 		}
 		// TODO: test validations
 	}
@@ -81,6 +85,15 @@ public class ProductsApiTest {
 					}).collect(Collectors.toList()));
 		}).collect(Collectors.toList()));
 		System.out.println(brandOwner + ", " + productName + ", " + itemIdentifier);
+		try {
+			//mapper.writerWithDefaultPrettyPrinter().writeValue(System.out, r);
+			JsonSchema schema = mapper.generateJsonSchema(r.getClass());
+			File file = new File("/Users/sven/Downloads/schema-"+itemIdentifier+".json");
+			mapper.writerWithDefaultPrettyPrinter().writeValue(file,schema);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("");
 	}
 
 	/**
