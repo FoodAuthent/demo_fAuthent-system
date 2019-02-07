@@ -1,4 +1,4 @@
-package org.foofauthent.impl.io;
+package org.foodauthent.impl.io;
 
 import java.io.File;
 import java.io.FileOutputStream;
