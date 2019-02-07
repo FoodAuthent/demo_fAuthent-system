@@ -23,6 +23,7 @@ import org.foodauthent.common.exception.FAExceptions;
 import org.foodauthent.common.exception.FAExceptions.InvalidDataException;
 import org.foodauthent.common.exception.FAExceptions.InvalidInputException;
 import org.foodauthent.fakx.Fakx;
+import org.foodauthent.impl.product.ProductServiceImpl;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
 import org.foodauthent.model.ImportResult;
@@ -160,9 +161,17 @@ public class FileServiceImpl implements FileService {
 
 	ImportResult result;
 
+	ProductServiceImpl productService = new ProductServiceImpl();
 	File file = getFileData(fileId);
 	try {
+	    
+	    // Extract products from Zip file
 	    List<Product> products = Fakx.importProducts(new ZipFile(file));
+	    
+	    // Add imported products to FoodAuthent
+	    products.forEach(productService::createProduct);
+	    
+	    // Return imported products
 	    result = ImportResult.builder().setProducts(products).build();
 	    return result;
 

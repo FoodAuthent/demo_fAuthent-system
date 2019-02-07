@@ -165,7 +165,7 @@ paths:
       description: >-
         Import FoodAuthent components from an existing ZIP file and return the
         ids of the components.
-      operationId: import
+      operationId: importFile
       parameters:
       - name: file-id
         in: path
@@ -2487,4 +2487,5 @@ components:
          products:
             type: array
             items:
+               # TODO: replace with ids
                $ref: '#/components/schemas/Product'
