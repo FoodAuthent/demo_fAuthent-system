@@ -58,7 +58,6 @@
 
     /**
      * Create a new fingerprint set.
-     * TODO
      * @param {module:model/FingerprintSet} fingerprintSet A fingerprint set containing fingerprint metadata.
      * @param {module:api/FingerprintApi~createFingerprintSetCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link String}
@@ -105,7 +104,7 @@
 
     /**
      * Finds fingerprint sets by some key words or return all fingerprint sets.
-     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     * Muliple keywords can be provided with comma separated strings,e.g. use keyword1, keyword2, keyword3.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.pageNumber the page number starting at 0
      * @param {Number} opts.pageSize entries per page, minimum 1
@@ -157,7 +156,6 @@
 
     /**
      * Get the fingerprintset by id.
-     * TODO
      * @param {String} fingerprintsetId 
      * @param {module:api/FingerprintApi~getFingerprintSetByIdCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/FingerprintSet}

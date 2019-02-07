@@ -58,7 +58,6 @@
 
     /**
      * Creates a new file by posting the file metadata first.
-     * TODO
      * @param {module:model/FileMetadata} fileMetadata The actual metadata object.
      * @param {module:api/FileApi~createFileMetadataCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link String}
@@ -105,7 +104,6 @@
 
     /**
      * Let one download the actual file data.
-     * TODO
      * @param {String} fileId 
      * @param {module:api/FileApi~getFileDataCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
@@ -153,7 +151,6 @@
 
     /**
      * Returns the file metadata.
-     * TODO
      * @param {String} fileId 
      * @param {module:api/FileApi~getFileMetadataCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/FileMetadata}
@@ -201,7 +198,6 @@
 
     /**
      * Uploads (and replaces) the actual file-data for the given file id
-     * TODO
      * @param {String} fileId 
      * @param {File} filedata The binary file data.
      * @param {module:api/FileApi~saveFileDataCallback} callback The callback function, accepting three arguments: error, data, response

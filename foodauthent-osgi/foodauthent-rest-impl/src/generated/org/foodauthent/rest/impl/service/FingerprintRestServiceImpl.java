@@ -38,7 +38,7 @@ public class FingerprintRestServiceImpl implements FingerprintRestService {
 
 
     /**
-     * TODO
+     * Create a new fingerprint set.
      *
      * @param fingerprintSet A fingerprint set containing fingerprint metadata.
      * @return the response
@@ -50,7 +50,7 @@ public class FingerprintRestServiceImpl implements FingerprintRestService {
     }
 
     /**
-     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     * Muliple keywords can be provided with comma separated strings,e.g. use keyword1, keyword2, keyword3.
      *
      * @param pageNumber the page number starting at 0
      * @param pageSize entries per page, minimum 1
@@ -64,7 +64,7 @@ public class FingerprintRestServiceImpl implements FingerprintRestService {
     }
 
     /**
-     * TODO
+     * Get the fingerprintset by id.
      *
      * @param fingerprintsetId 
      * @return the response

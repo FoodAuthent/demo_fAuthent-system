@@ -17,7 +17,7 @@ import org.foodauthent.common.exception.FAExceptions;
 public interface FingerprintService {
 
     /**
-     * TODO
+     * Create a new fingerprint set.
      *
      * @param fingerprintSet A fingerprint set containing fingerprint metadata.
      *
@@ -26,7 +26,7 @@ public interface FingerprintService {
     java.util.UUID createFingerprintSet(FingerprintSet fingerprintSet);
         
     /**
-     * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     * Muliple keywords can be provided with comma separated strings,e.g. use keyword1, keyword2, keyword3.
      *
      * @param pageNumber the page number starting at 0
      * @param pageSize entries per page, minimum 1
@@ -37,7 +37,7 @@ public interface FingerprintService {
     FingerprintSetPageResult findFingerprintSetByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
     /**
-     * TODO
+     * Get the fingerprintset by id.
      *
      * @param fingerprintsetId 
      *

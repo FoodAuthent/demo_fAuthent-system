@@ -59,8 +59,7 @@ paths:
     post:
       tags:
         - sop
-      summary: Creates a new SOP.
-      description: TODO
+      description: Creates a new SOP.
       operationId: createNewSOP
       responses:
         '201':
@@ -82,8 +81,7 @@ paths:
     get:
       tags:
         - sop
-      summary: Get the sop an id.
-      description: TODO
+      description: Get the sop an id.
       operationId: getSOPById
       parameters:
         - name: sop-id
@@ -102,8 +100,7 @@ paths:
     delete:
       tags:
         - sop
-      summary: Delete a sop specified by id.
-      description: TODO
+      description: Delete a sop specified by id.
       operationId: removeSOPById
       parameters:
         - name: sop-id
@@ -119,8 +116,7 @@ paths:
     post:
       tags:
         - file
-      summary: Creates a new file by posting the file metadata first.
-      description: TODO
+      description: Creates a new file by posting the file metadata first.
       operationId: createFileMetadata
       responses:
         '201':
@@ -144,8 +140,7 @@ paths:
     get:
       tags:
         - file
-      summary: Returns the file metadata.
-      description: TODO
+      description: Returns the file metadata.
       operationId: getFileMetadata
       parameters:
         - name: file-id
@@ -166,8 +161,7 @@ paths:
     get:
       tags:
         - file
-      summary: Let one download the actual file data.
-      description: TODO
+      description: Let one download the actual file data.
       operationId: getFileData
       parameters:
         - name: file-id
@@ -187,8 +181,7 @@ paths:
     put:
       tags:
         - file
-      summary: Uploads (and replaces) the actual file-data for the given file id
-      description: TODO
+      description: Uploads (and replaces) the actual file-data for the given file id
       operationId: saveFileData
       parameters:
         - name: file-id
@@ -226,8 +219,8 @@ paths:
         - fingerprint
       summary: Finds fingerprint sets by some key words or return all fingerprint sets.
       description: >-
-        Muliple tags can be provided with comma separated strings. Use tag1,
-        tag2, tag3 for testing.
+        Muliple keywords can be provided with comma separated strings,e.g. use keyword1,
+        keyword2, keyword3.
       operationId: findFingerprintSetByKeyword
       parameters:
         - $ref: "#/components/parameters/pageNumber"
@@ -243,8 +236,7 @@ paths:
     post:
       tags:
         - fingerprint
-      summary: Create a new fingerprint set.
-      description: TODO
+      description: Create a new fingerprint set.
       operationId: createFingerprintSet
       responses:
         '201':
@@ -268,8 +260,7 @@ paths:
     get:
       tags:
         - fingerprint
-      summary: Get the fingerprintset by id.
-      description: TODO
+      description: Get the fingerprintset by id.
       operationId: getFingerprintSetById
       parameters:
         - name: fingerprintset-id
@@ -289,8 +280,7 @@ paths:
     delete:
       tags:
         - product
-      summary: Delete a product specified by gtin.
-      description: TODO
+      description: Delete a product specified by gtin.
       operationId: removeProductByGtin
       parameters:
         - name: gtin
@@ -310,8 +300,7 @@ paths:
         - product
       summary: Finds Products by some key words or return all Products.
       description: >-
-        Muliple tags can be provided with comma separated strings. Use tag1,
-        tag2, tag3 for testing.
+        Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.
       operationId: findProductByKeyword
       parameters:
         - $ref: "#/components/parameters/pageNumber"
@@ -327,8 +316,7 @@ paths:
     post:
       tags:
         - product
-      summary: Create a new product entity.
-      description: TODO
+      description: Create a new product entity.
       operationId: createProduct
       responses:
         '201':
@@ -366,13 +354,12 @@ paths:
     get:
       tags:
         - product
-      summary: Find product by gtin.
-      description: TODO
+      description: Find product by gtin.
       operationId: findProductByGtin
       parameters:
         - in: query
           name: gtin
-          description: TODO
+          description: The gtin to find the product for.
           required: true
           schema:
             type: string
@@ -392,8 +379,7 @@ paths:
         - workflow
       summary: Finds Prediction by some key words or return all Predictions.
       description: >-
-        Muliple tags can be provided with comma separated strings. Use tag1,
-        tag2, tag3 for testing.
+        Muliple keywords can be provided with comma separated strings, e.g. keyword1, keyword2.
       operationId: findModelByKeyword
       parameters:
         - $ref: "#/components/parameters/pageNumber"
@@ -434,8 +420,7 @@ paths:
         - model
       summary: Finds Models by some key words or return all Models.
       description: >-
-        Muliple tags can be provided with comma separated strings. Use tag1,
-        tag2, tag3 for testing.
+        Muliple keywords can be provided with comma separated strings, e.g. keyword1, keyword2.
       operationId: findModelByKeyword
       parameters:
         - $ref: "#/components/parameters/pageNumber"
@@ -853,7 +838,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         409:
-          $ref: "#/components/responses/EntityAlreadyExistsResponse" 
+          $ref: "#/components/responses/ModelAlreadyExistsResponse" 
         415:
           $ref: "#/components/responses/InvalidOperationResponse"
         500:
@@ -893,7 +878,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         404:
-          $ref: "#/components/responses/EntityNotFoundResponse" 
+          $ref: "#/components/responses/ModelNotFoundResponse" 
         500:
           $ref: "#/components/responses/FAException"    
 
@@ -922,7 +907,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         404:
-          $ref: "#/components/responses/EntityNotFoundResponse"
+          $ref: "#/components/responses/ModelNotFoundResponse"
         415:
           $ref: "#/components/responses/InvalidOperationResponse"
         500:
@@ -956,7 +941,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         404:
-          $ref: "#/components/responses/EntityNotFoundResponse" 
+          $ref: "#/components/responses/ModelNotFoundResponse" 
         415:
           $ref: "#/components/responses/InvalidOperationResponse"
         500:
@@ -994,7 +979,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         404:
-          $ref: "#/components/responses/EntityNotFoundResponse" 
+          $ref: "#/components/responses/ModelNotFoundResponse" 
         500:
           $ref: "#/components/responses/FAException"  
 
@@ -1020,7 +1005,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         404:
-          $ref: "#/components/responses/EntityNotFoundResponse" 
+          $ref: "#/components/responses/ModelNotFoundResponse" 
         500:
           $ref: "#/components/responses/FAException"  
       requestBody:
@@ -1050,7 +1035,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         409:
-          $ref: "#/components/responses/EntityAlreadyExistsResponse" 
+          $ref: "#/components/responses/ModelAlreadyExistsResponse" 
         415:
           $ref: "#/components/responses/InvalidOperationResponse"                    
         500:
@@ -1089,7 +1074,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         404:
-          $ref: "#/components/responses/EntityNotFoundResponse" 
+          $ref: "#/components/responses/ModelNotFoundResponse" 
         500:
           $ref: "#/components/responses/FAException"    
 
@@ -1118,7 +1103,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         404:
-          $ref: "#/components/responses/EntityNotFoundResponse" 
+          $ref: "#/components/responses/ModelNotFoundResponse" 
         415:
           $ref: "#/components/responses/InvalidOperationResponse"                    
         500:
@@ -1152,7 +1137,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         404:
-          $ref: "#/components/responses/EntityNotFoundResponse" 
+          $ref: "#/components/responses/ModelNotFoundResponse" 
         415:
           $ref: "#/components/responses/InvalidOperationResponse"
         500:
@@ -1177,7 +1162,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         409:
-          $ref: "#/components/responses/EntityAlreadyExistsResponse" 
+          $ref: "#/components/responses/ModelAlreadyExistsResponse" 
         415:
           $ref: "#/components/responses/InvalidOperationResponse"          
         500:
@@ -1216,7 +1201,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         404:
-          $ref: "#/components/responses/EntityNotFoundResponse" 
+          $ref: "#/components/responses/ModelNotFoundResponse" 
         500:
           $ref: "#/components/responses/FAException"    
 
@@ -1245,7 +1230,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         404:
-          $ref: "#/components/responses/EntityNotFoundResponse" 
+          $ref: "#/components/responses/ModelNotFoundResponse" 
         415:
           $ref: "#/components/responses/InvalidOperationResponse"          
         500:
@@ -1279,7 +1264,7 @@ paths:
         403:
           $ref: "#/components/responses/ForbiddenAccessResponse" 
         404:
-          $ref: "#/components/responses/EntityNotFoundResponse" 
+          $ref: "#/components/responses/ModelNotFoundResponse" 
         415:
           $ref: "#/components/responses/InvalidOperationResponse"
         500:
@@ -1437,22 +1422,22 @@ components:
       description: Invalid data was uploaded.
       x-fa-exceptions:
         - name: InvalidDataException
-    EntityAlreadyExistsResponse:
-      description: Invalid input was provided, entity already exists.
+    ModelAlreadyExistsResponse:
+      description: Invalid input was provided, model already exists.
       content:
         text/plain:
           schema:
             type: string        
       x-fa-exceptions:
-        - name: EntityAlreadyExistsResponse
-    EntityNotFoundResponse:
-      description: Response thrown when an entity could not be found.
+        - name: ModelAlreadyExistsResponse
+    ModelNotFoundResponse:
+      description: Response thrown when an model could not be found.
       content:
         text/plain:
           schema:
             type: string        
       x-fa-exceptions:
-        - name: EntityNotFoundResponse
+        - name: ModelNotFoundResponse
     ForbiddenAccessResponse:
       description: Access to resource is not allowed.
       content:

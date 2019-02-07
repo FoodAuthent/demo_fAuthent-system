@@ -61,7 +61,7 @@ public class UserRestServiceImpl implements UserRestService {
            return Response.status(403).entity(e.getMessage()).build();
         }
         
-        catch(FAExceptions.EntityAlreadyExistsResponse e) {
+        catch(FAExceptions.ModelAlreadyExistsResponse e) {
            return Response.status(409).entity(e.getMessage()).build();
         }
         
@@ -93,7 +93,7 @@ public class UserRestServiceImpl implements UserRestService {
            return Response.status(403).entity(e.getMessage()).build();
         }
         
-        catch(FAExceptions.EntityAlreadyExistsResponse e) {
+        catch(FAExceptions.ModelAlreadyExistsResponse e) {
            return Response.status(409).entity(e.getMessage()).build();
         }
         
@@ -126,7 +126,7 @@ public class UserRestServiceImpl implements UserRestService {
            return Response.status(403).entity(e.getMessage()).build();
         }
         
-        catch(FAExceptions.EntityNotFoundResponse e) {
+        catch(FAExceptions.ModelNotFoundResponse e) {
            return Response.status(404).entity(e.getMessage()).build();
         }
         
@@ -159,7 +159,7 @@ public class UserRestServiceImpl implements UserRestService {
            return Response.status(403).entity(e.getMessage()).build();
         }
         
-        catch(FAExceptions.EntityNotFoundResponse e) {
+        catch(FAExceptions.ModelNotFoundResponse e) {
            return Response.status(404).entity(e.getMessage()).build();
         }
         
@@ -192,7 +192,7 @@ public class UserRestServiceImpl implements UserRestService {
            return Response.status(403).entity(e.getMessage()).build();
         }
         
-        catch(FAExceptions.EntityNotFoundResponse e) {
+        catch(FAExceptions.ModelNotFoundResponse e) {
            return Response.status(404).entity(e.getMessage()).build();
         }
         
@@ -220,7 +220,7 @@ public class UserRestServiceImpl implements UserRestService {
            return Response.status(403).entity(e.getMessage()).build();
         }
         
-        catch(FAExceptions.EntityNotFoundResponse e) {
+        catch(FAExceptions.ModelNotFoundResponse e) {
            return Response.status(404).entity(e.getMessage()).build();
         }
         
@@ -248,7 +248,7 @@ public class UserRestServiceImpl implements UserRestService {
            return Response.status(403).entity(e.getMessage()).build();
         }
         
-        catch(FAExceptions.EntityNotFoundResponse e) {
+        catch(FAExceptions.ModelNotFoundResponse e) {
            return Response.status(404).entity(e.getMessage()).build();
         }
         
@@ -278,7 +278,7 @@ public class UserRestServiceImpl implements UserRestService {
            return Response.status(403).entity(e.getMessage()).build();
         }
         
-        catch(FAExceptions.EntityNotFoundResponse e) {
+        catch(FAExceptions.ModelNotFoundResponse e) {
            return Response.status(404).entity(e.getMessage()).build();
         }
         
@@ -307,7 +307,7 @@ public class UserRestServiceImpl implements UserRestService {
            return Response.status(403).entity(e.getMessage()).build();
         }
         
-        catch(FAExceptions.EntityNotFoundResponse e) {
+        catch(FAExceptions.ModelNotFoundResponse e) {
            return Response.status(404).entity(e.getMessage()).build();
         }
         
@@ -340,7 +340,7 @@ public class UserRestServiceImpl implements UserRestService {
            return Response.status(403).entity(e.getMessage()).build();
         }
         
-        catch(FAExceptions.EntityNotFoundResponse e) {
+        catch(FAExceptions.ModelNotFoundResponse e) {
            return Response.status(404).entity(e.getMessage()).build();
         }
         

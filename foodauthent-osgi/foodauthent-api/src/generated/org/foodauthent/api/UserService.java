@@ -29,11 +29,11 @@ public interface UserService {
      * @return the result
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityAlreadyExistsResponse Invalid input was provided, entity already exists.
+     * @throws ModelAlreadyExistsResponse Invalid input was provided, model already exists.
      * @throws InvalidOperationResponse Requested operation is not supported.
      * @throws FAException Unspecified exception.
      */
-    User createUser(UserCreateRequest userCreateRequest) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityAlreadyExistsResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
+    User createUser(UserCreateRequest userCreateRequest) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelAlreadyExistsResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
         
     /**
      * TODO
@@ -43,11 +43,11 @@ public interface UserService {
      * @return the result
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityAlreadyExistsResponse Invalid input was provided, entity already exists.
+     * @throws ModelAlreadyExistsResponse Invalid input was provided, model already exists.
      * @throws InvalidOperationResponse Requested operation is not supported.
      * @throws FAException Unspecified exception.
      */
-    UserGroup createUserGroup(UserGroupCreateRequest userGroupCreateRequest) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityAlreadyExistsResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
+    UserGroup createUserGroup(UserGroupCreateRequest userGroupCreateRequest) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelAlreadyExistsResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
         
     /**
      * TODO
@@ -57,11 +57,11 @@ public interface UserService {
      * 
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityNotFoundResponse Response thrown when an entity could not be found.
+     * @throws ModelNotFoundResponse Response thrown when an model could not be found.
      * @throws InvalidOperationResponse Requested operation is not supported.
      * @throws FAException Unspecified exception.
      */
-    void deleteUser(String dn) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityNotFoundResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
+    void deleteUser(String dn) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelNotFoundResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
         
     /**
      * TODO
@@ -71,11 +71,11 @@ public interface UserService {
      * 
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityNotFoundResponse Response thrown when an entity could not be found.
+     * @throws ModelNotFoundResponse Response thrown when an model could not be found.
      * @throws InvalidOperationResponse Requested operation is not supported.
      * @throws FAException Unspecified exception.
      */
-    void deleteUserGroup(String dn) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityNotFoundResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
+    void deleteUserGroup(String dn) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelNotFoundResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
         
     /**
      * TODO
@@ -86,10 +86,10 @@ public interface UserService {
      * @return the result
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityNotFoundResponse Response thrown when an entity could not be found.
+     * @throws ModelNotFoundResponse Response thrown when an model could not be found.
      * @throws FAException Unspecified exception.
      */
-    String generatePassword(String dn, Integer length) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityNotFoundResponse, FAExceptions.FAException;
+    String generatePassword(String dn, Integer length) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelNotFoundResponse, FAExceptions.FAException;
         
     /**
      * TODO
@@ -99,10 +99,10 @@ public interface UserService {
      * @return the result
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityNotFoundResponse Response thrown when an entity could not be found.
+     * @throws ModelNotFoundResponse Response thrown when an model could not be found.
      * @throws FAException Unspecified exception.
      */
-    User getUser(String dn) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityNotFoundResponse, FAExceptions.FAException;
+    User getUser(String dn) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelNotFoundResponse, FAExceptions.FAException;
         
     /**
      * TODO
@@ -112,10 +112,10 @@ public interface UserService {
      * @return the result
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityNotFoundResponse Response thrown when an entity could not be found.
+     * @throws ModelNotFoundResponse Response thrown when an model could not be found.
      * @throws FAException Unspecified exception.
      */
-    UserGroup getUserGroup(String dn) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityNotFoundResponse, FAExceptions.FAException;
+    UserGroup getUserGroup(String dn) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelNotFoundResponse, FAExceptions.FAException;
         
     /**
      * TODO
@@ -126,10 +126,10 @@ public interface UserService {
      * 
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityNotFoundResponse Response thrown when an entity could not be found.
+     * @throws ModelNotFoundResponse Response thrown when an model could not be found.
      * @throws FAException Unspecified exception.
      */
-    void setPassword(String dn, ChangePasswordRequest changePasswordRequest) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityNotFoundResponse, FAExceptions.FAException;
+    void setPassword(String dn, ChangePasswordRequest changePasswordRequest) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelNotFoundResponse, FAExceptions.FAException;
         
     /**
      * TODO
@@ -140,11 +140,11 @@ public interface UserService {
      * @return the result
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityNotFoundResponse Response thrown when an entity could not be found.
+     * @throws ModelNotFoundResponse Response thrown when an model could not be found.
      * @throws InvalidOperationResponse Requested operation is not supported.
      * @throws FAException Unspecified exception.
      */
-    User updateUser(String dn, UserBase userBase) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityNotFoundResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
+    User updateUser(String dn, UserBase userBase) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelNotFoundResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
         
     /**
      * TODO
@@ -155,10 +155,10 @@ public interface UserService {
      * @return the result
      * @throws UnauthorizedResponse Unauthorized access.
      * @throws ForbiddenAccessResponse Access to resource is not allowed.
-     * @throws EntityNotFoundResponse Response thrown when an entity could not be found.
+     * @throws ModelNotFoundResponse Response thrown when an model could not be found.
      * @throws InvalidOperationResponse Requested operation is not supported.
      * @throws FAException Unspecified exception.
      */
-    UserGroup updateUserGroup(String dn, UserGroupBase userGroupBase) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.EntityNotFoundResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
+    UserGroup updateUserGroup(String dn, UserGroupBase userGroupBase) throws FAExceptions.UnauthorizedResponse, FAExceptions.ForbiddenAccessResponse, FAExceptions.ModelNotFoundResponse, FAExceptions.InvalidOperationResponse, FAExceptions.FAException;
         
 }

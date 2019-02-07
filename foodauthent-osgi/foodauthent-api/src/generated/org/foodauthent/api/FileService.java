@@ -17,7 +17,7 @@ import org.foodauthent.common.exception.FAExceptions;
 public interface FileService {
 
     /**
-     * TODO
+     * Creates a new file by posting the file metadata first.
      *
      * @param fileMetadata The actual metadata object.
      *
@@ -26,7 +26,7 @@ public interface FileService {
     java.util.UUID createFileMetadata(FileMetadata fileMetadata);
         
     /**
-     * TODO
+     * Let one download the actual file data.
      *
      * @param fileId 
      *
@@ -35,7 +35,7 @@ public interface FileService {
     File getFileData(java.util.UUID fileId);
         
     /**
-     * TODO
+     * Returns the file metadata.
      *
      * @param fileId 
      *
@@ -44,7 +44,7 @@ public interface FileService {
     FileMetadata getFileMetadata(java.util.UUID fileId);
         
     /**
-     * TODO
+     * Uploads (and replaces) the actual file-data for the given file id
      *
      * @param fileId 
      * @param filedata The binary file data.
