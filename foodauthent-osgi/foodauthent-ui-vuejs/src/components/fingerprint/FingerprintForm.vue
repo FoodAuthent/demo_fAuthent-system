@@ -103,7 +103,6 @@ export default {
     return vueObject;
   },
   mounted(){
-  	
   	getModelSchemas("fingerprintset",schemas);
   	console.log("Schemas",schemas);
   },

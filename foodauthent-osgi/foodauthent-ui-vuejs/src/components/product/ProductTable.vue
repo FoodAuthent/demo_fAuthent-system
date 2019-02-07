@@ -41,24 +41,28 @@
 >
   <template slot="actions" slot-scope="row">
     <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)"> <md-icon>edit</md-icon></b-btn>
-    <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)"> <md-icon>search</md-icon></b-btn>
+    <b-btn size="sm" v-b-modal.modalMeta @click.stop="showMetadata(row.item, row.index, $event.target)"> <md-icon>search</md-icon></b-btn>
     <b-btn size="sm" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
   </template>
 </b-table>
+
 
 <!-- PAGINATION -->
 <b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page="perPage" v-model="currentPage" />
 
 <!-- MODAL EDIT -->
   <b-modal id="modalEdit" title="Edit" @ok="handleEditOk">
-      <!-- <p>Do you want to edit this record?</p>
-     <pre v-if="selected" v-html="JSON.stringify(selected, undefined, 4)"></pre> -->
      <vue-form-generator :schema="schema" :model="model" :options="formOptions">        </vue-form-generator>
   </b-modal>
   
   <!-- MODAL METADATA -->
-  <b-modal id="modalEdit" title="Metadata" @ok="handleMetadataOk">
-	This is metadata
+  <b-modal id="modalMeta" size="lg" title="Metadata" @ok="handleMetadataOk">
+<div class="panel panel-default">
+      <div class="panel-heading">Metadata</div>
+      <div class="panel-body">
+        <pre v-if="model" v-html="JSON.stringify(itemsMetadata, undefined, 4)"></pre>
+      </div>
+    </div>
   </b-modal>
 
     <!-- MODAL Delete -->
@@ -80,6 +84,9 @@ var findProductByGtin = require("@/utils/productFunction.js").default.findProduc
 import productForm from "@/components/product/ProductForm";
 import product from "@/components/product/Product";
 import jsonschema from "@/generated/schema/product.json";
+var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
+var getCustomMetadata = require("@/utils/commonFunction.js").default.getCustomMetadata;
+var schemaIdHolder = {"schemaID" : "withOutSchema"};
 export default {
   name: "Product",
   data() {
@@ -91,6 +98,7 @@ export default {
         validateAfterChanged: true
       },
       items: [],
+      itemsMetadata: {},
       selected: {},
       fields: [],
       currentPage: 1,
@@ -105,6 +113,8 @@ export default {
   },
   mounted() {
     this.loadTableData();
+    console.log("before call",schemaIdHolder);
+    getModelSchemas("product",{},schemaIdHolder);
   },
   computed: {
     sortOptions() {
@@ -178,6 +188,11 @@ export default {
     info (item, index, button) {
       this.model = item;
       this.$root.$emit('bv::show::modal', 'modalEdit', button);
+    },
+    showMetadata(item, index, button) {
+    let self = this;
+    console.log("schemaIdHolderxxxxxx", schemaIdHolder);
+    getCustomMetadata("product",schemaIdHolder.schemaID,item["fa-id"], self);
     },
    // onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering

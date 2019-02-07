@@ -1,15 +1,15 @@
 var MyObject = function () {
 	  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
 	  var apiClient = new ApiClient();
-	  //only for test---
+	  // only for test---
 	  apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
-	  //only for test---
+	  // only for test---
 	
-/////////////GET METADATA SCHEMA
+// ///////////GET METADATA SCHEMA
 	  var CustomMetadataApi = require("@/generated/rest-client/src/api/CustomMetadataApi.js");
 	  var customMetadataApi = new CustomMetadataApi(apiClient);
 
-	  var getModelSchemas = function(modelID,schemas){
+	  var getModelSchemas = function(modelID,schemas,schemaIdHolder){
 		  var getCustomMetadataSchemasCallback = function (error, data, response) {
 			  if (error) {
 		        console.error("getCustomMetadataSchemasCallback error",error);
@@ -40,9 +40,9 @@ var MyObject = function () {
 		    	        		        var fieldsKeys = Object.keys(currentSchema.properties);
 		    	        		        var fieldslength = fieldsKeys.length;
 		    	        		        for (var fieldsindex = 0; fieldsindex < fieldslength; fieldsindex++) {
-		    	        		        		//TODO make Field JSON element
+		    	        		        		// TODO make Field JSON element
 		    	        		        		var currentField = fields[fieldsKeys[fieldsindex]];
-		    	        		        		//console.log(currentField);
+		    	        		        		// console.log(currentField);
 		    	        		        		var UIField ;
 		    	        		        		switch(currentField.type){
 		    	        		        		case 'string':
@@ -69,7 +69,15 @@ var MyObject = function () {
 		        		        
 		        		      }
 		        		  }
+		        		console.log("before if",schemaID);
+	        		if(schemaIdHolder ==undefined || schemaIdHolder.schemaID != "withOutSchema"){
+		        			console.log("I am inside");
 		        		customMetadataApi.getCustomMetadataSchema(modelID,schemaID,getCustomMetadataSchemaCallback);
+		        		}else{
+		        			schemaIdHolder.schemaID = schemaID;
+		        			console.log("else",schemaIdHolder);
+		        		}
+		        		console.log("after if",schemaID,schemaIdHolder);
 		        }
 		        
 		        
@@ -77,9 +85,9 @@ var MyObject = function () {
 		  }
 		  customMetadataApi.getCustomMetadataSchemas(modelID,getCustomMetadataSchemasCallback);
 	  }
-	  //////////////
+	  // ////////////
 	  
-	  /////////////SAVE METADATA
+	  // ///////////SAVE METADATA
 		  var saveCustomMetadata = function (schemas, faId) {
 			  console.log("faId",faId);
 			  var dataModel = {}
@@ -118,7 +126,32 @@ var MyObject = function () {
 			      callback
 			    );
 			  };
-	  //////////////
+	  // ////////////
+			  
+			  /////////////GET METADATA
+			  var getCustomMetadata = function (modelID, schemaID, faID, self) {
+				    console.log('Get Custom Metadata');
+				    var callback = function (error, data, response) {
+				      console.log("data:", data);
+				      console.log("response:", response);
+				      if (error) {
+				        console.error(error);
+				        self.showError = true;
+				      } else {
+					        var jsonResult = data.results;
+					        console.log("Data custom ", data);
+					        self.itemsMetadata = data;
+					        console.log("API called successfully. Returned data: ", data);
+					      }
+					    };
+				    customMetadataApi.getCustomMetadata(
+				    modelID,
+				    schemaID,
+				    faID,
+				    callback
+				    );
+				  };
+		  // ////////////
 	 
   var renderCustomField = function (self, jsonschema) {
     console.log(jsonschema.fields);
@@ -153,7 +186,8 @@ var MyObject = function () {
   return {
     renderCustomField: renderCustomField,
     getModelSchemas: getModelSchemas,
-    saveCustomMetadata : saveCustomMetadata
+    saveCustomMetadata : saveCustomMetadata,
+    getCustomMetadata: getCustomMetadata
   }
 }();
 

@@ -70,7 +70,6 @@ export default {
     return vueObject;
   },
   mounted(){
-  	
   	getModelSchemas("product",schemas);
   	console.log("Schemas",schemas);
   },
