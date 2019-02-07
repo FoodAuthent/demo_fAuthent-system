@@ -3,7 +3,6 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.Product;
 
 import java.util.UUID;
 
@@ -48,7 +47,7 @@ public interface ImportResultMixIn {
     
 
     @JsonProperty("products")
-    public java.util.List<Product> getProducts();
+    public java.util.List<java.util.UUID> getProducts();
     
 
     /**
@@ -70,7 +69,7 @@ public interface ImportResultMixIn {
         public ImportResultMixIn build();
     
         @JsonProperty("products")
-        public ImportResultMixInBuilder setProducts(final java.util.List<Product> products);
+        public ImportResultMixInBuilder setProducts(final java.util.List<java.util.UUID> products);
         
     }
 

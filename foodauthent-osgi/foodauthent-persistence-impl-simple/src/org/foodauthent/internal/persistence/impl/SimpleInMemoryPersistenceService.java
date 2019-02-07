@@ -1,5 +1,7 @@
 package org.foodauthent.internal.persistence.impl;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -8,7 +10,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
+import org.apache.commons.io.IOUtils;
 import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.api.internal.exception.NoSuchIDException;
 import org.foodauthent.api.internal.persistence.Blob;
@@ -54,11 +56,11 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 
 	private final Map<String, JsonNode> customModels;
 
-	private final Map<UUID, Blob> blobs;
+	private final Map<UUID, byte[]> blobs;
 
 	public SimpleInMemoryPersistenceService() {
 		this.models = new LinkedHashMap<UUID, FaModel>();
-		this.blobs = new LinkedHashMap<UUID, Blob>();
+		this.blobs = new LinkedHashMap<UUID, byte[]>();
 		this.customModels = new LinkedHashMap<String, JsonNode>();
 	}
 
@@ -214,7 +216,11 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 			if (blobs.containsKey(faId)) {
 				throw new ModelExistsException("A blob with the given id already exists.");
 			}
-			blobs.put(faId, (Blob) obj);
+			try {
+				blobs.put(faId, IOUtils.toByteArray(((Blob) obj).getData()));
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
 		} else {
 			throw new IllegalArgumentException("Objects of type '" + obj.getClass().getSimpleName()
 					+ "' + not supported by the persistence service.");
@@ -234,7 +240,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 	@Override
 	public Blob getBlobByUUID(UUID uuid) {
 		try {
-			return blobs.get(uuid);
+			return new Blob(uuid, new ByteArrayInputStream(blobs.get(uuid)));
 		} catch (final NoSuchIDException e) {
 			throw new NoSuchElementException(e.getLocalizedMessage());
 		}

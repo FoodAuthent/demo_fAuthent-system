@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.foodauthent.model.Product;
 
 
 
@@ -23,7 +22,7 @@ import org.foodauthent.model.Product;
 public class ImportResult   extends FaModel {
 
 
-  protected java.util.List<Product> products;
+  protected java.util.List<java.util.UUID> products;
   
   public String getTypeID() {
     return "ImportResult";
@@ -67,7 +66,7 @@ public class ImportResult   extends FaModel {
    * Get products
    * @return products 
    */
-  public java.util.List<Product> getProducts() {
+  public java.util.List<java.util.UUID> getProducts() {
         return products;
     }
     
@@ -100,13 +99,13 @@ public class ImportResult   extends FaModel {
             
         }
     
-        private java.util.List<Product> products = new java.util.ArrayList<>();
+        private java.util.List<java.util.UUID> products = new java.util.ArrayList<>();
 
         /**
          * Get products
          * @return products 
          */
-        public ImportResultBuilder setProducts(java.util.List<Product> products) {
+        public ImportResultBuilder setProducts(java.util.List<java.util.UUID> products) {
              this.products = products;
              return this;
         }
