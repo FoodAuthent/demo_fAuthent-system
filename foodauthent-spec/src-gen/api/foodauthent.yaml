@@ -157,6 +157,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/FileMetadata'
 
+  '/file/{file-id}/import':
+    get:
+      tags:
+      - file
+      summary: Import a ZIP file
+      description: >-
+        Import FoodAuthent components from an existing ZIP file and return the
+        ids of the components.
+      operationId: importFile
+      parameters:
+      - name: file-id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: TODO
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResult'
+
   '/file/{file-id}/data':
     get:
       tags:
@@ -2455,3 +2479,13 @@ components:
           description: new password
           type: string
           nullable: false
+          
+    ImportResult:
+      type: object
+      x-no-faid: true
+      properties:
+         products:
+            type: array
+            items:
+               # TODO: replace with ids
+               $ref: '#/components/schemas/Product'

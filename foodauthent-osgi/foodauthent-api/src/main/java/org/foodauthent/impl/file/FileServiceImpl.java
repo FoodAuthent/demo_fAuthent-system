@@ -8,8 +8,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.zip.ZipFile;
 
 import org.foodauthent.api.FileService;
 import org.foodauthent.api.internal.exception.FARuntimeException;
@@ -20,8 +22,11 @@ import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.FAExceptions;
 import org.foodauthent.common.exception.FAExceptions.InvalidDataException;
 import org.foodauthent.common.exception.FAExceptions.InvalidInputException;
+import org.foodauthent.fakx.Fakx;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
+import org.foodauthent.model.ImportResult;
+import org.foodauthent.model.Product;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -60,8 +65,13 @@ public class FileServiceImpl implements FileService {
     @Override
     public File getFileData(UUID fileId) {
 	Blob blob = persistenceService.getBlobByUUID(fileId);
-	// TODO
-	return null;
+	try {
+	    Path path = Files.createTempFile("file", null);
+	    Files.copy(blob.getData(), path);
+	    return path.toFile();
+	} catch (IOException e) {
+	    return null;
+	}
     }
 
     @Override
@@ -143,6 +153,26 @@ public class FileServiceImpl implements FileService {
     @Override
     public FileMetadata getFileMetadata(UUID fileId) {
 	return persistenceService.getFaModelByUUID(fileId, FileMetadata.class);
+    }
+    
+    @Override
+    public ImportResult callImport(UUID fileId) {
+
+	ImportResult result;
+
+	File file = getFileData(fileId);
+	try {
+	    List<Product> products = Fakx.importProducts(new ZipFile(file));
+	    result = ImportResult.builder().setProducts(products).build();
+	    return result;
+
+	} catch (IOException e) {
+	    result = ImportResult.builder().build(); // Empty result
+	}
+	
+	file.delete(); // Delete temporary file
+
+	return result;
     }
 
 }

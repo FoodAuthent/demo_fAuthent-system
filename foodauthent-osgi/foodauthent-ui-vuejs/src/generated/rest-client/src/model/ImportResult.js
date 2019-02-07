@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient'], factory);
+    define(['../ApiClient', '../model/Product'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./Product'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.ImportResult = factory(root.FoodAuthentSwaggerApi.ApiClient);
+    root.FoodAuthentSwaggerApi.ImportResult = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.Product);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, Product) {
   'use strict';
 
 
@@ -59,24 +59,17 @@
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
-      if (data.hasOwnProperty('product-ids')) {
-        obj['product-ids'] = ApiClient.convertToType(data['product-ids'], ['String']);
-      }
-      if (data.hasOwnProperty('fingerprintset-ids')) {
-        obj['fingerprintset-ids'] = ApiClient.convertToType(data['fingerprintset-ids'], ['String']);
+      if (data.hasOwnProperty('products')) {
+        obj['products'] = ApiClient.convertToType(data['products'], [Product]);
       }
     }
     return obj;
   }
 
   /**
-   * @member {Array.<String>} product-ids
+   * @member {Array.<module:model/Product>} products
    */
-  exports.prototype['product-ids'] = undefined;
-  /**
-   * @member {Array.<String>} fingerprintset-ids
-   */
-  exports.prototype['fingerprintset-ids'] = undefined;
+  exports.prototype['products'] = undefined;
 
 
 

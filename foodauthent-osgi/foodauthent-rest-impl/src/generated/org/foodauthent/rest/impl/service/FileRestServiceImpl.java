@@ -19,9 +19,10 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 /**
  * FoodAuthent Swagger API
  *
- * <p>This is the FoodAuthent API Description [www.foodauthent.net]
+ * <p>
+ * This is the FoodAuthent API Description [www.foodauthent.net]
  *
- * <p> 
+ * <p>
  *
  * @author Martin Horn, University of Konstanz
  */
@@ -30,75 +31,86 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 public class FileRestServiceImpl implements FileRestService, Feature {
 
 	@Reference(cardinality = ReferenceCardinality.MANDATORY)
-    private FileService service;
+	private FileService service;
 
+	/**
+	 * Import FoodAuthent components from an existing ZIP file and return the ids of
+	 * the components.
+	 *
+	 * @param fileId
+	 * @return the response
+	 */
+	public Response callImport(java.util.UUID fileId) {
 
-    /**
-     * Creates a new file by posting the file metadata first.
-     *
-     * @param fileMetadata The actual metadata object.
-     * @return the response
-     */
-    public Response createFileMetadata(FileMetadata fileMetadata) {
-        
-            Object res = service.createFileMetadata(fileMetadata);
-            return Response.ok(res).build();
-    }
+		Object res = service.callImport(fileId);
+		return Response.ok(res).build();
+	}
 
-    /**
-     * Let one download the actual file data.
-     *
-     * @param fileId 
-     * @return the response
-     */
-    public Response getFileData(java.util.UUID fileId) {
-        
-            Object res = service.getFileData(fileId);
-            return Response.ok(res).build();
-    }
+	/**
+	 * Creates a new file by posting the file metadata first.
+	 *
+	 * @param fileMetadata The actual metadata object.
+	 * @return the response
+	 */
+	public Response createFileMetadata(FileMetadata fileMetadata) {
 
-    /**
-     * Returns the file metadata.
-     *
-     * @param fileId 
-     * @return the response
-     */
-    public Response getFileMetadata(java.util.UUID fileId) {
-        
-            Object res = service.getFileMetadata(fileId);
-            return Response.ok(res).build();
-    }
+		Object res = service.createFileMetadata(fileMetadata);
+		return Response.ok(res).build();
+	}
 
-    /**
-     * Uploads (and replaces) the actual file-data for the given file id
-     *
-     * @param fileId 
-     * @param filedata The binary file data.
-     * @return the response
-     */
-    public Response saveFileData(java.util.UUID fileId, java.io.InputStream filedata, org.glassfish.jersey.media.multipart.FormDataContentDisposition filedataDetail) {
-        try { 
-            Object res = service.saveFileData(fileId, filedata, filedataDetail);
-            return Response.ok(res).build();
-         } 
-        catch(FAExceptions.InvalidDataException e) {
-           return Response.status(433).entity(e.getMessage()).build();
-        }
-        
-        catch(FAExceptions.InvalidInputException e) {
-           return Response.status(434).entity(e.getMessage()).build();
-        }
-        
-        catch(FAExceptions.FAException e) {
-           return Response.status(500).entity(e.getMessage()).build();
-        }
-    }
-    
+	/**
+	 * Let one download the actual file data.
+	 *
+	 * @param fileId
+	 * @return the response
+	 */
+	public Response getFileData(java.util.UUID fileId) {
+
+		Object res = service.getFileData(fileId);
+		return Response.ok(res).build();
+	}
+
+	/**
+	 * Returns the file metadata.
+	 *
+	 * @param fileId
+	 * @return the response
+	 */
+	public Response getFileMetadata(java.util.UUID fileId) {
+
+		Object res = service.getFileMetadata(fileId);
+		return Response.ok(res).build();
+	}
+
+	/**
+	 * Uploads (and replaces) the actual file-data for the given file id
+	 *
+	 * @param fileId
+	 * @param filedata The binary file data.
+	 * @return the response
+	 */
+	public Response saveFileData(java.util.UUID fileId, java.io.InputStream filedata,
+			org.glassfish.jersey.media.multipart.FormDataContentDisposition filedataDetail) {
+		try {
+			Object res = service.saveFileData(fileId, filedata, filedataDetail);
+			return Response.ok(res).build();
+		} catch (FAExceptions.InvalidDataException e) {
+			return Response.status(433).entity(e.getMessage()).build();
+		}
+
+		catch (FAExceptions.InvalidInputException e) {
+			return Response.status(434).entity(e.getMessage()).build();
+		}
+
+		catch (FAExceptions.FAException e) {
+			return Response.status(500).entity(e.getMessage()).build();
+		}
+	}
+
 	@Override
 	public boolean configure(FeatureContext context) {
 		context.register(MultiPartFeature.class);
 		return true;
 	}
-    
-}
 
+}
