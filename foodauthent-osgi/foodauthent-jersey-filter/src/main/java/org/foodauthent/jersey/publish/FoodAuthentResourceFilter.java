@@ -10,7 +10,7 @@ import com.eclipsesource.jaxrs.publisher.ResourceFilter;
 
 public class FoodAuthentResourceFilter implements ResourceFilter {
 
-	static final String FTRACE_SERVICE_FILTER = "(&(objectClass=org.foodauthent.*)(!(" + PUBLISH + "=false)))";
+	static final String FTRACE_SERVICE_FILTER = "(&(|(objectClass=org.foodauthent.*)(objectClass=org.glassfish.jersey.*))(!(" + PUBLISH + "=false)))";
 
 	private final BundleContext context;
 
