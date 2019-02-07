@@ -3,6 +3,7 @@
 
 <product uid="org.foodauthent.backend.knime.openchrom.test.runtime" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
+
    <configIni use="default">
    </configIni>
 
@@ -17,11 +18,13 @@
 
    <windowImages/>
 
+
    <launcher name="FoodAuthent Backend Equinox">
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
       <linux include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
@@ -70,6 +73,7 @@
       <plugin id="org.apache.felix.gogo.command" autoStart="true" startLevel="0" />
       <plugin id="org.apache.felix.gogo.runtime" autoStart="true" startLevel="0" />
       <plugin id="org.apache.felix.gogo.shell" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.app" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.bidi" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.cm" autoStart="true" startLevel="2" />
@@ -90,6 +94,7 @@
       <plugin id="org.eclipse.osgi" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.osgi.services" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.swt" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.ui" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.ui.workbench" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.common" autoStart="true" startLevel="2" />
       <plugin id="org.foodauthent.config" autoStart="true" startLevel="2" />
@@ -106,6 +111,7 @@
       <plugin id="org.glassfish.jersey.containers.jersey-container-servlet-core" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.jersey.core.jersey-server" autoStart="true" startLevel="0" />
       <plugin id="org.glassfish.jersey.inject.jersey-hk2" autoStart="true" startLevel="0" />
+      <plugin id="org.knime.core" autoStart="true" startLevel="0" />
    </configurations>
 
    <preferencesInfo>

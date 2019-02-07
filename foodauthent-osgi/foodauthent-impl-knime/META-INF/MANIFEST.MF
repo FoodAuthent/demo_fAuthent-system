@@ -13,11 +13,12 @@ Import-Package: org.foodauthent.api.internal.job,
  org.osgi.service.component.annotations;version="[1.2.0,2.0.0)";resolution:=optional,
  org.slf4j;version="[1.7.10,2.0.0)"
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.knime.core;bundle-version="3.5.4",
+Require-Bundle: org.knime.core,
  org.glassfish.javax.json,
  org.foodauthent.model,
  com.fasterxml.jackson.core.jackson-databind,
- com.fasterxml.jackson.core.jackson-core
+ com.fasterxml.jackson.core.jackson-core,
+ org.knime.json
 Export-Package: org.foodauthent.internal.impl.job.knime
 Service-Component: OSGI-INF/org.foodauthent.internal.impl.job.knime.LocalKnimeJobService.xml
 Require-Capability: osgi.extender;

@@ -132,7 +132,6 @@ public class LocalKnimeExecutor implements KnimeExecutor {
 				return UnknownKNIMEVersionLoadPolicy.Try;
 			}
 		};
-
 		WorkflowLoadResult loadRes;
 		try {
 			loadRes = WorkflowManager.loadProject(workflowDir, new ExecutionMonitor(), loadHelper);

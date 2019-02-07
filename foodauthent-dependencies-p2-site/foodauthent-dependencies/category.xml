@@ -183,6 +183,15 @@
    <feature id="org.eclipse.jdt.junit5.runtime.feature" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
+   <feature id="net.openchrom.xxd.process.supplier.knime.feature" version="0.0.0">
+      <category name="net.openchrom"/>
+   </feature>
+   <feature id="de.unirostock.sems.feature" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature id="de.unirostock.sems.feature.source" version="0.0.0">
+      <category name="org.foodauthent.maven"/>
+   </feature>
    <category-def name="org.foodauthent.custom" label="FoodAuthent Custom Dependencies"/>
    <category-def name="org.foodauthent.maven" label="FoodAuthent Maven Dependencies"/>
    <category-def name="eclipse.equinox.oxygen" label="Eclipse Oxygen Equinox Runtime"/>
