@@ -12,6 +12,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 
 import java.io.File;
 import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.ImportResult;
 
 import org.foodauthent.api.FileService;
 import org.foodauthent.api.ServiceRegistry;
@@ -70,6 +71,18 @@ public class FileRestServiceImpl implements FileRestService {
     public Response getFileMetadata(java.util.UUID fileId) {
         
             Object res = service.getFileMetadata(fileId);
+            return Response.ok(res).build();
+    }
+
+    /**
+     * Import FoodAuthent components from an existing ZIP file and return the ids of the components.
+     *
+     * @param fileId 
+     * @return the response
+     */
+    public Response importFile(java.util.UUID fileId) {
+        
+            Object res = service.importFile(fileId);
             return Response.ok(res).build();
     }
 

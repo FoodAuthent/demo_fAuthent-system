@@ -156,7 +156,7 @@ public class FileServiceImpl implements FileService {
     }
     
     @Override
-    public ImportResult callImport(UUID fileId) {
+    public ImportResult importFile(UUID fileId) {
 
 	ImportResult result;
 
