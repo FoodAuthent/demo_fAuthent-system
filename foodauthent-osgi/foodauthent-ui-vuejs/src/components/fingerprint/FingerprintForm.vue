@@ -21,8 +21,9 @@
       </b-card-header>
       <b-collapse :id="'accordion'+key" visible accordion="my-accordion" role="tabpanel">
         <b-card-body>
-         <vue-form-generator :schema="currentschema" :model="anothermodel" :options="formOptions">
+         <vue-form-generator :schema="currentschema" :model="currentschema.model" :options="formOptions">
         </vue-form-generator>
+                <pre v-if="model" v-html="JSON.stringify(currentschema.model, undefined, 4)"></pre>
         </b-card-body>
       </b-collapse>
     </b-card>
@@ -34,7 +35,6 @@
       <div class="panel-heading">Model</div>
       <div class="panel-body">
         <pre v-if="model" v-html="JSON.stringify(model, undefined, 4)"></pre>
-        <pre v-if="model" v-html="JSON.stringify(anothermodel, undefined, 4)"></pre>
       </div>
     </div>
 
@@ -90,7 +90,6 @@ var vueObject = {
       schema: jsonschema,
       schemas: schemas,
       model: {},
-      anothermodel: {},
       response: "",
       showSuccess: false,
       showError: false,

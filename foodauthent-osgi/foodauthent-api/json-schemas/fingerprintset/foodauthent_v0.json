@@ -4,13 +4,11 @@
   "$id": "http://example.com/root.json",
   "type": "object",
   "title": "The Root Schema",
-  "required": [],
   "properties": {
     "investigation": {
       "$id": "#/properties/investigation",
       "type": "object",
       "title": "The Investigation Schema",
-      "required": [],
         "properties": {
         "Comment[Created With Configuration]": {
           "$id": "#/properties/investigation/properties/Comment[Created With Configuration]",
@@ -558,7 +556,6 @@
       "$id": "#/properties/metaboliteprofiling_ftir",
       "type": "object",
       "title": "The Metaboliteprofiling_ftir Schema",
-      "required": [],
         "properties": {
         "\"Operator details (name": {
           "$id": "#/properties/metaboliteprofiling_ftir/properties/\"Operator details (name",
@@ -736,7 +733,6 @@
       "$id": "#/properties/metaboliteprofiling_irms",
       "type": "object",
       "title": "The Metaboliteprofiling_irms Schema",
-      "required": [],
         "properties": {
         "\"Operator details (name": {
           "$id": "#/properties/metaboliteprofiling_irms/properties/\"Operator details (name",
@@ -914,7 +910,6 @@
       "$id": "#/properties/metaboliteprofiling_ms",
       "type": "object",
       "title": "The Metaboliteprofiling_ms Schema",
-      "required": [],
        "properties": {
         "\"Operator details (name": {
           "$id": "#/properties/metaboliteprofiling_ms/properties/\"Operator details (name",
@@ -1192,7 +1187,6 @@
       "$id": "#/properties/metaboliteprofiling_nmr",
       "type": "object",
       "title": "The Metaboliteprofiling_nmr Schema",
-      "required": [],
        "properties": {
         "\"Operator details (name": {
           "$id": "#/properties/metaboliteprofiling_nmr/properties/\"Operator details (name",
@@ -1490,7 +1484,6 @@
       "$id": "#/properties/studySample",
       "type": "object",
       "title": "The Studysample Schema",
-      "required": [],
        "properties": {
         "\"Operator details (name": {
           "$id": "#/properties/studySample/properties/\"Operator details (name",
@@ -1598,7 +1591,6 @@
       "$id": "#/properties/ investigation",
       "type": "object",
       "title": "The  investigation Schema",
-      "required": [],
        "properties": {
         "Study Assay Technology Platform": {
           "$id": "#/properties/ investigation/properties/Study Assay Technology Platform",

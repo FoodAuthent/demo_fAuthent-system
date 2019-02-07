@@ -46,8 +46,14 @@ public interface ImportResultMixIn {
   	public UUID getFaId();
     
 
+    @JsonProperty("fingerprints")
+    public java.util.List<java.util.UUID> getFingerprints();
+    
     @JsonProperty("products")
     public java.util.List<java.util.UUID> getProducts();
+    
+    @JsonProperty("sops")
+    public java.util.List<java.util.UUID> getSops();
     
 
     /**
@@ -68,8 +74,14 @@ public interface ImportResultMixIn {
     
         public ImportResultMixIn build();
     
+        @JsonProperty("fingerprints")
+        public ImportResultMixInBuilder setFingerprints(final java.util.List<java.util.UUID> fingerprints);
+        
         @JsonProperty("products")
         public ImportResultMixInBuilder setProducts(final java.util.List<java.util.UUID> products);
+        
+        @JsonProperty("sops")
+        public ImportResultMixInBuilder setSops(final java.util.List<java.util.UUID> sops);
         
     }
 

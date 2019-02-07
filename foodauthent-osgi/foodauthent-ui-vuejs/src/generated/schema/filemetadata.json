@@ -21,6 +21,9 @@
     }, {
       "id" : "fingerprints_bruker",
       "name" : "Fingerprints_bruker"
+    }, {
+      "id" : "zip",
+      "name" : "Zip"
     } ]
   }, {
     "label" : "Name",

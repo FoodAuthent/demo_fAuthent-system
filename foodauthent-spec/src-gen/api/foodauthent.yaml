@@ -180,7 +180,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImportResult'
+                
+  '/file/{file-id}/export':
+    get:
+      tags:
+      - file
+      summary: Import a file
+      description: >-
+        Export FoodAuthent components
+      operationId: importFile
+      parameters:
+      - name: file-type
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaObjectSet'
+        description: Specifies a set of fa-objects to be exported.
+        required: true
+      responses:
+        '200':
+          description: The exported file data.
+          content:
+            application/binary:
+              schema:
+                type: string
+                format: binary
 
+  
   '/file/{file-id}/data':
     get:
       tags:
@@ -1555,6 +1586,7 @@ components:
             - python_script
             - sop_pdf
             - fingerprints_bruker
+            - zip
         name:
           description: A name for the file.
           type: string
@@ -2484,8 +2516,39 @@ components:
       type: object
       x-no-faid: true
       properties:
-         products:
-            type: array
-            items:
-               type: string
-               format: uuid
+        problems:
+          type: array
+          items:
+            type: string
+        imported-objects:
+          $ref: "#/components/schemas/FaObjectSet"
+          
+    FaObjectSet:
+      type: object
+      x-no-faid: true
+      properties:
+        fingerprints:
+          type: array
+          items:
+            type: string
+            format: uuid
+        products:
+          type: array
+          items:
+            type: string
+            format: uuid
+        sops:
+          type: array
+          items:
+            type: string
+            format: uuid
+        workflows:
+          type: array
+          items:
+            type: string
+            format: uuid
+        files:
+          type: array
+          items:
+            type: string
+            format: uuid

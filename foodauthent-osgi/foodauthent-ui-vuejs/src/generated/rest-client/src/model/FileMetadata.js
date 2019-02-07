@@ -176,7 +176,12 @@
      * value: "fingerprints_bruker"
      * @const
      */
-    "fingerprints_bruker": "fingerprints_bruker"  };
+    "fingerprints_bruker": "fingerprints_bruker",
+    /**
+     * value: "zip"
+     * @const
+     */
+    "zip": "zip"  };
 
 
   return exports;

@@ -41,6 +41,7 @@
 >
   <template slot="actions" slot-scope="row">
     <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)"> <md-icon>edit</md-icon></b-btn>
+    <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)"> <md-icon>search</md-icon></b-btn>
     <b-btn size="sm" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
   </template>
 </b-table>
@@ -53,6 +54,11 @@
       <!-- <p>Do you want to edit this record?</p>
      <pre v-if="selected" v-html="JSON.stringify(selected, undefined, 4)"></pre> -->
      <vue-form-generator :schema="schema" :model="model" :options="formOptions">        </vue-form-generator>
+  </b-modal>
+  
+  <!-- MODAL METADATA -->
+  <b-modal id="modalEdit" title="Metadata" @ok="handleMetadataOk">
+	This is metadata
   </b-modal>
 
     <!-- MODAL Delete -->
@@ -158,6 +164,10 @@ export default {
       let self = this;
       console.log("fa-id:", this.selected["fa-id"]);
       deleteProducts(this.selected["fa-id"], self);
+    },
+    //Manage the ok button to confirm the Metadata action
+    handleMetadataOk() {
+	console.log("inside metadata table");
     },
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items
