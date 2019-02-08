@@ -203,15 +203,16 @@
 		<module>foodauthent-oneworldsync-client</module>
 		<module>foodauthent-ui-vuejs</module>
 		<module>foodauthent-impl-openchrom</module>
+		<module>foodauthent-base</module>
 		<module>foodauthent-feature</module>
 		<module>foodauthent-knime-feature</module>
 		<module>foodauthent-openchrom-feature</module>
+		<module>foodauthent-elasticsearch-feature</module>
+		<module>foodauthent-auth-feature</module>
 		<module>foodauthent-product-runtime</module>
 		<!-- 
 		 <module>foodauthent-test</module>
-		  -->
-		<!-- 
 		<module>foodauthent-product-application</module>
-		 -->
+		  -->
 	</modules>
 </project>

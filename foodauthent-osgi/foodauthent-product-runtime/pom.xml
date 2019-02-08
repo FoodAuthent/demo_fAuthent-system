@@ -38,7 +38,7 @@
 												<id>foodauthent-runtime</id>
 												<fileSets>
 													<fileSet>
-														<directory>${project.build.directory}/products/org.foodauthent.runtime/linux/gtk/x86_64</directory>
+														<directory>${project.build.directory}/products/org.foodauthent.complete.runtime/linux/gtk/x86_64</directory>
 														<outputDirectory>./org.foodauthent.runtime</outputDirectory>
 													</fileSet>
 												</fileSets>
@@ -94,8 +94,8 @@
 				<configuration>
 					<products>
 						<product>
-							<id>org.foodauthent.backend.runtime</id>
-							<attachId>foodauthent-backend-runtime</attachId>
+							<id>org.foodauthent.complete.runtime</id>
+							<attachId>foodauthent-complete-runtime</attachId>
 						</product>
 					</products>
 					<formats>
