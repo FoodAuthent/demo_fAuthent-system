@@ -56,6 +56,7 @@
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
 import jsonschema from "@/generated/schema/fingerprintset.json";
+var saveFingerprints = require("@/utils/fingerprintFunction.js").default.saveFingerprints;
 var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
 
 function getFun(val) {
@@ -107,24 +108,12 @@ export default {
   	console.log("Schemas",schemas);
   },
   methods: {
-    save() {
-      console.log("URL", this.endpointurl);
-      console.log(JSON.stringify(this.model, undefined, 4));
-      this.response = "";
-      this.$http
-        .post(this.endpointurl, JSON.stringify(this.model, undefined, 4), {
-          headers: { "content-type": "application/json" }
-        })
-        .then(
-          result => {
-            this.response = result.data;
-          },
-          error => {
-            console.error(error);
-            this.response = error;
-          }
-        );
-    }
+      save() {
+      let self = this;
+      // console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
+      saveFingerprints(JSON.stringify(this.model, undefined, 4), self);
+      self.model={}
+    },
   },
   components: {
     "vue-form-generator": VueFormGenerator.component
