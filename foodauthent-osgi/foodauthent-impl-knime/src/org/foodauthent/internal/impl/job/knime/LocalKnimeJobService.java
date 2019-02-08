@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -32,6 +34,7 @@ import org.foodauthent.model.TrainingWorkflowOutput;
 import org.foodauthent.model.Workflow;
 import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.json.ObjectMapperUtil;
+import org.knime.core.util.FileUtil;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -231,14 +234,16 @@ public class LocalKnimeJobService implements JobService {
 	
 	private URI saveTemporaryFingerprintSetFile(FingerprintSet fingerprintSet) {
 		Blob fingerprintSetFile = persistenceService.getBlobByUUID(fingerprintSet.getFileId());
-		File tmpFile;
 		try {
-			tmpFile = File.createTempFile("fa_fingerprintset_" + fingerprintSetFile.getFaId(), "");
+			File tmpFile = File.createTempFile("fa_fingerprintset_" + fingerprintSetFile.getFaId(), ".zip");
 			FileOutputStream out = new FileOutputStream(tmpFile);
 			IOUtils.copy(fingerprintSetFile.getData(), out);
 			out.flush();
 			out.close();
-			return tmpFile.toURI();
+			Path tmpDir = Files.createTempDirectory("fa_fingerprintset_" + fingerprintSetFile.getFaId());
+			FileUtil.unzip(tmpFile, tmpDir.toFile());
+			tmpFile.delete();
+			return tmpDir.toUri();
 			//TODO delete tmp files
 		} catch (IOException e1) {
 			// TODO
