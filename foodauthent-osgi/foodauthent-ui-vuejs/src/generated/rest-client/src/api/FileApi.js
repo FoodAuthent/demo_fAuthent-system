@@ -142,7 +142,7 @@
       var returnType = File;
 
       return this.apiClient.callApi(
-        '/file/{file-id}/export', 'GET',
+        '/file/{file-id}/export', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
