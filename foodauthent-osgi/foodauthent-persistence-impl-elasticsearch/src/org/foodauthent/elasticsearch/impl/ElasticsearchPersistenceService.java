@@ -1,6 +1,5 @@
 package org.foodauthent.elasticsearch.impl;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collection;
@@ -32,7 +31,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.google.common.io.ByteStreams;
 import com.google.common.io.CharStreams;
 
 import scala.Option;
@@ -294,4 +292,8 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 		return 1;
 	}
 
+	@Override
+	public Product getProductById(UUID id) {
+		return getFaModelByUUID(id, Product.class);
+	}
 }

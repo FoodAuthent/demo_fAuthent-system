@@ -158,7 +158,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 	}
 	
 	@Override
-	public Product findProductById(UUID id) {
+	public Product getProductById(UUID id) {
 		return getFaModelByUUID(id, Product.class);
 	}
 

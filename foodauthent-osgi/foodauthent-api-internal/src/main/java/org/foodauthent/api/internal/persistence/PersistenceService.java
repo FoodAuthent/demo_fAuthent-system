@@ -75,7 +75,7 @@ public interface PersistenceService {
      * @throws NoSuchElementException
      *             if there is no product matching given id
      */
-    Product findProductById(UUID id);
+    Product getProductById(UUID id);
 
     /**
      * Queries a fa-model by uuid.

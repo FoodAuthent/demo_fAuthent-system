@@ -75,8 +75,8 @@ public class PersistenceServiceProviderProxy implements PersistenceService {
 	}
 	
 	@Override
-	public Product findProductById(UUID id) {
-		return provider.findProductById(id);
+	public Product getProductById(UUID id) {
+		return provider.getProductById(id);
 	}
 
 	public <T extends FaModel> T getFaModelByUUID(UUID uuid, Class<T> modelType) {
