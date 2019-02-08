@@ -62,18 +62,6 @@ public class ProductRestServiceImpl implements ProductRestService {
     }
 
     /**
-     * Find product by id.
-     *
-     * @param id The id to find the product for.
-     * @return the response
-     */
-    public Response findProductById(java.util.UUID id) {
-        
-            Object res = service.findProductById(id);
-            return Response.ok(res).build();
-    }
-
-    /**
      * Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.
      *
      * @param pageNumber the page number starting at 0
@@ -84,6 +72,18 @@ public class ProductRestServiceImpl implements ProductRestService {
     public Response findProductByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords) {
         
             Object res = service.findProductByKeyword(pageNumber, pageSize, keywords);
+            return Response.ok(res).build();
+    }
+
+    /**
+     * Gets product by id.
+     *
+     * @param productId The id to get the product for.
+     * @return the response
+     */
+    public Response getProductById(java.util.UUID productId) {
+        
+            Object res = service.getProductById(productId);
             return Response.ok(res).build();
     }
 

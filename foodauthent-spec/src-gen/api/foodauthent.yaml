@@ -428,16 +428,16 @@ paths:
         '404':
           description: TODO, add response reference
   
-  /product/findById:
+  /product/{product-id}:
     get:
       tags:
         - product
-      description: Find product by id.
-      operationId: findProductById
+      description: Gets product by id.
+      operationId: getProductById
       parameters:
-        - in: query
-          name: id
-          description: The id to find the product for.
+        - in: path
+          name: product-id
+          description: The id to get the product for.
           required: true
           schema:
             type: string

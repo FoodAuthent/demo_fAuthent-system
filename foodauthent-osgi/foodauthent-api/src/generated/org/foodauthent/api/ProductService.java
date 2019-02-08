@@ -35,15 +35,6 @@ public interface ProductService {
     Product findProductByGtin(String gtin);
         
     /**
-     * Find product by id.
-     *
-     * @param id The id to find the product for.
-     *
-     * @return the result
-     */
-    Product findProductById(java.util.UUID id);
-        
-    /**
      * Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.
      *
      * @param pageNumber the page number starting at 0
@@ -53,6 +44,15 @@ public interface ProductService {
      * @return the result
      */
     ProductPageResult findProductByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
+        
+    /**
+     * Gets product by id.
+     *
+     * @param productId The id to get the product for.
+     *
+     * @return the result
+     */
+    Product getProductById(java.util.UUID productId);
         
     /**
      * Delete a product specified by gtin.

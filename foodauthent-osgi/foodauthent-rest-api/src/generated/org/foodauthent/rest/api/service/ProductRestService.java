@@ -54,18 +54,6 @@ public interface ProductRestService{
 );
 
     /**
-     * Find product by id.
-     *
-     * @param id The id to find the product for.
-     * @return the response
-     */
-    @GET
-    @Path("/product/findById")
-    @Produces({ "application/json" })
-    public Response findProductById(@QueryParam("id")java.util.UUID id
-);
-
-    /**
      * Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.
      *
      * @param pageNumber the page number starting at 0
@@ -79,6 +67,18 @@ public interface ProductRestService{
     public Response findProductByKeyword(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
 , @QueryParam("keywords")java.util.List<String> keywords
+);
+
+    /**
+     * Gets product by id.
+     *
+     * @param productId The id to get the product for.
+     * @return the response
+     */
+    @GET
+    @Path("/product/{product-id}")
+    @Produces({ "application/json" })
+    public Response getProductById(@PathParam("product-id") java.util.UUID productId
 );
 
     /**

@@ -48,7 +48,7 @@ public class ZipExporter implements ExporterI {
 	for (UUID id : uuids) {
 	    String entryName = "products/" + id + ".json";
 	    try {
-		Product product = service.findProductById(id);
+		Product product = service.getProductById(id);
 		
 		stream.putNextEntry(new ZipEntry(entryName));
 		byte[] bytes = mapper.writeValueAsBytes(product);

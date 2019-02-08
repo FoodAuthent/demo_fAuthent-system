@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findProductById(UUID id) {
+    public Product getProductById(UUID id) {
 	return persistenceService.findProductById(id);
     }
 
