@@ -182,7 +182,7 @@ paths:
                 $ref: '#/components/schemas/ImportResult'
                 
   '/file/{file-id}/export':
-    get:
+    post:
       tags:
       - file
       summary: Import a file

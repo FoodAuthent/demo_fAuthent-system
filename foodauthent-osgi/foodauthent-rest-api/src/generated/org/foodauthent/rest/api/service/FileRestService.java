@@ -50,7 +50,7 @@ public interface FileRestService{
      * @param faObjectSet Specifies a set of fa-objects to be exported.
      * @return the response
      */
-    @GET
+    @POST
     @Path("/file/{file-id}/export")
     @Consumes({ "application/json" })
     @Produces({ "application/binary" })
