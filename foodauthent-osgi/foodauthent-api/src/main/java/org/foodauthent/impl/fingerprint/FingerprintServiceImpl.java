@@ -5,8 +5,11 @@ import java.util.UUID;
 
 import org.foodauthent.api.FingerprintService;
 import org.foodauthent.api.internal.persistence.PersistenceService;
+import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
+import org.foodauthent.model.Product;
+import org.foodauthent.model.ProductPageResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -40,7 +43,10 @@ public class FingerprintServiceImpl implements FingerprintService {
     @Override
     public FingerprintSetPageResult findFingerprintSetByKeyword(Integer pageNumber, Integer pageSize,
 	    List<String> keywords) {
-	return null;
+	ResultPage<FingerprintSet> res = persistenceService.findByKeywordsPaged(keywords, FingerprintSet.class,
+		pageNumber, pageSize);
+	return FingerprintSetPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
 
 }
