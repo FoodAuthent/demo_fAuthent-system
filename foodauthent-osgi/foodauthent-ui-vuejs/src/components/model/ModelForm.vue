@@ -70,6 +70,7 @@ export default {
       let self = this;
       console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
       saveModel(JSON.stringify(this.model, undefined, 4), self);
+      self.model={}
     }
   },
   components: {

@@ -40,6 +40,7 @@
 >
   <template slot="actions" slot-scope="row">
     <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)"> <md-icon>edit</md-icon></b-btn>
+    <b-btn size="sm" v-b-modal.modalMeta @click.stop="showMetadata(row.item, row.index, $event.target)"> <md-icon>search</md-icon></b-btn>
     <b-btn size="sm" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
   </template>
 </b-table>
@@ -50,6 +51,16 @@
 <!-- MODAL DETAILS -->
   <b-modal id="modalEdit" title="Edit" @ok="handleEditOk">
     <vue-form-generator :schema="schema" :model="model" :options="formOptions"> </vue-form-generator>
+  </b-modal>
+  
+    <!-- MODAL METADATA -->
+  <b-modal id="modalMeta" size="lg" title="Metadata" @ok="handleMetadataOk">
+<div class="panel panel-default">
+      <div class="panel-heading">Metadata</div>
+      <div class="panel-body">
+        <pre v-if="model" v-html="JSON.stringify(itemsMetadata, undefined, 4)"></pre>
+      </div>
+    </div>
   </b-modal>
 
     <!-- MODAL Delete -->
@@ -66,7 +77,9 @@
 var getFingerprints = require("@/utils/fingerprintFunction.js").default.getFingerprints;
 var deleteFingerprints = require("@/utils/fingerprintFunction.js").default.deleteFingerprints;
 var findFingerprintSetById = require("@/utils/fingerprintFunction.js").default.findFingerprintById;
-
+var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
+var getCustomMetadata = require("@/utils/commonFunction.js").default.getCustomMetadata;
+var schemaIdHolder = {"schemaID" : "withOutSchema"};
 import jsonschema from "@/generated/schema/fingerprintset.json";
 export default {
   name: "Fingerprints",
@@ -74,6 +87,7 @@ export default {
     return {
       model: {},
       schema: jsonschema,
+      itemsMetadata: {},
       formOptions: {
         validateAfterLoad: true,
         validateAfterChanged: true
@@ -94,6 +108,7 @@ export default {
   },
   mounted() {
     this.loadTableData();
+    getModelSchemas("fingerprintset",{},schemaIdHolder);
   },
   computed: {
     sortOptions() {
@@ -149,6 +164,15 @@ export default {
      info (item, index, button) {
       this.model = item;
       this.$root.$emit('bv::show::modal', 'modalEdit', button);
+    },
+   	showMetadata(item, index, button) {
+    let self = this;
+    console.log("Call showMetadata");
+    console.log("schemaIdHolder",schemaIdHolder.schemaID);
+    getCustomMetadata("fingerprintset",schemaIdHolder.schemaID,item["fa-id"], self);
+    },
+   handleMetadataOk() {
+	console.log("inside metadata table");
     },
    // onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering

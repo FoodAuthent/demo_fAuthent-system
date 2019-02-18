@@ -77,10 +77,12 @@ var MyObject = function () {
 		        		      }
 		        		  }
 	        		if(schemaIdHolder ==undefined || schemaIdHolder.schemaID != "withOutSchema"){
+	        			console.log("inside if", schemaID);
 		        		customMetadataApi.getCustomMetadataSchema(modelID,schemaID,getCustomMetadataSchemaCallback);
 		        		}else{
 		        			schemaIdHolder.schemaID = schemaID;
 		        		}
+	        		console.log("ouside if", schemaIdHolder.schemaID);
 		        }
 		        
 		        
@@ -133,7 +135,7 @@ var MyObject = function () {
 			  
 			  /////////////GET METADATA
 			  var getCustomMetadata = function (modelID, schemaID, faID, self) {
-				    console.log('Get Custom Metadata');
+				    console.log('Get Custom Metadata', modelID, schemaID, faID);
 				    var callback = function (error, data, response) {
 				      console.log("data:", data);
 				      console.log("response:", response);

@@ -6,6 +6,7 @@ var Fingerprints = function () {
   apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
   // only for test---
   var FingerprintApi = require("../generated/rest-client/src/api/FingerprintApi.js");
+  var saveCustomMetadata = require("@/utils/commonFunction.js").default.saveCustomMetadata;
   var fingerprintApi = new FingerprintApi(apiClient);
  
 
@@ -64,6 +65,7 @@ var Fingerprints = function () {
         if (data) {
           self.items = data.results;
           self.showSuccess = true;
+          saveCustomMetadata(self.schemas,data);
           console.log("API called successfully. Returned data: ", data);
         } else {
           self.items = [];

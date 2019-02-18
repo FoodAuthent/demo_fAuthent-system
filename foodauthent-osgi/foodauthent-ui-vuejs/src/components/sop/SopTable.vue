@@ -42,6 +42,7 @@
 >
   <template slot="actions" slot-scope="row">
     <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)"> <md-icon>edit</md-icon></b-btn>
+        <b-btn size="sm" v-b-modal.modalMeta @click.stop="showMetadata(row.item, row.index, $event.target)"> <md-icon>search</md-icon></b-btn>
     <b-btn size="sm" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
   </template>
 </b-table>
@@ -53,6 +54,15 @@
   <b-modal id="modalEdit" title="Edit" @ok="handleEditOk">
    <!-- <p class="my-1"> {{ selected }}</p> -->
         <vue-form-generator :schema="schema" :model="model" :options="formOptions">        </vue-form-generator>
+  </b-modal>
+    <!-- MODAL METADATA -->
+  <b-modal id="modalMeta" size="lg" title="Metadata" @ok="handleMetadataOk">
+<div class="panel panel-default">
+      <div class="panel-heading">Metadata</div>
+      <div class="panel-body">
+        <pre v-if="model" v-html="JSON.stringify(itemsMetadata, undefined, 4)"></pre>
+      </div>
+    </div>
   </b-modal>
     <!-- MODAL Delete -->
   <b-modal id="modalDelete" title="Delete" @ok="handleDeleteOk">
@@ -69,6 +79,9 @@ var deleteSop = require("@/utils/sopFunction.js").default.deleteSop;
 var updateSop = require("@/utils/sopFunction.js").default.updateSop;
 var findSopById = require("@/utils/sopFunction.js").default.findSopById;
 import jsonschema from "@/generated/schema/sop.json";
+var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
+var getCustomMetadata = require("@/utils/commonFunction.js").default.getCustomMetadata;
+var schemaIdHolder = {"schemaID" : "withOutSchema"};
 export default {
   name: "Sop",
   data() {
@@ -84,6 +97,7 @@ export default {
       fields: [],
       currentPage: 1,
       resultsCount: 1,
+      itemsMetadata: {},
       pageCount: 0,
       perPage: 10,
       //fields: [
@@ -163,6 +177,14 @@ export default {
       this.model = item;
       console.log("This is the model in the new method", this.model);
       this.$root.$emit('bv::show::modal', 'modalEdit', button);
+    },
+   showMetadata(item, index, button) {
+    let self = this;
+    getCustomMetadata("product",schemaIdHolder.schemaID,item["fa-id"], self);
+    },
+   //Manage the ok button to confirm the Metadata action
+    handleMetadataOk() {
+	console.log("inside metadata table");
     },
     //onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering

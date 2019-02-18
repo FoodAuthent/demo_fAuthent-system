@@ -113,7 +113,6 @@ export default {
   },
   mounted() {
     this.loadTableData();
-    console.log("before call",schemaIdHolder);
     getModelSchemas("product",{},schemaIdHolder);
   },
   computed: {
@@ -191,7 +190,6 @@ export default {
     },
     showMetadata(item, index, button) {
     let self = this;
-    console.log("schemaIdHolderxxxxxx", schemaIdHolder);
     getCustomMetadata("product",schemaIdHolder.schemaID,item["fa-id"], self);
     },
    // onFiltered(filteredItems) {
