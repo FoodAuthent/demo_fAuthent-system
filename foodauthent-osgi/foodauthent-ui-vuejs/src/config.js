@@ -7,6 +7,7 @@ export const EndpointUrl = Object.freeze({
     PREDICTIONURL: "http://localhost:9090/v0/foodauthent/workflow/prediction/job",
     PREDICTIONJOBURL: "http://localhost:9090/v0/foodauthent/workflow/prediction/job",
     TRAININGJOBURL: "http://localhost:9090/v0/foodauthent/workflow/training/job",
+    OBJECTEVENTURL: "http://localhost:9090/v0/foodauthent/epcis/objectEvent/",
     TESTURL: "https://jsonplaceholder.typicode.com/posts"
 });
 

@@ -22,10 +22,12 @@ public class ServiceUtil {
         res.add(SopRestServiceImpl.class);
         res.add(FileRestServiceImpl.class);
         res.add(OrganizationRestServiceImpl.class);
+        res.add(TransactionRestServiceImpl.class);
         res.add(AuthenticationRestServiceImpl.class);
         res.add(WorkflowRestServiceImpl.class);
         res.add(FingerprintRestServiceImpl.class);
         res.add(UserRestServiceImpl.class);
+        res.add(ObjectEventRestServiceImpl.class);
         res.add(ProductRestServiceImpl.class);
         res.add(CustomMetadataRestServiceImpl.class);
         res.add(ModelRestServiceImpl.class);

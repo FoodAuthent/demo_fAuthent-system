@@ -24,8 +24,12 @@ public class ModelUtil {
      */
     public static final void addModelMixIns(final ObjectMapper mapper) {
     
+        mapper.addMixIn(BizTransaction.class, BizTransactionMixIn.class);
+        mapper.addMixIn(BizTransaction.BizTransactionBuilder.class, BizTransactionMixIn.BizTransactionMixInBuilder.class);
         mapper.addMixIn(ChangePasswordRequest.class, ChangePasswordRequestMixIn.class);
         mapper.addMixIn(ChangePasswordRequest.ChangePasswordRequestBuilder.class, ChangePasswordRequestMixIn.ChangePasswordRequestMixInBuilder.class);
+        mapper.addMixIn(DiscoveryServiceTransaction.class, DiscoveryServiceTransactionMixIn.class);
+        mapper.addMixIn(DiscoveryServiceTransaction.DiscoveryServiceTransactionBuilder.class, DiscoveryServiceTransactionMixIn.DiscoveryServiceTransactionMixInBuilder.class);
         mapper.addMixIn(FaObjectSet.class, FaObjectSetMixIn.class);
         mapper.addMixIn(FaObjectSet.FaObjectSetBuilder.class, FaObjectSetMixIn.FaObjectSetMixInBuilder.class);
         mapper.addMixIn(FileMetadata.class, FileMetadataMixIn.class);
@@ -42,6 +46,10 @@ public class ModelUtil {
         mapper.addMixIn(Model.ModelBuilder.class, ModelMixIn.ModelMixInBuilder.class);
         mapper.addMixIn(ModelPageResult.class, ModelPageResultMixIn.class);
         mapper.addMixIn(ModelPageResult.ModelPageResultBuilder.class, ModelPageResultMixIn.ModelPageResultMixInBuilder.class);
+        mapper.addMixIn(ObjectEvent.class, ObjectEventMixIn.class);
+        mapper.addMixIn(ObjectEvent.ObjectEventBuilder.class, ObjectEventMixIn.ObjectEventMixInBuilder.class);
+        mapper.addMixIn(ObjectEventPageResult.class, ObjectEventPageResultMixIn.class);
+        mapper.addMixIn(ObjectEventPageResult.ObjectEventPageResultBuilder.class, ObjectEventPageResultMixIn.ObjectEventPageResultMixInBuilder.class);
         mapper.addMixIn(OrganizationBase.class, OrganizationBaseMixIn.class);
         mapper.addMixIn(OrganizationBase.OrganizationBaseBuilder.class, OrganizationBaseMixIn.OrganizationBaseMixInBuilder.class);
         mapper.addMixIn(OrganizationCreateRequest.class, OrganizationCreateRequestMixIn.class);
@@ -84,6 +92,8 @@ public class ModelUtil {
         mapper.addMixIn(TrainingWorkflowInput.TrainingWorkflowInputBuilder.class, TrainingWorkflowInputMixIn.TrainingWorkflowInputMixInBuilder.class);
         mapper.addMixIn(TrainingWorkflowOutput.class, TrainingWorkflowOutputMixIn.class);
         mapper.addMixIn(TrainingWorkflowOutput.TrainingWorkflowOutputBuilder.class, TrainingWorkflowOutputMixIn.TrainingWorkflowOutputMixInBuilder.class);
+        mapper.addMixIn(TransactionPageResult.class, TransactionPageResultMixIn.class);
+        mapper.addMixIn(TransactionPageResult.TransactionPageResultBuilder.class, TransactionPageResultMixIn.TransactionPageResultMixInBuilder.class);
         mapper.addMixIn(UserAuthenticationRequest.class, UserAuthenticationRequestMixIn.class);
         mapper.addMixIn(UserAuthenticationRequest.UserAuthenticationRequestBuilder.class, UserAuthenticationRequestMixIn.UserAuthenticationRequestMixInBuilder.class);
         mapper.addMixIn(UserBase.class, UserBaseMixIn.class);

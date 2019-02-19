@@ -9,7 +9,7 @@ import Prediction from '@/components/prediction/Prediction'
 import Predictionjob from '@/components/predictionjob/Predictionjob'
 import Trainingjob from '@/components/trainingjob/Trainingjob'
 import Model from '@/components/model/Model'
-
+import ObjectEvent from '@/components/objectEvent/ObjectEvent'
 
 Vue.use(Router)
 
@@ -59,6 +59,11 @@ export default new Router({
       path: '/model',
       name: 'Model',
       component: Model,
-      }
+      },
+    {
+     path: '/objectEvent',
+     name: 'ObjectEvent',
+     component: ObjectEvent,
+     }
   ]
 })
