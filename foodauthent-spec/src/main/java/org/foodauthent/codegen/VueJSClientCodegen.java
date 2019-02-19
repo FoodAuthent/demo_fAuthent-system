@@ -156,16 +156,15 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 				addStaticProperties(field, STRING_STATIC_FIELDS);
 			}
 		} else if (prop.getType().equals("string")) {
-			StringSchema stringProp = (StringSchema) prop;
-			if (stringProp.getEnum() == null) {
-				// simple string
+			if (prop.getEnum() == null) {
+				// simple string (possibly of a certain format, e.g. date)
 				addStaticProperties(field, STRING_STATIC_FIELDS);
 			} else {
 				// enum
 				addStaticProperties(field, ENUM_STATIC_FIELDS);
 				field.put("inputName", name);
 				ArrayNode values = Json.mapper().createArrayNode();
-				for (String e : stringProp.getEnum()) {
+				for (String e : ((StringSchema) prop).getEnum()) {
 					ObjectNode value = Json.mapper().createObjectNode();
 					value.put("id", e);
 					value.put("name", StringUtils.capitalize(e));
@@ -181,14 +180,22 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 			field.put("inputName", name);
 			ObjectNode items = Json.mapper().createObjectNode();
 			field.set("items", items);
-			items.put("type", "object");
-			ObjectNode schema = Json.mapper().createObjectNode();
-			items.set("schema", schema);
-			ArrayNode fields = Json.mapper().createArrayNode();
-			schema.set("fields", fields);
-			String[] tmp = arrayProp.getItems().get$ref().split("/");
-			String itemSchemaName = tmp[tmp.length - 1];
-			addFieldsInfo(models.get(itemSchemaName), fields, models);
+			if (arrayProp.getItems().get$ref() != null) {
+				//if array items reference another schema
+				items.put("type", "object");
+				ObjectNode schema = Json.mapper().createObjectNode();
+				items.set("schema", schema);
+				ArrayNode fields = Json.mapper().createArrayNode();
+				schema.set("fields", fields);
+				String[] tmp = arrayProp.getItems().get$ref().split("/");
+				String itemSchemaName = tmp[tmp.length - 1];
+				addFieldsInfo(models.get(itemSchemaName), fields, models);
+			} else if (arrayProp.getItems() instanceof StringSchema) {
+				addStaticProperties(items, STRING_STATIC_FIELDS);
+			} else {
+				throw new UnsupportedOperationException(
+						"No items of type " + arrayProp.getItems().getType() + " supported - need to be implemented");
+			}
 		} else if (prop.getType().equals("boolean")) {
 			addStaticProperties(field, BOOLEAN_STATIC_FIELDS);
 		} else if(prop.getType().equals("integer")) {
