@@ -10,6 +10,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.ObjectEventPageResult;
 
 import org.foodauthent.api.ObjectEventService;
@@ -35,6 +36,18 @@ public class ObjectEventRestServiceImpl implements ObjectEventRestService {
 	@Reference(cardinality = ReferenceCardinality.MANDATORY)
     private ObjectEventService service;
 
+
+    /**
+     * Creates/adds a new ObjectEvent.
+     *
+     * @param objectEvent TODO
+     * @return the response
+     */
+    public Response createObjectEvent(ObjectEvent objectEvent) {
+        
+            Object res = service.createObjectEvent(objectEvent);
+            return Response.ok(res).build();
+    }
 
     /**
      * Muliple keywords(epcClass) can be provided with comma separated strings, e.g, keyword1, keyword2.

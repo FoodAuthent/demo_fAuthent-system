@@ -1462,6 +1462,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ObjectEventPageResult'
+    post:
+      tags:
+        - ObjectEvent
+      summary: Creates/adds a new ObjectEvent.
+      description: Creates/adds a new ObjectEvent.
+      operationId: createObjectEvent
+      responses:
+        '201':
+          description: >-
+            ObjectEvent has been created successfully and the new fa-id of the ObjectEvent
+            is returned.
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectEvent'
+        description: TODO
                 
   /discovery/transaction:
     get:
@@ -2647,13 +2669,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DiscoveryServiceTransaction'
-            
 
     ObjectEvent:
       description: Object Event Transaction
       type: object
       x-ui-vue.js:
-      - name: eventTime
       - name: epcList
       - name: bizStep
       - name: readPoint
@@ -2662,21 +2682,15 @@ components:
       - name: disposition
       - name: bizTransactionList
       - name: gtin
-      - name: brick
+      - name: bricks
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
           type: string
           format: uuid
-        eventTime:
-          description: When the event happened
-          type: string
-          format: date
         epcList:
           description: List of epcs
-          type: array
-          items:
-            type: string
+          type: string
         bizStep:
           description: EPCIS bizStep
           type: string
@@ -2685,9 +2699,7 @@ components:
           type: string
         quantityList:
           description: List of quantity
-          type: array
-          items:
-            type: string
+          type: string
         action:
           description: EPCIS Action
           type: string
@@ -2696,23 +2708,18 @@ components:
           type: string
         bizTransactionList:
           description: List of bizTransactions
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
+          type: string
         gtin:
           description: Global Trade Item Number
           type: string
         bricks:
           description: bricks
-          type: array
-          items:
-            type: string
+          type: string
             
     DiscoveryServiceTransaction:
       description: DiscoveryServiceTransaction
       type: object
       x-ui-vue.js:
-      - name: eventTime
       - name: epcList
       - name: bizStep
       - name: readPoint
@@ -2721,7 +2728,7 @@ components:
       - name: disposition
       - name: bizTransactionList
       - name: gtin
-      - name: brick
+      - name: bricks
       - name: sourceList
       - name: destinationList
       - name: ilmd
@@ -2730,15 +2737,9 @@ components:
           description: A global id within the FoodAuthent-system.
           type: string
           format: uuid
-        eventTime:
-          description: When the event happened
-          type: string
-          format: date
         epcList:
           description: List of epcs
-          type: array
-          items:
-            type: string
+          type: string
         bizStep:
           description: EPCIS bizStep
           type: string
@@ -2747,9 +2748,7 @@ components:
           type: string
         quantityList:
           description: List of quantity
-          type: array
-          items:
-            type: string
+          type: string
         action:
           description: EPCIS Action
           type: string
@@ -2758,34 +2757,23 @@ components:
           type: string
         bizTransactionList:
           description: List of bizTransactions
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
+          type: string
         gtin:
           description: Global Trade Item Number
           type: string
         bricks:
           description: bricks
-          type: array
-          items:
-            type: string
+          type: string
         sourceList:
           description: List of sources
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
+          type: string
         destinationList:
           description: List of destinations
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
+          type: string
         ilmd:
           description: List of quantity
-          type: array
-          items:
-            type: string
-            example: ""
-            
+          type: string
+          
     BizTransaction:
       type: object
       x-no-faid: true

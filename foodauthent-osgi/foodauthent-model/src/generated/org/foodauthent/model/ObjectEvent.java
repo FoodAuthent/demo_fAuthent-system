@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import java.time.LocalDate;
-import org.foodauthent.model.BizTransaction;
 
 
 
@@ -25,16 +23,15 @@ public class ObjectEvent   extends FaModel {
 
 
   protected java.util.UUID faId;
-  protected LocalDate eventTime;
-  protected java.util.List<String> epcList;
+  protected String epcList;
   protected String bizStep;
   protected String readPoint;
-  protected java.util.List<String> quantityList;
+  protected String quantityList;
   protected String action;
   protected String disposition;
-  protected java.util.List<BizTransaction> bizTransactionList;
+  protected String bizTransactionList;
   protected String gtin;
-  protected java.util.List<String> bricks;
+  protected String bricks;
   
   public String getTypeID() {
     return "ObjectEvent";
@@ -47,7 +44,6 @@ public class ObjectEvent   extends FaModel {
   private ObjectEvent(ObjectEventBuilder builder) {
     
     faId = immutable(builder.faId);
-    eventTime = immutable(builder.eventTime);
     epcList = immutable(builder.epcList);
     bizStep = immutable(builder.bizStep);
     readPoint = immutable(builder.readPoint);
@@ -77,7 +73,7 @@ public class ObjectEvent   extends FaModel {
             return false;
         }
         ObjectEvent ent = (ObjectEvent)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(eventTime, ent.eventTime) && Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(disposition, ent.disposition) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks);
+        return Objects.equals(faId, ent.faId) && Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(disposition, ent.disposition) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks);
     }
 
 
@@ -90,18 +86,10 @@ public class ObjectEvent   extends FaModel {
     }
     
   /**
-   * When the event happened
-   * @return eventTime 
-   */
-  public LocalDate getEventTime() {
-        return eventTime;
-    }
-    
-  /**
    * List of epcs
    * @return epcList 
    */
-  public java.util.List<String> getEpcList() {
+  public String getEpcList() {
         return epcList;
     }
     
@@ -125,7 +113,7 @@ public class ObjectEvent   extends FaModel {
    * List of quantity
    * @return quantityList 
    */
-  public java.util.List<String> getQuantityList() {
+  public String getQuantityList() {
         return quantityList;
     }
     
@@ -149,7 +137,7 @@ public class ObjectEvent   extends FaModel {
    * List of bizTransactions
    * @return bizTransactionList 
    */
-  public java.util.List<BizTransaction> getBizTransactionList() {
+  public String getBizTransactionList() {
         return bizTransactionList;
     }
     
@@ -165,7 +153,7 @@ public class ObjectEvent   extends FaModel {
    * bricks
    * @return bricks 
    */
-  public java.util.List<String> getBricks() {
+  public String getBricks() {
         return bricks;
     }
     
@@ -188,7 +176,6 @@ public class ObjectEvent   extends FaModel {
 	public static ObjectEventBuilder builder(ObjectEvent entity) {
 		ObjectEventBuilder builder = builder();
         builder.faId = entity.faId;
-        builder.eventTime = entity.eventTime;
         builder.epcList = entity.epcList;
         builder.bizStep = entity.bizStep;
         builder.readPoint = entity.readPoint;
@@ -209,16 +196,15 @@ public class ObjectEvent   extends FaModel {
         }
     
         private java.util.UUID faId;
-        private LocalDate eventTime;
-        private java.util.List<String> epcList = new java.util.ArrayList<>();
+        private String epcList;
         private String bizStep;
         private String readPoint;
-        private java.util.List<String> quantityList = new java.util.ArrayList<>();
+        private String quantityList;
         private String action;
         private String disposition;
-        private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
+        private String bizTransactionList;
         private String gtin;
-        private java.util.List<String> bricks = new java.util.ArrayList<>();
+        private String bricks;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -230,19 +216,10 @@ public class ObjectEvent   extends FaModel {
         }
 
         /**
-         * When the event happened
-         * @return eventTime 
-         */
-        public ObjectEventBuilder setEventTime(LocalDate eventTime) {
-             this.eventTime = eventTime;
-             return this;
-        }
-
-        /**
          * List of epcs
          * @return epcList 
          */
-        public ObjectEventBuilder setEpcList(java.util.List<String> epcList) {
+        public ObjectEventBuilder setEpcList(String epcList) {
              this.epcList = epcList;
              return this;
         }
@@ -269,7 +246,7 @@ public class ObjectEvent   extends FaModel {
          * List of quantity
          * @return quantityList 
          */
-        public ObjectEventBuilder setQuantityList(java.util.List<String> quantityList) {
+        public ObjectEventBuilder setQuantityList(String quantityList) {
              this.quantityList = quantityList;
              return this;
         }
@@ -296,7 +273,7 @@ public class ObjectEvent   extends FaModel {
          * List of bizTransactions
          * @return bizTransactionList 
          */
-        public ObjectEventBuilder setBizTransactionList(java.util.List<BizTransaction> bizTransactionList) {
+        public ObjectEventBuilder setBizTransactionList(String bizTransactionList) {
              this.bizTransactionList = bizTransactionList;
              return this;
         }
@@ -314,7 +291,7 @@ public class ObjectEvent   extends FaModel {
          * bricks
          * @return bricks 
          */
-        public ObjectEventBuilder setBricks(java.util.List<String> bricks) {
+        public ObjectEventBuilder setBricks(String bricks) {
              this.bricks = bricks;
              return this;
         }

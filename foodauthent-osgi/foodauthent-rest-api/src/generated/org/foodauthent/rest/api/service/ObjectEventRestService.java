@@ -6,6 +6,7 @@ package org.foodauthent.rest.api.service;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
+import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.ObjectEventPageResult;
 
 import org.foodauthent.api.ObjectEventService;
@@ -26,6 +27,19 @@ import org.foodauthent.common.exception.FAExceptions;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public interface ObjectEventRestService{
 
+
+    /**
+     * Creates/adds a new ObjectEvent.
+     *
+     * @param objectEvent TODO
+     * @return the response
+     */
+    @POST
+    @Path("/epcis/objectEvent/")
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    public Response createObjectEvent(ObjectEvent objectEvent
+);
 
     /**
      * Muliple keywords(epcClass) can be provided with comma separated strings, e.g, keyword1, keyword2.

@@ -1,5 +1,5 @@
 <template>
-  <div id="objectEventTable">
+  <div id="discoveryServiceTable">
  <b-container fluid>
     <!-- UPDATE -->
     <b-row>
@@ -63,10 +63,10 @@
 
 
 <script>
-var getObjectEvent = require("@/utils/objectEventFunction.js").default.getObjectEvent;
-import jsonschema from "@/generated/schema/objectevent.json";
+var getTransaction = require("@/utils/objectEventFunction.js").default.getTransaction;
+import jsonschema from "@/generated/schema/discoveryservicetransaction.json";
 export default {
-  name: "objectEvent",
+  name: "discoveryService",
   data() {
     return {
       model: {},
@@ -104,7 +104,7 @@ export default {
     loadTableData() {
       console.log("Load table data");
       let self = this;
-      getObjectEvent(self);
+      getTransaction(self);
     },
     handleDeleteOk() {
     //  let self = this;
@@ -123,7 +123,7 @@ export default {
 	if (re.test(self.filter)) {
     	findModelById(self);
 	} else {
-   		getObjectEvent(self);
+   		getTransaction(self);
 	}
     },
     //Search Model for id or keywords

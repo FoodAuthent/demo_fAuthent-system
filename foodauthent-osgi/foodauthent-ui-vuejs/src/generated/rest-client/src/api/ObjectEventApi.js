@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/ObjectEventPageResult'], factory);
+    define(['../ApiClient', '../model/ObjectEvent', '../model/ObjectEventPageResult'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/ObjectEventPageResult'));
+    module.exports = factory(require('../ApiClient'), require('../model/ObjectEvent'), require('../model/ObjectEventPageResult'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.ObjectEventApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.ObjectEventPageResult);
+    root.FoodAuthentSwaggerApi.ObjectEventApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.ObjectEvent, root.FoodAuthentSwaggerApi.ObjectEventPageResult);
   }
-}(this, function(ApiClient, ObjectEventPageResult) {
+}(this, function(ApiClient, ObjectEvent, ObjectEventPageResult) {
   'use strict';
 
   /**
@@ -47,6 +47,50 @@
   var exports = function(apiClient) {
     this.apiClient = apiClient || ApiClient.instance;
 
+
+    /**
+     * Callback function to receive the result of the createObjectEvent operation.
+     * @callback module:api/ObjectEventApi~createObjectEventCallback
+     * @param {String} error Error message, if any.
+     * @param {String} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Creates/adds a new ObjectEvent.
+     * Creates/adds a new ObjectEvent.
+     * @param {Object} opts Optional parameters
+     * @param {module:model/ObjectEvent} opts.objectEvent TODO
+     * @param {module:api/ObjectEventApi~createObjectEventCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link String}
+     */
+    this.createObjectEvent = function(opts, callback) {
+      opts = opts || {};
+      var postBody = opts['objectEvent'];
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = String;
+
+      return this.apiClient.callApi(
+        '/epcis/objectEvent/', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
 
     /**
      * Callback function to receive the result of the findObjectEventByKeyword operation.

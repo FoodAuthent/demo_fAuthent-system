@@ -39,7 +39,9 @@ Service-Component:
  OSGI-INF/org.foodauthent.impl.user.UserServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.organization.OrganizationServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.authentication.AuthenticationServiceImpl.xml,
- OSGI-INF/org.foodauthent.impl.custommetadata.CustomMetadataServiceImpl.xml
+ OSGI-INF/org.foodauthent.impl.custommetadata.CustomMetadataServiceImpl.xml,
+ OSGI-INF/org.foodauthent.impl.objectevent.ObjectEventServiceImpl.xml,
+ OSGI-INF/org.foodauthent.impl.transaction.TransactionServiceImpl.xml
 Require-Capability: osgi.extender;
  filter:="(&(osgi.extender=osgi.component)(version>=1.2)(!(version>=2.0)))"
 Require-Bundle: com.google.guava;bundle-version="17.0.0",

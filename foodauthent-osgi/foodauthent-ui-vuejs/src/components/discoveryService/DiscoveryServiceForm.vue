@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="modelContainer">
+  <div class="container" id="discoveryServiceContainer">
   <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
     <p>Operation success</p>
   </b-alert>
@@ -7,7 +7,7 @@
      <p>There is a problem {{response}}</p>
   </b-alert>
     <div class="panel panel-default">
-      <div class="panel-heading">OBJECT EVENT FORM</div>
+      <div class="panel-heading">DISCOVERY SERVICE FORM</div>
       <div class="panel-body">
         <vue-form-generator :schema="schema" :model="model" :options="formOptions">
         </vue-form-generator>
@@ -43,8 +43,8 @@
 <script>
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
-var saveObjectEvent = require("@/utils/objectEventFunction.js").default.saveObjectEvent;
-import jsonschema from "@/generated/schema/objectevent.json";
+var saveTransaction = require("@/utils/discoveryServiceFunction.js").default.saveTransaction;
+import jsonschema from "@/generated/schema/discoveryservicetransaction.json";
 export default {
   data() {
     return {
@@ -63,7 +63,7 @@ export default {
     save() {
       let self = this;
       console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
-      saveObjectEvent(JSON.stringify(this.model, undefined, 4), self);
+      saveTransaction(JSON.stringify(this.model, undefined, 4), self);
       self.model={}
     }
   },

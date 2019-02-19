@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/BizTransaction'], factory);
+    define(['../ApiClient'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./BizTransaction'));
+    module.exports = factory(require('../ApiClient'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.ObjectEvent = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.BizTransaction);
+    root.FoodAuthentSwaggerApi.ObjectEvent = factory(root.FoodAuthentSwaggerApi.ApiClient);
   }
-}(this, function(ApiClient, BizTransaction) {
+}(this, function(ApiClient) {
   'use strict';
 
 
@@ -63,11 +63,8 @@
       if (data.hasOwnProperty('fa-id')) {
         obj['fa-id'] = ApiClient.convertToType(data['fa-id'], 'String');
       }
-      if (data.hasOwnProperty('eventTime')) {
-        obj['eventTime'] = ApiClient.convertToType(data['eventTime'], 'Date');
-      }
       if (data.hasOwnProperty('epcList')) {
-        obj['epcList'] = ApiClient.convertToType(data['epcList'], ['String']);
+        obj['epcList'] = ApiClient.convertToType(data['epcList'], 'String');
       }
       if (data.hasOwnProperty('bizStep')) {
         obj['bizStep'] = ApiClient.convertToType(data['bizStep'], 'String');
@@ -76,7 +73,7 @@
         obj['readPoint'] = ApiClient.convertToType(data['readPoint'], 'String');
       }
       if (data.hasOwnProperty('quantityList')) {
-        obj['quantityList'] = ApiClient.convertToType(data['quantityList'], ['String']);
+        obj['quantityList'] = ApiClient.convertToType(data['quantityList'], 'String');
       }
       if (data.hasOwnProperty('action')) {
         obj['action'] = ApiClient.convertToType(data['action'], 'String');
@@ -85,13 +82,13 @@
         obj['disposition'] = ApiClient.convertToType(data['disposition'], 'String');
       }
       if (data.hasOwnProperty('bizTransactionList')) {
-        obj['bizTransactionList'] = ApiClient.convertToType(data['bizTransactionList'], [BizTransaction]);
+        obj['bizTransactionList'] = ApiClient.convertToType(data['bizTransactionList'], 'String');
       }
       if (data.hasOwnProperty('gtin')) {
         obj['gtin'] = ApiClient.convertToType(data['gtin'], 'String');
       }
       if (data.hasOwnProperty('bricks')) {
-        obj['bricks'] = ApiClient.convertToType(data['bricks'], ['String']);
+        obj['bricks'] = ApiClient.convertToType(data['bricks'], 'String');
       }
     }
     return obj;
@@ -103,13 +100,8 @@
    */
   exports.prototype['fa-id'] = undefined;
   /**
-   * When the event happened
-   * @member {Date} eventTime
-   */
-  exports.prototype['eventTime'] = undefined;
-  /**
    * List of epcs
-   * @member {Array.<String>} epcList
+   * @member {String} epcList
    */
   exports.prototype['epcList'] = undefined;
   /**
@@ -124,7 +116,7 @@
   exports.prototype['readPoint'] = undefined;
   /**
    * List of quantity
-   * @member {Array.<String>} quantityList
+   * @member {String} quantityList
    */
   exports.prototype['quantityList'] = undefined;
   /**
@@ -139,7 +131,7 @@
   exports.prototype['disposition'] = undefined;
   /**
    * List of bizTransactions
-   * @member {Array.<module:model/BizTransaction>} bizTransactionList
+   * @member {String} bizTransactionList
    */
   exports.prototype['bizTransactionList'] = undefined;
   /**
@@ -149,7 +141,7 @@
   exports.prototype['gtin'] = undefined;
   /**
    * bricks
-   * @member {Array.<String>} bricks
+   * @member {String} bricks
    */
   exports.prototype['bricks'] = undefined;
 

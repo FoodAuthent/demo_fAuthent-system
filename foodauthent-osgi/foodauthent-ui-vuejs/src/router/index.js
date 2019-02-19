@@ -10,6 +10,7 @@ import Predictionjob from '@/components/predictionjob/Predictionjob'
 import Trainingjob from '@/components/trainingjob/Trainingjob'
 import Model from '@/components/model/Model'
 import ObjectEvent from '@/components/objectEvent/ObjectEvent'
+import DiscoveryService from '@/components/discoveryService/discoveryService'
 
 Vue.use(Router)
 
@@ -58,12 +59,17 @@ export default new Router({
      {
       path: '/model',
       name: 'Model',
-      component: Model,
+      component: Model
       },
     {
      path: '/objectEvent',
      name: 'ObjectEvent',
-     component: ObjectEvent,
+     component: ObjectEvent
+     },
+     {
+     path: '/discoveryService',
+     name: 'DiscoveryService',
+     component: DiscoveryService
      }
   ]
 })

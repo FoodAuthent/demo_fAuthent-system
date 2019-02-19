@@ -3,6 +3,7 @@
  */
 package org.foodauthent.api;
 
+import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.ObjectEventPageResult;
 
 import org.foodauthent.common.exception.FAExceptions;
@@ -15,6 +16,15 @@ import org.foodauthent.common.exception.FAExceptions;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public interface ObjectEventService {
 
+    /**
+     * Creates/adds a new ObjectEvent.
+     *
+     * @param objectEvent TODO
+     *
+     * @return the result
+     */
+    java.util.UUID createObjectEvent(ObjectEvent objectEvent);
+        
     /**
      * Muliple keywords(epcClass) can be provided with comma separated strings, e.g, keyword1, keyword2.
      *

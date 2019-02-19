@@ -1,0 +1,57 @@
+{
+  "fields" : [ {
+    "label" : "EpcList",
+    "model" : "epcList",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "BizStep",
+    "model" : "bizStep",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "ReadPoint",
+    "model" : "readPoint",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "QuantityList",
+    "model" : "quantityList",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Action",
+    "model" : "action",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Disposition",
+    "model" : "disposition",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "BizTransactionList",
+    "model" : "bizTransactionList",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Gtin",
+    "model" : "gtin",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Bricks",
+    "model" : "bricks",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}
