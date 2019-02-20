@@ -1942,6 +1942,10 @@ components:
           type: string
         brand:
           type: string
+        gpcAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/GPCAttribute'
 
     GPCAttribute:
       description: >-
@@ -1966,6 +1970,7 @@ components:
         attributeValueName:
           description: GPC brick's value human readable description 
           type: string
+          
     PredictionJobPageResult:
       type: object
       x-no-faid: true

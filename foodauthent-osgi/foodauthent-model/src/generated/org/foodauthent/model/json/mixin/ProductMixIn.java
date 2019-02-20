@@ -3,6 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
+import org.foodauthent.model.GPCAttribute;
 
 import java.util.UUID;
 
@@ -53,6 +54,9 @@ public interface ProductMixIn {
     @JsonProperty("brand")
     public String getBrand();
     
+    @JsonProperty("gpcAttributes")
+    public java.util.List<GPCAttribute> getGpcAttributes();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -80,6 +84,9 @@ public interface ProductMixIn {
         
         @JsonProperty("brand")
         public ProductMixInBuilder setBrand(final String brand);
+        
+        @JsonProperty("gpcAttributes")
+        public ProductMixInBuilder setGpcAttributes(final java.util.List<GPCAttribute> gpcAttributes);
         
     }
 

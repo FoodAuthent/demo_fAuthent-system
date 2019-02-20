@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.foodauthent.model.GPCAttribute;
 
 
 
@@ -25,6 +26,7 @@ public class Product   extends FaModel {
   protected java.util.UUID faId;
   protected String gtin;
   protected String brand;
+  protected java.util.List<GPCAttribute> gpcAttributes;
   
   public String getTypeID() {
     return "Product";
@@ -39,6 +41,7 @@ public class Product   extends FaModel {
     faId = immutable(builder.faId);
     gtin = immutable(builder.gtin);
     brand = immutable(builder.brand);
+    gpcAttributes = immutable(builder.gpcAttributes);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -59,7 +62,7 @@ public class Product   extends FaModel {
             return false;
         }
         Product ent = (Product)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(gtin, ent.gtin) && Objects.equals(brand, ent.brand);
+        return Objects.equals(faId, ent.faId) && Objects.equals(gtin, ent.gtin) && Objects.equals(brand, ent.brand) && Objects.equals(gpcAttributes, ent.gpcAttributes);
     }
 
 
@@ -87,6 +90,14 @@ public class Product   extends FaModel {
         return brand;
     }
     
+  /**
+   * Get gpcAttributes
+   * @return gpcAttributes 
+   */
+  public java.util.List<GPCAttribute> getGpcAttributes() {
+        return gpcAttributes;
+    }
+    
   
  	/**
   	 * @return a newly created builder
@@ -108,6 +119,7 @@ public class Product   extends FaModel {
         builder.faId = entity.faId;
         builder.gtin = entity.gtin;
         builder.brand = entity.brand;
+        builder.gpcAttributes = entity.gpcAttributes;
  		return builder;
   	}
   	
@@ -121,6 +133,7 @@ public class Product   extends FaModel {
         private java.util.UUID faId;
         private String gtin;
         private String brand;
+        private java.util.List<GPCAttribute> gpcAttributes = new java.util.ArrayList<>();
 
         /**
          * A global id within the FoodAuthent-system.
@@ -146,6 +159,15 @@ public class Product   extends FaModel {
          */
         public ProductBuilder setBrand(String brand) {
              this.brand = brand;
+             return this;
+        }
+
+        /**
+         * Get gpcAttributes
+         * @return gpcAttributes 
+         */
+        public ProductBuilder setGpcAttributes(java.util.List<GPCAttribute> gpcAttributes) {
+             this.gpcAttributes = gpcAttributes;
              return this;
         }
 
