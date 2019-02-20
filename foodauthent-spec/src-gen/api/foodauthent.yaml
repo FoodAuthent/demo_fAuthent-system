@@ -1855,6 +1855,29 @@ components:
           type: string
         brand:
           type: string
+        gpcAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/GPCAttribute'
+          
+    GPCAttribute:
+      description: >-
+        Global Product Classification Attribute for storing gpc brick details
+      type: object
+      x-no-faid: true
+      properties:
+        attributeTypeCode:
+          description: GPC brick code
+          type: string
+        attributeTypeName:
+          description: GPC brick human readable name
+          type: string
+        attributeValueCode:
+          description: GPC brick's value
+          type: string
+        attributeValueName:
+          description: GPC brick's value human readable description 
+          type: string
 
     PredictionJobPageResult:
       type: object

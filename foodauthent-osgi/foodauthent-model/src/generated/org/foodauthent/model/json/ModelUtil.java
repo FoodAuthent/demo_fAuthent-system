@@ -36,6 +36,8 @@ public class ModelUtil {
         mapper.addMixIn(FingerprintSet.FingerprintSetBuilder.class, FingerprintSetMixIn.FingerprintSetMixInBuilder.class);
         mapper.addMixIn(FingerprintSetPageResult.class, FingerprintSetPageResultMixIn.class);
         mapper.addMixIn(FingerprintSetPageResult.FingerprintSetPageResultBuilder.class, FingerprintSetPageResultMixIn.FingerprintSetPageResultMixInBuilder.class);
+        mapper.addMixIn(GPCAttribute.class, GPCAttributeMixIn.class);
+        mapper.addMixIn(GPCAttribute.GPCAttributeBuilder.class, GPCAttributeMixIn.GPCAttributeMixInBuilder.class);
         mapper.addMixIn(ImportResult.class, ImportResultMixIn.class);
         mapper.addMixIn(ImportResult.ImportResultBuilder.class, ImportResultMixIn.ImportResultMixInBuilder.class);
         mapper.addMixIn(Model.class, ModelMixIn.class);
