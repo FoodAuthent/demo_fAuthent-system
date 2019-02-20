@@ -24,14 +24,14 @@ public class ModelUtil {
      */
     public static final void addModelMixIns(final ObjectMapper mapper) {
     
-        mapper.addMixIn(ArrayStringItem.class, ArrayStringItemMixIn.class);
-        mapper.addMixIn(ArrayStringItem.ArrayStringItemBuilder.class, ArrayStringItemMixIn.ArrayStringItemMixInBuilder.class);
         mapper.addMixIn(BizTransaction.class, BizTransactionMixIn.class);
         mapper.addMixIn(BizTransaction.BizTransactionBuilder.class, BizTransactionMixIn.BizTransactionMixInBuilder.class);
         mapper.addMixIn(ChangePasswordRequest.class, ChangePasswordRequestMixIn.class);
         mapper.addMixIn(ChangePasswordRequest.ChangePasswordRequestBuilder.class, ChangePasswordRequestMixIn.ChangePasswordRequestMixInBuilder.class);
         mapper.addMixIn(DiscoveryServiceTransaction.class, DiscoveryServiceTransactionMixIn.class);
         mapper.addMixIn(DiscoveryServiceTransaction.DiscoveryServiceTransactionBuilder.class, DiscoveryServiceTransactionMixIn.DiscoveryServiceTransactionMixInBuilder.class);
+        mapper.addMixIn(Epc.class, EpcMixIn.class);
+        mapper.addMixIn(Epc.EpcBuilder.class, EpcMixIn.EpcMixInBuilder.class);
         mapper.addMixIn(FaObjectSet.class, FaObjectSetMixIn.class);
         mapper.addMixIn(FaObjectSet.FaObjectSetBuilder.class, FaObjectSetMixIn.FaObjectSetMixInBuilder.class);
         mapper.addMixIn(FileMetadata.class, FileMetadataMixIn.class);
@@ -80,6 +80,8 @@ public class ModelUtil {
         mapper.addMixIn(Product.ProductBuilder.class, ProductMixIn.ProductMixInBuilder.class);
         mapper.addMixIn(ProductPageResult.class, ProductPageResultMixIn.class);
         mapper.addMixIn(ProductPageResult.ProductPageResultBuilder.class, ProductPageResultMixIn.ProductPageResultMixInBuilder.class);
+        mapper.addMixIn(QuantityElement.class, QuantityElementMixIn.class);
+        mapper.addMixIn(QuantityElement.QuantityElementBuilder.class, QuantityElementMixIn.QuantityElementMixInBuilder.class);
         mapper.addMixIn(SOP.class, SOPMixIn.class);
         mapper.addMixIn(SOP.SOPBuilder.class, SOPMixIn.SOPMixInBuilder.class);
         mapper.addMixIn(SOPPageResult.class, SOPPageResultMixIn.class);

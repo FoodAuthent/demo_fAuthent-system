@@ -64,6 +64,7 @@
 
 <script>
 var getTransaction = require("@/utils/discoveryServiceFunction.js").default.getTransaction;
+var findTransactionById = require("@/utils/discoveryServiceFunction.js").default.findTransactionById;
 import jsonschema from "@/generated/schema/discoveryservicetransaction.json";
 export default {
   name: "discoveryService",
@@ -121,24 +122,13 @@ export default {
     //check if it is a valid UUID
 	var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
 	if (re.test(self.filter)) {
-    	findModelById(self);
+    	findTransactionById(self);
 	} else {
    		getTransaction(self);
 	}
     },
-    //Search Model for id or keywords
-    searchModelByKeywords(){
-    let self = this;
-    self.items=[];
-    findModelByKeyword(self);
-    //document.getElementById("refreshTable").click();
-    },
-    searchModelById(){
-    let self = this;
-    findModelById(self);
-    },
     clearSearch(){
-    this.filter = "";
+    this.filter = null;
     document.getElementById("refreshTable").click();
     },
     //Manage when the number of items displayed on the table change

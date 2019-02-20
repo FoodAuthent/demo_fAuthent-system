@@ -1,0 +1,9 @@
+{
+  "fields" : [ {
+    "label" : "Epc",
+    "model" : "epc",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}

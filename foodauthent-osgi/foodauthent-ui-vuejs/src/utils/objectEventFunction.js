@@ -56,6 +56,40 @@ var MyObject = function () {
 	    );
 	  };
 	  
+	  var findObjectEventById = function (self) {
+		    console.log('Search ObjectEvent for Id: ',self.filter);
+		    var callback = function (error, data, response) {
+		      console.log("data:", data);
+		      console.log("response:", response);
+		      if(data !== undefined && data !== null){
+		    	  self.resultsCount = data.resultCount; 
+		      }else{
+		    	  self.resultsCount = 0;
+		      }
+		      if(response.body !== null){
+		    	  self.pageCount = response.body.pageCount; 
+		      }else{
+		    	  self.pageCount = 0;
+		      }
+		      if (error) {
+		        //this.response = data;
+		        console.error(error);
+		      } else {
+		        var jsonResult = [];
+		        jsonResult.push(response.body);
+		        jsonResult[0]['actions'] = '';
+		        self.items = jsonResult;
+		        console.log("Items For Id are: ",self.items);
+		        console.log("API called successfully. Returned data: ", data);
+		      }
+		    };
+		    var objecteventId = self.filter;
+		    objectEventApi.getObjectEventById(
+		      objecteventId,
+		      callback
+		    );
+		  };
+	  
 
   
   var saveObjectEvent = function (json, self) {
@@ -81,17 +115,10 @@ var MyObject = function () {
     );
   };
 
-
-  
-  
-
-  
-
-
-
   return {
 	getObjectEvent: getObjectEvent,
-    saveObjectEvent: saveObjectEvent
+    saveObjectEvent: saveObjectEvent,
+    findObjectEventById: findObjectEventById
   }
 }();
 

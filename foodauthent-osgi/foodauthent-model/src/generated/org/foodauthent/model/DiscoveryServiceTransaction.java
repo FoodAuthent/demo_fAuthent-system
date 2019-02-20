@@ -11,9 +11,10 @@ import java.util.Map;
 import java.util.Objects;
 
 import java.time.LocalDate;
-import org.foodauthent.model.ArrayStringItem;
 import org.foodauthent.model.BizTransaction;
+import org.foodauthent.model.Epc;
 import org.foodauthent.model.GPCAttribute;
+import org.foodauthent.model.QuantityElement;
 
 
 
@@ -25,20 +26,43 @@ import org.foodauthent.model.GPCAttribute;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public class DiscoveryServiceTransaction   extends FaModel {
 
+  /**
+   * Event action.
+   */
+  public static enum ActionEnum {
+    ADD("ADD"),
+    
+    OBSERVE("OBSERVE"),
+    
+    DELETE("DELETE");
+
+    private String value;
+
+    ActionEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+  }
+
 
   protected java.util.UUID faId;
-  protected java.util.List<String> epcList;
+  protected java.util.List<Epc> epcList;
   protected String bizStep;
   protected String readPoint;
-  protected java.util.List<ArrayStringItem> quantityList;
-  protected String action;
+  protected java.util.List<QuantityElement> quantityList;
+  protected ActionEnum action;
   protected String disposition;
   protected java.util.List<BizTransaction> bizTransactionList;
   protected String gtin;
   protected java.util.List<GPCAttribute> bricks;
   protected java.util.List<BizTransaction> sourceList;
   protected java.util.List<BizTransaction> destinationList;
-  protected java.util.List<ArrayStringItem> ilmd;
+  protected java.util.List<String> ilmd;
   protected LocalDate eventTime;
   
   public String getTypeID() {
@@ -101,7 +125,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * List of epcs
    * @return epcList 
    */
-  public java.util.List<String> getEpcList() {
+  public java.util.List<Epc> getEpcList() {
         return epcList;
     }
     
@@ -125,15 +149,15 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * List of quantity
    * @return quantityList 
    */
-  public java.util.List<ArrayStringItem> getQuantityList() {
+  public java.util.List<QuantityElement> getQuantityList() {
         return quantityList;
     }
     
   /**
-   * EPCIS Action
+   * Event action.
    * @return action 
    */
-  public String getAction() {
+  public ActionEnum getAction() {
         return action;
     }
     
@@ -186,10 +210,10 @@ public class DiscoveryServiceTransaction   extends FaModel {
     }
     
   /**
-   * List of quantity
+   * ilmd
    * @return ilmd 
    */
-  public java.util.List<ArrayStringItem> getIlmd() {
+  public java.util.List<String> getIlmd() {
         return ilmd;
     }
     
@@ -244,18 +268,18 @@ public class DiscoveryServiceTransaction   extends FaModel {
         }
     
         private java.util.UUID faId;
-        private java.util.List<String> epcList = new java.util.ArrayList<>();
+        private java.util.List<Epc> epcList = new java.util.ArrayList<>();
         private String bizStep;
         private String readPoint;
-        private java.util.List<ArrayStringItem> quantityList = new java.util.ArrayList<>();
-        private String action;
+        private java.util.List<QuantityElement> quantityList = new java.util.ArrayList<>();
+        private ActionEnum action;
         private String disposition;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
         private String gtin;
         private java.util.List<GPCAttribute> bricks = new java.util.ArrayList<>();
         private java.util.List<BizTransaction> sourceList = new java.util.ArrayList<>();
         private java.util.List<BizTransaction> destinationList = new java.util.ArrayList<>();
-        private java.util.List<ArrayStringItem> ilmd = new java.util.ArrayList<>();
+        private java.util.List<String> ilmd = new java.util.ArrayList<>();
         private LocalDate eventTime;
 
         /**
@@ -271,7 +295,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * List of epcs
          * @return epcList 
          */
-        public DiscoveryServiceTransactionBuilder setEpcList(java.util.List<String> epcList) {
+        public DiscoveryServiceTransactionBuilder setEpcList(java.util.List<Epc> epcList) {
              this.epcList = epcList;
              return this;
         }
@@ -298,16 +322,16 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * List of quantity
          * @return quantityList 
          */
-        public DiscoveryServiceTransactionBuilder setQuantityList(java.util.List<ArrayStringItem> quantityList) {
+        public DiscoveryServiceTransactionBuilder setQuantityList(java.util.List<QuantityElement> quantityList) {
              this.quantityList = quantityList;
              return this;
         }
 
         /**
-         * EPCIS Action
+         * Event action.
          * @return action 
          */
-        public DiscoveryServiceTransactionBuilder setAction(String action) {
+        public DiscoveryServiceTransactionBuilder setAction(ActionEnum action) {
              this.action = action;
              return this;
         }
@@ -367,10 +391,10 @@ public class DiscoveryServiceTransaction   extends FaModel {
         }
 
         /**
-         * List of quantity
+         * ilmd
          * @return ilmd 
          */
-        public DiscoveryServiceTransactionBuilder setIlmd(java.util.List<ArrayStringItem> ilmd) {
+        public DiscoveryServiceTransactionBuilder setIlmd(java.util.List<String> ilmd) {
              this.ilmd = ilmd;
              return this;
         }

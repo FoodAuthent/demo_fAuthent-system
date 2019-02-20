@@ -1,0 +1,21 @@
+{
+  "fields" : [ {
+    "label" : "EpcClass",
+    "model" : "epcClass",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Quantity",
+    "model" : "quantity",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Uom",
+    "model" : "uom",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}

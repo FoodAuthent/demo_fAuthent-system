@@ -11,9 +11,10 @@ import java.util.Map;
 import java.util.Objects;
 
 import java.time.LocalDate;
-import org.foodauthent.model.ArrayStringItem;
 import org.foodauthent.model.BizTransaction;
+import org.foodauthent.model.Epc;
 import org.foodauthent.model.GPCAttribute;
+import org.foodauthent.model.QuantityElement;
 
 
 
@@ -25,13 +26,36 @@ import org.foodauthent.model.GPCAttribute;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public class ObjectEvent   extends FaModel {
 
+  /**
+   * Event action.
+   */
+  public static enum ActionEnum {
+    ADD("ADD"),
+    
+    OBSERVE("OBSERVE"),
+    
+    DELETE("DELETE");
+
+    private String value;
+
+    ActionEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+  }
+
 
   protected java.util.UUID faId;
-  protected java.util.List<ArrayStringItem> epcList;
+  protected java.util.List<Epc> epcList;
   protected String bizStep;
   protected String readPoint;
-  protected java.util.List<ArrayStringItem> quantityList;
-  protected String action;
+  protected java.util.List<QuantityElement> quantityList;
+  protected ActionEnum action;
   protected String disposition;
   protected java.util.List<BizTransaction> bizTransactionList;
   protected String gtin;
@@ -95,7 +119,7 @@ public class ObjectEvent   extends FaModel {
    * List of epcs
    * @return epcList 
    */
-  public java.util.List<ArrayStringItem> getEpcList() {
+  public java.util.List<Epc> getEpcList() {
         return epcList;
     }
     
@@ -119,15 +143,15 @@ public class ObjectEvent   extends FaModel {
    * List of quantity
    * @return quantityList 
    */
-  public java.util.List<ArrayStringItem> getQuantityList() {
+  public java.util.List<QuantityElement> getQuantityList() {
         return quantityList;
     }
     
   /**
-   * EPCIS Action
+   * Event action.
    * @return action 
    */
-  public String getAction() {
+  public ActionEnum getAction() {
         return action;
     }
     
@@ -211,11 +235,11 @@ public class ObjectEvent   extends FaModel {
         }
     
         private java.util.UUID faId;
-        private java.util.List<ArrayStringItem> epcList = new java.util.ArrayList<>();
+        private java.util.List<Epc> epcList = new java.util.ArrayList<>();
         private String bizStep;
         private String readPoint;
-        private java.util.List<ArrayStringItem> quantityList = new java.util.ArrayList<>();
-        private String action;
+        private java.util.List<QuantityElement> quantityList = new java.util.ArrayList<>();
+        private ActionEnum action;
         private String disposition;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
         private String gtin;
@@ -235,7 +259,7 @@ public class ObjectEvent   extends FaModel {
          * List of epcs
          * @return epcList 
          */
-        public ObjectEventBuilder setEpcList(java.util.List<ArrayStringItem> epcList) {
+        public ObjectEventBuilder setEpcList(java.util.List<Epc> epcList) {
              this.epcList = epcList;
              return this;
         }
@@ -262,16 +286,16 @@ public class ObjectEvent   extends FaModel {
          * List of quantity
          * @return quantityList 
          */
-        public ObjectEventBuilder setQuantityList(java.util.List<ArrayStringItem> quantityList) {
+        public ObjectEventBuilder setQuantityList(java.util.List<QuantityElement> quantityList) {
              this.quantityList = quantityList;
              return this;
         }
 
         /**
-         * EPCIS Action
+         * Event action.
          * @return action 
          */
-        public ObjectEventBuilder setAction(String action) {
+        public ObjectEventBuilder setAction(ActionEnum action) {
              this.action = action;
              return this;
         }

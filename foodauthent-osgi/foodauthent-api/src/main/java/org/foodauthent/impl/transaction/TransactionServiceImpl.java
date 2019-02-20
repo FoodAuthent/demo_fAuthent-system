@@ -36,6 +36,11 @@ public class TransactionServiceImpl implements TransactionService {
 	return discoveryServiceTransaction.getFaId();
     }
 
+    @Override
+    public DiscoveryServiceTransaction getTransactionById(UUID transactionId) {
+	return persistenceService.getFaModelByUUID(transactionId, DiscoveryServiceTransaction.class);
+    }
+
 
 
   

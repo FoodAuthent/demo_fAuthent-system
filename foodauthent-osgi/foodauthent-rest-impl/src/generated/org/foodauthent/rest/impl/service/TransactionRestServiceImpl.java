@@ -62,5 +62,17 @@ public class TransactionRestServiceImpl implements TransactionRestService {
             Object res = service.findTransactionByKeyword(pageNumber, pageSize, keywords);
             return Response.ok(res).build();
     }
+
+    /**
+     * Get the Transaction an id.
+     *
+     * @param transactionId 
+     * @return the response
+     */
+    public Response getTransactionById(java.util.UUID transactionId) {
+        
+            Object res = service.getTransactionById(transactionId);
+            return Response.ok(res).build();
+    }
 }
 

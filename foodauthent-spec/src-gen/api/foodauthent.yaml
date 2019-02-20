@@ -1484,6 +1484,27 @@ paths:
             schema:
               $ref: '#/components/schemas/ObjectEvent'
         description: TODO
+        
+  '/epcis/objectEvent/{objectevent-id}':
+    get:
+      tags:
+        - ObjectEvent
+      description: Get the ObjectEvent an id.
+      operationId: getObjectEventById
+      parameters:
+        - name: objectevent-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The ObjectEvent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectEvent'
                 
   /discovery/transaction:
     get:
@@ -1526,6 +1547,27 @@ paths:
             schema:
               $ref: '#/components/schemas/DiscoveryServiceTransaction'
         description: TODO
+        
+  '/discovery/transaction/{transaction-id}':
+    get:
+      tags:
+        - Transaction
+      description: Get the Transaction an id.
+      operationId: getTransactionById
+      parameters:
+        - name: transaction-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The Transaction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscoveryServiceTransaction'
         
         
 servers:
@@ -2738,16 +2780,36 @@ components:
           description: Value of transaction
           type: string
           
-    ArrayStringItem:
+    QuantityElement:
       type: object
       x-no-faid: true
-      description: EPC
+      description: bizTransaction
       x-ui-vue.js:
-      - name: value
+      - name: epcClass
+      - name: quantity
+      - name: uom
       properties:
-        value:
-          description: value of the item
+        epcClass:
+          description: epcClass
           type: string
+        quantity:
+          description: quantity
+          type: string
+        uom:
+          description: uom
+          type: string
+          
+    Epc:
+      type: object
+      x-no-faid: true
+      description: epc
+      x-ui-vue.js:
+      - name: epc
+      properties:
+        epc:
+          description: epc
+          type: string
+          
 
     ObjectEvent:
       description: Object Event Transaction
@@ -2771,8 +2833,8 @@ components:
         epcList:
           description: List of epcs
           type: array
-          items:
-            $ref: "#/components/schemas/ArrayStringItem"
+          items: 
+            $ref: "#/components/schemas/Epc"
         bizStep:
           description: EPCIS bizStep
           type: string
@@ -2782,11 +2844,15 @@ components:
         quantityList:
           description: List of quantity
           type: array
-          items:
-            $ref: "#/components/schemas/ArrayStringItem"
+          items: 
+            $ref: "#/components/schemas/QuantityElement"
         action:
-          description: EPCIS Action
+          description: Event action.
           type: string
+          enum:
+            - ADD
+            - OBSERVE
+            - DELETE
         disposition:
           description: EPCIS Disposition
           type: string
@@ -2808,6 +2874,7 @@ components:
           type: string
           format: date
             
+
     DiscoveryServiceTransaction:
       description: DiscoveryServiceTransaction
       type: object
@@ -2834,7 +2901,7 @@ components:
           description: List of epcs
           type: array
           items:
-            type: string
+            $ref: "#/components/schemas/Epc"
         bizStep:
           description: EPCIS bizStep
           type: string
@@ -2844,11 +2911,15 @@ components:
         quantityList:
           description: List of quantity
           type: array
-          items:
-            $ref: "#/components/schemas/ArrayStringItem"
+          items: 
+            $ref: "#/components/schemas/QuantityElement"
         action:
-          description: EPCIS Action
+          description: Event action.
           type: string
+          enum:
+            - ADD
+            - OBSERVE
+            - DELETE
         disposition:
           description: EPCIS Disposition
           type: string
@@ -2876,10 +2947,10 @@ components:
           items:
             $ref: "#/components/schemas/BizTransaction"
         ilmd:
-          description: List of quantity
+          description: ilmd
           type: array
           items:
-            $ref: "#/components/schemas/ArrayStringItem"
+            type: string
         eventTime:
           description: When the event happened
           type: string

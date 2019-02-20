@@ -4,9 +4,10 @@
 package org.foodauthent.model.json.mixin;
 
 import java.time.LocalDate;
-import org.foodauthent.model.ArrayStringItem;
 import org.foodauthent.model.BizTransaction;
+import org.foodauthent.model.Epc;
 import org.foodauthent.model.GPCAttribute;
+import org.foodauthent.model.QuantityElement;
 
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import org.foodauthent.model.DiscoveryServiceTransaction.ActionEnum;
 
 
 import org.foodauthent.model.DiscoveryServiceTransaction;
@@ -52,7 +54,7 @@ public interface DiscoveryServiceTransactionMixIn {
     public java.util.UUID getFaId();
     
     @JsonProperty("epcList")
-    public java.util.List<String> getEpcList();
+    public java.util.List<Epc> getEpcList();
     
     @JsonProperty("bizStep")
     public String getBizStep();
@@ -61,10 +63,10 @@ public interface DiscoveryServiceTransactionMixIn {
     public String getReadPoint();
     
     @JsonProperty("quantityList")
-    public java.util.List<ArrayStringItem> getQuantityList();
+    public java.util.List<QuantityElement> getQuantityList();
     
     @JsonProperty("action")
-    public String getAction();
+    public ActionEnum getAction();
     
     @JsonProperty("disposition")
     public String getDisposition();
@@ -85,7 +87,7 @@ public interface DiscoveryServiceTransactionMixIn {
     public java.util.List<BizTransaction> getDestinationList();
     
     @JsonProperty("ilmd")
-    public java.util.List<ArrayStringItem> getIlmd();
+    public java.util.List<String> getIlmd();
     
     @JsonProperty("eventTime")
     public LocalDate getEventTime();
@@ -113,7 +115,7 @@ public interface DiscoveryServiceTransactionMixIn {
         public DiscoveryServiceTransactionMixInBuilder setFaId(final java.util.UUID faId);
         
         @JsonProperty("epcList")
-        public DiscoveryServiceTransactionMixInBuilder setEpcList(final java.util.List<String> epcList);
+        public DiscoveryServiceTransactionMixInBuilder setEpcList(final java.util.List<Epc> epcList);
         
         @JsonProperty("bizStep")
         public DiscoveryServiceTransactionMixInBuilder setBizStep(final String bizStep);
@@ -122,10 +124,10 @@ public interface DiscoveryServiceTransactionMixIn {
         public DiscoveryServiceTransactionMixInBuilder setReadPoint(final String readPoint);
         
         @JsonProperty("quantityList")
-        public DiscoveryServiceTransactionMixInBuilder setQuantityList(final java.util.List<ArrayStringItem> quantityList);
+        public DiscoveryServiceTransactionMixInBuilder setQuantityList(final java.util.List<QuantityElement> quantityList);
         
         @JsonProperty("action")
-        public DiscoveryServiceTransactionMixInBuilder setAction(final String action);
+        public DiscoveryServiceTransactionMixInBuilder setAction(final ActionEnum action);
         
         @JsonProperty("disposition")
         public DiscoveryServiceTransactionMixInBuilder setDisposition(final String disposition);
@@ -146,7 +148,7 @@ public interface DiscoveryServiceTransactionMixIn {
         public DiscoveryServiceTransactionMixInBuilder setDestinationList(final java.util.List<BizTransaction> destinationList);
         
         @JsonProperty("ilmd")
-        public DiscoveryServiceTransactionMixInBuilder setIlmd(final java.util.List<ArrayStringItem> ilmd);
+        public DiscoveryServiceTransactionMixInBuilder setIlmd(final java.util.List<String> ilmd);
         
         @JsonProperty("eventTime")
         public DiscoveryServiceTransactionMixInBuilder setEventTime(final LocalDate eventTime);

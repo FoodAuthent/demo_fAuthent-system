@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/ArrayStringItem', '../model/BizTransaction', '../model/GPCAttribute'], factory);
+    define(['../ApiClient', '../model/BizTransaction', '../model/Epc', '../model/GPCAttribute', '../model/QuantityElement'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./ArrayStringItem'), require('./BizTransaction'), require('./GPCAttribute'));
+    module.exports = factory(require('../ApiClient'), require('./BizTransaction'), require('./Epc'), require('./GPCAttribute'), require('./QuantityElement'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.ObjectEvent = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.ArrayStringItem, root.FoodAuthentSwaggerApi.BizTransaction, root.FoodAuthentSwaggerApi.GPCAttribute);
+    root.FoodAuthentSwaggerApi.ObjectEvent = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.BizTransaction, root.FoodAuthentSwaggerApi.Epc, root.FoodAuthentSwaggerApi.GPCAttribute, root.FoodAuthentSwaggerApi.QuantityElement);
   }
-}(this, function(ApiClient, ArrayStringItem, BizTransaction, GPCAttribute) {
+}(this, function(ApiClient, BizTransaction, Epc, GPCAttribute, QuantityElement) {
   'use strict';
 
 
@@ -64,7 +64,7 @@
         obj['fa-id'] = ApiClient.convertToType(data['fa-id'], 'String');
       }
       if (data.hasOwnProperty('epcList')) {
-        obj['epcList'] = ApiClient.convertToType(data['epcList'], [ArrayStringItem]);
+        obj['epcList'] = ApiClient.convertToType(data['epcList'], [Epc]);
       }
       if (data.hasOwnProperty('bizStep')) {
         obj['bizStep'] = ApiClient.convertToType(data['bizStep'], 'String');
@@ -73,7 +73,7 @@
         obj['readPoint'] = ApiClient.convertToType(data['readPoint'], 'String');
       }
       if (data.hasOwnProperty('quantityList')) {
-        obj['quantityList'] = ApiClient.convertToType(data['quantityList'], [ArrayStringItem]);
+        obj['quantityList'] = ApiClient.convertToType(data['quantityList'], [QuantityElement]);
       }
       if (data.hasOwnProperty('action')) {
         obj['action'] = ApiClient.convertToType(data['action'], 'String');
@@ -104,7 +104,7 @@
   exports.prototype['fa-id'] = undefined;
   /**
    * List of epcs
-   * @member {Array.<module:model/ArrayStringItem>} epcList
+   * @member {Array.<module:model/Epc>} epcList
    */
   exports.prototype['epcList'] = undefined;
   /**
@@ -119,12 +119,12 @@
   exports.prototype['readPoint'] = undefined;
   /**
    * List of quantity
-   * @member {Array.<module:model/ArrayStringItem>} quantityList
+   * @member {Array.<module:model/QuantityElement>} quantityList
    */
   exports.prototype['quantityList'] = undefined;
   /**
-   * EPCIS Action
-   * @member {String} action
+   * Event action.
+   * @member {module:model/ObjectEvent.ActionEnum} action
    */
   exports.prototype['action'] = undefined;
   /**
@@ -153,6 +153,28 @@
    */
   exports.prototype['eventTime'] = undefined;
 
+
+  /**
+   * Allowed values for the <code>action</code> property.
+   * @enum {String}
+   * @readonly
+   */
+  exports.ActionEnum = {
+    /**
+     * value: "ADD"
+     * @const
+     */
+    "ADD": "ADD",
+    /**
+     * value: "OBSERVE"
+     * @const
+     */
+    "OBSERVE": "OBSERVE",
+    /**
+     * value: "DELETE"
+     * @const
+     */
+    "DELETE": "DELETE"  };
 
 
   return exports;

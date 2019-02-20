@@ -56,6 +56,40 @@ var MyObject = function () {
 	    );
 	  };
 	  
+	  var findTransactionById = function (self) {
+		    console.log('Search Transaction for Id: ',self.filter);
+		    var callback = function (error, data, response) {
+		      console.log("data:", data);
+		      console.log("response:", response);
+		      if(data !== undefined && data !== null){
+		    	  self.resultsCount = data.resultCount; 
+		      }else{
+		    	  self.resultsCount = 0;
+		      }
+		      if(response.body !== null){
+		    	  self.pageCount = response.body.pageCount; 
+		      }else{
+		    	  self.pageCount = 0;
+		      }
+		      if (error) {
+		        //this.response = data;
+		        console.error(error);
+		      } else {
+		        var jsonResult = [];
+		        jsonResult.push(response.body);
+		        jsonResult[0]['actions'] = '';
+		        self.items = jsonResult;
+		        console.log("Items For Id are: ",self.items);
+		        console.log("API called successfully. Returned data: ", data);
+		      }
+		    };
+		    var transactionId = self.filter;
+		    transactionApi.getTransactionById(
+		      transactionId,
+		      callback
+		    );
+		  };
+	  
 
   
   var saveTransaction = function (json, self) {
@@ -84,7 +118,8 @@ var MyObject = function () {
 
   return {
 	getTransaction: getTransaction,
-	saveTransaction: saveTransaction
+	saveTransaction: saveTransaction,
+	findTransactionById: findTransactionById
   }
 }();
 

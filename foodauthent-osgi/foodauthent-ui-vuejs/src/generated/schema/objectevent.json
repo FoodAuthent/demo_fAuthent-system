@@ -18,8 +18,8 @@
       "type" : "object",
       "schema" : {
         "fields" : [ {
-          "label" : "Value",
-          "model" : "value",
+          "label" : "Epc",
+          "model" : "epc",
           "required" : false,
           "type" : "input",
           "inputType" : "text"
@@ -57,8 +57,20 @@
       "type" : "object",
       "schema" : {
         "fields" : [ {
-          "label" : "Value",
-          "model" : "value",
+          "label" : "EpcClass",
+          "model" : "epcClass",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        }, {
+          "label" : "Quantity",
+          "model" : "quantity",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        }, {
+          "label" : "Uom",
+          "model" : "uom",
           "required" : false,
           "type" : "input",
           "inputType" : "text"
@@ -69,8 +81,19 @@
     "label" : "Action",
     "model" : "action",
     "required" : false,
-    "type" : "input",
-    "inputType" : "text"
+    "type" : "select",
+    "validator" : "string",
+    "inputName" : "action",
+    "values" : [ {
+      "id" : "ADD",
+      "name" : "ADD"
+    }, {
+      "id" : "OBSERVE",
+      "name" : "OBSERVE"
+    }, {
+      "id" : "DELETE",
+      "name" : "DELETE"
+    } ]
   }, {
     "label" : "Disposition",
     "model" : "disposition",

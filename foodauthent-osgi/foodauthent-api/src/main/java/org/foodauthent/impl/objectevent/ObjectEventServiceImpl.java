@@ -36,6 +36,11 @@ public class ObjectEventServiceImpl implements ObjectEventService {
 	return objectEvent.getFaId();
     }
 
+    @Override
+    public ObjectEvent getObjectEventById(UUID objecteventId) {
+	return persistenceService.getFaModelByUUID(objecteventId, ObjectEvent.class);
+    }
+
   
 
 }

@@ -36,4 +36,13 @@ public interface ObjectEventService {
      */
     ObjectEventPageResult findObjectEventByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
+    /**
+     * Get the ObjectEvent an id.
+     *
+     * @param objecteventId 
+     *
+     * @return the result
+     */
+    ObjectEvent getObjectEventById(java.util.UUID objecteventId);
+        
 }

@@ -4,9 +4,10 @@
 package org.foodauthent.model.json.mixin;
 
 import java.time.LocalDate;
-import org.foodauthent.model.ArrayStringItem;
 import org.foodauthent.model.BizTransaction;
+import org.foodauthent.model.Epc;
 import org.foodauthent.model.GPCAttribute;
+import org.foodauthent.model.QuantityElement;
 
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import org.foodauthent.model.ObjectEvent.ActionEnum;
 
 
 import org.foodauthent.model.ObjectEvent;
@@ -52,7 +54,7 @@ public interface ObjectEventMixIn {
     public java.util.UUID getFaId();
     
     @JsonProperty("epcList")
-    public java.util.List<ArrayStringItem> getEpcList();
+    public java.util.List<Epc> getEpcList();
     
     @JsonProperty("bizStep")
     public String getBizStep();
@@ -61,10 +63,10 @@ public interface ObjectEventMixIn {
     public String getReadPoint();
     
     @JsonProperty("quantityList")
-    public java.util.List<ArrayStringItem> getQuantityList();
+    public java.util.List<QuantityElement> getQuantityList();
     
     @JsonProperty("action")
-    public String getAction();
+    public ActionEnum getAction();
     
     @JsonProperty("disposition")
     public String getDisposition();
@@ -104,7 +106,7 @@ public interface ObjectEventMixIn {
         public ObjectEventMixInBuilder setFaId(final java.util.UUID faId);
         
         @JsonProperty("epcList")
-        public ObjectEventMixInBuilder setEpcList(final java.util.List<ArrayStringItem> epcList);
+        public ObjectEventMixInBuilder setEpcList(final java.util.List<Epc> epcList);
         
         @JsonProperty("bizStep")
         public ObjectEventMixInBuilder setBizStep(final String bizStep);
@@ -113,10 +115,10 @@ public interface ObjectEventMixIn {
         public ObjectEventMixInBuilder setReadPoint(final String readPoint);
         
         @JsonProperty("quantityList")
-        public ObjectEventMixInBuilder setQuantityList(final java.util.List<ArrayStringItem> quantityList);
+        public ObjectEventMixInBuilder setQuantityList(final java.util.List<QuantityElement> quantityList);
         
         @JsonProperty("action")
-        public ObjectEventMixInBuilder setAction(final String action);
+        public ObjectEventMixInBuilder setAction(final ActionEnum action);
         
         @JsonProperty("disposition")
         public ObjectEventMixInBuilder setDisposition(final String disposition);

@@ -10,14 +10,18 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
 import org.apache.commons.io.IOUtils;
 import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.api.internal.exception.NoSuchIDException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceServiceProvider;
+import org.foodauthent.model.DiscoveryServiceTransaction;
+import org.foodauthent.model.Epc;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
+import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.SOP;
 import org.foodauthent.model.Workflow;
@@ -107,6 +111,30 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 						|| containsAKeyword(m.getName(), keywords)) {
 					result.add((T) m);
 				}
+			} else if (modelType.equals(ObjectEvent.class)
+					&& o instanceof ObjectEvent) {
+				final ObjectEvent oe = (ObjectEvent) o;
+				boolean epcExist = false;
+				for (Epc epc : oe.getEpcList()) {
+					epcExist = containsAKeyword(epc.getEpc(), keywords);
+					if (epcExist)
+						break;
+				}
+				if (keywords.isEmpty() || epcExist) {
+					result.add((T) oe);
+				}
+			} else if (modelType.equals(DiscoveryServiceTransaction.class)
+					&& o instanceof DiscoveryServiceTransaction) {
+				final DiscoveryServiceTransaction d = (DiscoveryServiceTransaction) o;
+				boolean epcExist = false;
+				for (Epc epc : d.getEpcList()) {
+					epcExist = containsAKeyword(epc.getEpc(), keywords);
+					if (epcExist)
+						break;
+				}
+				if (keywords.isEmpty() || epcExist) {
+					result.add((T) d);
+				}
 			} else {
 				if (logger.isDebugEnabled()) {
 					logger.debug("Ignoring " + o);
@@ -156,7 +184,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 		}
 		throw new NoSuchElementException("No product found for " + gtin);
 	}
-	
+
 	@Override
 	public Product getProductById(UUID id) {
 		return getFaModelByUUID(id, Product.class);

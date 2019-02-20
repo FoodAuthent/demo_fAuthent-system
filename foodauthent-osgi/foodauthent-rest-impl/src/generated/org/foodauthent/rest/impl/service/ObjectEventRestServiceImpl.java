@@ -62,5 +62,17 @@ public class ObjectEventRestServiceImpl implements ObjectEventRestService {
             Object res = service.findObjectEventByKeyword(pageNumber, pageSize, keywords);
             return Response.ok(res).build();
     }
+
+    /**
+     * Get the ObjectEvent an id.
+     *
+     * @param objecteventId 
+     * @return the response
+     */
+    public Response getObjectEventById(java.util.UUID objecteventId) {
+        
+            Object res = service.getObjectEventById(objecteventId);
+            return Response.ok(res).build();
+    }
 }
 

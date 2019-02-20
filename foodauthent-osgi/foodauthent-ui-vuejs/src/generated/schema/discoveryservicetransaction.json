@@ -15,8 +15,16 @@
     "newElementButtonLabel" : "Add",
     "inputName" : "epcList",
     "items" : {
-      "type" : "input",
-      "inputType" : "text"
+      "type" : "object",
+      "schema" : {
+        "fields" : [ {
+          "label" : "Epc",
+          "model" : "epc",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        } ]
+      }
     }
   }, {
     "label" : "BizStep",
@@ -49,8 +57,20 @@
       "type" : "object",
       "schema" : {
         "fields" : [ {
-          "label" : "Value",
-          "model" : "value",
+          "label" : "EpcClass",
+          "model" : "epcClass",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        }, {
+          "label" : "Quantity",
+          "model" : "quantity",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        }, {
+          "label" : "Uom",
+          "model" : "uom",
           "required" : false,
           "type" : "input",
           "inputType" : "text"
@@ -61,8 +81,19 @@
     "label" : "Action",
     "model" : "action",
     "required" : false,
-    "type" : "input",
-    "inputType" : "text"
+    "type" : "select",
+    "validator" : "string",
+    "inputName" : "action",
+    "values" : [ {
+      "id" : "ADD",
+      "name" : "ADD"
+    }, {
+      "id" : "OBSERVE",
+      "name" : "OBSERVE"
+    }, {
+      "id" : "DELETE",
+      "name" : "DELETE"
+    } ]
   }, {
     "label" : "Disposition",
     "model" : "disposition",
@@ -235,16 +266,8 @@
     "newElementButtonLabel" : "Add",
     "inputName" : "ilmd",
     "items" : {
-      "type" : "object",
-      "schema" : {
-        "fields" : [ {
-          "label" : "Value",
-          "model" : "value",
-          "required" : false,
-          "type" : "input",
-          "inputType" : "text"
-        } ]
-      }
+      "type" : "input",
+      "inputType" : "text"
     }
   }, {
     "label" : "EventTime",

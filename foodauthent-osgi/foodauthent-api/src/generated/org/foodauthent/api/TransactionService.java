@@ -36,4 +36,13 @@ public interface TransactionService {
      */
     TransactionPageResult findTransactionByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
+    /**
+     * Get the Transaction an id.
+     *
+     * @param transactionId 
+     *
+     * @return the result
+     */
+    DiscoveryServiceTransaction getTransactionById(java.util.UUID transactionId);
+        
 }

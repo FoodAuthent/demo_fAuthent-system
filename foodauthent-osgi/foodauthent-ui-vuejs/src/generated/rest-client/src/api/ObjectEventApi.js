@@ -143,6 +143,53 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
+
+    /**
+     * Callback function to receive the result of the getObjectEventById operation.
+     * @callback module:api/ObjectEventApi~getObjectEventByIdCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/ObjectEvent} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get the ObjectEvent an id.
+     * @param {String} objecteventId 
+     * @param {module:api/ObjectEventApi~getObjectEventByIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/ObjectEvent}
+     */
+    this.getObjectEventById = function(objecteventId, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'objecteventId' is set
+      if (objecteventId === undefined || objecteventId === null) {
+        throw new Error("Missing the required parameter 'objecteventId' when calling getObjectEventById");
+      }
+
+
+      var pathParams = {
+        'objectevent-id': objecteventId
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = ObjectEvent;
+
+      return this.apiClient.callApi(
+        '/epcis/objectEvent/{objectevent-id}', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
   };
 
   return exports;

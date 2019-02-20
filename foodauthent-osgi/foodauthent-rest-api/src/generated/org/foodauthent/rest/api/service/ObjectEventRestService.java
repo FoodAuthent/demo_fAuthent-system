@@ -56,5 +56,17 @@ public interface ObjectEventRestService{
 , @QueryParam("pageSize")Integer pageSize
 , @QueryParam("keywords")java.util.List<String> keywords
 );
+
+    /**
+     * Get the ObjectEvent an id.
+     *
+     * @param objecteventId 
+     * @return the response
+     */
+    @GET
+    @Path("/epcis/objectEvent/{objectevent-id}")
+    @Produces({ "application/json" })
+    public Response getObjectEventById(@PathParam("objectevent-id") java.util.UUID objecteventId
+);
 }
 

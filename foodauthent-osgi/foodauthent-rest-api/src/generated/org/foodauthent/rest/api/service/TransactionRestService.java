@@ -56,5 +56,17 @@ public interface TransactionRestService{
 , @QueryParam("pageSize")Integer pageSize
 , @QueryParam("keywords")java.util.List<String> keywords
 );
+
+    /**
+     * Get the Transaction an id.
+     *
+     * @param transactionId 
+     * @return the response
+     */
+    @GET
+    @Path("/discovery/transaction/{transaction-id}")
+    @Produces({ "application/json" })
+    public Response getTransactionById(@PathParam("transaction-id") java.util.UUID transactionId
+);
 }
 

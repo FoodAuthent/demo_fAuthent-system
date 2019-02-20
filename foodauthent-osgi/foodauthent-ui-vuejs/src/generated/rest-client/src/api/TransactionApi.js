@@ -143,6 +143,53 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
+
+    /**
+     * Callback function to receive the result of the getTransactionById operation.
+     * @callback module:api/TransactionApi~getTransactionByIdCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/DiscoveryServiceTransaction} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get the Transaction an id.
+     * @param {String} transactionId 
+     * @param {module:api/TransactionApi~getTransactionByIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/DiscoveryServiceTransaction}
+     */
+    this.getTransactionById = function(transactionId, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'transactionId' is set
+      if (transactionId === undefined || transactionId === null) {
+        throw new Error("Missing the required parameter 'transactionId' when calling getTransactionById");
+      }
+
+
+      var pathParams = {
+        'transaction-id': transactionId
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = DiscoveryServiceTransaction;
+
+      return this.apiClient.callApi(
+        '/discovery/transaction/{transaction-id}', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
   };
 
   return exports;

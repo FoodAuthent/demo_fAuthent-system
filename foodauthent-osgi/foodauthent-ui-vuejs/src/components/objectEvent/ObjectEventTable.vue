@@ -64,6 +64,7 @@
 
 <script>
 var getObjectEvent = require("@/utils/objectEventFunction.js").default.getObjectEvent;
+var findObjectEventById = require("@/utils/objectEventFunction.js").default.findObjectEventById;
 import jsonschema from "@/generated/schema/objectevent.json";
 export default {
   name: "objectEvent",
@@ -121,24 +122,13 @@ export default {
     //check if it is a valid UUID
 	var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
 	if (re.test(self.filter)) {
-    	findModelById(self);
+    	findObjectEventById(self);
 	} else {
    		getObjectEvent(self);
 	}
     },
-    //Search Model for id or keywords
-    searchModelByKeywords(){
-    let self = this;
-    self.items=[];
-    findModelByKeyword(self);
-    //document.getElementById("refreshTable").click();
-    },
-    searchModelById(){
-    let self = this;
-    findModelById(self);
-    },
     clearSearch(){
-    this.filter = "";
+    this.filter = null;
     document.getElementById("refreshTable").click();
     },
     //Manage when the number of items displayed on the table change
