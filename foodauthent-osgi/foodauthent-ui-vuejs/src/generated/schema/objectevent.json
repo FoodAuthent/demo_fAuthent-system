@@ -135,8 +135,26 @@
       "type" : "object",
       "schema" : {
         "fields" : [ {
-          "label" : "Value",
-          "model" : "value",
+          "label" : "AttributeTypeCode",
+          "model" : "attributeTypeCode",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        }, {
+          "label" : "AttributeTypeName",
+          "model" : "attributeTypeName",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        }, {
+          "label" : "AttributeValueCode",
+          "model" : "attributeValueCode",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        }, {
+          "label" : "AttributeValueName",
+          "model" : "attributeValueName",
           "required" : false,
           "type" : "input",
           "inputType" : "text"

@@ -13,6 +13,7 @@ import java.util.Objects;
 import java.time.LocalDate;
 import org.foodauthent.model.ArrayStringItem;
 import org.foodauthent.model.BizTransaction;
+import org.foodauthent.model.GPCAttribute;
 
 
 
@@ -34,7 +35,7 @@ public class ObjectEvent   extends FaModel {
   protected String disposition;
   protected java.util.List<BizTransaction> bizTransactionList;
   protected String gtin;
-  protected java.util.List<ArrayStringItem> bricks;
+  protected java.util.List<GPCAttribute> bricks;
   protected LocalDate eventTime;
   
   public String getTypeID() {
@@ -158,7 +159,7 @@ public class ObjectEvent   extends FaModel {
    * bricks
    * @return bricks 
    */
-  public java.util.List<ArrayStringItem> getBricks() {
+  public java.util.List<GPCAttribute> getBricks() {
         return bricks;
     }
     
@@ -218,7 +219,7 @@ public class ObjectEvent   extends FaModel {
         private String disposition;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
         private String gtin;
-        private java.util.List<ArrayStringItem> bricks = new java.util.ArrayList<>();
+        private java.util.List<GPCAttribute> bricks = new java.util.ArrayList<>();
         private LocalDate eventTime;
 
         /**
@@ -306,7 +307,7 @@ public class ObjectEvent   extends FaModel {
          * bricks
          * @return bricks 
          */
-        public ObjectEventBuilder setBricks(java.util.List<ArrayStringItem> bricks) {
+        public ObjectEventBuilder setBricks(java.util.List<GPCAttribute> bricks) {
              this.bricks = bricks;
              return this;
         }

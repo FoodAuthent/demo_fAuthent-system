@@ -13,6 +13,7 @@ import java.util.Objects;
 import java.time.LocalDate;
 import org.foodauthent.model.ArrayStringItem;
 import org.foodauthent.model.BizTransaction;
+import org.foodauthent.model.GPCAttribute;
 
 
 
@@ -26,7 +27,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
 
 
   protected java.util.UUID faId;
-  protected java.util.List<ArrayStringItem> epcList;
+  protected java.util.List<String> epcList;
   protected String bizStep;
   protected String readPoint;
   protected java.util.List<ArrayStringItem> quantityList;
@@ -34,7 +35,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   protected String disposition;
   protected java.util.List<BizTransaction> bizTransactionList;
   protected String gtin;
-  protected java.util.List<ArrayStringItem> bricks;
+  protected java.util.List<GPCAttribute> bricks;
   protected java.util.List<BizTransaction> sourceList;
   protected java.util.List<BizTransaction> destinationList;
   protected java.util.List<ArrayStringItem> ilmd;
@@ -100,7 +101,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * List of epcs
    * @return epcList 
    */
-  public java.util.List<ArrayStringItem> getEpcList() {
+  public java.util.List<String> getEpcList() {
         return epcList;
     }
     
@@ -164,7 +165,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * bricks
    * @return bricks 
    */
-  public java.util.List<ArrayStringItem> getBricks() {
+  public java.util.List<GPCAttribute> getBricks() {
         return bricks;
     }
     
@@ -243,7 +244,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         }
     
         private java.util.UUID faId;
-        private java.util.List<ArrayStringItem> epcList = new java.util.ArrayList<>();
+        private java.util.List<String> epcList = new java.util.ArrayList<>();
         private String bizStep;
         private String readPoint;
         private java.util.List<ArrayStringItem> quantityList = new java.util.ArrayList<>();
@@ -251,7 +252,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         private String disposition;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
         private String gtin;
-        private java.util.List<ArrayStringItem> bricks = new java.util.ArrayList<>();
+        private java.util.List<GPCAttribute> bricks = new java.util.ArrayList<>();
         private java.util.List<BizTransaction> sourceList = new java.util.ArrayList<>();
         private java.util.List<BizTransaction> destinationList = new java.util.ArrayList<>();
         private java.util.List<ArrayStringItem> ilmd = new java.util.ArrayList<>();
@@ -270,7 +271,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * List of epcs
          * @return epcList 
          */
-        public DiscoveryServiceTransactionBuilder setEpcList(java.util.List<ArrayStringItem> epcList) {
+        public DiscoveryServiceTransactionBuilder setEpcList(java.util.List<String> epcList) {
              this.epcList = epcList;
              return this;
         }
@@ -342,7 +343,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * bricks
          * @return bricks 
          */
-        public DiscoveryServiceTransactionBuilder setBricks(java.util.List<ArrayStringItem> bricks) {
+        public DiscoveryServiceTransactionBuilder setBricks(java.util.List<GPCAttribute> bricks) {
              this.bricks = bricks;
              return this;
         }

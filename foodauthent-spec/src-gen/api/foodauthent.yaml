@@ -1943,6 +1943,29 @@ components:
         brand:
           type: string
 
+    GPCAttribute:
+      description: >-
+        Global Product Classification Attribute for storing gpc brick details
+      type: object
+      x-no-faid: true
+      x-ui-vue.js:
+      - name: attributeTypeCode
+      - name: attributeTypeName
+      - name: attributeValueCode
+      - name: attributeValueName
+      properties:
+        attributeTypeCode:
+          description: GPC brick code
+          type: string
+        attributeTypeName:
+          description: GPC brick human readable name
+          type: string
+        attributeValueCode:
+          description: GPC brick's value
+          type: string
+        attributeValueName:
+          description: GPC brick's value human readable description 
+          type: string
     PredictionJobPageResult:
       type: object
       x-no-faid: true
@@ -2774,7 +2797,7 @@ components:
           description: bricks
           type: array
           items:
-            $ref: "#/components/schemas/ArrayStringItem"
+            $ref: "#/components/schemas/GPCAttribute"
         eventTime:
           description: When the event happened
           type: string
@@ -2806,7 +2829,7 @@ components:
           description: List of epcs
           type: array
           items:
-            $ref: "#/components/schemas/ArrayStringItem"
+            type: string
         bizStep:
           description: EPCIS bizStep
           type: string
@@ -2836,7 +2859,7 @@ components:
           description: bricks
           type: array
           items:
-            $ref: "#/components/schemas/ArrayStringItem"
+            $ref: "#/components/schemas/GPCAttribute"
         sourceList:
           description: List of sources
           type: array

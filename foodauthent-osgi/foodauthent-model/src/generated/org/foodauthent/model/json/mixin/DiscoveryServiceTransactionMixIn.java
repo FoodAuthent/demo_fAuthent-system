@@ -6,6 +6,7 @@ package org.foodauthent.model.json.mixin;
 import java.time.LocalDate;
 import org.foodauthent.model.ArrayStringItem;
 import org.foodauthent.model.BizTransaction;
+import org.foodauthent.model.GPCAttribute;
 
 import java.util.UUID;
 
@@ -51,7 +52,7 @@ public interface DiscoveryServiceTransactionMixIn {
     public java.util.UUID getFaId();
     
     @JsonProperty("epcList")
-    public java.util.List<ArrayStringItem> getEpcList();
+    public java.util.List<String> getEpcList();
     
     @JsonProperty("bizStep")
     public String getBizStep();
@@ -75,7 +76,7 @@ public interface DiscoveryServiceTransactionMixIn {
     public String getGtin();
     
     @JsonProperty("bricks")
-    public java.util.List<ArrayStringItem> getBricks();
+    public java.util.List<GPCAttribute> getBricks();
     
     @JsonProperty("sourceList")
     public java.util.List<BizTransaction> getSourceList();
@@ -112,7 +113,7 @@ public interface DiscoveryServiceTransactionMixIn {
         public DiscoveryServiceTransactionMixInBuilder setFaId(final java.util.UUID faId);
         
         @JsonProperty("epcList")
-        public DiscoveryServiceTransactionMixInBuilder setEpcList(final java.util.List<ArrayStringItem> epcList);
+        public DiscoveryServiceTransactionMixInBuilder setEpcList(final java.util.List<String> epcList);
         
         @JsonProperty("bizStep")
         public DiscoveryServiceTransactionMixInBuilder setBizStep(final String bizStep);
@@ -136,7 +137,7 @@ public interface DiscoveryServiceTransactionMixIn {
         public DiscoveryServiceTransactionMixInBuilder setGtin(final String gtin);
         
         @JsonProperty("bricks")
-        public DiscoveryServiceTransactionMixInBuilder setBricks(final java.util.List<ArrayStringItem> bricks);
+        public DiscoveryServiceTransactionMixInBuilder setBricks(final java.util.List<GPCAttribute> bricks);
         
         @JsonProperty("sourceList")
         public DiscoveryServiceTransactionMixInBuilder setSourceList(final java.util.List<BizTransaction> sourceList);

@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/ArrayStringItem', '../model/BizTransaction'], factory);
+    define(['../ApiClient', '../model/ArrayStringItem', '../model/BizTransaction', '../model/GPCAttribute'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./ArrayStringItem'), require('./BizTransaction'));
+    module.exports = factory(require('../ApiClient'), require('./ArrayStringItem'), require('./BizTransaction'), require('./GPCAttribute'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.DiscoveryServiceTransaction = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.ArrayStringItem, root.FoodAuthentSwaggerApi.BizTransaction);
+    root.FoodAuthentSwaggerApi.DiscoveryServiceTransaction = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.ArrayStringItem, root.FoodAuthentSwaggerApi.BizTransaction, root.FoodAuthentSwaggerApi.GPCAttribute);
   }
-}(this, function(ApiClient, ArrayStringItem, BizTransaction) {
+}(this, function(ApiClient, ArrayStringItem, BizTransaction, GPCAttribute) {
   'use strict';
 
 
@@ -64,7 +64,7 @@
         obj['fa-id'] = ApiClient.convertToType(data['fa-id'], 'String');
       }
       if (data.hasOwnProperty('epcList')) {
-        obj['epcList'] = ApiClient.convertToType(data['epcList'], [ArrayStringItem]);
+        obj['epcList'] = ApiClient.convertToType(data['epcList'], ['String']);
       }
       if (data.hasOwnProperty('bizStep')) {
         obj['bizStep'] = ApiClient.convertToType(data['bizStep'], 'String');
@@ -88,7 +88,7 @@
         obj['gtin'] = ApiClient.convertToType(data['gtin'], 'String');
       }
       if (data.hasOwnProperty('bricks')) {
-        obj['bricks'] = ApiClient.convertToType(data['bricks'], [ArrayStringItem]);
+        obj['bricks'] = ApiClient.convertToType(data['bricks'], [GPCAttribute]);
       }
       if (data.hasOwnProperty('sourceList')) {
         obj['sourceList'] = ApiClient.convertToType(data['sourceList'], [BizTransaction]);
@@ -113,7 +113,7 @@
   exports.prototype['fa-id'] = undefined;
   /**
    * List of epcs
-   * @member {Array.<module:model/ArrayStringItem>} epcList
+   * @member {Array.<String>} epcList
    */
   exports.prototype['epcList'] = undefined;
   /**
@@ -153,7 +153,7 @@
   exports.prototype['gtin'] = undefined;
   /**
    * bricks
-   * @member {Array.<module:model/ArrayStringItem>} bricks
+   * @member {Array.<module:model/GPCAttribute>} bricks
    */
   exports.prototype['bricks'] = undefined;
   /**
