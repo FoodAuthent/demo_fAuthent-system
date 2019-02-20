@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient'], factory);
+    define(['../ApiClient', '../model/ArrayStringItem', '../model/BizTransaction'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./ArrayStringItem'), require('./BizTransaction'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.DiscoveryServiceTransaction = factory(root.FoodAuthentSwaggerApi.ApiClient);
+    root.FoodAuthentSwaggerApi.DiscoveryServiceTransaction = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.ArrayStringItem, root.FoodAuthentSwaggerApi.BizTransaction);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, ArrayStringItem, BizTransaction) {
   'use strict';
 
 
@@ -64,7 +64,7 @@
         obj['fa-id'] = ApiClient.convertToType(data['fa-id'], 'String');
       }
       if (data.hasOwnProperty('epcList')) {
-        obj['epcList'] = ApiClient.convertToType(data['epcList'], 'String');
+        obj['epcList'] = ApiClient.convertToType(data['epcList'], [ArrayStringItem]);
       }
       if (data.hasOwnProperty('bizStep')) {
         obj['bizStep'] = ApiClient.convertToType(data['bizStep'], 'String');
@@ -73,7 +73,7 @@
         obj['readPoint'] = ApiClient.convertToType(data['readPoint'], 'String');
       }
       if (data.hasOwnProperty('quantityList')) {
-        obj['quantityList'] = ApiClient.convertToType(data['quantityList'], 'String');
+        obj['quantityList'] = ApiClient.convertToType(data['quantityList'], [ArrayStringItem]);
       }
       if (data.hasOwnProperty('action')) {
         obj['action'] = ApiClient.convertToType(data['action'], 'String');
@@ -82,22 +82,25 @@
         obj['disposition'] = ApiClient.convertToType(data['disposition'], 'String');
       }
       if (data.hasOwnProperty('bizTransactionList')) {
-        obj['bizTransactionList'] = ApiClient.convertToType(data['bizTransactionList'], 'String');
+        obj['bizTransactionList'] = ApiClient.convertToType(data['bizTransactionList'], [BizTransaction]);
       }
       if (data.hasOwnProperty('gtin')) {
         obj['gtin'] = ApiClient.convertToType(data['gtin'], 'String');
       }
       if (data.hasOwnProperty('bricks')) {
-        obj['bricks'] = ApiClient.convertToType(data['bricks'], 'String');
+        obj['bricks'] = ApiClient.convertToType(data['bricks'], [ArrayStringItem]);
       }
       if (data.hasOwnProperty('sourceList')) {
-        obj['sourceList'] = ApiClient.convertToType(data['sourceList'], 'String');
+        obj['sourceList'] = ApiClient.convertToType(data['sourceList'], [BizTransaction]);
       }
       if (data.hasOwnProperty('destinationList')) {
-        obj['destinationList'] = ApiClient.convertToType(data['destinationList'], 'String');
+        obj['destinationList'] = ApiClient.convertToType(data['destinationList'], [BizTransaction]);
       }
       if (data.hasOwnProperty('ilmd')) {
-        obj['ilmd'] = ApiClient.convertToType(data['ilmd'], 'String');
+        obj['ilmd'] = ApiClient.convertToType(data['ilmd'], [ArrayStringItem]);
+      }
+      if (data.hasOwnProperty('eventTime')) {
+        obj['eventTime'] = ApiClient.convertToType(data['eventTime'], 'Date');
       }
     }
     return obj;
@@ -110,7 +113,7 @@
   exports.prototype['fa-id'] = undefined;
   /**
    * List of epcs
-   * @member {String} epcList
+   * @member {Array.<module:model/ArrayStringItem>} epcList
    */
   exports.prototype['epcList'] = undefined;
   /**
@@ -125,7 +128,7 @@
   exports.prototype['readPoint'] = undefined;
   /**
    * List of quantity
-   * @member {String} quantityList
+   * @member {Array.<module:model/ArrayStringItem>} quantityList
    */
   exports.prototype['quantityList'] = undefined;
   /**
@@ -140,7 +143,7 @@
   exports.prototype['disposition'] = undefined;
   /**
    * List of bizTransactions
-   * @member {String} bizTransactionList
+   * @member {Array.<module:model/BizTransaction>} bizTransactionList
    */
   exports.prototype['bizTransactionList'] = undefined;
   /**
@@ -150,24 +153,29 @@
   exports.prototype['gtin'] = undefined;
   /**
    * bricks
-   * @member {String} bricks
+   * @member {Array.<module:model/ArrayStringItem>} bricks
    */
   exports.prototype['bricks'] = undefined;
   /**
    * List of sources
-   * @member {String} sourceList
+   * @member {Array.<module:model/BizTransaction>} sourceList
    */
   exports.prototype['sourceList'] = undefined;
   /**
    * List of destinations
-   * @member {String} destinationList
+   * @member {Array.<module:model/BizTransaction>} destinationList
    */
   exports.prototype['destinationList'] = undefined;
   /**
    * List of quantity
-   * @member {String} ilmd
+   * @member {Array.<module:model/ArrayStringItem>} ilmd
    */
   exports.prototype['ilmd'] = undefined;
+  /**
+   * When the event happened
+   * @member {Date} eventTime
+   */
+  exports.prototype['eventTime'] = undefined;
 
 
 

@@ -6,6 +6,7 @@ package org.foodauthent.rest.api.service;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
+import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.TransactionPageResult;
 
 import org.foodauthent.api.TransactionService;
@@ -26,6 +27,19 @@ import org.foodauthent.common.exception.FAExceptions;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public interface TransactionRestService{
 
+
+    /**
+     * Creates/adds a new Transaction.
+     *
+     * @param discoveryServiceTransaction TODO
+     * @return the response
+     */
+    @POST
+    @Path("/discovery/transaction")
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    public Response createTransaction(DiscoveryServiceTransaction discoveryServiceTransaction
+);
 
     /**
      * Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.

@@ -3,6 +3,7 @@
  */
 package org.foodauthent.api;
 
+import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.TransactionPageResult;
 
 import org.foodauthent.common.exception.FAExceptions;
@@ -15,6 +16,15 @@ import org.foodauthent.common.exception.FAExceptions;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public interface TransactionService {
 
+    /**
+     * Creates/adds a new Transaction.
+     *
+     * @param discoveryServiceTransaction TODO
+     *
+     * @return the result
+     */
+    java.util.UUID createTransaction(DiscoveryServiceTransaction discoveryServiceTransaction);
+        
     /**
      * Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.
      *

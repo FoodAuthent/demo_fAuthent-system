@@ -73,7 +73,7 @@ var MyObject = function () {
       }
     };
     var opt = {
-      model: json
+     discoveryServiceTransaction: json
     };
     transactionApi.createTransaction(
       opt,

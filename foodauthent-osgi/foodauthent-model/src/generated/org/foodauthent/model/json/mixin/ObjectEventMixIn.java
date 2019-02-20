@@ -3,6 +3,9 @@
  */
 package org.foodauthent.model.json.mixin;
 
+import java.time.LocalDate;
+import org.foodauthent.model.ArrayStringItem;
+import org.foodauthent.model.BizTransaction;
 
 import java.util.UUID;
 
@@ -48,7 +51,7 @@ public interface ObjectEventMixIn {
     public java.util.UUID getFaId();
     
     @JsonProperty("epcList")
-    public String getEpcList();
+    public java.util.List<ArrayStringItem> getEpcList();
     
     @JsonProperty("bizStep")
     public String getBizStep();
@@ -57,7 +60,7 @@ public interface ObjectEventMixIn {
     public String getReadPoint();
     
     @JsonProperty("quantityList")
-    public String getQuantityList();
+    public java.util.List<ArrayStringItem> getQuantityList();
     
     @JsonProperty("action")
     public String getAction();
@@ -66,13 +69,16 @@ public interface ObjectEventMixIn {
     public String getDisposition();
     
     @JsonProperty("bizTransactionList")
-    public String getBizTransactionList();
+    public java.util.List<BizTransaction> getBizTransactionList();
     
     @JsonProperty("gtin")
     public String getGtin();
     
     @JsonProperty("bricks")
-    public String getBricks();
+    public java.util.List<ArrayStringItem> getBricks();
+    
+    @JsonProperty("eventTime")
+    public LocalDate getEventTime();
     
 
     /**
@@ -97,7 +103,7 @@ public interface ObjectEventMixIn {
         public ObjectEventMixInBuilder setFaId(final java.util.UUID faId);
         
         @JsonProperty("epcList")
-        public ObjectEventMixInBuilder setEpcList(final String epcList);
+        public ObjectEventMixInBuilder setEpcList(final java.util.List<ArrayStringItem> epcList);
         
         @JsonProperty("bizStep")
         public ObjectEventMixInBuilder setBizStep(final String bizStep);
@@ -106,7 +112,7 @@ public interface ObjectEventMixIn {
         public ObjectEventMixInBuilder setReadPoint(final String readPoint);
         
         @JsonProperty("quantityList")
-        public ObjectEventMixInBuilder setQuantityList(final String quantityList);
+        public ObjectEventMixInBuilder setQuantityList(final java.util.List<ArrayStringItem> quantityList);
         
         @JsonProperty("action")
         public ObjectEventMixInBuilder setAction(final String action);
@@ -115,13 +121,16 @@ public interface ObjectEventMixIn {
         public ObjectEventMixInBuilder setDisposition(final String disposition);
         
         @JsonProperty("bizTransactionList")
-        public ObjectEventMixInBuilder setBizTransactionList(final String bizTransactionList);
+        public ObjectEventMixInBuilder setBizTransactionList(final java.util.List<BizTransaction> bizTransactionList);
         
         @JsonProperty("gtin")
         public ObjectEventMixInBuilder setGtin(final String gtin);
         
         @JsonProperty("bricks")
-        public ObjectEventMixInBuilder setBricks(final String bricks);
+        public ObjectEventMixInBuilder setBricks(final java.util.List<ArrayStringItem> bricks);
+        
+        @JsonProperty("eventTime")
+        public ObjectEventMixInBuilder setEventTime(final LocalDate eventTime);
         
     }
 

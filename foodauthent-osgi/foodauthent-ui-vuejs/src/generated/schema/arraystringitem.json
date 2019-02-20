@@ -1,0 +1,9 @@
+{
+  "fields" : [ {
+    "label" : "Value",
+    "model" : "value",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}

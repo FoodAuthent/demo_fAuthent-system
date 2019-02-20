@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import java.time.LocalDate;
+import org.foodauthent.model.ArrayStringItem;
+import org.foodauthent.model.BizTransaction;
 
 
 
@@ -23,18 +26,19 @@ public class DiscoveryServiceTransaction   extends FaModel {
 
 
   protected java.util.UUID faId;
-  protected String epcList;
+  protected java.util.List<ArrayStringItem> epcList;
   protected String bizStep;
   protected String readPoint;
-  protected String quantityList;
+  protected java.util.List<ArrayStringItem> quantityList;
   protected String action;
   protected String disposition;
-  protected String bizTransactionList;
+  protected java.util.List<BizTransaction> bizTransactionList;
   protected String gtin;
-  protected String bricks;
-  protected String sourceList;
-  protected String destinationList;
-  protected String ilmd;
+  protected java.util.List<ArrayStringItem> bricks;
+  protected java.util.List<BizTransaction> sourceList;
+  protected java.util.List<BizTransaction> destinationList;
+  protected java.util.List<ArrayStringItem> ilmd;
+  protected LocalDate eventTime;
   
   public String getTypeID() {
     return "DiscoveryServiceTransaction";
@@ -59,6 +63,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
     sourceList = immutable(builder.sourceList);
     destinationList = immutable(builder.destinationList);
     ilmd = immutable(builder.ilmd);
+    eventTime = immutable(builder.eventTime);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -79,7 +84,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
             return false;
         }
         DiscoveryServiceTransaction ent = (DiscoveryServiceTransaction)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(disposition, ent.disposition) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(sourceList, ent.sourceList) && Objects.equals(destinationList, ent.destinationList) && Objects.equals(ilmd, ent.ilmd);
+        return Objects.equals(faId, ent.faId) && Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(disposition, ent.disposition) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(sourceList, ent.sourceList) && Objects.equals(destinationList, ent.destinationList) && Objects.equals(ilmd, ent.ilmd) && Objects.equals(eventTime, ent.eventTime);
     }
 
 
@@ -95,7 +100,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * List of epcs
    * @return epcList 
    */
-  public String getEpcList() {
+  public java.util.List<ArrayStringItem> getEpcList() {
         return epcList;
     }
     
@@ -119,7 +124,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * List of quantity
    * @return quantityList 
    */
-  public String getQuantityList() {
+  public java.util.List<ArrayStringItem> getQuantityList() {
         return quantityList;
     }
     
@@ -143,7 +148,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * List of bizTransactions
    * @return bizTransactionList 
    */
-  public String getBizTransactionList() {
+  public java.util.List<BizTransaction> getBizTransactionList() {
         return bizTransactionList;
     }
     
@@ -159,7 +164,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * bricks
    * @return bricks 
    */
-  public String getBricks() {
+  public java.util.List<ArrayStringItem> getBricks() {
         return bricks;
     }
     
@@ -167,7 +172,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * List of sources
    * @return sourceList 
    */
-  public String getSourceList() {
+  public java.util.List<BizTransaction> getSourceList() {
         return sourceList;
     }
     
@@ -175,7 +180,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * List of destinations
    * @return destinationList 
    */
-  public String getDestinationList() {
+  public java.util.List<BizTransaction> getDestinationList() {
         return destinationList;
     }
     
@@ -183,8 +188,16 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * List of quantity
    * @return ilmd 
    */
-  public String getIlmd() {
+  public java.util.List<ArrayStringItem> getIlmd() {
         return ilmd;
+    }
+    
+  /**
+   * When the event happened
+   * @return eventTime 
+   */
+  public LocalDate getEventTime() {
+        return eventTime;
     }
     
   
@@ -218,6 +231,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         builder.sourceList = entity.sourceList;
         builder.destinationList = entity.destinationList;
         builder.ilmd = entity.ilmd;
+        builder.eventTime = entity.eventTime;
  		return builder;
   	}
   	
@@ -229,18 +243,19 @@ public class DiscoveryServiceTransaction   extends FaModel {
         }
     
         private java.util.UUID faId;
-        private String epcList;
+        private java.util.List<ArrayStringItem> epcList = new java.util.ArrayList<>();
         private String bizStep;
         private String readPoint;
-        private String quantityList;
+        private java.util.List<ArrayStringItem> quantityList = new java.util.ArrayList<>();
         private String action;
         private String disposition;
-        private String bizTransactionList;
+        private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
         private String gtin;
-        private String bricks;
-        private String sourceList;
-        private String destinationList;
-        private String ilmd;
+        private java.util.List<ArrayStringItem> bricks = new java.util.ArrayList<>();
+        private java.util.List<BizTransaction> sourceList = new java.util.ArrayList<>();
+        private java.util.List<BizTransaction> destinationList = new java.util.ArrayList<>();
+        private java.util.List<ArrayStringItem> ilmd = new java.util.ArrayList<>();
+        private LocalDate eventTime;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -255,7 +270,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * List of epcs
          * @return epcList 
          */
-        public DiscoveryServiceTransactionBuilder setEpcList(String epcList) {
+        public DiscoveryServiceTransactionBuilder setEpcList(java.util.List<ArrayStringItem> epcList) {
              this.epcList = epcList;
              return this;
         }
@@ -282,7 +297,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * List of quantity
          * @return quantityList 
          */
-        public DiscoveryServiceTransactionBuilder setQuantityList(String quantityList) {
+        public DiscoveryServiceTransactionBuilder setQuantityList(java.util.List<ArrayStringItem> quantityList) {
              this.quantityList = quantityList;
              return this;
         }
@@ -309,7 +324,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * List of bizTransactions
          * @return bizTransactionList 
          */
-        public DiscoveryServiceTransactionBuilder setBizTransactionList(String bizTransactionList) {
+        public DiscoveryServiceTransactionBuilder setBizTransactionList(java.util.List<BizTransaction> bizTransactionList) {
              this.bizTransactionList = bizTransactionList;
              return this;
         }
@@ -327,7 +342,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * bricks
          * @return bricks 
          */
-        public DiscoveryServiceTransactionBuilder setBricks(String bricks) {
+        public DiscoveryServiceTransactionBuilder setBricks(java.util.List<ArrayStringItem> bricks) {
              this.bricks = bricks;
              return this;
         }
@@ -336,7 +351,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * List of sources
          * @return sourceList 
          */
-        public DiscoveryServiceTransactionBuilder setSourceList(String sourceList) {
+        public DiscoveryServiceTransactionBuilder setSourceList(java.util.List<BizTransaction> sourceList) {
              this.sourceList = sourceList;
              return this;
         }
@@ -345,7 +360,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * List of destinations
          * @return destinationList 
          */
-        public DiscoveryServiceTransactionBuilder setDestinationList(String destinationList) {
+        public DiscoveryServiceTransactionBuilder setDestinationList(java.util.List<BizTransaction> destinationList) {
              this.destinationList = destinationList;
              return this;
         }
@@ -354,8 +369,17 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * List of quantity
          * @return ilmd 
          */
-        public DiscoveryServiceTransactionBuilder setIlmd(String ilmd) {
+        public DiscoveryServiceTransactionBuilder setIlmd(java.util.List<ArrayStringItem> ilmd) {
              this.ilmd = ilmd;
+             return this;
+        }
+
+        /**
+         * When the event happened
+         * @return eventTime 
+         */
+        public DiscoveryServiceTransactionBuilder setEventTime(LocalDate eventTime) {
+             this.eventTime = eventTime;
              return this;
         }
 

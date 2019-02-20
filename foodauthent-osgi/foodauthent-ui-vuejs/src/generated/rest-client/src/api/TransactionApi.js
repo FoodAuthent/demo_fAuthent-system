@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/TransactionPageResult'], factory);
+    define(['../ApiClient', '../model/DiscoveryServiceTransaction', '../model/TransactionPageResult'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/TransactionPageResult'));
+    module.exports = factory(require('../ApiClient'), require('../model/DiscoveryServiceTransaction'), require('../model/TransactionPageResult'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.TransactionApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.TransactionPageResult);
+    root.FoodAuthentSwaggerApi.TransactionApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.DiscoveryServiceTransaction, root.FoodAuthentSwaggerApi.TransactionPageResult);
   }
-}(this, function(ApiClient, TransactionPageResult) {
+}(this, function(ApiClient, DiscoveryServiceTransaction, TransactionPageResult) {
   'use strict';
 
   /**
@@ -47,6 +47,50 @@
   var exports = function(apiClient) {
     this.apiClient = apiClient || ApiClient.instance;
 
+
+    /**
+     * Callback function to receive the result of the createTransaction operation.
+     * @callback module:api/TransactionApi~createTransactionCallback
+     * @param {String} error Error message, if any.
+     * @param {String} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Creates/adds a new Transaction.
+     * Creates/adds a new Transaction.
+     * @param {Object} opts Optional parameters
+     * @param {module:model/DiscoveryServiceTransaction} opts.discoveryServiceTransaction TODO
+     * @param {module:api/TransactionApi~createTransactionCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link String}
+     */
+    this.createTransaction = function(opts, callback) {
+      opts = opts || {};
+      var postBody = opts['discoveryServiceTransaction'];
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = String;
+
+      return this.apiClient.callApi(
+        '/discovery/transaction', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
 
     /**
      * Callback function to receive the result of the findTransactionByKeyword operation.

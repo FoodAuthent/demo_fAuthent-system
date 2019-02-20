@@ -24,6 +24,8 @@ public class ModelUtil {
      */
     public static final void addModelMixIns(final ObjectMapper mapper) {
     
+        mapper.addMixIn(ArrayStringItem.class, ArrayStringItemMixIn.class);
+        mapper.addMixIn(ArrayStringItem.ArrayStringItemBuilder.class, ArrayStringItemMixIn.ArrayStringItemMixInBuilder.class);
         mapper.addMixIn(BizTransaction.class, BizTransactionMixIn.class);
         mapper.addMixIn(BizTransaction.BizTransactionBuilder.class, BizTransactionMixIn.BizTransactionMixInBuilder.class);
         mapper.addMixIn(ChangePasswordRequest.class, ChangePasswordRequestMixIn.class);

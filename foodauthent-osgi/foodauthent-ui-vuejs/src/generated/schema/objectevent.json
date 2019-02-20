@@ -3,8 +3,29 @@
     "label" : "EpcList",
     "model" : "epcList",
     "required" : false,
-    "type" : "input",
-    "inputType" : "text"
+    "type" : "array",
+    "validator" : "array",
+    "showRemoveButton" : true,
+    "itemFieldClasses" : "form-control",
+    "itemContainerClasses" : "input-group pb-2",
+    "newElementButtonLabelClasses" : "btn btn-outline-dark",
+    "removeElementButtonClasses" : "btn btn-danger input-group-append",
+    "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
+    "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
+    "newElementButtonLabel" : "Add",
+    "inputName" : "epcList",
+    "items" : {
+      "type" : "object",
+      "schema" : {
+        "fields" : [ {
+          "label" : "Value",
+          "model" : "value",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        } ]
+      }
+    }
   }, {
     "label" : "BizStep",
     "model" : "bizStep",
@@ -21,8 +42,29 @@
     "label" : "QuantityList",
     "model" : "quantityList",
     "required" : false,
-    "type" : "input",
-    "inputType" : "text"
+    "type" : "array",
+    "validator" : "array",
+    "showRemoveButton" : true,
+    "itemFieldClasses" : "form-control",
+    "itemContainerClasses" : "input-group pb-2",
+    "newElementButtonLabelClasses" : "btn btn-outline-dark",
+    "removeElementButtonClasses" : "btn btn-danger input-group-append",
+    "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
+    "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
+    "newElementButtonLabel" : "Add",
+    "inputName" : "quantityList",
+    "items" : {
+      "type" : "object",
+      "schema" : {
+        "fields" : [ {
+          "label" : "Value",
+          "model" : "value",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        } ]
+      }
+    }
   }, {
     "label" : "Action",
     "model" : "action",
@@ -39,8 +81,35 @@
     "label" : "BizTransactionList",
     "model" : "bizTransactionList",
     "required" : false,
-    "type" : "input",
-    "inputType" : "text"
+    "type" : "array",
+    "validator" : "array",
+    "showRemoveButton" : true,
+    "itemFieldClasses" : "form-control",
+    "itemContainerClasses" : "input-group pb-2",
+    "newElementButtonLabelClasses" : "btn btn-outline-dark",
+    "removeElementButtonClasses" : "btn btn-danger input-group-append",
+    "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
+    "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
+    "newElementButtonLabel" : "Add",
+    "inputName" : "bizTransactionList",
+    "items" : {
+      "type" : "object",
+      "schema" : {
+        "fields" : [ {
+          "label" : "Type",
+          "model" : "type",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        }, {
+          "label" : "Value",
+          "model" : "value",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        } ]
+      }
+    }
   }, {
     "label" : "Gtin",
     "model" : "gtin",
@@ -50,6 +119,33 @@
   }, {
     "label" : "Bricks",
     "model" : "bricks",
+    "required" : false,
+    "type" : "array",
+    "validator" : "array",
+    "showRemoveButton" : true,
+    "itemFieldClasses" : "form-control",
+    "itemContainerClasses" : "input-group pb-2",
+    "newElementButtonLabelClasses" : "btn btn-outline-dark",
+    "removeElementButtonClasses" : "btn btn-danger input-group-append",
+    "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
+    "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
+    "newElementButtonLabel" : "Add",
+    "inputName" : "bricks",
+    "items" : {
+      "type" : "object",
+      "schema" : {
+        "fields" : [ {
+          "label" : "Value",
+          "model" : "value",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        } ]
+      }
+    }
+  }, {
+    "label" : "EventTime",
+    "model" : "eventTime",
     "required" : false,
     "type" : "input",
     "inputType" : "text"

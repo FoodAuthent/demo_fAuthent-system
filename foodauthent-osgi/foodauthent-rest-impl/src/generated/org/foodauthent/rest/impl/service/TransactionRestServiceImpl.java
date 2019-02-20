@@ -10,6 +10,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.TransactionPageResult;
 
 import org.foodauthent.api.TransactionService;
@@ -35,6 +36,18 @@ public class TransactionRestServiceImpl implements TransactionRestService {
 	@Reference(cardinality = ReferenceCardinality.MANDATORY)
     private TransactionService service;
 
+
+    /**
+     * Creates/adds a new Transaction.
+     *
+     * @param discoveryServiceTransaction TODO
+     * @return the response
+     */
+    public Response createTransaction(DiscoveryServiceTransaction discoveryServiceTransaction) {
+        
+            Object res = service.createTransaction(discoveryServiceTransaction);
+            return Response.ok(res).build();
+    }
 
     /**
      * Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.

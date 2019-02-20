@@ -63,7 +63,7 @@
 
 
 <script>
-var getTransaction = require("@/utils/objectEventFunction.js").default.getTransaction;
+var getTransaction = require("@/utils/discoveryServiceFunction.js").default.getTransaction;
 import jsonschema from "@/generated/schema/discoveryservicetransaction.json";
 export default {
   name: "discoveryService",
