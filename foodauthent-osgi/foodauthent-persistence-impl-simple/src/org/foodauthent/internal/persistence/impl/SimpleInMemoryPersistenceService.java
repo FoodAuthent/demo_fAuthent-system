@@ -24,6 +24,7 @@ import org.foodauthent.model.Model;
 import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.SOP;
+import org.foodauthent.model.Sample;
 import org.foodauthent.model.Workflow;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
@@ -134,6 +135,12 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 				}
 				if (keywords.isEmpty() || epcExist) {
 					result.add((T) d);
+				}
+			}else if (modelType.equals(Sample.class) && o instanceof Sample) {
+				final Sample s = (Sample) o;
+				if (keywords.isEmpty() || containsAKeyword(s.getBrand(), keywords)
+						|| containsAKeyword(s.getLabelDescription(), keywords)) {
+					result.add((T) s);
 				}
 			} else {
 				if (logger.isDebugEnabled()) {

@@ -86,6 +86,10 @@ public class ModelUtil {
         mapper.addMixIn(SOP.SOPBuilder.class, SOPMixIn.SOPMixInBuilder.class);
         mapper.addMixIn(SOPPageResult.class, SOPPageResultMixIn.class);
         mapper.addMixIn(SOPPageResult.SOPPageResultBuilder.class, SOPPageResultMixIn.SOPPageResultMixInBuilder.class);
+        mapper.addMixIn(Sample.class, SampleMixIn.class);
+        mapper.addMixIn(Sample.SampleBuilder.class, SampleMixIn.SampleMixInBuilder.class);
+        mapper.addMixIn(SamplePageResult.class, SamplePageResultMixIn.class);
+        mapper.addMixIn(SamplePageResult.SamplePageResultBuilder.class, SamplePageResultMixIn.SamplePageResultMixInBuilder.class);
         mapper.addMixIn(Tag.class, TagMixIn.class);
         mapper.addMixIn(Tag.TagBuilder.class, TagMixIn.TagMixInBuilder.class);
         mapper.addMixIn(TagPageResult.class, TagPageResultMixIn.class);

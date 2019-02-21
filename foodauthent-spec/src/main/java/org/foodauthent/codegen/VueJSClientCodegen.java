@@ -191,7 +191,9 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 				String itemSchemaName = tmp[tmp.length - 1];
 				addFieldsInfo(models.get(itemSchemaName), fields, models);
 			} else if (arrayProp.getItems() instanceof StringSchema) {
-				addStaticProperties(items, STRING_STATIC_FIELDS);
+				//Array of string does not need items, otherwise it doesn't work
+				field.remove("items");
+				//addStaticProperties(items, STRING_STATIC_FIELDS);
 			} else {
 				throw new UnsupportedOperationException(
 						"No items of type " + arrayProp.getItems().getType() + " supported - need to be implemented");

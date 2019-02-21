@@ -1,0 +1,132 @@
+{
+  "fields" : [ {
+    "label" : "SampleId",
+    "model" : "sampleId",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "DateOfSampleDrawing",
+    "model" : "dateOfSampleDrawing",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Gtin",
+    "model" : "gtin",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Lot",
+    "model" : "lot",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Brand",
+    "model" : "brand",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "TargetMarket",
+    "model" : "targetMarket",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "SamplingPlace",
+    "model" : "samplingPlace",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "LabelDescription",
+    "model" : "labelDescription",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "CompanyName",
+    "model" : "companyName",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "ProductClassification",
+    "model" : "productClassification",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "GpcAttribute",
+    "model" : "gpcAttribute",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "GpcAttributeValue",
+    "model" : "gpcAttributeValue",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "CountryOfOrigin",
+    "model" : "countryOfOrigin",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "RegionOfOriginClaims",
+    "model" : "regionOfOriginClaims",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "IncredientStatementLanguageCode",
+    "model" : "incredientStatementLanguageCode",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "BestBeforeDate",
+    "model" : "bestBeforeDate",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Application",
+    "model" : "application",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "TypeOfAnalysis",
+    "model" : "typeOfAnalysis",
+    "required" : false,
+    "type" : "array",
+    "validator" : "array",
+    "showRemoveButton" : true,
+    "itemFieldClasses" : "form-control",
+    "itemContainerClasses" : "input-group pb-2",
+    "newElementButtonLabelClasses" : "btn btn-outline-dark",
+    "removeElementButtonClasses" : "btn btn-danger input-group-append",
+    "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
+    "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
+    "newElementButtonLabel" : "Add",
+    "inputName" : "typeOfAnalysis"
+  }, {
+    "label" : "StorageConditions",
+    "model" : "storageConditions",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Comment",
+    "model" : "comment",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}

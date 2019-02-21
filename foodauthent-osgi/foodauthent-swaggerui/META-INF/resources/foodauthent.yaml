@@ -1569,6 +1569,68 @@ paths:
               schema:
                 $ref: '#/components/schemas/DiscoveryServiceTransaction'
         
+  /sample:
+    get:
+      tags:
+        - Sample
+      summary: Finds sample by keywords or return all transactions.
+      description: >-
+        Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.
+      operationId: findSampleByKeyword
+      parameters:
+        - $ref: "#/components/parameters/pageNumber"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/keywords"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SamplePageResult'
+    post:
+      tags:
+        - Sample
+      summary: Creates/adds a new Sample.
+      description: Creates/adds a new Sample.
+      operationId: createSample
+      responses:
+        '201':
+          description: >-
+            Sample has been created successfully and the new fa-id of the ObjectEvent
+            is returned.
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sample'
+        description: TODO
+        
+  '/sample/{sample-id}':
+    get:
+      tags:
+        - Sample
+      description: Get the Sample an id.
+      operationId: getSampleById
+      parameters:
+        - name: sample-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The Sample.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sample'
         
 servers:
   - url: /v0/foodauthent
@@ -2955,3 +3017,134 @@ components:
           description: When the event happened
           type: string
           format: date
+          
+    SamplePageResult:
+      type: object
+      x-no-faid: true
+      properties:
+        pageNumber:
+          type: integer
+        pageCount:
+          type: integer
+        resultCount:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sample'
+    
+    Sample:
+        description: Sample
+        type: object
+        x-ui-vue.js:
+        - name: sampleId
+        - name: dateOfSampleDrawing
+        - name: gtin
+        - name: lot
+        - name: brand
+        - name: targetMarket
+        - name: samplingPlace
+        - name: labelDescription
+        - name: companyName
+        - name: productClassification
+        - name: gpcAttribute
+        - name: gpcAttributeValue
+        - name: countryOfOrigin
+        - name: regionOfOriginClaims
+        - name: incredientStatementLanguageCode
+        - name: bestBeforeDate
+        - name: application
+        - name: typeOfAnalysis
+        - name: storageConditions
+        - name: comment
+        properties:
+          fa-id:
+            description: A global id within the FoodAuthent-system.
+            type: string
+            format: uuid
+          sampleId:
+            description: Sample Id
+            type: string
+            example: 401234500000123
+          dateOfSampleDrawing:
+            description: Date of Sample Drawing
+            format: date-time
+            type: string
+            example: 2018-02-22T00:00:00.000Z
+          gtin:
+            description: Global Trade Item Number
+            type: string
+            example: 4012345123456 or 04012345123456
+          lot:
+            description: Lot
+            type: string
+            example: ABC123
+          brand:
+            description: Brand
+            type: string
+            example: Bayernland
+          targetMarket:
+            description: Target Market
+            type: string
+            example: 'DE, Deutschland'
+          samplingPlace:
+            description: Sampling Place
+            type: string
+            example: Lankreis XY
+          labelDescription:
+            description: Label Description
+            type: string
+            example: 'Bayernland Allgäuer Emmentaler 45%, ca. 1kg'
+          companyName:
+            description: Company Name
+            type: string
+            example: Bayernland eG
+          productClassification:
+            description: Product Classification
+            type: string
+            example: 10000028 - Käse / Käseersatz (leicht verderblich)
+          gpcAttribute:
+            description: GPC Attribute
+            type: string
+            example: '20000192 - Festigkeit des Käses, 20000142 - Falls Biologisch'
+          gpcAttributeValue:
+            description: GPC Attribute Value
+            type: string
+            example: '30002260 - WEICH, 30002654 - JA'
+          countryOfOrigin:
+            description: Country Of Origin
+            type: string
+            example: 'DE, Deutschland'
+          regionOfOriginClaims:
+            description: Region Of Origin-Claims
+            type: string
+            example: Äthopia
+          incredientStatementLanguageCode:
+            description: Incredient Statement + language Code
+            type: string
+            example: >-
+              Zutaten pasteurisierte KUHMILCH, Milchsäurebakterienkulturen,
+              mikrobieller Labaustauschstoff, Speisesalz
+          bestBeforeDate:
+            description: Best Before Date
+            format: date-time
+            type: string
+            example: 2018-09-12T00:00:00.000Z
+          application:
+            description: Application
+            type: string
+            example: FoodAuthent
+          typeOfAnalysis:
+            description: Type Of Analysis
+            type: array
+            items:
+              type: string
+              example: TBD
+          storageConditions:
+            description: StorageConditions
+            type: string
+            example: TBD
+          comment:
+            description: Comment
+            type: string
+            example: Comment on sample

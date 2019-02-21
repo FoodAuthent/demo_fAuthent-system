@@ -10,7 +10,8 @@ import Predictionjob from '@/components/predictionjob/Predictionjob'
 import Trainingjob from '@/components/trainingjob/Trainingjob'
 import Model from '@/components/model/Model'
 import ObjectEvent from '@/components/objectEvent/ObjectEvent'
-import DiscoveryService from '@/components/discoveryService/discoveryService'
+import DiscoveryService from '@/components/discoveryService/DiscoveryService'
+import Sample from '@/components/sample/Sample'
 
 Vue.use(Router)
 
@@ -70,6 +71,11 @@ export default new Router({
      path: '/discoveryService',
      name: 'DiscoveryService',
      component: DiscoveryService
+     },
+     {
+     path: '/sample',
+     name: 'Sample',
+     component: Sample
      }
   ]
 })

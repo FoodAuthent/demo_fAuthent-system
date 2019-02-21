@@ -18,8 +18,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import org.foodauthent.model.UserBase;
 import org.foodauthent.model.UserBase.UserBaseBuilder;
-import org.foodauthent.model.User;
 import org.foodauthent.model.UserCreateRequest;
+import org.foodauthent.model.User;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -35,9 +35,9 @@ import org.foodauthent.model.UserCreateRequest;
 @JsonSubTypes({
     @Type(value = UserBase.class, name="UserBase")
 ,
-  @Type(value = User.class, name = "User")
-,
   @Type(value = UserCreateRequest.class, name = "UserCreateRequest")
+,
+  @Type(value = User.class, name = "User")
 })
 @JsonDeserialize(builder=UserBaseBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
@@ -115,9 +115,9 @@ public interface UserBaseMixIn {
     @JsonSubTypes({
         @Type(value = UserBase.UserBaseBuilder.class, name="UserBase")
         ,
-      @Type(value = User.UserBuilder.class, name = "User")
-        ,
       @Type(value = UserCreateRequest.UserCreateRequestBuilder.class, name = "UserCreateRequest")
+        ,
+      @Type(value = User.UserBuilder.class, name = "User")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
     public static interface UserBaseMixInBuilder {

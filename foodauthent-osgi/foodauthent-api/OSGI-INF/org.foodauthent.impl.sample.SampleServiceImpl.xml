@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" name="org.foodauthent.impl.sample.SampleServiceImpl">
+   <service>
+      <provide interface="org.foodauthent.api.SampleService"/>
+   </service>
+   <reference cardinality="1..1" field="persistenceService" interface="org.foodauthent.api.internal.persistence.PersistenceService" name="persistenceService"/>
+   <implementation class="org.foodauthent.impl.sample.SampleServiceImpl"/>
+</scr:component>
