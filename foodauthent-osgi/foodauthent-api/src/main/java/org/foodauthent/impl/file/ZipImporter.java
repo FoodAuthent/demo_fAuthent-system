@@ -28,6 +28,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author Miguel de Alba
  */
 public class ZipImporter implements Importer {
+    
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     @Override
     public FaObjectSet importData(File file) {
@@ -40,18 +42,16 @@ public class ZipImporter implements Importer {
 	    zipFile = new ZipFile(file);
 	    Enumeration<? extends ZipEntry> entries = zipFile.entries();
 
-	    ObjectMapper mapper = new ObjectMapper();
-
 	    while (entries.hasMoreElements()) {
 		ZipEntry entry = entries.nextElement();
 
 		if (entry.getName().startsWith("products/")) {
 		    try (InputStream stream = zipFile.getInputStream(entry)) {
-			products.add(mapper.readValue(stream, Product.class));
+			products.add(MAPPER.readValue(stream, Product.class));
 		    }
 		} else if (entry.getName().startsWith("sops/")) {
 		    try (InputStream stream = zipFile.getInputStream(entry)) {
-			sops.add(mapper.readValue(stream, SOP.class));
+			sops.add(MAPPER.readValue(stream, SOP.class));
 		    }
 		}
 	    }

@@ -19,6 +19,8 @@ import org.foodauthent.model.SOP;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ZipExporter implements Exporter {
+    
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     @Override
     public void export(FaObjectSet objectSet, File file) {
@@ -42,7 +44,6 @@ public class ZipExporter implements Exporter {
 
     private static void addProducts(ZipOutputStream stream, List<UUID> uuids) {
 
-	ObjectMapper mapper = new ObjectMapper();
 	ProductService service = new ProductServiceImpl();
 
 	for (UUID id : uuids) {
@@ -51,7 +52,7 @@ public class ZipExporter implements Exporter {
 		Product product = service.getProductById(id);
 		
 		stream.putNextEntry(new ZipEntry(entryName));
-		byte[] bytes = mapper.writeValueAsBytes(product);
+		byte[] bytes = MAPPER.writeValueAsBytes(product);
 		stream.write(bytes);
 		stream.closeEntry();
 	    } catch (IOException e) {
@@ -63,7 +64,6 @@ public class ZipExporter implements Exporter {
     
     private static void addSops(ZipOutputStream stream, List<UUID> uuids) {
 
-	ObjectMapper mapper = new ObjectMapper();
 	SopService service = new SopServiceImpl();
 
 	for (UUID id : uuids) {
@@ -72,7 +72,7 @@ public class ZipExporter implements Exporter {
 		SOP sop = service.getSOPById(id);
 		
 		stream.putNextEntry(new ZipEntry(entryName));
-		byte[] bytes = mapper.writeValueAsBytes(sop);
+		byte[] bytes = MAPPER.writeValueAsBytes(sop);
 		stream.write(bytes);
 		stream.closeEntry();
 	    } catch (IOException e) {
