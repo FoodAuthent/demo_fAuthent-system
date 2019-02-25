@@ -11,8 +11,7 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import org.foodauthent.impl.product.ProductServiceImpl;
-import org.foodauthent.impl.sop.SopServiceImpl;
+import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.model.FaObjectSet;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.SOP;
@@ -31,6 +30,12 @@ public class ZipImporter implements Importer {
     
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
+    private final PersistenceService service;
+    
+    public ZipImporter(PersistenceService service) {
+	this.service = service;
+    }
+    
     @Override
     public FaObjectSet importData(File file) {
 	
@@ -61,11 +66,8 @@ public class ZipImporter implements Importer {
 	}
 	
 	// Add components to FoodAuthent
-	ProductServiceImpl productService = new ProductServiceImpl();
-	products.forEach(productService::createProduct);
-
-	SopServiceImpl sopService = new SopServiceImpl();
-	sops.forEach(sopService::createNewSOP);
+	products.forEach(service::save);
+	sops.forEach(service::save);
 	
 	// Collect ids in a FaObjectSet
 	List<UUID> productIds = products.stream().map(Product::getFaId).collect(Collectors.toList());

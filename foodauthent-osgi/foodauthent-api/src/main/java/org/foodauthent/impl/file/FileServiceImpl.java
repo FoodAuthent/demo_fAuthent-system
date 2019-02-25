@@ -159,7 +159,7 @@ public class FileServiceImpl implements FileService {
 
 	Importer importer;
 	if (fileMeta.getType() == FileMetadata.TypeEnum.ZIP) {
-	    importer = new ZipImporter();
+	    importer = new ZipImporter(persistenceService);
 	} else {
 	    return null;
 	}
@@ -176,7 +176,7 @@ public class FileServiceImpl implements FileService {
         
 	Exporter exporter;
 	if (fileType.equals("zip")) {
-	    exporter = new ZipExporter();
+	    exporter = new ZipExporter(persistenceService);
 	} else {
 	    return null;
 	}
