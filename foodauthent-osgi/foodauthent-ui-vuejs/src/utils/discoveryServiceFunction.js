@@ -2,7 +2,7 @@ var MyObject = function () {
   var ApiClient = require("../generated/rest-client/src/ApiClient.js");
   var apiClient = new ApiClient();
   //only for test---
-  apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
+  apiClient.basePath = window.location.origin + "/v0/foodauthent";
   //only for test---
   var TransactionApi = require("../generated/rest-client/src/api/TransactionApi.js");
   var transactionApi = new TransactionApi(apiClient);
