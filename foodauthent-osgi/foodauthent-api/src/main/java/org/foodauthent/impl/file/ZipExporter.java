@@ -1,4 +1,4 @@
-package org.foodauthent.impl.io;
+package org.foodauthent.impl.file;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,7 +18,7 @@ import org.foodauthent.model.SOP;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class ZipExporter implements ExporterI {
+public class ZipExporter implements Exporter {
 
     @Override
     public void export(FaObjectSet objectSet, File file) {

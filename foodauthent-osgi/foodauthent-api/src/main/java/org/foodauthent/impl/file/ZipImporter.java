@@ -1,4 +1,4 @@
-package org.foodauthent.impl.io;
+package org.foodauthent.impl.file;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * 
  * @author Miguel de Alba
  */
-public class ZipImporter implements ImporterI {
+public class ZipImporter implements Importer {
 
     @Override
     public FaObjectSet importData(File file) {
