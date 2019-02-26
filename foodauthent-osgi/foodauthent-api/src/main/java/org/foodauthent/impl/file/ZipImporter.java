@@ -21,27 +21,34 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * Import components from a ZIP file.
  * 
- * A ZIP file contains a number of products within a 'products' folder with
- * multiple json files named with the id of the product they describe.
+ * <p>
+ * The ZIP files contains multiple JSON files named with the id of the
+ * FoodAuthent components they describe. These files are sorted into the
+ * subfolders:
+ * <ul>
+ * <li>'products' with {@link Product}
+ * <li>'sops' with {@link SOP}
+ * </ul>
+ * </p>
  * 
  * @author Miguel de Alba
  */
 public class ZipImporter implements Importer {
-    
+
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     private final PersistenceService service;
-    
+
     public ZipImporter(PersistenceService service) {
 	this.service = service;
     }
-    
+
     @Override
     public FaObjectSet importData(File file) {
-	
+
 	List<Product> products = new ArrayList<>();
 	List<SOP> sops = new ArrayList<>();
-	
+
 	ZipFile zipFile;
 	try {
 	    zipFile = new ZipFile(file);
@@ -64,15 +71,15 @@ public class ZipImporter implements Importer {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-	
+
 	// Add components to FoodAuthent
 	products.forEach(service::save);
 	sops.forEach(service::save);
-	
+
 	// Collect ids in a FaObjectSet
 	List<UUID> productIds = products.stream().map(Product::getFaId).collect(Collectors.toList());
 	List<UUID> sopIds = sops.stream().map(SOP::getFaId).collect(Collectors.toList());
-	
+
 	FaObjectSet objectSet = FaObjectSet.builder().setProducts(productIds).setSops(sopIds).build();
 	return objectSet;
     }
