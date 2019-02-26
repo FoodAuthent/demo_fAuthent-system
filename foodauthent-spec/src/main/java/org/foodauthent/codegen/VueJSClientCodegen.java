@@ -140,7 +140,13 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 			field.put("idprovider", uiInfo.get("id-provider"));
 		}
 
-		if (prop.getType().equals("string") && prop.getFormat() != null && prop.getFormat().equals("uuid")) {
+		if (prop.getType() == null && prop.get$ref() != null) {
+			String[] tmp = prop.get$ref().split("/");
+			String schemaName = tmp[tmp.length - 1];
+			ArrayNode fields = Json.mapper().createArrayNode();
+			field.set(name, fields);
+			addFieldsInfo(models.get(schemaName), fields, models);
+		} else if (prop.getType().equals("string") && prop.getFormat() != null && prop.getFormat().equals("uuid")) {
 			//UUIDProperty uuidProp = (UUIDProperty) prop;
 			// uuid
 			if (uiInfo.containsKey("id-provider")) {
