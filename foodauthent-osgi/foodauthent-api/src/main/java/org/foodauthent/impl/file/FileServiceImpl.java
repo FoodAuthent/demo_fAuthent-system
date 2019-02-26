@@ -20,10 +20,6 @@ import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.FAExceptions;
 import org.foodauthent.common.exception.FAExceptions.InvalidDataException;
 import org.foodauthent.common.exception.FAExceptions.InvalidInputException;
-import org.foodauthent.impl.io.ExporterI;
-import org.foodauthent.impl.io.ImporterI;
-import org.foodauthent.impl.io.ZipExporter;
-import org.foodauthent.impl.io.ZipImporter;
 import org.foodauthent.model.FaObjectSet;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
@@ -161,9 +157,9 @@ public class FileServiceImpl implements FileService {
 
 	FileMetadata fileMeta = new FileServiceImpl().getFileMetadata(fileId);
 
-	ImporterI importer;
+	Importer importer;
 	if (fileMeta.getType() == FileMetadata.TypeEnum.ZIP) {
-	    importer = new ZipImporter();
+	    importer = new ZipImporter(persistenceService);
 	} else {
 	    return null;
 	}
@@ -178,9 +174,9 @@ public class FileServiceImpl implements FileService {
     @Override
     public File exportFile(String fileType, FaObjectSet faObjectSet) {
         
-	ExporterI exporter;
+	Exporter exporter;
 	if (fileType.equals("zip")) {
-	    exporter = new ZipExporter();
+	    exporter = new ZipExporter(persistenceService);
 	} else {
 	    return null;
 	}

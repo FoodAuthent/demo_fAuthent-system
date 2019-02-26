@@ -3148,3 +3148,9 @@ components:
             description: Comment
             type: string
             example: Comment on sample
+            
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT            
