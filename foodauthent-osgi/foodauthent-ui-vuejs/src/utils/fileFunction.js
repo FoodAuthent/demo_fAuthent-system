@@ -2,7 +2,7 @@ var MyObject = function () {
   var getFile = function (fileIdJson, self) {
     var ApiClient = require("../generated/rest-client/src/ApiClient.js");
     var apiClient = new ApiClient();
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
+    apiClient.basePath = window.location.origin + "/v0/foodauthent";
     var FileApi = require("../generated/rest-client/src/api/FileApi.js");
     var fileApi = new FileApi(apiClient);
     console.log('Get File');
@@ -26,7 +26,7 @@ var MyObject = function () {
   var createFileMetadata = function (fileJson, file, self) {
     var ApiClient = require("../generated/rest-client/src/ApiClient.js");
     var apiClient = new ApiClient();
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
+    apiClient.basePath = window.location.origin + "/v0/foodauthent";
     var FileApi = require("../generated/rest-client/src/api/FileApi.js");
     var fileApi = new FileApi(apiClient);
     console.log('Create File Metadata');
@@ -51,7 +51,7 @@ var MyObject = function () {
   var uploadFile = function (varFileId, fileJson, self) {
     var ApiClient = require("../generated/rest-client/src/ApiClient.js");
     var apiClient = new ApiClient();
-    apiClient.basePath = "http://" + window.location.hostname + ":9090/v0/foodauthent";
+    apiClient.basePath = window.location.origin + "/v0/foodauthent";
     var FileApi = require("../generated/rest-client/src/api/FileApi.js");
     var fileApi = new FileApi(apiClient);
     console.log('Upload file');

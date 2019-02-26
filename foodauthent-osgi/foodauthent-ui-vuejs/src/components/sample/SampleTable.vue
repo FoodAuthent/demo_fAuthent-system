@@ -181,7 +181,7 @@ export default {
   }
   
  .md-content {
-   display: inline-flex !important;
+   display: inline-flex;
   }
 
 </style>

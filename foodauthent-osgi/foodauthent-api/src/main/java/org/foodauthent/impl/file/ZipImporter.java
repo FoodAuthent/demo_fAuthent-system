@@ -1,4 +1,4 @@
-package org.foodauthent.impl.io;
+package org.foodauthent.impl.file;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,8 +11,7 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import org.foodauthent.impl.product.ProductServiceImpl;
-import org.foodauthent.impl.sop.SopServiceImpl;
+import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.model.FaObjectSet;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.SOP;
@@ -27,8 +26,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * 
  * @author Miguel de Alba
  */
-public class ZipImporter implements ImporterI {
+public class ZipImporter implements Importer {
+    
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
+    private final PersistenceService service;
+    
+    public ZipImporter(PersistenceService service) {
+	this.service = service;
+    }
+    
     @Override
     public FaObjectSet importData(File file) {
 	
@@ -40,18 +47,16 @@ public class ZipImporter implements ImporterI {
 	    zipFile = new ZipFile(file);
 	    Enumeration<? extends ZipEntry> entries = zipFile.entries();
 
-	    ObjectMapper mapper = new ObjectMapper();
-
 	    while (entries.hasMoreElements()) {
 		ZipEntry entry = entries.nextElement();
 
 		if (entry.getName().startsWith("products/")) {
 		    try (InputStream stream = zipFile.getInputStream(entry)) {
-			products.add(mapper.readValue(stream, Product.class));
+			products.add(MAPPER.readValue(stream, Product.class));
 		    }
 		} else if (entry.getName().startsWith("sops/")) {
 		    try (InputStream stream = zipFile.getInputStream(entry)) {
-			sops.add(mapper.readValue(stream, SOP.class));
+			sops.add(MAPPER.readValue(stream, SOP.class));
 		    }
 		}
 	    }
@@ -61,11 +66,8 @@ public class ZipImporter implements ImporterI {
 	}
 	
 	// Add components to FoodAuthent
-	ProductServiceImpl productService = new ProductServiceImpl();
-	products.forEach(productService::createProduct);
-
-	SopServiceImpl sopService = new SopServiceImpl();
-	sops.forEach(sopService::createNewSOP);
+	products.forEach(service::save);
+	sops.forEach(service::save);
 	
 	// Collect ids in a FaObjectSet
 	List<UUID> productIds = products.stream().map(Product::getFaId).collect(Collectors.toList());
