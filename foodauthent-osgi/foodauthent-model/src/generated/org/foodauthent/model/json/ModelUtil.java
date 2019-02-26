@@ -36,6 +36,8 @@ public class ModelUtil {
         mapper.addMixIn(FingerprintSet.FingerprintSetBuilder.class, FingerprintSetMixIn.FingerprintSetMixInBuilder.class);
         mapper.addMixIn(FingerprintSetPageResult.class, FingerprintSetPageResultMixIn.class);
         mapper.addMixIn(FingerprintSetPageResult.FingerprintSetPageResultBuilder.class, FingerprintSetPageResultMixIn.FingerprintSetPageResultMixInBuilder.class);
+        mapper.addMixIn(FingerprintSetType.class, FingerprintSetTypeMixIn.class);
+        mapper.addMixIn(FingerprintSetType.FingerprintSetTypeBuilder.class, FingerprintSetTypeMixIn.FingerprintSetTypeMixInBuilder.class);
         mapper.addMixIn(GPCAttribute.class, GPCAttributeMixIn.class);
         mapper.addMixIn(GPCAttribute.GPCAttributeBuilder.class, GPCAttributeMixIn.GPCAttributeMixInBuilder.class);
         mapper.addMixIn(ImportResult.class, ImportResultMixIn.class);
@@ -44,6 +46,8 @@ public class ModelUtil {
         mapper.addMixIn(Model.ModelBuilder.class, ModelMixIn.ModelMixInBuilder.class);
         mapper.addMixIn(ModelPageResult.class, ModelPageResultMixIn.class);
         mapper.addMixIn(ModelPageResult.ModelPageResultBuilder.class, ModelPageResultMixIn.ModelPageResultMixInBuilder.class);
+        mapper.addMixIn(ModelType.class, ModelTypeMixIn.class);
+        mapper.addMixIn(ModelType.ModelTypeBuilder.class, ModelTypeMixIn.ModelTypeMixInBuilder.class);
         mapper.addMixIn(OrganizationBase.class, OrganizationBaseMixIn.class);
         mapper.addMixIn(OrganizationBase.OrganizationBaseBuilder.class, OrganizationBaseMixIn.OrganizationBaseMixInBuilder.class);
         mapper.addMixIn(OrganizationCreateRequest.class, OrganizationCreateRequestMixIn.class);
@@ -100,6 +104,8 @@ public class ModelUtil {
         mapper.addMixIn(UserGroup.UserGroupBuilder.class, UserGroupMixIn.UserGroupMixInBuilder.class);
         mapper.addMixIn(User.class, UserMixIn.class);
         mapper.addMixIn(User.UserBuilder.class, UserMixIn.UserMixInBuilder.class);
+        mapper.addMixIn(WorkflowIOTypes.class, WorkflowIOTypesMixIn.class);
+        mapper.addMixIn(WorkflowIOTypes.WorkflowIOTypesBuilder.class, WorkflowIOTypesMixIn.WorkflowIOTypesMixInBuilder.class);
         mapper.addMixIn(Workflow.class, WorkflowMixIn.class);
         mapper.addMixIn(Workflow.WorkflowBuilder.class, WorkflowMixIn.WorkflowMixInBuilder.class);
         mapper.addMixIn(WorkflowPageResult.class, WorkflowPageResultMixIn.class);

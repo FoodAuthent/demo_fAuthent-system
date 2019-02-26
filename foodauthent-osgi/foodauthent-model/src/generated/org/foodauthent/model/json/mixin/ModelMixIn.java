@@ -4,6 +4,7 @@
 package org.foodauthent.model.json.mixin;
 
 import java.time.LocalDate;
+import org.foodauthent.model.ModelType;
 import org.foodauthent.model.Tag;
 
 import java.util.UUID;
@@ -15,7 +16,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import org.foodauthent.model.Model.TypeEnum;
 
 
 import org.foodauthent.model.Model;
@@ -66,7 +66,7 @@ public interface ModelMixIn {
     public Integer getVersion();
     
     @JsonProperty("type")
-    public TypeEnum getType();
+    public ModelType getType();
     
     @JsonProperty("tags")
     public java.util.List<Tag> getTags();
@@ -118,7 +118,7 @@ public interface ModelMixIn {
         public ModelMixInBuilder setVersion(final Integer version);
         
         @JsonProperty("type")
-        public ModelMixInBuilder setType(final TypeEnum type);
+        public ModelMixInBuilder setType(final ModelType type);
         
         @JsonProperty("tags")
         public ModelMixInBuilder setTags(final java.util.List<Tag> tags);

@@ -47,10 +47,20 @@
     "type" : "input",
     "inputType" : "text"
   }, {
-    "label" : "Metadata",
-    "model" : "metadata",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
+    "label" : "Type",
+    "model" : "type",
+    "required" : true,
+    "type" : [ {
+      "label" : "Name",
+      "model" : "name",
+      "required" : true,
+      "type" : "select",
+      "validator" : "string",
+      "inputName" : "name",
+      "values" : [ {
+        "id" : "bruker",
+        "name" : "Bruker"
+      } ]
+    } ]
   } ]
 }

@@ -16,16 +16,18 @@ import javax.ws.rs.core.Response;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.FingerprintSetType;
 import org.foodauthent.model.Model;
+import org.foodauthent.model.ModelType;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJob.StatusEnum;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
-import org.foodauthent.model.Workflow.ModelTypeEnum;
 import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.Workflow.WorkflowBuilder;
+import org.foodauthent.model.WorkflowIOTypes;
 import org.foodauthent.model.WorkflowParameter;
 import org.foodauthent.model.WorkflowParameter.TypeEnum;
 import org.foodauthent.rest.api.service.FileRestService;
@@ -33,8 +35,6 @@ import org.foodauthent.rest.api.service.FingerprintRestService;
 import org.foodauthent.rest.api.service.ModelRestService;
 import org.foodauthent.rest.api.service.ProductRestService;
 import org.foodauthent.rest.api.service.WorkflowRestService;
-import org.glassfish.jersey.media.multipart.MultiPart;
-import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
 import org.junit.Test;
 
 /**
@@ -60,10 +60,14 @@ public class WorkflowTest extends AbstractITTest {
 		.setValue("pred_paramValue1").setType(TypeEnum.NUMBER).build();
 	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("pred_param2").setRequired(true)
 		.setValue("pred_paramValue2").setType(TypeEnum.STRING).build();
+	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
+		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build())
+		.setFingerprintsetType(FingerprintSetType.builder().setName(FingerprintSetType.NameEnum.BRUKER).build())
+		.build();
 	Workflow wf = Workflow.builder().setName("my_prediction_workflow").setDescription("desc").setParameters(Arrays.asList(wfp1, wfp2))
 		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW)
 		.setRepresentation(RepresentationEnum.KNIME)
-		.setModelType(ModelTypeEnum.KNIME_WORKFLOW)
+		.setInputTypes(inputTypes)
 		.setFileId(predictionWorkflowFileId)
 		.build(); // TODO set more (or even all) properties
 	
@@ -92,11 +96,15 @@ public class WorkflowTest extends AbstractITTest {
 	UUID fingerprintSetId = uploadFingerprintSet();
 	UUID modelId = uploadModel();
 	
+	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
+		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build())
+		.setFingerprintsetType(FingerprintSetType.builder().setName(FingerprintSetType.NameEnum.BRUKER).build())
+		.build();
 	WorkflowBuilder wfb = Workflow.builder().setName("inconsistent_prediction_workflow").setDescription("desc")
 		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW)
 		//on purpose not a knime workflow
 		.setRepresentation(RepresentationEnum.CWL)
-		.setModelType(ModelTypeEnum.KNIME_WORKFLOW)
+		.setInputTypes(inputTypes)
 		.setFileId(predictionWorkflowFileId);
 	
 	//post workflow
@@ -153,12 +161,20 @@ public class WorkflowTest extends AbstractITTest {
 		.setValue("train_paramValue1").setType(TypeEnum.NUMBER).build();
 	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("train_param2").setRequired(true)
 		.setValue("train_paramValue2")	.setType(TypeEnum.STRING).build();
+	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
+		.setFingerprintsetType(FingerprintSetType.builder().setName(FingerprintSetType.NameEnum.BRUKER).build())
+		.build();
+	WorkflowIOTypes outputTypes = WorkflowIOTypes.builder()
+		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build())
+		.build();
 	Workflow wf = Workflow.builder().setName("my training workflow").setDescription("desc")
 		.setParameters(Arrays.asList(wfp1, wfp2))
 		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW)
 		.setFileId(fileId)
 		.setRepresentation(RepresentationEnum.KNIME)
-		.setModelType(ModelTypeEnum.KNIME_WORKFLOW).build(); // TODO set more (or even all) properties
+		.setInputTypes(inputTypes)
+		.setOutputTypes(outputTypes)
+		.build(); // TODO set more (or even all) properties
 	UUID wfId = workflowService.createWorkflow(wf).readEntity(UUID.class);
 	
 	UUID fingerprintSetId = uploadFingerprintSet();
@@ -175,7 +191,7 @@ public class WorkflowTest extends AbstractITTest {
 	assertEquals("Execution failed: " + trainingJob.getStatusMessage(),
 		org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS, trainingJob.getStatus());
 	Model model = restService(ModelRestService.class).getModelById(trainingJob.getModelId()).readEntity(Model.class);
-	assertEquals(model.getType(), org.foodauthent.model.Model.TypeEnum.KNIME_WORKFLOW);
+	assertEquals(model.getType().getName(), ModelType.NameEnum.KNIME_WORKFLOW);
     }
 
     private UUID uploadFingerprintSet() {
@@ -200,9 +216,9 @@ public class WorkflowTest extends AbstractITTest {
     private UUID uploadModel() {
         
         /* upload model */
-        Model m = Model.builder().setName("mymodel").setType(org.foodauthent.model.Model.TypeEnum.KNIME_WORKFLOW)
-        	.build();
-        return webTarget.path("model").request(MediaType.APPLICATION_JSON)
+	ModelType modelType = ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build();
+	Model m = Model.builder().setName("mymodel").setType(modelType).build();
+	       return webTarget.path("model").request(MediaType.APPLICATION_JSON)
         	.post(Entity.entity(m, MediaType.APPLICATION_JSON), UUID.class);
         // TODO upload model file
     }

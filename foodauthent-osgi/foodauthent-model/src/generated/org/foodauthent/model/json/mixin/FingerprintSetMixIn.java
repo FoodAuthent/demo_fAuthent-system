@@ -4,6 +4,7 @@
 package org.foodauthent.model.json.mixin;
 
 import org.foodauthent.model.Fingerprint;
+import org.foodauthent.model.FingerprintSetType;
 
 import java.util.UUID;
 
@@ -60,11 +61,8 @@ public interface FingerprintSetMixIn {
     @JsonProperty("name")
     public String getName();
     
-    @JsonProperty("metadata")
-    public String getMetadata();
-    
-    @JsonProperty("additional-properties")
-    public java.util.Map<String, String> getAdditionalProperties();
+    @JsonProperty("type")
+    public FingerprintSetType getType();
     
 
     /**
@@ -100,11 +98,8 @@ public interface FingerprintSetMixIn {
         @JsonProperty("name")
         public FingerprintSetMixInBuilder setName(final String name);
         
-        @JsonProperty("metadata")
-        public FingerprintSetMixInBuilder setMetadata(final String metadata);
-        
-        @JsonProperty("additional-properties")
-        public FingerprintSetMixInBuilder setAdditionalProperties(final java.util.Map<String, String> additionalProperties);
+        @JsonProperty("type")
+        public FingerprintSetMixInBuilder setType(final FingerprintSetType type);
         
     }
 

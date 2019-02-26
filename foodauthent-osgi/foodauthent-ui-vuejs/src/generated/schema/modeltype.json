@@ -1,0 +1,20 @@
+{
+  "fields" : [ {
+    "label" : "Name",
+    "model" : "name",
+    "required" : true,
+    "type" : "select",
+    "validator" : "string",
+    "inputName" : "name",
+    "values" : [ {
+      "id" : "knime_workflow",
+      "name" : "Knime_workflow"
+    }, {
+      "id" : "knime_python",
+      "name" : "Knime_python"
+    }, {
+      "id" : "pmml",
+      "name" : "Pmml"
+    } ]
+  } ]
+}

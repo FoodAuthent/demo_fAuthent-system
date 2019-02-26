@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.foodauthent.model.Fingerprint;
+import org.foodauthent.model.FingerprintSetType;
 
 
 
@@ -28,8 +29,7 @@ public class FingerprintSet   extends FaModel {
   protected java.util.List<Fingerprint> fingerprints;
   protected java.util.UUID fileId;
   protected String name;
-  protected String metadata;
-  protected java.util.Map<String, String> additionalProperties;
+  protected FingerprintSetType type;
   
   public String getTypeID() {
     return "FingerprintSet";
@@ -52,8 +52,10 @@ public class FingerprintSet   extends FaModel {
     }
     fileId = immutable(builder.fileId);
     name = immutable(builder.name);
-    metadata = immutable(builder.metadata);
-    additionalProperties = immutable(builder.additionalProperties);
+    if(builder.type == null) {
+        throw new IllegalArgumentException("type must not be null.");
+    }
+    type = immutable(builder.type);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -74,7 +76,7 @@ public class FingerprintSet   extends FaModel {
             return false;
         }
         FingerprintSet ent = (FingerprintSet)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(productId, ent.productId) && Objects.equals(fingerprints, ent.fingerprints) && Objects.equals(fileId, ent.fileId) && Objects.equals(name, ent.name) && Objects.equals(metadata, ent.metadata) && Objects.equals(additionalProperties, ent.additionalProperties);
+        return Objects.equals(faId, ent.faId) && Objects.equals(productId, ent.productId) && Objects.equals(fingerprints, ent.fingerprints) && Objects.equals(fileId, ent.fileId) && Objects.equals(name, ent.name) && Objects.equals(type, ent.type);
     }
 
 
@@ -119,19 +121,11 @@ public class FingerprintSet   extends FaModel {
     }
     
   /**
-   * Placeholder for more (fixed) metadata (including device settings etc.). Possibly automatically determined upon creation of the fingerprint-set.
-   * @return metadata 
+   * Get type
+   * @return type , never <code>null</code>
    */
-  public String getMetadata() {
-        return metadata;
-    }
-    
-  /**
-   * Key-value-map for additional properties.
-   * @return additionalProperties 
-   */
-  public java.util.Map<String, String> getAdditionalProperties() {
-        return additionalProperties;
+  public FingerprintSetType getType() {
+        return type;
     }
     
   
@@ -157,8 +151,7 @@ public class FingerprintSet   extends FaModel {
         builder.fingerprints = entity.fingerprints;
         builder.fileId = entity.fileId;
         builder.name = entity.name;
-        builder.metadata = entity.metadata;
-        builder.additionalProperties = entity.additionalProperties;
+        builder.type = entity.type;
  		return builder;
   	}
   	
@@ -174,8 +167,7 @@ public class FingerprintSet   extends FaModel {
         private java.util.List<Fingerprint> fingerprints = new java.util.ArrayList<>();
         private java.util.UUID fileId;
         private String name;
-        private String metadata;
-        private java.util.Map<String, String> additionalProperties = new java.util.HashMap<>();
+        private FingerprintSetType type;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -229,20 +221,14 @@ public class FingerprintSet   extends FaModel {
         }
 
         /**
-         * Placeholder for more (fixed) metadata (including device settings etc.). Possibly automatically determined upon creation of the fingerprint-set.
-         * @return metadata 
+         * Get type
+         * @return type , never <code>null</code>
          */
-        public FingerprintSetBuilder setMetadata(String metadata) {
-             this.metadata = metadata;
-             return this;
-        }
-
-        /**
-         * Key-value-map for additional properties.
-         * @return additionalProperties 
-         */
-        public FingerprintSetBuilder setAdditionalProperties(java.util.Map<String, String> additionalProperties) {
-             this.additionalProperties = additionalProperties;
+        public FingerprintSetBuilder setType(FingerprintSetType type) {
+             if(type == null) {
+                 throw new IllegalArgumentException("type must not be null.");
+             }
+             this.type = type;
              return this;
         }
 

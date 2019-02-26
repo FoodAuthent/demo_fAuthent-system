@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/Fingerprint'], factory);
+    define(['../ApiClient', '../model/Fingerprint', '../model/FingerprintSetType'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./Fingerprint'));
+    module.exports = factory(require('../ApiClient'), require('./Fingerprint'), require('./FingerprintSetType'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.FingerprintSet = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.Fingerprint);
+    root.FoodAuthentSwaggerApi.FingerprintSet = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.Fingerprint, root.FoodAuthentSwaggerApi.FingerprintSetType);
   }
-}(this, function(ApiClient, Fingerprint) {
+}(this, function(ApiClient, Fingerprint, FingerprintSetType) {
   'use strict';
 
 
@@ -46,12 +46,14 @@
    * @class
    * @param productId {String} The fa-id of the product all fingerprints are associated with.
    * @param fileId {String} Id referencing the fingerpint-set file.
+   * @param type {module:model/FingerprintSetType} 
    */
-  var exports = function(productId, fileId) {
+  var exports = function(productId, fileId, type) {
     var _this = this;
 
     _this['product-id'] = productId;
     _this['file-id'] = fileId;
+    _this['type'] = type;
   };
 
   /**
@@ -79,11 +81,8 @@
       if (data.hasOwnProperty('name')) {
         obj['name'] = ApiClient.convertToType(data['name'], 'String');
       }
-      if (data.hasOwnProperty('metadata')) {
-        obj['metadata'] = ApiClient.convertToType(data['metadata'], 'String');
-      }
-      if (data.hasOwnProperty('additional-properties')) {
-        obj['additional-properties'] = ApiClient.convertToType(data['additional-properties'], Object);
+      if (data.hasOwnProperty('type')) {
+        obj['type'] = FingerprintSetType.constructFromObject(data['type']);
       }
     }
     return obj;
@@ -115,15 +114,9 @@
    */
   exports.prototype['name'] = undefined;
   /**
-   * Placeholder for more (fixed) metadata (including device settings etc.). Possibly automatically determined upon creation of the fingerprint-set.
-   * @member {String} metadata
+   * @member {module:model/FingerprintSetType} type
    */
-  exports.prototype['metadata'] = undefined;
-  /**
-   * Key-value-map for additional properties.
-   * @member {Object.<String, String>} additional-properties
-   */
-  exports.prototype['additional-properties'] = undefined;
+  exports.prototype['type'] = undefined;
 
 
 
