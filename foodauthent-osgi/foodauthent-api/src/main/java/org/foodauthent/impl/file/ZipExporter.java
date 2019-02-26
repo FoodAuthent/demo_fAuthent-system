@@ -11,6 +11,7 @@ import java.util.zip.ZipOutputStream;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.FaObjectSet;
+import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.SOP;
 
@@ -26,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * <ul>
  * <li>'products' with {@link Product}
  * <li>'sops' with {@link SOP}
+ * <li>'fingerprints' with {@link Fingerprint}
  * </ul>
  * </p>
  * 
@@ -47,7 +49,7 @@ public class ZipExporter implements Exporter {
 	try (FileOutputStream fileOutStream = new FileOutputStream(file);
 		ZipOutputStream zipOutStream = new ZipOutputStream(fileOutStream)) {
 
-	    // TODO: fingerprints
+	    addFingerprints(zipOutStream, objectSet.getFingerprints());
 	    addProducts(zipOutStream, objectSet.getProducts());
 	    addSops(zipOutStream, objectSet.getSops());
 	    // TODO: workflows
@@ -56,6 +58,15 @@ public class ZipExporter implements Exporter {
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
+	}
+    }
+    
+    private void addFingerprints(ZipOutputStream stream, List<UUID> uuids) {
+	
+	for (UUID id : uuids) {
+	    String entryName = "fingerprints/" + id + ".json";
+	    Fingerprint fingerprint = service.getFaModelByUUID(id, Fingerprint.class);
+	    writeBytes(stream, entryName, fingerprint);
 	}
     }
 

@@ -13,6 +13,7 @@ import java.util.zip.ZipFile;
 
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.model.FaObjectSet;
+import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.SOP;
 
@@ -28,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * <ul>
  * <li>'products' with {@link Product}
  * <li>'sops' with {@link SOP}
+ * <li>'fingerprints' with {@link Fingerprint}
  * </ul>
  * </p>
  * 
@@ -46,6 +48,7 @@ public class ZipImporter implements Importer {
     @Override
     public FaObjectSet importData(File file) {
 
+	List<Fingerprint> fingerprints = new ArrayList<>();
 	List<Product> products = new ArrayList<>();
 	List<SOP> sops = new ArrayList<>();
 
@@ -57,7 +60,11 @@ public class ZipImporter implements Importer {
 	    while (entries.hasMoreElements()) {
 		ZipEntry entry = entries.nextElement();
 
-		if (entry.getName().startsWith("products/")) {
+		if (entry.getName().startsWith("fingerprints/")) {
+		    try (InputStream stream = zipFile.getInputStream(entry)) {
+			fingerprints.add(MAPPER.readValue(stream, Fingerprint.class));
+		    }
+		} else if (entry.getName().startsWith("products/")) {
 		    try (InputStream stream = zipFile.getInputStream(entry)) {
 			products.add(MAPPER.readValue(stream, Product.class));
 		    }
@@ -73,14 +80,17 @@ public class ZipImporter implements Importer {
 	}
 
 	// Add components to FoodAuthent
+	fingerprints.forEach(service::save);
 	products.forEach(service::save);
 	sops.forEach(service::save);
 
 	// Collect ids in a FaObjectSet
+	List<UUID> fingerprintIds = fingerprints.stream().map(Fingerprint::getFaId).collect(Collectors.toList());
 	List<UUID> productIds = products.stream().map(Product::getFaId).collect(Collectors.toList());
 	List<UUID> sopIds = sops.stream().map(SOP::getFaId).collect(Collectors.toList());
 
-	FaObjectSet objectSet = FaObjectSet.builder().setProducts(productIds).setSops(sopIds).build();
+	FaObjectSet objectSet = FaObjectSet.builder().setFingerprints(fingerprintIds).setProducts(productIds)
+		.setSops(sopIds).build();
 	return objectSet;
     }
 }
