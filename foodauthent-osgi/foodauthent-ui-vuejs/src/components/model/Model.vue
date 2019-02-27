@@ -40,7 +40,6 @@
 <script>
 import modelTable from '@/components/model/ModelTable';
 import modelForm from '@/components/model/ModelForm';
-import sidebar from '@/components/Sidebar.vue';
   export default {
     name: 'Test',
     data: () => ({
@@ -54,8 +53,7 @@ import sidebar from '@/components/Sidebar.vue';
     },
       components: {
             modelTable,
-            modelForm,
-            sidebar
+            modelForm
         }
   }
 </script>

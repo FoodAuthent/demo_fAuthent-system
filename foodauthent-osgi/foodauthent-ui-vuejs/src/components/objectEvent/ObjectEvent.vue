@@ -40,7 +40,6 @@
 <script>
 import objectEventTable from '@/components/objectEvent/ObjectEventTable';
 import objectEventForm from '@/components/objectEvent/ObjectEventForm';
-import sidebar from '@/components/Sidebar.vue';
   export default {
     name: 'Test',
     data: () => ({
@@ -54,8 +53,7 @@ import sidebar from '@/components/Sidebar.vue';
     },
       components: {
             objectEventTable,
-            objectEventForm,
-            sidebar
+            objectEventForm
         }
   }
 </script>

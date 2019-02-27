@@ -72,3 +72,9 @@ text-align: right;
 .btn .md-icon.md-theme-default.md-icon-font {
   color: #fff;
 }
+
+/** Used for the Action cell in table to have the button aligned */
+.widewidth {
+	width: 200px;
+	text-align: center;
+}

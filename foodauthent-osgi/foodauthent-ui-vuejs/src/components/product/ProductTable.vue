@@ -40,9 +40,11 @@
          @row-clicked="myRowClickHandler"
 >
   <template slot="actions" slot-scope="row">
+    <div class="widewidth">
     <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)"> <md-icon>edit</md-icon></b-btn>
     <b-btn size="sm" v-b-modal.modalMeta @click.stop="showMetadata(row.item, row.index, $event.target)"> <md-icon>search</md-icon></b-btn>
     <b-btn size="sm" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
+    </div>
   </template>
 </b-table>
 

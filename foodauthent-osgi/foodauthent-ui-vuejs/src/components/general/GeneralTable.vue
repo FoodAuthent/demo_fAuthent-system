@@ -1,5 +1,5 @@
 <template>
-  <div id="sampleTable">
+  <div id="table">
  <b-container fluid>
     <!-- UPDATE -->
     <b-row>
@@ -25,9 +25,10 @@
         </b-form-group>
       </b-col>
       </b-row>
-      <b-row>
-      <!-- TABLE -->
-  <b-table bordered striped hover show-empty responsive
+  </b-container>
+
+<!-- TABLE -->
+  <b-table bordered striped hover show-empty
          :sort-by.sync="sortBy"
          :sort-desc.sync="sortDesc"
          :items="items"
@@ -36,17 +37,12 @@
          :per-page="perPage"
          @row-clicked="myRowClickHandler"
 >
+
   <template slot="actions" slot-scope="row">
-  <div class="widewidth">
     <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)"> <md-icon>edit</md-icon></b-btn>
     <b-btn class="btn btn-primary" v-b-modal.modalDelete > <md-icon>delete_forever</md-icon></b-btn>
-    </div>
   </template>
 </b-table>
-      </b-row>
-  </b-container>
-
-
 
 <!-- PAGINATION -->
 <b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page="perPage" v-model="currentPage" />
@@ -67,11 +63,12 @@
 
 
 <script>
-var getSample = require("@/utils/sampleFunction.js").default.getSample;
-var findSampleById = require("@/utils/sampleFunction.js").default.findSampleById;
-import jsonschema from "@/generated/schema/sample.json";
+var getDataForTable = require("@/utils/objectEventFunction.js").default.getObjectEvent;
+var findById = require("@/utils/objectEventFunction.js").default.findObjectEventById;
+import jsonschema from "@/generated/schema/objectevent.json";
+
 export default {
-  name: "sample",
+  name: "objectEvent",
   data() {
     return {
       model: {},
@@ -109,7 +106,7 @@ export default {
     loadTableData() {
       console.log("Load table data");
       let self = this;
-      getSample(self);
+      getDataForTable(self);
     },
     handleDeleteOk() {
     //  let self = this;
@@ -126,9 +123,9 @@ export default {
     //check if it is a valid UUID
 	var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
 	if (re.test(self.filter)) {
-    	findSampleById(self);
+    	findById(self);
 	} else {
-   		getSample(self);
+   		getDataForTable(self);
 	}
     },
     clearSearch(){
@@ -151,9 +148,6 @@ export default {
     self.currentPage = 1;
     },
     myRowClickHandler(record, index) {
-      // 'record' will be the row data from items
-      // `index` will be the visible row number (available in the v-model 'shownItems')
-      //console.log(record); // This will be the item data for the row
       this.selected = record;
     },
     info (item, index, button) {
@@ -168,20 +162,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.md-table + .md-table {
-  margin-top: 16px;
-}
-.md-app {
-  /*max-height: px; */
-  border: 1px solid rgba(#000, 0.12);
-}
-
-.md-drawer {
-  max-width: 250px;
-  }
-  
-
-
-</style>
