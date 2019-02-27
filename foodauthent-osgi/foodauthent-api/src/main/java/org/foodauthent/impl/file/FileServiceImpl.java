@@ -164,8 +164,8 @@ public class FileServiceImpl implements FileService {
 	    return null;
 	}
 
-	File file = getFileData(fileId);
-	FaObjectSet importedObjects = importer.importData(file);
+	InputStream stream = persistenceService.getBlobByUUID(fileId).getData();
+	FaObjectSet importedObjects = importer.importData(stream);
 	ImportResult result = ImportResult.builder().setImportedObjects(importedObjects).build();
 
 	return result;

@@ -1,15 +1,13 @@
 package org.foodauthent.impl.file;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.model.FaObjectSet;
@@ -46,33 +44,30 @@ public class ZipImporter implements Importer {
     }
 
     @Override
-    public FaObjectSet importData(File file) {
+    public FaObjectSet importData(InputStream stream) {
 
 	List<Fingerprint> fingerprints = new ArrayList<>();
 	List<Product> products = new ArrayList<>();
 	List<SOP> sops = new ArrayList<>();
 
-	ZipFile zipFile;
+	ZipInputStream zipStream = new ZipInputStream(stream);
+
+	ZipEntry entry;
 	try {
-	    zipFile = new ZipFile(file);
-	    Enumeration<? extends ZipEntry> entries = zipFile.entries();
-
-	    while (entries.hasMoreElements()) {
-		ZipEntry entry = entries.nextElement();
-
+	    while ((entry = zipStream.getNextEntry()) != null) {
+		// process zip entry
 		if (entry.getName().startsWith("fingerprints/")) {
-		    try (InputStream stream = zipFile.getInputStream(entry)) {
-			fingerprints.add(MAPPER.readValue(stream, Fingerprint.class));
-		    }
+		    Fingerprint fingerprint = MAPPER.readValue(zipStream, Fingerprint.class);
+		    fingerprints.add(fingerprint);
 		} else if (entry.getName().startsWith("products/")) {
-		    try (InputStream stream = zipFile.getInputStream(entry)) {
-			products.add(MAPPER.readValue(stream, Product.class));
-		    }
+		    Product product = MAPPER.readValue(zipStream, Product.class);
+		    products.add(product);
 		} else if (entry.getName().startsWith("sops/")) {
-		    try (InputStream stream = zipFile.getInputStream(entry)) {
-			sops.add(MAPPER.readValue(stream, SOP.class));
-		    }
+		    SOP sop = MAPPER.readValue(zipStream, SOP.class);
+		    sops.add(sop);
 		}
+
+		zipStream.closeEntry();
 	    }
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
