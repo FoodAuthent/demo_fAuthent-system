@@ -3,7 +3,8 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.GPCAttribute;
+import org.foodauthent.model.GPCBrick;
+import org.foodauthent.model.ProductIngredientStatement;
 
 import java.util.UUID;
 
@@ -54,8 +55,32 @@ public interface ProductMixIn {
     @JsonProperty("brand")
     public String getBrand();
     
-    @JsonProperty("gpcAttributes")
-    public java.util.List<GPCAttribute> getGpcAttributes();
+    @JsonProperty("targetMarket")
+    public String getTargetMarket();
+    
+    @JsonProperty("labelDescription")
+    public String getLabelDescription();
+    
+    @JsonProperty("companyName")
+    public String getCompanyName();
+    
+    @JsonProperty("productClassification")
+    public String getProductClassification();
+    
+    @JsonProperty("countryOfOrigin")
+    public String getCountryOfOrigin();
+    
+    @JsonProperty("regionOfOriginClaims")
+    public String getRegionOfOriginClaims();
+    
+    @JsonProperty("ingredientStatement")
+    public ProductIngredientStatement getIngredientStatement();
+    
+    @JsonProperty("comment")
+    public String getComment();
+    
+    @JsonProperty("gpcBricks")
+    public java.util.List<GPCBrick> getGpcBricks();
     
 
     /**
@@ -85,8 +110,32 @@ public interface ProductMixIn {
         @JsonProperty("brand")
         public ProductMixInBuilder setBrand(final String brand);
         
-        @JsonProperty("gpcAttributes")
-        public ProductMixInBuilder setGpcAttributes(final java.util.List<GPCAttribute> gpcAttributes);
+        @JsonProperty("targetMarket")
+        public ProductMixInBuilder setTargetMarket(final String targetMarket);
+        
+        @JsonProperty("labelDescription")
+        public ProductMixInBuilder setLabelDescription(final String labelDescription);
+        
+        @JsonProperty("companyName")
+        public ProductMixInBuilder setCompanyName(final String companyName);
+        
+        @JsonProperty("productClassification")
+        public ProductMixInBuilder setProductClassification(final String productClassification);
+        
+        @JsonProperty("countryOfOrigin")
+        public ProductMixInBuilder setCountryOfOrigin(final String countryOfOrigin);
+        
+        @JsonProperty("regionOfOriginClaims")
+        public ProductMixInBuilder setRegionOfOriginClaims(final String regionOfOriginClaims);
+        
+        @JsonProperty("ingredientStatement")
+        public ProductMixInBuilder setIngredientStatement(final ProductIngredientStatement ingredientStatement);
+        
+        @JsonProperty("comment")
+        public ProductMixInBuilder setComment(final String comment);
+        
+        @JsonProperty("gpcBricks")
+        public ProductMixInBuilder setGpcBricks(final java.util.List<GPCBrick> gpcBricks);
         
     }
 

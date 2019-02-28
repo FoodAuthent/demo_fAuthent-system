@@ -1,5 +1,11 @@
 {
   "fields" : [ {
+    "label" : "Product-id",
+    "model" : "product-id",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
     "label" : "SampleId",
     "model" : "sampleId",
     "required" : false,
@@ -12,80 +18,14 @@
     "type" : "input",
     "inputType" : "text"
   }, {
-    "label" : "Gtin",
-    "model" : "gtin",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
-  }, {
     "label" : "Lot",
     "model" : "lot",
     "required" : false,
     "type" : "input",
     "inputType" : "text"
   }, {
-    "label" : "Brand",
-    "model" : "brand",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
-  }, {
-    "label" : "TargetMarket",
-    "model" : "targetMarket",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
-  }, {
     "label" : "SamplingPlace",
     "model" : "samplingPlace",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
-  }, {
-    "label" : "LabelDescription",
-    "model" : "labelDescription",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
-  }, {
-    "label" : "CompanyName",
-    "model" : "companyName",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
-  }, {
-    "label" : "ProductClassification",
-    "model" : "productClassification",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
-  }, {
-    "label" : "GpcAttribute",
-    "model" : "gpcAttribute",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
-  }, {
-    "label" : "GpcAttributeValue",
-    "model" : "gpcAttributeValue",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
-  }, {
-    "label" : "CountryOfOrigin",
-    "model" : "countryOfOrigin",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
-  }, {
-    "label" : "RegionOfOriginClaims",
-    "model" : "regionOfOriginClaims",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
-  }, {
-    "label" : "IncredientStatementLanguageCode",
-    "model" : "incredientStatementLanguageCode",
     "required" : false,
     "type" : "input",
     "inputType" : "text"
@@ -116,12 +56,6 @@
     "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
     "newElementButtonLabel" : "Add",
     "inputName" : "typeOfAnalysis"
-  }, {
-    "label" : "StorageConditions",
-    "model" : "storageConditions",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
   }, {
     "label" : "Comment",
     "model" : "comment",

@@ -24,25 +24,14 @@ public class Sample   extends FaModel {
 
 
   protected java.util.UUID faId;
+  protected java.util.UUID productId;
   protected String sampleId;
   protected OffsetDateTime dateOfSampleDrawing;
-  protected String gtin;
   protected String lot;
-  protected String brand;
-  protected String targetMarket;
   protected String samplingPlace;
-  protected String labelDescription;
-  protected String companyName;
-  protected String productClassification;
-  protected String gpcAttribute;
-  protected String gpcAttributeValue;
-  protected String countryOfOrigin;
-  protected String regionOfOriginClaims;
-  protected String incredientStatementLanguageCode;
   protected OffsetDateTime bestBeforeDate;
   protected String application;
   protected java.util.List<String> typeOfAnalysis;
-  protected String storageConditions;
   protected String comment;
   
   public String getTypeID() {
@@ -56,25 +45,14 @@ public class Sample   extends FaModel {
   private Sample(SampleBuilder builder) {
     
     faId = immutable(builder.faId);
+    productId = immutable(builder.productId);
     sampleId = immutable(builder.sampleId);
     dateOfSampleDrawing = immutable(builder.dateOfSampleDrawing);
-    gtin = immutable(builder.gtin);
     lot = immutable(builder.lot);
-    brand = immutable(builder.brand);
-    targetMarket = immutable(builder.targetMarket);
     samplingPlace = immutable(builder.samplingPlace);
-    labelDescription = immutable(builder.labelDescription);
-    companyName = immutable(builder.companyName);
-    productClassification = immutable(builder.productClassification);
-    gpcAttribute = immutable(builder.gpcAttribute);
-    gpcAttributeValue = immutable(builder.gpcAttributeValue);
-    countryOfOrigin = immutable(builder.countryOfOrigin);
-    regionOfOriginClaims = immutable(builder.regionOfOriginClaims);
-    incredientStatementLanguageCode = immutable(builder.incredientStatementLanguageCode);
     bestBeforeDate = immutable(builder.bestBeforeDate);
     application = immutable(builder.application);
     typeOfAnalysis = immutable(builder.typeOfAnalysis);
-    storageConditions = immutable(builder.storageConditions);
     comment = immutable(builder.comment);
     
     faId = generateFaIdIfMissing(faId);
@@ -96,7 +74,7 @@ public class Sample   extends FaModel {
             return false;
         }
         Sample ent = (Sample)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(sampleId, ent.sampleId) && Objects.equals(dateOfSampleDrawing, ent.dateOfSampleDrawing) && Objects.equals(gtin, ent.gtin) && Objects.equals(lot, ent.lot) && Objects.equals(brand, ent.brand) && Objects.equals(targetMarket, ent.targetMarket) && Objects.equals(samplingPlace, ent.samplingPlace) && Objects.equals(labelDescription, ent.labelDescription) && Objects.equals(companyName, ent.companyName) && Objects.equals(productClassification, ent.productClassification) && Objects.equals(gpcAttribute, ent.gpcAttribute) && Objects.equals(gpcAttributeValue, ent.gpcAttributeValue) && Objects.equals(countryOfOrigin, ent.countryOfOrigin) && Objects.equals(regionOfOriginClaims, ent.regionOfOriginClaims) && Objects.equals(incredientStatementLanguageCode, ent.incredientStatementLanguageCode) && Objects.equals(bestBeforeDate, ent.bestBeforeDate) && Objects.equals(application, ent.application) && Objects.equals(typeOfAnalysis, ent.typeOfAnalysis) && Objects.equals(storageConditions, ent.storageConditions) && Objects.equals(comment, ent.comment);
+        return Objects.equals(faId, ent.faId) && Objects.equals(productId, ent.productId) && Objects.equals(sampleId, ent.sampleId) && Objects.equals(dateOfSampleDrawing, ent.dateOfSampleDrawing) && Objects.equals(lot, ent.lot) && Objects.equals(samplingPlace, ent.samplingPlace) && Objects.equals(bestBeforeDate, ent.bestBeforeDate) && Objects.equals(application, ent.application) && Objects.equals(typeOfAnalysis, ent.typeOfAnalysis) && Objects.equals(comment, ent.comment);
     }
 
 
@@ -106,6 +84,14 @@ public class Sample   extends FaModel {
    */
   public java.util.UUID getFaId() {
         return faId;
+    }
+    
+  /**
+   * referenced product fa-id
+   * @return productId 
+   */
+  public java.util.UUID getProductId() {
+        return productId;
     }
     
   /**
@@ -125,14 +111,6 @@ public class Sample   extends FaModel {
     }
     
   /**
-   * Global Trade Item Number
-   * @return gtin 
-   */
-  public String getGtin() {
-        return gtin;
-    }
-    
-  /**
    * Lot
    * @return lot 
    */
@@ -141,91 +119,11 @@ public class Sample   extends FaModel {
     }
     
   /**
-   * Brand
-   * @return brand 
-   */
-  public String getBrand() {
-        return brand;
-    }
-    
-  /**
-   * Target Market
-   * @return targetMarket 
-   */
-  public String getTargetMarket() {
-        return targetMarket;
-    }
-    
-  /**
    * Sampling Place
    * @return samplingPlace 
    */
   public String getSamplingPlace() {
         return samplingPlace;
-    }
-    
-  /**
-   * Label Description
-   * @return labelDescription 
-   */
-  public String getLabelDescription() {
-        return labelDescription;
-    }
-    
-  /**
-   * Company Name
-   * @return companyName 
-   */
-  public String getCompanyName() {
-        return companyName;
-    }
-    
-  /**
-   * Product Classification
-   * @return productClassification 
-   */
-  public String getProductClassification() {
-        return productClassification;
-    }
-    
-  /**
-   * GPC Attribute
-   * @return gpcAttribute 
-   */
-  public String getGpcAttribute() {
-        return gpcAttribute;
-    }
-    
-  /**
-   * GPC Attribute Value
-   * @return gpcAttributeValue 
-   */
-  public String getGpcAttributeValue() {
-        return gpcAttributeValue;
-    }
-    
-  /**
-   * Country Of Origin
-   * @return countryOfOrigin 
-   */
-  public String getCountryOfOrigin() {
-        return countryOfOrigin;
-    }
-    
-  /**
-   * Region Of Origin-Claims
-   * @return regionOfOriginClaims 
-   */
-  public String getRegionOfOriginClaims() {
-        return regionOfOriginClaims;
-    }
-    
-  /**
-   * Incredient Statement + language Code
-   * @return incredientStatementLanguageCode 
-   */
-  public String getIncredientStatementLanguageCode() {
-        return incredientStatementLanguageCode;
     }
     
   /**
@@ -250,14 +148,6 @@ public class Sample   extends FaModel {
    */
   public java.util.List<String> getTypeOfAnalysis() {
         return typeOfAnalysis;
-    }
-    
-  /**
-   * StorageConditions
-   * @return storageConditions 
-   */
-  public String getStorageConditions() {
-        return storageConditions;
     }
     
   /**
@@ -287,25 +177,14 @@ public class Sample   extends FaModel {
 	public static SampleBuilder builder(Sample entity) {
 		SampleBuilder builder = builder();
         builder.faId = entity.faId;
+        builder.productId = entity.productId;
         builder.sampleId = entity.sampleId;
         builder.dateOfSampleDrawing = entity.dateOfSampleDrawing;
-        builder.gtin = entity.gtin;
         builder.lot = entity.lot;
-        builder.brand = entity.brand;
-        builder.targetMarket = entity.targetMarket;
         builder.samplingPlace = entity.samplingPlace;
-        builder.labelDescription = entity.labelDescription;
-        builder.companyName = entity.companyName;
-        builder.productClassification = entity.productClassification;
-        builder.gpcAttribute = entity.gpcAttribute;
-        builder.gpcAttributeValue = entity.gpcAttributeValue;
-        builder.countryOfOrigin = entity.countryOfOrigin;
-        builder.regionOfOriginClaims = entity.regionOfOriginClaims;
-        builder.incredientStatementLanguageCode = entity.incredientStatementLanguageCode;
         builder.bestBeforeDate = entity.bestBeforeDate;
         builder.application = entity.application;
         builder.typeOfAnalysis = entity.typeOfAnalysis;
-        builder.storageConditions = entity.storageConditions;
         builder.comment = entity.comment;
  		return builder;
   	}
@@ -318,25 +197,14 @@ public class Sample   extends FaModel {
         }
     
         private java.util.UUID faId;
+        private java.util.UUID productId;
         private String sampleId;
         private OffsetDateTime dateOfSampleDrawing;
-        private String gtin;
         private String lot;
-        private String brand;
-        private String targetMarket;
         private String samplingPlace;
-        private String labelDescription;
-        private String companyName;
-        private String productClassification;
-        private String gpcAttribute;
-        private String gpcAttributeValue;
-        private String countryOfOrigin;
-        private String regionOfOriginClaims;
-        private String incredientStatementLanguageCode;
         private OffsetDateTime bestBeforeDate;
         private String application;
         private java.util.List<String> typeOfAnalysis = new java.util.ArrayList<>();
-        private String storageConditions;
         private String comment;
 
         /**
@@ -345,6 +213,15 @@ public class Sample   extends FaModel {
          */
         public SampleBuilder setFaId(java.util.UUID faId) {
              this.faId = faId;
+             return this;
+        }
+
+        /**
+         * referenced product fa-id
+         * @return productId 
+         */
+        public SampleBuilder setProductId(java.util.UUID productId) {
+             this.productId = productId;
              return this;
         }
 
@@ -367,15 +244,6 @@ public class Sample   extends FaModel {
         }
 
         /**
-         * Global Trade Item Number
-         * @return gtin 
-         */
-        public SampleBuilder setGtin(String gtin) {
-             this.gtin = gtin;
-             return this;
-        }
-
-        /**
          * Lot
          * @return lot 
          */
@@ -385,101 +253,11 @@ public class Sample   extends FaModel {
         }
 
         /**
-         * Brand
-         * @return brand 
-         */
-        public SampleBuilder setBrand(String brand) {
-             this.brand = brand;
-             return this;
-        }
-
-        /**
-         * Target Market
-         * @return targetMarket 
-         */
-        public SampleBuilder setTargetMarket(String targetMarket) {
-             this.targetMarket = targetMarket;
-             return this;
-        }
-
-        /**
          * Sampling Place
          * @return samplingPlace 
          */
         public SampleBuilder setSamplingPlace(String samplingPlace) {
              this.samplingPlace = samplingPlace;
-             return this;
-        }
-
-        /**
-         * Label Description
-         * @return labelDescription 
-         */
-        public SampleBuilder setLabelDescription(String labelDescription) {
-             this.labelDescription = labelDescription;
-             return this;
-        }
-
-        /**
-         * Company Name
-         * @return companyName 
-         */
-        public SampleBuilder setCompanyName(String companyName) {
-             this.companyName = companyName;
-             return this;
-        }
-
-        /**
-         * Product Classification
-         * @return productClassification 
-         */
-        public SampleBuilder setProductClassification(String productClassification) {
-             this.productClassification = productClassification;
-             return this;
-        }
-
-        /**
-         * GPC Attribute
-         * @return gpcAttribute 
-         */
-        public SampleBuilder setGpcAttribute(String gpcAttribute) {
-             this.gpcAttribute = gpcAttribute;
-             return this;
-        }
-
-        /**
-         * GPC Attribute Value
-         * @return gpcAttributeValue 
-         */
-        public SampleBuilder setGpcAttributeValue(String gpcAttributeValue) {
-             this.gpcAttributeValue = gpcAttributeValue;
-             return this;
-        }
-
-        /**
-         * Country Of Origin
-         * @return countryOfOrigin 
-         */
-        public SampleBuilder setCountryOfOrigin(String countryOfOrigin) {
-             this.countryOfOrigin = countryOfOrigin;
-             return this;
-        }
-
-        /**
-         * Region Of Origin-Claims
-         * @return regionOfOriginClaims 
-         */
-        public SampleBuilder setRegionOfOriginClaims(String regionOfOriginClaims) {
-             this.regionOfOriginClaims = regionOfOriginClaims;
-             return this;
-        }
-
-        /**
-         * Incredient Statement + language Code
-         * @return incredientStatementLanguageCode 
-         */
-        public SampleBuilder setIncredientStatementLanguageCode(String incredientStatementLanguageCode) {
-             this.incredientStatementLanguageCode = incredientStatementLanguageCode;
              return this;
         }
 
@@ -507,15 +285,6 @@ public class Sample   extends FaModel {
          */
         public SampleBuilder setTypeOfAnalysis(java.util.List<String> typeOfAnalysis) {
              this.typeOfAnalysis = typeOfAnalysis;
-             return this;
-        }
-
-        /**
-         * StorageConditions
-         * @return storageConditions 
-         */
-        public SampleBuilder setStorageConditions(String storageConditions) {
-             this.storageConditions = storageConditions;
              return this;
         }
 

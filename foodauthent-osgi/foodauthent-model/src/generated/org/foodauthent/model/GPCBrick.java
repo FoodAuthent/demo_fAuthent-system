@@ -10,25 +10,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.foodauthent.model.GPCAttributeValue;
+import org.foodauthent.model.GPCAttribute;
 
 
 
 /**
- * Global Product Classification Attribute for storing gpc brick details
+ * Global Product Classification Brick for storing gpc brick details
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class GPCAttribute   extends FaModel {
+public class GPCBrick   extends FaModel {
 
 
   protected String code;
   protected String text;
-  protected java.util.List<GPCAttributeValue> values;
+  protected java.util.List<GPCAttribute> attributes;
   
   public String getTypeID() {
-    return "GPCAttribute";
+    return "GPCBrick";
   }
   
 
@@ -37,13 +37,13 @@ public class GPCAttribute   extends FaModel {
   	return null;
   }
   
-  protected GPCAttribute() {}
+  protected GPCBrick() {}
   
-  private GPCAttribute(GPCAttributeBuilder builder) {
+  private GPCBrick(GPCBrickBuilder builder) {
     
     code = immutable(builder.code);
     text = immutable(builder.text);
-    values = immutable(builder.values);
+    attributes = immutable(builder.attributes);
     
     
   }
@@ -62,13 +62,13 @@ public class GPCAttribute   extends FaModel {
         if (getClass() != o.getClass()) {
             return false;
         }
-        GPCAttribute ent = (GPCAttribute)o;
-        return Objects.equals(code, ent.code) && Objects.equals(text, ent.text) && Objects.equals(values, ent.values);
+        GPCBrick ent = (GPCBrick)o;
+        return Objects.equals(code, ent.code) && Objects.equals(text, ent.text) && Objects.equals(attributes, ent.attributes);
     }
 
 
   /**
-   * GPC attribute code
+   * GPC brick code
    * @return code 
    */
   public String getCode() {
@@ -76,7 +76,7 @@ public class GPCAttribute   extends FaModel {
     }
     
   /**
-   * GPC attribute human readable text
+   * GPC brick human readable text
    * @return text 
    */
   public String getText() {
@@ -84,19 +84,19 @@ public class GPCAttribute   extends FaModel {
     }
     
   /**
-   * Get values
-   * @return values 
+   * Get attributes
+   * @return attributes 
    */
-  public java.util.List<GPCAttributeValue> getValues() {
-        return values;
+  public java.util.List<GPCAttribute> getAttributes() {
+        return attributes;
     }
     
   
  	/**
   	 * @return a newly created builder
   	 */
-  	public static GPCAttributeBuilder builder() {
-  		return new GPCAttributeBuilder();
+  	public static GPCBrickBuilder builder() {
+  		return new GPCBrickBuilder();
   	}
   	
   	/**
@@ -107,55 +107,55 @@ public class GPCAttribute   extends FaModel {
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
 	 */
-	public static GPCAttributeBuilder builder(GPCAttribute entity) {
-		GPCAttributeBuilder builder = builder();
+	public static GPCBrickBuilder builder(GPCBrick entity) {
+		GPCBrickBuilder builder = builder();
         builder.code = entity.code;
         builder.text = entity.text;
-        builder.values = entity.values;
+        builder.attributes = entity.attributes;
  		return builder;
   	}
   	
   
-    public static class GPCAttributeBuilder {
+    public static class GPCBrickBuilder {
     
-        protected GPCAttributeBuilder(){
+        protected GPCBrickBuilder(){
             
         }
     
         private String code;
         private String text;
-        private java.util.List<GPCAttributeValue> values = new java.util.ArrayList<>();
+        private java.util.List<GPCAttribute> attributes = new java.util.ArrayList<>();
 
         /**
-         * GPC attribute code
+         * GPC brick code
          * @return code 
          */
-        public GPCAttributeBuilder setCode(String code) {
+        public GPCBrickBuilder setCode(String code) {
              this.code = code;
              return this;
         }
 
         /**
-         * GPC attribute human readable text
+         * GPC brick human readable text
          * @return text 
          */
-        public GPCAttributeBuilder setText(String text) {
+        public GPCBrickBuilder setText(String text) {
              this.text = text;
              return this;
         }
 
         /**
-         * Get values
-         * @return values 
+         * Get attributes
+         * @return attributes 
          */
-        public GPCAttributeBuilder setValues(java.util.List<GPCAttributeValue> values) {
-             this.values = values;
+        public GPCBrickBuilder setAttributes(java.util.List<GPCAttribute> attributes) {
+             this.attributes = attributes;
              return this;
         }
 
         
-        public GPCAttribute build() {
-            return new GPCAttribute(this);
+        public GPCBrick build() {
+            return new GPCBrick(this);
         }
     
     }

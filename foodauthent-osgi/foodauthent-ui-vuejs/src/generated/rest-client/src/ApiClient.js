@@ -43,6 +43,7 @@
      * @type {Array.<String>}
      */
     this.authentications = {
+      'jwtAuth': {type: 'basic'}
     };
     /**
      * The default HTTP headers to be included for all API calls.

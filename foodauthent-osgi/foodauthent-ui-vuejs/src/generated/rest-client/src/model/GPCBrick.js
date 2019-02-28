@@ -17,32 +17,32 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/GPCAttributeValue'], factory);
+    define(['../ApiClient', '../model/GPCAttribute'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./GPCAttributeValue'));
+    module.exports = factory(require('../ApiClient'), require('./GPCAttribute'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.GPCAttribute = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.GPCAttributeValue);
+    root.FoodAuthentSwaggerApi.GPCBrick = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.GPCAttribute);
   }
-}(this, function(ApiClient, GPCAttributeValue) {
+}(this, function(ApiClient, GPCAttribute) {
   'use strict';
 
 
 
   /**
-   * The GPCAttribute model module.
-   * @module model/GPCAttribute
+   * The GPCBrick model module.
+   * @module model/GPCBrick
    * @version 1.0.0
    */
 
   /**
-   * Constructs a new <code>GPCAttribute</code>.
-   * Global Product Classification Attribute for storing gpc brick details
-   * @alias module:model/GPCAttribute
+   * Constructs a new <code>GPCBrick</code>.
+   * Global Product Classification Brick for storing gpc brick details
+   * @alias module:model/GPCBrick
    * @class
    */
   var exports = function() {
@@ -51,11 +51,11 @@
   };
 
   /**
-   * Constructs a <code>GPCAttribute</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>GPCBrick</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/GPCAttribute} obj Optional instance to populate.
-   * @return {module:model/GPCAttribute} The populated <code>GPCAttribute</code> instance.
+   * @param {module:model/GPCBrick} obj Optional instance to populate.
+   * @return {module:model/GPCBrick} The populated <code>GPCBrick</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
@@ -66,27 +66,27 @@
       if (data.hasOwnProperty('text')) {
         obj['text'] = ApiClient.convertToType(data['text'], 'String');
       }
-      if (data.hasOwnProperty('values')) {
-        obj['values'] = ApiClient.convertToType(data['values'], [GPCAttributeValue]);
+      if (data.hasOwnProperty('attributes')) {
+        obj['attributes'] = ApiClient.convertToType(data['attributes'], [GPCAttribute]);
       }
     }
     return obj;
   }
 
   /**
-   * GPC attribute code
+   * GPC brick code
    * @member {String} code
    */
   exports.prototype['code'] = undefined;
   /**
-   * GPC attribute human readable text
+   * GPC brick human readable text
    * @member {String} text
    */
   exports.prototype['text'] = undefined;
   /**
-   * @member {Array.<module:model/GPCAttributeValue>} values
+   * @member {Array.<module:model/GPCAttribute>} attributes
    */
-  exports.prototype['values'] = undefined;
+  exports.prototype['attributes'] = undefined;
 
 
 

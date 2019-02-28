@@ -15,12 +15,12 @@ import org.foodauthent.model.DiscoveryServiceTransaction;
 
 
 /**
- * TransactionPageResult
+ * DiscoveryServiceTransactionPageResult
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class TransactionPageResult   extends FaModel {
+public class DiscoveryServiceTransactionPageResult   extends FaModel {
 
 
   protected Integer pageNumber;
@@ -29,7 +29,7 @@ public class TransactionPageResult   extends FaModel {
   protected java.util.List<DiscoveryServiceTransaction> results;
   
   public String getTypeID() {
-    return "TransactionPageResult";
+    return "DiscoveryServiceTransactionPageResult";
   }
   
 
@@ -38,9 +38,9 @@ public class TransactionPageResult   extends FaModel {
   	return null;
   }
   
-  protected TransactionPageResult() {}
+  protected DiscoveryServiceTransactionPageResult() {}
   
-  private TransactionPageResult(TransactionPageResultBuilder builder) {
+  private DiscoveryServiceTransactionPageResult(DiscoveryServiceTransactionPageResultBuilder builder) {
     
     pageNumber = immutable(builder.pageNumber);
     pageCount = immutable(builder.pageCount);
@@ -64,7 +64,7 @@ public class TransactionPageResult   extends FaModel {
         if (getClass() != o.getClass()) {
             return false;
         }
-        TransactionPageResult ent = (TransactionPageResult)o;
+        DiscoveryServiceTransactionPageResult ent = (DiscoveryServiceTransactionPageResult)o;
         return Objects.equals(pageNumber, ent.pageNumber) && Objects.equals(pageCount, ent.pageCount) && Objects.equals(resultCount, ent.resultCount) && Objects.equals(results, ent.results);
     }
 
@@ -105,8 +105,8 @@ public class TransactionPageResult   extends FaModel {
  	/**
   	 * @return a newly created builder
   	 */
-  	public static TransactionPageResultBuilder builder() {
-  		return new TransactionPageResultBuilder();
+  	public static DiscoveryServiceTransactionPageResultBuilder builder() {
+  		return new DiscoveryServiceTransactionPageResultBuilder();
   	}
   	
   	/**
@@ -117,8 +117,8 @@ public class TransactionPageResult   extends FaModel {
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
 	 */
-	public static TransactionPageResultBuilder builder(TransactionPageResult entity) {
-		TransactionPageResultBuilder builder = builder();
+	public static DiscoveryServiceTransactionPageResultBuilder builder(DiscoveryServiceTransactionPageResult entity) {
+		DiscoveryServiceTransactionPageResultBuilder builder = builder();
         builder.pageNumber = entity.pageNumber;
         builder.pageCount = entity.pageCount;
         builder.resultCount = entity.resultCount;
@@ -127,9 +127,9 @@ public class TransactionPageResult   extends FaModel {
   	}
   	
   
-    public static class TransactionPageResultBuilder {
+    public static class DiscoveryServiceTransactionPageResultBuilder {
     
-        protected TransactionPageResultBuilder(){
+        protected DiscoveryServiceTransactionPageResultBuilder(){
             
         }
     
@@ -142,7 +142,7 @@ public class TransactionPageResult   extends FaModel {
          * Get pageNumber
          * @return pageNumber 
          */
-        public TransactionPageResultBuilder setPageNumber(Integer pageNumber) {
+        public DiscoveryServiceTransactionPageResultBuilder setPageNumber(Integer pageNumber) {
              this.pageNumber = pageNumber;
              return this;
         }
@@ -151,7 +151,7 @@ public class TransactionPageResult   extends FaModel {
          * Get pageCount
          * @return pageCount 
          */
-        public TransactionPageResultBuilder setPageCount(Integer pageCount) {
+        public DiscoveryServiceTransactionPageResultBuilder setPageCount(Integer pageCount) {
              this.pageCount = pageCount;
              return this;
         }
@@ -160,7 +160,7 @@ public class TransactionPageResult   extends FaModel {
          * Get resultCount
          * @return resultCount 
          */
-        public TransactionPageResultBuilder setResultCount(Integer resultCount) {
+        public DiscoveryServiceTransactionPageResultBuilder setResultCount(Integer resultCount) {
              this.resultCount = resultCount;
              return this;
         }
@@ -169,14 +169,14 @@ public class TransactionPageResult   extends FaModel {
          * Get results
          * @return results 
          */
-        public TransactionPageResultBuilder setResults(java.util.List<DiscoveryServiceTransaction> results) {
+        public DiscoveryServiceTransactionPageResultBuilder setResults(java.util.List<DiscoveryServiceTransaction> results) {
              this.results = results;
              return this;
         }
 
         
-        public TransactionPageResult build() {
-            return new TransactionPageResult(this);
+        public DiscoveryServiceTransactionPageResult build() {
+            return new DiscoveryServiceTransactionPageResult(this);
         }
     
     }

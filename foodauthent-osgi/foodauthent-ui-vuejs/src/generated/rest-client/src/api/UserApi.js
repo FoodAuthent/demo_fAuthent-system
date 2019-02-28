@@ -83,7 +83,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json', 'text/plain'];
       var returnType = User;
@@ -130,7 +130,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json', 'text/plain'];
       var returnType = UserGroup;
@@ -177,7 +177,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['text/plain'];
       var returnType = null;
@@ -224,7 +224,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['text/plain'];
       var returnType = null;
@@ -276,7 +276,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['text/plain'];
       var returnType = String;
@@ -324,7 +324,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/plain'];
       var returnType = User;
@@ -372,7 +372,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/plain'];
       var returnType = UserGroup;
@@ -425,7 +425,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['text/plain'];
       var returnType = null;
@@ -479,7 +479,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json', 'text/plain'];
       var returnType = User;
@@ -533,7 +533,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json', 'text/plain'];
       var returnType = UserGroup;

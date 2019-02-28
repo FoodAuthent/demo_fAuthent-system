@@ -7,7 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.DiscoveryServiceTransaction;
-import org.foodauthent.model.TransactionPageResult;
+import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
 
 import org.foodauthent.api.TransactionService;
 import org.foodauthent.api.ServiceRegistry;

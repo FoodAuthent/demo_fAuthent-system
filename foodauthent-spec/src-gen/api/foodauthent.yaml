@@ -1524,7 +1524,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionPageResult'
+                $ref: '#/components/schemas/DiscoveryServiceTransactionPageResult'
     post:
       tags:
         - Transaction
@@ -1733,7 +1733,121 @@ components:
       x-fa-exceptions:
         - name: UnauthorizedResponse
   schemas:
-    SOPPageResult:
+    BizTransaction:
+      type: object
+      x-no-faid: true
+      description: bizTransaction
+      x-ui-vue.js:
+      - name: type
+      - name: value
+      properties:
+        type:
+          description: Type of transaction
+          type: string
+          example: 'http://foodauthent.de/data_set/fakx_model'
+        value:
+          description: Value of transaction
+          type: string
+
+    ChangePasswordRequest:
+      description: change password request object
+      type: object
+      x-no-faid: true
+      required:
+       - current
+       - new
+      properties:
+        current:
+          description: current password
+          type: string
+          nullable: true
+        new:
+          description: new password
+          type: string
+          nullable: false
+          
+    DiscoveryServiceTransaction:
+      description: DiscoveryServiceTransaction
+      type: object
+      x-ui-vue.js:
+      - name: epcList
+      - name: bizStep
+      - name: readPoint
+      - name: quantityList
+      - name: action
+      - name: disposition
+      - name: bizTransactionList
+      - name: gtin
+      - name: bricks
+      - name: sourceList
+      - name: destinationList
+      - name: ilmd
+      - name: eventTime
+      properties:
+        fa-id:
+          description: A global id within the FoodAuthent-system.
+          type: string
+          format: uuid
+        epcList:
+          description: List of epcs
+          type: array
+          items:
+            $ref: "#/components/schemas/Epc"
+        bizStep:
+          description: EPCIS bizStep
+          type: string
+        readPoint:
+          description: Read point
+          type: string
+        quantityList:
+          description: List of quantity
+          type: array
+          items: 
+            $ref: "#/components/schemas/QuantityElement"
+        action:
+          description: Event action.
+          type: string
+          enum:
+            - ADD
+            - OBSERVE
+            - DELETE
+        disposition:
+          description: EPCIS Disposition
+          type: string
+        bizTransactionList:
+          description: List of bizTransactions
+          type: array
+          items:
+            $ref: "#/components/schemas/BizTransaction"
+        gtin:
+          description: Global Trade Item Number
+          type: string
+        bricks:
+          description: bricks
+          type: array
+          items:
+            $ref: "#/components/schemas/GPCBrick"
+        sourceList:
+          description: List of sources
+          type: array
+          items:
+            $ref: "#/components/schemas/BizTransaction"
+        destinationList:
+          description: List of destinations
+          type: array
+          items:
+            $ref: "#/components/schemas/BizTransaction"
+        ilmd:
+          description: ilmd
+          type: array
+          items:
+            type: string
+        eventTime:
+          description: When the event happened
+          type: string
+          format: date
+          
+    DiscoveryServiceTransactionPageResult:
       type: object
       x-no-faid: true
       properties:
@@ -1746,38 +1860,59 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/SOP'
-
-    SOP:
+            $ref: '#/components/schemas/DiscoveryServiceTransaction'
+            
+    Epc:
       type: object
+      x-no-faid: true
+      description: epc
       x-ui-vue.js:
-        - name: file-id
-          id-provider: upload-file
-        - name: name
-        - name: description
-        - name: product-id
-          id-provider: select-product
+      - name: epc
       properties:
-        fa-id:
-          description: A global id within the FoodAuthent-system.
+        epc:
+          description: epc
           type: string
-          format: uuid
-          example: ''
-        file-id:
-          description: Id referencing the file in the fa-system.
+
+    FaObjectSet:
+      type: object
+      x-no-faid: true
+      properties:
+        fingerprints:
+          type: array
+          items:
+            type: string
+            format: uuid
+        products:
+          type: array
+          items:
+            type: string
+            format: uuid
+        sops:
+          type: array
+          items:
+            type: string
+            format: uuid
+        workflows:
+          type: array
+          items:
+            type: string
+            format: uuid
+        files:
+          type: array
+          items:
+            type: string
+            format: uuid
+                      
+    File:
+      description: A file, e.g. to be uploaded
+      type: object
+      properties:
+        filedata:
+          description: The binary file data.
           type: string
-          format: uuid
-        name:
-          description: A short SOP name
-          type: string
-        description:
-          description: A short description of the sop
-          type: string
-        product-id:
-          description: A reference to a product this sop is made for.
-          type: string
-          format: uuid
-          example: ''
+          format: binary
+      required:
+        - filedata
 
     FileMetadata:
       description: Metadata of a file in the FoodAuthent-system.
@@ -1804,6 +1939,10 @@ components:
             - zip
         name:
           description: A name for the file.
+          type: string
+        contentType:
+          description: file content type
+          example: application/zip
           type: string
         uploadName:
           description: >-
@@ -1833,17 +1972,6 @@ components:
           type: object
           additionalProperties:
             type: string
-          
-    File:
-      description: A file, e.g. to be uploaded
-      type: object
-      properties:
-        filedata:
-          description: The binary file data.
-          type: string
-          format: binary
-      required:
-        - filedata
 
     # should always be part of a fingerprint set
     Fingerprint:
@@ -1866,22 +1994,7 @@ components:
           type: object
           additionalProperties:
             type: string
-
-    FingerprintSetPageResult:
-      type: object
-      x-no-faid: true
-      properties:
-        pageNumber:
-          type: integer
-        pageCount:
-          type: integer
-        resultCount:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/FingerprintSet'
-
+            
     FingerprintSet:
       description: A set of fingerprints with its own id.
       type: object
@@ -1931,7 +2044,7 @@ components:
           additionalProperties:
             type: string
 
-    ModelPageResult:
+    FingerprintSetPageResult:
       type: object
       x-no-faid: true
       properties:
@@ -1944,7 +2057,74 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/Model'
+            $ref: '#/components/schemas/FingerprintSet'
+
+    GPCAttribute:
+      description: >-
+        Global Product Classification Attribute for storing gpc brick details
+      type: object
+      x-no-faid: true
+      x-ui-vue.js:
+      - name: code
+      - name: text
+      properties:
+        code:
+          description: GPC attribute code
+          type: string
+        text:
+          description: GPC attribute human readable text
+          type: string
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/GPCAttributeValue'
+
+    GPCAttributeValue:
+      description: >-
+        Global Product Classification Attribute for storing gpc brick details
+      type: object
+      x-no-faid: true
+      x-ui-vue.js:
+      - name: code
+      - name: text
+      properties:
+        code:
+          description: GPC attribute value code
+          type: string
+        text:
+          description: GPC attribute value human readable text
+          type: string
+
+    GPCBrick:
+      description: >-
+        Global Product Classification Brick for storing gpc brick details
+      type: object
+      x-no-faid: true
+      x-ui-vue.js:
+      - name: code
+      - name: text
+      properties:
+        code:
+          description: GPC brick code
+          type: string
+        text:
+          description: GPC brick human readable text
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/GPCAttribute'
+
+    ImportResult:
+      type: object
+      x-no-faid: true
+      properties:
+        problems:
+          type: array
+          items:
+            type: string
+        imported-objects:
+          $ref: "#/components/schemas/FaObjectSet"
 
     Model:
       description: >-
@@ -2012,8 +2192,8 @@ components:
           description: Optional reference to the workflow used to create this model.
           type: string
           format: uuid
-
-    ProductPageResult:
+           
+    ModelPageResult:
       type: object
       x-no-faid: true
       properties:
@@ -2026,98 +2206,72 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/Product'
-
-    Product:
-      description: >-
-        Global product metadata, e.g., country of origin, etc. There can be
-        multiple fingerprints for one product.
+            $ref: '#/components/schemas/Model'
+                                       
+    ObjectEvent:
+      description: Object Event Transaction
       type: object
       x-ui-vue.js:
-        - name: gtin
-        - name: brand
+      - name: epcList
+      - name: bizStep
+      - name: readPoint
+      - name: quantityList
+      - name: action
+      - name: disposition
+      - name: bizTransactionList
+      - name: gtin
+      - name: bricks
+      - name: eventTime
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
           type: string
           format: uuid
-          example: ''
-        gtin:
-          type: string
-        brand:
-          type: string
-        gpcAttributes:
+        epcList:
+          description: List of epcs
           type: array
-          items:
-            $ref: '#/components/schemas/GPCAttribute'
-
-    GPCAttribute:
-      description: >-
-        Global Product Classification Attribute for storing gpc brick details
-      type: object
-      x-no-faid: true
-      x-ui-vue.js:
-      - name: attributeTypeCode
-      - name: attributeTypeName
-      - name: attributeValueCode
-      - name: attributeValueName
-      properties:
-        attributeTypeCode:
-          description: GPC brick code
+          items: 
+            $ref: "#/components/schemas/Epc"
+        bizStep:
+          description: EPCIS bizStep
           type: string
-        attributeTypeName:
-          description: GPC brick human readable name
+        readPoint:
+          description: Read point
           type: string
-        attributeValueCode:
-          description: GPC brick's value
-          type: string
-        attributeValueName:
-          description: GPC brick's value human readable description 
-          type: string
-          
-    PredictionJobPageResult:
-      type: object
-      x-no-faid: true
-      properties:
-        pageNumber:
-          type: integer
-        pageCount:
-          type: integer
-        resultCount:
-          type: integer
-        results:
+        quantityList:
+          description: List of quantity
           type: array
-          items:
-            $ref: '#/components/schemas/PredictionJob'
-
-    PredictionJob:
-      description: Represents prediction job.
-      type: object
-      properties:
-        fa-id:
-          description: A global id within the FoodAuthent-system.
-          type: string
-          format: uuid
-          example: ''
-        prediction-id:
-          description: >-
-            The id of the prediction result if the job has completed
-            successfully.
-          type: string
-          format: uuid
-          example: ''
-        status:
-          description: The current status of the prediction job.
+          items: 
+            $ref: "#/components/schemas/QuantityElement"
+        action:
+          description: Event action.
           type: string
           enum:
-            - running
-            - success
-            - failed
-        status-message:
-          description: 'A message, e.g., in case the workflow failed.'
+            - ADD
+            - OBSERVE
+            - DELETE
+        disposition:
+          description: EPCIS Disposition
           type: string
+        bizTransactionList:
+          description: List of bizTransactions
+          type: array
+          items:
+            $ref: "#/components/schemas/BizTransaction"
+        gtin:
+          description: Global Trade Item Number
+          type: string
+        bricks:
+          description: bricks
+          type: array
+          items:
+            $ref: "#/components/schemas/GPCBrick"
+        eventTime:
+          description: When the event happened
+          type: string
+          format: date
 
-    PredictionPageResult:
+    ObjectEventPageResult:
       type: object
       x-no-faid: true
       properties:
@@ -2130,7 +2284,116 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/Prediction'
+            $ref: '#/components/schemas/ObjectEvent'
+                                    
+    Organization:
+      description:  Organization Object 
+      x-no-faid: true
+      allOf:
+        - type: object
+          required:
+            - dn
+            - organizationName
+          properties:
+            dn:
+              description: organization's LDAP dn
+              type: string
+              nullable: false
+            organizationName:
+              description: unique OrganizationalUnit name
+              type: string
+              nullable: false
+        - $ref: '#/components/schemas/OrganizationBase'
+
+    OrganizationBase:
+      description:  Organization Base Object 
+      type: object
+      x-no-faid: true
+      properties:
+        description:
+          description: verbose description
+          type: string
+          nullable: true
+        faxNumbers:
+          description: fax numbers
+          type: array
+          items:
+            type: string
+          nullable: true
+        phoneNumbers:
+          description: phone numbers
+          type: array
+          items:
+            type: string
+          nullable: true
+        businessCategory:
+          description: business category
+          type: string
+          nullable: true
+        postalAddress:
+          $ref: '#/components/schemas/OrganizationalPostalAddress'
+        billingAddress:
+          $ref: '#/components/schemas/OrganizationalPostalAddress'
+
+    OrganizationCreateRequest:
+      description:  Organization Object 
+      x-no-faid: true
+      allOf:
+        - type: object
+          required:
+            - parentDn
+            - organizationName
+          properties:
+            parentDn:
+              description: parent organization's LDAP dn
+              type: string
+              nullable: false
+            organizationName:
+              description: unique OrganizationalUnit name
+              type: string
+              nullable: false              
+        - $ref: '#/components/schemas/OrganizationBase'
+
+    OrganizationalPostalAddress:
+      description: organizational postal address object
+      type: object
+      x-no-faid: true
+      allOf:
+        - $ref: '#/components/schemas/PostalAddress'
+        - type: object
+          x-no-faid: true
+          properties:
+            recipientName:
+              description: recipient address part
+              type: string
+
+    PostalAddress:
+      description: postal address object
+      type: object
+      x-no-faid: true
+      required:
+        - street
+        - postalCode
+        - localityName
+      properties:
+        otherRecipientInformation:
+          description: recipient address part
+          type: string
+        street:
+          description: street address part
+          type: string
+        postalCode:
+          description: postalCode address part
+          type: string
+        localityName:
+          description: locality/city address part
+          type: string
+        stateOrProvinceName:
+          description: stateOrProvinceName address part
+          type: string
+        country:
+          description: country address part
+          type: string
 
     #predictions per fingerprint set!!
     Prediction:
@@ -2174,24 +2437,9 @@ components:
           type: string
           format: uuid
           example: ''
-
-    TrainingJobPageResult:
-      type: object
-      x-no-faid: true
-      properties:
-        pageNumber:
-          type: integer
-        pageCount:
-          type: integer
-        resultCount:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/TrainingJob'
-
-    TrainingJob:
-      description: Represents model training job.
+          
+    PredictionJob:
+      description: Represents prediction job.
       type: object
       properties:
         fa-id:
@@ -2199,12 +2447,15 @@ components:
           type: string
           format: uuid
           example: ''
-        model-id:
-          description: The created model after successful training.
+        prediction-id:
+          description: >-
+            The id of the prediction result if the job has completed
+            successfully.
           type: string
           format: uuid
           example: ''
         status:
+          description: The current status of the prediction job.
           type: string
           enum:
             - running
@@ -2214,7 +2465,7 @@ components:
           description: 'A message, e.g., in case the workflow failed.'
           type: string
 
-    TagPageResult:
+    PredictionJobPageResult:
       type: object
       x-no-faid: true
       properties:
@@ -2227,38 +2478,9 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/Tag'
+            $ref: '#/components/schemas/PredictionJob'
 
-    Tag:
-      description: A tag/label for objects.
-      type: object
-      x-ui-vue.js:
-        - name: name
-        - name: description
-      properties:
-        fa-id:
-          description: A global id within the FoodAuthent-system.
-          type: string
-          format: uuid
-          example: ''
-        name:
-          description: A human-readable name
-          type: string
-        description:
-          description: A more verbose description.
-          type: string
-        type:
-          description: >-
-            The type of the tag, e.g. whether it's a tag for a workflow, a model
-            or a fingerprint.
-          type: string
-          enum:
-            - workflow
-            - model
-            - fingerprint
-            - sop
-
-    WorkflowPageResult:
+    PredictionPageResult:
       type: object
       x-no-faid: true
       properties:
@@ -2271,110 +2493,11 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/Workflow'
-
-    Workflow:
-      type: object
-      description: A workflow for a certain task.
-      required:
-        - type
-        - file-id
-        - name
-        - representation
-      x-ui-vue.js:
-        - name: name
-        - name: description
-        - name: type
-        - name: parameters
-        - name: tags
-      properties:
-        fa-id:
-          description: A global id within the FoodAuthent-system.
-          type: string
-          format: uuid
-          example: ''
-        name:
-          type: string
-        description:
-          type: string
-        representation:
-          description: >-
-            The workflow representation, e.g. represented by a scripting
-            language, cwl or a KNIME-workflow.
-          type: string
-          enum:
-            - cwl
-            - r
-            - python
-            - knime
-        type:
-          #TODO allow custom types that are not predefined
-          description: >-
-            The type of the workflow.  IMPORTANT: This property determines the
-            required workflow input and output, e.g., PredictionWorkflowInput
-            and PredicitonWorkflowOutput-entity.
-          type: string
-          #TODO another potential type: preprocessing workflow
-          enum:
-            - prediction_workflow
-            - training_workflow
-        parameters:
-          description: 'The parameters of the workflow, TODO - should maybe be a map.'
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkflowParameter'
-        tags:
-          description: Descriptive tags/annotations for the workflow.
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-        file-id:
-          description: id referencing the workflow file.
-          type: string
-          format: uuid
-        model-type:
-          description: >-
-            Type of the model this workflow can consume or produce. Can be left
-            empty, e.g., in case of a preprocessing workflow. Model type must
-            match one of the model's type property.
-          type: string
-          # must be kept in sync with model.type
-          enum:
-            - knime_workflow
-            - knime_python
-            - pmml
-
-    WorkflowParameter:
-      type: object
-      description: Represents a workflow parameter.
-      x-no-faid: true
-      x-ui-vue.js:
-        - name: name
-        - name: required
-        - name: type
-        - name: value
-      properties:
-        name:
-          description: the parameter name
-          type: string
-        required:
-          description: whether the parameter is required
-          type: boolean
-        type:
-          description: the parameter type
-          type: string
-          enum:
-            - string
-            - number
-        value:
-          description: the parameter value
-          type: string
-          
+            $ref: '#/components/schemas/Prediction'
 
     # Inputs and outputs for different workflow types (see type-property of the workflow entity).
     # Not used by any endpoint but as entity directly!
     # Changes here might cause (test) workflows to not work anymore.
-
     PredictionWorkflowInput:
       description: Describes the input required by a prediction workflow.
       type: object
@@ -2416,6 +2539,319 @@ components:
             format: float
             maximum: 1
             minimum: 0
+
+    Product:
+      description: >-
+        Global product metadata, e.g., country of origin, etc. There can be
+        multiple fingerprints for one product.
+      type: object
+      x-ui-vue.js:
+        - name: gtin
+        - name: brand
+        - name: targetMarket
+        - name: labelDescription
+        - name: companyName
+        - name: productClassification
+        - name: countryOfOrigin
+        - name: regionOfOriginClaims
+        - name: comment
+        - name: gpcBricks
+      properties:
+        fa-id:
+          description: A global id within the FoodAuthent-system.
+          type: string
+          format: uuid
+          example: ''
+        gtin:
+          type: string
+        brand:
+          description: Brand
+          type: string
+          example: Bayernland
+        targetMarket:
+          description: Target Market
+          type: string
+          example: 'DE, Deutschland'
+        labelDescription:
+          description: Label Description
+          type: string
+          example: 'Bayernland Allgäuer Emmentaler 45%, ca. 1kg'
+        companyName:
+          description: Company Name
+          type: string
+          example: Bayernland eG
+        productClassification:
+          description: Product Classification
+          type: string
+          example: 10000028 - Käse / Käseersatz (leicht verderblich)
+        countryOfOrigin:
+          description: Country Of Origin
+          type: string
+          example: 'DE, Deutschland'
+        regionOfOriginClaims:
+          description: Region Of Origin-Claims
+          type: string
+          example: Äthopia
+        ingredientStatement:
+          $ref: '#/components/schemas/ProductIngredientStatement'
+        comment:
+          description: Comment
+          type: string
+          example: Comment on sample
+        gpcBricks:
+          type: array
+          items:
+            $ref: '#/components/schemas/GPCBrick'
+
+    ProductIngredientStatement:
+      description: Incredient Statement by language Code
+      type: object
+      x-no-faid: true
+      properties:
+        language:
+          type: string
+        text:
+          type: string
+      example: >-
+        de: Zutaten pasteurisierte KUHMILCH, Milchsäurebakterienkulturen, mikrobieller Labaustauschstoff, Speisesalz
+        en: ingredients...
+
+    ProductPageResult:
+      type: object
+      x-no-faid: true
+      properties:
+        pageNumber:
+          type: integer
+        pageCount:
+          type: integer
+        resultCount:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+
+    QuantityElement:
+      type: object
+      x-no-faid: true
+      description: bizTransaction
+      x-ui-vue.js:
+      - name: epcClass
+      - name: quantity
+      - name: uom
+      properties:
+        epcClass:
+          description: epcClass
+          type: string
+        quantity:
+          description: quantity
+          type: string
+        uom:
+          description: uom
+          type: string
+
+    Sample:
+        description: Sample
+        type: object
+        x-ui-vue.js:
+        - name: product-id
+        - name: sampleId
+        - name: dateOfSampleDrawing
+        - name: lot
+        - name: samplingPlace
+        - name: bestBeforeDate
+        - name: application
+        - name: typeOfAnalysis
+        - name: comment
+        properties:
+          fa-id:
+            description: A global id within the FoodAuthent-system.
+            type: string
+            format: uuid
+          product-id:
+            description: referenced product fa-id
+            type: string
+            format: uuid
+          sampleId:
+            description: Sample Id
+            type: string
+            example: 401234500000123
+          dateOfSampleDrawing:
+            description: Date of Sample Drawing
+            format: date-time
+            type: string
+            example: 2018-02-22T00:00:00.000Z
+          lot:
+            description: Lot
+            type: string
+            example: ABC123
+          samplingPlace:
+            description: Sampling Place
+            type: string
+            example: Lankreis XY
+          bestBeforeDate:
+            description: Best Before Date
+            format: date-time
+            type: string
+            example: 2018-09-12T00:00:00.000Z
+          application:
+            description: Application
+            type: string
+            example: FoodAuthent
+          typeOfAnalysis:
+            description: Type Of Analysis
+            type: array
+            items:
+              type: string
+              example: TBD
+          comment:
+            description: Comment
+            type: string
+            example: Comment on sample
+            
+    SamplePageResult:
+      type: object
+      x-no-faid: true
+      properties:
+        pageNumber:
+          type: integer
+        pageCount:
+          type: integer
+        resultCount:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sample'
+                                                  
+    SOP:
+      type: object
+      x-ui-vue.js:
+        - name: file-id
+          id-provider: upload-file
+        - name: name
+        - name: description
+        - name: product-id
+          id-provider: select-product
+      properties:
+        fa-id:
+          description: A global id within the FoodAuthent-system.
+          type: string
+          format: uuid
+          example: ''
+        file-id:
+          description: Id referencing the file in the fa-system.
+          type: string
+          format: uuid
+        name:
+          description: A short SOP name
+          type: string
+        description:
+          description: A short description of the sop
+          type: string
+        product-id:
+          description: A reference to a product this sop is made for.
+          type: string
+          format: uuid
+          example: ''
+
+    SOPPageResult:
+      type: object
+      x-no-faid: true
+      properties:
+        pageNumber:
+          type: integer
+        pageCount:
+          type: integer
+        resultCount:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SOP'
+
+    Tag:
+      description: A tag/label for objects.
+      type: object
+      x-ui-vue.js:
+        - name: name
+        - name: description
+      properties:
+        fa-id:
+          description: A global id within the FoodAuthent-system.
+          type: string
+          format: uuid
+          example: ''
+        name:
+          description: A human-readable name
+          type: string
+        description:
+          description: A more verbose description.
+          type: string
+        type:
+          description: >-
+            The type of the tag, e.g. whether it's a tag for a workflow, a model
+            or a fingerprint.
+          type: string
+          enum:
+            - workflow
+            - model
+            - fingerprint
+            - sop
+
+    TagPageResult:
+      type: object
+      x-no-faid: true
+      properties:
+        pageNumber:
+          type: integer
+        pageCount:
+          type: integer
+        resultCount:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+
+    TrainingJob:
+      description: Represents model training job.
+      type: object
+      properties:
+        fa-id:
+          description: A global id within the FoodAuthent-system.
+          type: string
+          format: uuid
+          example: ''
+        model-id:
+          description: The created model after successful training.
+          type: string
+          format: uuid
+          example: ''
+        status:
+          type: string
+          enum:
+            - running
+            - success
+            - failed
+        status-message:
+          description: 'A message, e.g., in case the workflow failed.'
+          type: string
+
+    TrainingJobPageResult:
+      type: object
+      x-no-faid: true
+      properties:
+        pageNumber:
+          type: integer
+        pageCount:
+          type: integer
+        resultCount:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrainingJob'
 
     TrainingWorkflowInput:
       description: Describes the input required by a training workflow.
@@ -2459,47 +2895,25 @@ components:
         password:
           type: string
           
-    PostalAddress:
-      description: postal address object
-      type: object
-      x-no-faid: true
-      required:
-        - street
-        - postalCode
-        - localityName
-      properties:
-        otherRecipientInformation:
-          description: recipient address part
-          type: string
-        street:
-          description: street address part
-          type: string
-        postalCode:
-          description: postalCode address part
-          type: string
-        localityName:
-          description: locality/city address part
-          type: string
-        stateOrProvinceName:
-          description: stateOrProvinceName address part
-          type: string
-        country:
-          description: country address part
-          type: string
-
-    OrganizationalPostalAddress:
-      description: organizational postal address object
-      type: object
+    User:
+      description:  User Object 
       x-no-faid: true
       allOf:
-        - $ref: '#/components/schemas/PostalAddress'
         - type: object
-          x-no-faid: true
+          required:
+            - dn
+            - userName
           properties:
-            recipientName:
-              description: recipient address part
+            dn:
+              description: LDAP dn
               type: string
-
+              nullable: false
+            userName:
+              description: unique userid
+              type: string
+              nullable: false
+        - $ref: '#/components/schemas/UserBase'
+        
     UserBase:
       description:  User Base Object 
       type: object
@@ -2581,25 +2995,6 @@ components:
             type: string
           nullable: true
 
-    User:
-      description:  User Object 
-      x-no-faid: true
-      allOf:
-        - type: object
-          required:
-            - dn
-            - userName
-          properties:
-            dn:
-              description: LDAP dn
-              type: string
-              nullable: false
-            userName:
-              description: unique userid
-              type: string
-              nullable: false
-        - $ref: '#/components/schemas/UserBase'
-
     UserCreateRequest:
       description:  User Object 
       x-no-faid: true
@@ -2619,23 +3014,6 @@ components:
               nullable: false
         - $ref: '#/components/schemas/UserBase'
        
-    UserGroupBase:
-      description:  UserGroup Base Object 
-      type: object
-      x-no-faid: true
-      required:
-        - members
-      properties:
-        description:
-          description: verbose description
-          type: string
-          nullable: true
-        members:
-          description: list of members user dn
-          type: array
-          items:
-            type: string
-
     UserGroup:
       description:  UserGroup Object 
       x-no-faid: true
@@ -2655,6 +3033,23 @@ components:
               nullable: false  
         - $ref: '#/components/schemas/UserGroupBase'
 
+    UserGroupBase:
+      description:  UserGroup Base Object 
+      type: object
+      x-no-faid: true
+      required:
+        - members
+      properties:
+        description:
+          description: verbose description
+          type: string
+          nullable: true
+        members:
+          description: list of members user dn
+          type: array
+          items:
+            type: string
+
     UserGroupCreateRequest:
       description:  UserGroup Object for creating new groups
       x-no-faid: true
@@ -2670,355 +3065,79 @@ components:
         - $ref: '#/components/schemas/UserGroupBase'
         
               
-    OrganizationBase:
-      description:  Organization Base Object 
+                      
+    Workflow:
       type: object
-      x-no-faid: true
-      properties:
-        description:
-          description: verbose description
-          type: string
-          nullable: true
-        faxNumbers:
-          description: fax numbers
-          type: array
-          items:
-            type: string
-          nullable: true
-        phoneNumbers:
-          description: phone numbers
-          type: array
-          items:
-            type: string
-          nullable: true
-        businessCategory:
-          description: business category
-          type: string
-          nullable: true
-        postalAddress:
-          $ref: '#/components/schemas/OrganizationalPostalAddress'
-        billingAddress:
-          $ref: '#/components/schemas/OrganizationalPostalAddress'
-
-    Organization:
-      description:  Organization Object 
-      x-no-faid: true
-      allOf:
-        - type: object
-          required:
-            - dn
-            - organizationName
-          properties:
-            dn:
-              description: organization's LDAP dn
-              type: string
-              nullable: false
-            organizationName:
-              description: unique OrganizationalUnit name
-              type: string
-              nullable: false
-        - $ref: '#/components/schemas/OrganizationBase'
-
-    OrganizationCreateRequest:
-      description:  Organization Object 
-      x-no-faid: true
-      allOf:
-        - type: object
-          required:
-            - parentDn
-            - organizationName
-          properties:
-            parentDn:
-              description: parent organization's LDAP dn
-              type: string
-              nullable: false
-            organizationName:
-              description: unique OrganizationalUnit name
-              type: string
-              nullable: false              
-        - $ref: '#/components/schemas/OrganizationBase'
-               
-    ChangePasswordRequest:
-      description: change password request object
-      type: object
-      x-no-faid: true
+      description: A workflow for a certain task.
       required:
-       - current
-       - new
-      properties:
-        current:
-          description: current password
-          type: string
-          nullable: true
-        new:
-          description: new password
-          type: string
-          nullable: false
-          
-    ImportResult:
-      type: object
-      x-no-faid: true
-      properties:
-        problems:
-          type: array
-          items:
-            type: string
-        imported-objects:
-          $ref: "#/components/schemas/FaObjectSet"
-          
-    FaObjectSet:
-      type: object
-      x-no-faid: true
-      properties:
-        fingerprints:
-          type: array
-          items:
-            type: string
-            format: uuid
-        products:
-          type: array
-          items:
-            type: string
-            format: uuid
-        sops:
-          type: array
-          items:
-            type: string
-            format: uuid
-        workflows:
-          type: array
-          items:
-            type: string
-            format: uuid
-        files:
-          type: array
-          items:
-            type: string
-            format: uuid
-            
-    ObjectEventPageResult:
-      type: object
-      x-no-faid: true
-      properties:
-        pageNumber:
-          type: integer
-        pageCount:
-          type: integer
-        resultCount:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ObjectEvent'
-            
-    TransactionPageResult:
-      type: object
-      x-no-faid: true
-      properties:
-        pageNumber:
-          type: integer
-        pageCount:
-          type: integer
-        resultCount:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/DiscoveryServiceTransaction'
-
-    BizTransaction:
-      type: object
-      x-no-faid: true
-      description: bizTransaction
+        - type
+        - file-id
+        - name
+        - representation
       x-ui-vue.js:
-      - name: type
-      - name: value
+        - name: name
+        - name: description
+        - name: type
+        - name: parameters
+        - name: tags
       properties:
+        fa-id:
+          description: A global id within the FoodAuthent-system.
+          type: string
+          format: uuid
+          example: ''
+        name:
+          type: string
+        description:
+          type: string
+        representation:
+          description: >-
+            The workflow representation, e.g. represented by a scripting
+            language, cwl or a KNIME-workflow.
+          type: string
+          enum:
+            - cwl
+            - r
+            - python
+            - knime
         type:
-          description: Type of transaction
+          #TODO allow custom types that are not predefined
+          description: >-
+            The type of the workflow.  IMPORTANT: This property determines the
+            required workflow input and output, e.g., PredictionWorkflowInput
+            and PredicitonWorkflowOutput-entity.
           type: string
-          example: 'http://foodauthent.de/data_set/fakx_model'
-        value:
-          description: Value of transaction
-          type: string
-          
-    QuantityElement:
-      type: object
-      x-no-faid: true
-      description: bizTransaction
-      x-ui-vue.js:
-      - name: epcClass
-      - name: quantity
-      - name: uom
-      properties:
-        epcClass:
-          description: epcClass
-          type: string
-        quantity:
-          description: quantity
-          type: string
-        uom:
-          description: uom
-          type: string
-          
-    Epc:
-      type: object
-      x-no-faid: true
-      description: epc
-      x-ui-vue.js:
-      - name: epc
-      properties:
-        epc:
-          description: epc
-          type: string
-          
-
-    ObjectEvent:
-      description: Object Event Transaction
-      type: object
-      x-ui-vue.js:
-      - name: epcList
-      - name: bizStep
-      - name: readPoint
-      - name: quantityList
-      - name: action
-      - name: disposition
-      - name: bizTransactionList
-      - name: gtin
-      - name: bricks
-      - name: eventTime
-      properties:
-        fa-id:
-          description: A global id within the FoodAuthent-system.
+          #TODO another potential type: preprocessing workflow
+          enum:
+            - prediction_workflow
+            - training_workflow
+        parameters:
+          description: 'The parameters of the workflow, TODO - should maybe be a map.'
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowParameter'
+        tags:
+          description: Descriptive tags/annotations for the workflow.
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        file-id:
+          description: id referencing the workflow file.
           type: string
           format: uuid
-        epcList:
-          description: List of epcs
-          type: array
-          items: 
-            $ref: "#/components/schemas/Epc"
-        bizStep:
-          description: EPCIS bizStep
+        model-type:
+          description: >-
+            Type of the model this workflow can consume or produce. Can be left
+            empty, e.g., in case of a preprocessing workflow. Model type must
+            match one of the model's type property.
           type: string
-        readPoint:
-          description: Read point
-          type: string
-        quantityList:
-          description: List of quantity
-          type: array
-          items: 
-            $ref: "#/components/schemas/QuantityElement"
-        action:
-          description: Event action.
-          type: string
+          # must be kept in sync with model.type
           enum:
-            - ADD
-            - OBSERVE
-            - DELETE
-        disposition:
-          description: EPCIS Disposition
-          type: string
-        bizTransactionList:
-          description: List of bizTransactions
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
-        gtin:
-          description: Global Trade Item Number
-          type: string
-        bricks:
-          description: bricks
-          type: array
-          items:
-            $ref: "#/components/schemas/GPCAttribute"
-        eventTime:
-          description: When the event happened
-          type: string
-          format: date
-            
+            - knime_workflow
+            - knime_python
+            - pmml
 
-    DiscoveryServiceTransaction:
-      description: DiscoveryServiceTransaction
-      type: object
-      x-ui-vue.js:
-      - name: epcList
-      - name: bizStep
-      - name: readPoint
-      - name: quantityList
-      - name: action
-      - name: disposition
-      - name: bizTransactionList
-      - name: gtin
-      - name: bricks
-      - name: sourceList
-      - name: destinationList
-      - name: ilmd
-      - name: eventTime
-      properties:
-        fa-id:
-          description: A global id within the FoodAuthent-system.
-          type: string
-          format: uuid
-        epcList:
-          description: List of epcs
-          type: array
-          items:
-            $ref: "#/components/schemas/Epc"
-        bizStep:
-          description: EPCIS bizStep
-          type: string
-        readPoint:
-          description: Read point
-          type: string
-        quantityList:
-          description: List of quantity
-          type: array
-          items: 
-            $ref: "#/components/schemas/QuantityElement"
-        action:
-          description: Event action.
-          type: string
-          enum:
-            - ADD
-            - OBSERVE
-            - DELETE
-        disposition:
-          description: EPCIS Disposition
-          type: string
-        bizTransactionList:
-          description: List of bizTransactions
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
-        gtin:
-          description: Global Trade Item Number
-          type: string
-        bricks:
-          description: bricks
-          type: array
-          items:
-            $ref: "#/components/schemas/GPCAttribute"
-        sourceList:
-          description: List of sources
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
-        destinationList:
-          description: List of destinations
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
-        ilmd:
-          description: ilmd
-          type: array
-          items:
-            type: string
-        eventTime:
-          description: When the event happened
-          type: string
-          format: date
-          
-    SamplePageResult:
+    WorkflowPageResult:
       type: object
       x-no-faid: true
       properties:
@@ -3031,126 +3150,39 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/Sample'
-    
-    Sample:
-        description: Sample
-        type: object
-        x-ui-vue.js:
-        - name: sampleId
-        - name: dateOfSampleDrawing
-        - name: gtin
-        - name: lot
-        - name: brand
-        - name: targetMarket
-        - name: samplingPlace
-        - name: labelDescription
-        - name: companyName
-        - name: productClassification
-        - name: gpcAttribute
-        - name: gpcAttributeValue
-        - name: countryOfOrigin
-        - name: regionOfOriginClaims
-        - name: incredientStatementLanguageCode
-        - name: bestBeforeDate
-        - name: application
-        - name: typeOfAnalysis
-        - name: storageConditions
-        - name: comment
-        properties:
-          fa-id:
-            description: A global id within the FoodAuthent-system.
-            type: string
-            format: uuid
-          sampleId:
-            description: Sample Id
-            type: string
-            example: 401234500000123
-          dateOfSampleDrawing:
-            description: Date of Sample Drawing
-            format: date-time
-            type: string
-            example: 2018-02-22T00:00:00.000Z
-          gtin:
-            description: Global Trade Item Number
-            type: string
-            example: 4012345123456 or 04012345123456
-          lot:
-            description: Lot
-            type: string
-            example: ABC123
-          brand:
-            description: Brand
-            type: string
-            example: Bayernland
-          targetMarket:
-            description: Target Market
-            type: string
-            example: 'DE, Deutschland'
-          samplingPlace:
-            description: Sampling Place
-            type: string
-            example: Lankreis XY
-          labelDescription:
-            description: Label Description
-            type: string
-            example: 'Bayernland Allgäuer Emmentaler 45%, ca. 1kg'
-          companyName:
-            description: Company Name
-            type: string
-            example: Bayernland eG
-          productClassification:
-            description: Product Classification
-            type: string
-            example: 10000028 - Käse / Käseersatz (leicht verderblich)
-          gpcAttribute:
-            description: GPC Attribute
-            type: string
-            example: '20000192 - Festigkeit des Käses, 20000142 - Falls Biologisch'
-          gpcAttributeValue:
-            description: GPC Attribute Value
-            type: string
-            example: '30002260 - WEICH, 30002654 - JA'
-          countryOfOrigin:
-            description: Country Of Origin
-            type: string
-            example: 'DE, Deutschland'
-          regionOfOriginClaims:
-            description: Region Of Origin-Claims
-            type: string
-            example: Äthopia
-          incredientStatementLanguageCode:
-            description: Incredient Statement + language Code
-            type: string
-            example: >-
-              Zutaten pasteurisierte KUHMILCH, Milchsäurebakterienkulturen,
-              mikrobieller Labaustauschstoff, Speisesalz
-          bestBeforeDate:
-            description: Best Before Date
-            format: date-time
-            type: string
-            example: 2018-09-12T00:00:00.000Z
-          application:
-            description: Application
-            type: string
-            example: FoodAuthent
-          typeOfAnalysis:
-            description: Type Of Analysis
-            type: array
-            items:
-              type: string
-              example: TBD
-          storageConditions:
-            description: StorageConditions
-            type: string
-            example: TBD
-          comment:
-            description: Comment
-            type: string
-            example: Comment on sample
+            $ref: '#/components/schemas/Workflow'
+            
+    WorkflowParameter:
+      type: object
+      description: Represents a workflow parameter.
+      x-no-faid: true
+      x-ui-vue.js:
+        - name: name
+        - name: required
+        - name: type
+        - name: value
+      properties:
+        name:
+          description: the parameter name
+          type: string
+        required:
+          description: whether the parameter is required
+          type: boolean
+        type:
+          description: the parameter type
+          type: string
+          enum:
+            - string
+            - number
+        value:
+          description: the parameter value
+          type: string
             
   securitySchemes:
     jwtAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT            
+      bearerFormat: JWT
+      
+security:
+  - jwtAuth: []              

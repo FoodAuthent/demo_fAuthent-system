@@ -6,7 +6,7 @@ package org.foodauthent.model.json.mixin;
 import java.time.LocalDate;
 import org.foodauthent.model.BizTransaction;
 import org.foodauthent.model.Epc;
-import org.foodauthent.model.GPCAttribute;
+import org.foodauthent.model.GPCBrick;
 import org.foodauthent.model.QuantityElement;
 
 import java.util.UUID;
@@ -78,7 +78,7 @@ public interface ObjectEventMixIn {
     public String getGtin();
     
     @JsonProperty("bricks")
-    public java.util.List<GPCAttribute> getBricks();
+    public java.util.List<GPCBrick> getBricks();
     
     @JsonProperty("eventTime")
     public LocalDate getEventTime();
@@ -130,7 +130,7 @@ public interface ObjectEventMixIn {
         public ObjectEventMixInBuilder setGtin(final String gtin);
         
         @JsonProperty("bricks")
-        public ObjectEventMixInBuilder setBricks(final java.util.List<GPCAttribute> bricks);
+        public ObjectEventMixInBuilder setBricks(final java.util.List<GPCBrick> bricks);
         
         @JsonProperty("eventTime")
         public ObjectEventMixInBuilder setEventTime(final LocalDate eventTime);

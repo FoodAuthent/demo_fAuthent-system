@@ -3,7 +3,6 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.GPCAttributeValue;
 
 import java.util.UUID;
 
@@ -16,8 +15,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
 
-import org.foodauthent.model.GPCAttribute;
-import org.foodauthent.model.GPCAttribute.GPCAttributeBuilder;
+import org.foodauthent.model.ProductIngredientStatement;
+import org.foodauthent.model.ProductIngredientStatement.ProductIngredientStatementBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -29,13 +28,13 @@ import org.foodauthent.model.GPCAttribute.GPCAttributeBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = GPCAttribute.class)
+    defaultImpl = ProductIngredientStatement.class)
 @JsonSubTypes({
-    @Type(value = GPCAttribute.class, name="GPCAttribute")
+    @Type(value = ProductIngredientStatement.class, name="ProductIngredientStatement")
 })
-@JsonDeserialize(builder=GPCAttributeBuilder.class)
+@JsonDeserialize(builder=ProductIngredientStatementBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface GPCAttributeMixIn {
+public interface ProductIngredientStatementMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -47,14 +46,11 @@ public interface GPCAttributeMixIn {
   	public UUID getFaId();
     
 
-    @JsonProperty("code")
-    public String getCode();
+    @JsonProperty("language")
+    public String getLanguage();
     
     @JsonProperty("text")
     public String getText();
-    
-    @JsonProperty("values")
-    public java.util.List<GPCAttributeValue> getValues();
     
 
     /**
@@ -66,23 +62,20 @@ public interface GPCAttributeMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = GPCAttributeBuilder.class)
+        defaultImpl = ProductIngredientStatementBuilder.class)
     @JsonSubTypes({
-        @Type(value = GPCAttribute.GPCAttributeBuilder.class, name="GPCAttribute")
+        @Type(value = ProductIngredientStatement.ProductIngredientStatementBuilder.class, name="ProductIngredientStatement")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface GPCAttributeMixInBuilder {
+    public static interface ProductIngredientStatementMixInBuilder {
     
-        public GPCAttributeMixIn build();
+        public ProductIngredientStatementMixIn build();
     
-        @JsonProperty("code")
-        public GPCAttributeMixInBuilder setCode(final String code);
+        @JsonProperty("language")
+        public ProductIngredientStatementMixInBuilder setLanguage(final String language);
         
         @JsonProperty("text")
-        public GPCAttributeMixInBuilder setText(final String text);
-        
-        @JsonProperty("values")
-        public GPCAttributeMixInBuilder setValues(final java.util.List<GPCAttributeValue> values);
+        public ProductIngredientStatementMixInBuilder setText(final String text);
         
     }
 

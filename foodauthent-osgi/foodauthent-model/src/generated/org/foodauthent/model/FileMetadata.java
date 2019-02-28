@@ -55,6 +55,7 @@ public class FileMetadata   extends FaModel {
   protected java.util.UUID faId;
   protected TypeEnum type;
   protected String name;
+  protected String contentType;
   protected String uploadName;
   protected String description;
   protected String author;
@@ -76,6 +77,7 @@ public class FileMetadata   extends FaModel {
     faId = immutable(builder.faId);
     type = immutable(builder.type);
     name = immutable(builder.name);
+    contentType = immutable(builder.contentType);
     uploadName = immutable(builder.uploadName);
     description = immutable(builder.description);
     author = immutable(builder.author);
@@ -103,7 +105,7 @@ public class FileMetadata   extends FaModel {
             return false;
         }
         FileMetadata ent = (FileMetadata)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(type, ent.type) && Objects.equals(name, ent.name) && Objects.equals(uploadName, ent.uploadName) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(uploadDate, ent.uploadDate) && Objects.equals(version, ent.version) && Objects.equals(additionalProperties, ent.additionalProperties);
+        return Objects.equals(faId, ent.faId) && Objects.equals(type, ent.type) && Objects.equals(name, ent.name) && Objects.equals(contentType, ent.contentType) && Objects.equals(uploadName, ent.uploadName) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(uploadDate, ent.uploadDate) && Objects.equals(version, ent.version) && Objects.equals(additionalProperties, ent.additionalProperties);
     }
 
 
@@ -129,6 +131,14 @@ public class FileMetadata   extends FaModel {
    */
   public String getName() {
         return name;
+    }
+    
+  /**
+   * file content type
+   * @return contentType 
+   */
+  public String getContentType() {
+        return contentType;
     }
     
   /**
@@ -208,6 +218,7 @@ public class FileMetadata   extends FaModel {
         builder.faId = entity.faId;
         builder.type = entity.type;
         builder.name = entity.name;
+        builder.contentType = entity.contentType;
         builder.uploadName = entity.uploadName;
         builder.description = entity.description;
         builder.author = entity.author;
@@ -228,6 +239,7 @@ public class FileMetadata   extends FaModel {
         private java.util.UUID faId;
         private TypeEnum type;
         private String name;
+        private String contentType;
         private String uploadName;
         private String description;
         private String author;
@@ -260,6 +272,15 @@ public class FileMetadata   extends FaModel {
          */
         public FileMetadataBuilder setName(String name) {
              this.name = name;
+             return this;
+        }
+
+        /**
+         * file content type
+         * @return contentType 
+         */
+        public FileMetadataBuilder setContentType(String contentType) {
+             this.contentType = contentType;
              return this;
         }
 

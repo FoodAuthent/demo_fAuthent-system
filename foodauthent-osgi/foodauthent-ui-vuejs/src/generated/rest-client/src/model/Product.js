@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/GPCAttribute'], factory);
+    define(['../ApiClient', '../model/GPCBrick', '../model/ProductIngredientStatement'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./GPCAttribute'));
+    module.exports = factory(require('../ApiClient'), require('./GPCBrick'), require('./ProductIngredientStatement'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.Product = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.GPCAttribute);
+    root.FoodAuthentSwaggerApi.Product = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.GPCBrick, root.FoodAuthentSwaggerApi.ProductIngredientStatement);
   }
-}(this, function(ApiClient, GPCAttribute) {
+}(this, function(ApiClient, GPCBrick, ProductIngredientStatement) {
   'use strict';
 
 
@@ -69,8 +69,32 @@
       if (data.hasOwnProperty('brand')) {
         obj['brand'] = ApiClient.convertToType(data['brand'], 'String');
       }
-      if (data.hasOwnProperty('gpcAttributes')) {
-        obj['gpcAttributes'] = ApiClient.convertToType(data['gpcAttributes'], [GPCAttribute]);
+      if (data.hasOwnProperty('targetMarket')) {
+        obj['targetMarket'] = ApiClient.convertToType(data['targetMarket'], 'String');
+      }
+      if (data.hasOwnProperty('labelDescription')) {
+        obj['labelDescription'] = ApiClient.convertToType(data['labelDescription'], 'String');
+      }
+      if (data.hasOwnProperty('companyName')) {
+        obj['companyName'] = ApiClient.convertToType(data['companyName'], 'String');
+      }
+      if (data.hasOwnProperty('productClassification')) {
+        obj['productClassification'] = ApiClient.convertToType(data['productClassification'], 'String');
+      }
+      if (data.hasOwnProperty('countryOfOrigin')) {
+        obj['countryOfOrigin'] = ApiClient.convertToType(data['countryOfOrigin'], 'String');
+      }
+      if (data.hasOwnProperty('regionOfOriginClaims')) {
+        obj['regionOfOriginClaims'] = ApiClient.convertToType(data['regionOfOriginClaims'], 'String');
+      }
+      if (data.hasOwnProperty('ingredientStatement')) {
+        obj['ingredientStatement'] = ProductIngredientStatement.constructFromObject(data['ingredientStatement']);
+      }
+      if (data.hasOwnProperty('comment')) {
+        obj['comment'] = ApiClient.convertToType(data['comment'], 'String');
+      }
+      if (data.hasOwnProperty('gpcBricks')) {
+        obj['gpcBricks'] = ApiClient.convertToType(data['gpcBricks'], [GPCBrick]);
       }
     }
     return obj;
@@ -86,13 +110,53 @@
    */
   exports.prototype['gtin'] = undefined;
   /**
+   * Brand
    * @member {String} brand
    */
   exports.prototype['brand'] = undefined;
   /**
-   * @member {Array.<module:model/GPCAttribute>} gpcAttributes
+   * Target Market
+   * @member {String} targetMarket
    */
-  exports.prototype['gpcAttributes'] = undefined;
+  exports.prototype['targetMarket'] = undefined;
+  /**
+   * Label Description
+   * @member {String} labelDescription
+   */
+  exports.prototype['labelDescription'] = undefined;
+  /**
+   * Company Name
+   * @member {String} companyName
+   */
+  exports.prototype['companyName'] = undefined;
+  /**
+   * Product Classification
+   * @member {String} productClassification
+   */
+  exports.prototype['productClassification'] = undefined;
+  /**
+   * Country Of Origin
+   * @member {String} countryOfOrigin
+   */
+  exports.prototype['countryOfOrigin'] = undefined;
+  /**
+   * Region Of Origin-Claims
+   * @member {String} regionOfOriginClaims
+   */
+  exports.prototype['regionOfOriginClaims'] = undefined;
+  /**
+   * @member {module:model/ProductIngredientStatement} ingredientStatement
+   */
+  exports.prototype['ingredientStatement'] = undefined;
+  /**
+   * Comment
+   * @member {String} comment
+   */
+  exports.prototype['comment'] = undefined;
+  /**
+   * @member {Array.<module:model/GPCBrick>} gpcBricks
+   */
+  exports.prototype['gpcBricks'] = undefined;
 
 
 

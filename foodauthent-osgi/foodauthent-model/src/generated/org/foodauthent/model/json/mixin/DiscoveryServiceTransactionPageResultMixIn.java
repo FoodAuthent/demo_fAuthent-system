@@ -16,8 +16,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
 
-import org.foodauthent.model.TransactionPageResult;
-import org.foodauthent.model.TransactionPageResult.TransactionPageResultBuilder;
+import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
+import org.foodauthent.model.DiscoveryServiceTransactionPageResult.DiscoveryServiceTransactionPageResultBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -29,13 +29,13 @@ import org.foodauthent.model.TransactionPageResult.TransactionPageResultBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = TransactionPageResult.class)
+    defaultImpl = DiscoveryServiceTransactionPageResult.class)
 @JsonSubTypes({
-    @Type(value = TransactionPageResult.class, name="TransactionPageResult")
+    @Type(value = DiscoveryServiceTransactionPageResult.class, name="DiscoveryServiceTransactionPageResult")
 })
-@JsonDeserialize(builder=TransactionPageResultBuilder.class)
+@JsonDeserialize(builder=DiscoveryServiceTransactionPageResultBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface TransactionPageResultMixIn {
+public interface DiscoveryServiceTransactionPageResultMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -69,26 +69,26 @@ public interface TransactionPageResultMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = TransactionPageResultBuilder.class)
+        defaultImpl = DiscoveryServiceTransactionPageResultBuilder.class)
     @JsonSubTypes({
-        @Type(value = TransactionPageResult.TransactionPageResultBuilder.class, name="TransactionPageResult")
+        @Type(value = DiscoveryServiceTransactionPageResult.DiscoveryServiceTransactionPageResultBuilder.class, name="DiscoveryServiceTransactionPageResult")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface TransactionPageResultMixInBuilder {
+    public static interface DiscoveryServiceTransactionPageResultMixInBuilder {
     
-        public TransactionPageResultMixIn build();
+        public DiscoveryServiceTransactionPageResultMixIn build();
     
         @JsonProperty("pageNumber")
-        public TransactionPageResultMixInBuilder setPageNumber(final Integer pageNumber);
+        public DiscoveryServiceTransactionPageResultMixInBuilder setPageNumber(final Integer pageNumber);
         
         @JsonProperty("pageCount")
-        public TransactionPageResultMixInBuilder setPageCount(final Integer pageCount);
+        public DiscoveryServiceTransactionPageResultMixInBuilder setPageCount(final Integer pageCount);
         
         @JsonProperty("resultCount")
-        public TransactionPageResultMixInBuilder setResultCount(final Integer resultCount);
+        public DiscoveryServiceTransactionPageResultMixInBuilder setResultCount(final Integer resultCount);
         
         @JsonProperty("results")
-        public TransactionPageResultMixInBuilder setResults(final java.util.List<DiscoveryServiceTransaction> results);
+        public DiscoveryServiceTransactionPageResultMixInBuilder setResults(final java.util.List<DiscoveryServiceTransaction> results);
         
     }
 

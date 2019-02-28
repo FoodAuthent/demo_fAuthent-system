@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.time.LocalDate;
 import org.foodauthent.model.BizTransaction;
 import org.foodauthent.model.Epc;
-import org.foodauthent.model.GPCAttribute;
+import org.foodauthent.model.GPCBrick;
 import org.foodauthent.model.QuantityElement;
 
 
@@ -59,7 +59,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   protected String disposition;
   protected java.util.List<BizTransaction> bizTransactionList;
   protected String gtin;
-  protected java.util.List<GPCAttribute> bricks;
+  protected java.util.List<GPCBrick> bricks;
   protected java.util.List<BizTransaction> sourceList;
   protected java.util.List<BizTransaction> destinationList;
   protected java.util.List<String> ilmd;
@@ -189,7 +189,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * bricks
    * @return bricks 
    */
-  public java.util.List<GPCAttribute> getBricks() {
+  public java.util.List<GPCBrick> getBricks() {
         return bricks;
     }
     
@@ -276,7 +276,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         private String disposition;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
         private String gtin;
-        private java.util.List<GPCAttribute> bricks = new java.util.ArrayList<>();
+        private java.util.List<GPCBrick> bricks = new java.util.ArrayList<>();
         private java.util.List<BizTransaction> sourceList = new java.util.ArrayList<>();
         private java.util.List<BizTransaction> destinationList = new java.util.ArrayList<>();
         private java.util.List<String> ilmd = new java.util.ArrayList<>();
@@ -367,7 +367,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * bricks
          * @return bricks 
          */
-        public DiscoveryServiceTransactionBuilder setBricks(java.util.List<GPCAttribute> bricks) {
+        public DiscoveryServiceTransactionBuilder setBricks(java.util.List<GPCBrick> bricks) {
              this.bricks = bricks;
              return this;
         }

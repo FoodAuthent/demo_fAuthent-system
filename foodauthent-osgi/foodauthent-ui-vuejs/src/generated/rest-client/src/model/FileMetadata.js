@@ -69,6 +69,9 @@
       if (data.hasOwnProperty('name')) {
         obj['name'] = ApiClient.convertToType(data['name'], 'String');
       }
+      if (data.hasOwnProperty('contentType')) {
+        obj['contentType'] = ApiClient.convertToType(data['contentType'], 'String');
+      }
       if (data.hasOwnProperty('uploadName')) {
         obj['uploadName'] = ApiClient.convertToType(data['uploadName'], 'String');
       }
@@ -109,6 +112,11 @@
    * @member {String} name
    */
   exports.prototype['name'] = undefined;
+  /**
+   * file content type
+   * @member {String} contentType
+   */
+  exports.prototype['contentType'] = undefined;
   /**
    * The name of the file as uploaded. Will be set automatically if left empty and a file is uploaded for the first time.
    * @member {String} uploadName

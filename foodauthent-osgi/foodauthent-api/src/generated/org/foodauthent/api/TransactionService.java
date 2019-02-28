@@ -4,7 +4,7 @@
 package org.foodauthent.api;
 
 import org.foodauthent.model.DiscoveryServiceTransaction;
-import org.foodauthent.model.TransactionPageResult;
+import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
 
 import org.foodauthent.common.exception.FAExceptions;
 
@@ -34,7 +34,7 @@ public interface TransactionService {
      *
      * @return the result
      */
-    TransactionPageResult findTransactionByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
+    DiscoveryServiceTransactionPageResult findTransactionByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
     /**
      * Get the Transaction an id.

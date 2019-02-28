@@ -15,8 +15,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
 
-import org.foodauthent.model.ArrayStringItem;
-import org.foodauthent.model.ArrayStringItem.ArrayStringItemBuilder;
+import org.foodauthent.model.GPCAttributeValue;
+import org.foodauthent.model.GPCAttributeValue.GPCAttributeValueBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -28,13 +28,13 @@ import org.foodauthent.model.ArrayStringItem.ArrayStringItemBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = ArrayStringItem.class)
+    defaultImpl = GPCAttributeValue.class)
 @JsonSubTypes({
-    @Type(value = ArrayStringItem.class, name="ArrayStringItem")
+    @Type(value = GPCAttributeValue.class, name="GPCAttributeValue")
 })
-@JsonDeserialize(builder=ArrayStringItemBuilder.class)
+@JsonDeserialize(builder=GPCAttributeValueBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface ArrayStringItemMixIn {
+public interface GPCAttributeValueMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -46,8 +46,11 @@ public interface ArrayStringItemMixIn {
   	public UUID getFaId();
     
 
-    @JsonProperty("value")
-    public String getValue();
+    @JsonProperty("code")
+    public String getCode();
+    
+    @JsonProperty("text")
+    public String getText();
     
 
     /**
@@ -59,17 +62,20 @@ public interface ArrayStringItemMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = ArrayStringItemBuilder.class)
+        defaultImpl = GPCAttributeValueBuilder.class)
     @JsonSubTypes({
-        @Type(value = ArrayStringItem.ArrayStringItemBuilder.class, name="ArrayStringItem")
+        @Type(value = GPCAttributeValue.GPCAttributeValueBuilder.class, name="GPCAttributeValue")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface ArrayStringItemMixInBuilder {
+    public static interface GPCAttributeValueMixInBuilder {
     
-        public ArrayStringItemMixIn build();
+        public GPCAttributeValueMixIn build();
     
-        @JsonProperty("value")
-        public ArrayStringItemMixInBuilder setValue(final String value);
+        @JsonProperty("code")
+        public GPCAttributeValueMixInBuilder setCode(final String code);
+        
+        @JsonProperty("text")
+        public GPCAttributeValueMixInBuilder setText(final String text);
         
     }
 

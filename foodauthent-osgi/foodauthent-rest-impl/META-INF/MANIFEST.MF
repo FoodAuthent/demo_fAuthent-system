@@ -35,17 +35,17 @@ Import-Package: com.eclipsesource.jaxrs.publisher;version="5.3.1",
 Bundle-Activator: org.foodauthent.rest.impl.Activator
 Automatic-Module-Name: org.foodauthent.rest
 Export-Package: org.foodauthent.rest.impl.json
-Service-Component: OSGI-INF/org.foodauthent.rest.impl.service.SopRestServiceImpl.xml,
- OSGI-INF/org.foodauthent.rest.impl.service.AuthenticationRestServiceImpl.xml,
+Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/org.foodauthent.rest.impl.service.AuthenticationRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.SopRestServiceImpl.xml,
  OSGI-INF/org.foodauthent.rest.impl.service.UserRestServiceImpl.xml,
  OSGI-INF/org.foodauthent.rest.impl.service.ProductRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.SampleRestServiceImpl.xml,
  OSGI-INF/org.foodauthent.rest.impl.service.FingerprintRestServiceImpl.xml,
- OSGI-INF/org.foodauthent.rest.impl.service.FileRestServiceImpl.xml,
- OSGI-INF/org.foodauthent.rest.impl.service.ModelRestServiceImpl.xml,
- OSGI-INF/org.foodauthent.rest.impl.service.OrganizationRestServiceImpl.xml,
- OSGI-INF/org.foodauthent.rest.impl.service.WorkflowRestServiceImpl.xml,
  OSGI-INF/org.foodauthent.rest.impl.service.CustomMetadataRestServiceImpl.xml,
- OSGI-INF/org.foodauthent.rest.impl.service.TransactionRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.ModelRestServiceImpl.xml,
  OSGI-INF/org.foodauthent.rest.impl.service.ObjectEventRestServiceImpl.xml,
- OSGI-INF/org.foodauthent.rest.impl.service.SampleRestServiceImpl.xml
-Bundle-ActivationPolicy: lazy
+ OSGI-INF/org.foodauthent.rest.impl.service.WorkflowRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.TransactionRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.FileRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.OrganizationRestServiceImpl.xml

@@ -55,6 +55,9 @@ public interface FileMetadataMixIn {
     @JsonProperty("name")
     public String getName();
     
+    @JsonProperty("contentType")
+    public String getContentType();
+    
     @JsonProperty("uploadName")
     public String getUploadName();
     
@@ -103,6 +106,9 @@ public interface FileMetadataMixIn {
         
         @JsonProperty("name")
         public FileMetadataMixInBuilder setName(final String name);
+        
+        @JsonProperty("contentType")
+        public FileMetadataMixInBuilder setContentType(final String contentType);
         
         @JsonProperty("uploadName")
         public FileMetadataMixInBuilder setUploadName(final String uploadName);

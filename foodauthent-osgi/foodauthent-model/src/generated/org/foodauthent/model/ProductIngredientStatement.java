@@ -14,18 +14,19 @@ import java.util.Objects;
 
 
 /**
- * EPC
+ * Incredient Statement by language Code
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class ArrayStringItem   extends FaModel {
+public class ProductIngredientStatement   extends FaModel {
 
 
-  protected String value;
+  protected String language;
+  protected String text;
   
   public String getTypeID() {
-    return "ArrayStringItem";
+    return "ProductIngredientStatement";
   }
   
 
@@ -34,11 +35,12 @@ public class ArrayStringItem   extends FaModel {
   	return null;
   }
   
-  protected ArrayStringItem() {}
+  protected ProductIngredientStatement() {}
   
-  private ArrayStringItem(ArrayStringItemBuilder builder) {
+  private ProductIngredientStatement(ProductIngredientStatementBuilder builder) {
     
-    value = immutable(builder.value);
+    language = immutable(builder.language);
+    text = immutable(builder.text);
     
     
   }
@@ -57,25 +59,33 @@ public class ArrayStringItem   extends FaModel {
         if (getClass() != o.getClass()) {
             return false;
         }
-        ArrayStringItem ent = (ArrayStringItem)o;
-        return Objects.equals(value, ent.value);
+        ProductIngredientStatement ent = (ProductIngredientStatement)o;
+        return Objects.equals(language, ent.language) && Objects.equals(text, ent.text);
     }
 
 
   /**
-   * value of the item
-   * @return value 
+   * Get language
+   * @return language 
    */
-  public String getValue() {
-        return value;
+  public String getLanguage() {
+        return language;
+    }
+    
+  /**
+   * Get text
+   * @return text 
+   */
+  public String getText() {
+        return text;
     }
     
   
  	/**
   	 * @return a newly created builder
   	 */
-  	public static ArrayStringItemBuilder builder() {
-  		return new ArrayStringItemBuilder();
+  	public static ProductIngredientStatementBuilder builder() {
+  		return new ProductIngredientStatementBuilder();
   	}
   	
   	/**
@@ -86,33 +96,44 @@ public class ArrayStringItem   extends FaModel {
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
 	 */
-	public static ArrayStringItemBuilder builder(ArrayStringItem entity) {
-		ArrayStringItemBuilder builder = builder();
-        builder.value = entity.value;
+	public static ProductIngredientStatementBuilder builder(ProductIngredientStatement entity) {
+		ProductIngredientStatementBuilder builder = builder();
+        builder.language = entity.language;
+        builder.text = entity.text;
  		return builder;
   	}
   	
   
-    public static class ArrayStringItemBuilder {
+    public static class ProductIngredientStatementBuilder {
     
-        protected ArrayStringItemBuilder(){
+        protected ProductIngredientStatementBuilder(){
             
         }
     
-        private String value;
+        private String language;
+        private String text;
 
         /**
-         * value of the item
-         * @return value 
+         * Get language
+         * @return language 
          */
-        public ArrayStringItemBuilder setValue(String value) {
-             this.value = value;
+        public ProductIngredientStatementBuilder setLanguage(String language) {
+             this.language = language;
+             return this;
+        }
+
+        /**
+         * Get text
+         * @return text 
+         */
+        public ProductIngredientStatementBuilder setText(String text) {
+             this.text = text;
              return this;
         }
 
         
-        public ArrayStringItem build() {
-            return new ArrayStringItem(this);
+        public ProductIngredientStatement build() {
+            return new ProductIngredientStatement(this);
         }
     
     }

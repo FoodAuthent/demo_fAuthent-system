@@ -82,7 +82,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
       var returnType = String;
@@ -136,7 +136,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/binary'];
       var returnType = File;
@@ -183,7 +183,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/binary'];
       var returnType = File;
@@ -230,7 +230,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = FileMetadata;
@@ -278,7 +278,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = ImportResult;
@@ -332,7 +332,7 @@
         'filedata': filedata
       };
 
-      var authNames = [];
+      var authNames = ['jwtAuth'];
       var contentTypes = ['multipart/form-data'];
       var accepts = ['application/json'];
       var returnType = String;

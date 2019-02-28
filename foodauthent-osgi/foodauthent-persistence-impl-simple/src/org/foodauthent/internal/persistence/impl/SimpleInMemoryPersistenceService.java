@@ -138,8 +138,8 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 				}
 			}else if (modelType.equals(Sample.class) && o instanceof Sample) {
 				final Sample s = (Sample) o;
-				if (keywords.isEmpty() || containsAKeyword(s.getBrand(), keywords)
-						|| containsAKeyword(s.getLabelDescription(), keywords)) {
+				if (keywords.isEmpty() || containsAKeyword(s.getApplication(), keywords)
+						|| containsAKeyword(s.getComment(), keywords)) {
 					result.add((T) s);
 				}
 			} else {

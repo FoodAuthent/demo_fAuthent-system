@@ -11,7 +11,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
 import org.foodauthent.model.DiscoveryServiceTransaction;
-import org.foodauthent.model.TransactionPageResult;
+import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
 
 import org.foodauthent.api.TransactionService;
 import org.foodauthent.api.ServiceRegistry;

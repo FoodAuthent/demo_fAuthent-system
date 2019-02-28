@@ -30,6 +30,8 @@ public class ModelUtil {
         mapper.addMixIn(ChangePasswordRequest.ChangePasswordRequestBuilder.class, ChangePasswordRequestMixIn.ChangePasswordRequestMixInBuilder.class);
         mapper.addMixIn(DiscoveryServiceTransaction.class, DiscoveryServiceTransactionMixIn.class);
         mapper.addMixIn(DiscoveryServiceTransaction.DiscoveryServiceTransactionBuilder.class, DiscoveryServiceTransactionMixIn.DiscoveryServiceTransactionMixInBuilder.class);
+        mapper.addMixIn(DiscoveryServiceTransactionPageResult.class, DiscoveryServiceTransactionPageResultMixIn.class);
+        mapper.addMixIn(DiscoveryServiceTransactionPageResult.DiscoveryServiceTransactionPageResultBuilder.class, DiscoveryServiceTransactionPageResultMixIn.DiscoveryServiceTransactionPageResultMixInBuilder.class);
         mapper.addMixIn(Epc.class, EpcMixIn.class);
         mapper.addMixIn(Epc.EpcBuilder.class, EpcMixIn.EpcMixInBuilder.class);
         mapper.addMixIn(FaObjectSet.class, FaObjectSetMixIn.class);
@@ -44,6 +46,10 @@ public class ModelUtil {
         mapper.addMixIn(FingerprintSetPageResult.FingerprintSetPageResultBuilder.class, FingerprintSetPageResultMixIn.FingerprintSetPageResultMixInBuilder.class);
         mapper.addMixIn(GPCAttribute.class, GPCAttributeMixIn.class);
         mapper.addMixIn(GPCAttribute.GPCAttributeBuilder.class, GPCAttributeMixIn.GPCAttributeMixInBuilder.class);
+        mapper.addMixIn(GPCAttributeValue.class, GPCAttributeValueMixIn.class);
+        mapper.addMixIn(GPCAttributeValue.GPCAttributeValueBuilder.class, GPCAttributeValueMixIn.GPCAttributeValueMixInBuilder.class);
+        mapper.addMixIn(GPCBrick.class, GPCBrickMixIn.class);
+        mapper.addMixIn(GPCBrick.GPCBrickBuilder.class, GPCBrickMixIn.GPCBrickMixInBuilder.class);
         mapper.addMixIn(ImportResult.class, ImportResultMixIn.class);
         mapper.addMixIn(ImportResult.ImportResultBuilder.class, ImportResultMixIn.ImportResultMixInBuilder.class);
         mapper.addMixIn(Model.class, ModelMixIn.class);
@@ -76,6 +82,8 @@ public class ModelUtil {
         mapper.addMixIn(PredictionWorkflowInput.PredictionWorkflowInputBuilder.class, PredictionWorkflowInputMixIn.PredictionWorkflowInputMixInBuilder.class);
         mapper.addMixIn(PredictionWorkflowOutput.class, PredictionWorkflowOutputMixIn.class);
         mapper.addMixIn(PredictionWorkflowOutput.PredictionWorkflowOutputBuilder.class, PredictionWorkflowOutputMixIn.PredictionWorkflowOutputMixInBuilder.class);
+        mapper.addMixIn(ProductIngredientStatement.class, ProductIngredientStatementMixIn.class);
+        mapper.addMixIn(ProductIngredientStatement.ProductIngredientStatementBuilder.class, ProductIngredientStatementMixIn.ProductIngredientStatementMixInBuilder.class);
         mapper.addMixIn(Product.class, ProductMixIn.class);
         mapper.addMixIn(Product.ProductBuilder.class, ProductMixIn.ProductMixInBuilder.class);
         mapper.addMixIn(ProductPageResult.class, ProductPageResultMixIn.class);
@@ -102,8 +110,6 @@ public class ModelUtil {
         mapper.addMixIn(TrainingWorkflowInput.TrainingWorkflowInputBuilder.class, TrainingWorkflowInputMixIn.TrainingWorkflowInputMixInBuilder.class);
         mapper.addMixIn(TrainingWorkflowOutput.class, TrainingWorkflowOutputMixIn.class);
         mapper.addMixIn(TrainingWorkflowOutput.TrainingWorkflowOutputBuilder.class, TrainingWorkflowOutputMixIn.TrainingWorkflowOutputMixInBuilder.class);
-        mapper.addMixIn(TransactionPageResult.class, TransactionPageResultMixIn.class);
-        mapper.addMixIn(TransactionPageResult.TransactionPageResultBuilder.class, TransactionPageResultMixIn.TransactionPageResultMixInBuilder.class);
         mapper.addMixIn(UserAuthenticationRequest.class, UserAuthenticationRequestMixIn.class);
         mapper.addMixIn(UserAuthenticationRequest.UserAuthenticationRequestBuilder.class, UserAuthenticationRequestMixIn.UserAuthenticationRequestMixInBuilder.class);
         mapper.addMixIn(UserBase.class, UserBaseMixIn.class);

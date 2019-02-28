@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.foodauthent.model.GPCAttributeValue;
 
 
 
@@ -20,15 +19,14 @@ import org.foodauthent.model.GPCAttributeValue;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class GPCAttribute   extends FaModel {
+public class GPCAttributeValue   extends FaModel {
 
 
   protected String code;
   protected String text;
-  protected java.util.List<GPCAttributeValue> values;
   
   public String getTypeID() {
-    return "GPCAttribute";
+    return "GPCAttributeValue";
   }
   
 
@@ -37,13 +35,12 @@ public class GPCAttribute   extends FaModel {
   	return null;
   }
   
-  protected GPCAttribute() {}
+  protected GPCAttributeValue() {}
   
-  private GPCAttribute(GPCAttributeBuilder builder) {
+  private GPCAttributeValue(GPCAttributeValueBuilder builder) {
     
     code = immutable(builder.code);
     text = immutable(builder.text);
-    values = immutable(builder.values);
     
     
   }
@@ -62,13 +59,13 @@ public class GPCAttribute   extends FaModel {
         if (getClass() != o.getClass()) {
             return false;
         }
-        GPCAttribute ent = (GPCAttribute)o;
-        return Objects.equals(code, ent.code) && Objects.equals(text, ent.text) && Objects.equals(values, ent.values);
+        GPCAttributeValue ent = (GPCAttributeValue)o;
+        return Objects.equals(code, ent.code) && Objects.equals(text, ent.text);
     }
 
 
   /**
-   * GPC attribute code
+   * GPC attribute value code
    * @return code 
    */
   public String getCode() {
@@ -76,27 +73,19 @@ public class GPCAttribute   extends FaModel {
     }
     
   /**
-   * GPC attribute human readable text
+   * GPC attribute value human readable text
    * @return text 
    */
   public String getText() {
         return text;
     }
     
-  /**
-   * Get values
-   * @return values 
-   */
-  public java.util.List<GPCAttributeValue> getValues() {
-        return values;
-    }
-    
   
  	/**
   	 * @return a newly created builder
   	 */
-  	public static GPCAttributeBuilder builder() {
-  		return new GPCAttributeBuilder();
+  	public static GPCAttributeValueBuilder builder() {
+  		return new GPCAttributeValueBuilder();
   	}
   	
   	/**
@@ -107,55 +96,44 @@ public class GPCAttribute   extends FaModel {
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
 	 */
-	public static GPCAttributeBuilder builder(GPCAttribute entity) {
-		GPCAttributeBuilder builder = builder();
+	public static GPCAttributeValueBuilder builder(GPCAttributeValue entity) {
+		GPCAttributeValueBuilder builder = builder();
         builder.code = entity.code;
         builder.text = entity.text;
-        builder.values = entity.values;
  		return builder;
   	}
   	
   
-    public static class GPCAttributeBuilder {
+    public static class GPCAttributeValueBuilder {
     
-        protected GPCAttributeBuilder(){
+        protected GPCAttributeValueBuilder(){
             
         }
     
         private String code;
         private String text;
-        private java.util.List<GPCAttributeValue> values = new java.util.ArrayList<>();
 
         /**
-         * GPC attribute code
+         * GPC attribute value code
          * @return code 
          */
-        public GPCAttributeBuilder setCode(String code) {
+        public GPCAttributeValueBuilder setCode(String code) {
              this.code = code;
              return this;
         }
 
         /**
-         * GPC attribute human readable text
+         * GPC attribute value human readable text
          * @return text 
          */
-        public GPCAttributeBuilder setText(String text) {
+        public GPCAttributeValueBuilder setText(String text) {
              this.text = text;
              return this;
         }
 
-        /**
-         * Get values
-         * @return values 
-         */
-        public GPCAttributeBuilder setValues(java.util.List<GPCAttributeValue> values) {
-             this.values = values;
-             return this;
-        }
-
         
-        public GPCAttribute build() {
-            return new GPCAttribute(this);
+        public GPCAttributeValue build() {
+            return new GPCAttributeValue(this);
         }
     
     }

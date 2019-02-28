@@ -48,50 +48,20 @@ public interface SampleMixIn {
     @JsonProperty("fa-id")
     public java.util.UUID getFaId();
     
+    @JsonProperty("product-id")
+    public java.util.UUID getProductId();
+    
     @JsonProperty("sampleId")
     public String getSampleId();
     
     @JsonProperty("dateOfSampleDrawing")
     public OffsetDateTime getDateOfSampleDrawing();
     
-    @JsonProperty("gtin")
-    public String getGtin();
-    
     @JsonProperty("lot")
     public String getLot();
     
-    @JsonProperty("brand")
-    public String getBrand();
-    
-    @JsonProperty("targetMarket")
-    public String getTargetMarket();
-    
     @JsonProperty("samplingPlace")
     public String getSamplingPlace();
-    
-    @JsonProperty("labelDescription")
-    public String getLabelDescription();
-    
-    @JsonProperty("companyName")
-    public String getCompanyName();
-    
-    @JsonProperty("productClassification")
-    public String getProductClassification();
-    
-    @JsonProperty("gpcAttribute")
-    public String getGpcAttribute();
-    
-    @JsonProperty("gpcAttributeValue")
-    public String getGpcAttributeValue();
-    
-    @JsonProperty("countryOfOrigin")
-    public String getCountryOfOrigin();
-    
-    @JsonProperty("regionOfOriginClaims")
-    public String getRegionOfOriginClaims();
-    
-    @JsonProperty("incredientStatementLanguageCode")
-    public String getIncredientStatementLanguageCode();
     
     @JsonProperty("bestBeforeDate")
     public OffsetDateTime getBestBeforeDate();
@@ -101,9 +71,6 @@ public interface SampleMixIn {
     
     @JsonProperty("typeOfAnalysis")
     public java.util.List<String> getTypeOfAnalysis();
-    
-    @JsonProperty("storageConditions")
-    public String getStorageConditions();
     
     @JsonProperty("comment")
     public String getComment();
@@ -130,50 +97,20 @@ public interface SampleMixIn {
         @JsonProperty("fa-id")
         public SampleMixInBuilder setFaId(final java.util.UUID faId);
         
+        @JsonProperty("product-id")
+        public SampleMixInBuilder setProductId(final java.util.UUID productId);
+        
         @JsonProperty("sampleId")
         public SampleMixInBuilder setSampleId(final String sampleId);
         
         @JsonProperty("dateOfSampleDrawing")
         public SampleMixInBuilder setDateOfSampleDrawing(final OffsetDateTime dateOfSampleDrawing);
         
-        @JsonProperty("gtin")
-        public SampleMixInBuilder setGtin(final String gtin);
-        
         @JsonProperty("lot")
         public SampleMixInBuilder setLot(final String lot);
         
-        @JsonProperty("brand")
-        public SampleMixInBuilder setBrand(final String brand);
-        
-        @JsonProperty("targetMarket")
-        public SampleMixInBuilder setTargetMarket(final String targetMarket);
-        
         @JsonProperty("samplingPlace")
         public SampleMixInBuilder setSamplingPlace(final String samplingPlace);
-        
-        @JsonProperty("labelDescription")
-        public SampleMixInBuilder setLabelDescription(final String labelDescription);
-        
-        @JsonProperty("companyName")
-        public SampleMixInBuilder setCompanyName(final String companyName);
-        
-        @JsonProperty("productClassification")
-        public SampleMixInBuilder setProductClassification(final String productClassification);
-        
-        @JsonProperty("gpcAttribute")
-        public SampleMixInBuilder setGpcAttribute(final String gpcAttribute);
-        
-        @JsonProperty("gpcAttributeValue")
-        public SampleMixInBuilder setGpcAttributeValue(final String gpcAttributeValue);
-        
-        @JsonProperty("countryOfOrigin")
-        public SampleMixInBuilder setCountryOfOrigin(final String countryOfOrigin);
-        
-        @JsonProperty("regionOfOriginClaims")
-        public SampleMixInBuilder setRegionOfOriginClaims(final String regionOfOriginClaims);
-        
-        @JsonProperty("incredientStatementLanguageCode")
-        public SampleMixInBuilder setIncredientStatementLanguageCode(final String incredientStatementLanguageCode);
         
         @JsonProperty("bestBeforeDate")
         public SampleMixInBuilder setBestBeforeDate(final OffsetDateTime bestBeforeDate);
@@ -183,9 +120,6 @@ public interface SampleMixIn {
         
         @JsonProperty("typeOfAnalysis")
         public SampleMixInBuilder setTypeOfAnalysis(final java.util.List<String> typeOfAnalysis);
-        
-        @JsonProperty("storageConditions")
-        public SampleMixInBuilder setStorageConditions(final String storageConditions);
         
         @JsonProperty("comment")
         public SampleMixInBuilder setComment(final String comment);

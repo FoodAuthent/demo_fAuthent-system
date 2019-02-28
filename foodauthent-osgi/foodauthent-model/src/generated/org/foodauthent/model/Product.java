@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.foodauthent.model.GPCAttribute;
+import org.foodauthent.model.GPCBrick;
+import org.foodauthent.model.ProductIngredientStatement;
 
 
 
@@ -26,7 +27,15 @@ public class Product   extends FaModel {
   protected java.util.UUID faId;
   protected String gtin;
   protected String brand;
-  protected java.util.List<GPCAttribute> gpcAttributes;
+  protected String targetMarket;
+  protected String labelDescription;
+  protected String companyName;
+  protected String productClassification;
+  protected String countryOfOrigin;
+  protected String regionOfOriginClaims;
+  protected ProductIngredientStatement ingredientStatement;
+  protected String comment;
+  protected java.util.List<GPCBrick> gpcBricks;
   
   public String getTypeID() {
     return "Product";
@@ -41,7 +50,15 @@ public class Product   extends FaModel {
     faId = immutable(builder.faId);
     gtin = immutable(builder.gtin);
     brand = immutable(builder.brand);
-    gpcAttributes = immutable(builder.gpcAttributes);
+    targetMarket = immutable(builder.targetMarket);
+    labelDescription = immutable(builder.labelDescription);
+    companyName = immutable(builder.companyName);
+    productClassification = immutable(builder.productClassification);
+    countryOfOrigin = immutable(builder.countryOfOrigin);
+    regionOfOriginClaims = immutable(builder.regionOfOriginClaims);
+    ingredientStatement = immutable(builder.ingredientStatement);
+    comment = immutable(builder.comment);
+    gpcBricks = immutable(builder.gpcBricks);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -62,7 +79,7 @@ public class Product   extends FaModel {
             return false;
         }
         Product ent = (Product)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(gtin, ent.gtin) && Objects.equals(brand, ent.brand) && Objects.equals(gpcAttributes, ent.gpcAttributes);
+        return Objects.equals(faId, ent.faId) && Objects.equals(gtin, ent.gtin) && Objects.equals(brand, ent.brand) && Objects.equals(targetMarket, ent.targetMarket) && Objects.equals(labelDescription, ent.labelDescription) && Objects.equals(companyName, ent.companyName) && Objects.equals(productClassification, ent.productClassification) && Objects.equals(countryOfOrigin, ent.countryOfOrigin) && Objects.equals(regionOfOriginClaims, ent.regionOfOriginClaims) && Objects.equals(ingredientStatement, ent.ingredientStatement) && Objects.equals(comment, ent.comment) && Objects.equals(gpcBricks, ent.gpcBricks);
     }
 
 
@@ -83,7 +100,7 @@ public class Product   extends FaModel {
     }
     
   /**
-   * Get brand
+   * Brand
    * @return brand 
    */
   public String getBrand() {
@@ -91,11 +108,75 @@ public class Product   extends FaModel {
     }
     
   /**
-   * Get gpcAttributes
-   * @return gpcAttributes 
+   * Target Market
+   * @return targetMarket 
    */
-  public java.util.List<GPCAttribute> getGpcAttributes() {
-        return gpcAttributes;
+  public String getTargetMarket() {
+        return targetMarket;
+    }
+    
+  /**
+   * Label Description
+   * @return labelDescription 
+   */
+  public String getLabelDescription() {
+        return labelDescription;
+    }
+    
+  /**
+   * Company Name
+   * @return companyName 
+   */
+  public String getCompanyName() {
+        return companyName;
+    }
+    
+  /**
+   * Product Classification
+   * @return productClassification 
+   */
+  public String getProductClassification() {
+        return productClassification;
+    }
+    
+  /**
+   * Country Of Origin
+   * @return countryOfOrigin 
+   */
+  public String getCountryOfOrigin() {
+        return countryOfOrigin;
+    }
+    
+  /**
+   * Region Of Origin-Claims
+   * @return regionOfOriginClaims 
+   */
+  public String getRegionOfOriginClaims() {
+        return regionOfOriginClaims;
+    }
+    
+  /**
+   * Get ingredientStatement
+   * @return ingredientStatement 
+   */
+  public ProductIngredientStatement getIngredientStatement() {
+        return ingredientStatement;
+    }
+    
+  /**
+   * Comment
+   * @return comment 
+   */
+  public String getComment() {
+        return comment;
+    }
+    
+  /**
+   * Get gpcBricks
+   * @return gpcBricks 
+   */
+  public java.util.List<GPCBrick> getGpcBricks() {
+        return gpcBricks;
     }
     
   
@@ -119,7 +200,15 @@ public class Product   extends FaModel {
         builder.faId = entity.faId;
         builder.gtin = entity.gtin;
         builder.brand = entity.brand;
-        builder.gpcAttributes = entity.gpcAttributes;
+        builder.targetMarket = entity.targetMarket;
+        builder.labelDescription = entity.labelDescription;
+        builder.companyName = entity.companyName;
+        builder.productClassification = entity.productClassification;
+        builder.countryOfOrigin = entity.countryOfOrigin;
+        builder.regionOfOriginClaims = entity.regionOfOriginClaims;
+        builder.ingredientStatement = entity.ingredientStatement;
+        builder.comment = entity.comment;
+        builder.gpcBricks = entity.gpcBricks;
  		return builder;
   	}
   	
@@ -133,7 +222,15 @@ public class Product   extends FaModel {
         private java.util.UUID faId;
         private String gtin;
         private String brand;
-        private java.util.List<GPCAttribute> gpcAttributes = new java.util.ArrayList<>();
+        private String targetMarket;
+        private String labelDescription;
+        private String companyName;
+        private String productClassification;
+        private String countryOfOrigin;
+        private String regionOfOriginClaims;
+        private ProductIngredientStatement ingredientStatement;
+        private String comment;
+        private java.util.List<GPCBrick> gpcBricks = new java.util.ArrayList<>();
 
         /**
          * A global id within the FoodAuthent-system.
@@ -154,7 +251,7 @@ public class Product   extends FaModel {
         }
 
         /**
-         * Get brand
+         * Brand
          * @return brand 
          */
         public ProductBuilder setBrand(String brand) {
@@ -163,11 +260,83 @@ public class Product   extends FaModel {
         }
 
         /**
-         * Get gpcAttributes
-         * @return gpcAttributes 
+         * Target Market
+         * @return targetMarket 
          */
-        public ProductBuilder setGpcAttributes(java.util.List<GPCAttribute> gpcAttributes) {
-             this.gpcAttributes = gpcAttributes;
+        public ProductBuilder setTargetMarket(String targetMarket) {
+             this.targetMarket = targetMarket;
+             return this;
+        }
+
+        /**
+         * Label Description
+         * @return labelDescription 
+         */
+        public ProductBuilder setLabelDescription(String labelDescription) {
+             this.labelDescription = labelDescription;
+             return this;
+        }
+
+        /**
+         * Company Name
+         * @return companyName 
+         */
+        public ProductBuilder setCompanyName(String companyName) {
+             this.companyName = companyName;
+             return this;
+        }
+
+        /**
+         * Product Classification
+         * @return productClassification 
+         */
+        public ProductBuilder setProductClassification(String productClassification) {
+             this.productClassification = productClassification;
+             return this;
+        }
+
+        /**
+         * Country Of Origin
+         * @return countryOfOrigin 
+         */
+        public ProductBuilder setCountryOfOrigin(String countryOfOrigin) {
+             this.countryOfOrigin = countryOfOrigin;
+             return this;
+        }
+
+        /**
+         * Region Of Origin-Claims
+         * @return regionOfOriginClaims 
+         */
+        public ProductBuilder setRegionOfOriginClaims(String regionOfOriginClaims) {
+             this.regionOfOriginClaims = regionOfOriginClaims;
+             return this;
+        }
+
+        /**
+         * Get ingredientStatement
+         * @return ingredientStatement 
+         */
+        public ProductBuilder setIngredientStatement(ProductIngredientStatement ingredientStatement) {
+             this.ingredientStatement = ingredientStatement;
+             return this;
+        }
+
+        /**
+         * Comment
+         * @return comment 
+         */
+        public ProductBuilder setComment(String comment) {
+             this.comment = comment;
+             return this;
+        }
+
+        /**
+         * Get gpcBricks
+         * @return gpcBricks 
+         */
+        public ProductBuilder setGpcBricks(java.util.List<GPCBrick> gpcBricks) {
+             this.gpcBricks = gpcBricks;
              return this;
         }
 
