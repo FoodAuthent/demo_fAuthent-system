@@ -12,11 +12,9 @@ var MyObject = function () {
 	  var getModelSchemas = function(modelID,schemas,schemaIdHolder){
 		  console.log("Schema at begin",schemas);
 		  if (typeof schemas !== 'undefined' && schemas.length > 0) {
-			  console.log("Schema inside if",schemas);
 //			  schemas.splice(0,schemas.length);
 			  schemas = [];
 			}
-		  console.log("Schema outside if",schemas);
 		  var getCustomMetadataSchemasCallback = function (error, data, response) {
 			  if (error) {
 		        console.error("getCustomMetadataSchemasCallback error",error);
@@ -49,7 +47,7 @@ var MyObject = function () {
 		    	        		        for (var fieldsindex = 0; fieldsindex < fieldslength; fieldsindex++) {
 		    	        		        		// TODO make Field JSON element
 		    	        		        		var currentField = fields[fieldsKeys[fieldsindex]];
-		    	        		        		console.log("nestedSchemaKeys",nestedSchemaKeys[nestedindex]);
+		    	        		        		//console.log("nestedSchemaKeys",nestedSchemaKeys[nestedindex]);
 		    	        		        		var UIField ;
 //		    	        		        		switch(currentField.type){
 //		    	        		        		case 'string':
@@ -69,7 +67,6 @@ var MyObject = function () {
 		    	        		        		newUISchema["key"] = nestedSchemaKeys[nestedindex]
 		    	        		        		
 		    	        		        }
-		    	        		        console.log("schemas before push",schemas);
 		    	        		        schemas.push(newUISchema);
 		        		        }
 		        		        
@@ -77,12 +74,10 @@ var MyObject = function () {
 		        		      }
 		        		  }
 	        		if(schemaIdHolder ==undefined || schemaIdHolder.schemaID != "withOutSchema"){
-	        			console.log("inside if", schemaID);
 		        		customMetadataApi.getCustomMetadataSchema(modelID,schemaID,getCustomMetadataSchemaCallback);
 		        		}else{
 		        			schemaIdHolder.schemaID = schemaID;
 		        		}
-	        		console.log("ouside if", schemaIdHolder.schemaID);
 		        }
 		        
 		        

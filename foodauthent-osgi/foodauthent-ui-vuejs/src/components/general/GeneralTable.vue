@@ -64,7 +64,22 @@ export default {
   props: {
     model: {},
     schema: {},
-    items: []
+    items: [],
+    formOptions:{},
+    resultsCount: {
+      type: Number,
+      default: 1
+    },
+    pageCount:{
+      type: Number,
+      default: 0
+    },
+    perPage:{
+      type: Number,
+      default: 10
+    },
+    filter: null,
+    pageOptionsPerPage: []
   }
 }
 

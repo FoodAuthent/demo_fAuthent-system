@@ -78,3 +78,8 @@ text-align: right;
 	width: 200px;
 	text-align: center;
 }
+
+/** Used for the metadata collapse */
+.collapse{
+margin: 15px;
+}

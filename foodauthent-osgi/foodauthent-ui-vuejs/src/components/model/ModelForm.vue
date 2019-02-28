@@ -86,10 +86,3 @@ export default {
 };
 
 </script>
-<style>
-
-.collapse {
-    margin: 15px;
-}
-
-</style>

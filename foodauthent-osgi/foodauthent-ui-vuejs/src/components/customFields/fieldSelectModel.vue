@@ -1,15 +1,23 @@
 <template>
-
 <div class="field-wrap">
-    <input class="form-control" type="text" v-model="value" :disabled="disabled" :maxlength="schema.max" :placeholder="schema.placeholder" :readonly="schema.readonly" :idprovider="schema.idprovider" :buttonLabel="schema.buttonLabel">
+        <input
+        class="form-control"
+        type="text"
+        v-model="value"
+        :disabled="disabled"
+        :maxlength="schema.max"
+        :placeholder="schema.placeholder"
+        :readonly="schema.readonly"
+        :idprovider="schema.idprovider"
+        :buttonLabel="schema.buttonLabel">
 
-    <!-- MODAL SEARCH -->
-    <!--<b-modal :id="schema.modalId" :title="schema.modalId" size="lg">-->
-    <b-modal :id="schema.idprovider" :title="schema.idprovider" size="lg" @show="loadData" @cancel="handleCancel">
-        <!-- Table -->
-        <template>
-            <div id="searchtable">
-                <!-- <b-form-group horizontal label="SEARCH" class="mb-1">
+<!-- MODAL SEARCH -->
+ <!--<b-modal :id="schema.modalId" :title="schema.modalId" size="lg">-->
+<b-modal :id="schema.idprovider" :title="schema.idprovider" size="lg" @show="loadData" @cancel="handleCancel">
+<!-- Table -->
+<template>
+<div id="searchtable">
+  <!-- <b-form-group horizontal label="SEARCH" class="mb-1">
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search" />
             <b-input-group-append>
@@ -17,34 +25,43 @@
             </b-input-group-append>
           </b-input-group>
         </b-form-group> -->
-                <!-- <b-btn id="refreshTableModal" isHidden=true variant="primary" size="sm" @click="loadData"><md-icon>autorenew</md-icon></b-btn> -->
-                <b-form-group horizontal label="SEARCH" class="mb-50">
-                    <b-input-group>
-                        <b-form-input v-model="filter" placeholder="Search for gtin/id or keywords" />
-                        <b-input-group-append>
-                            <b-btn :disabled="!filter" variant="primary" @click="search">Search</b-btn>
-                            <b-btn :disabled="!filter" @click="clearSearch">Clear</b-btn>
-                        </b-input-group-append>
-                    </b-input-group>
-                </b-form-group>
+       <!-- <b-btn id="refreshTableModal" isHidden=true variant="primary" size="sm" @click="loadData"><md-icon>autorenew</md-icon></b-btn> -->
+         <b-form-group horizontal label="SEARCH" class="mb-50">
+          <b-input-group>
+            <b-form-input v-model="filter" placeholder="Search for gtin/id or keywords" />
+            <b-input-group-append>
+            <b-btn :disabled="!filter" variant="primary" @click="search">Search</b-btn>
+              <b-btn :disabled="!filter" @click="clearSearch">Clear</b-btn>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form-group>
+          
+<!-- TABLE -->
 
-                <!-- TABLE -->
+  <b-table bordered striped hover show-empty
+         :sort-by.sync="sortBy"
+         :sort-desc.sync="sortDesc"
+         :items="items"
+         :fields="fields"
+         :current-page="currentPage"
+         :per-page="perPage"
 
-                <b-table bordered striped hover show-empty :sort-by.sync="sortBy" :sort-desc.sync="sortDesc" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="myRowClickHandler">
-                </b-table>
-                <!--<b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" /> -->
-                <!-- PAGINATION -->
-                <b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page="perPage" v-model="currentPage" />
+         @row-clicked="myRowClickHandler"
+>
+</b-table>
+<!--<b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" /> -->
+<!-- PAGINATION -->
+<b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page="perPage" v-model="currentPage" />
 
-            </div>
-        </template>
-    </b-modal>
 </div>
-
+</template>
+  </b-modal>
+  </div>
 </template>
 
-<script>
 
+
+<script>
 import VueFormGenerator from "vue-form-generator";
 var getProducts = require("@/utils/productFunction.js").default.getProducts;
 var getFingerprints = require("@/utils/fingerprintFunction.js").default.getFingerprints;
@@ -59,130 +76,125 @@ var findModelById = require("@/utils/modelFunction.js").default.findModelById;
 const regex1 = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
 const regex2 = /\b\d{8}(?:\d{4,6})?\b/;
 export default {
-    mixins: [VueFormGenerator.abstractField],
-    data() {
-        return {
-            items: [],
-            fields: null,
-            currentPage: 1,
-            perPage: 10,
-            sortBy: "id",
-            resultsCount: 1,
-            sortDesc: false,
-            filter: null
-        };
+  mixins: [VueFormGenerator.abstractField],
+  data() {
+    return {
+      items: [],
+      fields: null,
+      currentPage: 1,
+      perPage: 10,
+      sortBy: "id",
+      resultsCount: 1,
+      sortDesc: false,
+      filter: null
+    };
+  },
+  methods: {
+    loadData() {
+      let self = this;
+      if (this.schema.idprovider == "select-product") {
+        getProducts(self);
+      } else if (this.schema.idprovider == "select-fingerprint") {
+        getFingerprints(self);
+      }  else if (this.schema.idprovider == "select-workflow") {
+        getWorkflows(self);
+      } else if (this.schema.idprovider == "select-model") {
+        getModels(self);
+      }else {
+        alert("NO method found");
+      }
     },
-    methods: {
-        loadData() {
-                let self = this;
-                if (this.schema.idprovider == "select-product") {
-                    getProducts(self);
-                } else if (this.schema.idprovider == "select-fingerprint") {
-                    getFingerprints(self);
-                } else if (this.schema.idprovider == "select-workflow") {
-                    getWorkflows(self);
-                } else if (this.schema.idprovider == "select-model") {
-                    getModels(self);
-                } else {
-                    alert("NO method found");
-                }
-            },
-            myRowClickHandler(record, index) {
-                this.value = record[this.schema.fieldName];
-            },
-            // onFiltered(filteredItems) {
-            //  this.totalRows = filteredItems.length;
-            //  this.currentPage = 1;
-            // },
-            //Manage the pagination, when a page number is pressed this call the API to get the results for the new page
-            myPaginationHandler(page) {
-                let self = this;
-                self.currentPage = page;
-                getProducts(self);
-                self.currentPage = 1;
-            },
-            clearSearch() {
-                this.filter = null;
-                this.loadData();
-                //document.getElementById("refreshTableModal").click();
-            },
-            handleCancel() {
-                this.value = "";
-            },
-            search() {
-                let self = this;
-                if (this.schema.idprovider == "select-product") {
-                    self.searchProduct();
-                } else if (this.schema.idprovider == "select-fingerprint") {
-                    self.searchFingerprints();
-                } else if (this.schema.idprovider == "select-workflow") {
-                    self.searchWorkflow();
-                } else if (this.schema.idprovider == "select-model") {
-                    self.searchModel();
-                } else {
-                    alert("NO method found");
-                }
-            },
-            searchProduct() {
-                let self = this;
-                let m;
-                //check if is a valid gtin
-                if ((m = regex2.exec(self.filter)) !== null) {
-                    findProductByGtin(self);
-                } else {
-                    getProducts(self);
-                }
-            },
-            searchFingerprints() {
-                let self = this;
-                //check if it is a valid UUID
-                if (regex1.test(self.filter)) {
-                    findFingerprintSetById(self);
-                } else {
-                    getFingerprints(self);
-                }
-            },
-            searchWorkflow() {
-                let self = this;
-                //check if it is a valid UUID
-                if (regex1.test(self.filter)) {
-                    findWorkflowById(self);
-                } else {
-                    getWorkflows(self);
-                }
-            },
-            searchModel() {
-                let self = this;
-                //check if it is a valid UUID
-                if (regex1.test(self.filter)) {
-                    findModelById(self);
-                } else {
-                    getModels(self);
-                }
-            },
+    myRowClickHandler(record, index) {
+      this.value = record[this.schema.fieldName];
     },
-    computed: {
-        sortOptions() {
-            // Create an options list from our fields
-            return this.fields.filter(f => f.sortable).map(f => {
-                return {
-                    text: f.label,
-                    value: f.key
-                };
-            });
-        }
+   // onFiltered(filteredItems) {
+    //  this.totalRows = filteredItems.length;
+    //  this.currentPage = 1;
+   // },
+   //Manage the pagination, when a page number is pressed this call the API to get the results for the new page
+    myPaginationHandler(page){
+    	let self = this;
+    	self.currentPage = page;
+    	getProducts(self);
+    	self.currentPage = 1;
+    },
+    clearSearch(){
+    	this.filter = null;
+    	this.loadData();
+    	//document.getElementById("refreshTableModal").click();
+    },
+    handleCancel() {
+      this.value = "";
+    },
+    search() {
+      let self = this;
+      if (this.schema.idprovider == "select-product") {
+        self.searchProduct();
+      } else if (this.schema.idprovider == "select-fingerprint") {
+        self.searchFingerprints();
+      }  else if (this.schema.idprovider == "select-workflow") {
+        self.searchWorkflow();
+      } else if (this.schema.idprovider == "select-model") {
+        self.searchModel();
+      }else {
+        alert("NO method found");
+      }
+    },
+    searchProduct(){
+    	let self = this;
+		let m;
+		//check if is a valid gtin
+		if ((m = regex2.exec(self.filter)) !== null) {
+			findProductByGtin(self);
+		}else{
+			getProducts(self);
+		}
+	},
+	searchFingerprints(){
+    	let self = this;
+	    //check if it is a valid UUID
+		if (regex1.test(self.filter)) {
+	   		findFingerprintSetById(self);
+			} else {
+	    	getFingerprints(self);
+			}
+    },
+    searchWorkflow(){
+    	let self = this;
+	    //check if it is a valid UUID
+		if (regex1.test(self.filter)) {
+	    	findWorkflowById(self);
+			} else {
+	   		 getWorkflows(self);
+			}
+    },
+    searchModel(){
+    	let self = this;
+	    //check if it is a valid UUID
+		if (regex1.test(self.filter)) {
+	    	findModelById(self);
+			} else {
+	   		getModels(self);
+			}
+    },
+  },
+  computed: {
+    sortOptions() {
+      // Create an options list from our fields
+      return this.fields.filter(f => f.sortable).map(f => {
+        return { text: f.label, value: f.key };
+      });
     }
+  }
 };
-
 </script>
+
+
 <style>
-
 .field-wrap {
-    width: 100%;
+  width: 100%;
 }
-
 .input-group {
-    flex-wrap: nowrap;
+  flex-wrap: nowrap;
 }
-
 </style>
