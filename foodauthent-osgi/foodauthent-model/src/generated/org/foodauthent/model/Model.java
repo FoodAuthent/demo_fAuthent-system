@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import java.time.LocalDate;
+import org.foodauthent.model.ModelType;
 import org.foodauthent.model.Tag;
 
 
@@ -23,29 +24,6 @@ import org.foodauthent.model.Tag;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public class Model   extends FaModel {
 
-  /**
-   * The type of the model in order to be able to check for compatibility of the workflows using it.
-   */
-  public static enum TypeEnum {
-    KNIME_WORKFLOW("knime_workflow"),
-    
-    KNIME_PYTHON("knime_python"),
-    
-    PMML("pmml");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-  }
-
 
   protected java.util.UUID faId;
   protected String name;
@@ -53,7 +31,7 @@ public class Model   extends FaModel {
   protected String author;
   protected LocalDate date;
   protected Integer version;
-  protected TypeEnum type;
+  protected ModelType type;
   protected java.util.List<Tag> tags;
   protected java.util.UUID fileId;
   protected java.util.UUID productId;
@@ -153,10 +131,10 @@ public class Model   extends FaModel {
     }
     
   /**
-   * The type of the model in order to be able to check for compatibility of the workflows using it.
+   * Get type
    * @return type 
    */
-  public TypeEnum getType() {
+  public ModelType getType() {
         return type;
     }
     
@@ -237,7 +215,7 @@ public class Model   extends FaModel {
         private String author;
         private LocalDate date;
         private Integer version;
-        private TypeEnum type;
+        private ModelType type;
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
         private java.util.UUID fileId;
         private java.util.UUID productId;
@@ -298,10 +276,10 @@ public class Model   extends FaModel {
         }
 
         /**
-         * The type of the model in order to be able to check for compatibility of the workflows using it.
+         * Get type
          * @return type 
          */
-        public ModelBuilder setType(TypeEnum type) {
+        public ModelBuilder setType(ModelType type) {
              this.type = type;
              return this;
         }

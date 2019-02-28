@@ -9,16 +9,16 @@ import java.util.UUID;
 
 import javax.ws.rs.client.WebTarget;
 
-import org.foodauthent.api.WorkflowService;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
+import org.foodauthent.model.ModelType;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
-import org.foodauthent.model.Workflow.ModelTypeEnum;
 import org.foodauthent.model.Workflow.RepresentationEnum;
+import org.foodauthent.model.WorkflowIOTypes;
 import org.foodauthent.model.WorkflowParameter;
 import org.foodauthent.model.WorkflowParameter.TypeEnum;
 import org.foodauthent.rest.api.service.FileRestService;
@@ -51,10 +51,12 @@ public class OpenChromWorkflowTest extends AbstractITTest {
 		.setValue("train_paramValue1").setType(TypeEnum.NUMBER).build();
 	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("train_param2").setRequired(true)
 		.setValue("train_paramValue2").setType(TypeEnum.STRING).build();
+	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
+		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build()).build();
 	Workflow wf = Workflow.builder().setName("my training workflow").setDescription("desc")
 		.setParameters(Arrays.asList(wfp1, wfp2))
 		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW).setFileId(fileId)
-		.setRepresentation(RepresentationEnum.KNIME).setModelType(ModelTypeEnum.KNIME_WORKFLOW).build();
+		.setRepresentation(RepresentationEnum.KNIME).setInputTypes(inputTypes).build();
 
 	WorkflowRestService workflowService = restService(WorkflowRestService.class);
 	UUID wfId = workflowService.createWorkflow(wf).readEntity(UUID.class);
@@ -74,7 +76,7 @@ public class OpenChromWorkflowTest extends AbstractITTest {
 		org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS, trainingJob.getStatus());
 	Model model = restService(ModelRestService.class).getModelById(trainingJob.getModelId())
 		.readEntity(Model.class);
-	assertEquals(model.getType(), org.foodauthent.model.Model.TypeEnum.KNIME_WORKFLOW);
+	assertEquals(model.getType().getName(), ModelType.NameEnum.KNIME_WORKFLOW);
     }
 
     private UUID uploadFingerprintSet(WebTarget webTarget) {

@@ -1,0 +1,14 @@
+{
+  "fields" : [ {
+    "label" : "Name",
+    "model" : "name",
+    "required" : true,
+    "type" : "select",
+    "validator" : "string",
+    "inputName" : "name",
+    "values" : [ {
+      "id" : "bruker",
+      "name" : "Bruker"
+    } ]
+  } ]
+}

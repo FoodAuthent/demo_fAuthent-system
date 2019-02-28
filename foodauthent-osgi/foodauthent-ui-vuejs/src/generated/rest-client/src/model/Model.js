@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/Tag'], factory);
+    define(['../ApiClient', '../model/ModelType', '../model/Tag'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./Tag'));
+    module.exports = factory(require('../ApiClient'), require('./ModelType'), require('./Tag'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.Model = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.Tag);
+    root.FoodAuthentSwaggerApi.Model = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.ModelType, root.FoodAuthentSwaggerApi.Tag);
   }
-}(this, function(ApiClient, Tag) {
+}(this, function(ApiClient, ModelType, Tag) {
   'use strict';
 
 
@@ -79,7 +79,7 @@
         obj['version'] = ApiClient.convertToType(data['version'], 'Number');
       }
       if (data.hasOwnProperty('type')) {
-        obj['type'] = ApiClient.convertToType(data['type'], 'String');
+        obj['type'] = ModelType.constructFromObject(data['type']);
       }
       if (data.hasOwnProperty('tags')) {
         obj['tags'] = ApiClient.convertToType(data['tags'], [Tag]);
@@ -128,8 +128,7 @@
    */
   exports.prototype['version'] = undefined;
   /**
-   * The type of the model in order to be able to check for compatibility of the workflows using it.
-   * @member {module:model/Model.TypeEnum} type
+   * @member {module:model/ModelType} type
    */
   exports.prototype['type'] = undefined;
   /**
@@ -153,28 +152,6 @@
    */
   exports.prototype['workflow-id'] = undefined;
 
-
-  /**
-   * Allowed values for the <code>type</code> property.
-   * @enum {String}
-   * @readonly
-   */
-  exports.TypeEnum = {
-    /**
-     * value: "knime_workflow"
-     * @const
-     */
-    "knime_workflow": "knime_workflow",
-    /**
-     * value: "knime_python"
-     * @const
-     */
-    "knime_python": "knime_python",
-    /**
-     * value: "pmml"
-     * @const
-     */
-    "pmml": "pmml"  };
 
 
   return exports;

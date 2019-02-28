@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/Tag', '../model/WorkflowParameter'], factory);
+    define(['../ApiClient', '../model/Tag', '../model/WorkflowIOTypes', '../model/WorkflowParameter'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./Tag'), require('./WorkflowParameter'));
+    module.exports = factory(require('../ApiClient'), require('./Tag'), require('./WorkflowIOTypes'), require('./WorkflowParameter'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.Workflow = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.Tag, root.FoodAuthentSwaggerApi.WorkflowParameter);
+    root.FoodAuthentSwaggerApi.Workflow = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.Tag, root.FoodAuthentSwaggerApi.WorkflowIOTypes, root.FoodAuthentSwaggerApi.WorkflowParameter);
   }
-}(this, function(ApiClient, Tag, WorkflowParameter) {
+}(this, function(ApiClient, Tag, WorkflowIOTypes, WorkflowParameter) {
   'use strict';
 
 
@@ -92,8 +92,11 @@
       if (data.hasOwnProperty('file-id')) {
         obj['file-id'] = ApiClient.convertToType(data['file-id'], 'String');
       }
-      if (data.hasOwnProperty('model-type')) {
-        obj['model-type'] = ApiClient.convertToType(data['model-type'], 'String');
+      if (data.hasOwnProperty('output-types')) {
+        obj['output-types'] = WorkflowIOTypes.constructFromObject(data['output-types']);
+      }
+      if (data.hasOwnProperty('input-types')) {
+        obj['input-types'] = WorkflowIOTypes.constructFromObject(data['input-types']);
       }
     }
     return obj;
@@ -138,10 +141,13 @@
    */
   exports.prototype['file-id'] = undefined;
   /**
-   * Type of the model this workflow can consume or produce. Can be left empty, e.g., in case of a preprocessing workflow. Model type must match one of the model's type property.
-   * @member {module:model/Workflow.ModelTypeEnum} model-type
+   * @member {module:model/WorkflowIOTypes} output-types
    */
-  exports.prototype['model-type'] = undefined;
+  exports.prototype['output-types'] = undefined;
+  /**
+   * @member {module:model/WorkflowIOTypes} input-types
+   */
+  exports.prototype['input-types'] = undefined;
 
 
   /**
@@ -187,28 +193,6 @@
      * @const
      */
     "training_workflow": "training_workflow"  };
-
-  /**
-   * Allowed values for the <code>model-type</code> property.
-   * @enum {String}
-   * @readonly
-   */
-  exports.ModelTypeEnum = {
-    /**
-     * value: "knime_workflow"
-     * @const
-     */
-    "knime_workflow": "knime_workflow",
-    /**
-     * value: "knime_python"
-     * @const
-     */
-    "knime_python": "knime_python",
-    /**
-     * value: "pmml"
-     * @const
-     */
-    "pmml": "pmml"  };
 
 
   return exports;

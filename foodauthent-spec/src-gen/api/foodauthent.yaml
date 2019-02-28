@@ -1994,13 +1994,14 @@ components:
           type: object
           additionalProperties:
             type: string
-            
+
     FingerprintSet:
       description: A set of fingerprints with its own id.
       type: object
       required:
         - file-id
         - product-id
+        - type
       x-ui-vue.js:
         - name: product-id
           id-provider: select-product
@@ -2008,23 +2009,23 @@ components:
         - name: file-id
           id-provider: upload-file
         - name: name
-        - name: metadata
+        - name: type
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
           type: string
           format: uuid
-          example: ''
+          example: ""
         product-id:
           description: The fa-id of the product all fingerprints are associated with.
           type: string
           format: uuid
-          example: ''
+          example: ""
         fingerprints:
           description: The fingerprints.
           type: array
           items:
-            $ref: '#/components/schemas/Fingerprint'
+            $ref: "#/components/schemas/Fingerprint"
         file-id:
           description: Id referencing the fingerpint-set file.
           type: string
@@ -2032,17 +2033,8 @@ components:
         name:
           description: A human-readable name of the fingerprint set.
           type: string
-        metadata:
-          description: >-
-            Placeholder for more (fixed) metadata (including device settings
-            etc.). Possibly automatically determined upon creation of the
-            fingerprint-set.
-          type: string
-        additional-properties:
-          description: Key-value-map for additional properties.
-          type: object
-          additionalProperties:
-            type: string
+        type:
+          $ref: "#/components/schemas/FingerprintSetType"
 
     FingerprintSetPageResult:
       type: object
@@ -2058,6 +2050,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FingerprintSet'
+
+    FingerprintSetType:
+      x-no-faid: true
+      description: >-
+        Type of the fingerprint set. The referenced file musst reflect this type, too.
+      type: object
+      required: 
+        - name
+      x-ui-vue.js:
+        - name: name
+      properties:
+        name:
+          type: string
+          enum:
+            - bruker
 
     GPCAttribute:
       description: >-
@@ -2147,7 +2154,7 @@ components:
           description: A global id within the FoodAuthent-system.
           type: string
           format: uuid
-          example: ''
+          example: ""
         name:
           description: A name for the model.
           type: string
@@ -2165,21 +2172,12 @@ components:
           description: The model's version.
           type: integer
         type:
-          #TODO allow custom types that are not predefined
-          description: >-
-            The type of the model in order to be able to check for compatibility
-            of the workflows using it.
-          type: string
-          # must be kept in sync with workflow.model-type
-          enum:
-            - knime_workflow
-            - knime_python
-            - pmml
+          $ref: "#/components/schemas/ModelType"
         tags:
           description: Descriptive tags/annotations for the model.
           type: array
           items:
-            $ref: '#/components/schemas/Tag'
+            $ref: "#/components/schemas/Tag"
         file-id:
           description: id referencing the model file.
           type: string
@@ -2192,7 +2190,7 @@ components:
           description: Optional reference to the workflow used to create this model.
           type: string
           format: uuid
-           
+
     ModelPageResult:
       type: object
       x-no-faid: true
@@ -2208,6 +2206,26 @@ components:
           items:
             $ref: '#/components/schemas/Model'
                                        
+    ModelType:
+      x-no-faid: true
+      description: type of a model
+      type: object
+      required:
+        - name
+      x-ui-vue.js:
+        - name: name
+      properties:
+        name:
+         #TODO allow custom types that are not predefined
+         description: >-
+           The name of the type of the model, e.g., in order to be able to check for compatibility
+           of the workflows using it.
+         type: string
+         enum:
+           - knime_workflow
+           - knime_python
+           - pmml
+           
     ObjectEvent:
       description: Object Event Transaction
       type: object
@@ -3063,9 +3081,7 @@ components:
               type: string
               nullable: false  
         - $ref: '#/components/schemas/UserGroupBase'
-        
-              
-                      
+          
     Workflow:
       type: object
       description: A workflow for a certain task.
@@ -3085,7 +3101,7 @@ components:
           description: A global id within the FoodAuthent-system.
           type: string
           format: uuid
-          example: ''
+          example: ""
         name:
           type: string
         description:
@@ -3102,6 +3118,7 @@ components:
             - knime
         type:
           #TODO allow custom types that are not predefined
+          #TODO put in extra entity?
           description: >-
             The type of the workflow.  IMPORTANT: This property determines the
             required workflow input and output, e.g., PredictionWorkflowInput
@@ -3112,30 +3129,34 @@ components:
             - prediction_workflow
             - training_workflow
         parameters:
-          description: 'The parameters of the workflow, TODO - should maybe be a map.'
+          description: "The parameters of the workflow, TODO - should maybe be a map."
           type: array
           items:
-            $ref: '#/components/schemas/WorkflowParameter'
+            $ref: "#/components/schemas/WorkflowParameter"
         tags:
           description: Descriptive tags/annotations for the workflow.
           type: array
           items:
-            $ref: '#/components/schemas/Tag'
+            $ref: "#/components/schemas/Tag"
         file-id:
           description: id referencing the workflow file.
           type: string
           format: uuid
+        output-types:
+          $ref: "#/components/schemas/WorkflowIOTypes"
+        input-types:
+          $ref: "#/components/schemas/WorkflowIOTypes"
+
+    WorkflowIOTypes:
+      x-no-faid: true
+      description: >-
+        Definition of the workflows input and output types. Types that are not required as input are empty.
+      type: object
+      properties:
+        fingerprintset-type:
+          $ref: "#/components/schemas/FingerprintSetType"
         model-type:
-          description: >-
-            Type of the model this workflow can consume or produce. Can be left
-            empty, e.g., in case of a preprocessing workflow. Model type must
-            match one of the model's type property.
-          type: string
-          # must be kept in sync with model.type
-          enum:
-            - knime_workflow
-            - knime_python
-            - pmml
+          $ref: "#/components/schemas/ModelType"
 
     WorkflowPageResult:
       type: object

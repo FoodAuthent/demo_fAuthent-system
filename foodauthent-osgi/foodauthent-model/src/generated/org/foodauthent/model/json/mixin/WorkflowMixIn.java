@@ -4,6 +4,7 @@
 package org.foodauthent.model.json.mixin;
 
 import org.foodauthent.model.Tag;
+import org.foodauthent.model.WorkflowIOTypes;
 import org.foodauthent.model.WorkflowParameter;
 
 import java.util.UUID;
@@ -17,7 +18,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.Workflow.TypeEnum;
-import org.foodauthent.model.Workflow.ModelTypeEnum;
 
 
 import org.foodauthent.model.Workflow;
@@ -73,8 +73,11 @@ public interface WorkflowMixIn {
     @JsonProperty("file-id")
     public java.util.UUID getFileId();
     
-    @JsonProperty("model-type")
-    public ModelTypeEnum getModelType();
+    @JsonProperty("output-types")
+    public WorkflowIOTypes getOutputTypes();
+    
+    @JsonProperty("input-types")
+    public WorkflowIOTypes getInputTypes();
     
 
     /**
@@ -119,8 +122,11 @@ public interface WorkflowMixIn {
         @JsonProperty("file-id")
         public WorkflowMixInBuilder setFileId(final java.util.UUID fileId);
         
-        @JsonProperty("model-type")
-        public WorkflowMixInBuilder setModelType(final ModelTypeEnum modelType);
+        @JsonProperty("output-types")
+        public WorkflowMixInBuilder setOutputTypes(final WorkflowIOTypes outputTypes);
+        
+        @JsonProperty("input-types")
+        public WorkflowMixInBuilder setInputTypes(final WorkflowIOTypes inputTypes);
         
     }
 

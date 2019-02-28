@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.foodauthent.model.Tag;
+import org.foodauthent.model.WorkflowIOTypes;
 import org.foodauthent.model.WorkflowParameter;
 
 
@@ -69,29 +70,6 @@ public class Workflow   extends FaModel {
 
   }
 
-  /**
-   * Type of the model this workflow can consume or produce. Can be left empty, e.g., in case of a preprocessing workflow. Model type must match one of the model&#39;s type property.
-   */
-  public static enum ModelTypeEnum {
-    KNIME_WORKFLOW("knime_workflow"),
-    
-    KNIME_PYTHON("knime_python"),
-    
-    PMML("pmml");
-
-    private String value;
-
-    ModelTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-  }
-
 
   protected java.util.UUID faId;
   protected String name;
@@ -101,7 +79,8 @@ public class Workflow   extends FaModel {
   protected java.util.List<WorkflowParameter> parameters;
   protected java.util.List<Tag> tags;
   protected java.util.UUID fileId;
-  protected ModelTypeEnum modelType;
+  protected WorkflowIOTypes outputTypes;
+  protected WorkflowIOTypes inputTypes;
   
   public String getTypeID() {
     return "Workflow";
@@ -133,7 +112,8 @@ public class Workflow   extends FaModel {
         throw new IllegalArgumentException("fileId must not be null.");
     }
     fileId = immutable(builder.fileId);
-    modelType = immutable(builder.modelType);
+    outputTypes = immutable(builder.outputTypes);
+    inputTypes = immutable(builder.inputTypes);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -154,7 +134,7 @@ public class Workflow   extends FaModel {
             return false;
         }
         Workflow ent = (Workflow)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(representation, ent.representation) && Objects.equals(type, ent.type) && Objects.equals(parameters, ent.parameters) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(modelType, ent.modelType);
+        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(representation, ent.representation) && Objects.equals(type, ent.type) && Objects.equals(parameters, ent.parameters) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(outputTypes, ent.outputTypes) && Objects.equals(inputTypes, ent.inputTypes);
     }
 
 
@@ -223,11 +203,19 @@ public class Workflow   extends FaModel {
     }
     
   /**
-   * Type of the model this workflow can consume or produce. Can be left empty, e.g., in case of a preprocessing workflow. Model type must match one of the model&#39;s type property.
-   * @return modelType 
+   * Get outputTypes
+   * @return outputTypes 
    */
-  public ModelTypeEnum getModelType() {
-        return modelType;
+  public WorkflowIOTypes getOutputTypes() {
+        return outputTypes;
+    }
+    
+  /**
+   * Get inputTypes
+   * @return inputTypes 
+   */
+  public WorkflowIOTypes getInputTypes() {
+        return inputTypes;
     }
     
   
@@ -256,7 +244,8 @@ public class Workflow   extends FaModel {
         builder.parameters = entity.parameters;
         builder.tags = entity.tags;
         builder.fileId = entity.fileId;
-        builder.modelType = entity.modelType;
+        builder.outputTypes = entity.outputTypes;
+        builder.inputTypes = entity.inputTypes;
  		return builder;
   	}
   	
@@ -275,7 +264,8 @@ public class Workflow   extends FaModel {
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
         private java.util.UUID fileId;
-        private ModelTypeEnum modelType;
+        private WorkflowIOTypes outputTypes;
+        private WorkflowIOTypes inputTypes;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -362,11 +352,20 @@ public class Workflow   extends FaModel {
         }
 
         /**
-         * Type of the model this workflow can consume or produce. Can be left empty, e.g., in case of a preprocessing workflow. Model type must match one of the model&#39;s type property.
-         * @return modelType 
+         * Get outputTypes
+         * @return outputTypes 
          */
-        public WorkflowBuilder setModelType(ModelTypeEnum modelType) {
-             this.modelType = modelType;
+        public WorkflowBuilder setOutputTypes(WorkflowIOTypes outputTypes) {
+             this.outputTypes = outputTypes;
+             return this;
+        }
+
+        /**
+         * Get inputTypes
+         * @return inputTypes 
+         */
+        public WorkflowBuilder setInputTypes(WorkflowIOTypes inputTypes) {
+             this.inputTypes = inputTypes;
              return this;
         }
 

@@ -22,7 +22,7 @@ import org.foodauthent.internal.impl.job.knime.KnimeExecutor.LoadingFailedExcept
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
-import org.foodauthent.model.Model.TypeEnum;
+import org.foodauthent.model.ModelType;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJob.StatusEnum;
@@ -84,7 +84,8 @@ public class LocalKnimeJobService implements JobService {
 		}
 
 		// check whether the model is compatible with the workflow
-		assert workflow.getModelType().toString().equals(model.getType().toString());
+		assert workflow.getInputTypes().getModelType().getName().toString()
+				.equals(model.getType().getName().toString());
 		// TODO otherwise throw proper exception
 
 		// get fingerprint set file(s)
@@ -211,9 +212,13 @@ public class LocalKnimeJobService implements JobService {
 					UUID modelFileId = UUID.randomUUID();
 
 					// store new model (metadata and file) to the data base
+					ModelType modelType = ModelType.builder()
+							.setName(ModelType.NameEnum
+									.valueOf(workflow.getOutputTypes().getModelType().toString().toUpperCase()))
+							.build();
 					Model model = Model.builder().setName("generated model by " + workflow.getName())
 							.setDate(LocalDate.now())
-							.setType(TypeEnum.valueOf(workflow.getModelType().toString().toUpperCase()))
+							.setType(modelType)
 							.setFileId(modelFileId).build();
 					persistenceService.save(model);
 
