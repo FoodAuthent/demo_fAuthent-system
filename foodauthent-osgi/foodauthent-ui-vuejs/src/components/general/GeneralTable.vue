@@ -60,105 +60,13 @@
 
   </div>
 </template>
-
+export default {
+  props: {
+    model: {},
+    schema: {},
+    items: []
+  }
+}
 
 <script>
-var getDataForTable = require("@/utils/objectEventFunction.js").default.getObjectEvent;
-var findById = require("@/utils/objectEventFunction.js").default.findObjectEventById;
-import jsonschema from "@/generated/schema/objectevent.json";
-
-export default {
-  name: "objectEvent",
-  data() {
-    return {
-      model: {},
-      schema: jsonschema,
-      formOptions: {
-        validateAfterLoad: true,
-        validateAfterChanged: true
-      },
-      items: [],
-      selected: {},
-      sortBy: "name",
-      fields: [],
-      currentPage: 1,
-      resultsCount: 1,
-      pageCount: 0,
-      perPage: 10,
-      shownItems: null,
-      sortDesc: false,
-      filter:null,
-      pageOptionsPerPage: [5, 10, 25, 50, 100]
-    };
-  },
-  mounted() {
-    this.loadTableData();
-  },
-  computed: {
-    sortOptions() {
-      // Create an options list from our fields
-      return this.fields.filter(f => f.sortable).map(f => {
-        return { text: f.label, value: f.key };
-      });
-    }
-  },
-  methods: {
-    loadTableData() {
-      console.log("Load table data");
-      let self = this;
-      getDataForTable(self);
-    },
-    handleDeleteOk() {
-    //  let self = this;
-     // console.log("fa-id:", this.selected["fa-id"]);
-     // deleteModel(this.selected["fa-id"], self);
-    },
-    handleEditOk() {
-   //     let self = this;
-  //    console.log("This is the model", this.model);
-   //   updateModel(this.model, self);
-      },
-    search(){
-    let self = this;
-    //check if it is a valid UUID
-	var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
-	if (re.test(self.filter)) {
-    	findById(self);
-	} else {
-   		getDataForTable(self);
-	}
-    },
-    clearSearch(){
-    this.filter = null;
-    document.getElementById("refreshTable").click();
-    },
-    //Manage when the number of items displayed on the table change
-    perPagehandler(newObjectState){
-    let self = this;
-    self.currentPage = 0; //just a workaround to go back in page 1
-    self.perPage = newObjectState;
-    document.getElementById("refreshTable").click();
-   // self.loadTableData();
-    },
-    //Manage the pagination, when a page number is pressed this call the API to get the results for the new page
-    myPaginationHandler(page){
-    let self = this;
-    self.currentPage = page;
-    getModels(self);
-    self.currentPage = 1;
-    },
-    myRowClickHandler(record, index) {
-      this.selected = record;
-    },
-    info (item, index, button) {
-      this.model = item;
-      this.$root.$emit('bv::show::modal', 'modalEdit', button);
-    },
-    onFiltered(filteredItems) {
-      // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    }
-  }
-};
 </script>

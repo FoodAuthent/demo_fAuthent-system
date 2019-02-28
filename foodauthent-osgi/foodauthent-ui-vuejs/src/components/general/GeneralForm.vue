@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="productContainer">
+  <div class="container" id="container">
   <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
     <p>Operation success</p>
   </b-alert>
@@ -45,59 +45,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import VueFormGenerator from "vue-form-generator";
-import "vue-form-generator/dist/vfg.css";
-var saveProducts = require("@/utils/productFunction.js").default.saveProducts;
-var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
-import jsonschema from "@/generated/schema/product.json";
-
-var schemas = []
-var vueObject = {
-      schema: jsonschema,
-      schemas: schemas,
-      model: {},
-      response: "",
-      showSuccess: false,
-      showError: false,
-      formOptions: {
-        validateAfterLoad: true,
-        validateAfterChanged: true
-      }
-    }
-export default {
-  data() {
-    return vueObject;
-  },
-  mounted(){
-  	getModelSchemas("product",schemas);
-  	console.log("Schemas",schemas);
-  },
-  methods: {
-    save() {
-      let self = this;
-      // console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
-      saveProducts(JSON.stringify(this.model, undefined, 4), self);
-      self.model={}
-    },
-    editRecord(modelEdit) {
-      let self = this;
-      console.log("modelEdit", modelEdit);
-      self.model = modelEdit;
-      console.log("ONCLICK");
-      // document.getElementById("buttonMax").click();
-      console.log("modelEdit", modelEdit);
-      console.log("modelTest", self.model);
-
-    }
-  },
-  components: {
-    "vue-form-generator": VueFormGenerator.component
-  }
-};
-</script>
-
-
-<style>
-</style>

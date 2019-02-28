@@ -25,3 +25,15 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## INFO
+ 
+#After changes to compile the UI run:
+
+mvn -pl .,foodauthent-ui-vuejs compile -Pvuejs
+
+#URL:
+#Local:
+http://localhost:9090/ui/index.htm
+#Prodcution:
+https://api.foodauthent.net/ui/index.html#/
