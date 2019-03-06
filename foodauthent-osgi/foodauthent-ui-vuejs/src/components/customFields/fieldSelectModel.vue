@@ -38,7 +38,7 @@
           
 <!-- TABLE -->
 
-  <b-table bordered striped hover show-empty
+  <b-table bordered striped hover show-empty responsive
          :sort-by.sync="sortBy"
          :sort-desc.sync="sortDesc"
          :items="items"

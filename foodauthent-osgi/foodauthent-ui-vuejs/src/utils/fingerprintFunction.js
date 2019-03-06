@@ -60,11 +60,11 @@ var Fingerprints = function () {
       if (error) {
         // this.response = data;
         console.error(error);
-        self.showError = true;
+        self.showError = 5;
       } else {
         if (data) {
           self.items = data.results;
-          self.showSuccess = true;
+          self.showSuccess = 5;
           saveCustomMetadata(self.schemas,data);
           console.log("API called successfully. Returned data: ", data);
         } else {

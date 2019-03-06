@@ -1,7 +1,12 @@
 <template>
 
 <div class="container" id="sopContainer">
-    <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
+    <b-alert
+      :show="showSuccess"
+      dismissible
+      variant="success"
+      @dismissed="showSuccess=0"
+    >
         <p>Operation success</p>
     </b-alert>
     <b-alert :show="showError" dismissible variant="danger" @dismissed="showError=false">
@@ -105,8 +110,8 @@ var vueObject = {
     schemas: schemas,
     model: {},
     response: "",
-    showSuccess: false,
-    showError: false,
+    showSuccess: 0,
+    showError: 0,
     formOptions: {
         validateAfterLoad: true,
         validateAfterChanged: true
@@ -129,6 +134,7 @@ export default {
                     let self = this;
                     console.log("POST BODY", JSON.stringify(self.model, undefined, 4));
                     saveSop(JSON.stringify(self.model, undefined, 4), self);
+                    self.model={};
                 }
         },
 

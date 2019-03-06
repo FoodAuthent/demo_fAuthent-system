@@ -1,7 +1,7 @@
 <template>
 
 <div class="container" id="trainingjobContainer">
-    <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
+    <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=0">
         <p>Operation success</p>
     </b-alert>
     <b-alert :show="showError" dismissible variant="danger" @dismissed="showError=false">
@@ -75,8 +75,8 @@ export default {
                 schema: jsonschema,
                 model: {},
                 response: "",
-                showSuccess: false,
-                showError: false,
+                showSuccess: 0,
+                showError: 0,
                 formOptions: {
                     validateAfterLoad: true,
                     validateAfterChanged: true

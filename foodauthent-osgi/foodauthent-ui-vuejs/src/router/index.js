@@ -12,6 +12,7 @@ import Model from '@/components/model/Model'
 import ObjectEvent from '@/components/objectEvent/ObjectEvent'
 import DiscoveryService from '@/components/discoveryService/DiscoveryService'
 import Sample from '@/components/sample/Sample'
+import Test from '@/components/test/Test'
 
 Vue.use(Router)
 
@@ -76,6 +77,11 @@ export default new Router({
      path: '/sample',
      name: 'Sample',
      component: Sample
-     }
+     },
+     {
+         path: '/test',
+         name: 'Test',
+         component: Test
+         }
   ]
 })

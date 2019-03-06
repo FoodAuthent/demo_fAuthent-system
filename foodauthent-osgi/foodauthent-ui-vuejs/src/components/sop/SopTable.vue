@@ -33,7 +33,7 @@
     </b-container>
 
     <!-- TABLE -->
-    <b-table bordered striped hover show-empty :sort-by.sync="sortBy" :sort-desc.sync="sortDesc" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="myRowClickHandler">
+    <b-table bordered striped hover responsive show-empty :sort-by.sync="sortBy" :sort-desc.sync="sortDesc" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="myRowClickHandler">
         <template slot="actions" slot-scope="row">
             <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)">
                 <md-icon>edit</md-icon>
@@ -144,7 +144,7 @@ export default {
                 }
             },
             clearSearch() {
-                this.filter = "";
+                this.filter = null;
                 document.getElementById("refreshTable").click();
             },
             //Manage when the number of items displayed on the table change

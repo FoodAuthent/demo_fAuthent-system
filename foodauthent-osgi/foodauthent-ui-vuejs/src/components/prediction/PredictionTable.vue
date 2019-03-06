@@ -31,7 +31,7 @@
     </b-container>
 
     <!-- TABLE -->
-    <b-table bordered striped hover show-empty :sort-by.sync="sortBy" :sort-desc.sync="sortDesc" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter" @row-clicked="myRowClickHandler">
+    <b-table bordered striped hover responsive show-empty :sort-by.sync="sortBy" :sort-desc.sync="sortDesc" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter" @row-clicked="myRowClickHandler">
 
     </b-table>
 

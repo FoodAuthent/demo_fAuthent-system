@@ -426,10 +426,10 @@ var findWorkflowById = function (self) {
       console.log("response:", response);
       if (error) {
         console.error(error);
-        self.showError = true;
+        self.showError = 5;
       } else {
         self.response = data.results;
-        self.showSuccess = true;
+        self.showSuccess = 5;
         console.log("API called successfully. Returned data: ", data);
       }
     };
@@ -449,8 +449,10 @@ var findWorkflowById = function (self) {
       console.log("response:", response);
       if (error) {
         console.error(error);
+        self.showError = 5;
       } else {
         self.response = data.results;
+        self.showSuccess = 5;
         console.log("API called successfully. Returned data: ", data);
       }
     };
@@ -471,8 +473,10 @@ var findWorkflowById = function (self) {
       console.log("response:", response);
       if (error) {
         console.error(error);
+        self.showError = 5;
       } else {
         self.response = data.results;
+        self.showSuccess = 5;
         console.log("API called successfully. Returned data: ", data);
       }
     };
