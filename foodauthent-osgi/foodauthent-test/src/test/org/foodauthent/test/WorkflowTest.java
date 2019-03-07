@@ -17,6 +17,7 @@ import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetType;
+import org.foodauthent.model.FingerprintSetType.NameEnum;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelType;
 import org.foodauthent.model.Prediction;
@@ -209,6 +210,7 @@ public class WorkflowTest extends AbstractITTest {
         // upload fingerprint set
         Fingerprint fp = Fingerprint.builder().setMetadata("fp metadata").build();
         FingerprintSet fps = FingerprintSet.builder().setName("myset").setProductId(productId)
+        	.setType(FingerprintSetType.builder().setName(NameEnum.BRUKER).build())
         	.setFingerprints(Arrays.asList(fp)).setFileId(fileMeta.getFaId()).build();
         return restService(FingerprintRestService.class).createFingerprintSet(fps).readEntity(UUID.class);
     }
