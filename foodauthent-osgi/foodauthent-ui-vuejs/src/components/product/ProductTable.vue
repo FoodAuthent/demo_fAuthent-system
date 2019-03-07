@@ -179,8 +179,8 @@ export default {
             //Manage the ok button to confirm the delete action
             handleDeleteOk() {
                 let self = this;
-                console.log("fa-id:", this.selected["fa-id"]);
-                deleteProducts(this.selected["fa-id"], self);
+                console.log("gtin:", this.selected["gtin"]);
+                deleteProducts(this.selected["gtin"], self);
             },
             //Manage the ok button to confirm the Metadata action
             handleMetadataOk() {

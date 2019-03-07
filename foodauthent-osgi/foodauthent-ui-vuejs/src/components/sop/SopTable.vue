@@ -2,6 +2,17 @@
 
 <div id="sopTable">
     <b-container fluid>
+        <b-alert
+      :show="showSuccess"
+      dismissible
+      variant="success"
+      @dismissed="showSuccess=0"
+    >
+        <p>Operation success, refresh the table</p>
+    </b-alert>
+    <b-alert :show="showError" dismissible variant="danger" @dismissed="showError=false">
+        <p>There is a problem {{response}}</p>
+    </b-alert>
         <!-- UPDATE -->
         <b-row>
             <b-col>
@@ -103,6 +114,8 @@ export default {
             itemsMetadata: {},
             pageCount: 0,
             perPage: 10,
+            showSuccess: 0,
+    		showError: 0,
             //fields: [
             //{ key: 'fa-id', sortable: true },
             //{ key: 'actions', sortable: false }

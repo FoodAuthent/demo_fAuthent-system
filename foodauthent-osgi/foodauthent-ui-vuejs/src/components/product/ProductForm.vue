@@ -1,12 +1,7 @@
 <template>
 
 <div class="container" id="productContainer">
-     <b-alert
-      :show="showSuccess"
-      dismissible
-      variant="success"
-      @dismissed="showSuccess=0"
-    >
+    <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=0">
         <p>Operation success</p>
     </b-alert>
     <b-alert :show="showError" dismissible variant="danger" @dismissed="showError=false">

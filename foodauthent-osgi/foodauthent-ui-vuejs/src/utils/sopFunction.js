@@ -118,30 +118,25 @@ var MyObject = function () {
 		    );
 		  };
 
-
+  
   var deleteSop = function (id, self) {
-    console.log('Delete SOP');
-    var callback = function (error, data, response) {
-      console.log("data:", data);
-      console.log("response:", response);
-      if (error) {
-        console.error(error);
-        self.showError = true;
-      } else {
-        self.response = data.results;
-        self.showSuccess = true;
-        console.log("API called successfully. Returned data: ", data);
-      }
-    };
-    var opt = {
-      id: id
-    };
-    alert("When the Api will support thie features it will work and delete this id: "+id);
-    // productApi.createProduct(
-    //   opt,
-    //   callback
-    // );
-  };
+	    var callback = function (error, data, response) {
+	      console.log("data:", data);
+	      console.log("response:", response);
+	      if (error) {
+	        console.error(error);
+	        self.showError = 5;
+	      } else {
+	        //self.response = data.results;
+	        self.showSuccess = 5;
+	        console.log("API called successfully. Returned data: ", data);
+	      }
+	    };
+	    sopApi.removeSOPById(
+	       id,
+	       callback
+	     );
+	  };
   
   var updateSop = function (json, self) {
 	    console.log('Update Products');
@@ -158,7 +153,7 @@ var MyObject = function () {
 	      }
 	    };
 	    var opt = {
-	      product: json
+	      sop: json
 	    };
 	    console.log("json:", json);
 	    alert("When the Api will support this features it will work and update this id: "+json["fa-id"]);
