@@ -141,7 +141,7 @@ public class LocalKnimeExecutor implements KnimeExecutor {
 		if ((loadRes.getType() == LoadResultEntryType.Error)
 				|| ((loadRes.getType() == LoadResultEntryType.DataLoadError)
 						&& loadRes.getGUIMustReportDataLoadErrors())) {
-			throw new LoadingFailedException("Loading workflow failed: " + loadRes.getMessage());
+			throw new LoadingFailedException("Loading workflow failed: " + loadRes);
 		}
 		return loadRes.getWorkflowManager();
 	}

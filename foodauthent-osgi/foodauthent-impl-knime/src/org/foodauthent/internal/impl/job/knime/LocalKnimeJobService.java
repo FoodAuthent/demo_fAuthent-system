@@ -80,7 +80,7 @@ public class LocalKnimeJobService implements JobService {
 		try {
 			loadWorkflow(workflow);
 		} catch (LoadingFailedException e1) {
-			throw new InitJobException("Problem initializing job", e1);
+			throw new InitJobException("Problem initializing job: " + e1.getMessage(), e1);
 		}
 
 		// check whether the model is compatible with the workflow
@@ -166,7 +166,7 @@ public class LocalKnimeJobService implements JobService {
 		try {
 			loadWorkflow(workflow);
 		} catch (LoadingFailedException e1) {
-			throw new InitJobException("Problem initializing job", e1);
+			throw new InitJobException("Problem initializing job: " + e1.getMessage(), e1);
 		}
 		
 		URI tmpFileURI = saveTemporaryFingerprintSetFile(fingerprintSet);

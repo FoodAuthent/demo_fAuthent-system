@@ -1,6 +1,8 @@
 package org.foodauthent.test;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -36,6 +38,7 @@ import org.foodauthent.rest.api.service.FingerprintRestService;
 import org.foodauthent.rest.api.service.ModelRestService;
 import org.foodauthent.rest.api.service.ProductRestService;
 import org.foodauthent.rest.api.service.WorkflowRestService;
+import org.hamcrest.core.Is;
 import org.junit.Test;
 
 /**
@@ -75,8 +78,9 @@ public class WorkflowTest extends AbstractITTest {
 	UUID wfId = workflowService.createWorkflow(wf).readEntity(UUID.class);
 
 	/* run prediction workflow */
-	PredictionJob predictionJob = workflowService.createPredictionJob(wfId, fingerprintSetId, modelId).readEntity(PredictionJob.class);
-	
+	Response response = workflowService.createPredictionJob(wfId, fingerprintSetId, modelId);
+	assertThat("Unexpected server response: " + response.readEntity(String.class), response.getStatus(), is(200));
+	PredictionJob predictionJob = response.readEntity(PredictionJob.class);
 	assertEquals(StatusEnum.RUNNING, predictionJob.getStatus());
 	// let the job finish the prediction
 	Thread.sleep(2000);
@@ -181,8 +185,9 @@ public class WorkflowTest extends AbstractITTest {
 	UUID fingerprintSetId = uploadFingerprintSet();
 
 	/* run training workflow */
-	TrainingJob trainingJob = workflowService.createTrainingJob(wfId, fingerprintSetId)
-		.readEntity(TrainingJob.class);
+	Response response = workflowService.createTrainingJob(wfId, fingerprintSetId);
+	assertThat("Unexpected server response: " + response.readEntity(String.class), response.getStatus(), is(200));
+	TrainingJob trainingJob = response.readEntity(TrainingJob.class);
 	assertEquals(org.foodauthent.model.TrainingJob.StatusEnum.RUNNING, trainingJob.getStatus());
 	// let the job finish the training
 	Thread.sleep(2000);
