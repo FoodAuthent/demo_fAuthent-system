@@ -52,6 +52,8 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 
 	private static final Object[][] INTEGER_STATIC_FIELDS = new Object[][] { { "type", "input" },
 			{ "inputType", "number" }, { "validator", "integer" } };
+			
+	private static final Object[][] OBJECT_STATIC_FIELDS = new Object[][] { { "type", "object" } };
 
 	public VueJSClientCodegen() {
 		super();
@@ -143,8 +145,11 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 		if (prop.getType() == null && prop.get$ref() != null) {
 			String[] tmp = prop.get$ref().split("/");
 			String schemaName = tmp[tmp.length - 1];
+			addStaticProperties(field, OBJECT_STATIC_FIELDS);
+			ObjectNode schema = Json.mapper().createObjectNode();
+			field.set("schema", schema);
 			ArrayNode fields = Json.mapper().createArrayNode();
-			field.set(name, fields);
+			schema.set("fields", fields);
 			addFieldsInfo(models.get(schemaName), fields, models);
 		} else if (prop.getType().equals("string") && prop.getFormat() != null && prop.getFormat().equals("uuid")) {
 			//UUIDProperty uuidProp = (UUIDProperty) prop;
