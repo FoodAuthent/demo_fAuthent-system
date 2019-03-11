@@ -79,6 +79,10 @@ text-align: right;
 	text-align: center;
 }
 
+.md-drawer {
+	width: auto !important;
+}
+
 /** Used for the metadata collapse */
 .collapse{
 margin: 15px;

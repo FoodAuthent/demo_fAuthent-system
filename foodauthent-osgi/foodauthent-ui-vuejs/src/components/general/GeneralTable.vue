@@ -86,7 +86,15 @@ export default {
             type: Function,
             required: true
         },
+        handleDeleteOk: {
+            type: Function,
+            required: true
+        },
         myPaginationHandler: {
+            type: Function,
+            required: true
+        },
+        myRowClickHandler: {
             type: Function,
             required: true
         },
@@ -110,9 +118,6 @@ export default {
             },
             onSearch() {
                 this.$emit('update:filter', this.filterVal)
-            },
-            handleDeleteOk() {
-                console.log("fa-id:", this.selected["fa-id"]);
             },
             handleEditOk() {
                 console.log("HandleEditOK");

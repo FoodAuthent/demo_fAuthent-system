@@ -22,7 +22,7 @@
                 <b-tabs card>
                     <b-tab title="Results" active>
                         <generalTable :filter.sync="filter" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :onClick="loadTableData" :myPaginationHandler="myPaginationHandler"
-                        :pageOptionsPerPage="pageOptionsPerPage" :search="search">
+                        :pageOptionsPerPage="pageOptionsPerPage" :search="search" :handleDeleteOk="handleDeleteOk" myRowClickHandler:"myRowClickHandler">
                             <slot></slot>
                         </generalTable>
                     </b-tab>
@@ -45,6 +45,7 @@ import generalForm from '@/components/general/GeneralForm';
 var getProducts = require("@/utils/productFunction.js").default.getProducts;
 var findProductByGtin = require("@/utils/productFunction.js").default.findProductByGtin;
 var saveProducts = require("@/utils/productFunction.js").default.saveProducts;
+var deleteProducts = require("@/utils/productFunction.js").default.deleteProducts
 import jsonschema from "@/generated/schema/product.json";
 var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
 
@@ -133,6 +134,14 @@ export default {
                 console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
                 saveProducts(JSON.stringify(this.model, undefined, 4), self);
                 self.model = {}
+            },
+            handleDeleteOk() {
+                let self = this;
+                console.log("gtin:", self.selected["gtin"]);
+                deleteProducts(self.selected["gtin"], self);
+            },
+                myRowClickHandler(record, index) {
+                this.selected = record;
             },
     },
     components: {
