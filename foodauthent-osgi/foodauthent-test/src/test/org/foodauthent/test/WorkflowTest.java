@@ -1,6 +1,8 @@
 package org.foodauthent.test;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -17,6 +19,7 @@ import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetType;
+import org.foodauthent.model.FingerprintSetType.NameEnum;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelType;
 import org.foodauthent.model.Prediction;
@@ -35,6 +38,7 @@ import org.foodauthent.rest.api.service.FingerprintRestService;
 import org.foodauthent.rest.api.service.ModelRestService;
 import org.foodauthent.rest.api.service.ProductRestService;
 import org.foodauthent.rest.api.service.WorkflowRestService;
+import org.hamcrest.core.Is;
 import org.junit.Test;
 
 /**
@@ -74,8 +78,9 @@ public class WorkflowTest extends AbstractITTest {
 	UUID wfId = workflowService.createWorkflow(wf).readEntity(UUID.class);
 
 	/* run prediction workflow */
-	PredictionJob predictionJob = workflowService.createPredictionJob(wfId, fingerprintSetId, modelId).readEntity(PredictionJob.class);
-	
+	Response response = workflowService.createPredictionJob(wfId, fingerprintSetId, modelId);
+	assertThat("Unexpected server response: " + response.readEntity(String.class), response.getStatus(), is(200));
+	PredictionJob predictionJob = response.readEntity(PredictionJob.class);
 	assertEquals(StatusEnum.RUNNING, predictionJob.getStatus());
 	// let the job finish the prediction
 	Thread.sleep(2000);
@@ -180,8 +185,9 @@ public class WorkflowTest extends AbstractITTest {
 	UUID fingerprintSetId = uploadFingerprintSet();
 
 	/* run training workflow */
-	TrainingJob trainingJob = workflowService.createTrainingJob(wfId, fingerprintSetId)
-		.readEntity(TrainingJob.class);
+	Response response = workflowService.createTrainingJob(wfId, fingerprintSetId);
+	assertThat("Unexpected server response: " + response.readEntity(String.class), response.getStatus(), is(200));
+	TrainingJob trainingJob = response.readEntity(TrainingJob.class);
 	assertEquals(org.foodauthent.model.TrainingJob.StatusEnum.RUNNING, trainingJob.getStatus());
 	// let the job finish the training
 	Thread.sleep(2000);
@@ -209,6 +215,7 @@ public class WorkflowTest extends AbstractITTest {
         // upload fingerprint set
         Fingerprint fp = Fingerprint.builder().setMetadata("fp metadata").build();
         FingerprintSet fps = FingerprintSet.builder().setName("myset").setProductId(productId)
+        	.setType(FingerprintSetType.builder().setName(NameEnum.BRUKER).build())
         	.setFingerprints(Arrays.asList(fp)).setFileId(fileMeta.getFaId()).build();
         return restService(FingerprintRestService.class).createFingerprintSet(fps).readEntity(UUID.class);
     }

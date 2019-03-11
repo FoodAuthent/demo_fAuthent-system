@@ -1,6 +1,5 @@
 package org.foodauthent.internal.impl.job.knime;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -142,7 +141,7 @@ public class LocalKnimeExecutor implements KnimeExecutor {
 		if ((loadRes.getType() == LoadResultEntryType.Error)
 				|| ((loadRes.getType() == LoadResultEntryType.DataLoadError)
 						&& loadRes.getGUIMustReportDataLoadErrors())) {
-			throw new LoadingFailedException("Loading workflow failed: " + loadRes.getMessage());
+			throw new LoadingFailedException("Loading workflow failed: " + loadRes);
 		}
 		return loadRes.getWorkflowManager();
 	}
