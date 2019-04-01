@@ -12,6 +12,8 @@ var MyObject = function () {
   var getSops = function (self) {
 	    console.log('Get SOPs');
 	    console.log('self Filter ',self.filter);
+	    console.log('self perPage ',self.perPage);
+	    console.log('self currentPage ',self.currentPage);
 	    var filterArray = null;
 	    if(self.filter !== null){
 	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
@@ -30,7 +32,6 @@ var MyObject = function () {
 	      }else{
 	    	  self.pageCount = 0;
 	      }
-	      console.log("Page count", response.body.pageCount);
 	      if (error) {
 	        //this.response = data;
 	        console.error(error);

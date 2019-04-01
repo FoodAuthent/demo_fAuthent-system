@@ -30,7 +30,6 @@ var MyObject = function () {
 	      }else{
 	    	  self.pageCount = 0;
 	      }
-	      console.log("Page count", response.body.pageCount);
 	      if (error) {
 	        //this.response = data;
 	        console.error(error);

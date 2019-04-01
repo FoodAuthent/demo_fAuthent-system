@@ -28,9 +28,6 @@
                     <b-tab title="Form">
                         <productForm></productForm>
                     </b-tab>
-                    <b-tab title="Empty">
-                        <generalTable></generalTable>
-                    </b-tab>
                 </b-tabs>
             </b-card>
         </md-app-content>
@@ -44,7 +41,6 @@
 
 import productTable from "@/components/product/ProductTable";
 import productForm from "@/components/product/ProductForm";
-import generalTable from "@/components/general/generalTable";
 export default {
     name: "Product",
     data: () => ({
@@ -54,8 +50,7 @@ export default {
     methods: {},
     components: {
         productTable,
-        productForm,
-        generalTable
+        productForm
     }
 };
 

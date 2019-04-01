@@ -112,7 +112,6 @@ export default {
             currentPage: 1,
             resultsCount: 1,
             itemsMetadata: {},
-            pageCount: 0,
             perPage: 10,
             showSuccess: 0,
     		showError: 0,
@@ -123,7 +122,7 @@ export default {
             sortBy: "name",
             sortDesc: false,
             filter: null,
-            pageOptionsPerPage: [10, 25, 50, 100]
+            pageOptionsPerPage: [5,10, 25, 50, 100]
         };
     },
     mounted() {

@@ -22,9 +22,16 @@ var Fingerprints = function () {
 	    var callback = function (error, data, response) {
 	      console.log("data:", data);
 	      console.log("response:", response);
-	      self.resultsCount = data.resultCount;
-	      self.pageCount = response.body.pageCount;
-	      console.log("Page count", response.body.pageCount);
+	      if(data !== undefined && data !== null){
+	    	  self.resultsCount = data.resultCount; 
+	      }else{
+	    	  self.resultsCount = 0;
+	      }
+	      if(response.body !== null){
+	    	  self.pageCount = response.body.pageCount; 
+	      }else{
+	    	  self.pageCount = 0;
+	      }
 	      if (error) {
 	        // this.response = data;
 	        console.error(error);

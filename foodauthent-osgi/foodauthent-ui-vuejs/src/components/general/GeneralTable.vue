@@ -5,14 +5,14 @@
         <!-- UPDATE -->
         <b-row>
             <b-col>
-                <b-btn id="refreshTable" variant="primary" size="sm" @click="onClick">
+                <b-btn id="refreshTable" variant="primary" size="sm" @click="refresh">
                     <md-icon>autorenew</md-icon>
                 </b-btn>
             </b-col>
             <!-- PER PAGE -->
             <b-col class="my-1">
                 <b-form-group horizontal label="PER PAGE" class="mb-0">
-                    <b-form-select @change="perPagehandler($event)" :options="pageOptionsPerPage" v-model="perPage" />
+                    <b-form-select @change="perPagehandler($event)" :options="pageOptionsPerPage" v-model="perPageVal" />
                 </b-form-group>
             </b-col>
             <!-- SEARCH -->
@@ -31,7 +31,7 @@
         </b-row>
         <b-row>
             <!-- TABLE -->
-            <b-table bordered striped hover show-empty responsive :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="myRowClickHandler">
+            <b-table bordered striped hover show-empty responsive :items="items" :fields="fields" :current-page="currentPage" :per-page="perPageVal" @row-clicked="myRowClickHandler">
                 <template slot="actions" slot-scope="row">
                     <div class="widewidth">
                         <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)">
@@ -52,11 +52,21 @@
 
 
     <!-- PAGINATION -->
-    <b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page="perPage" v-model="currentPage" />
+    <b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page.sync="perPage" v-model="currentPage" />
 
     <!-- MODAL EDIT -->
     <b-modal id="modalEdit" title="edit" @ok="handleEditOk">
         <vue-form-generator :schema="schema" :model="model" :options="formOptions"> </vue-form-generator>
+    </b-modal>
+    
+        <!-- MODAL METADATA -->
+    <b-modal id="modalMeta" size="lg" title="Metadata" @ok="handleMetadataOk">
+        <div class="panel panel-default">
+            <div class="panel-heading">Metadata</div>
+            <div class="panel-body">
+                <pre v-html="JSON.stringify(itemsMetadata, undefined, 4)"></pre>
+            </div>
+        </div>
     </b-modal>
 
     <!-- MODAL Delete -->
@@ -70,7 +80,12 @@
 </template>
 
 <script>
+var schemaIdHolder = {
+    "schemaID": "withOutSchema"
+};
 
+var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
+var getCustomMetadata = require("@/utils/commonFunction.js").default.getCustomMetadata;
 export default {
     props: {
         items: Array,
@@ -81,6 +96,11 @@ export default {
         resultsCount: Number,
         selected: Object,
         pageCount: Number,
+        itemsMetadata: Object,
+        schema: Object,
+        model: Object,
+        test: String,
+        schemaIdHolder: Object,
         pageOptionsPerPage: Array,
         search: {
             type: Function,
@@ -98,29 +118,34 @@ export default {
             type: Function,
             required: true
         },
-        onClick: {
+        handleEditOk: {
+            type: Function,
+            required: true
+            },
+        refresh: {
             type: Function,
             required: true
         }
     },
     data() {
         return {
-            filterVal: ''
-        }
+            filterVal: '',
+            perPageVal: ''
+             }
     },
     mounted() {
-        this.onProp(this.filter);
+        this.onProp(this.filter, this.perPage);
         this.$watch('filter', this.onProp);
+        this.$watch('perPage', this.onProp);
+        getModelSchemas(this.test, {}, this.schemaIdHolder);
     },
     methods: {
-        onProp(filter) {
-                this.filterVal = filter
+        onProp(filter, perPage) {
+                this.filterVal = filter;
+                this.perPageVal = perPage;
             },
             onSearch() {
                 this.$emit('update:filter', this.filterVal)
-            },
-            handleEditOk() {
-                console.log("HandleEditOK");
             },
             clearSearch() {
                 this.$emit('update:filter', null);
@@ -128,18 +153,28 @@ export default {
                 document.getElementById("refreshTable").click();
             },
             perPagehandler(newObjectState) {
+            	console.log("Inside perPagehandler");
+            	console.log("newObjectState", newObjectState);
+            	this.$emit('update:perPage', this.perPageVal)
                 let self = this;
-                self.currentPage = 0; //just a workaround to go back in page 1
+                self.currentPage = 1; //just a workaround to go back in page 1
                 self.perPage = newObjectState;
+                console.log("Per PAGE", self.perPage);
                 document.getElementById("refreshTable").click();
-            },
-            myRowClickHandler(record, index) {
-                console.log(record); // This will be the item data for the row
-                this.selected = record;
             },
             info(item, index, button) {
                 this.model = item;
                 this.$root.$emit('bv::show::modal', 'modalEdit', button);
+            },
+           showMetadata(item, index, button) {
+               let self = this;
+               console.log("ITEM", item);
+               getCustomMetadata(this.test, this.schemaIdHolder.schemaID, item["fa-id"], self);
+            },
+           //Manage the ok button to confirm the Metadata action
+            handleMetadataOk() {
+             let self = this;
+             self.itemsMetadata = {};
             },
             onFiltered(filteredItems) {
                 // Trigger pagination to update the number of buttons/pages due to filtering

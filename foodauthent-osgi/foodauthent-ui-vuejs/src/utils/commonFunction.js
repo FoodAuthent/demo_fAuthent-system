@@ -10,7 +10,8 @@ var MyObject = function () {
 	  var customMetadataApi = new CustomMetadataApi(apiClient);
 
 	  var getModelSchemas = function(modelID,schemas,schemaIdHolder){
-		  console.log("Schema at begin",schemas);
+		 // console.log("Schema at begin",schemas);
+		  //console.log("schemaIdHolder.schemaID",schemaIdHolder.schemaID);
 		  if (typeof schemas !== 'undefined' && schemas.length > 0) {
 //			  schemas.splice(0,schemas.length);
 			  schemas = [];
@@ -77,6 +78,7 @@ var MyObject = function () {
 		        		customMetadataApi.getCustomMetadataSchema(modelID,schemaID,getCustomMetadataSchemaCallback);
 		        		}else{
 		        			schemaIdHolder.schemaID = schemaID;
+		        			console.log("schemaIdHolder.schemaID",schemaIdHolder.schemaID);
 		        		}
 		        }
 		        
@@ -141,6 +143,7 @@ var MyObject = function () {
 					        var jsonResult = data.results;
 					        console.log("Data custom ", data);
 					        self.itemsMetadata = data;
+					        console.log("Data items ", self.itemsMetadata);
 					        console.log("API called successfully. Returned data: ", data);
 					      }
 					    };

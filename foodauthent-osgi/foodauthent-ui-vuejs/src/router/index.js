@@ -79,9 +79,9 @@ export default new Router({
      component: Sample
      },
      {
-         path: '/test',
-         name: 'Test',
-         component: Test
-         }
+     path: '/test',
+     name: 'Test',
+     component: Test
+     },
   ]
 })

@@ -1,0 +1,28 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://developer.1worldsync.com/root.json",
+  "type": "object",
+  "title": "The OneWorldSync Schema",
+  "required": [
+    "item"
+  ],
+  "properties": {
+    "item": {
+      "$id": "#/properties/item",
+      "type": "object",
+      "title": "The Item Schema",
+      "properties": {
+        "artgid": {
+          "$id": "#/properties/item/properties/artgid",
+          "type": "null",
+          "title": "The Artgid Schema",
+          "default": null,
+          "examples": [
+            null
+          ]
+        }
+      }
+    }
+  }
+}

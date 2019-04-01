@@ -184,7 +184,8 @@ export default {
             },
             //Manage the ok button to confirm the Metadata action
             handleMetadataOk() {
-                console.log("inside metadata table");
+             let self = this;
+             self.itemsMetadata = {};
             },
             myRowClickHandler(record, index) {
                 // 'record' will be the row data from items
@@ -199,6 +200,7 @@ export default {
             showMetadata(item, index, button) {
                 let self = this;
                 getCustomMetadata("product", schemaIdHolder.schemaID, item["fa-id"], self);
+                console.log("The metadata items are:", self.itemsMetadata);
             },
             // onFiltered(filteredItems) {
             // Trigger pagination to update the number of buttons/pages due to filtering

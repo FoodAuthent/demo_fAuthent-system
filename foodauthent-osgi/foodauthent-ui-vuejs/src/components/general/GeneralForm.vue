@@ -51,6 +51,7 @@
 </template>
 
 <script>
+var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
 
@@ -62,6 +63,8 @@ export default {
         schemas: Array,
         model: Object,
         formOptions: Object,
+        schemaIdHolder: Object,
+        test: String,
         save: {
             type: Function,
             required: true
@@ -71,35 +74,11 @@ export default {
         return {}
     },
     methods: {
-        handleDeleteOk() {
-                console.log("fa-id:", this.selected["fa-id"]);
-            },
-         handleEditOk() {
-                console.log("HandleEditOK");
-            },
-         clearSearch() {
-                this.filter = null;
-                document.getElementById("refreshTable").click();
-            },
-            perPagehandler(newObjectState) {
-                let self = this;
-                self.currentPage = 0; //just a workaround to go back in page 1
-                self.perPage = newObjectState;
-                document.getElementById("refreshTable").click();
-            },
-            myRowClickHandler(record, index) {
-                console.log(record); // This will be the item data for the row
-                this.selected = record;
-            },
-            info(item, index, button) {
-                this.model = item;
-                this.$root.$emit('bv::show::modal', 'modalEdit', button);
-            },
-            onFiltered(filteredItems) {
-                // Trigger pagination to update the number of buttons/pages due to filtering
-                this.totalRows = filteredItems.length;
-                this.currentPage = 1;
-            }
+        
+    },
+    mounted() {
+    getModelSchemas(this.test, this.schemas);
+    console.log("Schemas", this.schemas);
     },
         components: {
         "vue-form-generator": VueFormGenerator.component

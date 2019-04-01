@@ -21,13 +21,13 @@
             <b-card no-body>
                 <b-tabs card>
                     <b-tab title="Results" active>
-                        <generalTable :filter.sync="filter" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :onClick="loadTableData" :myPaginationHandler="myPaginationHandler"
-                        :pageOptionsPerPage="pageOptionsPerPage" :search="search" :handleDeleteOk="handleDeleteOk" myRowClickHandler:"myRowClickHandler">
+                        <generalTable :filter.sync="filter" :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
+                        :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :handleDeleteOk="handleDeleteOk" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :test="test" :schemaIdHolder="schemaIdHolder">
                             <slot></slot>
                         </generalTable>
                     </b-tab>
                     <b-tab title="Form">
-                        <generalForm :schema="schema" :model="model" :schemas.sync="schemas" :options="formOptions" :save="save"></generalForm>
+                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :test="test" :schemaIdHolder="schemaIdHolder"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -36,18 +36,20 @@
 
 </div>
 
+
 </template>
 
 <script>
-
 import generalTable from '@/components/general/GeneralTable';
 import generalForm from '@/components/general/GeneralForm';
 var getProducts = require("@/utils/productFunction.js").default.getProducts;
+var deleteProducts = require("@/utils/productFunction.js").default.deleteProducts;
 var findProductByGtin = require("@/utils/productFunction.js").default.findProductByGtin;
 var saveProducts = require("@/utils/productFunction.js").default.saveProducts;
 var deleteProducts = require("@/utils/productFunction.js").default.deleteProducts
 import jsonschema from "@/generated/schema/product.json";
-var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
+
+
 
 console.log(jsonschema.fields);
 
@@ -76,7 +78,8 @@ if (jsonschema.fields) {
         }
     }
 }
-var schemas = []
+var schemas = [];
+
 export default {
     name: 'Test',
     data() {
@@ -87,30 +90,31 @@ export default {
             perPage: 10,
             filter: null,
             model: {},
+            test: "product",
             schemas: schemas,
+            itemsMetadata: {},
             resultsCount: 1,
             selected: {},
+            schemaIdHolder: {
+			    schemaID: "withOutSchema"
+			},
             pageCount: 0,
             schema: jsonschema,
             pageOptionsPerPage: [5, 10, 25, 50, 100],
-                formOptions: {
-			        validateAfterLoad: true,
-			        validateAfterChanged: true
-			    }
+            formOptions: {
+		        validateAfterLoad: true,
+		        validateAfterChanged: true
+		    }
         };
     },
     mounted() {
         this.loadTableData();
-        getModelSchemas("product", schemas);
-        console.log("Schemas", schemas);
     },
     methods: {
-        search() {
-        console.log("inside search");
+            search() {
                 const regex = /\b\d{8}(?:\d{4,6})?\b/;
                 let self = this;
                 var str = self.filter;
-                console.log("Filter in search", str);
                 let m;
                 if ((m = regex.exec(str)) !== null) {
                     findProductByGtin(self);
@@ -126,7 +130,10 @@ export default {
             },
             loadTableData() {
                 console.log("Load table data");
+                this.$emit('update:perPage', self.perPageVal)
                 let self = this;
+                console.log("current page", self.currentPage);
+                console.log("per page", self.perPage);
                 getProducts(self);
             },
             save() {
@@ -135,6 +142,14 @@ export default {
                 saveProducts(JSON.stringify(this.model, undefined, 4), self);
                 self.model = {}
             },
+            myRowClickHandler(record, index) {
+		       console.log(record); // This will be the item data for the row
+		       this.selected = record;
+            },
+            handleEditOk() {
+                let self = this;
+                console.log("This is the model", self.model);
+            },
             handleDeleteOk() {
                 let self = this;
                 console.log("gtin:", self.selected["gtin"]);
@@ -142,7 +157,7 @@ export default {
             },
                 myRowClickHandler(record, index) {
                 this.selected = record;
-            },
+            }
     },
     components: {
         generalTable,
