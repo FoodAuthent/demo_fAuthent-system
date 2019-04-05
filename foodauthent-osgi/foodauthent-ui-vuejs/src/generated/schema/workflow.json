@@ -110,5 +110,12 @@
         } ]
       }
     }
+  }, {
+    "label" : "File-id",
+    "model" : "file-id",
+    "required" : true,
+    "idprovider" : "upload-file",
+    "fieldName" : "fa-id",
+    "type" : "loadFile"
   } ]
 }
