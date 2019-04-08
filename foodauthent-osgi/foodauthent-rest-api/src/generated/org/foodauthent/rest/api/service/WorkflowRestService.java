@@ -215,5 +215,16 @@ public interface WorkflowRestService{
     @Produces({ "application/json" })
     public Response getWorkflowById(@PathParam("workflow-id") java.util.UUID workflowId
 );
+
+    /**
+     * Delete a workflow specified by id.
+     *
+     * @param workflowId 
+     * @return the response
+     */
+    @DELETE
+    @Path("/workflow/{workflow-id}")
+    public Response removeWorkflowById(@PathParam("workflow-id") java.util.UUID workflowId
+);
 }
 

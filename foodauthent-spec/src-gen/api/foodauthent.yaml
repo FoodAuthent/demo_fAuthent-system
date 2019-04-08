@@ -335,24 +335,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FingerprintSet'
-  '/product/{gtin}':
-    delete:
-      tags:
-        - product
-      description: Delete a product specified by gtin.
-      operationId: removeProductByGtin
-      parameters:
-        - name: gtin
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: Product successfully deleted.
-          
-          
+
   /product:
     get:
       tags:
@@ -455,6 +438,21 @@ paths:
                 $ref: '#/components/schemas/Product'
         '404':
           description: TODO, add response reference
+    delete:
+      tags:
+        - product
+      description: Delete a product specified by id.
+      operationId: removeProductById
+      parameters:
+        - name: product-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Product successfully deleted.
 
   /prediction:
     get:
@@ -625,6 +623,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflow'
+    delete:
+      tags:
+        - workflow
+      description: Delete a workflow specified by id.
+      operationId: removeWorkflowById
+      parameters:
+        - name: workflow-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Workflow successfully deleted.
 
   /workflow/training:
     get:

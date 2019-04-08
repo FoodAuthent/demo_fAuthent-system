@@ -238,29 +238,29 @@
     }
 
     /**
-     * Callback function to receive the result of the removeProductByGtin operation.
-     * @callback module:api/ProductApi~removeProductByGtinCallback
+     * Callback function to receive the result of the removeProductById operation.
+     * @callback module:api/ProductApi~removeProductByIdCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Delete a product specified by gtin.
-     * @param {String} gtin 
-     * @param {module:api/ProductApi~removeProductByGtinCallback} callback The callback function, accepting three arguments: error, data, response
+     * Delete a product specified by id.
+     * @param {String} productId 
+     * @param {module:api/ProductApi~removeProductByIdCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.removeProductByGtin = function(gtin, callback) {
+    this.removeProductById = function(productId, callback) {
       var postBody = null;
 
-      // verify the required parameter 'gtin' is set
-      if (gtin === undefined || gtin === null) {
-        throw new Error("Missing the required parameter 'gtin' when calling removeProductByGtin");
+      // verify the required parameter 'productId' is set
+      if (productId === undefined || productId === null) {
+        throw new Error("Missing the required parameter 'productId' when calling removeProductById");
       }
 
 
       var pathParams = {
-        'gtin': gtin
+        'product-id': productId
       };
       var queryParams = {
       };
@@ -277,7 +277,7 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/product/{gtin}', 'DELETE',
+        '/product/{product-id}', 'DELETE',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

@@ -55,13 +55,13 @@ public interface ProductService {
     Product getProductById(java.util.UUID productId);
         
     /**
-     * Delete a product specified by gtin.
+     * Delete a product specified by id.
      *
-     * @param gtin 
+     * @param productId 
      *
      * 
      */
-    void removeProductByGtin(java.util.UUID gtin);
+    void removeProductById(java.util.UUID productId);
         
     /**
      * TODO

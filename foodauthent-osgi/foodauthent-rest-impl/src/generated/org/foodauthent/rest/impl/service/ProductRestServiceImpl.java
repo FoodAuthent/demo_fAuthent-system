@@ -88,14 +88,14 @@ public class ProductRestServiceImpl implements ProductRestService {
     }
 
     /**
-     * Delete a product specified by gtin.
+     * Delete a product specified by id.
      *
-     * @param gtin 
+     * @param productId 
      * @return the response
      */
-    public Response removeProductByGtin(java.util.UUID gtin) {
+    public Response removeProductById(java.util.UUID productId) {
         
-            service.removeProductByGtin(gtin);
+            service.removeProductById(productId);
             
                 return Response.ok().build();
     }

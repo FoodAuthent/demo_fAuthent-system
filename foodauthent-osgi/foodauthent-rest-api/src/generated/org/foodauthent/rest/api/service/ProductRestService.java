@@ -82,14 +82,14 @@ public interface ProductRestService{
 );
 
     /**
-     * Delete a product specified by gtin.
+     * Delete a product specified by id.
      *
-     * @param gtin 
+     * @param productId 
      * @return the response
      */
     @DELETE
-    @Path("/product/{gtin}")
-    public Response removeProductByGtin(@PathParam("gtin") java.util.UUID gtin
+    @Path("/product/{product-id}")
+    public Response removeProductById(@PathParam("product-id") java.util.UUID productId
 );
 
     /**

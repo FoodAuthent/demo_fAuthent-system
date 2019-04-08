@@ -95,7 +95,7 @@ var MyObject = function () {
         console.log("API called successfully. Returned data: ", data);
       }
     };
-     productApi.removeProductByGtin(
+     productApi.removeProductById(
        id,
        callback
      );
