@@ -1,19 +1,10 @@
 package org.foodauthent.fakx;
-import java.io.File;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.foodauthent.model.FileMetadata;
-import org.foodauthent.model.Fingerprint;
-import org.foodauthent.model.FingerprintSet;
-import org.foodauthent.model.Model;
-import org.foodauthent.model.Prediction;
-import org.foodauthent.model.Product;
-import org.foodauthent.model.SOP;
-import org.foodauthent.model.Tag;
-import org.foodauthent.model.Workflow;
-
-import com.google.common.io.Files;
+import org.foodauthent.model.*;
 
 public class Archive {
 
@@ -26,7 +17,7 @@ public class Archive {
 	private List<Workflow> workflow;
 	private List<Fingerprint> fingerprint;
 	private List<FingerprintSet> fingerprintset;
-	private List<File> files;
+	private List<Path> files;
 
 	private Archive() {
 	}
@@ -103,28 +94,27 @@ public class Archive {
 		return fingerprintset;
 	}
 
-	public File getFile(UUID uuid) {
+	public Path getFile(UUID uuid) {
 		// Files are named with their UUID in fAuthent
-		return files.stream().filter(it -> Files.getNameWithoutExtension(it.toString()).equals(uuid)).findFirst()
-				.orElse(null);
+		return files.stream().map(Path::getFileName).filter(it -> it.equals(uuid)).findFirst().orElse(null);
 	}
 
-	public List<File> getFile() {
+	public List<Path> getFile() {
 		return files;
 	}
 
 	public static class Builder {
 
-		private List<SOP> sop;
-		private List<Product> product;
-		private List<FileMetadata> metadata;
-		private List<Tag> tag;
-		private List<Model> model;
-		private List<Prediction> prediction;
-		private List<Workflow> workflow;
-		private List<Fingerprint> fingerprint;
-		private List<FingerprintSet> fingerprintset;
-		private List<File> files;
+		private List<SOP> sop = new ArrayList<>();
+		private List<Product> product = new ArrayList<>();
+		private List<FileMetadata> metadata = new ArrayList<>();
+		private List<Tag> tag = new ArrayList<>();
+		private List<Model> model = new ArrayList<>();
+		private List<Prediction> prediction = new ArrayList<>();
+		private List<Workflow> workflow = new ArrayList<>();
+		private List<Fingerprint> fingerprint = new ArrayList<>();
+		private List<FingerprintSet> fingerprintset = new ArrayList<>();
+		private List<Path> files = new ArrayList<>();
 
 		public Builder sop(List<SOP> sop) {
 			this.sop = sop;
@@ -141,7 +131,7 @@ public class Archive {
 			return this;
 		}
 
-		public Builder files(List<File> files) {
+		public Builder files(List<Path> files) {
 			this.files = files;
 			return this;
 		}
