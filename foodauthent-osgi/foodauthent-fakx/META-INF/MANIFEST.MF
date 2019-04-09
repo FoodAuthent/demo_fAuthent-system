@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FoodAuthent FAKX
+Bundle-SymbolicName: org.foodauthent.fakx
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.foodauthent.fakx
+Import-Package: com.fasterxml.jackson.core,
+ com.fasterxml.jackson.core.type,
+ com.fasterxml.jackson.databind,
+ com.fasterxml.jackson.datatype.jsr310,
+ com.google.common.io,
+ de.unirostock.sems.cbarchive,
+ org.foodauthent.model,
+ org.jdom2,
+ org.junit;version="4.12.0"
