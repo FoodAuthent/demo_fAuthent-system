@@ -21,13 +21,13 @@
             <b-card no-body>
                 <b-tabs card>
                     <b-tab title="Results" active>
-                        <generalTable :filter.sync="filter" :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
-                        :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :handleDeleteOk="handleDeleteOk" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :test="test" :schemaIdHolder="schemaIdHolder">
+                        <generalTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
+                        :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :handleDeleteOk="handleDeleteOk" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
                             <slot></slot>
                         </generalTable>
                     </b-tab>
                     <b-tab title="Form">
-                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :test="test" :schemaIdHolder="schemaIdHolder"></generalForm>
+                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -81,7 +81,6 @@ if (jsonschema.fields) {
 var schemas = [];
 
 export default {
-    name: 'Test',
     data() {
         return {
             items: [],
@@ -90,7 +89,7 @@ export default {
             perPage: 10,
             filter: null,
             model: {},
-            test: "product",
+            pageType: "product",
             schemas: schemas,
             itemsMetadata: {},
             resultsCount: 1,
@@ -130,7 +129,6 @@ export default {
             },
             loadTableData() {
                 console.log("Load table data");
-                this.$emit('update:perPage', self.perPageVal)
                 let self = this;
                 console.log("current page", self.currentPage);
                 console.log("per page", self.perPage);

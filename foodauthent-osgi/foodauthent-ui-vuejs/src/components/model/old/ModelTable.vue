@@ -69,7 +69,7 @@ var updateModel = require("@/utils/modelFunction.js").default.updateModel;
 var findModelById = require("@/utils/modelFunction.js").default.findModelById;
 import jsonschema from "@/generated/schema/model.json";
 export default {
-    name: "Workflow",
+    name: "Model",
     data() {
         return {
             model: {},

@@ -59,7 +59,7 @@
 
 var getTrainingJobs = require("@/utils/workflowFunction.js").default.getTrainingJobs;
 var findTrainingJobsByKeyword = require("@/utils/workflowFunction.js").default.findTrainingJobsByKeyword;
-var findPredictionJobById = require("@/utils/workflowFunction.js").default.findPredictionJobById;
+var findTrainingJobsById = require("@/utils/workflowFunction.js").default.findTrainingJobsById;
 export default {
     data() {
             return {
@@ -106,7 +106,7 @@ export default {
                     //check if it is a valid UUID
                     var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
                     if (re.test(self.filter)) {
-                        findPredictionJobById(self);
+                        findTrainingJobsById(self);
                     } else {
                         findTrainingJobsByKeyword(self);
                     }

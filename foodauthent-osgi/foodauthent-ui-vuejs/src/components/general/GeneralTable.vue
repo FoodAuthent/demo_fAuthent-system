@@ -12,7 +12,7 @@
             <!-- PER PAGE -->
             <b-col class="my-1">
                 <b-form-group horizontal label="PER PAGE" class="mb-0">
-                    <b-form-select @change="perPagehandler($event)" :options="pageOptionsPerPage" v-model="perPageVal" />
+                    <b-form-select @change="perPagehandler($event)" :options="pageOptionsPerPage" v-model="perPage" />
                 </b-form-group>
             </b-col>
             <!-- SEARCH -->
@@ -31,7 +31,7 @@
         </b-row>
         <b-row>
             <!-- TABLE -->
-            <b-table bordered striped hover show-empty responsive :items="items" :fields="fields" :current-page="currentPage" :per-page="perPageVal" @row-clicked="myRowClickHandler">
+            <b-table bordered striped hover show-empty responsive :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="myRowClickHandler">
                 <template slot="actions" slot-scope="row">
                     <div class="widewidth">
                         <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)">
@@ -99,7 +99,7 @@ export default {
         itemsMetadata: Object,
         schema: Object,
         model: Object,
-        test: String,
+        pageType: String,
         schemaIdHolder: Object,
         pageOptionsPerPage: Array,
         search: {
@@ -129,20 +129,19 @@ export default {
     },
     data() {
         return {
-            filterVal: '',
-            perPageVal: ''
+            filterVal: ''
              }
     },
     mounted() {
-        this.onProp(this.filter, this.perPage);
+        this.onProp(this.filter);
         this.$watch('filter', this.onProp);
-        this.$watch('perPage', this.onProp);
-        getModelSchemas(this.test, {}, this.schemaIdHolder);
+        if(this.pageType != 'noType'){
+        getModelSchemas(this.pageType, {}, this.schemaIdHolder);
+        }
     },
     methods: {
-        onProp(filter, perPage) {
+        onProp(filter) {
                 this.filterVal = filter;
-                this.perPageVal = perPage;
             },
             onSearch() {
                 this.$emit('update:filter', this.filterVal)
@@ -153,13 +152,10 @@ export default {
                 document.getElementById("refreshTable").click();
             },
             perPagehandler(newObjectState) {
-            	console.log("Inside perPagehandler");
-            	console.log("newObjectState", newObjectState);
-            	this.$emit('update:perPage', this.perPageVal)
                 let self = this;
                 self.currentPage = 1; //just a workaround to go back in page 1
                 self.perPage = newObjectState;
-                console.log("Per PAGE", self.perPage);
+                self.$emit('update:perPage', newObjectState);
                 document.getElementById("refreshTable").click();
             },
             info(item, index, button) {
@@ -169,7 +165,9 @@ export default {
            showMetadata(item, index, button) {
                let self = this;
                console.log("ITEM", item);
-               getCustomMetadata(this.test, this.schemaIdHolder.schemaID, item["fa-id"], self);
+               if(this.pageType != 'noType'){
+               getCustomMetadata(this.pageType, this.schemaIdHolder.schemaID, item["fa-id"], self);
+               }
             },
            //Manage the ok button to confirm the Metadata action
             handleMetadataOk() {

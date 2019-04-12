@@ -64,7 +64,7 @@ export default {
         model: Object,
         formOptions: Object,
         schemaIdHolder: Object,
-        test: String,
+        pageType: String,
         save: {
             type: Function,
             required: true
@@ -77,8 +77,10 @@ export default {
         
     },
     mounted() {
-    getModelSchemas(this.test, this.schemas);
+    if(this.pageType != 'noType'){
+    getModelSchemas(this.pageType, this.schemas);
     console.log("Schemas", this.schemas);
+    }
     },
         components: {
         "vue-form-generator": VueFormGenerator.component
