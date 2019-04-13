@@ -397,7 +397,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FingerprintSet'
-
+                
   /product:
     get:
       tags:
@@ -523,8 +523,31 @@ paths:
       summary: Finds Prediction by some key words or return all Predictions.
       description: >-
         Muliple keywords can be provided with comma separated strings, e.g. keyword1, keyword2.
-      operationId: findModelByKeyword
+      operationId: findPredictionByKeyword
       parameters:
+        - $ref: "#/components/parameters/pageNumber"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/keywords"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictionPageResult'
+                
+  '/prediction/relation/{fingerprintset-id}':
+    get:
+      tags:
+        - workflow 
+      description: get predictions (filtered by keywords) for a specific fingerprint set
+      operationId: findPredictionsByFingerprintSetId
+      parameters:
+        - name: fingerprintset-id
+          in: path
+          schema:
+            type: string
+            format: uuid
         - $ref: "#/components/parameters/pageNumber"
         - $ref: "#/components/parameters/pageSize"
         - $ref: "#/components/parameters/keywords"
@@ -2083,7 +2106,7 @@ components:
         - name
         - fingerprint-ids
       x-ui-vue.js:
-        - name: fingerprints
+        - name: fingerprint-ids
         - name: name
       properties:
         fa-id:

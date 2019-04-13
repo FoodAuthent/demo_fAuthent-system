@@ -9,6 +9,7 @@ import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
+import org.foodauthent.model.PredictionPageResult;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.ProductPageResult;
 import org.osgi.service.component.annotations.Component;
