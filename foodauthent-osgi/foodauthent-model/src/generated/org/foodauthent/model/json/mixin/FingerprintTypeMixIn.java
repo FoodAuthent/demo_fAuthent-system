@@ -13,11 +13,11 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import org.foodauthent.model.FingerprintSetType.NameEnum;
+import org.foodauthent.model.FingerprintType.NameEnum;
 
 
-import org.foodauthent.model.FingerprintSetType;
-import org.foodauthent.model.FingerprintSetType.FingerprintSetTypeBuilder;
+import org.foodauthent.model.FingerprintType;
+import org.foodauthent.model.FingerprintType.FingerprintTypeBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -29,13 +29,13 @@ import org.foodauthent.model.FingerprintSetType.FingerprintSetTypeBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = FingerprintSetType.class)
+    defaultImpl = FingerprintType.class)
 @JsonSubTypes({
-    @Type(value = FingerprintSetType.class, name="FingerprintSetType")
+    @Type(value = FingerprintType.class, name="FingerprintType")
 })
-@JsonDeserialize(builder=FingerprintSetTypeBuilder.class)
+@JsonDeserialize(builder=FingerprintTypeBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface FingerprintSetTypeMixIn {
+public interface FingerprintTypeMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -60,17 +60,17 @@ public interface FingerprintSetTypeMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = FingerprintSetTypeBuilder.class)
+        defaultImpl = FingerprintTypeBuilder.class)
     @JsonSubTypes({
-        @Type(value = FingerprintSetType.FingerprintSetTypeBuilder.class, name="FingerprintSetType")
+        @Type(value = FingerprintType.FingerprintTypeBuilder.class, name="FingerprintType")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface FingerprintSetTypeMixInBuilder {
+    public static interface FingerprintTypeMixInBuilder {
     
-        public FingerprintSetTypeMixIn build();
+        public FingerprintTypeMixIn build();
     
         @JsonProperty("name")
-        public FingerprintSetTypeMixInBuilder setName(final NameEnum name);
+        public FingerprintTypeMixInBuilder setName(final NameEnum name);
         
     }
 

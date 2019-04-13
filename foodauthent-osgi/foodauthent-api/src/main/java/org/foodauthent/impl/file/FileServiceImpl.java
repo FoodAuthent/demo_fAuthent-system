@@ -90,7 +90,7 @@ public class FileServiceImpl implements FileService {
 		.setUploadDate(LocalDate.now()).build();
 
 	try {
-	    if (TypeEnum.FINGERPRINTS_BRUKER.equals(fileMeta.getType())) {
+	    if (TypeEnum.FINGERPRINT_BRUKER.equals(fileMeta.getType())) {
 		fileMeta = updateFinterprintMetadata(fileMeta, upfile);
 	    }
 
@@ -113,7 +113,7 @@ public class FileServiceImpl implements FileService {
 			"Uploaded file probably not a KNIME workflow. Doesn't have a '.knwf' extension.");
 	    }
 	    break;
-	case FINGERPRINTS_BRUKER:
+	case FINGERPRINT_BRUKER:
 	    // TODO: cannot be validated without actually trying to convert the data. We try
 	    // to extract finterprint metadata later, so if that works, all is good, if not,
 	    // exception is thrown.

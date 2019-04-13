@@ -8,7 +8,10 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.json.Json;
 import javax.json.JsonValue;
@@ -20,6 +23,7 @@ import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.FAExceptions.InitJobException;
 import org.foodauthent.internal.impl.job.knime.KnimeExecutor.LoadingFailedException;
 import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelType;
@@ -89,15 +93,15 @@ public class LocalKnimeJobService implements JobService {
 		// TODO otherwise throw proper exception
 
 		// get fingerprint set file(s)
-		URI tempFingerprintSetFileURI = saveTemporaryFingerprintSetFile(fingerprintSet);
+		List<URI> tempFingerprintFileURIs = saveTemporaryFingerprintFiles(fingerprintSet);
 
 		// TODO get actual model file
 		// persistenceService.getBlobByUUID(model.getModelFileId());
 
 		// assemble workflow input
 		PredictionWorkflowInput workflowInput = PredictionWorkflowInput.builder()
-				.setFingerprintsetURI(tempFingerprintSetFileURI.toString()).setModelURI("TODO:modelURI")
-				.setFingerprintsetMetadata(fingerprintSet).setParameters(workflow.getParameters()).build();
+				.setFingerprintURIs(tempFingerprintFileURIs.stream().map(u -> u.toString()).collect(Collectors.toList())).setModelURI("TODO:modelURI")
+				.setFingerprintset(fingerprintSet).setParameters(workflow.getParameters()).build();
 
 		// TODO doesn't work, but should
 		// JsonValue jsonInput =
@@ -169,11 +173,12 @@ public class LocalKnimeJobService implements JobService {
 			throw new InitJobException("Problem initializing job: " + e1.getMessage(), e1);
 		}
 		
-		URI tmpFileURI = saveTemporaryFingerprintSetFile(fingerprintSet);
+		List<URI> tmpFileURIs = saveTemporaryFingerprintFiles(fingerprintSet);
 
 		// assemble workflow input
 		TrainingWorkflowInput workflowInput = TrainingWorkflowInput.builder()
-				.setFingerprintsetURI(tmpFileURI.toString()).setFingerprintsetMetadata(fingerprintSet)
+				.setFingerprintURIs(tmpFileURIs.stream().map(u -> u.toString()).collect(Collectors.toList()))
+				.setFingerprintset(fingerprintSet)
 				.setParameters(workflow.getParameters()).build();
 		// TODO doesn't work, but should
 		// JsonValue jsonInput =
@@ -237,23 +242,29 @@ public class LocalKnimeJobService implements JobService {
 		return trainingJob;
 	}
 	
-	private URI saveTemporaryFingerprintSetFile(FingerprintSet fingerprintSet) {
-		Blob fingerprintSetFile = persistenceService.getBlobByUUID(fingerprintSet.getFileId());
-		try {
-			File tmpFile = File.createTempFile("fa_fingerprintset_" + fingerprintSetFile.getFaId(), ".zip");
-			FileOutputStream out = new FileOutputStream(tmpFile);
-			IOUtils.copy(fingerprintSetFile.getData(), out);
-			out.flush();
-			out.close();
-			Path tmpDir = Files.createTempDirectory("fa_fingerprintset_" + fingerprintSetFile.getFaId());
-			FileUtil.unzip(tmpFile, tmpDir.toFile());
-			tmpFile.delete();
-			return tmpDir.toUri();
-			//TODO delete tmp files
-		} catch (IOException e1) {
-			// TODO
-			throw new RuntimeException(e1);
+	private List<URI> saveTemporaryFingerprintFiles(FingerprintSet fingerprintSet) {
+		List<URI> uris = new ArrayList<>();
+		for (UUID fpId : fingerprintSet.getFingerprintIds()) {
+			Fingerprint fp = persistenceService.getFaModelByUUID(fpId, Fingerprint.class);
+
+			Blob fingerprintFile = persistenceService.getBlobByUUID(fp.getFileId());
+			try {
+				File tmpFile = File.createTempFile("fa_fingerprint_" + fingerprintFile.getFaId(), ".zip");
+				FileOutputStream out = new FileOutputStream(tmpFile);
+				IOUtils.copy(fingerprintFile.getData(), out);
+				out.flush();
+				out.close();
+				Path tmpDir = Files.createTempDirectory("fa_fingerprint_" + fingerprintFile.getFaId());
+				FileUtil.unzip(tmpFile, tmpDir.toFile());
+				tmpFile.delete();
+				uris.add(tmpDir.toUri());
+				// TODO delete tmp files
+			} catch (IOException e1) {
+				// TODO
+				throw new RuntimeException(e1);
+			}
 		}
+		return uris;
 	}
 
 	private void loadWorkflow(Workflow workflow) throws LoadingFailedException {

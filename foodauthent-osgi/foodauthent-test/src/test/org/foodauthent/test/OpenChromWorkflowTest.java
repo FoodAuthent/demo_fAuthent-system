@@ -87,14 +87,14 @@ public class OpenChromWorkflowTest extends AbstractITTest {
 
 	// upload fingerprint set file
 	FileMetadata fileMeta = FileMetadata.builder().setName("fingerprintset")
-		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINTS_BRUKER).build();
+		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).build();
 	restService(FileRestService.class).createFileMetadata(fileMeta);
 	TestUtils.uploadFileData(webTarget, fileMeta.getFaId(), new File("files/bruker-nmr/fingerprintset.zip"));
 
 	// upload fingerprint set
-	Fingerprint fp = Fingerprint.builder().setMetadata("fp metadata").build();
-	FingerprintSet fps = FingerprintSet.builder().setName("myset").setProductId(productId)
-		.setFingerprints(Arrays.asList(fp)).setFileId(fileMeta.getFaId()).build();
+	Fingerprint fp = Fingerprint.builder().setSampleId(UUID.randomUUID()).setFileId(fileMeta.getFaId()).build();
+	FingerprintSet fps = FingerprintSet.builder().setName("myset").setFingerprintIds(Arrays.asList(fp.getFaId()))
+		.build();
 	return restService(FingerprintRestService.class).createFingerprintSet(fps).readEntity(UUID.class);
     }
 

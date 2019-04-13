@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/FingerprintSetType', '../model/ModelType'], factory);
+    define(['../ApiClient', '../model/FingerprintType', '../model/ModelType'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./FingerprintSetType'), require('./ModelType'));
+    module.exports = factory(require('../ApiClient'), require('./FingerprintType'), require('./ModelType'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.WorkflowIOTypes = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FingerprintSetType, root.FoodAuthentSwaggerApi.ModelType);
+    root.FoodAuthentSwaggerApi.WorkflowIOTypes = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FingerprintType, root.FoodAuthentSwaggerApi.ModelType);
   }
-}(this, function(ApiClient, FingerprintSetType, ModelType) {
+}(this, function(ApiClient, FingerprintType, ModelType) {
   'use strict';
 
 
@@ -60,8 +60,8 @@
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
-      if (data.hasOwnProperty('fingerprintset-type')) {
-        obj['fingerprintset-type'] = FingerprintSetType.constructFromObject(data['fingerprintset-type']);
+      if (data.hasOwnProperty('fingerprint-type')) {
+        obj['fingerprint-type'] = FingerprintType.constructFromObject(data['fingerprint-type']);
       }
       if (data.hasOwnProperty('model-type')) {
         obj['model-type'] = ModelType.constructFromObject(data['model-type']);
@@ -71,9 +71,9 @@
   }
 
   /**
-   * @member {module:model/FingerprintSetType} fingerprintset-type
+   * @member {module:model/FingerprintType} fingerprint-type
    */
-  exports.prototype['fingerprintset-type'] = undefined;
+  exports.prototype['fingerprint-type'] = undefined;
   /**
    * @member {module:model/ModelType} model-type
    */

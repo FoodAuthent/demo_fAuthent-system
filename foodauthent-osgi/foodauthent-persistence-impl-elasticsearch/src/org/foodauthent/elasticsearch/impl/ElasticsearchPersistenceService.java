@@ -296,4 +296,16 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 	public Product getProductById(UUID id) {
 		return getFaModelByUUID(id, Product.class);
 	}
+
+	@Override
+	public <T extends FaModel> long getModelCount(Class<T> modelType) {
+		// TODO
+		return -1;
+	}
+
+	@Override
+	public long getBlobCount() {
+		// TODO
+		return -1;
+	}
 }

@@ -25,8 +25,8 @@ public class TrainingWorkflowInput   extends FaModel {
 
 
   protected java.util.List<WorkflowParameter> parameters;
-  protected FingerprintSet fingerprintsetMetadata;
-  protected String fingerprintsetURI;
+  protected FingerprintSet fingerprintset;
+  protected java.util.List<String> fingerprintURIs;
   
   public String getTypeID() {
     return "TrainingWorkflowInput";
@@ -43,8 +43,8 @@ public class TrainingWorkflowInput   extends FaModel {
   private TrainingWorkflowInput(TrainingWorkflowInputBuilder builder) {
     
     parameters = immutable(builder.parameters);
-    fingerprintsetMetadata = immutable(builder.fingerprintsetMetadata);
-    fingerprintsetURI = immutable(builder.fingerprintsetURI);
+    fingerprintset = immutable(builder.fingerprintset);
+    fingerprintURIs = immutable(builder.fingerprintURIs);
     
     
   }
@@ -64,12 +64,12 @@ public class TrainingWorkflowInput   extends FaModel {
             return false;
         }
         TrainingWorkflowInput ent = (TrainingWorkflowInput)o;
-        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprintsetMetadata, ent.fingerprintsetMetadata) && Objects.equals(fingerprintsetURI, ent.fingerprintsetURI);
+        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprintset, ent.fingerprintset) && Objects.equals(fingerprintURIs, ent.fingerprintURIs);
     }
 
 
   /**
-   * The workflow parameters as given provided by the Workflow-entity.
+   * The workflow parameters as provided by the Workflow-entity.
    * @return parameters 
    */
   public java.util.List<WorkflowParameter> getParameters() {
@@ -77,19 +77,19 @@ public class TrainingWorkflowInput   extends FaModel {
     }
     
   /**
-   * Get fingerprintsetMetadata
-   * @return fingerprintsetMetadata 
+   * Get fingerprintset
+   * @return fingerprintset 
    */
-  public FingerprintSet getFingerprintsetMetadata() {
-        return fingerprintsetMetadata;
+  public FingerprintSet getFingerprintset() {
+        return fingerprintset;
     }
     
   /**
    * URI pointing to the resource containg the fingerprints to learn the model from.
-   * @return fingerprintsetURI 
+   * @return fingerprintURIs 
    */
-  public String getFingerprintsetURI() {
-        return fingerprintsetURI;
+  public java.util.List<String> getFingerprintURIs() {
+        return fingerprintURIs;
     }
     
   
@@ -111,8 +111,8 @@ public class TrainingWorkflowInput   extends FaModel {
 	public static TrainingWorkflowInputBuilder builder(TrainingWorkflowInput entity) {
 		TrainingWorkflowInputBuilder builder = builder();
         builder.parameters = entity.parameters;
-        builder.fingerprintsetMetadata = entity.fingerprintsetMetadata;
-        builder.fingerprintsetURI = entity.fingerprintsetURI;
+        builder.fingerprintset = entity.fingerprintset;
+        builder.fingerprintURIs = entity.fingerprintURIs;
  		return builder;
   	}
   	
@@ -124,11 +124,11 @@ public class TrainingWorkflowInput   extends FaModel {
         }
     
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
-        private FingerprintSet fingerprintsetMetadata;
-        private String fingerprintsetURI;
+        private FingerprintSet fingerprintset;
+        private java.util.List<String> fingerprintURIs = new java.util.ArrayList<>();
 
         /**
-         * The workflow parameters as given provided by the Workflow-entity.
+         * The workflow parameters as provided by the Workflow-entity.
          * @return parameters 
          */
         public TrainingWorkflowInputBuilder setParameters(java.util.List<WorkflowParameter> parameters) {
@@ -137,20 +137,20 @@ public class TrainingWorkflowInput   extends FaModel {
         }
 
         /**
-         * Get fingerprintsetMetadata
-         * @return fingerprintsetMetadata 
+         * Get fingerprintset
+         * @return fingerprintset 
          */
-        public TrainingWorkflowInputBuilder setFingerprintsetMetadata(FingerprintSet fingerprintsetMetadata) {
-             this.fingerprintsetMetadata = fingerprintsetMetadata;
+        public TrainingWorkflowInputBuilder setFingerprintset(FingerprintSet fingerprintset) {
+             this.fingerprintset = fingerprintset;
              return this;
         }
 
         /**
          * URI pointing to the resource containg the fingerprints to learn the model from.
-         * @return fingerprintsetURI 
+         * @return fingerprintURIs 
          */
-        public TrainingWorkflowInputBuilder setFingerprintsetURI(String fingerprintsetURI) {
-             this.fingerprintsetURI = fingerprintsetURI;
+        public TrainingWorkflowInputBuilder setFingerprintURIs(java.util.List<String> fingerprintURIs) {
+             this.fingerprintURIs = fingerprintURIs;
              return this;
         }
 

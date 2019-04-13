@@ -1,9 +1,36 @@
 {
   "fields" : [ {
-    "label" : "Metadata",
-    "model" : "metadata",
+    "label" : "Sample-id",
+    "model" : "sample-id",
     "required" : false,
-    "type" : "input",
-    "inputType" : "text"
+    "idprovider" : "select-sample",
+    "fieldName" : "fa-id",
+    "type" : "selectModel"
+  }, {
+    "label" : "File-id",
+    "model" : "file-id",
+    "required" : false,
+    "idprovider" : "upload-file",
+    "fieldName" : "fa-id",
+    "type" : "loadFile"
+  }, {
+    "label" : "Type",
+    "model" : "type",
+    "required" : false,
+    "type" : "object",
+    "schema" : {
+      "fields" : [ {
+        "label" : "Name",
+        "model" : "name",
+        "required" : true,
+        "type" : "select",
+        "validator" : "string",
+        "inputName" : "name",
+        "values" : [ {
+          "id" : "bruker",
+          "name" : "Bruker"
+        } ]
+      } ]
+    }
   } ]
 }

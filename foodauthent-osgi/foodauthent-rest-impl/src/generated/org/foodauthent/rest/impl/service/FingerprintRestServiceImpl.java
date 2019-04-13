@@ -10,6 +10,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
 
@@ -38,6 +39,18 @@ public class FingerprintRestServiceImpl implements FingerprintRestService {
 
 
     /**
+     * Create a new fingerprint.
+     *
+     * @param fingerprint A fingerprint set containing fingerprint metadata.
+     * @return the response
+     */
+    public Response createFingerprint(Fingerprint fingerprint) {
+        
+            Object res = service.createFingerprint(fingerprint);
+            return Response.ok(res).build();
+    }
+
+    /**
      * Create a new fingerprint set.
      *
      * @param fingerprintSet A fingerprint set containing fingerprint metadata.
@@ -52,7 +65,7 @@ public class FingerprintRestServiceImpl implements FingerprintRestService {
     /**
      * Muliple keywords can be provided with comma separated strings,e.g. use keyword1, keyword2, keyword3.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
@@ -60,6 +73,18 @@ public class FingerprintRestServiceImpl implements FingerprintRestService {
     public Response findFingerprintSetByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords) {
         
             Object res = service.findFingerprintSetByKeyword(pageNumber, pageSize, keywords);
+            return Response.ok(res).build();
+    }
+
+    /**
+     * Get the fingerprint by id.
+     *
+     * @param fingerprintId 
+     * @return the response
+     */
+    public Response getFingerprintById(java.util.UUID fingerprintId) {
+        
+            Object res = service.getFingerprintById(fingerprintId);
             return Response.ok(res).build();
     }
 

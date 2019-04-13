@@ -3,7 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.FingerprintSetType;
+import org.foodauthent.model.FingerprintType;
 import org.foodauthent.model.ModelType;
 
 import java.util.UUID;
@@ -48,8 +48,8 @@ public interface WorkflowIOTypesMixIn {
   	public UUID getFaId();
     
 
-    @JsonProperty("fingerprintset-type")
-    public FingerprintSetType getFingerprintsetType();
+    @JsonProperty("fingerprint-type")
+    public FingerprintType getFingerprintType();
     
     @JsonProperty("model-type")
     public ModelType getModelType();
@@ -73,8 +73,8 @@ public interface WorkflowIOTypesMixIn {
     
         public WorkflowIOTypesMixIn build();
     
-        @JsonProperty("fingerprintset-type")
-        public WorkflowIOTypesMixInBuilder setFingerprintsetType(final FingerprintSetType fingerprintsetType);
+        @JsonProperty("fingerprint-type")
+        public WorkflowIOTypesMixInBuilder setFingerprintType(final FingerprintType fingerprintType);
         
         @JsonProperty("model-type")
         public WorkflowIOTypesMixInBuilder setModelType(final ModelType modelType);

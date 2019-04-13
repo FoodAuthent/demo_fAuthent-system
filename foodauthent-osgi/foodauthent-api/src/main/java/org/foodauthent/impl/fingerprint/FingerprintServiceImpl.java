@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.foodauthent.api.FingerprintService;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
+import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
 import org.foodauthent.model.Product;
@@ -47,6 +48,17 @@ public class FingerprintServiceImpl implements FingerprintService {
 		pageNumber, pageSize);
 	return FingerprintSetPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
+    }
+
+    @Override
+    public UUID createFingerprint(Fingerprint fingerprint) {
+	persistenceService.save(fingerprint);
+	return fingerprint.getFaId();
+    }
+
+    @Override
+    public Fingerprint getFingerprintById(UUID fingerprintId) {
+	return persistenceService.getFaModelByUUID(fingerprintId, Fingerprint.class);
     }
 
 }

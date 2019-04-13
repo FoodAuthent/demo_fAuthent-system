@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.foodauthent.model.*;
 import org.junit.After;
@@ -74,7 +75,7 @@ public class FAKXTest {
 	}
 
 	private static FileMetadata createFileMetadata() {
-		return FileMetadata.builder().setFaId(UUID.randomUUID()).setType(FileMetadata.TypeEnum.FINGERPRINTS_BRUKER)
+		return FileMetadata.builder().setFaId(UUID.randomUUID()).setType(FileMetadata.TypeEnum.FINGERPRINT_BRUKER)
 				.setName("name").setContentType("contentType").setUploadName("uploadName").setDescription("description")
 				.setAuthor("author").setDate(LocalDate.now()).setUploadDate(LocalDate.now()).setVersion(0).build();
 	}
@@ -103,10 +104,10 @@ public class FAKXTest {
 				.setType(WorkflowParameter.TypeEnum.NUMBER).setValue("0").build();
 
 		// WorkflowIOTypes
-		FingerprintSetType fingerprintsetType = FingerprintSetType.builder().setName(FingerprintSetType.NameEnum.BRUKER)
+		FingerprintType fingerprintsetType = FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER)
 				.build();
 		ModelType modelType = ModelType.builder().setName(ModelType.NameEnum.KNIME_PYTHON).build();
-		WorkflowIOTypes ioTypes = WorkflowIOTypes.builder().setFingerprintsetType(fingerprintsetType)
+		WorkflowIOTypes ioTypes = WorkflowIOTypes.builder().setFingerprintType(fingerprintsetType)
 				.setModelType(modelType).build();
 
 		return Workflow.builder().setFaId(UUID.randomUUID()).setName("name").setDescription("description")
@@ -115,14 +116,15 @@ public class FAKXTest {
 	}
 
 	private static Fingerprint createFingerprint() {
-		return Fingerprint.builder().setFaId(UUID.randomUUID()).setMetadata("metadata")
-				.setAdditionalProperties(new HashMap<>()).build();
+		FingerprintType type = FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build();
+		return Fingerprint.builder().setFaId(UUID.randomUUID()).setSampleId(UUID.randomUUID())
+				.setType(type)
+				.setFileId(UUID.randomUUID()).build();
 	}
 
 	private static FingerprintSet createFingerprintSet(List<Fingerprint> fingerprint) {
-		FingerprintSetType type = FingerprintSetType.builder().setName(FingerprintSetType.NameEnum.BRUKER).build();
-		return FingerprintSet.builder().setFaId(UUID.randomUUID()).setProductId(UUID.randomUUID())
-				.setFingerprints(fingerprint).setFileId(UUID.randomUUID()).setFileId(UUID.randomUUID()).setName("name")
-				.setType(type).build();
+		return FingerprintSet.builder().setFaId(UUID.randomUUID())
+				.setFingerprintIds(fingerprint.stream().map(f -> f.getFaId()).collect(Collectors.toList()))
+				.setName("name").build();
 	}
 }

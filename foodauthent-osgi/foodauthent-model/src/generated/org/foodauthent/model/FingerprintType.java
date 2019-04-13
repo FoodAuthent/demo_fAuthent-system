@@ -14,12 +14,12 @@ import java.util.Objects;
 
 
 /**
- * Type of the fingerprint set. The referenced file musst reflect this type, too.
+ * Type of the fingerprint. The referenced file musst reflect this type, too.
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public class FingerprintSetType   extends FaModel {
+public class FingerprintType   extends FaModel {
 
   /**
    * Gets or Sets name
@@ -44,7 +44,7 @@ public class FingerprintSetType   extends FaModel {
   protected NameEnum name;
   
   public String getTypeID() {
-    return "FingerprintSetType";
+    return "FingerprintType";
   }
   
 
@@ -53,9 +53,9 @@ public class FingerprintSetType   extends FaModel {
   	return null;
   }
   
-  protected FingerprintSetType() {}
+  protected FingerprintType() {}
   
-  private FingerprintSetType(FingerprintSetTypeBuilder builder) {
+  private FingerprintType(FingerprintTypeBuilder builder) {
     
     if(builder.name == null) {
         throw new IllegalArgumentException("name must not be null.");
@@ -79,7 +79,7 @@ public class FingerprintSetType   extends FaModel {
         if (getClass() != o.getClass()) {
             return false;
         }
-        FingerprintSetType ent = (FingerprintSetType)o;
+        FingerprintType ent = (FingerprintType)o;
         return Objects.equals(name, ent.name);
     }
 
@@ -96,8 +96,8 @@ public class FingerprintSetType   extends FaModel {
  	/**
   	 * @return a newly created builder
   	 */
-  	public static FingerprintSetTypeBuilder builder() {
-  		return new FingerprintSetTypeBuilder();
+  	public static FingerprintTypeBuilder builder() {
+  		return new FingerprintTypeBuilder();
   	}
   	
   	/**
@@ -108,16 +108,16 @@ public class FingerprintSetType   extends FaModel {
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
 	 */
-	public static FingerprintSetTypeBuilder builder(FingerprintSetType entity) {
-		FingerprintSetTypeBuilder builder = builder();
+	public static FingerprintTypeBuilder builder(FingerprintType entity) {
+		FingerprintTypeBuilder builder = builder();
         builder.name = entity.name;
  		return builder;
   	}
   	
   
-    public static class FingerprintSetTypeBuilder {
+    public static class FingerprintTypeBuilder {
     
-        protected FingerprintSetTypeBuilder(){
+        protected FingerprintTypeBuilder(){
             
         }
     
@@ -127,7 +127,7 @@ public class FingerprintSetType   extends FaModel {
          * Get name
          * @return name , never <code>null</code>
          */
-        public FingerprintSetTypeBuilder setName(NameEnum name) {
+        public FingerprintTypeBuilder setName(NameEnum name) {
              if(name == null) {
                  throw new IllegalArgumentException("name must not be null.");
              }
@@ -136,8 +136,8 @@ public class FingerprintSetType   extends FaModel {
         }
 
         
-        public FingerprintSetType build() {
-            return new FingerprintSetType(this);
+        public FingerprintType build() {
+            return new FingerprintType(this);
         }
     
     }

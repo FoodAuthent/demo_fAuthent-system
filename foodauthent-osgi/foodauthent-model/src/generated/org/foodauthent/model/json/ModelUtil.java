@@ -44,8 +44,8 @@ public class ModelUtil {
         mapper.addMixIn(FingerprintSet.FingerprintSetBuilder.class, FingerprintSetMixIn.FingerprintSetMixInBuilder.class);
         mapper.addMixIn(FingerprintSetPageResult.class, FingerprintSetPageResultMixIn.class);
         mapper.addMixIn(FingerprintSetPageResult.FingerprintSetPageResultBuilder.class, FingerprintSetPageResultMixIn.FingerprintSetPageResultMixInBuilder.class);
-        mapper.addMixIn(FingerprintSetType.class, FingerprintSetTypeMixIn.class);
-        mapper.addMixIn(FingerprintSetType.FingerprintSetTypeBuilder.class, FingerprintSetTypeMixIn.FingerprintSetTypeMixInBuilder.class);
+        mapper.addMixIn(FingerprintType.class, FingerprintTypeMixIn.class);
+        mapper.addMixIn(FingerprintType.FingerprintTypeBuilder.class, FingerprintTypeMixIn.FingerprintTypeMixInBuilder.class);
         mapper.addMixIn(GPCAttribute.class, GPCAttributeMixIn.class);
         mapper.addMixIn(GPCAttribute.GPCAttributeBuilder.class, GPCAttributeMixIn.GPCAttributeMixInBuilder.class);
         mapper.addMixIn(GPCAttributeValue.class, GPCAttributeValueMixIn.class);
@@ -102,6 +102,8 @@ public class ModelUtil {
         mapper.addMixIn(Sample.SampleBuilder.class, SampleMixIn.SampleMixInBuilder.class);
         mapper.addMixIn(SamplePageResult.class, SamplePageResultMixIn.class);
         mapper.addMixIn(SamplePageResult.SamplePageResultBuilder.class, SamplePageResultMixIn.SamplePageResultMixInBuilder.class);
+        mapper.addMixIn(SystemInfo.class, SystemInfoMixIn.class);
+        mapper.addMixIn(SystemInfo.SystemInfoBuilder.class, SystemInfoMixIn.SystemInfoMixInBuilder.class);
         mapper.addMixIn(Tag.class, TagMixIn.class);
         mapper.addMixIn(Tag.TagBuilder.class, TagMixIn.TagMixInBuilder.class);
         mapper.addMixIn(TagPageResult.class, TagPageResultMixIn.class);

@@ -25,8 +25,8 @@ public class PredictionWorkflowInput   extends FaModel {
 
 
   protected java.util.List<WorkflowParameter> parameters;
-  protected FingerprintSet fingerprintsetMetadata;
-  protected String fingerprintsetURI;
+  protected FingerprintSet fingerprintset;
+  protected java.util.List<String> fingerprintURIs;
   protected String modelURI;
   
   public String getTypeID() {
@@ -44,8 +44,8 @@ public class PredictionWorkflowInput   extends FaModel {
   private PredictionWorkflowInput(PredictionWorkflowInputBuilder builder) {
     
     parameters = immutable(builder.parameters);
-    fingerprintsetMetadata = immutable(builder.fingerprintsetMetadata);
-    fingerprintsetURI = immutable(builder.fingerprintsetURI);
+    fingerprintset = immutable(builder.fingerprintset);
+    fingerprintURIs = immutable(builder.fingerprintURIs);
     modelURI = immutable(builder.modelURI);
     
     
@@ -66,7 +66,7 @@ public class PredictionWorkflowInput   extends FaModel {
             return false;
         }
         PredictionWorkflowInput ent = (PredictionWorkflowInput)o;
-        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprintsetMetadata, ent.fingerprintsetMetadata) && Objects.equals(fingerprintsetURI, ent.fingerprintsetURI) && Objects.equals(modelURI, ent.modelURI);
+        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprintset, ent.fingerprintset) && Objects.equals(fingerprintURIs, ent.fingerprintURIs) && Objects.equals(modelURI, ent.modelURI);
     }
 
 
@@ -79,19 +79,19 @@ public class PredictionWorkflowInput   extends FaModel {
     }
     
   /**
-   * Get fingerprintsetMetadata
-   * @return fingerprintsetMetadata 
+   * Get fingerprintset
+   * @return fingerprintset 
    */
-  public FingerprintSet getFingerprintsetMetadata() {
-        return fingerprintsetMetadata;
+  public FingerprintSet getFingerprintset() {
+        return fingerprintset;
     }
     
   /**
-   * URI pointing to the resource containg the fingerprints to predict the labels for.
-   * @return fingerprintsetURI 
+   * URIs pointing to the resource containg the fingerprints to predict the labels for.
+   * @return fingerprintURIs 
    */
-  public String getFingerprintsetURI() {
-        return fingerprintsetURI;
+  public java.util.List<String> getFingerprintURIs() {
+        return fingerprintURIs;
     }
     
   /**
@@ -121,8 +121,8 @@ public class PredictionWorkflowInput   extends FaModel {
 	public static PredictionWorkflowInputBuilder builder(PredictionWorkflowInput entity) {
 		PredictionWorkflowInputBuilder builder = builder();
         builder.parameters = entity.parameters;
-        builder.fingerprintsetMetadata = entity.fingerprintsetMetadata;
-        builder.fingerprintsetURI = entity.fingerprintsetURI;
+        builder.fingerprintset = entity.fingerprintset;
+        builder.fingerprintURIs = entity.fingerprintURIs;
         builder.modelURI = entity.modelURI;
  		return builder;
   	}
@@ -135,8 +135,8 @@ public class PredictionWorkflowInput   extends FaModel {
         }
     
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
-        private FingerprintSet fingerprintsetMetadata;
-        private String fingerprintsetURI;
+        private FingerprintSet fingerprintset;
+        private java.util.List<String> fingerprintURIs = new java.util.ArrayList<>();
         private String modelURI;
 
         /**
@@ -149,20 +149,20 @@ public class PredictionWorkflowInput   extends FaModel {
         }
 
         /**
-         * Get fingerprintsetMetadata
-         * @return fingerprintsetMetadata 
+         * Get fingerprintset
+         * @return fingerprintset 
          */
-        public PredictionWorkflowInputBuilder setFingerprintsetMetadata(FingerprintSet fingerprintsetMetadata) {
-             this.fingerprintsetMetadata = fingerprintsetMetadata;
+        public PredictionWorkflowInputBuilder setFingerprintset(FingerprintSet fingerprintset) {
+             this.fingerprintset = fingerprintset;
              return this;
         }
 
         /**
-         * URI pointing to the resource containg the fingerprints to predict the labels for.
-         * @return fingerprintsetURI 
+         * URIs pointing to the resource containg the fingerprints to predict the labels for.
+         * @return fingerprintURIs 
          */
-        public PredictionWorkflowInputBuilder setFingerprintsetURI(String fingerprintsetURI) {
-             this.fingerprintsetURI = fingerprintsetURI;
+        public PredictionWorkflowInputBuilder setFingerprintURIs(java.util.List<String> fingerprintURIs) {
+             this.fingerprintURIs = fingerprintURIs;
              return this;
         }
 

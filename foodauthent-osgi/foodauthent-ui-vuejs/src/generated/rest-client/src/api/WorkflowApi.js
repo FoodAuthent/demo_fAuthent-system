@@ -219,7 +219,7 @@
      * Finds Prediction by some key words or return all Predictions.
      * Muliple keywords can be provided with comma separated strings, e.g. keyword1, keyword2.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/WorkflowApi~findModelByKeywordCallback} callback The callback function, accepting three arguments: error, data, response
@@ -271,7 +271,7 @@
      * Finds predictions jobs by some key words or return all predictions jobs suitable for prediction.
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/WorkflowApi~findPredictionJobsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -323,7 +323,7 @@
      * Finds workflows by some key words or return all workflows suitable for prediction.
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/WorkflowApi~findPredictionWorkflowsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -375,7 +375,7 @@
      * Finds training jobs by some key words or return all training jobs.
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/WorkflowApi~findTrainingJobsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -427,7 +427,7 @@
      * Finds workflows by some key words or return all workflows suitable for training models.
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/WorkflowApi~findTrainingWorkflowsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -479,7 +479,7 @@
      * Finds Workflow by some key words or return all Workflows.
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/WorkflowApi~findWorkflowByKeywordCallback} callback The callback function, accepting three arguments: error, data, response

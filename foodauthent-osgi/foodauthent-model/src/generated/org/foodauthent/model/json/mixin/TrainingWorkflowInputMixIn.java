@@ -51,11 +51,11 @@ public interface TrainingWorkflowInputMixIn {
     @JsonProperty("parameters")
     public java.util.List<WorkflowParameter> getParameters();
     
-    @JsonProperty("fingerprintset-metadata")
-    public FingerprintSet getFingerprintsetMetadata();
+    @JsonProperty("fingerprintset")
+    public FingerprintSet getFingerprintset();
     
-    @JsonProperty("fingerprintset-URI")
-    public String getFingerprintsetURI();
+    @JsonProperty("fingerprint-URIs")
+    public java.util.List<String> getFingerprintURIs();
     
 
     /**
@@ -79,11 +79,11 @@ public interface TrainingWorkflowInputMixIn {
         @JsonProperty("parameters")
         public TrainingWorkflowInputMixInBuilder setParameters(final java.util.List<WorkflowParameter> parameters);
         
-        @JsonProperty("fingerprintset-metadata")
-        public TrainingWorkflowInputMixInBuilder setFingerprintsetMetadata(final FingerprintSet fingerprintsetMetadata);
+        @JsonProperty("fingerprintset")
+        public TrainingWorkflowInputMixInBuilder setFingerprintset(final FingerprintSet fingerprintset);
         
-        @JsonProperty("fingerprintset-URI")
-        public TrainingWorkflowInputMixInBuilder setFingerprintsetURI(final String fingerprintsetURI);
+        @JsonProperty("fingerprint-URIs")
+        public TrainingWorkflowInputMixInBuilder setFingerprintURIs(final java.util.List<String> fingerprintURIs);
         
     }
 

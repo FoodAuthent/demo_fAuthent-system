@@ -45,7 +45,7 @@ public class OpenChromRawFileReader implements RawFileReader {
 
 		Map<String, String> result = new LinkedHashMap<>();
 		switch (fileType) {
-		case FINGERPRINTS_BRUKER:
+		case FINGERPRINT_BRUKER:
 			result.putAll(readBrukerMetadata(file));
 			break;
 		default:

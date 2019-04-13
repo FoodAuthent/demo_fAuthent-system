@@ -63,11 +63,11 @@
       if (data.hasOwnProperty('parameters')) {
         obj['parameters'] = ApiClient.convertToType(data['parameters'], [WorkflowParameter]);
       }
-      if (data.hasOwnProperty('fingerprintset-metadata')) {
-        obj['fingerprintset-metadata'] = FingerprintSet.constructFromObject(data['fingerprintset-metadata']);
+      if (data.hasOwnProperty('fingerprintset')) {
+        obj['fingerprintset'] = FingerprintSet.constructFromObject(data['fingerprintset']);
       }
-      if (data.hasOwnProperty('fingerprintset-URI')) {
-        obj['fingerprintset-URI'] = ApiClient.convertToType(data['fingerprintset-URI'], 'String');
+      if (data.hasOwnProperty('fingerprint-URIs')) {
+        obj['fingerprint-URIs'] = ApiClient.convertToType(data['fingerprint-URIs'], ['String']);
       }
       if (data.hasOwnProperty('model-URI')) {
         obj['model-URI'] = ApiClient.convertToType(data['model-URI'], 'String');
@@ -82,14 +82,14 @@
    */
   exports.prototype['parameters'] = undefined;
   /**
-   * @member {module:model/FingerprintSet} fingerprintset-metadata
+   * @member {module:model/FingerprintSet} fingerprintset
    */
-  exports.prototype['fingerprintset-metadata'] = undefined;
+  exports.prototype['fingerprintset'] = undefined;
   /**
-   * URI pointing to the resource containg the fingerprints to predict the labels for.
-   * @member {String} fingerprintset-URI
+   * URIs pointing to the resource containg the fingerprints to predict the labels for.
+   * @member {Array.<String>} fingerprint-URIs
    */
-  exports.prototype['fingerprintset-URI'] = undefined;
+  exports.prototype['fingerprint-URIs'] = undefined;
   /**
    * optional model uri (if required by the workflow) pointing to the model to use
    * @member {String} model-URI

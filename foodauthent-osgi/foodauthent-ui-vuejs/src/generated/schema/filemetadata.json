@@ -19,8 +19,8 @@
       "id" : "sop_pdf",
       "name" : "Sop_pdf"
     }, {
-      "id" : "fingerprints_bruker",
-      "name" : "Fingerprints_bruker"
+      "id" : "fingerprint_bruker",
+      "name" : "Fingerprint_bruker"
     }, {
       "id" : "zip",
       "name" : "Zip"

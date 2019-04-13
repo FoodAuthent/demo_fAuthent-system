@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/Fingerprint', '../model/FingerprintSetType'], factory);
+    define(['../ApiClient'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./Fingerprint'), require('./FingerprintSetType'));
+    module.exports = factory(require('../ApiClient'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.FingerprintSet = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.Fingerprint, root.FoodAuthentSwaggerApi.FingerprintSetType);
+    root.FoodAuthentSwaggerApi.FingerprintSet = factory(root.FoodAuthentSwaggerApi.ApiClient);
   }
-}(this, function(ApiClient, Fingerprint, FingerprintSetType) {
+}(this, function(ApiClient) {
   'use strict';
 
 
@@ -44,16 +44,14 @@
    * A set of fingerprints with its own id.
    * @alias module:model/FingerprintSet
    * @class
-   * @param productId {String} The fa-id of the product all fingerprints are associated with.
-   * @param fileId {String} Id referencing the fingerpint-set file.
-   * @param type {module:model/FingerprintSetType} 
+   * @param fingerprintIds {Array.<String>} Ids referencing the fingerprints this set summarizes.
+   * @param name {String} A human-readable name of the fingerprint set.
    */
-  var exports = function(productId, fileId, type) {
+  var exports = function(fingerprintIds, name) {
     var _this = this;
 
-    _this['product-id'] = productId;
-    _this['file-id'] = fileId;
-    _this['type'] = type;
+    _this['fingerprint-ids'] = fingerprintIds;
+    _this['name'] = name;
   };
 
   /**
@@ -69,20 +67,14 @@
       if (data.hasOwnProperty('fa-id')) {
         obj['fa-id'] = ApiClient.convertToType(data['fa-id'], 'String');
       }
-      if (data.hasOwnProperty('product-id')) {
-        obj['product-id'] = ApiClient.convertToType(data['product-id'], 'String');
-      }
-      if (data.hasOwnProperty('fingerprints')) {
-        obj['fingerprints'] = ApiClient.convertToType(data['fingerprints'], [Fingerprint]);
-      }
-      if (data.hasOwnProperty('file-id')) {
-        obj['file-id'] = ApiClient.convertToType(data['file-id'], 'String');
+      if (data.hasOwnProperty('fingerprint-ids')) {
+        obj['fingerprint-ids'] = ApiClient.convertToType(data['fingerprint-ids'], ['String']);
       }
       if (data.hasOwnProperty('name')) {
         obj['name'] = ApiClient.convertToType(data['name'], 'String');
       }
-      if (data.hasOwnProperty('type')) {
-        obj['type'] = FingerprintSetType.constructFromObject(data['type']);
+      if (data.hasOwnProperty('description')) {
+        obj['description'] = ApiClient.convertToType(data['description'], 'String');
       }
     }
     return obj;
@@ -94,29 +86,20 @@
    */
   exports.prototype['fa-id'] = undefined;
   /**
-   * The fa-id of the product all fingerprints are associated with.
-   * @member {String} product-id
+   * Ids referencing the fingerprints this set summarizes.
+   * @member {Array.<String>} fingerprint-ids
    */
-  exports.prototype['product-id'] = undefined;
-  /**
-   * The fingerprints.
-   * @member {Array.<module:model/Fingerprint>} fingerprints
-   */
-  exports.prototype['fingerprints'] = undefined;
-  /**
-   * Id referencing the fingerpint-set file.
-   * @member {String} file-id
-   */
-  exports.prototype['file-id'] = undefined;
+  exports.prototype['fingerprint-ids'] = undefined;
   /**
    * A human-readable name of the fingerprint set.
    * @member {String} name
    */
   exports.prototype['name'] = undefined;
   /**
-   * @member {module:model/FingerprintSetType} type
+   * A more detailed description of the fingerprint set.
+   * @member {String} description
    */
-  exports.prototype['type'] = undefined;
+  exports.prototype['description'] = undefined;
 
 
 

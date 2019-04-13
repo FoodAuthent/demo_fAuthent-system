@@ -132,7 +132,11 @@ public interface PersistenceService {
      * @return
      */
     JsonNode getCustomModelByUUID(String modelId, String schemaId, UUID uuid);
-    
+
+	<T extends FaModel> long getModelCount(Class<T> modelType);
+
+	long getBlobCount();
+   
     /**
      * Result in pages.
      *

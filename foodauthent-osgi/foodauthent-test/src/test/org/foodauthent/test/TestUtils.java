@@ -23,7 +23,7 @@ public class TestUtils {
 
     public static FileMetadata createNewMetadata(String name, String description) {
 	return FileMetadata.builder().setName(name).setDate(LocalDate.now()).setDescription(description)
-		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINTS_BRUKER).setVersion(0).build();
+		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).setVersion(0).build();
     }
 
     @Deprecated

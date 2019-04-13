@@ -3,7 +3,6 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import java.time.OffsetDateTime;
 
 import java.util.UUID;
 
@@ -55,7 +54,7 @@ public interface SampleMixIn {
     public String getSampleId();
     
     @JsonProperty("dateOfSampleDrawing")
-    public OffsetDateTime getDateOfSampleDrawing();
+    public String getDateOfSampleDrawing();
     
     @JsonProperty("lot")
     public String getLot();
@@ -64,16 +63,13 @@ public interface SampleMixIn {
     public String getSamplingPlace();
     
     @JsonProperty("bestBeforeDate")
-    public OffsetDateTime getBestBeforeDate();
+    public String getBestBeforeDate();
     
     @JsonProperty("application")
     public String getApplication();
     
-    @JsonProperty("typeOfAnalysis")
-    public java.util.List<String> getTypeOfAnalysis();
-    
-    @JsonProperty("comment")
-    public String getComment();
+    @JsonProperty("comments")
+    public java.util.List<String> getComments();
     
 
     /**
@@ -104,7 +100,7 @@ public interface SampleMixIn {
         public SampleMixInBuilder setSampleId(final String sampleId);
         
         @JsonProperty("dateOfSampleDrawing")
-        public SampleMixInBuilder setDateOfSampleDrawing(final OffsetDateTime dateOfSampleDrawing);
+        public SampleMixInBuilder setDateOfSampleDrawing(final String dateOfSampleDrawing);
         
         @JsonProperty("lot")
         public SampleMixInBuilder setLot(final String lot);
@@ -113,16 +109,13 @@ public interface SampleMixIn {
         public SampleMixInBuilder setSamplingPlace(final String samplingPlace);
         
         @JsonProperty("bestBeforeDate")
-        public SampleMixInBuilder setBestBeforeDate(final OffsetDateTime bestBeforeDate);
+        public SampleMixInBuilder setBestBeforeDate(final String bestBeforeDate);
         
         @JsonProperty("application")
         public SampleMixInBuilder setApplication(final String application);
         
-        @JsonProperty("typeOfAnalysis")
-        public SampleMixInBuilder setTypeOfAnalysis(final java.util.List<String> typeOfAnalysis);
-        
-        @JsonProperty("comment")
-        public SampleMixInBuilder setComment(final String comment);
+        @JsonProperty("comments")
+        public SampleMixInBuilder setComments(final java.util.List<String> comments);
         
     }
 
