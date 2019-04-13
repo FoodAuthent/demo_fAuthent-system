@@ -26,6 +26,7 @@ import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJob.StatusEnum;
 import org.foodauthent.model.Product;
+import org.foodauthent.model.Sample;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
 import org.foodauthent.model.Workflow.RepresentationEnum;
@@ -37,6 +38,7 @@ import org.foodauthent.rest.api.service.FileRestService;
 import org.foodauthent.rest.api.service.FingerprintRestService;
 import org.foodauthent.rest.api.service.ModelRestService;
 import org.foodauthent.rest.api.service.ProductRestService;
+import org.foodauthent.rest.api.service.SampleRestService;
 import org.foodauthent.rest.api.service.WorkflowRestService;
 import org.junit.Test;
 
@@ -205,18 +207,28 @@ public class WorkflowTest extends AbstractITTest {
         Product p = Product.builder().setBrand("my_product").setGtin("1234").build();
         UUID productId = restService(ProductRestService.class).createProduct(p).readEntity(UUID.class);
         
-        // upload fingerprint set file
-	FileMetadata fileMeta = FileMetadata.builder().setName("fingerprintset")
+        //upload sample
+        Sample s = Sample.builder().setProductId(productId).build();
+        UUID sampleId = restService(SampleRestService.class).createSample(s).readEntity(UUID.class);
+        
+        //upload fingerprint files
+	FileMetadata fpFile1 = FileMetadata.builder().setName("fingerprint1")
 		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).build();
-	restService(FileRestService.class).createFileMetadata(fileMeta);
-	TestUtils.uploadFileData(webTarget, fileMeta.getFaId(), new File("files/bruker-nmr/1.zip"));
+	restService(FileRestService.class).createFileMetadata(fpFile1);
+	TestUtils.uploadFileData(webTarget, fpFile1.getFaId(), new File("files/fingerprints/fp1.zip"));
+	FileMetadata fpFile2 = FileMetadata.builder().setName("fingerprint2")
+		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).build();
+	restService(FileRestService.class).createFileMetadata(fpFile2);
+	TestUtils.uploadFileData(webTarget, fpFile2.getFaId(), new File("files/fingerprints/fp2.zip"));
+ 
+	//upload fingerprints
+	Fingerprint fp1 = Fingerprint.builder().setSampleId(sampleId).setFileId(fpFile1.getFaId()).build();
+	Fingerprint fp2 = Fingerprint.builder().setSampleId(sampleId).setFileId(fpFile2.getFaId()).build();
       
         // upload fingerprint set
-        Fingerprint fp = Fingerprint.builder().setSampleId(UUID.randomUUID()).setFileId(fileMeta.getFaId())
-        	.setType(FingerprintType.builder().setName(NameEnum.BRUKER).build()).build();
-        FingerprintSet fps = FingerprintSet.builder().setName("myset")
-        	.setFingerprintIds(Arrays.asList(fp.getFaId())).build();
-        return restService(FingerprintRestService.class).createFingerprintSet(fps).readEntity(UUID.class);
+	FingerprintSet fps = FingerprintSet.builder().setName("myset")
+		.setFingerprintIds(Arrays.asList(fp1.getFaId(), fp2.getFaId())).build();
+	return restService(FingerprintRestService.class).createFingerprintSet(fps).readEntity(UUID.class);
     }
 
     private UUID uploadModel() {
