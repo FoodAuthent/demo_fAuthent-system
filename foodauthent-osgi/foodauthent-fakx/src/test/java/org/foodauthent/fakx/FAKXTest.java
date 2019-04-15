@@ -1,6 +1,7 @@
 package org.foodauthent.fakx;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -47,7 +48,9 @@ public class FAKXTest {
 
 		FAKX.write(archive, testFile);
 
-		archive = FAKX.read(testFile);
+        try (InputStream stream = Files.newInputStream(testFile)) {
+        	archive = FAKX.read(stream);
+		}
 		
 		// Small checks
 		assertEquals(1, archive.getSOP().size());

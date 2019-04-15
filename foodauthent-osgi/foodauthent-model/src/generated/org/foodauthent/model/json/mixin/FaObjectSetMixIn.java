@@ -46,17 +46,32 @@ public interface FaObjectSetMixIn {
   	public UUID getFaId();
     
 
-    @JsonProperty("fingerprints")
-    public java.util.List<java.util.UUID> getFingerprints();
+    @JsonProperty("sops")
+    public java.util.List<java.util.UUID> getSops();
     
     @JsonProperty("products")
     public java.util.List<java.util.UUID> getProducts();
     
-    @JsonProperty("sops")
-    public java.util.List<java.util.UUID> getSops();
+    @JsonProperty("metadata")
+    public java.util.List<java.util.UUID> getMetadata();
+    
+    @JsonProperty("tags")
+    public java.util.List<java.util.UUID> getTags();
+    
+    @JsonProperty("models")
+    public java.util.List<java.util.UUID> getModels();
+    
+    @JsonProperty("predictions")
+    public java.util.List<java.util.UUID> getPredictions();
     
     @JsonProperty("workflows")
     public java.util.List<java.util.UUID> getWorkflows();
+    
+    @JsonProperty("fingerprints")
+    public java.util.List<java.util.UUID> getFingerprints();
+    
+    @JsonProperty("fingerprintsets")
+    public java.util.List<java.util.UUID> getFingerprintsets();
     
     @JsonProperty("files")
     public java.util.List<java.util.UUID> getFiles();
@@ -80,17 +95,32 @@ public interface FaObjectSetMixIn {
     
         public FaObjectSetMixIn build();
     
-        @JsonProperty("fingerprints")
-        public FaObjectSetMixInBuilder setFingerprints(final java.util.List<java.util.UUID> fingerprints);
+        @JsonProperty("sops")
+        public FaObjectSetMixInBuilder setSops(final java.util.List<java.util.UUID> sops);
         
         @JsonProperty("products")
         public FaObjectSetMixInBuilder setProducts(final java.util.List<java.util.UUID> products);
         
-        @JsonProperty("sops")
-        public FaObjectSetMixInBuilder setSops(final java.util.List<java.util.UUID> sops);
+        @JsonProperty("metadata")
+        public FaObjectSetMixInBuilder setMetadata(final java.util.List<java.util.UUID> metadata);
+        
+        @JsonProperty("tags")
+        public FaObjectSetMixInBuilder setTags(final java.util.List<java.util.UUID> tags);
+        
+        @JsonProperty("models")
+        public FaObjectSetMixInBuilder setModels(final java.util.List<java.util.UUID> models);
+        
+        @JsonProperty("predictions")
+        public FaObjectSetMixInBuilder setPredictions(final java.util.List<java.util.UUID> predictions);
         
         @JsonProperty("workflows")
         public FaObjectSetMixInBuilder setWorkflows(final java.util.List<java.util.UUID> workflows);
+        
+        @JsonProperty("fingerprints")
+        public FaObjectSetMixInBuilder setFingerprints(final java.util.List<java.util.UUID> fingerprints);
+        
+        @JsonProperty("fingerprintsets")
+        public FaObjectSetMixInBuilder setFingerprintsets(final java.util.List<java.util.UUID> fingerprintsets);
         
         @JsonProperty("files")
         public FaObjectSetMixInBuilder setFiles(final java.util.List<java.util.UUID> files);

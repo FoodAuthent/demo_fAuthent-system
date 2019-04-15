@@ -189,7 +189,12 @@
      * value: "zip"
      * @const
      */
-    "zip": "zip"  };
+    "zip": "zip",
+    /**
+     * value: "fakx"
+     * @const
+     */
+    "fakx": "fakx"  };
 
 
   return exports;

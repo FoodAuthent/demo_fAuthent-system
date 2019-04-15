@@ -1890,7 +1890,7 @@ components:
       type: object
       x-no-faid: true
       properties:
-        fingerprints:
+        sops:
           type: array
           items:
             type: string
@@ -1900,12 +1900,37 @@ components:
           items:
             type: string
             format: uuid
-        sops:
+        metadata:
+          type: array
+          items:
+            type: string
+            format: uuid
+        tags:
+          type: array
+          items:
+            type: string
+            format: uuid
+        models:
+          type: array
+          items:
+            type: string
+            format: uuid
+        predictions:
           type: array
           items:
             type: string
             format: uuid
         workflows:
+          type: array
+          items:
+            type: string
+            format: uuid
+        fingerprints:
+          type: array
+          items:
+            type: string
+            format: uuid
+        fingerprintsets:
           type: array
           items:
             type: string
@@ -1950,6 +1975,7 @@ components:
             - sop_pdf
             - fingerprints_bruker
             - zip
+            - fakx
         name:
           description: A name for the file.
           type: string

@@ -36,7 +36,9 @@ public class FileMetadata   extends FaModel {
     
     FINGERPRINTS_BRUKER("fingerprints_bruker"),
     
-    ZIP("zip");
+    ZIP("zip"),
+    
+    FAKX("fakx");
 
     private String value;
 

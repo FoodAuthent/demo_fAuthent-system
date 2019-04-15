@@ -74,43 +74,40 @@ public class FAKX {
     private static TypeReference<List<FingerprintSet>> fingerprintsetListType = new TypeReference<List<FingerprintSet>>() {
     };
 
-    public static Archive read(Path file) throws IOException {
+    public static Archive read(InputStream stream) throws IOException {
 
+        ZipInputStream zipStream = new ZipInputStream(stream);
         Archive.Builder builder = new Archive.Builder();
 
         List<Path> files = new ArrayList<>();
 
-        try (InputStream stream = Files.newInputStream(file); ZipInputStream zipStream = new ZipInputStream(stream)) {
+        ZipEntry entry;
+        while ((entry = zipStream.getNextEntry()) != null) {
+            // process ZipEntry
+            String entryName = entry.getName();
 
-
-            ZipEntry entry;
-            while ((entry = zipStream.getNextEntry()) != null) {
-                // process ZipEntry
-                String entryName = entry.getName();
-
-                if (entryName.equals("sop.json")) {
-                    builder.sop(MAPPER.readValue(zipStream, sopListType));
-                } else if (entryName.equals("product.json")) {
-                    builder.product(MAPPER.readValue(zipStream, productListType));
-                } else if (entryName.equals("metadata.json")) {
-                    builder.metadata(MAPPER.readValue(zipStream, metadataListType));
-                } else if (entryName.equals("tag.json")) {
-                    builder.tag(MAPPER.readValue(zipStream, tagListType));
-                } else if (entryName.equals("model.json")) {
-                    builder.model(MAPPER.readValue(zipStream, modelListType));
-                } else if (entryName.equals("prediction.json")) {
-                    builder.prediction(MAPPER.readValue(zipStream, predictionListType));
-                } else if (entryName.equals("workflow.json")) {
-                    builder.workflow(MAPPER.readValue(zipStream, workflowListType));
-                } else if (entryName.equals("fingerprint.json")) {
-                    builder.fingerprint(MAPPER.readValue(zipStream, fingerprintListType));
-                } else if (entryName.equals("fingerprintset.json")) {
-                    builder.fingerprintset(MAPPER.readValue(zipStream, fingerprintsetListType));
-				} else if (entryName.startsWith("files/")) {
-					Path tempFile = Files.createTempFile(null, null);
-					Files.copy(zipStream, tempFile);
-					files.add(tempFile);
-				}
+            if (entryName.equals("sop.json")) {
+                builder.sop(MAPPER.readValue(zipStream, sopListType));
+            } else if (entryName.equals("product.json")) {
+                builder.product(MAPPER.readValue(zipStream, productListType));
+            } else if (entryName.equals("metadata.json")) {
+                builder.metadata(MAPPER.readValue(zipStream, metadataListType));
+            } else if (entryName.equals("tag.json")) {
+                builder.tag(MAPPER.readValue(zipStream, tagListType));
+            } else if (entryName.equals("model.json")) {
+                builder.model(MAPPER.readValue(zipStream, modelListType));
+            } else if (entryName.equals("prediction.json")) {
+                builder.prediction(MAPPER.readValue(zipStream, predictionListType));
+            } else if (entryName.equals("workflow.json")) {
+                builder.workflow(MAPPER.readValue(zipStream, workflowListType));
+            } else if (entryName.equals("fingerprint.json")) {
+                builder.fingerprint(MAPPER.readValue(zipStream, fingerprintListType));
+            } else if (entryName.equals("fingerprintset.json")) {
+                builder.fingerprintset(MAPPER.readValue(zipStream, fingerprintsetListType));
+            } else if (entryName.startsWith("files/")) {
+                Path tempFile = Files.createTempFile(null, null);
+                Files.copy(zipStream, tempFile);
+                files.add(tempFile);
             }
         }
         builder.files(files);

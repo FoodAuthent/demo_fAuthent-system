@@ -160,6 +160,8 @@ public class FileServiceImpl implements FileService {
 	Importer importer;
 	if (fileMeta.getType() == FileMetadata.TypeEnum.ZIP) {
 	    importer = new ZipImporter(persistenceService);
+	} else if (fileMeta.getType() == FileMetadata.TypeEnum.FAKX) {
+	    importer = new FakxImporter(persistenceService);
 	} else {
 	    return null;
 	}
@@ -170,17 +172,19 @@ public class FileServiceImpl implements FileService {
 
 	return result;
     }
-    
+
     @Override
     public File exportFile(String fileType, FaObjectSet faObjectSet) {
-        
+
 	Exporter exporter;
 	if (fileType.equals("zip")) {
 	    exporter = new ZipExporter(persistenceService);
+	} else if (fileType.equals("fakx")) {
+	    exporter = new FakxExporter(persistenceService);
 	} else {
 	    return null;
 	}
-	
+
 	try {
 	    File file = File.createTempFile("file", ".zip");
 	    exporter.export(faObjectSet, file);

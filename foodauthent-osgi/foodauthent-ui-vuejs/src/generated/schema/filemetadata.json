@@ -24,6 +24,9 @@
     }, {
       "id" : "zip",
       "name" : "Zip"
+    }, {
+      "id" : "fakx",
+      "name" : "Fakx"
     } ]
   }, {
     "label" : "Name",
