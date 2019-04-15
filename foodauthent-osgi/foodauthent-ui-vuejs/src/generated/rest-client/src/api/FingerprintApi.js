@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/FingerprintSet', '../model/FingerprintSetPageResult'], factory);
+    define(['../ApiClient', '../model/Fingerprint', '../model/FingerprintSet', '../model/FingerprintSetPageResult'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/FingerprintSet'), require('../model/FingerprintSetPageResult'));
+    module.exports = factory(require('../ApiClient'), require('../model/Fingerprint'), require('../model/FingerprintSet'), require('../model/FingerprintSetPageResult'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.FingerprintApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FingerprintSet, root.FoodAuthentSwaggerApi.FingerprintSetPageResult);
+    root.FoodAuthentSwaggerApi.FingerprintApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.Fingerprint, root.FoodAuthentSwaggerApi.FingerprintSet, root.FoodAuthentSwaggerApi.FingerprintSetPageResult);
   }
-}(this, function(ApiClient, FingerprintSet, FingerprintSetPageResult) {
+}(this, function(ApiClient, Fingerprint, FingerprintSet, FingerprintSetPageResult) {
   'use strict';
 
   /**
@@ -47,6 +47,52 @@
   var exports = function(apiClient) {
     this.apiClient = apiClient || ApiClient.instance;
 
+
+    /**
+     * Callback function to receive the result of the createFingerprint operation.
+     * @callback module:api/FingerprintApi~createFingerprintCallback
+     * @param {String} error Error message, if any.
+     * @param {String} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Create a new fingerprint.
+     * @param {module:model/Fingerprint} fingerprint A fingerprint set containing fingerprint metadata.
+     * @param {module:api/FingerprintApi~createFingerprintCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link String}
+     */
+    this.createFingerprint = function(fingerprint, callback) {
+      var postBody = fingerprint;
+
+      // verify the required parameter 'fingerprint' is set
+      if (fingerprint === undefined || fingerprint === null) {
+        throw new Error("Missing the required parameter 'fingerprint' when calling createFingerprint");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['jwtAuth'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = String;
+
+      return this.apiClient.callApi(
+        '/fingerprint', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
 
     /**
      * Callback function to receive the result of the createFingerprintSet operation.
@@ -106,7 +152,7 @@
      * Finds fingerprint sets by some key words or return all fingerprint sets.
      * Muliple keywords can be provided with comma separated strings,e.g. use keyword1, keyword2, keyword3.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/FingerprintApi~findFingerprintSetByKeywordCallback} callback The callback function, accepting three arguments: error, data, response
@@ -141,6 +187,53 @@
 
       return this.apiClient.callApi(
         '/fingerprintset', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getFingerprintById operation.
+     * @callback module:api/FingerprintApi~getFingerprintByIdCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/Fingerprint} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get the fingerprint by id.
+     * @param {String} fingerprintId 
+     * @param {module:api/FingerprintApi~getFingerprintByIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/Fingerprint}
+     */
+    this.getFingerprintById = function(fingerprintId, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'fingerprintId' is set
+      if (fingerprintId === undefined || fingerprintId === null) {
+        throw new Error("Missing the required parameter 'fingerprintId' when calling getFingerprintById");
+      }
+
+
+      var pathParams = {
+        'fingerprint-id': fingerprintId
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['jwtAuth'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = Fingerprint;
+
+      return this.apiClient.callApi(
+        '/fingerprint/{fingerprint-id}', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

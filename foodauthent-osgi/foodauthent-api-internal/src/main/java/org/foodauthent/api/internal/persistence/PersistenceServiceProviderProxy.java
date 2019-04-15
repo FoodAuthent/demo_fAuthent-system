@@ -108,4 +108,14 @@ public class PersistenceServiceProviderProxy implements PersistenceService {
 		return provider.getCustomModelByUUID(modelId, schemaId, uuid);
 	}
 
+	@Override
+	public <T extends FaModel> long getModelCount(Class<T> modelType) {
+		return provider.getModelCount(modelType);
+	}
+
+	@Override
+	public long getBlobCount() {
+		return provider.getBlobCount();
+	}
+
 }

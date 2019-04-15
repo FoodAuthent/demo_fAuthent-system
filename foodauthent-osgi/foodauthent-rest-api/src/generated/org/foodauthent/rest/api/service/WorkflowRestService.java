@@ -78,7 +78,7 @@ public interface WorkflowRestService{
     /**
      * Muliple keywords can be provided with comma separated strings, e.g. keyword1, keyword2.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
@@ -86,7 +86,7 @@ public interface WorkflowRestService{
     @GET
     @Path("/prediction")
     @Produces({ "application/json" })
-    public Response findModelByKeyword(@QueryParam("pageNumber")Integer pageNumber
+    public Response findPredictionByKeyword(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
 , @QueryParam("keywords")java.util.List<String> keywords
 );
@@ -94,7 +94,7 @@ public interface WorkflowRestService{
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
@@ -110,7 +110,7 @@ public interface WorkflowRestService{
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
@@ -124,9 +124,27 @@ public interface WorkflowRestService{
 );
 
     /**
+     * get predictions (filtered by keywords) for a specific fingerprint set
+     *
+     * @param fingerprintsetId 
+     * @param pageNumber the page number starting at 1
+     * @param pageSize entries per page, minimum 1
+     * @param keywords Keywords to search for
+     * @return the response
+     */
+    @GET
+    @Path("/prediction/relation/{fingerprintset-id}")
+    @Produces({ "application/json" })
+    public Response findPredictionsByFingerprintSetId(@PathParam("fingerprintset-id") java.util.UUID fingerprintsetId
+, @QueryParam("pageNumber")Integer pageNumber
+, @QueryParam("pageSize")Integer pageSize
+, @QueryParam("keywords")java.util.List<String> keywords
+);
+
+    /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
@@ -142,7 +160,7 @@ public interface WorkflowRestService{
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
@@ -158,7 +176,7 @@ public interface WorkflowRestService{
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response

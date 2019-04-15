@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.foodauthent.model.Fingerprint;
-import org.foodauthent.model.FingerprintSetType;
 
 
 
@@ -25,11 +23,9 @@ public class FingerprintSet   extends FaModel {
 
 
   protected java.util.UUID faId;
-  protected java.util.UUID productId;
-  protected java.util.List<Fingerprint> fingerprints;
-  protected java.util.UUID fileId;
+  protected java.util.List<java.util.UUID> fingerprintIds;
   protected String name;
-  protected FingerprintSetType type;
+  protected String description;
   
   public String getTypeID() {
     return "FingerprintSet";
@@ -42,20 +38,15 @@ public class FingerprintSet   extends FaModel {
   private FingerprintSet(FingerprintSetBuilder builder) {
     
     faId = immutable(builder.faId);
-    if(builder.productId == null) {
-        throw new IllegalArgumentException("productId must not be null.");
+    if(builder.fingerprintIds == null) {
+        throw new IllegalArgumentException("fingerprintIds must not be null.");
     }
-    productId = immutable(builder.productId);
-    fingerprints = immutable(builder.fingerprints);
-    if(builder.fileId == null) {
-        throw new IllegalArgumentException("fileId must not be null.");
+    fingerprintIds = immutable(builder.fingerprintIds);
+    if(builder.name == null) {
+        throw new IllegalArgumentException("name must not be null.");
     }
-    fileId = immutable(builder.fileId);
     name = immutable(builder.name);
-    if(builder.type == null) {
-        throw new IllegalArgumentException("type must not be null.");
-    }
-    type = immutable(builder.type);
+    description = immutable(builder.description);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -76,7 +67,7 @@ public class FingerprintSet   extends FaModel {
             return false;
         }
         FingerprintSet ent = (FingerprintSet)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(productId, ent.productId) && Objects.equals(fingerprints, ent.fingerprints) && Objects.equals(fileId, ent.fileId) && Objects.equals(name, ent.name) && Objects.equals(type, ent.type);
+        return Objects.equals(faId, ent.faId) && Objects.equals(fingerprintIds, ent.fingerprintIds) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description);
     }
 
 
@@ -89,43 +80,27 @@ public class FingerprintSet   extends FaModel {
     }
     
   /**
-   * The fa-id of the product all fingerprints are associated with.
-   * @return productId , never <code>null</code>
+   * Ids referencing the fingerprints this set summarizes.
+   * @return fingerprintIds , never <code>null</code>
    */
-  public java.util.UUID getProductId() {
-        return productId;
-    }
-    
-  /**
-   * The fingerprints.
-   * @return fingerprints 
-   */
-  public java.util.List<Fingerprint> getFingerprints() {
-        return fingerprints;
-    }
-    
-  /**
-   * Id referencing the fingerpint-set file.
-   * @return fileId , never <code>null</code>
-   */
-  public java.util.UUID getFileId() {
-        return fileId;
+  public java.util.List<java.util.UUID> getFingerprintIds() {
+        return fingerprintIds;
     }
     
   /**
    * A human-readable name of the fingerprint set.
-   * @return name 
+   * @return name , never <code>null</code>
    */
   public String getName() {
         return name;
     }
     
   /**
-   * Get type
-   * @return type , never <code>null</code>
+   * A more detailed description of the fingerprint set.
+   * @return description 
    */
-  public FingerprintSetType getType() {
-        return type;
+  public String getDescription() {
+        return description;
     }
     
   
@@ -147,11 +122,9 @@ public class FingerprintSet   extends FaModel {
 	public static FingerprintSetBuilder builder(FingerprintSet entity) {
 		FingerprintSetBuilder builder = builder();
         builder.faId = entity.faId;
-        builder.productId = entity.productId;
-        builder.fingerprints = entity.fingerprints;
-        builder.fileId = entity.fileId;
+        builder.fingerprintIds = entity.fingerprintIds;
         builder.name = entity.name;
-        builder.type = entity.type;
+        builder.description = entity.description;
  		return builder;
   	}
   	
@@ -163,11 +136,9 @@ public class FingerprintSet   extends FaModel {
         }
     
         private java.util.UUID faId;
-        private java.util.UUID productId;
-        private java.util.List<Fingerprint> fingerprints = new java.util.ArrayList<>();
-        private java.util.UUID fileId;
+        private java.util.List<java.util.UUID> fingerprintIds = new java.util.ArrayList<>();
         private String name;
-        private FingerprintSetType type;
+        private String description;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -179,56 +150,35 @@ public class FingerprintSet   extends FaModel {
         }
 
         /**
-         * The fa-id of the product all fingerprints are associated with.
-         * @return productId , never <code>null</code>
+         * Ids referencing the fingerprints this set summarizes.
+         * @return fingerprintIds , never <code>null</code>
          */
-        public FingerprintSetBuilder setProductId(java.util.UUID productId) {
-             if(productId == null) {
-                 throw new IllegalArgumentException("productId must not be null.");
+        public FingerprintSetBuilder setFingerprintIds(java.util.List<java.util.UUID> fingerprintIds) {
+             if(fingerprintIds == null) {
+                 throw new IllegalArgumentException("fingerprintIds must not be null.");
              }
-             this.productId = productId;
-             return this;
-        }
-
-        /**
-         * The fingerprints.
-         * @return fingerprints 
-         */
-        public FingerprintSetBuilder setFingerprints(java.util.List<Fingerprint> fingerprints) {
-             this.fingerprints = fingerprints;
-             return this;
-        }
-
-        /**
-         * Id referencing the fingerpint-set file.
-         * @return fileId , never <code>null</code>
-         */
-        public FingerprintSetBuilder setFileId(java.util.UUID fileId) {
-             if(fileId == null) {
-                 throw new IllegalArgumentException("fileId must not be null.");
-             }
-             this.fileId = fileId;
+             this.fingerprintIds = fingerprintIds;
              return this;
         }
 
         /**
          * A human-readable name of the fingerprint set.
-         * @return name 
+         * @return name , never <code>null</code>
          */
         public FingerprintSetBuilder setName(String name) {
+             if(name == null) {
+                 throw new IllegalArgumentException("name must not be null.");
+             }
              this.name = name;
              return this;
         }
 
         /**
-         * Get type
-         * @return type , never <code>null</code>
+         * A more detailed description of the fingerprint set.
+         * @return description 
          */
-        public FingerprintSetBuilder setType(FingerprintSetType type) {
-             if(type == null) {
-                 throw new IllegalArgumentException("type must not be null.");
-             }
-             this.type = type;
+        public FingerprintSetBuilder setDescription(String description) {
+             this.description = description;
              return this;
         }
 

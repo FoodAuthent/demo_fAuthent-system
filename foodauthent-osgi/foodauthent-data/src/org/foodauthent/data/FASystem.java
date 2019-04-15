@@ -13,7 +13,10 @@ import javax.ws.rs.core.Response;
 import org.foodauthent.api.WorkflowService;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.rest.api.service.FileRestService;
+import org.foodauthent.rest.api.service.FingerprintRestService;
+import org.foodauthent.rest.api.service.InfoRestService;
 import org.foodauthent.rest.api.service.ProductRestService;
+import org.foodauthent.rest.api.service.SampleRestService;
 import org.foodauthent.rest.api.service.WorkflowRestService;
 import org.foodauthent.rest.impl.json.JacksonJSONReader;
 import org.foodauthent.rest.impl.json.JacksonJSONWriter;
@@ -33,6 +36,10 @@ public class FASystem {
     private FASystem() {
 	// utility class
     }
+    
+    public static FingerprintRestService fingerprints() {
+	return createClientProxy(FingerprintRestService.class);
+    }
 
     public static ProductRestService products() {
 	return createClientProxy(ProductRestService.class);
@@ -41,11 +48,19 @@ public class FASystem {
     public static WorkflowRestService workflows() {
 	return createClientProxy(WorkflowRestService.class);
     }
+    
+    public static SampleRestService samples() {
+	return createClientProxy(SampleRestService.class);
+    }
 
     public static FileRestService files() {
 	return createClientProxy(FileRestService.class);
     }
-
+    
+    public static InfoRestService info() {
+	return createClientProxy(InfoRestService.class);
+    }
+    
     private static WebTarget newWebTarget() {
 	Client client = ClientBuilder.newClient().register(JacksonJSONWriter.class, Integer.MAX_VALUE)
 		.register(JacksonJSONReader.class, Integer.MAX_VALUE).register(MultiPartFeature.class);

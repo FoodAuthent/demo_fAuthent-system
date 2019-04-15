@@ -3,6 +3,7 @@
  */
 package org.foodauthent.api;
 
+import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
 
@@ -17,6 +18,15 @@ import org.foodauthent.common.exception.FAExceptions;
 public interface FingerprintService {
 
     /**
+     * Create a new fingerprint.
+     *
+     * @param fingerprint A fingerprint set containing fingerprint metadata.
+     *
+     * @return the result
+     */
+    java.util.UUID createFingerprint(Fingerprint fingerprint);
+        
+    /**
      * Create a new fingerprint set.
      *
      * @param fingerprintSet A fingerprint set containing fingerprint metadata.
@@ -28,13 +38,22 @@ public interface FingerprintService {
     /**
      * Muliple keywords can be provided with comma separated strings,e.g. use keyword1, keyword2, keyword3.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *
      * @return the result
      */
     FingerprintSetPageResult findFingerprintSetByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
+        
+    /**
+     * Get the fingerprint by id.
+     *
+     * @param fingerprintId 
+     *
+     * @return the result
+     */
+    Fingerprint getFingerprintById(java.util.UUID fingerprintId);
         
     /**
      * Get the fingerprintset by id.

@@ -32,6 +32,7 @@ public class ServiceUtil {
         res.add(FingerprintRestServiceImpl.class);
         res.add(UserRestServiceImpl.class);
         res.add(ProductRestServiceImpl.class);
+        res.add(InfoRestServiceImpl.class);
         return res;
     }
 }

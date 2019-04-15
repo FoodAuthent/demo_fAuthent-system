@@ -181,10 +181,10 @@
      */
     "sop_pdf": "sop_pdf",
     /**
-     * value: "fingerprints_bruker"
+     * value: "fingerprint_bruker"
      * @const
      */
-    "fingerprints_bruker": "fingerprints_bruker",
+    "fingerprint_bruker": "fingerprint_bruker",
     /**
      * value: "zip"
      * @const

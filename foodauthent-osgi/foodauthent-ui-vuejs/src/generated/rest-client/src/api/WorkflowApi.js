@@ -208,8 +208,8 @@
     }
 
     /**
-     * Callback function to receive the result of the findModelByKeyword operation.
-     * @callback module:api/WorkflowApi~findModelByKeywordCallback
+     * Callback function to receive the result of the findPredictionByKeyword operation.
+     * @callback module:api/WorkflowApi~findPredictionByKeywordCallback
      * @param {String} error Error message, if any.
      * @param {module:model/PredictionPageResult} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -219,13 +219,13 @@
      * Finds Prediction by some key words or return all Predictions.
      * Muliple keywords can be provided with comma separated strings, e.g. keyword1, keyword2.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
-     * @param {module:api/WorkflowApi~findModelByKeywordCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/WorkflowApi~findPredictionByKeywordCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/PredictionPageResult}
      */
-    this.findModelByKeyword = function(opts, callback) {
+    this.findPredictionByKeyword = function(opts, callback) {
       opts = opts || {};
       var postBody = null;
 
@@ -271,7 +271,7 @@
      * Finds predictions jobs by some key words or return all predictions jobs suitable for prediction.
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/WorkflowApi~findPredictionJobsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -323,7 +323,7 @@
      * Finds workflows by some key words or return all workflows suitable for prediction.
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/WorkflowApi~findPredictionWorkflowsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -364,6 +364,64 @@
     }
 
     /**
+     * Callback function to receive the result of the findPredictionsByFingerprintSetId operation.
+     * @callback module:api/WorkflowApi~findPredictionsByFingerprintSetIdCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/PredictionPageResult} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * get predictions (filtered by keywords) for a specific fingerprint set
+     * @param {String} fingerprintsetId 
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.pageNumber the page number starting at 1
+     * @param {Number} opts.pageSize entries per page, minimum 1
+     * @param {Array.<String>} opts.keywords Keywords to search for
+     * @param {module:api/WorkflowApi~findPredictionsByFingerprintSetIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/PredictionPageResult}
+     */
+    this.findPredictionsByFingerprintSetId = function(fingerprintsetId, opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+      // verify the required parameter 'fingerprintsetId' is set
+      if (fingerprintsetId === undefined || fingerprintsetId === null) {
+        throw new Error("Missing the required parameter 'fingerprintsetId' when calling findPredictionsByFingerprintSetId");
+      }
+
+
+      var pathParams = {
+        'fingerprintset-id': fingerprintsetId
+      };
+      var queryParams = {
+        'pageNumber': opts['pageNumber'],
+        'pageSize': opts['pageSize'],
+      };
+      var collectionQueryParams = {
+        'keywords': {
+          value: opts['keywords'],
+          collectionFormat: 'multi'
+        },
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['jwtAuth'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = PredictionPageResult;
+
+      return this.apiClient.callApi(
+        '/prediction/relation/{fingerprintset-id}', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the findTrainingJobs operation.
      * @callback module:api/WorkflowApi~findTrainingJobsCallback
      * @param {String} error Error message, if any.
@@ -375,7 +433,7 @@
      * Finds training jobs by some key words or return all training jobs.
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/WorkflowApi~findTrainingJobsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -427,7 +485,7 @@
      * Finds workflows by some key words or return all workflows suitable for training models.
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/WorkflowApi~findTrainingWorkflowsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -479,7 +537,7 @@
      * Finds Workflow by some key words or return all Workflows.
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/WorkflowApi~findWorkflowByKeywordCallback} callback The callback function, accepting three arguments: error, data, response

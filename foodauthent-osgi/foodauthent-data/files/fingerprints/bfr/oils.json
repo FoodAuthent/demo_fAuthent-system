@@ -1,0 +1,809 @@
+[ {
+  "sample-id" : "d89114d4-9636-442e-b69d-202f2b7bcac0",
+  "file-id" : "5a95b4de-7e9f-4552-a8da-b4b8977710b0",
+  "fa-id" : "5fdfb310-e3bf-487f-8698-0dbe6b705974"
+}, {
+  "sample-id" : "bda87540-88be-4af0-abec-ea6ad35dbefc",
+  "file-id" : "ea0f988c-534b-47a5-bcc5-9f5813f6c1e2",
+  "fa-id" : "a1da51ef-ded0-4227-a3e9-e8a391b57055"
+}, {
+  "sample-id" : "53a4042e-2d3c-43d5-bcf5-64ee61ce99b2",
+  "file-id" : "3b541767-3a8b-4b15-9552-8d10041410f6",
+  "fa-id" : "0bd45ab8-9481-4195-8209-9ad0ecec8715"
+}, {
+  "sample-id" : "cd9e22a2-75d0-434c-b03c-1036ad5c3f04",
+  "file-id" : "6ba00bc8-edc4-4e14-a08c-d4e5a24edec4",
+  "fa-id" : "1beaf5e6-5cc4-413a-8ae6-6ce3c3f5ab36"
+}, {
+  "sample-id" : "97509b62-0ee5-4f3f-bed5-628db788e116",
+  "file-id" : "2ed7e28f-ec16-4752-afd4-00677a474b69",
+  "fa-id" : "e5a23df6-e700-4832-bb20-484c9baad441"
+}, {
+  "sample-id" : "39575496-19b2-44e7-bb4b-d954ae1893cf",
+  "file-id" : "c974d9d0-7ae1-42f0-a215-26c3ef2df267",
+  "fa-id" : "8e33ee7d-6e2f-4653-b661-48b215da94fb"
+}, {
+  "sample-id" : "c2dab2fc-6160-44f5-8762-aab1ae8a8ea9",
+  "file-id" : "e0a69d23-1315-463b-9495-c32e90bac9e6",
+  "fa-id" : "5cd5c354-7e71-4737-97da-1a3494c918bf"
+}, {
+  "sample-id" : "be4e6a4f-ec98-414c-a949-24dd61a6b67d",
+  "file-id" : "4224cf45-d8a0-4c51-bbf9-64aacd6d73dc",
+  "fa-id" : "9bb8a25b-ff7f-4966-9453-cdf90f7d714a"
+}, {
+  "sample-id" : "bdbc2001-4c3a-4599-9c37-fc98e4729148",
+  "file-id" : "bb510fea-58b3-4eec-b036-06a45707c44f",
+  "fa-id" : "63e335e9-d34a-48a1-9185-869557268df4"
+}, {
+  "sample-id" : "32fc0b76-0513-4fb3-a2da-4e6c0dc133be",
+  "file-id" : "51bc5f88-6ee9-4c99-96af-7c1e816f7786",
+  "fa-id" : "c1617dee-952d-42ff-8896-ea8c36582117"
+}, {
+  "sample-id" : "a4004116-abb2-4fd7-aeae-2d07d89c5f38",
+  "file-id" : "21dc6398-0a4a-452a-9278-5a9b568a0756",
+  "fa-id" : "f26c2e3a-f086-42f8-b35e-d58e01e48f40"
+}, {
+  "sample-id" : "dfe4ca32-b750-42cc-b1c7-667e53eabd66",
+  "file-id" : "5049fe9e-a194-475f-bc82-f4ae24fd6e75",
+  "fa-id" : "a20cba9f-7c38-4208-9c33-b064f6c2bef1"
+}, {
+  "sample-id" : "f62ca8dd-3a7b-4ae8-b431-838543fba486",
+  "file-id" : "4388fd3d-a6ae-400c-8179-50fb4aa0c505",
+  "fa-id" : "71170f59-f4bb-4bbe-a7b9-9e4f940e3019"
+}, {
+  "sample-id" : "37c23fd5-a49e-4bf5-9957-073cfd345863",
+  "file-id" : "36ac1d6a-1021-41a7-b94a-1f7759dbcdde",
+  "fa-id" : "8153a1e2-1aad-4b12-94e4-eaa8783211e9"
+}, {
+  "sample-id" : "dccfb195-2b58-4a4c-851e-39f8f95790dd",
+  "file-id" : "fa834a10-a9a7-4614-b34b-0555f9e104dc",
+  "fa-id" : "397497e7-57cb-428a-a8c7-ec1297b7442a"
+}, {
+  "sample-id" : "f12b6c2c-0809-46ae-a455-6f3f2e9a79c8",
+  "file-id" : "32c54ac8-0496-4124-ab64-e811c6d4fe80",
+  "fa-id" : "d20d3647-6476-4734-9352-6fd3c1aa4ffd"
+}, {
+  "sample-id" : "7ec41290-4827-413a-b16d-a4b93b3cd3a4",
+  "file-id" : "9ac8ac52-73ac-4e00-b956-b2293fa80f61",
+  "fa-id" : "92ec3c8f-9801-4603-975e-071f8313d958"
+}, {
+  "sample-id" : "2fe3ee97-0dc6-4e3f-9f96-da9988b0ca57",
+  "file-id" : "ae817d3e-d27d-47eb-85f4-7158946ee387",
+  "fa-id" : "d1fe280b-3754-4cec-9d42-919d79a742db"
+}, {
+  "sample-id" : "79ed3c75-1435-429f-ad3c-d635bcbbd29d",
+  "file-id" : "66b8cefb-a9cf-4c09-b1ac-b2202c7c3600",
+  "fa-id" : "8d15997b-b062-474e-afec-7439ec89c0ec"
+}, {
+  "sample-id" : "140017ca-f01a-471f-85c9-158ee5ef8129",
+  "file-id" : "d190539c-6e32-4619-b72c-5637ea941fb0",
+  "fa-id" : "d0ba003b-8775-445a-b54f-0a2a2b35031f"
+}, {
+  "sample-id" : "d35b64c9-bd7c-4361-be2d-6afec094fc82",
+  "file-id" : "db724465-5250-494b-8791-312c567b33b5",
+  "fa-id" : "263785f8-e28a-4ccc-8de6-c4c936849fc4"
+}, {
+  "sample-id" : "a5090c66-6306-4461-a3bb-c38d5ce79d06",
+  "file-id" : "10e4b539-3535-4e8d-9983-57645677bee3",
+  "fa-id" : "c3f904a4-9b3e-4ce0-8ab3-47f5da34eb02"
+}, {
+  "sample-id" : "23a3ddd2-936d-4b60-b5eb-aa24b476f5e6",
+  "file-id" : "28a3b0e7-c8f5-4da4-be46-223605a2111b",
+  "fa-id" : "f75809b2-172b-459b-a2de-2edbf9e6a792"
+}, {
+  "sample-id" : "2707a947-c88a-4cb4-816a-8c742b68e2ed",
+  "file-id" : "d5d974d8-25e9-4724-ac73-70e0781c79c3",
+  "fa-id" : "3c24977e-6872-4179-bbd4-c6465bb39c23"
+}, {
+  "sample-id" : "4737271b-4521-48cf-bb69-3b45b0947ad8",
+  "file-id" : "964b5b16-927c-4aa5-a98f-8db801f59fed",
+  "fa-id" : "ec51ad64-f430-4005-a2d2-b886356de596"
+}, {
+  "sample-id" : "a9265f14-b1f7-45ae-ba07-0f4391e84b42",
+  "file-id" : "df9bf334-cfbb-4646-a0b3-11216e4e038a",
+  "fa-id" : "c98f9d06-0f81-468a-9f6b-4785fb548eba"
+}, {
+  "sample-id" : "8822485c-2ff9-4d0d-97f1-b334a4be5ca7",
+  "file-id" : "6f2de61a-d815-4025-bc3a-45888aa25dee",
+  "fa-id" : "0aa3c398-5bb6-48bf-953e-e003fbb23d7f"
+}, {
+  "sample-id" : "bbbf6e2d-53de-4910-878c-34773b1fda5a",
+  "file-id" : "5963c67f-2d60-448f-8e83-c424dd869be7",
+  "fa-id" : "1e305af2-9879-4ff5-86fc-b9bf877f91e9"
+}, {
+  "sample-id" : "13690522-ffe5-4001-aa78-6eb12f015be7",
+  "file-id" : "0681c1b0-d2e4-4c06-8ac9-8427229ad1bc",
+  "fa-id" : "75f7daa9-e755-4972-b5d4-922e415b5dea"
+}, {
+  "sample-id" : "3e3d38d4-6ec2-4989-a2bf-a20d627f3a8d",
+  "file-id" : "de795972-37be-4105-b891-20196458aa4b",
+  "fa-id" : "4ce47ffc-b84b-4b42-9e36-92e80fccfe0a"
+}, {
+  "sample-id" : "33b13384-771d-4f54-a32f-f7cf9b4415bb",
+  "file-id" : "19f59829-6abe-4bf2-a145-15df275333ea",
+  "fa-id" : "d63d458d-dd77-4a4a-b573-ac695e199e29"
+}, {
+  "sample-id" : "21ee0b26-8148-4ba3-a14f-a5b53992ec88",
+  "file-id" : "42cc462e-f39f-428b-8fd2-e75ecabdf55c",
+  "fa-id" : "06300d60-cd60-4ce6-9e31-a6f6bd662088"
+}, {
+  "sample-id" : "13ebf2fb-75b4-47e8-b305-1b17ace62051",
+  "file-id" : "96bcc4f8-17c2-4477-acd1-56ceed108086",
+  "fa-id" : "b76a81ff-dace-4fae-b5a0-1a8fe0073c68"
+}, {
+  "sample-id" : "5abcab4f-d148-4aab-bb62-3aa96af72fa6",
+  "file-id" : "800b4282-08c1-415d-9069-ad12704b9e58",
+  "fa-id" : "6222e9f3-cdb5-4d9e-a521-31fa73c2163f"
+}, {
+  "sample-id" : "7f939d05-6621-4fb7-b343-69712cdb284b",
+  "file-id" : "54d55d60-6c10-474e-bc31-4d82609ac60e",
+  "fa-id" : "602d85f5-d7da-4cac-add4-45fe66580515"
+}, {
+  "sample-id" : "f3fc289a-d448-482a-a46a-1e79039e274a",
+  "file-id" : "1aeb91ae-d649-44f0-ac59-659cc33ab616",
+  "fa-id" : "a5ae718b-d788-431a-a70d-5b47aaeb4920"
+}, {
+  "sample-id" : "56f0fe70-e41c-4f6e-a273-071cb286b05b",
+  "file-id" : "bf32e235-e412-4978-9219-8f9232ebc92f",
+  "fa-id" : "f00fcd68-ff08-4947-893b-c6e7365f2414"
+}, {
+  "sample-id" : "b3a08b7e-0709-408c-adf8-989af5f9252e",
+  "file-id" : "0d67d818-b084-4802-8a68-587368e20b3e",
+  "fa-id" : "38a81a28-0076-491b-882e-450d08a74729"
+}, {
+  "sample-id" : "117bf2a5-ffd0-4d6a-94e7-22a6d3d692c3",
+  "file-id" : "e8106aaf-93f2-490c-98b6-bde7d4b51116",
+  "fa-id" : "c3a5a6c3-b87a-4f4f-8f84-f91c0ef297a9"
+}, {
+  "sample-id" : "576dc7eb-aa45-4d5b-89f5-104d5b049076",
+  "file-id" : "b0360110-e709-418f-9bf8-5a16b6474d62",
+  "fa-id" : "a4e4c2b7-ea13-4b3a-9bab-ee6dd152e08d"
+}, {
+  "sample-id" : "ea44e544-9b19-477f-a9fe-77cf69b35ed9",
+  "file-id" : "dbad1cdc-04ef-4de7-873a-4e99ae842b89",
+  "fa-id" : "010d6ead-b46d-44c0-bf51-9f453575a9a0"
+}, {
+  "sample-id" : "d002f8a5-55a7-49ed-8af5-66575293b83f",
+  "file-id" : "1f0f174f-890c-4074-a2c6-5ded39f16f97",
+  "fa-id" : "2676637d-324d-45ea-a0fc-ed06320976ae"
+}, {
+  "sample-id" : "94e3df29-6e59-43ff-a910-8b4ecd6ace8d",
+  "file-id" : "7dbe52aa-f79f-4cd7-9260-dde8c3d02694",
+  "fa-id" : "55017cc3-f5f4-4b60-95ec-c34ce13daf07"
+}, {
+  "sample-id" : "fcf958fb-5ac4-4ee9-b1f7-75be084c3cd0",
+  "file-id" : "c4a4d51e-e272-4b83-b6e3-2c902ae8a0fd",
+  "fa-id" : "efb8f802-5327-46fa-965b-2b9a9dedf251"
+}, {
+  "sample-id" : "e0322d72-843f-4e48-9f06-3a8ce993d5f3",
+  "file-id" : "7a2c64f3-dc98-44f2-bf15-e1f28f55eabe",
+  "fa-id" : "0631c71c-e12f-4a87-a36e-00d5ce1cf014"
+}, {
+  "sample-id" : "436a562c-efc0-417b-8217-96ba65ba5f31",
+  "file-id" : "0140627e-229c-4758-935c-f0f2b104f78c",
+  "fa-id" : "0687cef6-1150-403c-83ba-9330e5dd33a6"
+}, {
+  "sample-id" : "f7714515-be16-4e69-834a-acec7ba141e5",
+  "file-id" : "30ec49d2-2067-4201-a58f-27c8802ceb27",
+  "fa-id" : "175bf23a-bacd-4a47-b0bd-f5a182129d3c"
+}, {
+  "sample-id" : "5774466d-0b5d-464d-a539-81a19f6d820d",
+  "file-id" : "00643a2b-f276-4955-8663-5f295b85700b",
+  "fa-id" : "77d45dd8-1ecb-4916-9311-ba1f65bc2eb1"
+}, {
+  "sample-id" : "9dfbd7f6-d69b-4a93-9f2c-9a3cc01fb2d9",
+  "file-id" : "9c1e5882-0ec6-4a55-98de-12fbbbf9843a",
+  "fa-id" : "ea13df40-f350-4a40-9c85-f72e6b154246"
+}, {
+  "sample-id" : "0f30a79d-074d-415d-8883-abb610f0631f",
+  "file-id" : "691acbcb-2b1d-49c1-ae79-6161f30224f4",
+  "fa-id" : "eb9fb477-5c6e-41b3-aaa5-617f0cc8cc58"
+}, {
+  "sample-id" : "763d4bf8-7495-4b7b-8f3a-9e2b950a74b0",
+  "file-id" : "3e4a8953-963c-4925-a08d-a3851ea6a1ae",
+  "fa-id" : "326c8ec2-2989-4192-bebf-fe4c59e76ce8"
+}, {
+  "sample-id" : "032d303b-5824-4974-8d92-a50cb68c19c6",
+  "file-id" : "c1ce8f7b-8d89-4f94-a905-05e1780a74d8",
+  "fa-id" : "c4779524-965c-4852-8cee-67e896f859f7"
+}, {
+  "sample-id" : "c1970793-c319-4230-a98f-7e7f869e1658",
+  "file-id" : "3455ea26-5719-4e0d-b43e-ca4fe999acd1",
+  "fa-id" : "50fd2188-4a8c-478a-8a6d-b11d80df78c8"
+}, {
+  "sample-id" : "fae02b6a-9782-4f3e-a537-914c8ccfb3b8",
+  "file-id" : "56ba9fba-ffde-45bd-ad48-ea1ed36bb1d3",
+  "fa-id" : "4cc20cad-251b-4d8c-89af-03a1559ed5ea"
+}, {
+  "sample-id" : "5b60d305-41ce-485f-b36c-b9df701a0ea5",
+  "file-id" : "d5782cd8-f35a-41f5-9858-623857174633",
+  "fa-id" : "4b622211-9cbd-48e6-ac1b-14916cbfbeff"
+}, {
+  "sample-id" : "e285f863-c8ed-4e9b-a4ed-da668ed20d17",
+  "file-id" : "a70dea73-4d0a-4bda-ace2-f338a8f36954",
+  "fa-id" : "8f8d2bae-4617-4f0e-befe-a8a6501d0f57"
+}, {
+  "sample-id" : "0c282a04-ac1b-4c04-8883-704ff3c4e307",
+  "file-id" : "dfc32f4c-12a1-4608-893c-bc838edb2b30",
+  "fa-id" : "0a201b5d-a491-4315-91e6-06c1e586ee57"
+}, {
+  "sample-id" : "57ec4530-6c24-4f3f-89cc-e9d727931fe5",
+  "file-id" : "855175d6-75c0-47d0-b9d3-2654a05cc641",
+  "fa-id" : "45b53c8a-a523-4959-ad17-5d38f6ba096a"
+}, {
+  "sample-id" : "8f7346ca-6f22-47a0-8110-521e3523c8cd",
+  "file-id" : "0d781239-876b-44a2-9c21-fdbc3c440689",
+  "fa-id" : "b74a4673-312f-45a9-9b4f-e59147082251"
+}, {
+  "sample-id" : "d29bf646-a1e1-45fa-9e6e-ad69b59b49e4",
+  "file-id" : "6a5e2290-8725-471c-aad8-3a8856be16e2",
+  "fa-id" : "efc2e518-82d0-4077-b4fd-afcebd61ff23"
+}, {
+  "sample-id" : "5f553a19-de4a-46ad-bc4a-493f1785f2d2",
+  "file-id" : "0476a268-e7db-4a79-aadf-6a5c8468dc11",
+  "fa-id" : "498a3222-1ea4-4f25-8843-10112419de82"
+}, {
+  "sample-id" : "b7cb3196-588b-4685-a4fc-60c5732b9f37",
+  "file-id" : "b7c46cf4-089f-414c-b8aa-e18b044e38ac",
+  "fa-id" : "195929e8-d466-4010-8104-718de25ac0e7"
+}, {
+  "sample-id" : "b971f6b0-8ce0-406d-a6cf-19c8e5c19b0b",
+  "file-id" : "14d22ced-7be4-4a83-b55e-cf4afb0552ab",
+  "fa-id" : "a569075e-c15c-4580-aef6-fc2292043313"
+}, {
+  "sample-id" : "f6ba00f0-2385-4e1f-8ec6-a000f6d202c1",
+  "file-id" : "bbf8cbaa-53b9-4f05-953a-48d12770b563",
+  "fa-id" : "bcbe1aaf-775d-480c-bac9-908e2860985e"
+}, {
+  "sample-id" : "e24e11fe-3a57-438d-9570-52746fa3b269",
+  "file-id" : "ed95e72e-bd79-4047-b3c9-abf0d9432b29",
+  "fa-id" : "2f368e3c-201b-47a9-ae38-8c8f9cb96c00"
+}, {
+  "sample-id" : "6ce84172-7eb1-4d7e-8b94-4fa0205cd5c9",
+  "file-id" : "ac6ab1f3-e3e6-4e1f-a11f-8e0ec992e112",
+  "fa-id" : "292f665b-694e-449d-acd8-290dab992418"
+}, {
+  "sample-id" : "aa62b16a-f0c1-419f-ac02-b5f9690d1495",
+  "file-id" : "26fc7d52-e2af-4026-972a-8831a63d2a81",
+  "fa-id" : "04619172-6de1-4afb-841c-8624c3f0050e"
+}, {
+  "sample-id" : "42d729fb-2e76-4d89-b4c5-6f217f08a5ab",
+  "file-id" : "d39c4d7c-0c16-4aa6-bc07-7bbec89af2ee",
+  "fa-id" : "10e15554-d150-476c-bf16-6bdf31ebfe95"
+}, {
+  "sample-id" : "7cb4af16-cc00-480b-9237-2a0dcbb67689",
+  "file-id" : "2d420a7a-e54d-4485-b0ad-e769d7986ad1",
+  "fa-id" : "8af2418f-3837-4654-849a-c095bb97e3bd"
+}, {
+  "sample-id" : "a34390cc-2f80-4f52-8378-b5ff8b162561",
+  "file-id" : "b7e696d9-58a7-45c8-8400-de31ec0edcac",
+  "fa-id" : "c876750d-4bc7-4f99-910a-b3879a7aeeb0"
+}, {
+  "sample-id" : "6c530b4a-65be-4187-8501-88fd14875732",
+  "file-id" : "77259151-a45a-4220-bd17-a6f820e0917c",
+  "fa-id" : "bd24aae3-89b4-4d7b-8016-d1c2fd00b6db"
+}, {
+  "sample-id" : "17ce8de2-e37f-4446-991d-471acb1cfc8d",
+  "file-id" : "dfc34b68-5c4c-4d4d-98e6-1a47b1963df0",
+  "fa-id" : "2dd5e1d5-7e56-494f-ad21-0ed99c54553f"
+}, {
+  "sample-id" : "c8ae4620-2817-4d27-a471-e7874d6cddbe",
+  "file-id" : "4f1ff678-2f0c-43f7-95a2-8a443bdde3eb",
+  "fa-id" : "e4691621-37f0-4466-98bf-12cd5c099505"
+}, {
+  "sample-id" : "65b55b30-5ca2-4454-8de0-59f0280ca7b7",
+  "file-id" : "c1f1c85f-f52d-497a-aaff-c297c338e510",
+  "fa-id" : "8f58bf84-9a63-42e5-a518-d00a4eb2e0c2"
+}, {
+  "sample-id" : "af174009-8b41-4cc6-af78-7ec3d273a6d0",
+  "file-id" : "e6eeb8cc-78f2-46e2-8224-7b1e20514faf",
+  "fa-id" : "f52717f9-65c7-4e35-afc7-2e28284aab08"
+}, {
+  "sample-id" : "027f914b-ed05-485f-9880-c0f0be8da9f5",
+  "file-id" : "e788f094-b005-4a59-91c8-362fdd75e841",
+  "fa-id" : "cb2213f2-28a3-4694-a2b8-0c8c8add639a"
+}, {
+  "sample-id" : "ad277b8e-6b19-404e-8e46-496a1861aeae",
+  "file-id" : "04d94423-7d8b-4cec-bc29-bd4be767646a",
+  "fa-id" : "cf868a31-2ecc-488e-a77f-3872dc3526d9"
+}, {
+  "sample-id" : "7feb74af-f4d5-43f1-9e6b-1ff627861918",
+  "file-id" : "7e687f41-117f-4c1d-b42a-6ace3aa8236a",
+  "fa-id" : "7e4b4636-b2eb-418d-81ff-a4cc8a626d5b"
+}, {
+  "sample-id" : "2d6bc43b-ebe2-4f9f-a615-b1f639a0d053",
+  "file-id" : "6ae5e3e7-1743-4501-8530-a7fc88f311af",
+  "fa-id" : "797515c1-53f1-42c3-8719-3e8abf9bdad7"
+}, {
+  "sample-id" : "bca254fa-b93c-431a-a6e8-37231beaaf37",
+  "file-id" : "33537a0d-9c97-41ed-bb25-3a08742b52f0",
+  "fa-id" : "d231b475-5789-4c0b-a199-3edea6344552"
+}, {
+  "sample-id" : "39af48f4-4df4-4e15-acd3-c0059c69e9cd",
+  "file-id" : "56029503-c3ee-42f0-be46-df255b466282",
+  "fa-id" : "8a5b8479-76ae-413d-909b-157f6fb7fa26"
+}, {
+  "sample-id" : "f72e5a0f-6724-4218-a465-dae64205ede8",
+  "file-id" : "e00cf049-b6a7-4e0c-92d3-c744abd03f61",
+  "fa-id" : "bcf4e67f-bae9-4af1-aae6-86caccd6d91c"
+}, {
+  "sample-id" : "6ddd8a3f-59d0-41fc-b111-35bf3677773f",
+  "file-id" : "c079e3f3-3ca4-44f4-9332-a675a10f34e0",
+  "fa-id" : "34e54012-a822-46c2-aa1b-5269291e3a53"
+}, {
+  "sample-id" : "ca0a79ed-f82b-4865-bb1b-3cff7aeacb41",
+  "file-id" : "c89c3d26-11b2-412b-b130-3d8b003d650e",
+  "fa-id" : "802fec11-ce0f-4b49-98fd-c1fd4f735faa"
+}, {
+  "sample-id" : "83606566-7690-4ffc-819f-71956a9148c6",
+  "file-id" : "88b6bdef-3214-4ea3-9c9a-636e8adb67bd",
+  "fa-id" : "0e6410a5-aadd-4230-a9c9-83cdacbe40e1"
+}, {
+  "sample-id" : "04b6a190-0067-4b8c-9f43-7bcbd6220118",
+  "file-id" : "012a52a4-4dfc-4a9a-99ac-b8e3934bf92e",
+  "fa-id" : "a588456b-ca32-485a-b4de-050a7ccbf950"
+}, {
+  "sample-id" : "0678a75b-fe38-4833-856a-38b40355fe51",
+  "file-id" : "2b097df8-a233-48d2-905b-7e588bc491eb",
+  "fa-id" : "d045feca-572e-43cd-a579-a5f8b8d71ce8"
+}, {
+  "sample-id" : "d89bbf9c-0699-4c81-8076-b9180b7a8616",
+  "file-id" : "5c90d8fc-34cf-4587-95a2-8da437218a87",
+  "fa-id" : "72a2b230-4b77-45bc-b05a-838e14f595d8"
+}, {
+  "sample-id" : "d7dd06b5-f848-4707-b36a-1ba66cad2638",
+  "file-id" : "ef344850-f147-4121-a8d4-338d0eab6d7c",
+  "fa-id" : "09d4465a-3ce5-4633-9e29-0aaaf4fcb162"
+}, {
+  "sample-id" : "12dccdd3-cf64-4633-ad86-10681620634e",
+  "file-id" : "1804a880-8dfb-4cf7-b5dc-f12adbdd5f1b",
+  "fa-id" : "7ea4e1c4-ac58-49d9-b991-d5fd131cfa0a"
+}, {
+  "sample-id" : "40ee28e8-f1db-4e1a-b819-784c456e5c75",
+  "file-id" : "1346f6f2-7229-4383-a46b-149ae64d7128",
+  "fa-id" : "50093b5d-837b-4f66-af1d-4dbaf891c188"
+}, {
+  "sample-id" : "471c98dd-3b0a-41e1-aa1f-90bf619d92eb",
+  "file-id" : "9fee4fdc-51f2-4594-a798-78f553299f54",
+  "fa-id" : "a1af7330-19ed-42c5-b357-3dbac049193a"
+}, {
+  "sample-id" : "ed7eaec3-fdd7-4443-933f-759c7ee7680f",
+  "file-id" : "1929d1cf-e3f3-4c32-8021-9ca5e2a46e84",
+  "fa-id" : "3bd40599-42e7-4474-9558-7b4eb4f007fa"
+}, {
+  "sample-id" : "57f6a318-08f5-4de7-bf7a-5f4149193971",
+  "file-id" : "1ce48f35-97b1-4d52-9a82-a445c65c045f",
+  "fa-id" : "7ff615db-b2fc-4b80-8c55-6377ab84724d"
+}, {
+  "sample-id" : "3a45b457-7314-4121-b881-585527b2bba3",
+  "file-id" : "f23ccfff-f5d6-4a7d-b9ec-93ddd99d7886",
+  "fa-id" : "cebec7f8-bc64-420b-aeb2-76bd8b0cf854"
+}, {
+  "sample-id" : "177b40b4-898c-49f2-9460-5847ff22aa26",
+  "file-id" : "0fc57a5a-0b1f-4669-b79f-7edeebb3536d",
+  "fa-id" : "75f8c0dc-c0a4-4aed-b461-4dba9fc52d60"
+}, {
+  "sample-id" : "6b98adb4-37c6-4fa0-ba5b-d1ba432f0389",
+  "file-id" : "6deaa1d8-87b7-452b-a7f6-8a4fcc7736d5",
+  "fa-id" : "1b84efed-c98e-43b2-9a21-471b4c06d1ac"
+}, {
+  "sample-id" : "dc8bff30-ec98-48a1-9ae7-6483b0d20a67",
+  "file-id" : "6f21ff27-c5eb-4eb2-8400-394866b252e1",
+  "fa-id" : "589031da-d850-4238-b492-64bd7a4be466"
+}, {
+  "sample-id" : "facbfc19-36dd-466c-92d4-452dc1360e1e",
+  "file-id" : "d83f72cc-482e-41e7-87e6-756d0fe088e4",
+  "fa-id" : "fc66b349-cd65-4ae1-bf43-277af531ebb3"
+}, {
+  "sample-id" : "c1740fc3-82b7-4245-a0cb-51fda3533a8a",
+  "file-id" : "5944fdb2-84a7-4fb2-96af-dcca32acc986",
+  "fa-id" : "c72b3ad5-69b2-4ea3-bdd9-565fa6ae80a3"
+}, {
+  "sample-id" : "d8b6f9f9-29a9-45bf-9247-9bcea4f46d71",
+  "file-id" : "9362da19-e69f-48e3-b19f-46618e1ad290",
+  "fa-id" : "adfd12f9-d84f-40f3-8808-1aae6125fbcd"
+}, {
+  "sample-id" : "7461fa1c-43f5-4b42-83dd-4353c6ea096a",
+  "file-id" : "c7cec95e-fb61-45e7-8885-dfa453a779f4",
+  "fa-id" : "55091399-1517-457e-941d-1c883cf0f2ac"
+}, {
+  "sample-id" : "3cdc5b2e-d9f5-412c-bbc9-d4ec82aa00af",
+  "file-id" : "e64e7cdb-dee8-437e-9cce-aabf83d31756",
+  "fa-id" : "ea42b24d-e8e2-4fe5-ae7a-1b24c10c87db"
+}, {
+  "sample-id" : "70fd55d0-3274-4c5b-b7eb-cd1aa690a138",
+  "file-id" : "6db1824a-490b-4bdc-a1a9-97f42d7a09fd",
+  "fa-id" : "eb261759-7f67-4f5a-af30-ad7c78d1e99e"
+}, {
+  "sample-id" : "e565df6b-d58d-4e68-9e14-42f34b47736e",
+  "file-id" : "a9a2adb3-b9c0-4a10-b0b5-c1dbbf59e0ff",
+  "fa-id" : "57af26d2-1ee4-4c25-b840-b77e01718a87"
+}, {
+  "sample-id" : "b4311565-eeb1-413e-8a12-7f9d75aab06e",
+  "file-id" : "76724a86-39e6-41f0-9f1f-e0ef94a98be2",
+  "fa-id" : "6b8ffdfa-f5a0-46e0-9d7d-d2f7a40949b5"
+}, {
+  "sample-id" : "702ebc28-ea9a-488b-b753-2aec6529e4c8",
+  "file-id" : "49c989b6-ab80-487e-94c6-cfb6444417de",
+  "fa-id" : "825e32e4-524f-479d-bdf7-25f49100f3bf"
+}, {
+  "sample-id" : "0953f47a-0422-40fa-80da-21682f54fc7f",
+  "file-id" : "d0f9f8bf-01dd-4c13-92b0-7348b149448e",
+  "fa-id" : "52835ebf-90df-4656-86e7-8347bdb4becf"
+}, {
+  "sample-id" : "3909e4b5-bf25-4b58-8ac7-145a28168178",
+  "file-id" : "c2e368d2-4b3e-48e0-bd03-c8689fcb3e45",
+  "fa-id" : "10b72ac4-e1e3-432d-a493-6ddab1d14473"
+}, {
+  "sample-id" : "e8ddcbed-eda6-4501-bfd9-908c1f0e9a0d",
+  "file-id" : "8981c27c-38bf-4bcd-be12-6af4ced52eef",
+  "fa-id" : "898aef09-661f-4f74-836d-1aafe4493033"
+}, {
+  "sample-id" : "349d235d-00e4-4710-8c71-6eb312c165dd",
+  "file-id" : "c75511e7-3cda-4bb9-8df9-4037385bd87e",
+  "fa-id" : "e36088b4-7ecc-47a1-923a-a45cf30e8110"
+}, {
+  "sample-id" : "3e5c2be8-fefe-4ae9-96da-8373cfa7d91b",
+  "file-id" : "79420715-d618-4095-9b77-564449fb7077",
+  "fa-id" : "24e908ff-329f-4647-ad06-4ec576381034"
+}, {
+  "sample-id" : "e4e7cc7c-4c2b-47f1-9eb1-643f155b13c6",
+  "file-id" : "3ffdbbee-77f8-447e-9346-ff4b35382fb7",
+  "fa-id" : "72690b36-abf8-43d7-818f-7d5f80c3a417"
+}, {
+  "sample-id" : "4a264f53-9a5b-41fa-9520-fb5669d98a61",
+  "file-id" : "31929e1d-1a91-4975-9835-94f50c30be25",
+  "fa-id" : "ce5c5cd9-3c41-4a38-bab5-bebbe5f22dea"
+}, {
+  "sample-id" : "aae7d857-ddf3-426f-8dfd-2bab0a431609",
+  "file-id" : "c8ac65aa-429c-46c3-bc6c-6e28de9b47a7",
+  "fa-id" : "1db155d2-abca-422c-aa0f-26deb73ce81e"
+}, {
+  "sample-id" : "c9b6f8f3-215f-4198-97d9-1856e57fee00",
+  "file-id" : "a1d1fcdf-6d72-4ad9-831a-78cddd1eaeaa",
+  "fa-id" : "baacd815-0ef9-4274-b4e9-68c7cb014819"
+}, {
+  "sample-id" : "6cfab31b-8ec2-4156-a0ee-cd70e68db0f0",
+  "file-id" : "8c813324-3dc3-4894-8ef4-332231469362",
+  "fa-id" : "f51f2eaa-ee47-476b-9f0b-ecae46872896"
+}, {
+  "sample-id" : "8ea39d94-52ad-434f-966e-a82199f028b5",
+  "file-id" : "97c7db20-fbc5-4eda-b418-f4433f04b4b2",
+  "fa-id" : "0a11bb81-6c3d-4196-8773-e40b4cf54a87"
+}, {
+  "sample-id" : "249fd185-1040-41ec-a3d4-11f93af06616",
+  "file-id" : "ddb2d0be-cba3-43b1-97e0-b8dbb21529d8",
+  "fa-id" : "f30bdb4a-19d5-426a-a214-7ff67ff5d059"
+}, {
+  "sample-id" : "16c47438-a897-4b70-bf09-0fe5932dfc6c",
+  "file-id" : "4c63cfa0-4c03-405d-9be1-412d52550cc2",
+  "fa-id" : "d0bdb5e8-ff70-4531-9fe0-1446d332f536"
+}, {
+  "sample-id" : "284b7b5e-1ded-45eb-9860-f717f19364a3",
+  "file-id" : "33a3f96f-71ec-471a-bd5a-c880e5adee64",
+  "fa-id" : "68d5a90c-3793-4837-8e1a-388a66abcd0c"
+}, {
+  "sample-id" : "4f2bbeb1-fbb3-429c-b6e8-7e2604fcee84",
+  "file-id" : "345d57ee-dcd9-4e81-8172-6da224b5e790",
+  "fa-id" : "e64bb62f-2533-4a2b-ae7a-927743756755"
+}, {
+  "sample-id" : "8bcde802-293c-488c-9f80-92b5e3aaabde",
+  "file-id" : "64ea6576-35e9-42bb-bc57-1b989e570d39",
+  "fa-id" : "47d72de1-1b13-453b-9a63-e707cb5efdde"
+}, {
+  "sample-id" : "ff729055-ce69-441b-8670-f41e96cb97df",
+  "file-id" : "7c33c632-c92c-404b-a671-65770d3376e3",
+  "fa-id" : "8d539dd3-17ca-44c7-ab71-d75fbf97ca3c"
+}, {
+  "sample-id" : "1e47b121-7535-40b3-8102-e845a92b01bf",
+  "file-id" : "604fd8cf-ea1b-4761-b7a4-4f322ec224fa",
+  "fa-id" : "acac1170-603b-43d9-ac79-300313259bbb"
+}, {
+  "sample-id" : "f2f9e638-907c-4c18-bf15-a8908e86937a",
+  "file-id" : "37b54c41-9118-4c73-934b-4326fa7a4e3a",
+  "fa-id" : "98619c21-9abf-4aa0-8cd5-353fc60524bb"
+}, {
+  "sample-id" : "9ea74753-2e7f-4c32-94d6-577dcd3499a6",
+  "file-id" : "b3a9a53c-f18a-4c0c-ac74-9eead1b82913",
+  "fa-id" : "fbe8b9ee-bce0-43a2-b6cb-41c85e5e80cb"
+}, {
+  "sample-id" : "f740ab1f-c092-4178-97a8-793b3f723bef",
+  "file-id" : "bb887a03-c8f4-40b7-a780-8837302e7414",
+  "fa-id" : "51f241f6-2261-4c5a-bcc3-acd4b87ecf79"
+}, {
+  "sample-id" : "f6099690-1908-4118-b3d0-a93edd2469ca",
+  "file-id" : "80bb0954-3ca0-4cd5-bab8-53af062cb2ae",
+  "fa-id" : "c91dd923-ce4e-4412-bccf-d6493ecea50f"
+}, {
+  "sample-id" : "42f6697c-2c07-4884-8f8a-e766f9f7f0f3",
+  "file-id" : "e086c3be-3fc8-4f90-8cca-378f2c2940fc",
+  "fa-id" : "fd033b6d-97c5-495c-bd50-a0837474a731"
+}, {
+  "sample-id" : "e13bbfb3-d37b-4915-bab6-a78f96bcbb80",
+  "file-id" : "d013d86b-06d2-431d-b0b1-21b863d23972",
+  "fa-id" : "4bfa585f-bd10-4861-a4c7-65054a57d0d4"
+}, {
+  "sample-id" : "227ed344-8d55-4fe5-b43e-8930c114bbff",
+  "file-id" : "a54f30b0-957d-4dc7-b238-8c0d05334b24",
+  "fa-id" : "cbb1e181-8aa7-4406-8a2e-942d57f90119"
+}, {
+  "sample-id" : "9a7ce081-376d-4d9e-9032-c4f630f473d0",
+  "file-id" : "179334a7-248f-481e-a197-785e007027bf",
+  "fa-id" : "043efe89-8f6b-42a9-a012-12057b2da1e7"
+}, {
+  "sample-id" : "201a08bd-0d7d-4048-bddd-b25f73b89d78",
+  "file-id" : "db95e64c-b598-4954-a579-4d1795cdc4c5",
+  "fa-id" : "03353d6d-e713-4bfe-b69a-b05216b8df23"
+}, {
+  "sample-id" : "fe98a0ae-8289-4d58-b7e6-d4fb3ba89728",
+  "file-id" : "bf993502-2410-4c87-af17-84c94bc5df21",
+  "fa-id" : "ed1e7f46-678f-4c92-8df7-1252abee8a46"
+}, {
+  "sample-id" : "6a8f5c56-c4c3-47f4-9aaf-f0260fa7ca5e",
+  "file-id" : "dd9c4878-fe35-41f7-bd26-81d5af559b20",
+  "fa-id" : "2718a049-e8b4-4001-86a2-7d82d1f6829e"
+}, {
+  "sample-id" : "9ac9c051-c720-487a-9273-5bd523dd1335",
+  "file-id" : "33d7f431-384a-47f4-bfd7-5e070bbb5c02",
+  "fa-id" : "52312e54-52f3-4521-a43d-b5d2b431c1f0"
+}, {
+  "sample-id" : "808f7137-e03f-4f2b-84db-f5ba51d1b3e6",
+  "file-id" : "b238801b-fcbd-46d1-8722-7cc92054a933",
+  "fa-id" : "5a5ba9c6-be09-461b-9218-5d5e50cd0f57"
+}, {
+  "sample-id" : "3a01ddd3-a5a8-4f6d-b7e9-14c9c38c12fb",
+  "file-id" : "06cf5ca0-7d36-4438-977b-2fb2f9b95822",
+  "fa-id" : "adf91179-b276-4424-aff8-72781111c09a"
+}, {
+  "sample-id" : "ae916106-e5c3-411c-a492-54399f7f498e",
+  "file-id" : "e4aba5f3-d46a-4c20-a361-54b3261201a1",
+  "fa-id" : "b536b2ba-4975-43b2-a27e-eaf79afe64a1"
+}, {
+  "sample-id" : "fcde0538-081f-40eb-aeaf-e2a3a9fe9ec6",
+  "file-id" : "89878e43-427f-47bf-b395-2acff9912f3d",
+  "fa-id" : "7041985a-31ea-4c6d-ba92-039577cd0a7d"
+}, {
+  "sample-id" : "0cf90d8f-2ea5-4302-9736-c70b4570053e",
+  "file-id" : "58ca483c-b314-4185-bea1-afef1f852a81",
+  "fa-id" : "34430f03-fce5-492b-8242-cb359098fb44"
+}, {
+  "sample-id" : "c0714686-b691-4284-83c1-1f7bd9ef6c6a",
+  "file-id" : "b9f72ab6-3459-4e4e-b63e-8426f5f74cea",
+  "fa-id" : "a594e119-a5e6-4289-bab6-8d33ad1b53e0"
+}, {
+  "sample-id" : "ec0b4ae9-e9e0-4fc8-8e25-ab1db4998402",
+  "file-id" : "7e8982cf-3e7f-45f0-990d-6a5e4d7760f1",
+  "fa-id" : "7433e2d4-ec85-4ea5-a26a-b326ad5e88a3"
+}, {
+  "sample-id" : "57c2a485-0c25-4830-9312-c48e11238c97",
+  "file-id" : "dc814da9-e525-4a0d-85cf-3ccf705e520d",
+  "fa-id" : "67c1dc32-2d37-40af-9eb7-7987e5bdc882"
+}, {
+  "sample-id" : "f363a15b-bab7-4639-aa1c-e5e252aa0664",
+  "file-id" : "cce32d8e-75b3-4bb6-8498-af665d4346e1",
+  "fa-id" : "8f700caf-c911-44ba-bb94-bda9feeb3f92"
+}, {
+  "sample-id" : "ea71c5a3-066f-411a-9f26-e4a533b94e6a",
+  "file-id" : "26e94842-01d9-4d99-a05c-ac6335525634",
+  "fa-id" : "6894ee40-0366-45c7-a81e-1265bf50f6ba"
+}, {
+  "sample-id" : "36468fbd-c0af-4ffc-a43c-ece86c8787d2",
+  "file-id" : "6cdeac19-e9b0-4f44-877e-9d720145a671",
+  "fa-id" : "0a1592c5-82cb-4b45-957a-9a5d9ca38df9"
+}, {
+  "sample-id" : "71d9c6da-6bcf-4b0e-b246-7c3a5f9fdf2d",
+  "file-id" : "7d21347f-ef4a-4cba-8761-f4658c8b8b68",
+  "fa-id" : "f884066a-1df0-4bf7-b796-b53ff7ef9299"
+}, {
+  "sample-id" : "71baf0da-4500-4942-a95b-4fa8f1a0cbc6",
+  "file-id" : "1f6cf41b-4856-4c11-b044-326d78766949",
+  "fa-id" : "685810cc-e709-4a7a-a3b3-a90c4b9136ea"
+}, {
+  "sample-id" : "f028e541-91cc-4cb5-8e55-925c4dcbfc2f",
+  "file-id" : "9808ae93-249e-4baa-9278-e96c25cdfe24",
+  "fa-id" : "ce01ce6e-3f25-42ec-98ae-ed3e60cdc70f"
+}, {
+  "sample-id" : "9d1aae46-a80e-448f-9f41-86629a31cd97",
+  "file-id" : "f05fdc2d-e7ec-4604-a37f-1fe01148050a",
+  "fa-id" : "7aebc85f-066f-48ac-ac1e-d5fb8f102dec"
+}, {
+  "sample-id" : "c2a20c8d-993f-4ff8-b235-f9a0cf674d31",
+  "file-id" : "ead0447c-c012-44d3-8298-e3f86aa208c0",
+  "fa-id" : "b944a97a-73e0-46e1-8f1e-0c337ef3ece0"
+}, {
+  "sample-id" : "f358ac2b-deb7-4a75-a0ff-6192002044e9",
+  "file-id" : "1056a0ad-89dc-4539-8c82-7b5ab5b3194d",
+  "fa-id" : "effbccb9-2a74-44f0-b91e-0673da37bc62"
+}, {
+  "sample-id" : "49a93ea1-7514-4403-af60-06a498bae2a8",
+  "file-id" : "7ab4f723-cc3d-4dfe-83a6-3750af4783dd",
+  "fa-id" : "70882d56-58fd-4e99-8432-6c24a7e34241"
+}, {
+  "sample-id" : "ca987279-f0a5-4a22-8291-9836d8e1e4d1",
+  "file-id" : "0d86593a-91ab-41ec-8587-dc87df943631",
+  "fa-id" : "c0ca82e9-ed69-420c-9a59-5db28f5812c4"
+}, {
+  "sample-id" : "b7b06ae6-34fc-473c-acf1-9fcb74922a65",
+  "file-id" : "fb347691-15ba-471b-9afb-adecdad79bce",
+  "fa-id" : "48b31bea-fb2c-4411-9405-b4e2c88208fa"
+}, {
+  "sample-id" : "e09be148-3ec9-4f28-abd2-9d46a49d0764",
+  "file-id" : "c3133fdf-8ac1-4038-ac65-dd98cba0f3e9",
+  "fa-id" : "fa6f9a83-ec44-415e-a35b-e0c52a881e5a"
+}, {
+  "sample-id" : "38693328-1932-45fc-9a38-3290b83a1d32",
+  "file-id" : "73f83521-4d3a-4a54-b776-c7d60f15b884",
+  "fa-id" : "1b4a3721-d072-45ba-847e-22396cb5dc96"
+}, {
+  "sample-id" : "a640f48e-0189-4cfd-a210-fcab15292af9",
+  "file-id" : "471e445b-bcd9-41dc-888c-464d26fcc071",
+  "fa-id" : "fbe609f9-7f52-45a4-8268-73b03cdb9fd8"
+}, {
+  "sample-id" : "6fc14bc7-c852-41db-9bc0-c5bdbdec6d5f",
+  "file-id" : "b9be9d9c-8a3f-400c-b564-b6efa4888a50",
+  "fa-id" : "8eef7b56-fb64-4f69-8f14-ae497cdcf667"
+}, {
+  "sample-id" : "cd881f3e-358c-4a78-a889-67e8abfbb358",
+  "file-id" : "6938bb7b-0271-48ef-b847-79d23299e6a3",
+  "fa-id" : "6bd29929-a955-414f-bee9-a6e04b54b685"
+}, {
+  "sample-id" : "c4ef1a72-f493-47cb-a833-c55d8853f3cd",
+  "file-id" : "309caf3a-fcd2-4fc9-b981-0a6b2d9fd2b0",
+  "fa-id" : "bfdb2182-c844-428f-b93f-d1016694a65c"
+}, {
+  "sample-id" : "397d2e23-ba2e-4140-a796-6ed1e517d5af",
+  "file-id" : "6e388666-b739-4b7d-b3b2-86c9c5025900",
+  "fa-id" : "4a31382e-8a85-458c-951e-431c5c66fe37"
+}, {
+  "sample-id" : "04c5e6b8-6d41-4155-86f4-26c6410db0c5",
+  "file-id" : "a856d83c-ced9-4c24-96fd-0c43fc426fa7",
+  "fa-id" : "cdedf1f4-9315-4d91-909c-9df054494f3b"
+}, {
+  "sample-id" : "62a2e3df-4f06-4117-aedb-4a87b808728b",
+  "file-id" : "0f5bf89c-28a5-4cc7-bd20-2bf75bcb8128",
+  "fa-id" : "d0075f16-96f4-45f0-8aae-87ae5a843677"
+}, {
+  "sample-id" : "f395dbb3-2eb6-4c24-9b08-a368a153ff12",
+  "file-id" : "685120b2-7192-41ad-9b3b-1c835f0a4e48",
+  "fa-id" : "ebc0d3c7-cbaa-4388-9eb4-be298343d183"
+}, {
+  "sample-id" : "2fa3d15a-a6c0-4529-988f-fb2ea0bd969d",
+  "file-id" : "91d5d3c6-5bed-4fa7-b265-8dbb249db752",
+  "fa-id" : "938574dc-b20b-4401-87c2-b9591e0568e0"
+}, {
+  "sample-id" : "f0762d63-c116-4167-a797-fe00ce74d3bd",
+  "file-id" : "957dbc1c-07c8-4a2e-ba1e-f1d61693371f",
+  "fa-id" : "5cd2a2e2-1918-46af-86a5-934ad82b5182"
+}, {
+  "sample-id" : "cc50cb97-d503-4351-a1ec-abe3fe5c4794",
+  "file-id" : "491d2953-3a51-4744-9134-6bf258201ee8",
+  "fa-id" : "fe234d9a-1621-4b43-9f9a-5ad8a3414a14"
+}, {
+  "sample-id" : "737883e4-822a-44df-8d76-754fbb3d8ded",
+  "file-id" : "0ee00bb1-3fcf-4706-83c0-e0682ae00847",
+  "fa-id" : "b38e1ffe-abd5-43a7-b049-443460e19623"
+}, {
+  "sample-id" : "0bc817f3-745f-49e3-8a4a-d53098a2d32c",
+  "file-id" : "fab1f8a3-70b3-46ac-b387-3df1bba72811",
+  "fa-id" : "c4901289-cd78-4e12-bc9b-d0bea1d742e4"
+}, {
+  "sample-id" : "c5c326da-10cf-4ce0-8d71-86900fff1bcb",
+  "file-id" : "3f3760dc-b7f0-446c-a580-81df9b57c98d",
+  "fa-id" : "75ba270d-ccb5-42ac-9251-2f32b3d1186c"
+}, {
+  "sample-id" : "00c7dc14-2b6e-4333-9375-3a1c9948d12a",
+  "file-id" : "f6175c20-d247-4ccf-bd6e-1b2bcbebb09c",
+  "fa-id" : "b50b63f0-9f81-47f1-baff-f7739a6674ec"
+}, {
+  "sample-id" : "869c3696-13e5-4457-9064-67631227245f",
+  "file-id" : "2ccf9083-6e4b-444b-8e8e-a8d90fbf14d7",
+  "fa-id" : "477d1efd-3a97-4577-bf5f-81c88a75ae51"
+}, {
+  "sample-id" : "9766d3af-8418-4887-98f1-92168eebd6ce",
+  "file-id" : "233161bf-288a-4797-9433-2199e0de7d57",
+  "fa-id" : "0a9f99dd-eef5-489c-9b45-94274619da1c"
+}, {
+  "sample-id" : "2a579590-a9bd-4c8a-a972-da67fd40e464",
+  "file-id" : "63425b57-9836-46df-86cf-f2cb84f8588a",
+  "fa-id" : "e269ebd8-35e2-48cd-b2e1-3647916036fd"
+}, {
+  "sample-id" : "938f25b4-7867-4801-8b96-7d13a5c48b1a",
+  "file-id" : "ec2e778f-a6c0-4c78-8ea8-851e3df4bff2",
+  "fa-id" : "aacbe9a2-e878-4705-83ac-ce6121d8211d"
+}, {
+  "sample-id" : "2358b5e1-2c1a-491a-827d-f3ed335a2749",
+  "file-id" : "3f3cf7d6-57d3-4799-9b29-0457a818aa17",
+  "fa-id" : "9fe0cd9d-fffa-4afd-a360-e29cb1e031c1"
+}, {
+  "sample-id" : "6bf94f8b-c5ab-42bc-83f8-73cec564ad35",
+  "file-id" : "5376dee9-640b-4c6b-94dd-e0a961056d1a",
+  "fa-id" : "e21ba0d6-4f0e-40bf-84c8-72f940534116"
+}, {
+  "sample-id" : "bb533500-eb6f-43be-ae60-ec064fe75af0",
+  "file-id" : "229c6025-b25f-4b8e-a5cd-f6435967ae35",
+  "fa-id" : "404cad8b-0194-4044-8fe0-9e231006895c"
+}, {
+  "sample-id" : "ea73c352-be58-42de-a5ee-28e7626768c8",
+  "file-id" : "946a7b57-cb36-48d7-979a-b7deae049e8e",
+  "fa-id" : "3c75eb0a-50e9-4992-bcae-dbfe1b8dfbaf"
+}, {
+  "sample-id" : "c1522e9a-8735-4c40-bfa0-b4cecd0bcdae",
+  "file-id" : "330123a9-692d-4994-b52e-64d490c441e5",
+  "fa-id" : "e03eacec-f9fc-415f-9f3e-72f49f7b9f6f"
+}, {
+  "sample-id" : "d51370a0-495f-46aa-9811-a5e28f209f40",
+  "file-id" : "5f829834-e588-4913-a6ed-61f62552e34c",
+  "fa-id" : "5afa96f8-8724-4f8e-8488-7f1e466e50e6"
+}, {
+  "sample-id" : "157ccfcc-0e5c-4ce1-b63f-78f2c6e09744",
+  "file-id" : "067e48fd-c86c-49a0-8a39-586ce131a40a",
+  "fa-id" : "34ea06de-ca2d-467c-a553-15c88a73d524"
+}, {
+  "sample-id" : "b1cb1662-624d-48b2-9a74-4c302e7dc63a",
+  "file-id" : "5d4a44af-7a45-4f67-81e7-a49414461d35",
+  "fa-id" : "a81a889d-9d2e-4a57-ba9c-5cd19c66791f"
+}, {
+  "sample-id" : "12e5f67e-326b-4693-900e-f146cbddbfef",
+  "file-id" : "629e3390-9544-4579-9075-6f3cde4b65ac",
+  "fa-id" : "3d5932b2-15b4-48b3-89d1-abeb65d05847"
+}, {
+  "sample-id" : "c0b9820c-6047-466b-bf06-ff90eed7881f",
+  "file-id" : "1ec0c46e-e680-4c8f-a7f6-97520382e6ad",
+  "fa-id" : "7fc6cf46-63b9-4af2-a92f-d4b9f79e5940"
+}, {
+  "sample-id" : "cff775ea-9ead-4bb4-a789-e0d2b4290da9",
+  "file-id" : "55e08afd-0e10-40a9-909d-fc5aaaf8ae99",
+  "fa-id" : "cafa6940-082a-4491-a2cd-7a1b334f4eca"
+}, {
+  "sample-id" : "8f3fecf9-1950-4776-8e13-f2ea7b4499ef",
+  "file-id" : "64250fd4-4fb2-4bdb-8535-aebdd005ca41",
+  "fa-id" : "9f6eeb27-b7c2-4c2a-9530-f988bf7b64b3"
+}, {
+  "sample-id" : "38e7e11d-5310-49da-91c7-44149e24a3a4",
+  "file-id" : "2f773505-82ee-4e6a-a0d2-f1af3cbad102",
+  "fa-id" : "92e99566-1f3c-4562-ae6e-7eda7f64de05"
+}, {
+  "sample-id" : "d1f4c78e-7785-4408-a344-49bbe1f16812",
+  "file-id" : "5cf2c5f8-f3b4-4029-b335-e6dff99fc3e7",
+  "fa-id" : "6d4b5788-b054-4df8-a054-ba76f639a720"
+}, {
+  "sample-id" : "32f6c780-34a7-4a93-9dd4-8f5ce178161b",
+  "file-id" : "cc98e52f-85ca-4f04-af10-b6e9e5e70574",
+  "fa-id" : "54476cc9-960f-4867-a061-c789c08b457a"
+}, {
+  "sample-id" : "999315d2-59d5-416b-89a7-d4ce5aa40f29",
+  "file-id" : "7733f522-0e63-4606-81d5-684e0352f0a1",
+  "fa-id" : "435218fb-cdd7-45ea-b430-4c5d79dcca76"
+}, {
+  "sample-id" : "68c8db4a-1e03-4dfd-a548-23c977644da1",
+  "file-id" : "e2e8b870-df1f-4149-9e8f-b2f528ef1f72",
+  "fa-id" : "fd24370c-971a-4468-869f-d01233fef5df"
+}, {
+  "sample-id" : "02fcaf1a-fde9-4f6c-9985-225a24bffbfd",
+  "file-id" : "f683a85e-d20d-4195-97b9-98962b84b671",
+  "fa-id" : "23caa0b4-6e99-481a-a1a9-06432e07301e"
+}, {
+  "sample-id" : "fe6247ea-d443-4eff-99c5-62a15bfdf72d",
+  "file-id" : "72c401df-c879-4535-9403-53b7d6020299",
+  "fa-id" : "7c2a53d9-82d8-4e42-87f3-f5a70da7ffc5"
+}, {
+  "sample-id" : "8332c0be-9c50-412a-98d5-6e23d05aa32f",
+  "file-id" : "5b622b5b-30aa-4826-8a48-55d43ddc72e5",
+  "fa-id" : "d3242bee-56c5-4b1b-a530-db79ba0fadbd"
+}, {
+  "sample-id" : "49973a3b-e789-48b6-af83-66a7aea904f3",
+  "file-id" : "85bc9601-ab51-4999-810f-ed1ad6e33286",
+  "fa-id" : "63db6243-11c4-4868-97f8-c7a33c9a6ed7"
+}, {
+  "sample-id" : "b582e684-fa66-4ba0-82aa-4a9ed64a38a2",
+  "file-id" : "7c7c02ec-6aa3-4226-8225-d0406d1d6d18",
+  "fa-id" : "221df760-cd24-45e4-a293-ec592eedaf23"
+}, {
+  "sample-id" : "a49972b7-3230-4f9b-9c33-e09511ab8124",
+  "file-id" : "b0a55d83-79f6-43d4-a867-a21fb87cba80",
+  "fa-id" : "873d4338-6241-476e-86cf-d9659510ab83"
+}, {
+  "sample-id" : "308f0e4f-c40e-4898-a029-d389f17518f5",
+  "file-id" : "d05511ef-26ee-4425-9214-c80b24f37595",
+  "fa-id" : "e97f0475-3a5e-4edb-bd94-1ab81eccb1b8"
+} ]

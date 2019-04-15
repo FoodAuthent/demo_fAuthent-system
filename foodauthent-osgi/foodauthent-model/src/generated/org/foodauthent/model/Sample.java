@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import java.time.OffsetDateTime;
 
 
 
@@ -26,13 +25,12 @@ public class Sample   extends FaModel {
   protected java.util.UUID faId;
   protected java.util.UUID productId;
   protected String sampleId;
-  protected OffsetDateTime dateOfSampleDrawing;
+  protected String dateOfSampleDrawing;
   protected String lot;
   protected String samplingPlace;
-  protected OffsetDateTime bestBeforeDate;
+  protected String bestBeforeDate;
   protected String application;
-  protected java.util.List<String> typeOfAnalysis;
-  protected String comment;
+  protected java.util.List<String> comments;
   
   public String getTypeID() {
     return "Sample";
@@ -52,8 +50,7 @@ public class Sample   extends FaModel {
     samplingPlace = immutable(builder.samplingPlace);
     bestBeforeDate = immutable(builder.bestBeforeDate);
     application = immutable(builder.application);
-    typeOfAnalysis = immutable(builder.typeOfAnalysis);
-    comment = immutable(builder.comment);
+    comments = immutable(builder.comments);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -74,7 +71,7 @@ public class Sample   extends FaModel {
             return false;
         }
         Sample ent = (Sample)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(productId, ent.productId) && Objects.equals(sampleId, ent.sampleId) && Objects.equals(dateOfSampleDrawing, ent.dateOfSampleDrawing) && Objects.equals(lot, ent.lot) && Objects.equals(samplingPlace, ent.samplingPlace) && Objects.equals(bestBeforeDate, ent.bestBeforeDate) && Objects.equals(application, ent.application) && Objects.equals(typeOfAnalysis, ent.typeOfAnalysis) && Objects.equals(comment, ent.comment);
+        return Objects.equals(faId, ent.faId) && Objects.equals(productId, ent.productId) && Objects.equals(sampleId, ent.sampleId) && Objects.equals(dateOfSampleDrawing, ent.dateOfSampleDrawing) && Objects.equals(lot, ent.lot) && Objects.equals(samplingPlace, ent.samplingPlace) && Objects.equals(bestBeforeDate, ent.bestBeforeDate) && Objects.equals(application, ent.application) && Objects.equals(comments, ent.comments);
     }
 
 
@@ -106,7 +103,7 @@ public class Sample   extends FaModel {
    * Date of Sample Drawing
    * @return dateOfSampleDrawing 
    */
-  public OffsetDateTime getDateOfSampleDrawing() {
+  public String getDateOfSampleDrawing() {
         return dateOfSampleDrawing;
     }
     
@@ -130,7 +127,7 @@ public class Sample   extends FaModel {
    * Best Before Date
    * @return bestBeforeDate 
    */
-  public OffsetDateTime getBestBeforeDate() {
+  public String getBestBeforeDate() {
         return bestBeforeDate;
     }
     
@@ -143,19 +140,11 @@ public class Sample   extends FaModel {
     }
     
   /**
-   * Type Of Analysis
-   * @return typeOfAnalysis 
-   */
-  public java.util.List<String> getTypeOfAnalysis() {
-        return typeOfAnalysis;
-    }
-    
-  /**
    * Comment
-   * @return comment 
+   * @return comments 
    */
-  public String getComment() {
-        return comment;
+  public java.util.List<String> getComments() {
+        return comments;
     }
     
   
@@ -184,8 +173,7 @@ public class Sample   extends FaModel {
         builder.samplingPlace = entity.samplingPlace;
         builder.bestBeforeDate = entity.bestBeforeDate;
         builder.application = entity.application;
-        builder.typeOfAnalysis = entity.typeOfAnalysis;
-        builder.comment = entity.comment;
+        builder.comments = entity.comments;
  		return builder;
   	}
   	
@@ -199,13 +187,12 @@ public class Sample   extends FaModel {
         private java.util.UUID faId;
         private java.util.UUID productId;
         private String sampleId;
-        private OffsetDateTime dateOfSampleDrawing;
+        private String dateOfSampleDrawing;
         private String lot;
         private String samplingPlace;
-        private OffsetDateTime bestBeforeDate;
+        private String bestBeforeDate;
         private String application;
-        private java.util.List<String> typeOfAnalysis = new java.util.ArrayList<>();
-        private String comment;
+        private java.util.List<String> comments = new java.util.ArrayList<>();
 
         /**
          * A global id within the FoodAuthent-system.
@@ -238,7 +225,7 @@ public class Sample   extends FaModel {
          * Date of Sample Drawing
          * @return dateOfSampleDrawing 
          */
-        public SampleBuilder setDateOfSampleDrawing(OffsetDateTime dateOfSampleDrawing) {
+        public SampleBuilder setDateOfSampleDrawing(String dateOfSampleDrawing) {
              this.dateOfSampleDrawing = dateOfSampleDrawing;
              return this;
         }
@@ -265,7 +252,7 @@ public class Sample   extends FaModel {
          * Best Before Date
          * @return bestBeforeDate 
          */
-        public SampleBuilder setBestBeforeDate(OffsetDateTime bestBeforeDate) {
+        public SampleBuilder setBestBeforeDate(String bestBeforeDate) {
              this.bestBeforeDate = bestBeforeDate;
              return this;
         }
@@ -280,20 +267,11 @@ public class Sample   extends FaModel {
         }
 
         /**
-         * Type Of Analysis
-         * @return typeOfAnalysis 
-         */
-        public SampleBuilder setTypeOfAnalysis(java.util.List<String> typeOfAnalysis) {
-             this.typeOfAnalysis = typeOfAnalysis;
-             return this;
-        }
-
-        /**
          * Comment
-         * @return comment 
+         * @return comments 
          */
-        public SampleBuilder setComment(String comment) {
-             this.comment = comment;
+        public SampleBuilder setComments(java.util.List<String> comments) {
+             this.comments = comments;
              return this;
         }
 

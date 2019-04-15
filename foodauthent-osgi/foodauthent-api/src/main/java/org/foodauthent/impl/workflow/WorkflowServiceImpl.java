@@ -2,6 +2,7 @@ package org.foodauthent.impl.workflow;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.foodauthent.api.WorkflowService;
 import org.foodauthent.api.internal.job.JobService;
@@ -18,6 +19,7 @@ import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.TrainingJobPageResult;
 import org.foodauthent.model.Workflow;
 import org.foodauthent.model.WorkflowPageResult;
+import org.foodauthent.model.Workflow.TypeEnum;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -104,7 +106,7 @@ public class WorkflowServiceImpl implements WorkflowService {
     }
 
     @Override
-    public PredictionPageResult findModelByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
+    public PredictionPageResult findPredictionByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
 	ResultPage<Prediction> res = persistenceService.findByKeywordsPaged(keywords, Prediction.class, pageNumber,
 		pageSize);
 	return PredictionPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
@@ -121,9 +123,12 @@ public class WorkflowServiceImpl implements WorkflowService {
 
     @Override
     public WorkflowPageResult findPredictionWorkflows(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	// TODO we need a better way to query fa-models by means of specific properties
-	// (e.g. a specific workflow-type)
-	throw new UnsupportedOperationException();
+	ResultPage<Workflow> res = persistenceService.findByKeywordsPaged(keywords, Workflow.class, pageNumber, pageSize);
+	//TODO make more efficient (i.e. let the DB do the job)
+	List<Workflow> filtered = res.getResult().stream().filter(w -> w.getType() == TypeEnum.PREDICTION_WORKFLOW)
+		.collect(Collectors.toList());
+	return WorkflowPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(filtered).build();
     }
 
     @Override
@@ -136,8 +141,23 @@ public class WorkflowServiceImpl implements WorkflowService {
 
     @Override
     public WorkflowPageResult findTrainingWorkflows(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	// TODO we need a better way to query fa-models by means of specific properties
-	// (e.g. a specific workflow-type)
-	throw new UnsupportedOperationException();
+	ResultPage<Workflow> res = persistenceService.findByKeywordsPaged(keywords, Workflow.class, pageNumber, pageSize);
+	//TODO make more efficient (i.e. let the DB do the job)
+	List<Workflow> filtered = res.getResult().stream().filter(w -> w.getType() == TypeEnum.TRAINING_WORKFLOW)
+		.collect(Collectors.toList());
+	return WorkflowPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(filtered).build();
+    }
+    
+    @Override
+    public PredictionPageResult findPredictionsByFingerprintSetId(UUID fingerprintsetId, Integer pageNumber,
+	    Integer pageSize, List<String> keywords) {
+	ResultPage<Prediction> res = persistenceService.findByKeywordsPaged(keywords, Prediction.class, pageNumber,
+		pageSize);
+	// TODO make more efficient (i.e. let the DB do the job)
+	List<Prediction> filtered = res.getResult().stream()
+		.filter(p -> p.getFingerprintSetId().equals(fingerprintsetId)).collect(Collectors.toList());
+	return PredictionPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(filtered).build();
     }
 }

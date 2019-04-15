@@ -139,7 +139,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 			}else if (modelType.equals(Sample.class) && o instanceof Sample) {
 				final Sample s = (Sample) o;
 				if (keywords.isEmpty() || containsAKeyword(s.getApplication(), keywords)
-						|| containsAKeyword(s.getComment(), keywords)) {
+						|| s.getComments().stream().anyMatch(c -> containsAKeyword(c, keywords))) {
 					result.add((T) s);
 				}
 			} else {
@@ -306,6 +306,16 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 	@Override
 	public int getPriority() {
 		return 0;
+	}
+
+	@Override
+	public <T extends FaModel> long getModelCount(Class<T> modelType) {
+		return models.values().stream().filter(m -> modelType.isAssignableFrom(m.getClass())).count();
+	}
+
+	@Override
+	public long getBlobCount() {
+		return blobs.size();
 	}
 
 }
