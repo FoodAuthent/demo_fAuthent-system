@@ -80,7 +80,12 @@ public class WorkflowTest extends AbstractITTest {
 
 	/* run prediction workflow */
 	Response response = workflowService.createPredictionJob(wfId, fingerprintSetId, modelId);
-	assertThat("Unexpected server response: " + response.readEntity(String.class), response.getStatus(), is(200));
+	try {
+	    assertThat("Unexpected server response", response.getStatus(), is(200));
+	} catch (AssertionError e) {
+	    System.err.println(response.readEntity(String.class));
+	    throw e;
+	}
 	PredictionJob predictionJob = response.readEntity(PredictionJob.class);
 	assertEquals(StatusEnum.RUNNING, predictionJob.getStatus());
 	// let the job finish the prediction
@@ -92,7 +97,7 @@ public class WorkflowTest extends AbstractITTest {
 		predictionJob.getStatus());
 	Prediction prediction = workflowService.getPredictionResult(predictionJob.getPredictionId())
 		.readEntity(Prediction.class);
-	assertEquals(prediction.getConfidenceMap().size(), 1);
+	assertEquals(prediction.getConfidenceMap().size(), 2);
     }
     
     @Test
@@ -187,7 +192,12 @@ public class WorkflowTest extends AbstractITTest {
 
 	/* run training workflow */
 	Response response = workflowService.createTrainingJob(wfId, fingerprintSetId);
-	assertThat("Unexpected server response: " + response.readEntity(String.class), response.getStatus(), is(200));
+	try {
+	    assertThat("Unexpected server response", response.getStatus(), is(200));
+	} catch (AssertionError e) {
+	    System.err.println(response.readEntity(String.class));
+	    throw e;
+	}
 	TrainingJob trainingJob = response.readEntity(TrainingJob.class);
 	assertEquals(org.foodauthent.model.TrainingJob.StatusEnum.RUNNING, trainingJob.getStatus());
 	// let the job finish the training
@@ -223,8 +233,10 @@ public class WorkflowTest extends AbstractITTest {
  
 	//upload fingerprints
 	Fingerprint fp1 = Fingerprint.builder().setSampleId(sampleId).setFileId(fpFile1.getFaId()).build();
+	restService(FingerprintRestService.class).createFingerprint(fp1);
 	Fingerprint fp2 = Fingerprint.builder().setSampleId(sampleId).setFileId(fpFile2.getFaId()).build();
-      
+	restService(FingerprintRestService.class).createFingerprint(fp2);
+     
         // upload fingerprint set
 	FingerprintSet fps = FingerprintSet.builder().setName("myset")
 		.setFingerprintIds(Arrays.asList(fp1.getFaId(), fp2.getFaId())).build();

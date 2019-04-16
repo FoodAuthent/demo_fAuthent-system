@@ -2649,6 +2649,7 @@ components:
           description: >-
             URIs pointing to the resource containg the fingerprints to predict
             the labels for.
+            (in the same order as the fingerprint-ids of the fingerprint-set)
           type: array 
           items:
             type: string

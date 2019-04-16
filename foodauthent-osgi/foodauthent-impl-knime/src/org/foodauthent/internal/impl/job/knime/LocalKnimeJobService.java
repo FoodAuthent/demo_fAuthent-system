@@ -151,7 +151,7 @@ public class LocalKnimeJobService implements JobService {
 	}
 
 	@Override
-	public TrainingJob createNewTrainingJob(Workflow workflow, FingerprintSet fingerprintSet) throws InitJobException {
+	public TrainingJob createNewTrainingJob(final Workflow workflow, final FingerprintSet fingerprintSet) throws InitJobException {
 		if(workflow == null) {
 			throw new InitJobException("No workflow given");
 		}
@@ -218,8 +218,8 @@ public class LocalKnimeJobService implements JobService {
 
 					// store new model (metadata and file) to the data base
 					ModelType modelType = ModelType.builder()
-							.setName(ModelType.NameEnum
-									.valueOf(workflow.getOutputTypes().getModelType().toString().toUpperCase()))
+							.setName(ModelType.NameEnum.valueOf(
+									workflow.getOutputTypes().getModelType().getName().toString().toUpperCase()))
 							.build();
 					Model model = Model.builder().setName("generated model by " + workflow.getName())
 							.setDate(LocalDate.now())
@@ -243,6 +243,7 @@ public class LocalKnimeJobService implements JobService {
 	}
 	
 	private List<URI> saveTemporaryFingerprintFiles(FingerprintSet fingerprintSet) {
+		//NOTE: uris must be in the same order as the fingerprint-ids of the fingerprintset!
 		List<URI> uris = new ArrayList<>();
 		for (UUID fpId : fingerprintSet.getFingerprintIds()) {
 			Fingerprint fp = persistenceService.getFaModelByUUID(fpId, Fingerprint.class);
