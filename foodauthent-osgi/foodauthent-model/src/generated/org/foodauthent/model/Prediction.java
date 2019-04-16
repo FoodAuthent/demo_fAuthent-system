@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.foodauthent.model.PredictionInstance;
 
 
 
@@ -23,10 +24,11 @@ public class Prediction   extends FaModel {
 
 
   protected java.util.UUID faId;
-  protected java.util.Map<String, Float> confidenceMap;
+  protected java.util.Map<String, PredictionInstance> predictionMap;
   protected java.util.UUID workflowId;
   protected java.util.UUID fingerprintsetId;
   protected java.util.UUID modelId;
+  protected java.util.List<String> classLabels;
   
   public String getTypeID() {
     return "Prediction";
@@ -39,10 +41,11 @@ public class Prediction   extends FaModel {
   private Prediction(PredictionBuilder builder) {
     
     faId = immutable(builder.faId);
-    confidenceMap = immutable(builder.confidenceMap);
+    predictionMap = immutable(builder.predictionMap);
     workflowId = immutable(builder.workflowId);
     fingerprintsetId = immutable(builder.fingerprintsetId);
     modelId = immutable(builder.modelId);
+    classLabels = immutable(builder.classLabels);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -63,7 +66,7 @@ public class Prediction   extends FaModel {
             return false;
         }
         Prediction ent = (Prediction)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(confidenceMap, ent.confidenceMap) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetId, ent.fingerprintsetId) && Objects.equals(modelId, ent.modelId);
+        return Objects.equals(faId, ent.faId) && Objects.equals(predictionMap, ent.predictionMap) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetId, ent.fingerprintsetId) && Objects.equals(modelId, ent.modelId) && Objects.equals(classLabels, ent.classLabels);
     }
 
 
@@ -76,11 +79,11 @@ public class Prediction   extends FaModel {
     }
     
   /**
-   * The confidences for each fingerprint, mapped from the fingerprint-id.
-   * @return confidenceMap 
+   * The predictions for each individual fingerprint. The map key is the fingerprint-id.
+   * @return predictionMap 
    */
-  public java.util.Map<String, Float> getConfidenceMap() {
-        return confidenceMap;
+  public java.util.Map<String, PredictionInstance> getPredictionMap() {
+        return predictionMap;
     }
     
   /**
@@ -107,6 +110,14 @@ public class Prediction   extends FaModel {
         return modelId;
     }
     
+  /**
+   * available class labels
+   * @return classLabels 
+   */
+  public java.util.List<String> getClassLabels() {
+        return classLabels;
+    }
+    
   
  	/**
   	 * @return a newly created builder
@@ -126,10 +137,11 @@ public class Prediction   extends FaModel {
 	public static PredictionBuilder builder(Prediction entity) {
 		PredictionBuilder builder = builder();
         builder.faId = entity.faId;
-        builder.confidenceMap = entity.confidenceMap;
+        builder.predictionMap = entity.predictionMap;
         builder.workflowId = entity.workflowId;
         builder.fingerprintsetId = entity.fingerprintsetId;
         builder.modelId = entity.modelId;
+        builder.classLabels = entity.classLabels;
  		return builder;
   	}
   	
@@ -141,10 +153,11 @@ public class Prediction   extends FaModel {
         }
     
         private java.util.UUID faId;
-        private java.util.Map<String, Float> confidenceMap = new java.util.HashMap<>();
+        private java.util.Map<String, PredictionInstance> predictionMap = new java.util.HashMap<>();
         private java.util.UUID workflowId;
         private java.util.UUID fingerprintsetId;
         private java.util.UUID modelId;
+        private java.util.List<String> classLabels = new java.util.ArrayList<>();
 
         /**
          * A global id within the FoodAuthent-system.
@@ -156,11 +169,11 @@ public class Prediction   extends FaModel {
         }
 
         /**
-         * The confidences for each fingerprint, mapped from the fingerprint-id.
-         * @return confidenceMap 
+         * The predictions for each individual fingerprint. The map key is the fingerprint-id.
+         * @return predictionMap 
          */
-        public PredictionBuilder setConfidenceMap(java.util.Map<String, Float> confidenceMap) {
-             this.confidenceMap = confidenceMap;
+        public PredictionBuilder setPredictionMap(java.util.Map<String, PredictionInstance> predictionMap) {
+             this.predictionMap = predictionMap;
              return this;
         }
 
@@ -188,6 +201,15 @@ public class Prediction   extends FaModel {
          */
         public PredictionBuilder setModelId(java.util.UUID modelId) {
              this.modelId = modelId;
+             return this;
+        }
+
+        /**
+         * available class labels
+         * @return classLabels 
+         */
+        public PredictionBuilder setClassLabels(java.util.List<String> classLabels) {
+             this.classLabels = classLabels;
              return this;
         }
 

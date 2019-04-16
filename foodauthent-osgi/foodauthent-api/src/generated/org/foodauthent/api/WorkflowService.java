@@ -38,12 +38,12 @@ public interface WorkflowService {
      * 
      *
      * @param workflowId TODO
-     * @param fingerprintsetId TODO
+     * @param fingerprintsetIds One or more fingerprintset-ids referencing the fingerprint sets to learn the model on. Each fingerprintset represents one class! 
      *
      * @return the result
      * @throws InitJobException Exception thrown when a job could not be initialized.
      */
-    TrainingJob createTrainingJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId) throws FAExceptions.InitJobException;
+    TrainingJob createTrainingJob(java.util.UUID workflowId, java.util.List<java.util.UUID> fingerprintsetIds) throws FAExceptions.InitJobException;
         
     /**
      * Creates/adds a new workflow.

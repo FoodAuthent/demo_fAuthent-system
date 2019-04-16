@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.foodauthent.model.PredictionInstance;
 
 
 
@@ -22,7 +23,7 @@ import java.util.Objects;
 public class PredictionWorkflowOutput   extends FaModel {
 
 
-  protected java.util.Map<String, Float> confidenceMap;
+  protected java.util.Map<String, PredictionInstance> predictionMap;
   
   public String getTypeID() {
     return "PredictionWorkflowOutput";
@@ -38,7 +39,7 @@ public class PredictionWorkflowOutput   extends FaModel {
   
   private PredictionWorkflowOutput(PredictionWorkflowOutputBuilder builder) {
     
-    confidenceMap = immutable(builder.confidenceMap);
+    predictionMap = immutable(builder.predictionMap);
     
     
   }
@@ -58,16 +59,16 @@ public class PredictionWorkflowOutput   extends FaModel {
             return false;
         }
         PredictionWorkflowOutput ent = (PredictionWorkflowOutput)o;
-        return Objects.equals(confidenceMap, ent.confidenceMap);
+        return Objects.equals(predictionMap, ent.predictionMap);
     }
 
 
   /**
-   * The confidences for each fingerprint, mapped from the fingerprint-id.
-   * @return confidenceMap 
+   * The predictions for each individual fingerprint. The map key is the fingerprint-id.
+   * @return predictionMap 
    */
-  public java.util.Map<String, Float> getConfidenceMap() {
-        return confidenceMap;
+  public java.util.Map<String, PredictionInstance> getPredictionMap() {
+        return predictionMap;
     }
     
   
@@ -88,7 +89,7 @@ public class PredictionWorkflowOutput   extends FaModel {
 	 */
 	public static PredictionWorkflowOutputBuilder builder(PredictionWorkflowOutput entity) {
 		PredictionWorkflowOutputBuilder builder = builder();
-        builder.confidenceMap = entity.confidenceMap;
+        builder.predictionMap = entity.predictionMap;
  		return builder;
   	}
   	
@@ -99,14 +100,14 @@ public class PredictionWorkflowOutput   extends FaModel {
             
         }
     
-        private java.util.Map<String, Float> confidenceMap = new java.util.HashMap<>();
+        private java.util.Map<String, PredictionInstance> predictionMap = new java.util.HashMap<>();
 
         /**
-         * The confidences for each fingerprint, mapped from the fingerprint-id.
-         * @return confidenceMap 
+         * The predictions for each individual fingerprint. The map key is the fingerprint-id.
+         * @return predictionMap 
          */
-        public PredictionWorkflowOutputBuilder setConfidenceMap(java.util.Map<String, Float> confidenceMap) {
-             this.confidenceMap = confidenceMap;
+        public PredictionWorkflowOutputBuilder setPredictionMap(java.util.Map<String, PredictionInstance> predictionMap) {
+             this.predictionMap = predictionMap;
              return this;
         }
 

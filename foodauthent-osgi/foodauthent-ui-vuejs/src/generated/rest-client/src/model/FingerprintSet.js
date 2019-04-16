@@ -76,6 +76,9 @@
       if (data.hasOwnProperty('description')) {
         obj['description'] = ApiClient.convertToType(data['description'], 'String');
       }
+      if (data.hasOwnProperty('class-label')) {
+        obj['class-label'] = ApiClient.convertToType(data['class-label'], 'String');
+      }
     }
     return obj;
   }
@@ -100,6 +103,11 @@
    * @member {String} description
    */
   exports.prototype['description'] = undefined;
+  /**
+   * A class label associated with this fingerprint set.
+   * @member {String} class-label
+   */
+  exports.prototype['class-label'] = undefined;
 
 
 

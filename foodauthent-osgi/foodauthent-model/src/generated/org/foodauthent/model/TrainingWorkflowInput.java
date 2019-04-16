@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.TrainingWorkflowInputFingerprint;
 import org.foodauthent.model.WorkflowParameter;
 
 
@@ -25,8 +25,7 @@ public class TrainingWorkflowInput   extends FaModel {
 
 
   protected java.util.List<WorkflowParameter> parameters;
-  protected FingerprintSet fingerprintset;
-  protected java.util.List<String> fingerprintURIs;
+  protected java.util.List<TrainingWorkflowInputFingerprint> fingerprints;
   
   public String getTypeID() {
     return "TrainingWorkflowInput";
@@ -43,8 +42,7 @@ public class TrainingWorkflowInput   extends FaModel {
   private TrainingWorkflowInput(TrainingWorkflowInputBuilder builder) {
     
     parameters = immutable(builder.parameters);
-    fingerprintset = immutable(builder.fingerprintset);
-    fingerprintURIs = immutable(builder.fingerprintURIs);
+    fingerprints = immutable(builder.fingerprints);
     
     
   }
@@ -64,7 +62,7 @@ public class TrainingWorkflowInput   extends FaModel {
             return false;
         }
         TrainingWorkflowInput ent = (TrainingWorkflowInput)o;
-        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprintset, ent.fingerprintset) && Objects.equals(fingerprintURIs, ent.fingerprintURIs);
+        return Objects.equals(parameters, ent.parameters) && Objects.equals(fingerprints, ent.fingerprints);
     }
 
 
@@ -77,19 +75,11 @@ public class TrainingWorkflowInput   extends FaModel {
     }
     
   /**
-   * Get fingerprintset
-   * @return fingerprintset 
+   * Get fingerprints
+   * @return fingerprints 
    */
-  public FingerprintSet getFingerprintset() {
-        return fingerprintset;
-    }
-    
-  /**
-   * URI pointing to the resource containg the fingerprints to learn the model from.
-   * @return fingerprintURIs 
-   */
-  public java.util.List<String> getFingerprintURIs() {
-        return fingerprintURIs;
+  public java.util.List<TrainingWorkflowInputFingerprint> getFingerprints() {
+        return fingerprints;
     }
     
   
@@ -111,8 +101,7 @@ public class TrainingWorkflowInput   extends FaModel {
 	public static TrainingWorkflowInputBuilder builder(TrainingWorkflowInput entity) {
 		TrainingWorkflowInputBuilder builder = builder();
         builder.parameters = entity.parameters;
-        builder.fingerprintset = entity.fingerprintset;
-        builder.fingerprintURIs = entity.fingerprintURIs;
+        builder.fingerprints = entity.fingerprints;
  		return builder;
   	}
   	
@@ -124,8 +113,7 @@ public class TrainingWorkflowInput   extends FaModel {
         }
     
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
-        private FingerprintSet fingerprintset;
-        private java.util.List<String> fingerprintURIs = new java.util.ArrayList<>();
+        private java.util.List<TrainingWorkflowInputFingerprint> fingerprints = new java.util.ArrayList<>();
 
         /**
          * The workflow parameters as provided by the Workflow-entity.
@@ -137,20 +125,11 @@ public class TrainingWorkflowInput   extends FaModel {
         }
 
         /**
-         * Get fingerprintset
-         * @return fingerprintset 
+         * Get fingerprints
+         * @return fingerprints 
          */
-        public TrainingWorkflowInputBuilder setFingerprintset(FingerprintSet fingerprintset) {
-             this.fingerprintset = fingerprintset;
-             return this;
-        }
-
-        /**
-         * URI pointing to the resource containg the fingerprints to learn the model from.
-         * @return fingerprintURIs 
-         */
-        public TrainingWorkflowInputBuilder setFingerprintURIs(java.util.List<String> fingerprintURIs) {
-             this.fingerprintURIs = fingerprintURIs;
+        public TrainingWorkflowInputBuilder setFingerprints(java.util.List<TrainingWorkflowInputFingerprint> fingerprints) {
+             this.fingerprints = fingerprints;
              return this;
         }
 

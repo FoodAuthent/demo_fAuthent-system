@@ -80,6 +80,9 @@ public interface ModelMixIn {
     @JsonProperty("fingerprintset-id")
     public java.util.UUID getFingerprintsetId();
     
+    @JsonProperty("class-labels")
+    public java.util.List<String> getClassLabels();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -131,6 +134,9 @@ public interface ModelMixIn {
         
         @JsonProperty("fingerprintset-id")
         public ModelMixInBuilder setFingerprintsetId(final java.util.UUID fingerprintsetId);
+        
+        @JsonProperty("class-labels")
+        public ModelMixInBuilder setClassLabels(final java.util.List<String> classLabels);
         
     }
 

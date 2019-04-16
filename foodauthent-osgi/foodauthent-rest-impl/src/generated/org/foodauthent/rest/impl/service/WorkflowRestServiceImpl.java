@@ -63,12 +63,12 @@ public class WorkflowRestServiceImpl implements WorkflowRestService {
     /**
      *
      * @param workflowId TODO
-     * @param fingerprintsetId TODO
+     * @param fingerprintsetIds One or more fingerprintset-ids referencing the fingerprint sets to learn the model on. Each fingerprintset represents one class! 
      * @return the response
      */
-    public Response createTrainingJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId) {
+    public Response createTrainingJob(java.util.UUID workflowId, java.util.List<java.util.UUID> fingerprintsetIds) {
         try { 
-            Object res = service.createTrainingJob(workflowId, fingerprintsetId);
+            Object res = service.createTrainingJob(workflowId, fingerprintsetIds);
             return Response.ok(res).build();
          } 
         catch(FAExceptions.InitJobException e) {

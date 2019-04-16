@@ -74,6 +74,8 @@ public class ModelUtil {
         mapper.addMixIn(OrganizationalPostalAddress.OrganizationalPostalAddressBuilder.class, OrganizationalPostalAddressMixIn.OrganizationalPostalAddressMixInBuilder.class);
         mapper.addMixIn(PostalAddress.class, PostalAddressMixIn.class);
         mapper.addMixIn(PostalAddress.PostalAddressBuilder.class, PostalAddressMixIn.PostalAddressMixInBuilder.class);
+        mapper.addMixIn(PredictionInstance.class, PredictionInstanceMixIn.class);
+        mapper.addMixIn(PredictionInstance.PredictionInstanceBuilder.class, PredictionInstanceMixIn.PredictionInstanceMixInBuilder.class);
         mapper.addMixIn(PredictionJob.class, PredictionJobMixIn.class);
         mapper.addMixIn(PredictionJob.PredictionJobBuilder.class, PredictionJobMixIn.PredictionJobMixInBuilder.class);
         mapper.addMixIn(PredictionJobPageResult.class, PredictionJobPageResultMixIn.class);
@@ -112,6 +114,8 @@ public class ModelUtil {
         mapper.addMixIn(TrainingJob.TrainingJobBuilder.class, TrainingJobMixIn.TrainingJobMixInBuilder.class);
         mapper.addMixIn(TrainingJobPageResult.class, TrainingJobPageResultMixIn.class);
         mapper.addMixIn(TrainingJobPageResult.TrainingJobPageResultBuilder.class, TrainingJobPageResultMixIn.TrainingJobPageResultMixInBuilder.class);
+        mapper.addMixIn(TrainingWorkflowInputFingerprint.class, TrainingWorkflowInputFingerprintMixIn.class);
+        mapper.addMixIn(TrainingWorkflowInputFingerprint.TrainingWorkflowInputFingerprintBuilder.class, TrainingWorkflowInputFingerprintMixIn.TrainingWorkflowInputFingerprintMixInBuilder.class);
         mapper.addMixIn(TrainingWorkflowInput.class, TrainingWorkflowInputMixIn.class);
         mapper.addMixIn(TrainingWorkflowInput.TrainingWorkflowInputBuilder.class, TrainingWorkflowInputMixIn.TrainingWorkflowInputMixInBuilder.class);
         mapper.addMixIn(TrainingWorkflowOutput.class, TrainingWorkflowOutputMixIn.class);

@@ -1,5 +1,6 @@
 package org.foodauthent.test;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -8,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import javax.ws.rs.client.Entity;
@@ -19,13 +21,12 @@ import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintType;
-import org.foodauthent.model.FingerprintType.NameEnum;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelType;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
-import org.foodauthent.model.PredictionPageResult;
 import org.foodauthent.model.PredictionJob.StatusEnum;
+import org.foodauthent.model.PredictionPageResult;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.Sample;
 import org.foodauthent.model.TrainingJob;
@@ -57,7 +58,7 @@ public class WorkflowTest extends AbstractITTest {
     @Test
     public void testUploadAndRunPredictionWorkflow() throws InterruptedException {
 	UUID predictionWorkflowFileId = uploadPredictionWorkflowFile();
-	UUID fingerprintSetId = uploadFingerprintSet();
+	UUID fingerprintSetId = uploadFingerprintSets().get(0);
 	UUID modelId = uploadModel();
 
 	// upload workflow metadata
@@ -98,7 +99,7 @@ public class WorkflowTest extends AbstractITTest {
 		predictionJob.getStatus());
 	Prediction prediction = workflowService.getPredictionResult(predictionJob.getPredictionId())
 		.readEntity(Prediction.class);
-	assertEquals(prediction.getConfidenceMap().size(), 2);
+	assertEquals(prediction.getPredictionMap().size(), 2);
 	
 	/* retrieve prediction by fingerprintset-id */
 	response = workflowService.findPredictionByKeyword(1, 10, Arrays.asList(fingerprintSetId.toString()));
@@ -112,7 +113,7 @@ public class WorkflowTest extends AbstractITTest {
     public void testFailInitPredictionWorkflow() {
 	
 	UUID predictionWorkflowFileId = uploadPredictionWorkflowFile();
-	UUID fingerprintSetId = uploadFingerprintSet();
+	UUID fingerprintSetId = uploadFingerprintSets().get(0);
 	UUID modelId = uploadModel();
 	
 	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
@@ -196,10 +197,10 @@ public class WorkflowTest extends AbstractITTest {
 		.build(); // TODO set more (or even all) properties
 	UUID wfId = workflowService.createWorkflow(wf).readEntity(UUID.class);
 	
-	UUID fingerprintSetId = uploadFingerprintSet();
+	List<UUID> fingerprintSetIds = uploadFingerprintSets();
 
 	/* run training workflow */
-	Response response = workflowService.createTrainingJob(wfId, fingerprintSetId);
+	Response response = workflowService.createTrainingJob(wfId, fingerprintSetIds);
 	try {
 	    assertThat("Unexpected server response", response.getStatus(), is(200));
 	} catch (AssertionError e) {
@@ -219,7 +220,7 @@ public class WorkflowTest extends AbstractITTest {
 	assertEquals(model.getType().getName(), ModelType.NameEnum.KNIME_WORKFLOW);
     }
 
-    private UUID uploadFingerprintSet() {
+    private List<UUID> uploadFingerprintSets() {
         
         //upload product
         Product p = Product.builder().setBrand("my_product").setGtin("1234").build();
@@ -238,17 +239,28 @@ public class WorkflowTest extends AbstractITTest {
 		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).build();
 	restService(FileRestService.class).createFileMetadata(fpFile2);
 	TestUtils.uploadFileData(webTarget, fpFile2.getFaId(), new File("files/fingerprints/fp2.zip"));
+	FileMetadata fpFile3 = FileMetadata.builder().setName("fingerprint3")
+		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).build();
+	restService(FileRestService.class).createFileMetadata(fpFile3);
+	TestUtils.uploadFileData(webTarget, fpFile3.getFaId(), new File("files/fingerprints/fp3.zip"));
+
  
 	//upload fingerprints
+	FingerprintRestService fpService = restService(FingerprintRestService.class);
 	Fingerprint fp1 = Fingerprint.builder().setSampleId(sampleId).setFileId(fpFile1.getFaId()).build();
-	restService(FingerprintRestService.class).createFingerprint(fp1);
+	fpService.createFingerprint(fp1);
 	Fingerprint fp2 = Fingerprint.builder().setSampleId(sampleId).setFileId(fpFile2.getFaId()).build();
-	restService(FingerprintRestService.class).createFingerprint(fp2);
+	fpService.createFingerprint(fp2);
+	Fingerprint fp3 = Fingerprint.builder().setSampleId(sampleId).setFileId(fpFile3.getFaId()).build();
+	fpService.createFingerprint(fp3);
      
-        // upload fingerprint set
-	FingerprintSet fps = FingerprintSet.builder().setName("myset")
-		.setFingerprintIds(Arrays.asList(fp1.getFaId(), fp2.getFaId())).build();
-	return restService(FingerprintRestService.class).createFingerprintSet(fps).readEntity(UUID.class);
+        // upload fingerprint sets
+	FingerprintSet fps = FingerprintSet.builder().setName("myset1")
+		.setFingerprintIds(Arrays.asList(fp1.getFaId(), fp2.getFaId())).setClassLabel("label1").build();
+	FingerprintSet fps2 = FingerprintSet.builder().setName("myset2").setFingerprintIds(Arrays.asList(fp3.getFaId()))
+		.setClassLabel("label2").build();
+	return asList(fpService.createFingerprintSet(fps).readEntity(UUID.class),
+		fpService.createFingerprintSet(fps2).readEntity(UUID.class));
     }
 
     private UUID uploadModel() {

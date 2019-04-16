@@ -120,11 +120,11 @@
     /**
      * Starts creating a model for a set of fingerprints.
      * @param {String} workflowId TODO
-     * @param {String} fingerprintsetId TODO
+     * @param {Array.<String>} fingerprintsetIds One or more fingerprintset-ids referencing the fingerprint sets to learn the model on. Each fingerprintset represents one class! 
      * @param {module:api/WorkflowApi~createTrainingJobCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/TrainingJob}
      */
-    this.createTrainingJob = function(workflowId, fingerprintsetId, callback) {
+    this.createTrainingJob = function(workflowId, fingerprintsetIds, callback) {
       var postBody = null;
 
       // verify the required parameter 'workflowId' is set
@@ -132,9 +132,9 @@
         throw new Error("Missing the required parameter 'workflowId' when calling createTrainingJob");
       }
 
-      // verify the required parameter 'fingerprintsetId' is set
-      if (fingerprintsetId === undefined || fingerprintsetId === null) {
-        throw new Error("Missing the required parameter 'fingerprintsetId' when calling createTrainingJob");
+      // verify the required parameter 'fingerprintsetIds' is set
+      if (fingerprintsetIds === undefined || fingerprintsetIds === null) {
+        throw new Error("Missing the required parameter 'fingerprintsetIds' when calling createTrainingJob");
       }
 
 
@@ -142,9 +142,12 @@
       };
       var queryParams = {
         'workflow-id': workflowId,
-        'fingerprintset-id': fingerprintsetId,
       };
       var collectionQueryParams = {
+        'fingerprintset-ids': {
+          value: fingerprintsetIds,
+          collectionFormat: 'multi'
+        },
       };
       var headerParams = {
       };

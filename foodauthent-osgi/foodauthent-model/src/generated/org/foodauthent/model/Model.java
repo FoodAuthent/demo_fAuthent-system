@@ -36,6 +36,7 @@ public class Model   extends FaModel {
   protected java.util.UUID fileId;
   protected java.util.UUID workflowId;
   protected java.util.UUID fingerprintsetId;
+  protected java.util.List<String> classLabels;
   
   public String getTypeID() {
     return "Model";
@@ -58,6 +59,7 @@ public class Model   extends FaModel {
     fileId = immutable(builder.fileId);
     workflowId = immutable(builder.workflowId);
     fingerprintsetId = immutable(builder.fingerprintsetId);
+    classLabels = immutable(builder.classLabels);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -78,7 +80,7 @@ public class Model   extends FaModel {
             return false;
         }
         Model ent = (Model)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetId, ent.fingerprintsetId);
+        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetId, ent.fingerprintsetId) && Objects.equals(classLabels, ent.classLabels);
     }
 
 
@@ -170,6 +172,14 @@ public class Model   extends FaModel {
         return fingerprintsetId;
     }
     
+  /**
+   * the available class labels
+   * @return classLabels 
+   */
+  public java.util.List<String> getClassLabels() {
+        return classLabels;
+    }
+    
   
  	/**
   	 * @return a newly created builder
@@ -199,6 +209,7 @@ public class Model   extends FaModel {
         builder.fileId = entity.fileId;
         builder.workflowId = entity.workflowId;
         builder.fingerprintsetId = entity.fingerprintsetId;
+        builder.classLabels = entity.classLabels;
  		return builder;
   	}
   	
@@ -220,6 +231,7 @@ public class Model   extends FaModel {
         private java.util.UUID fileId;
         private java.util.UUID workflowId;
         private java.util.UUID fingerprintsetId;
+        private java.util.List<String> classLabels = new java.util.ArrayList<>();
 
         /**
          * A global id within the FoodAuthent-system.
@@ -317,6 +329,15 @@ public class Model   extends FaModel {
          */
         public ModelBuilder setFingerprintsetId(java.util.UUID fingerprintsetId) {
              this.fingerprintsetId = fingerprintsetId;
+             return this;
+        }
+
+        /**
+         * the available class labels
+         * @return classLabels 
+         */
+        public ModelBuilder setClassLabels(java.util.List<String> classLabels) {
+             this.classLabels = classLabels;
              return this;
         }
 

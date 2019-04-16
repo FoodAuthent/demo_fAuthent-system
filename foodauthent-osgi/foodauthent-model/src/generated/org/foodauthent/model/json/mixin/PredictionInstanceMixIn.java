@@ -3,8 +3,6 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.TrainingWorkflowInputFingerprint;
-import org.foodauthent.model.WorkflowParameter;
 
 import java.util.UUID;
 
@@ -17,8 +15,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
 
-import org.foodauthent.model.TrainingWorkflowInput;
-import org.foodauthent.model.TrainingWorkflowInput.TrainingWorkflowInputBuilder;
+import org.foodauthent.model.PredictionInstance;
+import org.foodauthent.model.PredictionInstance.PredictionInstanceBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -30,13 +28,13 @@ import org.foodauthent.model.TrainingWorkflowInput.TrainingWorkflowInputBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = TrainingWorkflowInput.class)
+    defaultImpl = PredictionInstance.class)
 @JsonSubTypes({
-    @Type(value = TrainingWorkflowInput.class, name="TrainingWorkflowInput")
+    @Type(value = PredictionInstance.class, name="PredictionInstance")
 })
-@JsonDeserialize(builder=TrainingWorkflowInputBuilder.class)
+@JsonDeserialize(builder=PredictionInstanceBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface TrainingWorkflowInputMixIn {
+public interface PredictionInstanceMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -48,11 +46,11 @@ public interface TrainingWorkflowInputMixIn {
   	public UUID getFaId();
     
 
-    @JsonProperty("parameters")
-    public java.util.List<WorkflowParameter> getParameters();
+    @JsonProperty("class-label")
+    public String getClassLabel();
     
-    @JsonProperty("fingerprints")
-    public java.util.List<TrainingWorkflowInputFingerprint> getFingerprints();
+    @JsonProperty("probabilities")
+    public java.util.List<Float> getProbabilities();
     
 
     /**
@@ -64,20 +62,20 @@ public interface TrainingWorkflowInputMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = TrainingWorkflowInputBuilder.class)
+        defaultImpl = PredictionInstanceBuilder.class)
     @JsonSubTypes({
-        @Type(value = TrainingWorkflowInput.TrainingWorkflowInputBuilder.class, name="TrainingWorkflowInput")
+        @Type(value = PredictionInstance.PredictionInstanceBuilder.class, name="PredictionInstance")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface TrainingWorkflowInputMixInBuilder {
+    public static interface PredictionInstanceMixInBuilder {
     
-        public TrainingWorkflowInputMixIn build();
+        public PredictionInstanceMixIn build();
     
-        @JsonProperty("parameters")
-        public TrainingWorkflowInputMixInBuilder setParameters(final java.util.List<WorkflowParameter> parameters);
+        @JsonProperty("class-label")
+        public PredictionInstanceMixInBuilder setClassLabel(final String classLabel);
         
-        @JsonProperty("fingerprints")
-        public TrainingWorkflowInputMixInBuilder setFingerprints(final java.util.List<TrainingWorkflowInputFingerprint> fingerprints);
+        @JsonProperty("probabilities")
+        public PredictionInstanceMixInBuilder setProbabilities(final java.util.List<Float> probabilities);
         
     }
 

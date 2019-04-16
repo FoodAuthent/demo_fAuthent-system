@@ -52,14 +52,14 @@ public interface WorkflowRestService{
     /**
      *
      * @param workflowId TODO
-     * @param fingerprintsetId TODO
+     * @param fingerprintsetIds One or more fingerprintset-ids referencing the fingerprint sets to learn the model on. Each fingerprintset represents one class! 
      * @return the response
      */
     @POST
     @Path("/workflow/training/job")
     @Produces({ "application/json" })
     public Response createTrainingJob(@QueryParam("workflow-id")java.util.UUID workflowId
-, @QueryParam("fingerprintset-id")java.util.UUID fingerprintsetId
+, @QueryParam("fingerprintset-ids")java.util.List<java.util.UUID> fingerprintsetIds
 );
 
     /**

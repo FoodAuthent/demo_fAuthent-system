@@ -93,6 +93,9 @@
       if (data.hasOwnProperty('fingerprintset-id')) {
         obj['fingerprintset-id'] = ApiClient.convertToType(data['fingerprintset-id'], 'String');
       }
+      if (data.hasOwnProperty('class-labels')) {
+        obj['class-labels'] = ApiClient.convertToType(data['class-labels'], ['String']);
+      }
     }
     return obj;
   }
@@ -151,6 +154,11 @@
    * @member {String} fingerprintset-id
    */
   exports.prototype['fingerprintset-id'] = undefined;
+  /**
+   * the available class labels
+   * @member {Array.<String>} class-labels
+   */
+  exports.prototype['class-labels'] = undefined;
 
 
 

@@ -1,5 +1,6 @@
 package org.foodauthent.test;
 
+import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
@@ -64,7 +65,7 @@ public class OpenChromWorkflowTest extends AbstractITTest {
 	UUID fingerprintSetId = uploadFingerprintSet(webTarget);
 
 	/* run training workflow */
-	TrainingJob trainingJob = workflowService.createTrainingJob(wfId, fingerprintSetId)
+	TrainingJob trainingJob = workflowService.createTrainingJob(wfId, asList(fingerprintSetId))
 		.readEntity(TrainingJob.class);
 	assertEquals(org.foodauthent.model.TrainingJob.StatusEnum.RUNNING, trainingJob.getStatus());
 	// let the job finish the training

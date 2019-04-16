@@ -90,11 +90,10 @@
     "fieldName" : "fa-id",
     "type" : "loadFile"
   }, {
-    "label" : "Product-id",
-    "model" : "product-id",
+    "label" : "Fingerprintset-id",
+    "model" : "fingerprintset-id",
     "required" : false,
-    "idprovider" : "select-product",
-    "fieldName" : "fa-id",
-    "type" : "selectModel"
+    "type" : "input",
+    "inputType" : "text"
   } ]
 }

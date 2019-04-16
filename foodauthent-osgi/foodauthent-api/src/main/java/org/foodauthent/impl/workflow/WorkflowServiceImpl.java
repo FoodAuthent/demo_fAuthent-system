@@ -58,11 +58,12 @@ public class WorkflowServiceImpl implements WorkflowService {
     }
 
     @Override
-    public TrainingJob createTrainingJob(final UUID workflowId, final UUID fingerprintSetId) throws InitJobException {
+    public TrainingJob createTrainingJob(final UUID workflowId, final List<UUID> fingerprintSetIds) throws InitJobException {
 	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId, Workflow.class);
-	final FingerprintSet fingerprintSet = persistenceService.getFaModelByUUID(fingerprintSetId,
-		FingerprintSet.class);
-	final TrainingJob job = jobService.createNewTrainingJob(workflow, fingerprintSet);
+	List<FingerprintSet> fingerprintSets = fingerprintSetIds.stream()
+		.map(uuid -> persistenceService.getFaModelByUUID(uuid, FingerprintSet.class))
+		.collect(Collectors.toList());
+	final TrainingJob job = jobService.createNewTrainingJob(workflow, fingerprintSets);
 	return job;
     }
 

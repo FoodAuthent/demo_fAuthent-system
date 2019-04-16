@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/FingerprintSet', '../model/WorkflowParameter'], factory);
+    define(['../ApiClient', '../model/TrainingWorkflowInputFingerprint', '../model/WorkflowParameter'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./FingerprintSet'), require('./WorkflowParameter'));
+    module.exports = factory(require('../ApiClient'), require('./TrainingWorkflowInputFingerprint'), require('./WorkflowParameter'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.TrainingWorkflowInput = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FingerprintSet, root.FoodAuthentSwaggerApi.WorkflowParameter);
+    root.FoodAuthentSwaggerApi.TrainingWorkflowInput = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.TrainingWorkflowInputFingerprint, root.FoodAuthentSwaggerApi.WorkflowParameter);
   }
-}(this, function(ApiClient, FingerprintSet, WorkflowParameter) {
+}(this, function(ApiClient, TrainingWorkflowInputFingerprint, WorkflowParameter) {
   'use strict';
 
 
@@ -63,11 +63,8 @@
       if (data.hasOwnProperty('parameters')) {
         obj['parameters'] = ApiClient.convertToType(data['parameters'], [WorkflowParameter]);
       }
-      if (data.hasOwnProperty('fingerprintset')) {
-        obj['fingerprintset'] = FingerprintSet.constructFromObject(data['fingerprintset']);
-      }
-      if (data.hasOwnProperty('fingerprint-URIs')) {
-        obj['fingerprint-URIs'] = ApiClient.convertToType(data['fingerprint-URIs'], ['String']);
+      if (data.hasOwnProperty('fingerprints')) {
+        obj['fingerprints'] = ApiClient.convertToType(data['fingerprints'], [TrainingWorkflowInputFingerprint]);
       }
     }
     return obj;
@@ -79,14 +76,9 @@
    */
   exports.prototype['parameters'] = undefined;
   /**
-   * @member {module:model/FingerprintSet} fingerprintset
+   * @member {Array.<module:model/TrainingWorkflowInputFingerprint>} fingerprints
    */
-  exports.prototype['fingerprintset'] = undefined;
-  /**
-   * URI pointing to the resource containg the fingerprints to learn the model from.
-   * @member {Array.<String>} fingerprint-URIs
-   */
-  exports.prototype['fingerprint-URIs'] = undefined;
+  exports.prototype['fingerprints'] = undefined;
 
 
 

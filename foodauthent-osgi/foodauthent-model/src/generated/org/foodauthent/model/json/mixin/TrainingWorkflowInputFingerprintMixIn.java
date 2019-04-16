@@ -15,8 +15,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
 
-import org.foodauthent.model.FingerprintSet;
-import org.foodauthent.model.FingerprintSet.FingerprintSetBuilder;
+import org.foodauthent.model.TrainingWorkflowInputFingerprint;
+import org.foodauthent.model.TrainingWorkflowInputFingerprint.TrainingWorkflowInputFingerprintBuilder;
 
 /**
  * MixIn class for entity implementations that adds jackson annotations for de-/serialization.
@@ -28,13 +28,13 @@ import org.foodauthent.model.FingerprintSet.FingerprintSetBuilder;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     property = "",
     visible = true,
-    defaultImpl = FingerprintSet.class)
+    defaultImpl = TrainingWorkflowInputFingerprint.class)
 @JsonSubTypes({
-    @Type(value = FingerprintSet.class, name="FingerprintSet")
+    @Type(value = TrainingWorkflowInputFingerprint.class, name="TrainingWorkflowInputFingerprint")
 })
-@JsonDeserialize(builder=FingerprintSetBuilder.class)
+@JsonDeserialize(builder=TrainingWorkflowInputFingerprintBuilder.class)
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface FingerprintSetMixIn {
+public interface TrainingWorkflowInputFingerprintMixIn {
 
 	@JsonIgnore
 	public long getPersistenceId();
@@ -42,22 +42,18 @@ public interface FingerprintSetMixIn {
     @JsonIgnore
     public String getTypeID();
     
+   	@JsonIgnore
+  	public UUID getFaId();
     
 
-    @JsonProperty("fa-id")
-    public java.util.UUID getFaId();
-    
-    @JsonProperty("fingerprint-ids")
-    public java.util.List<java.util.UUID> getFingerprintIds();
-    
-    @JsonProperty("name")
-    public String getName();
-    
-    @JsonProperty("description")
-    public String getDescription();
+    @JsonProperty("URI")
+    public String getURI();
     
     @JsonProperty("class-label")
     public String getClassLabel();
+    
+    @JsonProperty("fingerprint-id")
+    public java.util.UUID getFingerprintId();
     
 
     /**
@@ -69,29 +65,23 @@ public interface FingerprintSetMixIn {
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "",
-        defaultImpl = FingerprintSetBuilder.class)
+        defaultImpl = TrainingWorkflowInputFingerprintBuilder.class)
     @JsonSubTypes({
-        @Type(value = FingerprintSet.FingerprintSetBuilder.class, name="FingerprintSet")
+        @Type(value = TrainingWorkflowInputFingerprint.TrainingWorkflowInputFingerprintBuilder.class, name="TrainingWorkflowInputFingerprint")
     })
     // AUTO-GENERATED CODE; DO NOT MODIFY
-    public static interface FingerprintSetMixInBuilder {
+    public static interface TrainingWorkflowInputFingerprintMixInBuilder {
     
-        public FingerprintSetMixIn build();
+        public TrainingWorkflowInputFingerprintMixIn build();
     
-        @JsonProperty("fa-id")
-        public FingerprintSetMixInBuilder setFaId(final java.util.UUID faId);
-        
-        @JsonProperty("fingerprint-ids")
-        public FingerprintSetMixInBuilder setFingerprintIds(final java.util.List<java.util.UUID> fingerprintIds);
-        
-        @JsonProperty("name")
-        public FingerprintSetMixInBuilder setName(final String name);
-        
-        @JsonProperty("description")
-        public FingerprintSetMixInBuilder setDescription(final String description);
+        @JsonProperty("URI")
+        public TrainingWorkflowInputFingerprintMixInBuilder setURI(final String URI);
         
         @JsonProperty("class-label")
-        public FingerprintSetMixInBuilder setClassLabel(final String classLabel);
+        public TrainingWorkflowInputFingerprintMixInBuilder setClassLabel(final String classLabel);
+        
+        @JsonProperty("fingerprint-id")
+        public TrainingWorkflowInputFingerprintMixInBuilder setFingerprintId(final java.util.UUID fingerprintId);
         
     }
 

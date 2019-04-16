@@ -781,12 +781,16 @@ paths:
             type: string
             format: uuid
         - in: query
-          name: fingerprintset-id
-          description: TODO
+          name: fingerprintset-ids
+          description: >
+            One or more fingerprintset-ids referencing the fingerprint sets to learn
+            the model on. Each fingerprintset represents one class!
           required: true
           schema:
-            type: string
-            format: uuid
+            type: array
+            items:
+              type: string
+              format: uuid
       responses:
         '201':
           description: The model training job as been created successfully.
@@ -2139,6 +2143,7 @@ components:
       x-ui-vue.js:
         - name: fingerprint-ids
         - name: name
+        - name: class-label
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
@@ -2156,6 +2161,9 @@ components:
           type: string
         description:
           description: A more detailed description of the fingerprint set.
+          type: string
+        class-label:
+          description: A class label associated with this fingerprint set.
           type: string
 
     FingerprintSetPageResult:
@@ -2269,8 +2277,6 @@ components:
         - name: tags
         - name: file-id
           id-provider: upload-file
-        - name: product-id
-          id-provider: select-product
         - name: fingerprintset-id
       properties:
         fa-id:
@@ -2313,6 +2319,11 @@ components:
           description: Reference to the fingerprint the model has been trained on
           type: string
           format: uuid
+        class-labels:
+          description: the available class labels
+          type: array
+          items:
+            type: string
 
     ModelPageResult:
       type: object
@@ -2539,30 +2550,19 @@ components:
     #predictions per fingerprint set!!
     Prediction:
       type: object
-      x-ui-vue.js:
-        - name: workflow-id
-          id-provider: select-workflow
-        - name: fingerprintset-id
-          id-provider: select-fingerprint
-        - name: model-id
-          id-provider: select-model
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
           type: string
           format: uuid
           example: ''
-        confidence-map:
-          description: >-
-            The confidences for each fingerprint, mapped from the
-            fingerprint-id.
+        prediction-map:
+          description:
+            The predictions for each individual fingerprint.
+            The map key is the fingerprint-id. 
           type: object
-          #map from fa-id to confidence
           additionalProperties:
-            type: number
-            format: float
-            maximum: 1
-            minimum: 0
+            $ref: "#/components/schemas/PredictionInstance"
         workflow-id:
           description: Workflow used for the prediction.
           type: string
@@ -2578,6 +2578,28 @@ components:
           type: string
           format: uuid
           example: ''
+        class-labels:
+          description: available class labels
+          type: array
+          items:
+            type: string
+    
+    PredictionInstance:
+      x-no-faid: true
+      description: One particular prediction for a fingerprint.
+      type: object
+      properties:
+        class-label:
+          description: the predicted class
+          type: string
+        probabilities:
+          description: the probability distribution over all classes
+          type: array
+          items:
+            type: number
+            format: float
+            maximum: 1
+            minimum: 0
           
     PredictionJob:
       description: Represents prediction job.
@@ -2672,17 +2694,13 @@ components:
       type: object
       x-no-faid: true
       properties:
-        confidence-map:
-          description: >-
-            The confidences for each fingerprint, mapped from the
-            fingerprint-id.
+        prediction-map:
+          description:
+            The predictions for each individual fingerprint.
+            The map key is the fingerprint-id. 
           type: object
-          #map from fa-id to confidence
           additionalProperties:
-            type: number
-            format: float
-            maximum: 1
-            minimum: 0
+            $ref: "#/components/schemas/PredictionInstance"
 
     Product:
       description: >-
@@ -3055,16 +3073,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WorkflowParameter'
-        fingerprintset:
-          $ref: '#/components/schemas/FingerprintSet'
-        fingerprint-URIs:
-          description: >-
-            URI pointing to the resource containg the fingerprints to learn the
-            model from.
-          type: array 
-          items:
-            type: string
-            format: uri
+        fingerprints:
+           type: array
+           items:
+            $ref: "#/components/schemas/TrainingWorkflowInputFingerprint" 
+    
+    TrainingWorkflowInputFingerprint:
+      type: object
+      x-no-faid: true
+      properties:
+        URI:
+          type: string
+          format: uri
+        class-label:
+          type: string
+        fingerprint-id:
+          type: string
+          format: uuid
 
     TrainingWorkflowOutput:
       description: Describes the outputs delivered by a training workflow.

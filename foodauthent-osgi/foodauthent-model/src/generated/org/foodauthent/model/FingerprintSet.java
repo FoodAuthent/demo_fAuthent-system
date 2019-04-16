@@ -26,6 +26,7 @@ public class FingerprintSet   extends FaModel {
   protected java.util.List<java.util.UUID> fingerprintIds;
   protected String name;
   protected String description;
+  protected String classLabel;
   
   public String getTypeID() {
     return "FingerprintSet";
@@ -47,6 +48,7 @@ public class FingerprintSet   extends FaModel {
     }
     name = immutable(builder.name);
     description = immutable(builder.description);
+    classLabel = immutable(builder.classLabel);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -67,7 +69,7 @@ public class FingerprintSet   extends FaModel {
             return false;
         }
         FingerprintSet ent = (FingerprintSet)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(fingerprintIds, ent.fingerprintIds) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description);
+        return Objects.equals(faId, ent.faId) && Objects.equals(fingerprintIds, ent.fingerprintIds) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(classLabel, ent.classLabel);
     }
 
 
@@ -103,6 +105,14 @@ public class FingerprintSet   extends FaModel {
         return description;
     }
     
+  /**
+   * A class label associated with this fingerprint set.
+   * @return classLabel 
+   */
+  public String getClassLabel() {
+        return classLabel;
+    }
+    
   
  	/**
   	 * @return a newly created builder
@@ -125,6 +135,7 @@ public class FingerprintSet   extends FaModel {
         builder.fingerprintIds = entity.fingerprintIds;
         builder.name = entity.name;
         builder.description = entity.description;
+        builder.classLabel = entity.classLabel;
  		return builder;
   	}
   	
@@ -139,6 +150,7 @@ public class FingerprintSet   extends FaModel {
         private java.util.List<java.util.UUID> fingerprintIds = new java.util.ArrayList<>();
         private String name;
         private String description;
+        private String classLabel;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -179,6 +191,15 @@ public class FingerprintSet   extends FaModel {
          */
         public FingerprintSetBuilder setDescription(String description) {
              this.description = description;
+             return this;
+        }
+
+        /**
+         * A class label associated with this fingerprint set.
+         * @return classLabel 
+         */
+        public FingerprintSetBuilder setClassLabel(String classLabel) {
+             this.classLabel = classLabel;
              return this;
         }
 
