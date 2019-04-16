@@ -66,8 +66,8 @@ public class FakxExporter implements Exporter {
 		fileId.add(model.getFileId());
 	    }
 
-	    if (model.getProductId() != null) {
-		productId.add(model.getProductId());
+	    if (model.getFingerprintsetId() != null) {
+		fingerprintSetId.add(model.getFingerprintsetId());
 	    }
 
 	    if (model.getWorkflowId() != null) {
@@ -83,8 +83,8 @@ public class FakxExporter implements Exporter {
 		workflowId.add(prediction.getWorkflowId());
 	    }
 
-	    if (prediction.getFingerprintSetId() != null) {
-		fingerprintSetId.add(prediction.getFingerprintSetId());
+	    if (prediction.getFingerprintsetId() != null) {
+		fingerprintSetId.add(prediction.getFingerprintsetId());
 	    }
 
 	    if (prediction.getModelId() != null) {
@@ -104,10 +104,7 @@ public class FakxExporter implements Exporter {
 	// 1.5 FingerprintSet
 	for (UUID id : objectSet.getFingerprintsets()) {
 	    FingerprintSet fs = service.getFaModelByUUID(id, FingerprintSet.class);
-
-	    if (fs.getFileId() != null) {
-		fileId.add(fs.getFileId());
-	    }
+	    //TODO take fingerprint instead/additionally
 	}
 
 	// Create Archive con metadatos

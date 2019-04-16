@@ -34,8 +34,8 @@ public class Model   extends FaModel {
   protected ModelType type;
   protected java.util.List<Tag> tags;
   protected java.util.UUID fileId;
-  protected java.util.UUID productId;
   protected java.util.UUID workflowId;
+  protected java.util.UUID fingerprintsetId;
   
   public String getTypeID() {
     return "Model";
@@ -56,8 +56,8 @@ public class Model   extends FaModel {
     type = immutable(builder.type);
     tags = immutable(builder.tags);
     fileId = immutable(builder.fileId);
-    productId = immutable(builder.productId);
     workflowId = immutable(builder.workflowId);
+    fingerprintsetId = immutable(builder.fingerprintsetId);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -78,7 +78,7 @@ public class Model   extends FaModel {
             return false;
         }
         Model ent = (Model)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(productId, ent.productId) && Objects.equals(workflowId, ent.workflowId);
+        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetId, ent.fingerprintsetId);
     }
 
 
@@ -155,19 +155,19 @@ public class Model   extends FaModel {
     }
     
   /**
-   * Reference to the product this model has been trained for.
-   * @return productId 
-   */
-  public java.util.UUID getProductId() {
-        return productId;
-    }
-    
-  /**
    * Optional reference to the workflow used to create this model.
    * @return workflowId 
    */
   public java.util.UUID getWorkflowId() {
         return workflowId;
+    }
+    
+  /**
+   * Reference to the fingerprint the model has been trained on
+   * @return fingerprintsetId 
+   */
+  public java.util.UUID getFingerprintsetId() {
+        return fingerprintsetId;
     }
     
   
@@ -197,8 +197,8 @@ public class Model   extends FaModel {
         builder.type = entity.type;
         builder.tags = entity.tags;
         builder.fileId = entity.fileId;
-        builder.productId = entity.productId;
         builder.workflowId = entity.workflowId;
+        builder.fingerprintsetId = entity.fingerprintsetId;
  		return builder;
   	}
   	
@@ -218,8 +218,8 @@ public class Model   extends FaModel {
         private ModelType type;
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
         private java.util.UUID fileId;
-        private java.util.UUID productId;
         private java.util.UUID workflowId;
+        private java.util.UUID fingerprintsetId;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -303,20 +303,20 @@ public class Model   extends FaModel {
         }
 
         /**
-         * Reference to the product this model has been trained for.
-         * @return productId 
-         */
-        public ModelBuilder setProductId(java.util.UUID productId) {
-             this.productId = productId;
-             return this;
-        }
-
-        /**
          * Optional reference to the workflow used to create this model.
          * @return workflowId 
          */
         public ModelBuilder setWorkflowId(java.util.UUID workflowId) {
              this.workflowId = workflowId;
+             return this;
+        }
+
+        /**
+         * Reference to the fingerprint the model has been trained on
+         * @return fingerprintsetId 
+         */
+        public ModelBuilder setFingerprintsetId(java.util.UUID fingerprintsetId) {
+             this.fingerprintsetId = fingerprintsetId;
              return this;
         }
 

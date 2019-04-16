@@ -92,12 +92,12 @@ public class FAKXTest {
 		ModelType modelType = ModelType.builder().setName(ModelType.NameEnum.KNIME_PYTHON).build();
 		return Model.builder().setFaId(UUID.randomUUID()).setName("name").setDescription("description")
 				.setAuthor("author").setDate(LocalDate.now()).setVersion(0).setType(modelType).setTags(tag)
-				.setFileId(UUID.randomUUID()).setProductId(UUID.randomUUID()).setWorkflowId(UUID.randomUUID()).build();
+				.setFileId(UUID.randomUUID()).setFingerprintsetId(UUID.randomUUID()).setWorkflowId(UUID.randomUUID()).build();
 	}
 
 	private static Prediction createPrediction() {
 		return Prediction.builder().setFaId(UUID.randomUUID()).setWorkflowId(UUID.randomUUID())
-				.setFingerprintSetId(UUID.randomUUID()).setModelId(UUID.randomUUID()).build();
+				.setFingerprintsetId(UUID.randomUUID()).setModelId(UUID.randomUUID()).build();
 	}
 
 	private static Workflow createWorkflow(List<Tag> tag) {

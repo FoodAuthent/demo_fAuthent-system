@@ -50,6 +50,9 @@ public interface SampleMixIn {
     @JsonProperty("product-id")
     public java.util.UUID getProductId();
     
+    @JsonProperty("sop-id")
+    public java.util.UUID getSopId();
+    
     @JsonProperty("sampleId")
     public String getSampleId();
     
@@ -95,6 +98,9 @@ public interface SampleMixIn {
         
         @JsonProperty("product-id")
         public SampleMixInBuilder setProductId(final java.util.UUID productId);
+        
+        @JsonProperty("sop-id")
+        public SampleMixInBuilder setSopId(final java.util.UUID sopId);
         
         @JsonProperty("sampleId")
         public SampleMixInBuilder setSampleId(final String sampleId);

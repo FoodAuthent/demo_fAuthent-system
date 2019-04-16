@@ -25,7 +25,7 @@ public class Prediction   extends FaModel {
   protected java.util.UUID faId;
   protected java.util.Map<String, Float> confidenceMap;
   protected java.util.UUID workflowId;
-  protected java.util.UUID fingerprintSetId;
+  protected java.util.UUID fingerprintsetId;
   protected java.util.UUID modelId;
   
   public String getTypeID() {
@@ -41,7 +41,7 @@ public class Prediction   extends FaModel {
     faId = immutable(builder.faId);
     confidenceMap = immutable(builder.confidenceMap);
     workflowId = immutable(builder.workflowId);
-    fingerprintSetId = immutable(builder.fingerprintSetId);
+    fingerprintsetId = immutable(builder.fingerprintsetId);
     modelId = immutable(builder.modelId);
     
     faId = generateFaIdIfMissing(faId);
@@ -63,7 +63,7 @@ public class Prediction   extends FaModel {
             return false;
         }
         Prediction ent = (Prediction)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(confidenceMap, ent.confidenceMap) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintSetId, ent.fingerprintSetId) && Objects.equals(modelId, ent.modelId);
+        return Objects.equals(faId, ent.faId) && Objects.equals(confidenceMap, ent.confidenceMap) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetId, ent.fingerprintsetId) && Objects.equals(modelId, ent.modelId);
     }
 
 
@@ -93,10 +93,10 @@ public class Prediction   extends FaModel {
     
   /**
    * Id of the set the prediction has been done for.
-   * @return fingerprintSetId 
+   * @return fingerprintsetId 
    */
-  public java.util.UUID getFingerprintSetId() {
-        return fingerprintSetId;
+  public java.util.UUID getFingerprintsetId() {
+        return fingerprintsetId;
     }
     
   /**
@@ -128,7 +128,7 @@ public class Prediction   extends FaModel {
         builder.faId = entity.faId;
         builder.confidenceMap = entity.confidenceMap;
         builder.workflowId = entity.workflowId;
-        builder.fingerprintSetId = entity.fingerprintSetId;
+        builder.fingerprintsetId = entity.fingerprintsetId;
         builder.modelId = entity.modelId;
  		return builder;
   	}
@@ -143,7 +143,7 @@ public class Prediction   extends FaModel {
         private java.util.UUID faId;
         private java.util.Map<String, Float> confidenceMap = new java.util.HashMap<>();
         private java.util.UUID workflowId;
-        private java.util.UUID fingerprintSetId;
+        private java.util.UUID fingerprintsetId;
         private java.util.UUID modelId;
 
         /**
@@ -175,10 +175,10 @@ public class Prediction   extends FaModel {
 
         /**
          * Id of the set the prediction has been done for.
-         * @return fingerprintSetId 
+         * @return fingerprintsetId 
          */
-        public PredictionBuilder setFingerprintSetId(java.util.UUID fingerprintSetId) {
-             this.fingerprintSetId = fingerprintSetId;
+        public PredictionBuilder setFingerprintsetId(java.util.UUID fingerprintsetId) {
+             this.fingerprintsetId = fingerprintsetId;
              return this;
         }
 

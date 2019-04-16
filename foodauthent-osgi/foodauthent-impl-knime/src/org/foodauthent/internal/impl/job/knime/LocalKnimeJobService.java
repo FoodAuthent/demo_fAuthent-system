@@ -132,7 +132,7 @@ public class LocalKnimeJobService implements JobService {
 								.setStatusMessage("Failed to read workflow output: " + e.getMessage()).build());
 						return;
 					}
-					Prediction prediction = Prediction.builder().setFingerprintSetId(fingerprintSet.getFaId())
+					Prediction prediction = Prediction.builder().setFingerprintsetId(fingerprintSet.getFaId())
 							.setWorkflowId(workflow.getFaId()).setModelId(model.getFaId())
 							.setConfidenceMap(predictionOutput.getConfidenceMap()).build();
 					persistenceService.save(prediction);

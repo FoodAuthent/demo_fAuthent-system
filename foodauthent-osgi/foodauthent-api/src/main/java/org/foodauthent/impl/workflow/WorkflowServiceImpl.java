@@ -156,7 +156,7 @@ public class WorkflowServiceImpl implements WorkflowService {
 		pageSize);
 	// TODO make more efficient (i.e. let the DB do the job)
 	List<Prediction> filtered = res.getResult().stream()
-		.filter(p -> p.getFingerprintSetId().equals(fingerprintsetId)).collect(Collectors.toList());
+		.filter(p -> p.getFingerprintsetId().equals(fingerprintsetId)).collect(Collectors.toList());
 	return PredictionPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(filtered).build();
     }

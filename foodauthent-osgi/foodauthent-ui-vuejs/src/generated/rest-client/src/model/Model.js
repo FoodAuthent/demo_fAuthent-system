@@ -87,11 +87,11 @@
       if (data.hasOwnProperty('file-id')) {
         obj['file-id'] = ApiClient.convertToType(data['file-id'], 'String');
       }
-      if (data.hasOwnProperty('product-id')) {
-        obj['product-id'] = ApiClient.convertToType(data['product-id'], 'String');
-      }
       if (data.hasOwnProperty('workflow-id')) {
         obj['workflow-id'] = ApiClient.convertToType(data['workflow-id'], 'String');
+      }
+      if (data.hasOwnProperty('fingerprintset-id')) {
+        obj['fingerprintset-id'] = ApiClient.convertToType(data['fingerprintset-id'], 'String');
       }
     }
     return obj;
@@ -142,15 +142,15 @@
    */
   exports.prototype['file-id'] = undefined;
   /**
-   * Reference to the product this model has been trained for.
-   * @member {String} product-id
-   */
-  exports.prototype['product-id'] = undefined;
-  /**
    * Optional reference to the workflow used to create this model.
    * @member {String} workflow-id
    */
   exports.prototype['workflow-id'] = undefined;
+  /**
+   * Reference to the fingerprint the model has been trained on
+   * @member {String} fingerprintset-id
+   */
+  exports.prototype['fingerprintset-id'] = undefined;
 
 
 

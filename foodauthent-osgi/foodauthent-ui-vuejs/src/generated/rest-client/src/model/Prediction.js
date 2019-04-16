@@ -68,8 +68,8 @@
       if (data.hasOwnProperty('workflow-id')) {
         obj['workflow-id'] = ApiClient.convertToType(data['workflow-id'], 'String');
       }
-      if (data.hasOwnProperty('fingerprint-set-id')) {
-        obj['fingerprint-set-id'] = ApiClient.convertToType(data['fingerprint-set-id'], 'String');
+      if (data.hasOwnProperty('fingerprintset-id')) {
+        obj['fingerprintset-id'] = ApiClient.convertToType(data['fingerprintset-id'], 'String');
       }
       if (data.hasOwnProperty('model-id')) {
         obj['model-id'] = ApiClient.convertToType(data['model-id'], 'String');
@@ -95,9 +95,9 @@
   exports.prototype['workflow-id'] = undefined;
   /**
    * Id of the set the prediction has been done for.
-   * @member {String} fingerprint-set-id
+   * @member {String} fingerprintset-id
    */
-  exports.prototype['fingerprint-set-id'] = undefined;
+  exports.prototype['fingerprintset-id'] = undefined;
   /**
    * The model that has been used for the prediction.
    * @member {String} model-id

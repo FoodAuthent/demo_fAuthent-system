@@ -69,6 +69,9 @@
       if (data.hasOwnProperty('file-id')) {
         obj['file-id'] = ApiClient.convertToType(data['file-id'], 'String');
       }
+      if (data.hasOwnProperty('sop-id')) {
+        obj['sop-id'] = ApiClient.convertToType(data['sop-id'], 'String');
+      }
       if (data.hasOwnProperty('type')) {
         obj['type'] = FingerprintType.constructFromObject(data['type']);
       }
@@ -91,6 +94,11 @@
    * @member {String} file-id
    */
   exports.prototype['file-id'] = undefined;
+  /**
+   * reference to sop used to create the fingerprint
+   * @member {String} sop-id
+   */
+  exports.prototype['sop-id'] = undefined;
   /**
    * @member {module:model/FingerprintType} type
    */

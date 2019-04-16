@@ -59,18 +59,18 @@
     /**
      * Returns the custom metadata for a specific model, schema and model-instance.
      * TODO
-     * @param {module:model/String} modelId 
+     * @param {module:model/String} modelType 
      * @param {String} schemaId 
      * @param {String} faId 
      * @param {module:api/CustomMetadataApi~getCustomMetadataCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link String}
      */
-    this.getCustomMetadata = function(modelId, schemaId, faId, callback) {
+    this.getCustomMetadata = function(modelType, schemaId, faId, callback) {
       var postBody = null;
 
-      // verify the required parameter 'modelId' is set
-      if (modelId === undefined || modelId === null) {
-        throw new Error("Missing the required parameter 'modelId' when calling getCustomMetadata");
+      // verify the required parameter 'modelType' is set
+      if (modelType === undefined || modelType === null) {
+        throw new Error("Missing the required parameter 'modelType' when calling getCustomMetadata");
       }
 
       // verify the required parameter 'schemaId' is set
@@ -85,7 +85,7 @@
 
 
       var pathParams = {
-        'model-id': modelId,
+        'model-type': modelType,
         'schema-id': schemaId,
         'fa-id': faId
       };
@@ -104,7 +104,7 @@
       var returnType = String;
 
       return this.apiClient.callApi(
-        '/custommetadata/{model-id}/{schema-id}/{fa-id}', 'GET',
+        '/custommetadata/{model-type}/{schema-id}/{fa-id}', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -119,19 +119,19 @@
      */
 
     /**
-     * Returns the json-schema for a given schema- and model-id.
+     * Returns the json-schema for a given schema- and model-type.
      * TODO
-     * @param {module:model/String} modelId 
+     * @param {module:model/String} modelType 
      * @param {String} schemaId 
      * @param {module:api/CustomMetadataApi~getCustomMetadataSchemaCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link String}
      */
-    this.getCustomMetadataSchema = function(modelId, schemaId, callback) {
+    this.getCustomMetadataSchema = function(modelType, schemaId, callback) {
       var postBody = null;
 
-      // verify the required parameter 'modelId' is set
-      if (modelId === undefined || modelId === null) {
-        throw new Error("Missing the required parameter 'modelId' when calling getCustomMetadataSchema");
+      // verify the required parameter 'modelType' is set
+      if (modelType === undefined || modelType === null) {
+        throw new Error("Missing the required parameter 'modelType' when calling getCustomMetadataSchema");
       }
 
       // verify the required parameter 'schemaId' is set
@@ -141,7 +141,7 @@
 
 
       var pathParams = {
-        'model-id': modelId,
+        'model-type': modelType,
         'schema-id': schemaId
       };
       var queryParams = {
@@ -159,7 +159,7 @@
       var returnType = String;
 
       return this.apiClient.callApi(
-        '/custommetadata/{model-id}/{schema-id}', 'GET',
+        '/custommetadata/{model-type}/{schema-id}', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -174,23 +174,23 @@
      */
 
     /**
-     * Returns all available schema ids for a model id.
+     * Returns all available schema ids for a model type.
      * TODO
-     * @param {module:model/String} modelId 
+     * @param {module:model/String} modelType 
      * @param {module:api/CustomMetadataApi~getCustomMetadataSchemasCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<String>}
      */
-    this.getCustomMetadataSchemas = function(modelId, callback) {
+    this.getCustomMetadataSchemas = function(modelType, callback) {
       var postBody = null;
 
-      // verify the required parameter 'modelId' is set
-      if (modelId === undefined || modelId === null) {
-        throw new Error("Missing the required parameter 'modelId' when calling getCustomMetadataSchemas");
+      // verify the required parameter 'modelType' is set
+      if (modelType === undefined || modelType === null) {
+        throw new Error("Missing the required parameter 'modelType' when calling getCustomMetadataSchemas");
       }
 
 
       var pathParams = {
-        'model-id': modelId
+        'model-type': modelType
       };
       var queryParams = {
       };
@@ -207,7 +207,7 @@
       var returnType = [String];
 
       return this.apiClient.callApi(
-        '/custommetadata/{model-id}', 'GET',
+        '/custommetadata/{model-type}', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -224,20 +224,20 @@
     /**
      * Adds custom metadata for a specific model, schema and model-instance.
      * TODO
-     * @param {module:model/String} modelId 
+     * @param {module:model/String} modelType 
      * @param {String} schemaId 
      * @param {String} faId 
      * @param {Object} opts Optional parameters
      * @param {String} opts.body 
      * @param {module:api/CustomMetadataApi~saveCustomMetadataCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.saveCustomMetadata = function(modelId, schemaId, faId, opts, callback) {
+    this.saveCustomMetadata = function(modelType, schemaId, faId, opts, callback) {
       opts = opts || {};
       var postBody = opts['body'];
 
-      // verify the required parameter 'modelId' is set
-      if (modelId === undefined || modelId === null) {
-        throw new Error("Missing the required parameter 'modelId' when calling saveCustomMetadata");
+      // verify the required parameter 'modelType' is set
+      if (modelType === undefined || modelType === null) {
+        throw new Error("Missing the required parameter 'modelType' when calling saveCustomMetadata");
       }
 
       // verify the required parameter 'schemaId' is set
@@ -252,7 +252,7 @@
 
 
       var pathParams = {
-        'model-id': modelId,
+        'model-type': modelType,
         'schema-id': schemaId,
         'fa-id': faId
       };
@@ -271,7 +271,7 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/custommetadata/{model-id}/{schema-id}/{fa-id}', 'POST',
+        '/custommetadata/{model-type}/{schema-id}/{fa-id}', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

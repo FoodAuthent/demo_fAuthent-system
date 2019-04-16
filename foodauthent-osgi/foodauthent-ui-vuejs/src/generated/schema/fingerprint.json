@@ -7,6 +7,12 @@
     "fieldName" : "fa-id",
     "type" : "selectModel"
   }, {
+    "label" : "Sop-id",
+    "model" : "sop-id",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
     "label" : "File-id",
     "model" : "file-id",
     "required" : false,

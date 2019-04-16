@@ -86,7 +86,7 @@
    */
   exports.prototype['fingerprintset'] = undefined;
   /**
-   * URIs pointing to the resource containg the fingerprints to predict the labels for.
+   * URIs pointing to the resource containg the fingerprints to predict the labels for. (in the same order as the fingerprint-ids of the fingerprint-set)
    * @member {Array.<String>} fingerprint-URIs
    */
   exports.prototype['fingerprint-URIs'] = undefined;

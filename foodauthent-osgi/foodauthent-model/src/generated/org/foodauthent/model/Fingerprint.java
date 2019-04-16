@@ -26,6 +26,7 @@ public class Fingerprint   extends FaModel {
   protected java.util.UUID faId;
   protected java.util.UUID sampleId;
   protected java.util.UUID fileId;
+  protected java.util.UUID sopId;
   protected FingerprintType type;
   
   public String getTypeID() {
@@ -41,6 +42,7 @@ public class Fingerprint   extends FaModel {
     faId = immutable(builder.faId);
     sampleId = immutable(builder.sampleId);
     fileId = immutable(builder.fileId);
+    sopId = immutable(builder.sopId);
     type = immutable(builder.type);
     
     faId = generateFaIdIfMissing(faId);
@@ -62,7 +64,7 @@ public class Fingerprint   extends FaModel {
             return false;
         }
         Fingerprint ent = (Fingerprint)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(sampleId, ent.sampleId) && Objects.equals(fileId, ent.fileId) && Objects.equals(type, ent.type);
+        return Objects.equals(faId, ent.faId) && Objects.equals(sampleId, ent.sampleId) && Objects.equals(fileId, ent.fileId) && Objects.equals(sopId, ent.sopId) && Objects.equals(type, ent.type);
     }
 
 
@@ -88,6 +90,14 @@ public class Fingerprint   extends FaModel {
    */
   public java.util.UUID getFileId() {
         return fileId;
+    }
+    
+  /**
+   * reference to sop used to create the fingerprint
+   * @return sopId 
+   */
+  public java.util.UUID getSopId() {
+        return sopId;
     }
     
   /**
@@ -119,6 +129,7 @@ public class Fingerprint   extends FaModel {
         builder.faId = entity.faId;
         builder.sampleId = entity.sampleId;
         builder.fileId = entity.fileId;
+        builder.sopId = entity.sopId;
         builder.type = entity.type;
  		return builder;
   	}
@@ -133,6 +144,7 @@ public class Fingerprint   extends FaModel {
         private java.util.UUID faId;
         private java.util.UUID sampleId;
         private java.util.UUID fileId;
+        private java.util.UUID sopId;
         private FingerprintType type;
 
         /**
@@ -159,6 +171,15 @@ public class Fingerprint   extends FaModel {
          */
         public FingerprintBuilder setFileId(java.util.UUID fileId) {
              this.fileId = fileId;
+             return this;
+        }
+
+        /**
+         * reference to sop used to create the fingerprint
+         * @return sopId 
+         */
+        public FingerprintBuilder setSopId(java.util.UUID sopId) {
+             this.sopId = sopId;
              return this;
         }
 

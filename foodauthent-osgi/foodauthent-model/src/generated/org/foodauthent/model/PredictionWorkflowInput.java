@@ -87,7 +87,7 @@ public class PredictionWorkflowInput   extends FaModel {
     }
     
   /**
-   * URIs pointing to the resource containg the fingerprints to predict the labels for.
+   * URIs pointing to the resource containg the fingerprints to predict the labels for. (in the same order as the fingerprint-ids of the fingerprint-set)
    * @return fingerprintURIs 
    */
   public java.util.List<String> getFingerprintURIs() {
@@ -158,7 +158,7 @@ public class PredictionWorkflowInput   extends FaModel {
         }
 
         /**
-         * URIs pointing to the resource containg the fingerprints to predict the labels for.
+         * URIs pointing to the resource containg the fingerprints to predict the labels for. (in the same order as the fingerprint-ids of the fingerprint-set)
          * @return fingerprintURIs 
          */
         public PredictionWorkflowInputBuilder setFingerprintURIs(java.util.List<String> fingerprintURIs) {

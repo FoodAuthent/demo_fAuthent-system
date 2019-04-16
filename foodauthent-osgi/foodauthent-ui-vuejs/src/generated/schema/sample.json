@@ -6,6 +6,12 @@
     "type" : "input",
     "inputType" : "text"
   }, {
+    "label" : "Sop-id",
+    "model" : "sop-id",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
     "label" : "SampleId",
     "model" : "sampleId",
     "required" : false,

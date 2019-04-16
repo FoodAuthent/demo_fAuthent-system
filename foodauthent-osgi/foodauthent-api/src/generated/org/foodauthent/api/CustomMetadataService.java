@@ -17,43 +17,43 @@ public interface CustomMetadataService {
     /**
      * TODO
      *
-     * @param modelId 
+     * @param modelType 
      * @param schemaId 
      * @param faId 
      *
      * @return the result
      */
-    String getCustomMetadata(String modelId, String schemaId, java.util.UUID faId);
+    String getCustomMetadata(String modelType, String schemaId, java.util.UUID faId);
         
     /**
      * TODO
      *
-     * @param modelId 
+     * @param modelType 
      * @param schemaId 
      *
      * @return the result
      */
-    String getCustomMetadataSchema(String modelId, String schemaId);
+    String getCustomMetadataSchema(String modelType, String schemaId);
         
     /**
      * TODO
      *
-     * @param modelId 
+     * @param modelType 
      *
      * @return the result
      */
-    java.util.List<String> getCustomMetadataSchemas(String modelId);
+    java.util.List<String> getCustomMetadataSchemas(String modelType);
         
     /**
      * TODO
      *
-     * @param modelId 
+     * @param modelType 
      * @param schemaId 
      * @param faId 
      * @param body 
      *
      * 
      */
-    void saveCustomMetadata(String modelId, String schemaId, java.util.UUID faId, String body);
+    void saveCustomMetadata(String modelType, String schemaId, java.util.UUID faId, String body);
         
 }

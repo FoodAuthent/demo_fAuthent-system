@@ -54,6 +54,9 @@ public interface FingerprintMixIn {
     @JsonProperty("file-id")
     public java.util.UUID getFileId();
     
+    @JsonProperty("sop-id")
+    public java.util.UUID getSopId();
+    
     @JsonProperty("type")
     public FingerprintType getType();
     
@@ -84,6 +87,9 @@ public interface FingerprintMixIn {
         
         @JsonProperty("file-id")
         public FingerprintMixInBuilder setFileId(final java.util.UUID fileId);
+        
+        @JsonProperty("sop-id")
+        public FingerprintMixInBuilder setSopId(final java.util.UUID sopId);
         
         @JsonProperty("type")
         public FingerprintMixInBuilder setType(final FingerprintType type);

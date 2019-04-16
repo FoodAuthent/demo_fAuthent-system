@@ -24,6 +24,7 @@ public class Sample   extends FaModel {
 
   protected java.util.UUID faId;
   protected java.util.UUID productId;
+  protected java.util.UUID sopId;
   protected String sampleId;
   protected String dateOfSampleDrawing;
   protected String lot;
@@ -44,6 +45,7 @@ public class Sample   extends FaModel {
     
     faId = immutable(builder.faId);
     productId = immutable(builder.productId);
+    sopId = immutable(builder.sopId);
     sampleId = immutable(builder.sampleId);
     dateOfSampleDrawing = immutable(builder.dateOfSampleDrawing);
     lot = immutable(builder.lot);
@@ -71,7 +73,7 @@ public class Sample   extends FaModel {
             return false;
         }
         Sample ent = (Sample)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(productId, ent.productId) && Objects.equals(sampleId, ent.sampleId) && Objects.equals(dateOfSampleDrawing, ent.dateOfSampleDrawing) && Objects.equals(lot, ent.lot) && Objects.equals(samplingPlace, ent.samplingPlace) && Objects.equals(bestBeforeDate, ent.bestBeforeDate) && Objects.equals(application, ent.application) && Objects.equals(comments, ent.comments);
+        return Objects.equals(faId, ent.faId) && Objects.equals(productId, ent.productId) && Objects.equals(sopId, ent.sopId) && Objects.equals(sampleId, ent.sampleId) && Objects.equals(dateOfSampleDrawing, ent.dateOfSampleDrawing) && Objects.equals(lot, ent.lot) && Objects.equals(samplingPlace, ent.samplingPlace) && Objects.equals(bestBeforeDate, ent.bestBeforeDate) && Objects.equals(application, ent.application) && Objects.equals(comments, ent.comments);
     }
 
 
@@ -89,6 +91,14 @@ public class Sample   extends FaModel {
    */
   public java.util.UUID getProductId() {
         return productId;
+    }
+    
+  /**
+   * referenced sop used to create the sample
+   * @return sopId 
+   */
+  public java.util.UUID getSopId() {
+        return sopId;
     }
     
   /**
@@ -167,6 +177,7 @@ public class Sample   extends FaModel {
 		SampleBuilder builder = builder();
         builder.faId = entity.faId;
         builder.productId = entity.productId;
+        builder.sopId = entity.sopId;
         builder.sampleId = entity.sampleId;
         builder.dateOfSampleDrawing = entity.dateOfSampleDrawing;
         builder.lot = entity.lot;
@@ -186,6 +197,7 @@ public class Sample   extends FaModel {
     
         private java.util.UUID faId;
         private java.util.UUID productId;
+        private java.util.UUID sopId;
         private String sampleId;
         private String dateOfSampleDrawing;
         private String lot;
@@ -209,6 +221,15 @@ public class Sample   extends FaModel {
          */
         public SampleBuilder setProductId(java.util.UUID productId) {
              this.productId = productId;
+             return this;
+        }
+
+        /**
+         * referenced sop used to create the sample
+         * @return sopId 
+         */
+        public SampleBuilder setSopId(java.util.UUID sopId) {
+             this.sopId = sopId;
              return this;
         }
 
