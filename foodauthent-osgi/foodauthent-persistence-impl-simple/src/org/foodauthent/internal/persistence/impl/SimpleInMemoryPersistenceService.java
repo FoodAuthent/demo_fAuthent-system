@@ -3,12 +3,14 @@ package org.foodauthent.internal.persistence.impl;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.UUID;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
@@ -17,11 +19,11 @@ import org.foodauthent.api.internal.exception.NoSuchIDException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.DiscoveryServiceTransaction;
-import org.foodauthent.model.Epc;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ObjectEvent;
+import org.foodauthent.model.Prediction;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.SOP;
 import org.foodauthent.model.Sample;
@@ -62,93 +64,54 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 	private final Map<String, JsonNode> customModels;
 
 	private final Map<UUID, byte[]> blobs;
-
+	
+	private final Map<Class<?>, ModelPropertiesSupplier<?>> modelPropertiesSupplier;
+	
+	@SuppressWarnings("unchecked")
 	public SimpleInMemoryPersistenceService() {
 		this.models = new LinkedHashMap<UUID, FaModel>();
 		this.blobs = new LinkedHashMap<UUID, byte[]>();
 		this.customModels = new LinkedHashMap<String, JsonNode>();
+
+		List<ModelPropertiesSupplier<?>> tmp = new ArrayList<>();
+
+		tmp.add(createMPS(Workflow.class, m -> m.getDescription(), m -> m.getName()));
+		tmp.add(createMPS(SOP.class, m -> m.getDescription(), m -> m.getName()));
+		tmp.add(createMPS(Product.class, m -> m.getBrand()));
+		tmp.add(createMPS(Model.class, m -> m.getDescription(), m -> m.getName(),
+				m -> m.getFingerprintsetId().toString(), m -> m.getWorkflowId().toString()));
+		tmp.add(createMPS(Sample.class, m -> m.getApplication(), m -> m.getSopId().toString(),
+				m -> m.getComments().stream().collect(Collectors.joining(","))));
+		tmp.add(createMPS(FingerprintSet.class, m -> m.getDescription(), m-> m.getName()));
+		tmp.add(createMPS(Prediction.class, m -> m.getModelId().toString(), m -> m.getFingerprintsetId().toString(),
+				m -> m.getWorkflowId().toString()));
+
+		tmp.add(createMPS(ObjectEvent.class,
+				m -> m.getEpcList().stream().map(e -> e.getEpc()).collect(Collectors.joining(","))));
+		tmp.add(createMPS(DiscoveryServiceTransaction.class,
+				m -> m.getEpcList().stream().map(e -> e.getEpc()).collect(Collectors.joining(","))));
+		
+		modelPropertiesSupplier = tmp.stream().collect(Collectors.toMap(mps -> mps.getModelClass(), mps -> mps));
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends FaModel> List<T> findByKeywords(final Collection<String> keywords, final Class<T> modelType) {
-		final List<T> result = new ArrayList<>();
-
+	public <T extends FaModel> List<T> findByKeywords(final Collection<String> orgKeywords, final Class<T> modelType) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Seaching fields: name, descrption");
 		}
 
-		for (final Object o : models.values()) {
+		Collection<String> keywords = removeEmptyKeywords(orgKeywords);
 
-			if (modelType.equals(Workflow.class) && o instanceof Workflow) {
-				final Workflow wf = (Workflow) o;
-				if (keywords.isEmpty() || containsAKeyword(wf.getDescription(), keywords)
-						|| containsAKeyword(wf.getName(), keywords)) {
-					result.add((T) wf);
-				} else {
-					if (logger.isDebugEnabled()) {
-						logger.debug("Ignoring " + o);
-					}
-				}
-			} else if (modelType.equals(SOP.class) && o instanceof SOP) {
-				final SOP sop = (SOP) o;
-				if (keywords.isEmpty() || containsAKeyword(sop.getDescription(), keywords)
-						|| containsAKeyword(sop.getName(), keywords)) {
-					result.add((T) sop);
-				}
-			} else if (modelType.equals(FingerprintSet.class) && o instanceof FingerprintSet) {
-				final FingerprintSet fs = (FingerprintSet) o;
-				if (keywords.isEmpty() || containsAKeyword(fs.getName(), keywords)) {
-					result.add((T) fs);
-				}
-			} else if (modelType.equals(Product.class) && o instanceof Product) {
-				final Product p = (Product) o;
-				if (keywords.isEmpty() || containsAKeyword(p.getBrand(), keywords)) {
-					result.add((T) p);
-				}
-			} else if (modelType.equals(Model.class) && o instanceof Model) {
-				final Model m = (Model) o;
-				if (keywords.isEmpty() || containsAKeyword(m.getDescription(), keywords)
-						|| containsAKeyword(m.getName(), keywords)) {
-					result.add((T) m);
-				}
-			} else if (modelType.equals(ObjectEvent.class)
-					&& o instanceof ObjectEvent) {
-				final ObjectEvent oe = (ObjectEvent) o;
-				boolean epcExist = false;
-				for (Epc epc : oe.getEpcList()) {
-					epcExist = containsAKeyword(epc.getEpc(), keywords);
-					if (epcExist)
-						break;
-				}
-				if (keywords.isEmpty() || epcExist) {
-					result.add((T) oe);
-				}
-			} else if (modelType.equals(DiscoveryServiceTransaction.class)
-					&& o instanceof DiscoveryServiceTransaction) {
-				final DiscoveryServiceTransaction d = (DiscoveryServiceTransaction) o;
-				boolean epcExist = false;
-				for (Epc epc : d.getEpcList()) {
-					epcExist = containsAKeyword(epc.getEpc(), keywords);
-					if (epcExist)
-						break;
-				}
-				if (keywords.isEmpty() || epcExist) {
-					result.add((T) d);
-				}
-			}else if (modelType.equals(Sample.class) && o instanceof Sample) {
-				final Sample s = (Sample) o;
-				if (keywords.isEmpty() || containsAKeyword(s.getApplication(), keywords)
-						|| s.getComments().stream().anyMatch(c -> containsAKeyword(c, keywords))) {
-					result.add((T) s);
-				}
-			} else {
-				if (logger.isDebugEnabled()) {
-					logger.debug("Ignoring " + o);
-				}
-			}
+		List<T> filterByModelType = (List<T>) models.values().stream()
+				.filter(m -> modelType.isAssignableFrom(m.getClass())).collect(Collectors.toList());
+		if (keywords.isEmpty()) {
+			return filterByModelType;
 		}
-		return result;
+
+		ModelPropertiesSupplier<T> mps = (ModelPropertiesSupplier<T>) modelPropertiesSupplier.get(modelType);
+		return filterByModelType.stream().filter(m -> containsKeywords(keywords, mps.getPropertyValues(m)))
+				.collect(Collectors.toList());
 	}
 
 	@Override
@@ -177,6 +140,33 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 			}
 
 		};
+	}
+	
+	private static Collection<String> removeEmptyKeywords(Collection<String> keywords) {
+		// Remove empty keywords
+		return keywords.stream().filter(item -> !(item == null || "".equals(item))).collect(Collectors.toList());
+	}
+
+	/**
+	 * 
+	 * @param key
+	 * @param keywords
+	 * @return Check if there is a match for a keyword list
+	 */
+	private static boolean containsAKeyword(String key, Collection<String> keywords) {
+		if (key == null) {
+			return false;
+		}
+		// check for matching
+		if (keywords.stream().map(s -> s.toLowerCase()).anyMatch(key.toLowerCase()::contains)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private static boolean containsKeywords(Collection<String> keywords, Collection<String> propertyValues) {
+		return propertyValues.stream().anyMatch(k -> containsAKeyword(k, keywords));
 	}
 
 	@Override
@@ -285,24 +275,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 			throw new NoSuchElementException(e.getLocalizedMessage());
 		}
 	}
-
-	/**
-	 * 
-	 * @param key
-	 * @param keywords
-	 * @return Check if there is a match for a keyword list
-	 */
-	public boolean containsAKeyword(String key, Collection<String> keywords) {
-		// Remove empty keywords
-		keywords.removeIf(item -> item == null || "".equals(item));
-		// check for matching
-		if (keywords.stream().map(s -> s.toLowerCase()).anyMatch(key.toLowerCase()::contains)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
+	
 	@Override
 	public int getPriority() {
 		return 0;
@@ -316,6 +289,29 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 	@Override
 	public long getBlobCount() {
 		return blobs.size();
+	}
+	
+	private interface ModelPropertiesSupplier<T extends FaModel> {
+
+		Class<T> getModelClass();
+
+		List<String> getPropertyValues(T model);
+	}
+
+	private static <T extends FaModel> ModelPropertiesSupplier<T> createMPS(Class<T> modelClass,
+			Function<T, String>... propertySupplier) {
+		return new ModelPropertiesSupplier<T>() {
+
+			@Override
+			public Class<T> getModelClass() {
+				return modelClass;
+			}
+
+			@Override
+			public List<String> getPropertyValues(T model) {
+				return Arrays.stream(propertySupplier).map(ps -> ps.apply((T) model)).collect(Collectors.toList());
+			}
+		};
 	}
 
 }

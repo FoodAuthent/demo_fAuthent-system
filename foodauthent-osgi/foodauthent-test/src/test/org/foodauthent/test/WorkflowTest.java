@@ -24,6 +24,7 @@ import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelType;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
+import org.foodauthent.model.PredictionPageResult;
 import org.foodauthent.model.PredictionJob.StatusEnum;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.Sample;
@@ -98,6 +99,13 @@ public class WorkflowTest extends AbstractITTest {
 	Prediction prediction = workflowService.getPredictionResult(predictionJob.getPredictionId())
 		.readEntity(Prediction.class);
 	assertEquals(prediction.getConfidenceMap().size(), 2);
+	
+	/* retrieve prediction by fingerprintset-id */
+	response = workflowService.findPredictionByKeyword(1, 10, Arrays.asList(fingerprintSetId.toString()));
+	assertThat("unexpected server response", response.getStatus(), is(200));
+	PredictionPageResult predictionPage = response.readEntity(PredictionPageResult.class);
+	assertThat("exactly one entry expected", predictionPage.getResultCount(), is(1));
+	assertThat("unexpected prediction", predictionPage.getResults().get(0), is(prediction));
     }
     
     @Test
