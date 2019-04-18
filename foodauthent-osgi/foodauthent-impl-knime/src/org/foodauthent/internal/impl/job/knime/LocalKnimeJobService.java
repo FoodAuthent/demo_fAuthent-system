@@ -64,8 +64,8 @@ public class LocalKnimeJobService implements JobService {
 	}
 
 	@Override
-	public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model)
-			throws InitJobException {
+	public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model,
+			boolean async) throws InitJobException {
 		if(workflow == null) {
 			throw new InitJobException("No workflow given");
 		}
@@ -123,7 +123,7 @@ public class LocalKnimeJobService implements JobService {
 		PredictionJob predictionJob = PredictionJob.builder().setStatus(StatusEnum.RUNNING).build();
 		persistenceService.save(predictionJob);
 		// TODO dispose worklfow!
-		knimeExecutor.asyncRunWorkflow(workflow.getFaId(), jsonInput, "predictionWorkflowInput",
+		knimeExecutor.runWorkflow(workflow.getFaId(), jsonInput, "predictionWorkflowInput",
 				"predictionWorkflowOutput", jsonValue -> {
 					// TODO use objectMapper.convertValue instead
 					PredictionWorkflowOutput predictionOutput;
@@ -150,13 +150,14 @@ public class LocalKnimeJobService implements JobService {
 					persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(StatusEnum.FAILED)
 							.setStatusMessage(message).build());
 
-				});
-		return predictionJob;
+				}, async);
+		return persistenceService.getFaModelByUUID(predictionJob.getFaId(), PredictionJob.class);
 	}
 
 	@Override
-	public TrainingJob createNewTrainingJob(final Workflow workflow, final List<FingerprintSet> fingerprintSets) throws InitJobException {
-		if(workflow == null) {
+	public TrainingJob createNewTrainingJob(final Workflow workflow, final List<FingerprintSet> fingerprintSets,
+			boolean async) throws InitJobException {
+		if (workflow == null) {
 			throw new InitJobException("No workflow given");
 		}
 		if(fingerprintSets == null) {
@@ -176,8 +177,6 @@ public class LocalKnimeJobService implements JobService {
 		} catch (LoadingFailedException e1) {
 			throw new InitJobException("Problem initializing job: " + e1.getMessage(), e1);
 		}
-		
-		
 
 		List<TrainingWorkflowInputFingerprint> fpInputs = new ArrayList<>();
 		for(FingerprintSet fps : fingerprintSets) {
@@ -212,7 +211,7 @@ public class LocalKnimeJobService implements JobService {
 		TrainingJob trainingJob = TrainingJob.builder().setStatus(org.foodauthent.model.TrainingJob.StatusEnum.RUNNING)
 				.build();
 
-		knimeExecutor.asyncRunWorkflow(workflow.getFaId(), jsonInput, "trainingWorkflowInput", "trainingWorkflowOutput",
+		knimeExecutor.runWorkflow(workflow.getFaId(), jsonInput, "trainingWorkflowInput", "trainingWorkflowOutput",
 				jsonValue -> {
 					// TODO use objectMapper.convertValue instead
 					TrainingWorkflowOutput trainingOutput;
@@ -253,7 +252,7 @@ public class LocalKnimeJobService implements JobService {
 					persistenceService.replace(TrainingJob.builder(trainingJob)
 							.setStatus(org.foodauthent.model.TrainingJob.StatusEnum.FAILED).setStatusMessage(message)
 							.build());
-				});
+				}, async);
 		persistenceService.save(trainingJob);
 		return trainingJob;
 	}

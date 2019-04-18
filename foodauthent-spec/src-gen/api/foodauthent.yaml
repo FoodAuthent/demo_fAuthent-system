@@ -791,6 +791,13 @@ paths:
             items:
               type: string
               format: uuid
+        - in: query
+          name: async
+          description: >-
+            Whether to run the workflow asynchronously
+          required: false
+          schema:
+            type: boolean
       responses:
         '201':
           description: The model training job as been created successfully.
@@ -897,6 +904,13 @@ paths:
           schema:
             type: string
             format: uuid
+        - in: query
+          name: async
+          description: >-
+            Whether to run the workflow asynchronously
+          required: false
+          schema:
+            type: boolean
       responses:
         '200':
           description: The prediction job.

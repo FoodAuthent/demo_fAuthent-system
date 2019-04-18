@@ -65,7 +65,7 @@ public class OpenChromWorkflowTest extends AbstractITTest {
 	UUID fingerprintSetId = uploadFingerprintSet(webTarget);
 
 	/* run training workflow */
-	TrainingJob trainingJob = workflowService.createTrainingJob(wfId, asList(fingerprintSetId))
+	TrainingJob trainingJob = workflowService.createTrainingJob(wfId, asList(fingerprintSetId), true)
 		.readEntity(TrainingJob.class);
 	assertEquals(org.foodauthent.model.TrainingJob.StatusEnum.RUNNING, trainingJob.getStatus());
 	// let the job finish the training

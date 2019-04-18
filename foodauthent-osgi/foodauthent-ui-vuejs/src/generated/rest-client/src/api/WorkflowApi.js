@@ -61,10 +61,13 @@
      * @param {String} workflowId TODO
      * @param {String} fingerprintsetId TODO
      * @param {String} modelId The model to be used for prediction. Needs to be compatible with the selected workflow!!
+     * @param {Object} opts Optional parameters
+     * @param {Boolean} opts.async Whether to run the workflow asynchronously
      * @param {module:api/WorkflowApi~createPredictionJobCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/PredictionJob}
      */
-    this.createPredictionJob = function(workflowId, fingerprintsetId, modelId, callback) {
+    this.createPredictionJob = function(workflowId, fingerprintsetId, modelId, opts, callback) {
+      opts = opts || {};
       var postBody = null;
 
       // verify the required parameter 'workflowId' is set
@@ -89,6 +92,7 @@
         'workflow-id': workflowId,
         'fingerprintset-id': fingerprintsetId,
         'model-id': modelId,
+        'async': opts['async'],
       };
       var collectionQueryParams = {
       };
@@ -121,10 +125,13 @@
      * Starts creating a model for a set of fingerprints.
      * @param {String} workflowId TODO
      * @param {Array.<String>} fingerprintsetIds One or more fingerprintset-ids referencing the fingerprint sets to learn the model on. Each fingerprintset represents one class! 
+     * @param {Object} opts Optional parameters
+     * @param {Boolean} opts.async Whether to run the workflow asynchronously
      * @param {module:api/WorkflowApi~createTrainingJobCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/TrainingJob}
      */
-    this.createTrainingJob = function(workflowId, fingerprintsetIds, callback) {
+    this.createTrainingJob = function(workflowId, fingerprintsetIds, opts, callback) {
+      opts = opts || {};
       var postBody = null;
 
       // verify the required parameter 'workflowId' is set
@@ -142,6 +149,7 @@
       };
       var queryParams = {
         'workflow-id': workflowId,
+        'async': opts['async'],
       };
       var collectionQueryParams = {
         'fingerprintset-ids': {

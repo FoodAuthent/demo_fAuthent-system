@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.BiConsumer;
@@ -69,14 +70,14 @@ public class LocalKnimeExecutor implements KnimeExecutor {
 	}
 
 	@Override
-	public void asyncRunWorkflow(UUID workflowId, JsonValue input, String inputName, String outputName,
-			Consumer<JsonValue> successCallback, BiConsumer<String, Exception> failCallback)
+	public void runWorkflow(UUID workflowId, JsonValue input, String inputName, String outputName,
+			Consumer<JsonValue> successCallback, BiConsumer<String, Exception> failCallback, boolean async)
 			throws IllegalStateException {
 		WorkflowManager wfm = m_workflowMap.get(workflowId);
 		if (wfm == null) {
 			throw new IllegalStateException("Workflow not available. Please load first.");
 		}
-		CompletableFuture.runAsync(() -> {
+		Runnable runWorkflow = () -> {
 			ExternalNodeData data = ExternalNodeData.builder(inputName).jsonValue(input).build();
 			Map<String, ExternalNodeData> inputMap = new HashMap<String, ExternalNodeData>();
 			inputMap.put(data.getID(), data);
@@ -99,7 +100,16 @@ public class LocalKnimeExecutor implements KnimeExecutor {
 						.map(p -> p.getSecond().getMessage()).collect(Collectors.joining("\n"));
 				failCallback.accept(statusMessage, null);
 			}
-		}, executionService).thenRun(() -> disposeWorkflow(workflowId));
+		};
+		CompletableFuture<Void> future = CompletableFuture.runAsync(runWorkflow, executionService)
+				.thenRun(() -> disposeWorkflow(workflowId));
+		if (!async) {
+			try {
+				future.get();
+			} catch (InterruptedException | ExecutionException e) {
+				throw new IllegalStateException("Problem while waiting for the workflow to finish");
+			}
+		}
 	}
 
 	private static WorkflowManager loadWorkflowInternal(UUID workflowId, FileMetadata workflowMetadata,

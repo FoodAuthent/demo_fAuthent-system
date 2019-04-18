@@ -12,9 +12,10 @@ import org.foodauthent.model.Workflow;
 
 public interface JobService {
 
-    PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model)
-	    throws InitJobException;
+	PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model, boolean async)
+			throws InitJobException;
 
-    TrainingJob createNewTrainingJob(Workflow workflow, List<FingerprintSet> fingerprintSets) throws InitJobException;
+	TrainingJob createNewTrainingJob(Workflow workflow, List<FingerprintSet> fingerprintSets, boolean async)
+			throws InitJobException;
 
 }

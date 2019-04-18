@@ -39,6 +39,7 @@ public interface WorkflowRestService{
      * @param workflowId TODO
      * @param fingerprintsetId TODO
      * @param modelId The model to be used for prediction. Needs to be compatible with the selected workflow!!
+     * @param async Whether to run the workflow asynchronously
      * @return the response
      */
     @POST
@@ -47,12 +48,14 @@ public interface WorkflowRestService{
     public Response createPredictionJob(@QueryParam("workflow-id")java.util.UUID workflowId
 , @QueryParam("fingerprintset-id")java.util.UUID fingerprintsetId
 , @QueryParam("model-id")java.util.UUID modelId
+, @QueryParam("async")Boolean async
 );
 
     /**
      *
      * @param workflowId TODO
      * @param fingerprintsetIds One or more fingerprintset-ids referencing the fingerprint sets to learn the model on. Each fingerprintset represents one class! 
+     * @param async Whether to run the workflow asynchronously
      * @return the response
      */
     @POST
@@ -60,6 +63,7 @@ public interface WorkflowRestService{
     @Produces({ "application/json" })
     public Response createTrainingJob(@QueryParam("workflow-id")java.util.UUID workflowId
 , @QueryParam("fingerprintset-ids")java.util.List<java.util.UUID> fingerprintsetIds
+, @QueryParam("async")Boolean async
 );
 
     /**

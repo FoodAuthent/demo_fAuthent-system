@@ -48,22 +48,23 @@ public class WorkflowServiceImpl implements WorkflowService {
     }
 
     @Override
-    public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId, UUID modelId)
-	    throws InitJobException {
+    public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId, UUID modelId,
+	    Boolean async) throws InitJobException {
 	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId, Workflow.class);
 	final FingerprintSet fingerprint = persistenceService.getFaModelByUUID(fingerprintSetId, FingerprintSet.class);
 	final Model model = persistenceService.getFaModelByUUID(modelId, Model.class);
-	final PredictionJob job = jobService.createNewPredictionJob(workflow, fingerprint, model);
+	final PredictionJob job = jobService.createNewPredictionJob(workflow, fingerprint, model, async);
 	return job;
     }
 
     @Override
-    public TrainingJob createTrainingJob(final UUID workflowId, final List<UUID> fingerprintSetIds) throws InitJobException {
+    public TrainingJob createTrainingJob(final UUID workflowId, final List<UUID> fingerprintSetIds, Boolean async)
+	    throws InitJobException {
 	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId, Workflow.class);
 	List<FingerprintSet> fingerprintSets = fingerprintSetIds.stream()
 		.map(uuid -> persistenceService.getFaModelByUUID(uuid, FingerprintSet.class))
 		.collect(Collectors.toList());
-	final TrainingJob job = jobService.createNewTrainingJob(workflow, fingerprintSets);
+	final TrainingJob job = jobService.createNewTrainingJob(workflow, fingerprintSets, async);
 	return job;
     }
 
