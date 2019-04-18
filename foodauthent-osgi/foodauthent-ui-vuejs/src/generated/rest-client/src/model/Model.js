@@ -90,8 +90,8 @@
       if (data.hasOwnProperty('workflow-id')) {
         obj['workflow-id'] = ApiClient.convertToType(data['workflow-id'], 'String');
       }
-      if (data.hasOwnProperty('fingerprintset-id')) {
-        obj['fingerprintset-id'] = ApiClient.convertToType(data['fingerprintset-id'], 'String');
+      if (data.hasOwnProperty('fingerprintset-ids')) {
+        obj['fingerprintset-ids'] = ApiClient.convertToType(data['fingerprintset-ids'], ['String']);
       }
       if (data.hasOwnProperty('class-labels')) {
         obj['class-labels'] = ApiClient.convertToType(data['class-labels'], ['String']);
@@ -150,10 +150,10 @@
    */
   exports.prototype['workflow-id'] = undefined;
   /**
-   * Reference to the fingerprint the model has been trained on
-   * @member {String} fingerprintset-id
+   * Reference to the fingerprint sets the model has been trained on
+   * @member {Array.<String>} fingerprintset-ids
    */
-  exports.prototype['fingerprintset-id'] = undefined;
+  exports.prototype['fingerprintset-ids'] = undefined;
   /**
    * the available class labels
    * @member {Array.<String>} class-labels

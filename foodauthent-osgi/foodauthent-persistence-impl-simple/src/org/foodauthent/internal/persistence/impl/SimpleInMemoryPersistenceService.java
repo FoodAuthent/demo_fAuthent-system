@@ -79,7 +79,8 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 		tmp.add(createMPS(SOP.class, m -> m.getDescription(), m -> m.getName()));
 		tmp.add(createMPS(Product.class, m -> m.getBrand()));
 		tmp.add(createMPS(Model.class, m -> m.getDescription(), m -> m.getName(),
-				m -> m.getFingerprintsetId().toString(), m -> m.getWorkflowId().toString()));
+				m -> m.getFingerprintsetIds().stream().map(uuid -> uuid.toString()).collect(Collectors.joining(",")),
+				m -> m.getWorkflowId().toString()));
 		tmp.add(createMPS(Sample.class, m -> m.getApplication(), m -> m.getSopId().toString(),
 				m -> m.getComments().stream().collect(Collectors.joining(","))));
 		tmp.add(createMPS(FingerprintSet.class, m -> m.getDescription(), m-> m.getName()));

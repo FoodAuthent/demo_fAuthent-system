@@ -237,6 +237,9 @@ public class LocalKnimeJobService implements JobService {
 					Model model = Model.builder().setName("generated model by " + workflow.getName())
 							.setDate(LocalDate.now())
 							.setType(modelType)
+							.setWorkflowId(workflow.getFaId())
+							.setFingerprintsetIds(
+									fingerprintSets.stream().map(fps -> fps.getFaId()).collect(Collectors.toList()))
 							.setFileId(modelFileId).build();
 					persistenceService.save(model);
 

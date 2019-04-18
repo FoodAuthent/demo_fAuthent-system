@@ -66,8 +66,8 @@ public class FakxExporter implements Exporter {
 		fileId.add(model.getFileId());
 	    }
 
-	    if (model.getFingerprintsetId() != null) {
-		fingerprintSetId.add(model.getFingerprintsetId());
+	    if (model.getFingerprintsetIds() != null) {
+		fingerprintSetId.addAll(model.getFingerprintsetIds());
 	    }
 
 	    if (model.getWorkflowId() != null) {

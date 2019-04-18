@@ -89,11 +89,5 @@
     "idprovider" : "upload-file",
     "fieldName" : "fa-id",
     "type" : "loadFile"
-  }, {
-    "label" : "Fingerprintset-id",
-    "model" : "fingerprintset-id",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
   } ]
 }

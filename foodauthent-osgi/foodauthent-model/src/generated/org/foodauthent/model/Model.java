@@ -35,7 +35,7 @@ public class Model   extends FaModel {
   protected java.util.List<Tag> tags;
   protected java.util.UUID fileId;
   protected java.util.UUID workflowId;
-  protected java.util.UUID fingerprintsetId;
+  protected java.util.List<java.util.UUID> fingerprintsetIds;
   protected java.util.List<String> classLabels;
   
   public String getTypeID() {
@@ -58,7 +58,7 @@ public class Model   extends FaModel {
     tags = immutable(builder.tags);
     fileId = immutable(builder.fileId);
     workflowId = immutable(builder.workflowId);
-    fingerprintsetId = immutable(builder.fingerprintsetId);
+    fingerprintsetIds = immutable(builder.fingerprintsetIds);
     classLabels = immutable(builder.classLabels);
     
     faId = generateFaIdIfMissing(faId);
@@ -80,7 +80,7 @@ public class Model   extends FaModel {
             return false;
         }
         Model ent = (Model)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetId, ent.fingerprintsetId) && Objects.equals(classLabels, ent.classLabels);
+        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetIds, ent.fingerprintsetIds) && Objects.equals(classLabels, ent.classLabels);
     }
 
 
@@ -165,11 +165,11 @@ public class Model   extends FaModel {
     }
     
   /**
-   * Reference to the fingerprint the model has been trained on
-   * @return fingerprintsetId 
+   * Reference to the fingerprint sets the model has been trained on
+   * @return fingerprintsetIds 
    */
-  public java.util.UUID getFingerprintsetId() {
-        return fingerprintsetId;
+  public java.util.List<java.util.UUID> getFingerprintsetIds() {
+        return fingerprintsetIds;
     }
     
   /**
@@ -208,7 +208,7 @@ public class Model   extends FaModel {
         builder.tags = entity.tags;
         builder.fileId = entity.fileId;
         builder.workflowId = entity.workflowId;
-        builder.fingerprintsetId = entity.fingerprintsetId;
+        builder.fingerprintsetIds = entity.fingerprintsetIds;
         builder.classLabels = entity.classLabels;
  		return builder;
   	}
@@ -230,7 +230,7 @@ public class Model   extends FaModel {
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
         private java.util.UUID fileId;
         private java.util.UUID workflowId;
-        private java.util.UUID fingerprintsetId;
+        private java.util.List<java.util.UUID> fingerprintsetIds = new java.util.ArrayList<>();
         private java.util.List<String> classLabels = new java.util.ArrayList<>();
 
         /**
@@ -324,11 +324,11 @@ public class Model   extends FaModel {
         }
 
         /**
-         * Reference to the fingerprint the model has been trained on
-         * @return fingerprintsetId 
+         * Reference to the fingerprint sets the model has been trained on
+         * @return fingerprintsetIds 
          */
-        public ModelBuilder setFingerprintsetId(java.util.UUID fingerprintsetId) {
-             this.fingerprintsetId = fingerprintsetId;
+        public ModelBuilder setFingerprintsetIds(java.util.List<java.util.UUID> fingerprintsetIds) {
+             this.fingerprintsetIds = fingerprintsetIds;
              return this;
         }
 
