@@ -31,6 +31,8 @@ public class SystemInfo   extends FaModel {
   protected Long numSamples;
   protected Long numPredictions;
   protected Long numModels;
+  protected Long numPredictionJobs;
+  protected Long numTrainingJobs;
   
   public String getTypeID() {
     return "SystemInfo";
@@ -55,6 +57,8 @@ public class SystemInfo   extends FaModel {
     numSamples = immutable(builder.numSamples);
     numPredictions = immutable(builder.numPredictions);
     numModels = immutable(builder.numModels);
+    numPredictionJobs = immutable(builder.numPredictionJobs);
+    numTrainingJobs = immutable(builder.numTrainingJobs);
     
     
   }
@@ -74,7 +78,7 @@ public class SystemInfo   extends FaModel {
             return false;
         }
         SystemInfo ent = (SystemInfo)o;
-        return Objects.equals(numSops, ent.numSops) && Objects.equals(numFiles, ent.numFiles) && Objects.equals(numProducts, ent.numProducts) && Objects.equals(numFingerprints, ent.numFingerprints) && Objects.equals(numFingerprintsets, ent.numFingerprintsets) && Objects.equals(numWorkflows, ent.numWorkflows) && Objects.equals(numSamples, ent.numSamples) && Objects.equals(numPredictions, ent.numPredictions) && Objects.equals(numModels, ent.numModels);
+        return Objects.equals(numSops, ent.numSops) && Objects.equals(numFiles, ent.numFiles) && Objects.equals(numProducts, ent.numProducts) && Objects.equals(numFingerprints, ent.numFingerprints) && Objects.equals(numFingerprintsets, ent.numFingerprintsets) && Objects.equals(numWorkflows, ent.numWorkflows) && Objects.equals(numSamples, ent.numSamples) && Objects.equals(numPredictions, ent.numPredictions) && Objects.equals(numModels, ent.numModels) && Objects.equals(numPredictionJobs, ent.numPredictionJobs) && Objects.equals(numTrainingJobs, ent.numTrainingJobs);
     }
 
 
@@ -150,6 +154,22 @@ public class SystemInfo   extends FaModel {
         return numModels;
     }
     
+  /**
+   * Get numPredictionJobs
+   * @return numPredictionJobs 
+   */
+  public Long getNumPredictionJobs() {
+        return numPredictionJobs;
+    }
+    
+  /**
+   * Get numTrainingJobs
+   * @return numTrainingJobs 
+   */
+  public Long getNumTrainingJobs() {
+        return numTrainingJobs;
+    }
+    
   
  	/**
   	 * @return a newly created builder
@@ -177,6 +197,8 @@ public class SystemInfo   extends FaModel {
         builder.numSamples = entity.numSamples;
         builder.numPredictions = entity.numPredictions;
         builder.numModels = entity.numModels;
+        builder.numPredictionJobs = entity.numPredictionJobs;
+        builder.numTrainingJobs = entity.numTrainingJobs;
  		return builder;
   	}
   	
@@ -196,6 +218,8 @@ public class SystemInfo   extends FaModel {
         private Long numSamples;
         private Long numPredictions;
         private Long numModels;
+        private Long numPredictionJobs;
+        private Long numTrainingJobs;
 
         /**
          * Get numSops
@@ -275,6 +299,24 @@ public class SystemInfo   extends FaModel {
          */
         public SystemInfoBuilder setNumModels(Long numModels) {
              this.numModels = numModels;
+             return this;
+        }
+
+        /**
+         * Get numPredictionJobs
+         * @return numPredictionJobs 
+         */
+        public SystemInfoBuilder setNumPredictionJobs(Long numPredictionJobs) {
+             this.numPredictionJobs = numPredictionJobs;
+             return this;
+        }
+
+        /**
+         * Get numTrainingJobs
+         * @return numTrainingJobs 
+         */
+        public SystemInfoBuilder setNumTrainingJobs(Long numTrainingJobs) {
+             this.numTrainingJobs = numTrainingJobs;
              return this;
         }
 

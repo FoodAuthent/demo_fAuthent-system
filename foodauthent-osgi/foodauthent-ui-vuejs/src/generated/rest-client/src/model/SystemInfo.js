@@ -87,6 +87,12 @@
       if (data.hasOwnProperty('num-models')) {
         obj['num-models'] = ApiClient.convertToType(data['num-models'], 'Number');
       }
+      if (data.hasOwnProperty('num-prediction-jobs')) {
+        obj['num-prediction-jobs'] = ApiClient.convertToType(data['num-prediction-jobs'], 'Number');
+      }
+      if (data.hasOwnProperty('num-training-jobs')) {
+        obj['num-training-jobs'] = ApiClient.convertToType(data['num-training-jobs'], 'Number');
+      }
     }
     return obj;
   }
@@ -127,6 +133,14 @@
    * @member {Number} num-models
    */
   exports.prototype['num-models'] = undefined;
+  /**
+   * @member {Number} num-prediction-jobs
+   */
+  exports.prototype['num-prediction-jobs'] = undefined;
+  /**
+   * @member {Number} num-training-jobs
+   */
+  exports.prototype['num-training-jobs'] = undefined;
 
 
 

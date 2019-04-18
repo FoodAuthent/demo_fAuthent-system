@@ -2995,6 +2995,13 @@ components:
         num-models:
           type: integer
           format: int64
+        num-prediction-jobs:
+          type: integer
+          format: int64
+        num-training-jobs:
+          type: integer
+          format: int64
+        
 
     Tag:
       description: A tag/label for objects.

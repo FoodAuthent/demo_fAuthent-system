@@ -73,6 +73,12 @@ public interface SystemInfoMixIn {
     @JsonProperty("num-models")
     public Long getNumModels();
     
+    @JsonProperty("num-prediction-jobs")
+    public Long getNumPredictionJobs();
+    
+    @JsonProperty("num-training-jobs")
+    public Long getNumTrainingJobs();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -118,6 +124,12 @@ public interface SystemInfoMixIn {
         
         @JsonProperty("num-models")
         public SystemInfoMixInBuilder setNumModels(final Long numModels);
+        
+        @JsonProperty("num-prediction-jobs")
+        public SystemInfoMixInBuilder setNumPredictionJobs(final Long numPredictionJobs);
+        
+        @JsonProperty("num-training-jobs")
+        public SystemInfoMixInBuilder setNumTrainingJobs(final Long numTrainingJobs);
         
     }
 

@@ -6,10 +6,12 @@ import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.Prediction;
+import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.SOP;
 import org.foodauthent.model.Sample;
 import org.foodauthent.model.SystemInfo;
+import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -48,6 +50,8 @@ public class InfoServiceImpl implements InfoService {
 	.setNumSamples(ps.getModelCount(Sample.class))
 	.setNumSops(ps.getModelCount(SOP.class))
 	.setNumWorkflows(ps.getModelCount(Workflow.class))
+	.setNumPredictionJobs(ps.getModelCount(PredictionJob.class))
+	.setNumTrainingJobs(ps.getModelCount(TrainingJob.class))
 	.build();
     }
 }
