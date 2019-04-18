@@ -21,8 +21,10 @@ import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintType;
 import org.foodauthent.model.ModelType;
+import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.Sample;
+import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.Workflow;
 import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.WorkflowIOTypes;
@@ -133,5 +135,15 @@ public class PopulateModels {
 	
 	return workflows().createWorkflow(wf).readEntity(UUID.class);
     }
- 
+    
+    public static UUID train(UUID workflowId, List<UUID> fingerprintsetIds) {
+	return workflows().createTrainingJob(workflowId, fingerprintsetIds, false).readEntity(TrainingJob.class)
+		.getModelId();
+    }
+
+    public static UUID predict(UUID workflowId, UUID fingerprintsetId, UUID modelId) {
+	return workflows().createPredictionJob(workflowId, fingerprintsetId, modelId, false)
+		.readEntity(PredictionJob.class).getPredictionId();
+    }
+
 }

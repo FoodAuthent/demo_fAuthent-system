@@ -210,7 +210,7 @@ public class LocalKnimeJobService implements JobService {
 		// start and save current training job
 		TrainingJob trainingJob = TrainingJob.builder().setStatus(org.foodauthent.model.TrainingJob.StatusEnum.RUNNING)
 				.build();
-
+		persistenceService.save(trainingJob);
 		knimeExecutor.runWorkflow(workflow.getFaId(), jsonInput, "trainingWorkflowInput", "trainingWorkflowOutput",
 				jsonValue -> {
 					// TODO use objectMapper.convertValue instead
@@ -253,8 +253,7 @@ public class LocalKnimeJobService implements JobService {
 							.setStatus(org.foodauthent.model.TrainingJob.StatusEnum.FAILED).setStatusMessage(message)
 							.build());
 				}, async);
-		persistenceService.save(trainingJob);
-		return trainingJob;
+		return persistenceService.getFaModelByUUID(trainingJob.getFaId(), TrainingJob.class);
 	}
 	
 	private URI saveTemporaryFingerprintFile(UUID fingerprintId) {

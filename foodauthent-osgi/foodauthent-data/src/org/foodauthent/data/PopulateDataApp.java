@@ -12,6 +12,7 @@ import static org.foodauthent.data.PopulateModels.populateProducts;
 import static org.foodauthent.data.PopulateModels.populateSamples;
 import static org.foodauthent.data.PopulateModels.populateTestPedictionWorkflow;
 import static org.foodauthent.data.PopulateModels.populateTestTrainingWorkflow;
+import static org.foodauthent.data.PopulateModels.train;
 import static org.foodauthent.data.ReadModels.readBfrOilFileMetadata;
 import static org.foodauthent.data.ReadModels.readBfrOilFingerprintSets;
 import static org.foodauthent.data.ReadModels.readBfrOilFingerprints;
@@ -19,10 +20,13 @@ import static org.foodauthent.data.ReadModels.readBfrOilSamples;
 import static org.foodauthent.data.ReadModels.readOilProducts;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.foodauthent.model.FaModel;
@@ -46,10 +50,12 @@ public class PopulateDataApp {
 	});
 	
 	//TODO delete blobs and all other missing entities
-
-	doit("Populate workflows", () -> {
-	    populateTestTrainingWorkflow();
-	    populateTestPedictionWorkflow();
+	UUID trainingwfId = doitWithRes("Populate training workflows", () -> {
+	    return populateTestTrainingWorkflow();
+	});
+	
+	UUID predictionwfId = doitWithRes("Populate prediction workflows", () -> {
+	    return populateTestPedictionWorkflow();
 	});
 
 	doit("Populate products", () -> {
@@ -72,8 +78,16 @@ public class PopulateDataApp {
 	    populateFingerprints(readBfrOilFingerprints());
 	});
 
-	doit("Populate fingerprint sets", () -> {
-	    populateFingerprintSets(readBfrOilFingerprintSets());
+	List<UUID> fingerprintsetIds = doitWithRes("Populate fingerprint sets", () -> {
+	    return populateFingerprintSets(readBfrOilFingerprintSets());
+	});
+
+	UUID modelId = doitWithRes("Train models", () -> {
+	    return train(trainingwfId, Arrays.asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1)));
+	});
+	
+	doit("Run prediction", () -> {
+	    PopulateModels.predict(predictionwfId, fingerprintsetIds.get(0), modelId);
 	});
 
 	log("System Info");
@@ -86,6 +100,13 @@ public class PopulateDataApp {
 	System.out.print(sdf.format(new Date(System.currentTimeMillis())) + "  " + message + " ... ");
 	op.run();
 	System.out.println("done");
+    }
+
+    private static <T> T doitWithRes(String message, Supplier<T> op) {
+	System.out.print(sdf.format(new Date(System.currentTimeMillis())) + "  " + message + " ... ");
+	T res = op.get();
+	System.out.println("done");
+	return res;
     }
 
     private static void log(String message) {
