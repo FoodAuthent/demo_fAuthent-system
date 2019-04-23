@@ -9,6 +9,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.UUID;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+>>>>>>> master
 
 import javax.json.Json;
 import javax.json.JsonValue;
@@ -30,6 +35,7 @@ import org.foodauthent.model.PredictionWorkflowInput;
 import org.foodauthent.model.PredictionWorkflowOutput;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.TrainingWorkflowInput;
+import org.foodauthent.model.TrainingWorkflowInputFingerprint;
 import org.foodauthent.model.TrainingWorkflowOutput;
 import org.foodauthent.model.Workflow;
 import org.foodauthent.model.Workflow.RepresentationEnum;
@@ -58,8 +64,8 @@ public class LocalKnimeJobService implements JobService {
 	}
 
 	@Override
-	public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model)
-			throws InitJobException {
+	public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model,
+			boolean async) throws InitJobException {
 		if(workflow == null) {
 			throw new InitJobException("No workflow given");
 		}
@@ -89,15 +95,25 @@ public class LocalKnimeJobService implements JobService {
 		// TODO otherwise throw proper exception
 
 		// get fingerprint set file(s)
+<<<<<<< HEAD
 		URI tempFingerprintSetFileURI = saveTemporaryFingerprintSetFile(fingerprintSet);
+=======
+		List<String> tempFingerprintFileURIs = fingerprintSet.getFingerprintIds().stream()
+				.map(id -> saveTemporaryFingerprintFile(id).toString()).collect(Collectors.toList());
+>>>>>>> master
 
 		// TODO get actual model file
 		// persistenceService.getBlobByUUID(model.getModelFileId());
 
 		// assemble workflow input
 		PredictionWorkflowInput workflowInput = PredictionWorkflowInput.builder()
+<<<<<<< HEAD
 				.setFingerprintsetURI(tempFingerprintSetFileURI.toString()).setModelURI("TODO:modelURI")
 				.setFingerprintsetMetadata(fingerprintSet).setParameters(workflow.getParameters()).build();
+=======
+				.setFingerprintURIs(tempFingerprintFileURIs).setModelURI("TODO:modelURI")
+				.setFingerprintset(fingerprintSet).setParameters(workflow.getParameters()).build();
+>>>>>>> master
 
 		// TODO doesn't work, but should
 		// JsonValue jsonInput =
@@ -116,7 +132,7 @@ public class LocalKnimeJobService implements JobService {
 		PredictionJob predictionJob = PredictionJob.builder().setStatus(StatusEnum.RUNNING).build();
 		persistenceService.save(predictionJob);
 		// TODO dispose worklfow!
-		knimeExecutor.asyncRunWorkflow(workflow.getFaId(), jsonInput, "predictionWorkflowInput",
+		knimeExecutor.runWorkflow(workflow.getFaId(), jsonInput, "predictionWorkflowInput",
 				"predictionWorkflowOutput", jsonValue -> {
 					// TODO use objectMapper.convertValue instead
 					PredictionWorkflowOutput predictionOutput;
@@ -128,9 +144,10 @@ public class LocalKnimeJobService implements JobService {
 								.setStatusMessage("Failed to read workflow output: " + e.getMessage()).build());
 						return;
 					}
-					Prediction prediction = Prediction.builder().setFingerprintSetId(fingerprintSet.getFaId())
+					Prediction prediction = Prediction.builder().setFingerprintsetId(fingerprintSet.getFaId())
 							.setWorkflowId(workflow.getFaId()).setModelId(model.getFaId())
-							.setConfidenceMap(predictionOutput.getConfidenceMap()).build();
+							.setClassLabels(model.getClassLabels())
+							.setPredictionMap(predictionOutput.getPredictionMap()).build();
 					persistenceService.save(prediction);
 
 					// change the status and prediction id of the prediction job and replace
@@ -142,16 +159,17 @@ public class LocalKnimeJobService implements JobService {
 					persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(StatusEnum.FAILED)
 							.setStatusMessage(message).build());
 
-				});
-		return predictionJob;
+				}, async);
+		return persistenceService.getFaModelByUUID(predictionJob.getFaId(), PredictionJob.class);
 	}
 
 	@Override
-	public TrainingJob createNewTrainingJob(Workflow workflow, FingerprintSet fingerprintSet) throws InitJobException {
-		if(workflow == null) {
+	public TrainingJob createNewTrainingJob(final Workflow workflow, final List<FingerprintSet> fingerprintSets,
+			boolean async) throws InitJobException {
+		if (workflow == null) {
 			throw new InitJobException("No workflow given");
 		}
-		if(fingerprintSet == null) {
+		if(fingerprintSets == null) {
 			throw new InitJobException("No fingerprint set given");
 		}
 		if (workflow.getType() != org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW) {
@@ -168,12 +186,29 @@ public class LocalKnimeJobService implements JobService {
 		} catch (LoadingFailedException e1) {
 			throw new InitJobException("Problem initializing job: " + e1.getMessage(), e1);
 		}
+<<<<<<< HEAD
 		
 		URI tmpFileURI = saveTemporaryFingerprintSetFile(fingerprintSet);
 
 		// assemble workflow input
 		TrainingWorkflowInput workflowInput = TrainingWorkflowInput.builder()
 				.setFingerprintsetURI(tmpFileURI.toString()).setFingerprintsetMetadata(fingerprintSet)
+=======
+
+		List<TrainingWorkflowInputFingerprint> fpInputs = new ArrayList<>();
+		for(FingerprintSet fps : fingerprintSets) {
+			for(UUID fpId : fps.getFingerprintIds()) {
+				fpInputs.add(TrainingWorkflowInputFingerprint.builder()
+					.setClassLabel(fps.getClassLabel())
+					.setFingerprintId(fpId)
+					.setURI(saveTemporaryFingerprintFile(fpId).toString()).build());
+			}
+		}
+
+		// assemble workflow input
+		TrainingWorkflowInput workflowInput = TrainingWorkflowInput.builder()
+				.setFingerprints(fpInputs)
+>>>>>>> master
 				.setParameters(workflow.getParameters()).build();
 		// TODO doesn't work, but should
 		// JsonValue jsonInput =
@@ -193,8 +228,8 @@ public class LocalKnimeJobService implements JobService {
 		// start and save current training job
 		TrainingJob trainingJob = TrainingJob.builder().setStatus(org.foodauthent.model.TrainingJob.StatusEnum.RUNNING)
 				.build();
-
-		knimeExecutor.asyncRunWorkflow(workflow.getFaId(), jsonInput, "trainingWorkflowInput", "trainingWorkflowOutput",
+		persistenceService.save(trainingJob);
+		knimeExecutor.runWorkflow(workflow.getFaId(), jsonInput, "trainingWorkflowInput", "trainingWorkflowOutput",
 				jsonValue -> {
 					// TODO use objectMapper.convertValue instead
 					TrainingWorkflowOutput trainingOutput;
@@ -213,12 +248,15 @@ public class LocalKnimeJobService implements JobService {
 
 					// store new model (metadata and file) to the data base
 					ModelType modelType = ModelType.builder()
-							.setName(ModelType.NameEnum
-									.valueOf(workflow.getOutputTypes().getModelType().toString().toUpperCase()))
+							.setName(ModelType.NameEnum.valueOf(
+									workflow.getOutputTypes().getModelType().getName().toString().toUpperCase()))
 							.build();
 					Model model = Model.builder().setName("generated model by " + workflow.getName())
 							.setDate(LocalDate.now())
 							.setType(modelType)
+							.setWorkflowId(workflow.getFaId())
+							.setFingerprintsetIds(
+									fingerprintSets.stream().map(fps -> fps.getFaId()).collect(Collectors.toList()))
 							.setFileId(modelFileId).build();
 					persistenceService.save(model);
 
@@ -232,11 +270,11 @@ public class LocalKnimeJobService implements JobService {
 					persistenceService.replace(TrainingJob.builder(trainingJob)
 							.setStatus(org.foodauthent.model.TrainingJob.StatusEnum.FAILED).setStatusMessage(message)
 							.build());
-				});
-		persistenceService.save(trainingJob);
-		return trainingJob;
+				}, async);
+		return persistenceService.getFaModelByUUID(trainingJob.getFaId(), TrainingJob.class);
 	}
 	
+<<<<<<< HEAD
 	private URI saveTemporaryFingerprintSetFile(FingerprintSet fingerprintSet) {
 		Blob fingerprintSetFile = persistenceService.getBlobByUUID(fingerprintSet.getFileId());
 		try {
@@ -254,6 +292,27 @@ public class LocalKnimeJobService implements JobService {
 			// TODO
 			throw new RuntimeException(e1);
 		}
+=======
+	private URI saveTemporaryFingerprintFile(UUID fingerprintId) {
+			Fingerprint fp = persistenceService.getFaModelByUUID(fingerprintId, Fingerprint.class);
+			Blob fingerprintFile = persistenceService.getBlobByUUID(fp.getFileId());
+			try {
+				File tmpFile = File.createTempFile("fa_fingerprint_" + fingerprintFile.getFaId(), ".zip");
+				FileOutputStream out = new FileOutputStream(tmpFile);
+				IOUtils.copy(fingerprintFile.getData(), out);
+				out.flush();
+				out.close();
+				Path tmpDir = Files.createTempDirectory("fa_fingerprint_" + fingerprintFile.getFaId());
+				FileUtil.unzip(tmpFile, tmpDir.toFile());
+				tmpFile.delete();
+				// TODO delete tmp files
+				tmpDir.toFile().deleteOnExit();
+				return tmpDir.toUri();
+			} catch (IOException e1) {
+				// TODO
+				throw new RuntimeException(e1);
+			}
+>>>>>>> master
 	}
 
 	private void loadWorkflow(Workflow workflow) throws LoadingFailedException {

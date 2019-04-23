@@ -84,6 +84,9 @@
       if (data.hasOwnProperty('type')) {
         obj['type'] = FingerprintSetType.constructFromObject(data['type']);
       }
+      if (data.hasOwnProperty('class-label')) {
+        obj['class-label'] = ApiClient.convertToType(data['class-label'], 'String');
+      }
     }
     return obj;
   }
@@ -116,7 +119,16 @@
   /**
    * @member {module:model/FingerprintSetType} type
    */
+<<<<<<< HEAD
   exports.prototype['type'] = undefined;
+=======
+  exports.prototype['description'] = undefined;
+  /**
+   * A class label associated with this fingerprint set.
+   * @member {String} class-label
+   */
+  exports.prototype['class-label'] = undefined;
+>>>>>>> master
 
 
 

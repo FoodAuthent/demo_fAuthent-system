@@ -86,8 +86,13 @@
    */
   exports.prototype['fingerprintset-metadata'] = undefined;
   /**
+<<<<<<< HEAD
    * URI pointing to the resource containg the fingerprints to predict the labels for.
    * @member {String} fingerprintset-URI
+=======
+   * URIs pointing to the resource containg the fingerprints to predict the labels for. (in the same order as the fingerprint-ids of the fingerprint-set)
+   * @member {Array.<String>} fingerprint-URIs
+>>>>>>> master
    */
   exports.prototype['fingerprintset-URI'] = undefined;
   /**

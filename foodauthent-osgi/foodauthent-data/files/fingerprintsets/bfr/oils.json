@@ -1,0 +1,86 @@
+[ {
+  "name" : "Erdnussöl",
+  "fingerprint-ids" : [ "6bdfa886-8882-4938-8569-5c71c71945b9", "3a0e327f-f89a-4f0f-9844-5d67eff31507", "a8537a99-e785-48e6-80e4-bfb249e53d0f", "a81d3c52-022c-45fa-871c-86cc01821d13", "d7f569f7-bf49-4b21-902c-6c8dadcbfa1b", "40ff9f13-f055-4b0a-b253-f1b248f8c6d3" ],
+  "fa-id" : "98ca5c35-dcd6-4955-a9ea-3e517f117c38",
+  "class-label" : "Erdnussöl"
+}, {
+  "name" : "Hanföl",
+  "fingerprint-ids" : [ "986589f6-1cb0-40b2-aa94-dc40d99ed7e5", "481384b4-c9b6-4eda-a150-7e7054799767" ],
+  "fa-id" : "03fef0e8-2d40-46bf-8aa5-67366f3803d9",
+  "class-label" : "Hanföl"
+}, {
+  "name" : "Haselnussöl",
+  "fingerprint-ids" : [ "bfac4efc-0726-4f2c-ae18-2fb442e0b2ff" ],
+  "fa-id" : "b0943568-6258-43e1-9567-4b0856c2b430",
+  "class-label" : "Haselnussöl"
+}, {
+  "name" : "Kürbiskernöl",
+  "fingerprint-ids" : [ "4cea5a4f-2a7c-45cc-85d7-f1eb34b58e91", "82b1776a-84bc-4dbd-be98-2a0eaceefc40", "d60cd99f-5814-488c-a293-093838742d99", "ccf9eaf3-07f7-4cb8-8f37-82c65c59bcef", "ba86c5ff-f2fa-4518-a255-63aa93006d25", "1dfdbd89-ab91-42f2-8ab0-17f648d3c4c5", "797da88c-8258-4486-ada0-6dab91f0926b", "5cd9f03a-bba4-4430-8cc6-c40a5dd15831", "7b74c4d4-529b-410f-9910-b1dd58ba9af6", "78e8d0ab-279d-4bf6-9e14-423dcf20e24b", "2cb8a565-353c-4540-9637-0107912272e7", "22a7418e-5591-4037-8fb8-6f5e3f310a92", "6daf7be6-9b13-4547-a9de-f4189287c03b", "da218fca-40a0-4429-a514-da31ba610aff", "9a47e047-6777-41bc-bb70-fc2f1f57107e", "b172b88f-856f-4693-8806-2788d2e082ae", "1fc231d9-7190-48d0-b869-93560c7bacb2", "c8b14285-d28b-417c-9514-3b07d5762a15", "310e673f-5aad-4300-8f00-f7642e18244a", "cca46807-3483-4054-9697-e9cd08e2ab43", "276ac44f-0af4-4a07-b325-311cf46981b5", "a6c23746-8a3d-4171-a1dd-ec132003fa5a", "77c8baae-623d-4491-bb71-aea23499f642", "4ebedbc1-f607-4152-a506-5990ca6a0455", "c7770761-50ae-4cfa-95ff-d2e0db5aab4b", "133fccd8-3380-4f1a-98a5-b1945f959638", "cc6103ae-e31d-4d7f-b844-ac4c5fcd11eb", "bbf157f5-4703-43bd-a5d2-bb36d4a8dccc", "e8a8553f-f698-4685-8bca-027ad516707d", "3ea26b5a-0367-44d8-8560-c09934e80f54", "04f9d1c7-60ec-466c-86c1-9631460f7fe0", "7faf7ee8-d075-4f1e-8804-81db59a1b5ee", "75d1d886-088d-4b72-a985-5d91924e02b3", "a3d9079b-cedb-4efc-a223-caf08e0f5df9", "90b30078-ef64-4874-9435-e32b5f282814", "595f37d7-63cf-4cc1-95e6-afb8a0d2f207", "9b0ee3d2-2ee3-45e9-800e-6043f14d5c82", "87f65fad-7b91-4319-afa7-8b0183161ec2", "6752b104-7f28-4420-a5a5-cd363460418e", "cd24992a-53bf-4a8a-9229-69f08c456126" ],
+  "fa-id" : "2146f940-c675-4842-abda-f2781c6d787b",
+  "class-label" : "Kürbiskernöl"
+}, {
+  "name" : "Leindotteröl",
+  "fingerprint-ids" : [ "dfe95bd5-5630-41f5-b9ed-f5f2b3b6f912" ],
+  "fa-id" : "b2befefb-b447-4785-a062-dc0eca7c11b6",
+  "class-label" : "Leindotteröl"
+}, {
+  "name" : "Leinöl",
+  "fingerprint-ids" : [ "e9767bd5-d68c-4bf1-af64-ea02659ac018", "e68b89bb-f671-4daf-9017-654a6ff81671", "c987ab70-b410-4a2d-a75b-5c2efa49431f", "9eeb7c22-b457-4946-945b-e5710a9f166a", "9c3c654c-fe72-4db3-9547-e645f7dfc414", "ef312c55-0d07-49de-a9eb-5f2aa347b950", "af98529a-47d5-4056-83fd-569b5e174fe5", "03df0a48-1e7b-4ecc-8035-1b426103d4c0", "427c6446-abad-4c68-9351-ad55c70251ab", "0901689d-b027-4ba3-98a9-c959582bcc09", "bfae9606-06b7-4aaa-98ae-cb2dee09713c", "e875bd59-3262-4075-bd27-c67337cae16b", "8bc1c890-0928-4b4f-a5c1-b91b78a6252f", "cef078c0-234a-40e9-821e-ddaaa91dd07c", "b891b395-6153-4590-9a38-adf0adccc1aa" ],
+  "fa-id" : "413c8911-4a9c-4ccc-ac05-cb163f058502",
+  "class-label" : "Leinöl"
+}, {
+  "name" : "Mohnöl",
+  "fingerprint-ids" : [ "cb735a5a-3d33-4396-921f-bc266fff2d05" ],
+  "fa-id" : "d2e46de4-527b-4644-b0a5-c28e81c75d7d",
+  "class-label" : "Mohnöl"
+}, {
+  "name" : "Rapsöl",
+  "fingerprint-ids" : [ "86fdf35e-2fd8-401f-94da-98397016c032", "b6eaf03a-263a-47ce-98c3-0a178c2ddcf1", "5c19d547-9ec7-4fd7-9c26-5a751d6c7f0a", "3a585b34-3999-41f5-b77f-7c92abd62576", "c09c95bf-e8d3-44bd-b35b-bb7e6e09d258", "f6f1a1cf-0e79-4f03-a04f-6c25f4e4bf89", "5484d830-965e-4d3e-8708-650dddc74181", "99855c8d-4bcf-4b9e-869c-4fecc6735a4c", "4151937a-2827-49ed-920d-f1743075cb11", "84b6d3a1-42cb-42af-9d43-0cb232b7c76b", "71ffe803-32f0-4f54-b4e3-1c4c1abfd57d", "2038f4c0-1c49-46da-9a25-0799abcf6384", "35172285-e158-42d2-9e75-e8e8fd3ddf54", "9b3d19c2-7a44-4879-b898-d8b63c2c0a18", "abb83ebd-9c18-4447-b887-40f99397d27b", "5678a13f-3acd-4755-aff5-26430162db95", "db55f634-b2a5-4cec-91e0-13b0283e2067", "95c4eb7d-e1af-4e32-9ee4-397d1ee4efec", "2aeb4f7a-65e9-4ffc-ae19-6121d3bac2cf", "bab3f16c-9e63-4032-b29d-e614b68a6030", "7aa3ca11-3356-486f-b845-0dcb9cc59f53", "0c7bae0f-03ba-400b-93ae-b8fe6139eb28", "c6f88ffc-f604-45f7-8973-dfae8a14ce73", "c72b0799-8dcc-4042-bfef-59239502d77a", "c6059a7f-e394-4ec4-9de3-8cfc23543143", "a93b33c7-d7c8-4412-b3fb-98ed666a3130", "0752e110-5b0f-4070-b002-ccaba73fb135", "3a607738-1f74-4380-a04b-c4f76e29d5af", "2bccf3dc-d422-4ef4-8f05-a284bcc16450", "af10873a-5f27-4dfc-8f11-03501519627b", "4a6221ee-09d9-45af-b292-a5788059780c", "a0c2ab8b-597c-4950-9524-20019f8ef515", "c0778c53-9f72-41f6-a9b2-8d175cf61bc8", "9ca4fef8-1f00-499b-b5b1-14b2dd72b1e0", "05c364d8-714a-4f1b-9dc5-a88c7038cff0", "47e1edb4-64e0-4b06-b0db-a6cb5cef5029", "e6998d1a-fa32-4401-a12b-078d26224b42", "d860d395-ef83-44d4-a36e-5a03cff98370", "b4517b79-b75f-4e08-9c63-f7a11f19c591", "077e1ef0-c775-43c5-9432-965ff04df627", "d09a229b-9e52-4b77-bfc7-ba189d5764dc", "9a09c1bd-6277-45f7-8ca8-411ca64e7129", "bd19d5fb-828d-4db2-9f0d-a92708654c80", "f6b927bf-d0aa-4bc3-a03f-cacd7fc6086d", "bf580289-e81f-463e-bb2c-061c4d429965", "5385a35c-4320-40be-b565-7d1ec2a8b180", "e407a94b-eb85-4e5f-b119-66fa9b166e83", "a5d1997c-9899-41b8-8e6a-485ddc397322", "91ef60e5-4341-4dc8-a498-19c34ca7120e", "1ee00d7c-d4bb-43f0-b77d-7f9917a2bc68", "ce1d7d6f-9b65-4a93-af3e-4008c4d437be", "deaa3373-0336-40d4-a9e4-e05fd64e7aea", "d8ba0e33-73ec-4ab7-b72f-262df7dbfc95", "d1489731-27aa-42f9-8746-e0f178a4b0a7", "f9165233-a0c9-4e63-8040-b3dc6e457d2c", "5487f111-05db-4161-80ed-2a1dc1f03798", "365b395e-94be-4176-9f86-ff50ec4b3525", "f8985944-fab5-4c91-a6fe-be8ca58b8384", "6e90c8fd-a63a-40bb-b5be-0b49f7afea39", "2e63155f-ae03-4a54-bc59-83c82f506dde", "c95557e9-305c-4a61-827a-58abdf3c60fe", "b91a527a-d9e5-4f7c-aa17-fcf00df922b5", "fa8412b3-755c-4453-89a8-871a76608190", "bcac035a-081e-4908-b9c0-590d1d3d3793", "3827505f-3230-4d24-9c50-b4542e69ce81", "ecd53f3f-31e3-4dcc-b05f-0410a927a2f3", "37ed018d-28a5-4054-96ec-570cc132dfb8", "2ef4b31f-eab9-4622-b0b0-47a66e112936", "86123a80-4c9f-4b0f-b0af-37aa346af92b", "5ba6d41d-4368-4586-a507-3f6659aa35b7", "552fac16-f94c-4263-9e8b-ee0ddf08226a", "7508d4b9-1394-4e38-a452-c2a92b7d2a6f", "ddf820a7-dd96-4ad2-9c21-4f3832542b3d", "65ca1ee3-88f9-44d2-9ed4-f57e61c58335", "95f72002-347e-45cc-a61f-c38540e18685", "e674c806-b8a0-4486-ba87-40383f818b6b", "4b7d6b5a-d2dc-4151-8de5-00f0ff55e713", "34674353-a9c4-4593-8672-efa31d4d12b0", "87da7243-2ec8-4812-bc45-66472de9304a", "48af570d-6678-4f09-a9a6-f27a895798c4", "41c41a5d-b2ac-40a5-af1f-041c5f857101", "88d5d01c-3b7d-4580-a78b-536c226d9e84", "3b9720f3-4012-4a1b-b1d3-8c090231c241", "e139e4ed-bf30-4449-a62c-0ee2b88f5b8c", "3c3bc890-4255-4815-9271-5e8fad62ada3", "d6eb0d9d-a7df-48cf-bd26-1ad190965a74", "ac9a1b87-d1ab-459f-8341-182a3d6633e2", "e7f4ff3e-a6dc-4e2e-bd99-239811878003", "1d4b7067-5c82-49c5-8d93-ec0ba7b8283c", "5232c6f4-85ce-432d-b626-1e5880ddc8f8", "c3d5fefa-d3f3-4083-b176-bccdbd52df6b", "f86702fe-75d4-4d9c-8fbd-d7e4f16560f1", "591a451f-6f38-4275-83d8-086c4ccd3365", "11d0d693-a0aa-467e-98a2-820fd12e84d6", "57d28669-ef15-4861-9306-bfa72813cf4e" ],
+  "fa-id" : "56e7fd40-7b54-4650-97ab-bae8db93a17e",
+  "class-label" : "Rapsöl"
+}, {
+  "name" : "Rapsöl Kosmetika",
+  "fingerprint-ids" : [ "e1730897-057b-4e9f-b506-2c32d62d92dd" ],
+  "fa-id" : "26464856-9b66-46d1-bea9-e77d2ce9337c",
+  "class-label" : "Rapsöl Kosmetika"
+}, {
+  "name" : "Schwarzkümmelöl",
+  "fingerprint-ids" : [ "20e2e75d-bc11-42e2-b8d0-bde2534bf8c8", "5a934636-df23-40e0-8f69-4d8f30d607e0" ],
+  "fa-id" : "4575d901-82af-49bc-9f2b-153f623f1bd0",
+  "class-label" : "Schwarzkümmelöl"
+}, {
+  "name" : "Senföl",
+  "fingerprint-ids" : [ "2790b8b0-1b88-493b-bfb5-e2d6e4707c91" ],
+  "fa-id" : "e1683208-f3b7-4b07-a04b-6af82882e52b",
+  "class-label" : "Senföl"
+}, {
+  "name" : "Sesamöl",
+  "fingerprint-ids" : [ "bfbc598f-ada1-4586-a632-da0d4794803b", "25ee3b89-3452-4c16-8c4f-c415b188f165", "c89abb6d-7c57-4bf4-9f2c-aaae287e62f9", "d909868b-286c-4193-83d6-27d4a8cfbe21", "139221fd-3a55-4b72-8b03-e03f6625b65f", "29edd24d-3fe3-4c3a-a59b-828f00fd8564", "3d779e37-32f9-4a3d-88b3-5849ba9fce85", "712bcb3d-d99c-4c7f-8f23-a54ca58b20a1", "166e9767-b493-43a8-a7a5-ec602442436a", "62af780c-0dd4-4d33-b30a-ee3e5060e1c1" ],
+  "fa-id" : "3a803518-bf19-488f-b5ed-7db368492bf3",
+  "class-label" : "Sesamöl"
+}, {
+  "name" : "Sojaöl",
+  "fingerprint-ids" : [ "36d4673d-2a95-442f-b0bc-09782137174b", "33d27a3b-f4a0-47f3-b184-9f7b64746340", "bd70a894-0f7e-41bb-9170-1eeedba6dcc2" ],
+  "fa-id" : "6da91b41-9dc0-48c9-a7a1-ea9a8e231abe",
+  "class-label" : "Sojaöl"
+}, {
+  "name" : "Sonneblumenöl",
+  "fingerprint-ids" : [ "938eaf0e-2a94-40d2-bca1-72f8f91551d8", "835143d3-a9d5-45be-b777-9489b0d779e3", "0193050d-3c6d-4294-b16c-a626da23c582", "a80f402a-5cd3-4daf-b3f5-9813085235f9", "cedb102c-82ad-405f-b48e-c127860c55d1", "2b989a0b-876d-44e4-8f6b-4247a41994cc" ],
+  "fa-id" : "41a3b21e-4cd2-4397-a912-8230376919f9",
+  "class-label" : "Sonneblumenöl"
+}, {
+  "name" : "Sonnenblumenöl",
+  "fingerprint-ids" : [ "602bff61-e0f3-4d72-8b15-1fe5461eb4e7", "f10bb86a-f46f-423a-baee-214901c4851e", "2245b302-a088-413f-8936-e969cb14ce91", "73580535-40e2-42ca-8168-9b2bd25928bd", "9ce3c76f-d6dc-4c10-b203-38d4378e2f22", "94b94e74-5302-47af-be77-966c699f4fe0", "5ff1eb7f-5de1-40a7-926b-a25d2fcbfa27", "4d2c47e4-b41e-4eb6-8730-f98376cb1d16", "3f00ef15-ab00-4a19-8302-df5faa96bad8", "8b4d2869-f670-4731-88b6-ad204ef3783d" ],
+  "fa-id" : "5b0bd73d-1c2f-4cca-b157-d72940a72a5b",
+  "class-label" : "Sonnenblumenöl"
+}, {
+  "name" : "Traubenkernöl",
+  "fingerprint-ids" : [ "acc3f873-6f2d-4763-87c7-c13fe1a8d9a8", "1ce61e50-2722-4fab-8167-7529009ada66", "9a8c59e6-7480-44c7-9215-5a37180b3ffe" ],
+  "fa-id" : "7ebeeef6-f4a7-4105-90e2-9d565dd8fae2",
+  "class-label" : "Traubenkernöl"
+}, {
+  "name" : "Walnussöl",
+  "fingerprint-ids" : [ "2557e732-a79d-4330-8eac-148c3bbb20ca", "2ec14fdb-2e03-4333-9f8f-29ea54ed9b21", "06fb0ce9-eae4-4f68-ba78-461e8b2b8ee5", "5ca05624-6a5a-427b-8b2b-8cb1c3c8e040", "9d52ad8a-22f4-4e33-95de-8226687c2a9e" ],
+  "fa-id" : "93f1ee0b-8c18-4f34-9189-ba2cf4fa965e",
+  "class-label" : "Walnussöl"
+} ]

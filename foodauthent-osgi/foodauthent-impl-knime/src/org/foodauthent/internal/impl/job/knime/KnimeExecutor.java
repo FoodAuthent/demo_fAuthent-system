@@ -36,33 +36,36 @@ public interface KnimeExecutor {
     void loadWorkflow(UUID workflowId, FileMetadata workflowMetadata, Blob workflowData) throws LoadingFailedException;
 
     /**
-     * TODO - also pass the data (fingerprints, models etc.) along!!
-     * 
-     * Asynchronously runs (i.e. returns immediately) the workflow. The workflow for
-     * the given id need to be loaded first!
-     * 
-     * @param workflowId
-     *            id of the workflow to run
-     * @param input
-     *            workflow input as json object
-     * @param inputName
-     *            the name of the input parameter that takes the json object
-     * @param outputName
-     *            the name of the output parameter to get the result from
-     * @param successCallback
-     *            called with the result json object when execution has successfully
-     *            finished
-     * @param failCallback
-     *            called when something failed with a message and an optional(!)
-     *            exception
-     * @throws IllegalStateException
-     *             if the workflow for the id hasn't been loaded, yet.
-     */
+	 * TODO - also pass the data (fingerprints, models etc.) along!!
+	 * 
+	 * Asynchronously runs (i.e. returns immediately) the workflow. The workflow for
+	 * the given id need to be loaded first!
+	 * 
+	 * @param workflowId
+	 *            id of the workflow to run
+	 * @param input
+	 *            workflow input as json object
+	 * @param inputName
+	 *            the name of the input parameter that takes the json object
+	 * @param outputName
+	 *            the name of the output parameter to get the result from
+	 * @param successCallback
+	 *            called with the result json object when execution has successfully
+	 *            finished
+	 * @param failCallback
+	 *            called when something failed with a message and an optional(!)
+	 *            exception
+	 * @param async
+	 *            whether to run the workflow asynchronously. If false, method will
+	 *            block till workflow is finished
+	 * @throws IllegalStateException
+	 *             if the workflow for the id hasn't been loaded, yet.
+	 */
     //return a CompletableFuture instead?
-    void asyncRunWorkflow(UUID workflowId, JsonValue input, String inputName, String outputName,
-	    Consumer<JsonValue> successCallback, BiConsumer<String, Exception> failCallback)
+    void runWorkflow(UUID workflowId, JsonValue input, String inputName, String outputName,
+	    Consumer<JsonValue> successCallback, BiConsumer<String, Exception> failCallback, boolean async)
 	    throws IllegalStateException;
-
+    
     /**
      * When a workflow couldn't be loaded.
      */

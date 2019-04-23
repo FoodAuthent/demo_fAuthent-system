@@ -34,8 +34,9 @@ public class Model   extends FaModel {
   protected ModelType type;
   protected java.util.List<Tag> tags;
   protected java.util.UUID fileId;
-  protected java.util.UUID productId;
   protected java.util.UUID workflowId;
+  protected java.util.List<java.util.UUID> fingerprintsetIds;
+  protected java.util.List<String> classLabels;
   
   public String getTypeID() {
     return "Model";
@@ -56,8 +57,9 @@ public class Model   extends FaModel {
     type = immutable(builder.type);
     tags = immutable(builder.tags);
     fileId = immutable(builder.fileId);
-    productId = immutable(builder.productId);
     workflowId = immutable(builder.workflowId);
+    fingerprintsetIds = immutable(builder.fingerprintsetIds);
+    classLabels = immutable(builder.classLabels);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -78,7 +80,7 @@ public class Model   extends FaModel {
             return false;
         }
         Model ent = (Model)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(productId, ent.productId) && Objects.equals(workflowId, ent.workflowId);
+        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetIds, ent.fingerprintsetIds) && Objects.equals(classLabels, ent.classLabels);
     }
 
 
@@ -155,19 +157,27 @@ public class Model   extends FaModel {
     }
     
   /**
-   * Reference to the product this model has been trained for.
-   * @return productId 
-   */
-  public java.util.UUID getProductId() {
-        return productId;
-    }
-    
-  /**
    * Optional reference to the workflow used to create this model.
    * @return workflowId 
    */
   public java.util.UUID getWorkflowId() {
         return workflowId;
+    }
+    
+  /**
+   * Reference to the fingerprint sets the model has been trained on
+   * @return fingerprintsetIds 
+   */
+  public java.util.List<java.util.UUID> getFingerprintsetIds() {
+        return fingerprintsetIds;
+    }
+    
+  /**
+   * the available class labels
+   * @return classLabels 
+   */
+  public java.util.List<String> getClassLabels() {
+        return classLabels;
     }
     
   
@@ -197,8 +207,9 @@ public class Model   extends FaModel {
         builder.type = entity.type;
         builder.tags = entity.tags;
         builder.fileId = entity.fileId;
-        builder.productId = entity.productId;
         builder.workflowId = entity.workflowId;
+        builder.fingerprintsetIds = entity.fingerprintsetIds;
+        builder.classLabels = entity.classLabels;
  		return builder;
   	}
   	
@@ -218,8 +229,9 @@ public class Model   extends FaModel {
         private ModelType type;
         private java.util.List<Tag> tags = new java.util.ArrayList<>();
         private java.util.UUID fileId;
-        private java.util.UUID productId;
         private java.util.UUID workflowId;
+        private java.util.List<java.util.UUID> fingerprintsetIds = new java.util.ArrayList<>();
+        private java.util.List<String> classLabels = new java.util.ArrayList<>();
 
         /**
          * A global id within the FoodAuthent-system.
@@ -303,20 +315,29 @@ public class Model   extends FaModel {
         }
 
         /**
-         * Reference to the product this model has been trained for.
-         * @return productId 
-         */
-        public ModelBuilder setProductId(java.util.UUID productId) {
-             this.productId = productId;
-             return this;
-        }
-
-        /**
          * Optional reference to the workflow used to create this model.
          * @return workflowId 
          */
         public ModelBuilder setWorkflowId(java.util.UUID workflowId) {
              this.workflowId = workflowId;
+             return this;
+        }
+
+        /**
+         * Reference to the fingerprint sets the model has been trained on
+         * @return fingerprintsetIds 
+         */
+        public ModelBuilder setFingerprintsetIds(java.util.List<java.util.UUID> fingerprintsetIds) {
+             this.fingerprintsetIds = fingerprintsetIds;
+             return this;
+        }
+
+        /**
+         * the available class labels
+         * @return classLabels 
+         */
+        public ModelBuilder setClassLabels(java.util.List<String> classLabels) {
+             this.classLabels = classLabels;
              return this;
         }
 

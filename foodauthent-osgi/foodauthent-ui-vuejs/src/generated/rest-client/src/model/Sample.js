@@ -66,6 +66,9 @@
       if (data.hasOwnProperty('product-id')) {
         obj['product-id'] = ApiClient.convertToType(data['product-id'], 'String');
       }
+      if (data.hasOwnProperty('sop-id')) {
+        obj['sop-id'] = ApiClient.convertToType(data['sop-id'], 'String');
+      }
       if (data.hasOwnProperty('sampleId')) {
         obj['sampleId'] = ApiClient.convertToType(data['sampleId'], 'String');
       }
@@ -104,6 +107,11 @@
    * @member {String} product-id
    */
   exports.prototype['product-id'] = undefined;
+  /**
+   * referenced sop used to create the sample
+   * @member {String} sop-id
+   */
+  exports.prototype['sop-id'] = undefined;
   /**
    * Sample Id
    * @member {String} sampleId

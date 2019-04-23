@@ -64,6 +64,9 @@ public interface FingerprintSetMixIn {
     @JsonProperty("type")
     public FingerprintSetType getType();
     
+    @JsonProperty("class-label")
+    public String getClassLabel();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -100,6 +103,9 @@ public interface FingerprintSetMixIn {
         
         @JsonProperty("type")
         public FingerprintSetMixInBuilder setType(final FingerprintSetType type);
+        
+        @JsonProperty("class-label")
+        public FingerprintSetMixInBuilder setClassLabel(final String classLabel);
         
     }
 

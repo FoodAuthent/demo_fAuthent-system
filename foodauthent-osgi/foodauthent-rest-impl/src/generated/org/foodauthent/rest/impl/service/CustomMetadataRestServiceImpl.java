@@ -38,54 +38,54 @@ public class CustomMetadataRestServiceImpl implements CustomMetadataRestService 
     /**
      * TODO
      *
-     * @param modelId 
+     * @param modelType 
      * @param schemaId 
      * @param faId 
      * @return the response
      */
-    public Response getCustomMetadata(String modelId, String schemaId, java.util.UUID faId) {
+    public Response getCustomMetadata(String modelType, String schemaId, java.util.UUID faId) {
         
-            Object res = service.getCustomMetadata(modelId, schemaId, faId);
+            Object res = service.getCustomMetadata(modelType, schemaId, faId);
             return Response.ok(res).build();
     }
 
     /**
      * TODO
      *
-     * @param modelId 
+     * @param modelType 
      * @param schemaId 
      * @return the response
      */
-    public Response getCustomMetadataSchema(String modelId, String schemaId) {
+    public Response getCustomMetadataSchema(String modelType, String schemaId) {
         
-            Object res = service.getCustomMetadataSchema(modelId, schemaId);
+            Object res = service.getCustomMetadataSchema(modelType, schemaId);
             return Response.ok(res).build();
     }
 
     /**
      * TODO
      *
-     * @param modelId 
+     * @param modelType 
      * @return the response
      */
-    public Response getCustomMetadataSchemas(String modelId) {
+    public Response getCustomMetadataSchemas(String modelType) {
         
-            Object res = service.getCustomMetadataSchemas(modelId);
+            Object res = service.getCustomMetadataSchemas(modelType);
             return Response.ok(res).build();
     }
 
     /**
      * TODO
      *
-     * @param modelId 
+     * @param modelType 
      * @param schemaId 
      * @param faId 
      * @param body 
      * @return the response
      */
-    public Response saveCustomMetadata(String modelId, String schemaId, java.util.UUID faId, String body) {
+    public Response saveCustomMetadata(String modelType, String schemaId, java.util.UUID faId, String body) {
         
-            service.saveCustomMetadata(modelId, schemaId, faId, body);
+            service.saveCustomMetadata(modelType, schemaId, faId, body);
             
                 return Response.ok().build();
     }

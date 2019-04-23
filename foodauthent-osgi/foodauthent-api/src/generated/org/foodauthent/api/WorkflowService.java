@@ -28,22 +28,24 @@ public interface WorkflowService {
      * @param workflowId TODO
      * @param fingerprintsetId TODO
      * @param modelId The model to be used for prediction. Needs to be compatible with the selected workflow!!
+     * @param async Whether to run the workflow asynchronously
      *
      * @return the result
      * @throws InitJobException Exception thrown when a job could not be initialized.
      */
-    PredictionJob createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId) throws FAExceptions.InitJobException;
+    PredictionJob createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId, Boolean async) throws FAExceptions.InitJobException;
         
     /**
      * 
      *
      * @param workflowId TODO
-     * @param fingerprintsetId TODO
+     * @param fingerprintsetIds One or more fingerprintset-ids referencing the fingerprint sets to learn the model on. Each fingerprintset represents one class! 
+     * @param async Whether to run the workflow asynchronously
      *
      * @return the result
      * @throws InitJobException Exception thrown when a job could not be initialized.
      */
-    TrainingJob createTrainingJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId) throws FAExceptions.InitJobException;
+    TrainingJob createTrainingJob(java.util.UUID workflowId, java.util.List<java.util.UUID> fingerprintsetIds, Boolean async) throws FAExceptions.InitJobException;
         
     /**
      * Creates/adds a new workflow.

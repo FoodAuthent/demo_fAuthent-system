@@ -683,12 +683,23 @@ paths:
             type: string
             format: uuid
         - in: query
-          name: fingerprintset-id
-          description: TODO
+          name: fingerprintset-ids
+          description: >
+            One or more fingerprintset-ids referencing the fingerprint sets to learn
+            the model on. Each fingerprintset represents one class!
           required: true
           schema:
-            type: string
-            format: uuid
+            type: array
+            items:
+              type: string
+              format: uuid
+        - in: query
+          name: async
+          description: >-
+            Whether to run the workflow asynchronously
+          required: false
+          schema:
+            type: boolean
       responses:
         '201':
           description: The model training job as been created successfully.
@@ -795,6 +806,13 @@ paths:
           schema:
             type: string
             format: uuid
+        - in: query
+          name: async
+          description: >-
+            Whether to run the workflow asynchronously
+          required: false
+          schema:
+            type: boolean
       responses:
         '200':
           description: The prediction job.
@@ -1354,16 +1372,16 @@ paths:
           $ref: "#/components/responses/FAException"    
 
                           
-  '/custommetadata/{model-id}':
+  '/custommetadata/{model-type}':
     get:
       tags:
         - custom-metadata
-      summary: Returns all available schema ids for a model id.
+      summary: Returns all available schema ids for a model type.
       description: >-
         TODO
       operationId: getCustomMetadataSchemas
       parameters:
-        - $ref: "#/components/parameters/model-id"
+        - $ref: "#/components/parameters/model-type"
       responses:
         '200':
           description: The list of schema-ids available for this type of entity.
@@ -1374,16 +1392,16 @@ paths:
                 items:
                   type: string
                 
-  '/custommetadata/{model-id}/{schema-id}':
+  '/custommetadata/{model-type}/{schema-id}':
     get:
       tags:
         - custom-metadata
-      summary: Returns the json-schema for a given schema- and model-id.
+      summary: Returns the json-schema for a given schema- and model-type.
       description: >-
         TODO
       operationId: getCustomMetadataSchema
       parameters:
-        - $ref: "#/components/parameters/model-id"
+        - $ref: "#/components/parameters/model-type"
         - $ref: "#/components/parameters/schema-id"
       responses:
         '200':
@@ -1393,7 +1411,7 @@ paths:
               schema:
                 type: string 
                 
-  '/custommetadata/{model-id}/{schema-id}/{fa-id}':
+  '/custommetadata/{model-type}/{schema-id}/{fa-id}':
     get:
       tags:
         - custom-metadata
@@ -1402,7 +1420,7 @@ paths:
         TODO
       operationId: getCustomMetadata
       parameters:
-        - $ref: "#/components/parameters/model-id"
+        - $ref: "#/components/parameters/model-type"
         - $ref: "#/components/parameters/schema-id"
         - in: path
           name: fa-id
@@ -1425,7 +1443,7 @@ paths:
         TODO
       operationId: saveCustomMetadata
       parameters:
-        - $ref: "#/components/parameters/model-id"
+        - $ref: "#/components/parameters/model-type"
         - $ref: "#/components/parameters/schema-id"
         - in: path
           name: fa-id
@@ -1659,8 +1677,8 @@ components:
         type: array
         items:
           type: string
-    model-id:
-      name: model-id
+    model-type:
+      name: model-type
       in: path
       required: true
       schema:
@@ -1978,7 +1996,16 @@ components:
       description: A fingerprint object representing its metadata.
       type: object
       x-ui-vue.js:
+<<<<<<< HEAD
         - name: metadata
+=======
+        - name: sample-id
+          id-provider: select-sample
+        - name: sop-id
+        - name: file-id
+          id-provider: upload-file
+        - name: type
+>>>>>>> master
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
@@ -1988,12 +2015,22 @@ components:
         metadata:
           description: Placeholder for the actual metadata.
           type: string
+<<<<<<< HEAD
         additional-properties:
           description: Key-value-map for additional properties.
           #string to string map
           type: object
           additionalProperties:
             type: string
+=======
+          format: uuid
+        sop-id:
+          description: reference to sop used to create the fingerprint
+          type: string
+          format: uuid
+        type:
+          $ref: "#/components/schemas/FingerprintType"
+>>>>>>> master
 
     FingerprintSet:
       description: A set of fingerprints with its own id.
@@ -2009,7 +2046,11 @@ components:
         - name: file-id
           id-provider: upload-file
         - name: name
+<<<<<<< HEAD
         - name: type
+=======
+        - name: class-label
+>>>>>>> master
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
@@ -2033,8 +2074,17 @@ components:
         name:
           description: A human-readable name of the fingerprint set.
           type: string
+<<<<<<< HEAD
         type:
           $ref: "#/components/schemas/FingerprintSetType"
+=======
+        description:
+          description: A more detailed description of the fingerprint set.
+          type: string
+        class-label:
+          description: A class label associated with this fingerprint set.
+          type: string
+>>>>>>> master
 
     FingerprintSetPageResult:
       type: object
@@ -2147,8 +2197,7 @@ components:
         - name: tags
         - name: file-id
           id-provider: upload-file
-        - name: product-id
-          id-provider: select-product
+        #- name: fingerprintset-ids
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
@@ -2182,14 +2231,21 @@ components:
           description: id referencing the model file.
           type: string
           format: uuid
-        product-id:
-          description: Reference to the product this model has been trained for.
-          type: string
-          format: uuid
         workflow-id:
           description: Optional reference to the workflow used to create this model.
           type: string
           format: uuid
+        fingerprintset-ids:
+          description: Reference to the fingerprint sets the model has been trained on
+          format: array
+          items:
+            type: string
+            format: uuid
+        class-labels:
+          description: the available class labels
+          type: array
+          items:
+            type: string
 
     ModelPageResult:
       type: object
@@ -2416,36 +2472,25 @@ components:
     #predictions per fingerprint set!!
     Prediction:
       type: object
-      x-ui-vue.js:
-        - name: workflow-id
-          id-provider: select-workflow
-        - name: fingerprint-set-id
-          id-provider: select-fingerprint
-        - name: model-id
-          id-provider: select-model
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
           type: string
           format: uuid
           example: ''
-        confidence-map:
-          description: >-
-            The confidences for each fingerprint, mapped from the
-            fingerprint-id.
+        prediction-map:
+          description:
+            The predictions for each individual fingerprint.
+            The map key is the fingerprint-id. 
           type: object
-          #map from fa-id to confidence
           additionalProperties:
-            type: number
-            format: float
-            maximum: 1
-            minimum: 0
+            $ref: "#/components/schemas/PredictionInstance"
         workflow-id:
           description: Workflow used for the prediction.
           type: string
           format: uuid
           example: ''
-        fingerprint-set-id:
+        fingerprintset-id:
           description: Id of the set the prediction has been done for.
           type: string
           format: uuid
@@ -2455,6 +2500,28 @@ components:
           type: string
           format: uuid
           example: ''
+        class-labels:
+          description: available class labels
+          type: array
+          items:
+            type: string
+    
+    PredictionInstance:
+      x-no-faid: true
+      description: One particular prediction for a fingerprint.
+      type: object
+      properties:
+        class-label:
+          description: the predicted class
+          type: string
+        probabilities:
+          description: the probability distribution over all classes
+          type: array
+          items:
+            type: number
+            format: float
+            maximum: 1
+            minimum: 0
           
     PredictionJob:
       description: Represents prediction job.
@@ -2532,8 +2599,16 @@ components:
           description: >-
             URI pointing to the resource containg the fingerprints to predict
             the labels for.
+<<<<<<< HEAD
           type: string
           format: uri
+=======
+            (in the same order as the fingerprint-ids of the fingerprint-set)
+          type: array 
+          items:
+            type: string
+            format: uri
+>>>>>>> master
         model-URI:
           description: >-
             optional model uri (if required by the workflow) pointing to the
@@ -2546,17 +2621,13 @@ components:
       type: object
       x-no-faid: true
       properties:
-        confidence-map:
-          description: >-
-            The confidences for each fingerprint, mapped from the
-            fingerprint-id.
+        prediction-map:
+          description:
+            The predictions for each individual fingerprint.
+            The map key is the fingerprint-id. 
           type: object
-          #map from fa-id to confidence
           additionalProperties:
-            type: number
-            format: float
-            maximum: 1
-            minimum: 0
+            $ref: "#/components/schemas/PredictionInstance"
 
     Product:
       description: >-
@@ -2673,6 +2744,7 @@ components:
         type: object
         x-ui-vue.js:
         - name: product-id
+        - name: sop-id
         - name: sampleId
         - name: dateOfSampleDrawing
         - name: lot
@@ -2688,6 +2760,10 @@ components:
             format: uuid
           product-id:
             description: referenced product fa-id
+            type: string
+            format: uuid
+          sop-id:
+            description: referenced sop used to create the sample
             type: string
             format: uuid
           sampleId:
@@ -2787,6 +2863,49 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SOP'
+<<<<<<< HEAD
+=======
+            
+    SystemInfo:
+      x-no-faid: true
+      description: The system status with some statistics etc.
+      type: object
+      properties:
+        num-sops:
+          type: integer
+          format: int64
+        num-files:
+          type: integer
+          format: int64
+        num-products:
+          type: integer
+          format: int64
+        num-fingerprints:
+          type: integer
+          format: int64
+        num-fingerprintsets:
+          type: integer
+          format: int64
+        num-workflows:
+          type: integer
+          format: int64
+        num-samples:
+          type: integer
+          format: int64
+        num-predictions:
+          type: integer
+          format: int64
+        num-models:
+          type: integer
+          format: int64
+        num-prediction-jobs:
+          type: integer
+          format: int64
+        num-training-jobs:
+          type: integer
+          format: int64
+        
+>>>>>>> master
 
     Tag:
       description: A tag/label for objects.
@@ -2881,6 +3000,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WorkflowParameter'
+<<<<<<< HEAD
         fingerprintset-metadata:
           $ref: '#/components/schemas/FingerprintSet'
         fingerprintset-URI:
@@ -2889,6 +3009,25 @@ components:
             model from.
           type: string
           format: uri
+=======
+        fingerprints:
+           type: array
+           items:
+            $ref: "#/components/schemas/TrainingWorkflowInputFingerprint" 
+    
+    TrainingWorkflowInputFingerprint:
+      type: object
+      x-no-faid: true
+      properties:
+        URI:
+          type: string
+          format: uri
+        class-label:
+          type: string
+        fingerprint-id:
+          type: string
+          format: uuid
+>>>>>>> master
 
     TrainingWorkflowOutput:
       description: Describes the outputs delivered by a training workflow.

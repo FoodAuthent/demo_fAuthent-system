@@ -66,8 +66,19 @@
       if (data.hasOwnProperty('metadata')) {
         obj['metadata'] = ApiClient.convertToType(data['metadata'], 'String');
       }
+<<<<<<< HEAD
       if (data.hasOwnProperty('additional-properties')) {
         obj['additional-properties'] = ApiClient.convertToType(data['additional-properties'], Object);
+=======
+      if (data.hasOwnProperty('file-id')) {
+        obj['file-id'] = ApiClient.convertToType(data['file-id'], 'String');
+      }
+      if (data.hasOwnProperty('sop-id')) {
+        obj['sop-id'] = ApiClient.convertToType(data['sop-id'], 'String');
+      }
+      if (data.hasOwnProperty('type')) {
+        obj['type'] = FingerprintType.constructFromObject(data['type']);
+>>>>>>> master
       }
     }
     return obj;
@@ -84,8 +95,17 @@
    */
   exports.prototype['metadata'] = undefined;
   /**
+<<<<<<< HEAD
    * Key-value-map for additional properties.
    * @member {Object.<String, String>} additional-properties
+=======
+   * reference to sop used to create the fingerprint
+   * @member {String} sop-id
+   */
+  exports.prototype['sop-id'] = undefined;
+  /**
+   * @member {module:model/FingerprintType} type
+>>>>>>> master
    */
   exports.prototype['additional-properties'] = undefined;
 

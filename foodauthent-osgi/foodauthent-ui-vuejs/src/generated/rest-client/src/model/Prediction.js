@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient'], factory);
+    define(['../ApiClient', '../model/PredictionInstance'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./PredictionInstance'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.Prediction = factory(root.FoodAuthentSwaggerApi.ApiClient);
+    root.FoodAuthentSwaggerApi.Prediction = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.PredictionInstance);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, PredictionInstance) {
   'use strict';
 
 
@@ -62,17 +62,20 @@
       if (data.hasOwnProperty('fa-id')) {
         obj['fa-id'] = ApiClient.convertToType(data['fa-id'], 'String');
       }
-      if (data.hasOwnProperty('confidence-map')) {
-        obj['confidence-map'] = ApiClient.convertToType(data['confidence-map'], Object);
+      if (data.hasOwnProperty('prediction-map')) {
+        obj['prediction-map'] = ApiClient.convertToType(data['prediction-map'], Object);
       }
       if (data.hasOwnProperty('workflow-id')) {
         obj['workflow-id'] = ApiClient.convertToType(data['workflow-id'], 'String');
       }
-      if (data.hasOwnProperty('fingerprint-set-id')) {
-        obj['fingerprint-set-id'] = ApiClient.convertToType(data['fingerprint-set-id'], 'String');
+      if (data.hasOwnProperty('fingerprintset-id')) {
+        obj['fingerprintset-id'] = ApiClient.convertToType(data['fingerprintset-id'], 'String');
       }
       if (data.hasOwnProperty('model-id')) {
         obj['model-id'] = ApiClient.convertToType(data['model-id'], 'String');
+      }
+      if (data.hasOwnProperty('class-labels')) {
+        obj['class-labels'] = ApiClient.convertToType(data['class-labels'], ['String']);
       }
     }
     return obj;
@@ -84,10 +87,10 @@
    */
   exports.prototype['fa-id'] = undefined;
   /**
-   * The confidences for each fingerprint, mapped from the fingerprint-id.
-   * @member {Object.<String, Number>} confidence-map
+   * The predictions for each individual fingerprint. The map key is the fingerprint-id.
+   * @member {Object.<String, module:model/PredictionInstance>} prediction-map
    */
-  exports.prototype['confidence-map'] = undefined;
+  exports.prototype['prediction-map'] = undefined;
   /**
    * Workflow used for the prediction.
    * @member {String} workflow-id
@@ -95,14 +98,19 @@
   exports.prototype['workflow-id'] = undefined;
   /**
    * Id of the set the prediction has been done for.
-   * @member {String} fingerprint-set-id
+   * @member {String} fingerprintset-id
    */
-  exports.prototype['fingerprint-set-id'] = undefined;
+  exports.prototype['fingerprintset-id'] = undefined;
   /**
    * The model that has been used for the prediction.
    * @member {String} model-id
    */
   exports.prototype['model-id'] = undefined;
+  /**
+   * available class labels
+   * @member {Array.<String>} class-labels
+   */
+  exports.prototype['class-labels'] = undefined;
 
 
 

@@ -3,6 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
+import org.foodauthent.model.PredictionInstance;
 
 import java.util.UUID;
 
@@ -46,8 +47,8 @@ public interface PredictionWorkflowOutputMixIn {
   	public UUID getFaId();
     
 
-    @JsonProperty("confidence-map")
-    public java.util.Map<String, Float> getConfidenceMap();
+    @JsonProperty("prediction-map")
+    public java.util.Map<String, PredictionInstance> getPredictionMap();
     
 
     /**
@@ -68,8 +69,8 @@ public interface PredictionWorkflowOutputMixIn {
     
         public PredictionWorkflowOutputMixIn build();
     
-        @JsonProperty("confidence-map")
-        public PredictionWorkflowOutputMixInBuilder setConfidenceMap(final java.util.Map<String, Float> confidenceMap);
+        @JsonProperty("prediction-map")
+        public PredictionWorkflowOutputMixInBuilder setPredictionMap(final java.util.Map<String, PredictionInstance> predictionMap);
         
     }
 

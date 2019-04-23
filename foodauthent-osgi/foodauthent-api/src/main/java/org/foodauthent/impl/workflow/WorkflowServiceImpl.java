@@ -46,21 +46,23 @@ public class WorkflowServiceImpl implements WorkflowService {
     }
 
     @Override
-    public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId, UUID modelId)
-	    throws InitJobException {
+    public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId, UUID modelId,
+	    Boolean async) throws InitJobException {
 	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId, Workflow.class);
 	final FingerprintSet fingerprint = persistenceService.getFaModelByUUID(fingerprintSetId, FingerprintSet.class);
 	final Model model = persistenceService.getFaModelByUUID(modelId, Model.class);
-	final PredictionJob job = jobService.createNewPredictionJob(workflow, fingerprint, model);
+	final PredictionJob job = jobService.createNewPredictionJob(workflow, fingerprint, model, async);
 	return job;
     }
 
     @Override
-    public TrainingJob createTrainingJob(final UUID workflowId, final UUID fingerprintSetId) throws InitJobException {
+    public TrainingJob createTrainingJob(final UUID workflowId, final List<UUID> fingerprintSetIds, Boolean async)
+	    throws InitJobException {
 	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId, Workflow.class);
-	final FingerprintSet fingerprintSet = persistenceService.getFaModelByUUID(fingerprintSetId,
-		FingerprintSet.class);
-	final TrainingJob job = jobService.createNewTrainingJob(workflow, fingerprintSet);
+	List<FingerprintSet> fingerprintSets = fingerprintSetIds.stream()
+		.map(uuid -> persistenceService.getFaModelByUUID(uuid, FingerprintSet.class))
+		.collect(Collectors.toList());
+	final TrainingJob job = jobService.createNewTrainingJob(workflow, fingerprintSets, async);
 	return job;
     }
 
@@ -131,8 +133,29 @@ public class WorkflowServiceImpl implements WorkflowService {
 
     @Override
     public WorkflowPageResult findTrainingWorkflows(Integer pageNumber, Integer pageSize, List<String> keywords) {
+<<<<<<< HEAD
 	// TODO we need a better way to query fa-models by means of specific properties
 	// (e.g. a specific workflow-type)
 	throw new UnsupportedOperationException();
+=======
+	ResultPage<Workflow> res = persistenceService.findByKeywordsPaged(keywords, Workflow.class, pageNumber, pageSize);
+	//TODO make more efficient (i.e. let the DB do the job)
+	List<Workflow> filtered = res.getResult().stream().filter(w -> w.getType() == TypeEnum.TRAINING_WORKFLOW)
+		.collect(Collectors.toList());
+	return WorkflowPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(filtered).build();
+    }
+    
+    @Override
+    public PredictionPageResult findPredictionsByFingerprintSetId(UUID fingerprintsetId, Integer pageNumber,
+	    Integer pageSize, List<String> keywords) {
+	ResultPage<Prediction> res = persistenceService.findByKeywordsPaged(keywords, Prediction.class, pageNumber,
+		pageSize);
+	// TODO make more efficient (i.e. let the DB do the job)
+	List<Prediction> filtered = res.getResult().stream()
+		.filter(p -> p.getFingerprintsetId().equals(fingerprintsetId)).collect(Collectors.toList());
+	return PredictionPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(filtered).build();
+>>>>>>> master
     }
 }

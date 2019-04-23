@@ -89,12 +89,5 @@
     "idprovider" : "upload-file",
     "fieldName" : "fa-id",
     "type" : "loadFile"
-  }, {
-    "label" : "Product-id",
-    "model" : "product-id",
-    "required" : false,
-    "idprovider" : "select-product",
-    "fieldName" : "fa-id",
-    "type" : "selectModel"
   } ]
 }

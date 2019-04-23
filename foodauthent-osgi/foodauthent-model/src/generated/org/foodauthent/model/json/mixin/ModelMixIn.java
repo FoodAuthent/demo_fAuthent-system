@@ -74,11 +74,14 @@ public interface ModelMixIn {
     @JsonProperty("file-id")
     public java.util.UUID getFileId();
     
-    @JsonProperty("product-id")
-    public java.util.UUID getProductId();
-    
     @JsonProperty("workflow-id")
     public java.util.UUID getWorkflowId();
+    
+    @JsonProperty("fingerprintset-ids")
+    public java.util.List<java.util.UUID> getFingerprintsetIds();
+    
+    @JsonProperty("class-labels")
+    public java.util.List<String> getClassLabels();
     
 
     /**
@@ -126,11 +129,14 @@ public interface ModelMixIn {
         @JsonProperty("file-id")
         public ModelMixInBuilder setFileId(final java.util.UUID fileId);
         
-        @JsonProperty("product-id")
-        public ModelMixInBuilder setProductId(final java.util.UUID productId);
-        
         @JsonProperty("workflow-id")
         public ModelMixInBuilder setWorkflowId(final java.util.UUID workflowId);
+        
+        @JsonProperty("fingerprintset-ids")
+        public ModelMixInBuilder setFingerprintsetIds(final java.util.List<java.util.UUID> fingerprintsetIds);
+        
+        @JsonProperty("class-labels")
+        public ModelMixInBuilder setClassLabels(final java.util.List<String> classLabels);
         
     }
 

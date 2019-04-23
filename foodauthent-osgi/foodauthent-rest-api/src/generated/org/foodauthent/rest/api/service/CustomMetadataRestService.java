@@ -29,15 +29,15 @@ public interface CustomMetadataRestService{
     /**
      * TODO
      *
-     * @param modelId 
+     * @param modelType 
      * @param schemaId 
      * @param faId 
      * @return the response
      */
     @GET
-    @Path("/custommetadata/{model-id}/{schema-id}/{fa-id}")
+    @Path("/custommetadata/{model-type}/{schema-id}/{fa-id}")
     @Produces({ "application/json" })
-    public Response getCustomMetadata(@PathParam("model-id") String modelId
+    public Response getCustomMetadata(@PathParam("model-type") String modelType
 , @PathParam("schema-id") String schemaId
 , @PathParam("fa-id") java.util.UUID faId
 );
@@ -45,42 +45,42 @@ public interface CustomMetadataRestService{
     /**
      * TODO
      *
-     * @param modelId 
+     * @param modelType 
      * @param schemaId 
      * @return the response
      */
     @GET
-    @Path("/custommetadata/{model-id}/{schema-id}")
+    @Path("/custommetadata/{model-type}/{schema-id}")
     @Produces({ "application/schema+json" })
-    public Response getCustomMetadataSchema(@PathParam("model-id") String modelId
+    public Response getCustomMetadataSchema(@PathParam("model-type") String modelType
 , @PathParam("schema-id") String schemaId
 );
 
     /**
      * TODO
      *
-     * @param modelId 
+     * @param modelType 
      * @return the response
      */
     @GET
-    @Path("/custommetadata/{model-id}")
+    @Path("/custommetadata/{model-type}")
     @Produces({ "application/json" })
-    public Response getCustomMetadataSchemas(@PathParam("model-id") String modelId
+    public Response getCustomMetadataSchemas(@PathParam("model-type") String modelType
 );
 
     /**
      * TODO
      *
-     * @param modelId 
+     * @param modelType 
      * @param schemaId 
      * @param faId 
      * @param body 
      * @return the response
      */
     @POST
-    @Path("/custommetadata/{model-id}/{schema-id}/{fa-id}")
+    @Path("/custommetadata/{model-type}/{schema-id}/{fa-id}")
     @Consumes({ "application/json" })
-    public Response saveCustomMetadata(@PathParam("model-id") String modelId
+    public Response saveCustomMetadata(@PathParam("model-type") String modelType
 , @PathParam("schema-id") String schemaId
 , @PathParam("fa-id") java.util.UUID faId
 , String body

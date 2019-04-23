@@ -48,11 +48,12 @@ public class WorkflowRestServiceImpl implements WorkflowRestService {
      * @param workflowId TODO
      * @param fingerprintsetId TODO
      * @param modelId The model to be used for prediction. Needs to be compatible with the selected workflow!!
+     * @param async Whether to run the workflow asynchronously
      * @return the response
      */
-    public Response createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId) {
+    public Response createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId, Boolean async) {
         try { 
-            Object res = service.createPredictionJob(workflowId, fingerprintsetId, modelId);
+            Object res = service.createPredictionJob(workflowId, fingerprintsetId, modelId, async);
             return Response.ok(res).build();
          } 
         catch(FAExceptions.InitJobException e) {
@@ -63,12 +64,13 @@ public class WorkflowRestServiceImpl implements WorkflowRestService {
     /**
      *
      * @param workflowId TODO
-     * @param fingerprintsetId TODO
+     * @param fingerprintsetIds One or more fingerprintset-ids referencing the fingerprint sets to learn the model on. Each fingerprintset represents one class! 
+     * @param async Whether to run the workflow asynchronously
      * @return the response
      */
-    public Response createTrainingJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId) {
+    public Response createTrainingJob(java.util.UUID workflowId, java.util.List<java.util.UUID> fingerprintsetIds, Boolean async) {
         try { 
-            Object res = service.createTrainingJob(workflowId, fingerprintsetId);
+            Object res = service.createTrainingJob(workflowId, fingerprintsetIds, async);
             return Response.ok(res).build();
          } 
         catch(FAExceptions.InitJobException e) {

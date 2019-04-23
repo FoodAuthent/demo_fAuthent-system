@@ -3,7 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.TrainingWorkflowInputFingerprint;
 import org.foodauthent.model.WorkflowParameter;
 
 import java.util.UUID;
@@ -51,11 +51,16 @@ public interface TrainingWorkflowInputMixIn {
     @JsonProperty("parameters")
     public java.util.List<WorkflowParameter> getParameters();
     
+<<<<<<< HEAD
     @JsonProperty("fingerprintset-metadata")
     public FingerprintSet getFingerprintsetMetadata();
     
     @JsonProperty("fingerprintset-URI")
     public String getFingerprintsetURI();
+=======
+    @JsonProperty("fingerprints")
+    public java.util.List<TrainingWorkflowInputFingerprint> getFingerprints();
+>>>>>>> master
     
 
     /**
@@ -79,11 +84,16 @@ public interface TrainingWorkflowInputMixIn {
         @JsonProperty("parameters")
         public TrainingWorkflowInputMixInBuilder setParameters(final java.util.List<WorkflowParameter> parameters);
         
+<<<<<<< HEAD
         @JsonProperty("fingerprintset-metadata")
         public TrainingWorkflowInputMixInBuilder setFingerprintsetMetadata(final FingerprintSet fingerprintsetMetadata);
         
         @JsonProperty("fingerprintset-URI")
         public TrainingWorkflowInputMixInBuilder setFingerprintsetURI(final String fingerprintsetURI);
+=======
+        @JsonProperty("fingerprints")
+        public TrainingWorkflowInputMixInBuilder setFingerprints(final java.util.List<TrainingWorkflowInputFingerprint> fingerprints);
+>>>>>>> master
         
     }
 

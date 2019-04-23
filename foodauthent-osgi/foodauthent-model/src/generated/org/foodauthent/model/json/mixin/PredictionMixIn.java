@@ -3,6 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
+import org.foodauthent.model.PredictionInstance;
 
 import java.util.UUID;
 
@@ -47,17 +48,20 @@ public interface PredictionMixIn {
     @JsonProperty("fa-id")
     public java.util.UUID getFaId();
     
-    @JsonProperty("confidence-map")
-    public java.util.Map<String, Float> getConfidenceMap();
+    @JsonProperty("prediction-map")
+    public java.util.Map<String, PredictionInstance> getPredictionMap();
     
     @JsonProperty("workflow-id")
     public java.util.UUID getWorkflowId();
     
-    @JsonProperty("fingerprint-set-id")
-    public java.util.UUID getFingerprintSetId();
+    @JsonProperty("fingerprintset-id")
+    public java.util.UUID getFingerprintsetId();
     
     @JsonProperty("model-id")
     public java.util.UUID getModelId();
+    
+    @JsonProperty("class-labels")
+    public java.util.List<String> getClassLabels();
     
 
     /**
@@ -81,17 +85,20 @@ public interface PredictionMixIn {
         @JsonProperty("fa-id")
         public PredictionMixInBuilder setFaId(final java.util.UUID faId);
         
-        @JsonProperty("confidence-map")
-        public PredictionMixInBuilder setConfidenceMap(final java.util.Map<String, Float> confidenceMap);
+        @JsonProperty("prediction-map")
+        public PredictionMixInBuilder setPredictionMap(final java.util.Map<String, PredictionInstance> predictionMap);
         
         @JsonProperty("workflow-id")
         public PredictionMixInBuilder setWorkflowId(final java.util.UUID workflowId);
         
-        @JsonProperty("fingerprint-set-id")
-        public PredictionMixInBuilder setFingerprintSetId(final java.util.UUID fingerprintSetId);
+        @JsonProperty("fingerprintset-id")
+        public PredictionMixInBuilder setFingerprintsetId(final java.util.UUID fingerprintsetId);
         
         @JsonProperty("model-id")
         public PredictionMixInBuilder setModelId(final java.util.UUID modelId);
+        
+        @JsonProperty("class-labels")
+        public PredictionMixInBuilder setClassLabels(final java.util.List<String> classLabels);
         
     }
 

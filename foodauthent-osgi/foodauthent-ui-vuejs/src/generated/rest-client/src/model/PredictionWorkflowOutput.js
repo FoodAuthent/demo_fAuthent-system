@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient'], factory);
+    define(['../ApiClient', '../model/PredictionInstance'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./PredictionInstance'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.PredictionWorkflowOutput = factory(root.FoodAuthentSwaggerApi.ApiClient);
+    root.FoodAuthentSwaggerApi.PredictionWorkflowOutput = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.PredictionInstance);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, PredictionInstance) {
   'use strict';
 
 
@@ -60,18 +60,18 @@
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
-      if (data.hasOwnProperty('confidence-map')) {
-        obj['confidence-map'] = ApiClient.convertToType(data['confidence-map'], Object);
+      if (data.hasOwnProperty('prediction-map')) {
+        obj['prediction-map'] = ApiClient.convertToType(data['prediction-map'], Object);
       }
     }
     return obj;
   }
 
   /**
-   * The confidences for each fingerprint, mapped from the fingerprint-id.
-   * @member {Object.<String, Number>} confidence-map
+   * The predictions for each individual fingerprint. The map key is the fingerprint-id.
+   * @member {Object.<String, module:model/PredictionInstance>} prediction-map
    */
-  exports.prototype['confidence-map'] = undefined;
+  exports.prototype['prediction-map'] = undefined;
 
 
 
