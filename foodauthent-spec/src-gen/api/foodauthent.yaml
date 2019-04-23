@@ -11,6 +11,8 @@ info:
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 
 tags:
+  - name: info
+    description: Statistics, status, system info etc.
   - name: sop
     description: All standard operating procedure endpoints.
   - name: product
@@ -39,6 +41,22 @@ tags:
     description: All Transaction related endpoints.
     
 paths:
+
+  /info:
+    get:
+      tags:
+        - info 
+      summary: FA-system statistics and status
+      description: statistics and status
+      operationId: getInfo
+      responses:
+        '200':
+          description: success with the status and stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SystemInfo"
+      
   /sop:
     get:
       tags:
@@ -271,6 +289,50 @@ paths:
           multipart/form-data:
             schema:
               $ref: "#/components/schemas/File"
+              
+  /fingerprint:
+    post:
+      tags:
+        - fingerprint
+      description: Create a new fingerprint.
+      operationId: createFingerprint
+      responses:
+        '201':
+          description: >-
+            The new id of the fingerprint in the fa-system (fingerprint-id)
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Fingerprint'
+        description: A fingerprint set containing fingerprint metadata.
+        required: true
+
+  '/fingerprint/{fingerprint-id}':
+    get:
+      tags:
+        - fingerprint
+      description: Get the fingerprint by id.
+      operationId: getFingerprintById
+      parameters:
+        - name: fingerprint-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The fingerprint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fingerprint'
 
   /fingerprintset:
     get:
@@ -335,24 +397,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FingerprintSet'
-  '/product/{gtin}':
-    delete:
-      tags:
-        - product
-      description: Delete a product specified by gtin.
-      operationId: removeProductByGtin
-      parameters:
-        - name: gtin
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: Product successfully deleted.
-          
-          
+
   /product:
     get:
       tags:
@@ -455,6 +500,21 @@ paths:
                 $ref: '#/components/schemas/Product'
         '404':
           description: TODO, add response reference
+    delete:
+      tags:
+        - product
+      description: Delete a product specified by id.
+      operationId: removeProductById
+      parameters:
+        - name: product-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Product successfully deleted.
 
   /prediction:
     get:
@@ -463,8 +523,32 @@ paths:
       summary: Finds Prediction by some key words or return all Predictions.
       description: >-
         Muliple keywords can be provided with comma separated strings, e.g. keyword1, keyword2.
-      operationId: findModelByKeyword
+      operationId: findPredictionByKeyword
       parameters:
+        - $ref: "#/components/parameters/pageNumber"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/keywords"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictionPageResult'
+                
+  '/prediction/relation/{fingerprintset-id}':
+    get:
+      tags:
+        - workflow 
+      description: get predictions (filtered by keywords) for a specific fingerprint set
+      operationId: findPredictionsByFingerprintSetId
+      parameters:
+        - name: fingerprintset-id
+          required: true
+          in: path
+          schema:
+            type: string
+            format: uuid
         - $ref: "#/components/parameters/pageNumber"
         - $ref: "#/components/parameters/pageSize"
         - $ref: "#/components/parameters/keywords"
@@ -625,6 +709,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflow'
+    delete:
+      tags:
+        - workflow
+      description: Delete a workflow specified by id.
+      operationId: removeWorkflowById
+      parameters:
+        - name: workflow-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Workflow successfully deleted.
 
   /workflow/training:
     get:
@@ -1656,7 +1755,7 @@ servers:
 components:
   parameters:
     pageNumber:
-      description: the page number starting at 0
+      description: the page number starting at 1
       name: pageNumber
       in: query
       schema:
@@ -1895,7 +1994,7 @@ components:
       type: object
       x-no-faid: true
       properties:
-        fingerprints:
+        sops:
           type: array
           items:
             type: string
@@ -1905,12 +2004,37 @@ components:
           items:
             type: string
             format: uuid
-        sops:
+        metadata:
+          type: array
+          items:
+            type: string
+            format: uuid
+        tags:
+          type: array
+          items:
+            type: string
+            format: uuid
+        models:
+          type: array
+          items:
+            type: string
+            format: uuid
+        predictions:
           type: array
           items:
             type: string
             format: uuid
         workflows:
+          type: array
+          items:
+            type: string
+            format: uuid
+        fingerprints:
+          type: array
+          items:
+            type: string
+            format: uuid
+        fingerprintsets:
           type: array
           items:
             type: string
@@ -1953,8 +2077,9 @@ components:
             - knime_model
             - python_script
             - sop_pdf
-            - fingerprints_bruker
+            - fingerprint_bruker
             - zip
+            - fakx
         name:
           description: A name for the file.
           type: string
@@ -1996,33 +2121,26 @@ components:
       description: A fingerprint object representing its metadata.
       type: object
       x-ui-vue.js:
-<<<<<<< HEAD
-        - name: metadata
-=======
         - name: sample-id
           id-provider: select-sample
         - name: sop-id
         - name: file-id
           id-provider: upload-file
         - name: type
->>>>>>> master
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
           type: string
           format: uuid
           example: ''
-        metadata:
-          description: Placeholder for the actual metadata.
+        sample-id:
+          description: The fa-id of the sample the fingerprint is associated with.
           type: string
-<<<<<<< HEAD
-        additional-properties:
-          description: Key-value-map for additional properties.
-          #string to string map
-          type: object
-          additionalProperties:
-            type: string
-=======
+          format: uuid
+          example: ""
+        file-id:
+          description: Id referencing the fingerprint file.
+          type: string
           format: uuid
         sop-id:
           description: reference to sop used to create the fingerprint
@@ -2030,61 +2148,38 @@ components:
           format: uuid
         type:
           $ref: "#/components/schemas/FingerprintType"
->>>>>>> master
 
     FingerprintSet:
       description: A set of fingerprints with its own id.
       type: object
       required:
-        - file-id
-        - product-id
-        - type
+        - name
+        - fingerprint-ids
       x-ui-vue.js:
-        - name: product-id
-          id-provider: select-product
-        - name: fingerprints
-        - name: file-id
-          id-provider: upload-file
+        - name: fingerprint-ids
         - name: name
-<<<<<<< HEAD
-        - name: type
-=======
         - name: class-label
->>>>>>> master
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
           type: string
           format: uuid
           example: ""
-        product-id:
-          description: The fa-id of the product all fingerprints are associated with.
-          type: string
-          format: uuid
-          example: ""
-        fingerprints:
-          description: The fingerprints.
+        fingerprint-ids:
+          description: Ids referencing the fingerprints this set summarizes.
           type: array
           items:
-            $ref: "#/components/schemas/Fingerprint"
-        file-id:
-          description: Id referencing the fingerpint-set file.
-          type: string
-          format: uuid
+            type: string 
+            format: uuid
         name:
           description: A human-readable name of the fingerprint set.
           type: string
-<<<<<<< HEAD
-        type:
-          $ref: "#/components/schemas/FingerprintSetType"
-=======
         description:
           description: A more detailed description of the fingerprint set.
           type: string
         class-label:
           description: A class label associated with this fingerprint set.
           type: string
->>>>>>> master
 
     FingerprintSetPageResult:
       type: object
@@ -2101,10 +2196,10 @@ components:
           items:
             $ref: '#/components/schemas/FingerprintSet'
 
-    FingerprintSetType:
+    FingerprintType:
       x-no-faid: true
       description: >-
-        Type of the fingerprint set. The referenced file musst reflect this type, too.
+        Type of the fingerprint. The referenced file musst reflect this type, too.
       type: object
       required: 
         - name
@@ -2593,22 +2688,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WorkflowParameter'
-        fingerprintset-metadata:
+        fingerprintset:
           $ref: '#/components/schemas/FingerprintSet'
-        fingerprintset-URI:
+        fingerprint-URIs:
           description: >-
-            URI pointing to the resource containg the fingerprints to predict
+            URIs pointing to the resource containg the fingerprints to predict
             the labels for.
-<<<<<<< HEAD
-          type: string
-          format: uri
-=======
             (in the same order as the fingerprint-ids of the fingerprint-set)
           type: array 
           items:
             type: string
             format: uri
->>>>>>> master
         model-URI:
           description: >-
             optional model uri (if required by the workflow) pointing to the
@@ -2664,7 +2754,7 @@ components:
         labelDescription:
           description: Label Description
           type: string
-          example: 'Bayernland Allgäuer Emmentaler 45%, ca. 1kg'
+          example: 'Bayernland AllgÃ¤uer Emmentaler 45%, ca. 1kg'
         companyName:
           description: Company Name
           type: string
@@ -2672,7 +2762,7 @@ components:
         productClassification:
           description: Product Classification
           type: string
-          example: 10000028 - Käse / Käseersatz (leicht verderblich)
+          example: 10000028 - KÃ¤se / KÃ¤seersatz (leicht verderblich)
         countryOfOrigin:
           description: Country Of Origin
           type: string
@@ -2680,7 +2770,7 @@ components:
         regionOfOriginClaims:
           description: Region Of Origin-Claims
           type: string
-          example: Äthopia
+          example: Ã„thopia
         ingredientStatement:
           $ref: '#/components/schemas/ProductIngredientStatement'
         comment:
@@ -2702,7 +2792,7 @@ components:
         text:
           type: string
       example: >-
-        de: Zutaten pasteurisierte KUHMILCH, Milchsäurebakterienkulturen, mikrobieller Labaustauschstoff, Speisesalz
+        de: Zutaten pasteurisierte KUHMILCH, MilchsÃ¤urebakterienkulturen, mikrobieller Labaustauschstoff, Speisesalz
         en: ingredients...
 
     ProductPageResult:
@@ -2751,8 +2841,8 @@ components:
         - name: samplingPlace
         - name: bestBeforeDate
         - name: application
-        - name: typeOfAnalysis
-        - name: comment
+        #- name: typeOfAnalysis
+        - name: comments
         properties:
           fa-id:
             description: A global id within the FoodAuthent-system.
@@ -2772,7 +2862,10 @@ components:
             example: 401234500000123
           dateOfSampleDrawing:
             description: Date of Sample Drawing
-            format: date-time
+            # deactivated for now since we don't use it
+            # and it requires extra work to clean the BfR-tables
+            # to fit the format
+            #format: date-time
             type: string
             example: 2018-02-22T00:00:00.000Z
           lot:
@@ -2785,23 +2878,30 @@ components:
             example: Lankreis XY
           bestBeforeDate:
             description: Best Before Date
-            format: date-time
+            # deactivated for now since we don't use it
+            # and it requires extra work to clean the BfR-tables
+            # to fit the format
+            #format: date-time
             type: string
             example: 2018-09-12T00:00:00.000Z
           application:
             description: Application
             type: string
             example: FoodAuthent
-          typeOfAnalysis:
-            description: Type Of Analysis
-            type: array
+          # causes problems in de-/serialization when empty
+          # de-/serialization logic needs fixing!
+          #typeOfAnalysis:
+          #  description: Type Of Analysis
+          #  type: array
+          #  items:
+          #    type: string
+          #    example: TBD
+          comments:
+            description: Comment
+            type: array 
             items:
               type: string
-              example: TBD
-          comment:
-            description: Comment
-            type: string
-            example: Comment on sample
+              example: Comment on sample
             
     SamplePageResult:
       type: object
@@ -2863,8 +2963,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SOP'
-<<<<<<< HEAD
-=======
             
     SystemInfo:
       x-no-faid: true
@@ -2905,7 +3003,6 @@ components:
           type: integer
           format: int64
         
->>>>>>> master
 
     Tag:
       description: A tag/label for objects.
@@ -2996,20 +3093,10 @@ components:
       x-no-faid: true
       properties:
         parameters:
-          description: The workflow parameters as given provided by the Workflow-entity.
+          description: The workflow parameters as provided by the Workflow-entity.
           type: array
           items:
             $ref: '#/components/schemas/WorkflowParameter'
-<<<<<<< HEAD
-        fingerprintset-metadata:
-          $ref: '#/components/schemas/FingerprintSet'
-        fingerprintset-URI:
-          description: >-
-            URI pointing to the resource containg the fingerprints to learn the
-            model from.
-          type: string
-          format: uri
-=======
         fingerprints:
            type: array
            items:
@@ -3027,7 +3114,6 @@ components:
         fingerprint-id:
           type: string
           format: uuid
->>>>>>> master
 
     TrainingWorkflowOutput:
       description: Describes the outputs delivered by a training workflow.
@@ -3235,6 +3321,9 @@ components:
         - name: type
         - name: parameters
         - name: tags
+        - name: representation
+        - name: file-id
+          id-provider: upload-file
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
@@ -3292,8 +3381,8 @@ components:
         Definition of the workflows input and output types. Types that are not required as input are empty.
       type: object
       properties:
-        fingerprintset-type:
-          $ref: "#/components/schemas/FingerprintSetType"
+        fingerprint-type:
+          $ref: "#/components/schemas/FingerprintType"
         model-type:
           $ref: "#/components/schemas/ModelType"
 

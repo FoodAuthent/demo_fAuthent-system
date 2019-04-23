@@ -3,6 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
+import org.foodauthent.model.FingerprintType;
 
 import java.util.UUID;
 
@@ -47,13 +48,9 @@ public interface FingerprintMixIn {
     @JsonProperty("fa-id")
     public java.util.UUID getFaId();
     
-    @JsonProperty("metadata")
-    public String getMetadata();
+    @JsonProperty("sample-id")
+    public java.util.UUID getSampleId();
     
-<<<<<<< HEAD
-    @JsonProperty("additional-properties")
-    public java.util.Map<String, String> getAdditionalProperties();
-=======
     @JsonProperty("file-id")
     public java.util.UUID getFileId();
     
@@ -62,7 +59,6 @@ public interface FingerprintMixIn {
     
     @JsonProperty("type")
     public FingerprintType getType();
->>>>>>> master
     
 
     /**
@@ -86,19 +82,17 @@ public interface FingerprintMixIn {
         @JsonProperty("fa-id")
         public FingerprintMixInBuilder setFaId(final java.util.UUID faId);
         
-        @JsonProperty("metadata")
-        public FingerprintMixInBuilder setMetadata(final String metadata);
+        @JsonProperty("sample-id")
+        public FingerprintMixInBuilder setSampleId(final java.util.UUID sampleId);
         
-<<<<<<< HEAD
-        @JsonProperty("additional-properties")
-        public FingerprintMixInBuilder setAdditionalProperties(final java.util.Map<String, String> additionalProperties);
-=======
+        @JsonProperty("file-id")
+        public FingerprintMixInBuilder setFileId(final java.util.UUID fileId);
+        
         @JsonProperty("sop-id")
         public FingerprintMixInBuilder setSopId(final java.util.UUID sopId);
         
         @JsonProperty("type")
         public FingerprintMixInBuilder setType(final FingerprintType type);
->>>>>>> master
         
     }
 

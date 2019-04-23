@@ -104,80 +104,10 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 
 		Collection<String> keywords = removeEmptyKeywords(orgKeywords);
 
-<<<<<<< HEAD
-			if (modelType.equals(Workflow.class) && o instanceof Workflow) {
-				final Workflow wf = (Workflow) o;
-				if (keywords.isEmpty() || containsAKeyword(wf.getDescription(), keywords)
-						|| containsAKeyword(wf.getName(), keywords)) {
-					result.add((T) wf);
-				} else {
-					if (logger.isDebugEnabled()) {
-						logger.debug("Ignoring " + o);
-					}
-				}
-			} else if (modelType.equals(SOP.class) && o instanceof SOP) {
-				final SOP sop = (SOP) o;
-				if (keywords.isEmpty() || containsAKeyword(sop.getDescription(), keywords)
-						|| containsAKeyword(sop.getName(), keywords)) {
-					result.add((T) sop);
-				}
-			} else if (modelType.equals(FingerprintSet.class) && o instanceof FingerprintSet) {
-				final FingerprintSet fs = (FingerprintSet) o;
-				if (keywords.isEmpty() || containsAKeyword(fs.getName(), keywords)) {
-					result.add((T) fs);
-				}
-			} else if (modelType.equals(Product.class) && o instanceof Product) {
-				final Product p = (Product) o;
-				if (keywords.isEmpty() || containsAKeyword(p.getBrand(), keywords)) {
-					result.add((T) p);
-				}
-			} else if (modelType.equals(Model.class) && o instanceof Model) {
-				final Model m = (Model) o;
-				if (keywords.isEmpty() || containsAKeyword(m.getDescription(), keywords)
-						|| containsAKeyword(m.getName(), keywords)) {
-					result.add((T) m);
-				}
-			} else if (modelType.equals(ObjectEvent.class)
-					&& o instanceof ObjectEvent) {
-				final ObjectEvent oe = (ObjectEvent) o;
-				boolean epcExist = false;
-				for (Epc epc : oe.getEpcList()) {
-					epcExist = containsAKeyword(epc.getEpc(), keywords);
-					if (epcExist)
-						break;
-				}
-				if (keywords.isEmpty() || epcExist) {
-					result.add((T) oe);
-				}
-			} else if (modelType.equals(DiscoveryServiceTransaction.class)
-					&& o instanceof DiscoveryServiceTransaction) {
-				final DiscoveryServiceTransaction d = (DiscoveryServiceTransaction) o;
-				boolean epcExist = false;
-				for (Epc epc : d.getEpcList()) {
-					epcExist = containsAKeyword(epc.getEpc(), keywords);
-					if (epcExist)
-						break;
-				}
-				if (keywords.isEmpty() || epcExist) {
-					result.add((T) d);
-				}
-			}else if (modelType.equals(Sample.class) && o instanceof Sample) {
-				final Sample s = (Sample) o;
-				if (keywords.isEmpty() || containsAKeyword(s.getApplication(), keywords)
-						|| containsAKeyword(s.getComment(), keywords)) {
-					result.add((T) s);
-				}
-			} else {
-				if (logger.isDebugEnabled()) {
-					logger.debug("Ignoring " + o);
-				}
-			}
-=======
 		List<T> filterByModelType = (List<T>) models.values().stream()
 				.filter(m -> modelType.isAssignableFrom(m.getClass())).collect(Collectors.toList());
 		if (keywords.isEmpty()) {
 			return filterByModelType;
->>>>>>> master
 		}
 
 		ModelPropertiesSupplier<T> mps = (ModelPropertiesSupplier<T>) modelPropertiesSupplier.get(modelType);
@@ -352,8 +282,6 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 		return 0;
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
 	public <T extends FaModel> long getModelCount(Class<T> modelType) {
 		return models.values().stream().filter(m -> modelType.isAssignableFrom(m.getClass())).count();
@@ -387,5 +315,4 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 		};
 	}
 
->>>>>>> master
 }

@@ -110,5 +110,32 @@
         } ]
       }
     }
+  }, {
+    "label" : "Representation",
+    "model" : "representation",
+    "required" : true,
+    "type" : "select",
+    "validator" : "string",
+    "inputName" : "representation",
+    "values" : [ {
+      "id" : "cwl",
+      "name" : "Cwl"
+    }, {
+      "id" : "r",
+      "name" : "R"
+    }, {
+      "id" : "python",
+      "name" : "Python"
+    }, {
+      "id" : "knime",
+      "name" : "Knime"
+    } ]
+  }, {
+    "label" : "File-id",
+    "model" : "file-id",
+    "required" : true,
+    "idprovider" : "upload-file",
+    "fieldName" : "fa-id",
+    "type" : "loadFile"
   } ]
 }

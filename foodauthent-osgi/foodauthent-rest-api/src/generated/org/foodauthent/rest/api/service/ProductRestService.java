@@ -56,7 +56,7 @@ public interface ProductRestService{
     /**
      * Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
@@ -82,14 +82,14 @@ public interface ProductRestService{
 );
 
     /**
-     * Delete a product specified by gtin.
+     * Delete a product specified by id.
      *
-     * @param gtin 
+     * @param productId 
      * @return the response
      */
     @DELETE
-    @Path("/product/{gtin}")
-    public Response removeProductByGtin(@PathParam("gtin") java.util.UUID gtin
+    @Path("/product/{product-id}")
+    public Response removeProductById(@PathParam("product-id") java.util.UUID productId
 );
 
     /**

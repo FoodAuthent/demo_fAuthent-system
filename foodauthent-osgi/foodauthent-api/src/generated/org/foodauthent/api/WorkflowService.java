@@ -59,18 +59,18 @@ public interface WorkflowService {
     /**
      * Muliple keywords can be provided with comma separated strings, e.g. keyword1, keyword2.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *
      * @return the result
      */
-    PredictionPageResult findModelByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
+    PredictionPageResult findPredictionByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *
@@ -81,7 +81,7 @@ public interface WorkflowService {
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *
@@ -90,9 +90,21 @@ public interface WorkflowService {
     WorkflowPageResult findPredictionWorkflows(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
     /**
+     * get predictions (filtered by keywords) for a specific fingerprint set
+     *
+     * @param fingerprintsetId 
+     * @param pageNumber the page number starting at 1
+     * @param pageSize entries per page, minimum 1
+     * @param keywords Keywords to search for
+     *
+     * @return the result
+     */
+    PredictionPageResult findPredictionsByFingerprintSetId(java.util.UUID fingerprintsetId, Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
+        
+    /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *
@@ -103,7 +115,7 @@ public interface WorkflowService {
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *
@@ -114,7 +126,7 @@ public interface WorkflowService {
     /**
      * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *
@@ -157,5 +169,14 @@ public interface WorkflowService {
      * @return the result
      */
     Workflow getWorkflowById(java.util.UUID workflowId);
+        
+    /**
+     * Delete a workflow specified by id.
+     *
+     * @param workflowId 
+     *
+     * 
+     */
+    void removeWorkflowById(java.util.UUID workflowId);
         
 }

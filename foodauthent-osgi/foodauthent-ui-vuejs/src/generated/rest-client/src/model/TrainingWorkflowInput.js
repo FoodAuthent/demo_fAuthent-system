@@ -63,41 +63,22 @@
       if (data.hasOwnProperty('parameters')) {
         obj['parameters'] = ApiClient.convertToType(data['parameters'], [WorkflowParameter]);
       }
-<<<<<<< HEAD
-      if (data.hasOwnProperty('fingerprintset-metadata')) {
-        obj['fingerprintset-metadata'] = FingerprintSet.constructFromObject(data['fingerprintset-metadata']);
-      }
-      if (data.hasOwnProperty('fingerprintset-URI')) {
-        obj['fingerprintset-URI'] = ApiClient.convertToType(data['fingerprintset-URI'], 'String');
-=======
       if (data.hasOwnProperty('fingerprints')) {
         obj['fingerprints'] = ApiClient.convertToType(data['fingerprints'], [TrainingWorkflowInputFingerprint]);
->>>>>>> master
       }
     }
     return obj;
   }
 
   /**
-   * The workflow parameters as given provided by the Workflow-entity.
+   * The workflow parameters as provided by the Workflow-entity.
    * @member {Array.<module:model/WorkflowParameter>} parameters
    */
   exports.prototype['parameters'] = undefined;
   /**
-<<<<<<< HEAD
-   * @member {module:model/FingerprintSet} fingerprintset-metadata
-   */
-  exports.prototype['fingerprintset-metadata'] = undefined;
-  /**
-   * URI pointing to the resource containg the fingerprints to learn the model from.
-   * @member {String} fingerprintset-URI
-   */
-  exports.prototype['fingerprintset-URI'] = undefined;
-=======
    * @member {Array.<module:model/TrainingWorkflowInputFingerprint>} fingerprints
    */
   exports.prototype['fingerprints'] = undefined;
->>>>>>> master
 
 
 

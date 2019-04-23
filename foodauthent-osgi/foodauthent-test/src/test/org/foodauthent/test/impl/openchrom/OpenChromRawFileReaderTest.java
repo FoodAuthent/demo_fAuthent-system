@@ -46,7 +46,7 @@ public class OpenChromRawFileReaderTest {
     public void test01() throws Exception {
 
 	OpenChromRawFileReader reader = new OpenChromRawFileReader();
-	Map<String, String> map = reader.getAllFileMetadata(TypeEnum.FINGERPRINTS_BRUKER,
+	Map<String, String> map = reader.getAllFileMetadata(TypeEnum.FINGERPRINT_BRUKER,
 		testDir);
 
 	assertThat(map, is(not(nullValue())));
@@ -61,7 +61,7 @@ public class OpenChromRawFileReaderTest {
     public void test02() throws Exception {
 
 	OpenChromRawFileReader reader = new OpenChromRawFileReader();
-	Map<String, String> map = reader.getAllFileMetadata(TypeEnum.FINGERPRINTS_BRUKER,
+	Map<String, String> map = reader.getAllFileMetadata(TypeEnum.FINGERPRINT_BRUKER,
 		new FileInputStream(testFileZip));
 
 	assertThat(map, is(not(nullValue())));

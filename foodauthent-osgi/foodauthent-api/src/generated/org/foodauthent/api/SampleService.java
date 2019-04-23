@@ -28,7 +28,7 @@ public interface SampleService {
     /**
      * Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      *

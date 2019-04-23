@@ -73,7 +73,7 @@
         obj['sampleId'] = ApiClient.convertToType(data['sampleId'], 'String');
       }
       if (data.hasOwnProperty('dateOfSampleDrawing')) {
-        obj['dateOfSampleDrawing'] = ApiClient.convertToType(data['dateOfSampleDrawing'], 'Date');
+        obj['dateOfSampleDrawing'] = ApiClient.convertToType(data['dateOfSampleDrawing'], 'String');
       }
       if (data.hasOwnProperty('lot')) {
         obj['lot'] = ApiClient.convertToType(data['lot'], 'String');
@@ -82,16 +82,13 @@
         obj['samplingPlace'] = ApiClient.convertToType(data['samplingPlace'], 'String');
       }
       if (data.hasOwnProperty('bestBeforeDate')) {
-        obj['bestBeforeDate'] = ApiClient.convertToType(data['bestBeforeDate'], 'Date');
+        obj['bestBeforeDate'] = ApiClient.convertToType(data['bestBeforeDate'], 'String');
       }
       if (data.hasOwnProperty('application')) {
         obj['application'] = ApiClient.convertToType(data['application'], 'String');
       }
-      if (data.hasOwnProperty('typeOfAnalysis')) {
-        obj['typeOfAnalysis'] = ApiClient.convertToType(data['typeOfAnalysis'], ['String']);
-      }
-      if (data.hasOwnProperty('comment')) {
-        obj['comment'] = ApiClient.convertToType(data['comment'], 'String');
+      if (data.hasOwnProperty('comments')) {
+        obj['comments'] = ApiClient.convertToType(data['comments'], ['String']);
       }
     }
     return obj;
@@ -119,7 +116,7 @@
   exports.prototype['sampleId'] = undefined;
   /**
    * Date of Sample Drawing
-   * @member {Date} dateOfSampleDrawing
+   * @member {String} dateOfSampleDrawing
    */
   exports.prototype['dateOfSampleDrawing'] = undefined;
   /**
@@ -134,7 +131,7 @@
   exports.prototype['samplingPlace'] = undefined;
   /**
    * Best Before Date
-   * @member {Date} bestBeforeDate
+   * @member {String} bestBeforeDate
    */
   exports.prototype['bestBeforeDate'] = undefined;
   /**
@@ -143,15 +140,10 @@
    */
   exports.prototype['application'] = undefined;
   /**
-   * Type Of Analysis
-   * @member {Array.<String>} typeOfAnalysis
-   */
-  exports.prototype['typeOfAnalysis'] = undefined;
-  /**
    * Comment
-   * @member {String} comment
+   * @member {Array.<String>} comments
    */
-  exports.prototype['comment'] = undefined;
+  exports.prototype['comments'] = undefined;
 
 
 

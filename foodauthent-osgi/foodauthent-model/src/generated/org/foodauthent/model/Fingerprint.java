@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.foodauthent.model.FingerprintType;
 
 
 
@@ -23,15 +24,10 @@ public class Fingerprint   extends FaModel {
 
 
   protected java.util.UUID faId;
-<<<<<<< HEAD
-  protected String metadata;
-  protected java.util.Map<String, String> additionalProperties;
-=======
   protected java.util.UUID sampleId;
   protected java.util.UUID fileId;
   protected java.util.UUID sopId;
   protected FingerprintType type;
->>>>>>> master
   
   public String getTypeID() {
     return "Fingerprint";
@@ -44,15 +40,10 @@ public class Fingerprint   extends FaModel {
   private Fingerprint(FingerprintBuilder builder) {
     
     faId = immutable(builder.faId);
-<<<<<<< HEAD
-    metadata = immutable(builder.metadata);
-    additionalProperties = immutable(builder.additionalProperties);
-=======
     sampleId = immutable(builder.sampleId);
     fileId = immutable(builder.fileId);
     sopId = immutable(builder.sopId);
     type = immutable(builder.type);
->>>>>>> master
     
     faId = generateFaIdIfMissing(faId);
     
@@ -73,11 +64,7 @@ public class Fingerprint   extends FaModel {
             return false;
         }
         Fingerprint ent = (Fingerprint)o;
-<<<<<<< HEAD
-        return Objects.equals(faId, ent.faId) && Objects.equals(metadata, ent.metadata) && Objects.equals(additionalProperties, ent.additionalProperties);
-=======
         return Objects.equals(faId, ent.faId) && Objects.equals(sampleId, ent.sampleId) && Objects.equals(fileId, ent.fileId) && Objects.equals(sopId, ent.sopId) && Objects.equals(type, ent.type);
->>>>>>> master
     }
 
 
@@ -90,21 +77,17 @@ public class Fingerprint   extends FaModel {
     }
     
   /**
-   * Placeholder for the actual metadata.
-   * @return metadata 
+   * The fa-id of the sample the fingerprint is associated with.
+   * @return sampleId 
    */
-  public String getMetadata() {
-        return metadata;
+  public java.util.UUID getSampleId() {
+        return sampleId;
     }
     
   /**
-   * Key-value-map for additional properties.
-   * @return additionalProperties 
+   * Id referencing the fingerprint file.
+   * @return fileId 
    */
-<<<<<<< HEAD
-  public java.util.Map<String, String> getAdditionalProperties() {
-        return additionalProperties;
-=======
   public java.util.UUID getFileId() {
         return fileId;
     }
@@ -123,7 +106,6 @@ public class Fingerprint   extends FaModel {
    */
   public FingerprintType getType() {
         return type;
->>>>>>> master
     }
     
   
@@ -145,15 +127,10 @@ public class Fingerprint   extends FaModel {
 	public static FingerprintBuilder builder(Fingerprint entity) {
 		FingerprintBuilder builder = builder();
         builder.faId = entity.faId;
-<<<<<<< HEAD
-        builder.metadata = entity.metadata;
-        builder.additionalProperties = entity.additionalProperties;
-=======
         builder.sampleId = entity.sampleId;
         builder.fileId = entity.fileId;
         builder.sopId = entity.sopId;
         builder.type = entity.type;
->>>>>>> master
  		return builder;
   	}
   	
@@ -165,15 +142,10 @@ public class Fingerprint   extends FaModel {
         }
     
         private java.util.UUID faId;
-<<<<<<< HEAD
-        private String metadata;
-        private java.util.Map<String, String> additionalProperties = new java.util.HashMap<>();
-=======
         private java.util.UUID sampleId;
         private java.util.UUID fileId;
         private java.util.UUID sopId;
         private FingerprintType type;
->>>>>>> master
 
         /**
          * A global id within the FoodAuthent-system.
@@ -185,19 +157,24 @@ public class Fingerprint   extends FaModel {
         }
 
         /**
-         * Placeholder for the actual metadata.
-         * @return metadata 
+         * The fa-id of the sample the fingerprint is associated with.
+         * @return sampleId 
          */
-        public FingerprintBuilder setMetadata(String metadata) {
-             this.metadata = metadata;
+        public FingerprintBuilder setSampleId(java.util.UUID sampleId) {
+             this.sampleId = sampleId;
              return this;
         }
 
         /**
-<<<<<<< HEAD
-         * Key-value-map for additional properties.
-         * @return additionalProperties 
-=======
+         * Id referencing the fingerprint file.
+         * @return fileId 
+         */
+        public FingerprintBuilder setFileId(java.util.UUID fileId) {
+             this.fileId = fileId;
+             return this;
+        }
+
+        /**
          * reference to sop used to create the fingerprint
          * @return sopId 
          */
@@ -209,10 +186,9 @@ public class Fingerprint   extends FaModel {
         /**
          * Get type
          * @return type 
->>>>>>> master
          */
-        public FingerprintBuilder setAdditionalProperties(java.util.Map<String, String> additionalProperties) {
-             this.additionalProperties = additionalProperties;
+        public FingerprintBuilder setType(FingerprintType type) {
+             this.type = type;
              return this;
         }
 

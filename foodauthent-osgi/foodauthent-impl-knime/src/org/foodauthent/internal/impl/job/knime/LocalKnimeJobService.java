@@ -8,12 +8,11 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
->>>>>>> master
 
 import javax.json.Json;
 import javax.json.JsonValue;
@@ -25,6 +24,7 @@ import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.FAExceptions.InitJobException;
 import org.foodauthent.internal.impl.job.knime.KnimeExecutor.LoadingFailedException;
 import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelType;
@@ -95,25 +95,16 @@ public class LocalKnimeJobService implements JobService {
 		// TODO otherwise throw proper exception
 
 		// get fingerprint set file(s)
-<<<<<<< HEAD
-		URI tempFingerprintSetFileURI = saveTemporaryFingerprintSetFile(fingerprintSet);
-=======
 		List<String> tempFingerprintFileURIs = fingerprintSet.getFingerprintIds().stream()
 				.map(id -> saveTemporaryFingerprintFile(id).toString()).collect(Collectors.toList());
->>>>>>> master
 
 		// TODO get actual model file
 		// persistenceService.getBlobByUUID(model.getModelFileId());
 
 		// assemble workflow input
 		PredictionWorkflowInput workflowInput = PredictionWorkflowInput.builder()
-<<<<<<< HEAD
-				.setFingerprintsetURI(tempFingerprintSetFileURI.toString()).setModelURI("TODO:modelURI")
-				.setFingerprintsetMetadata(fingerprintSet).setParameters(workflow.getParameters()).build();
-=======
 				.setFingerprintURIs(tempFingerprintFileURIs).setModelURI("TODO:modelURI")
 				.setFingerprintset(fingerprintSet).setParameters(workflow.getParameters()).build();
->>>>>>> master
 
 		// TODO doesn't work, but should
 		// JsonValue jsonInput =
@@ -186,14 +177,6 @@ public class LocalKnimeJobService implements JobService {
 		} catch (LoadingFailedException e1) {
 			throw new InitJobException("Problem initializing job: " + e1.getMessage(), e1);
 		}
-<<<<<<< HEAD
-		
-		URI tmpFileURI = saveTemporaryFingerprintSetFile(fingerprintSet);
-
-		// assemble workflow input
-		TrainingWorkflowInput workflowInput = TrainingWorkflowInput.builder()
-				.setFingerprintsetURI(tmpFileURI.toString()).setFingerprintsetMetadata(fingerprintSet)
-=======
 
 		List<TrainingWorkflowInputFingerprint> fpInputs = new ArrayList<>();
 		for(FingerprintSet fps : fingerprintSets) {
@@ -208,7 +191,6 @@ public class LocalKnimeJobService implements JobService {
 		// assemble workflow input
 		TrainingWorkflowInput workflowInput = TrainingWorkflowInput.builder()
 				.setFingerprints(fpInputs)
->>>>>>> master
 				.setParameters(workflow.getParameters()).build();
 		// TODO doesn't work, but should
 		// JsonValue jsonInput =
@@ -274,25 +256,6 @@ public class LocalKnimeJobService implements JobService {
 		return persistenceService.getFaModelByUUID(trainingJob.getFaId(), TrainingJob.class);
 	}
 	
-<<<<<<< HEAD
-	private URI saveTemporaryFingerprintSetFile(FingerprintSet fingerprintSet) {
-		Blob fingerprintSetFile = persistenceService.getBlobByUUID(fingerprintSet.getFileId());
-		try {
-			File tmpFile = File.createTempFile("fa_fingerprintset_" + fingerprintSetFile.getFaId(), ".zip");
-			FileOutputStream out = new FileOutputStream(tmpFile);
-			IOUtils.copy(fingerprintSetFile.getData(), out);
-			out.flush();
-			out.close();
-			Path tmpDir = Files.createTempDirectory("fa_fingerprintset_" + fingerprintSetFile.getFaId());
-			FileUtil.unzip(tmpFile, tmpDir.toFile());
-			tmpFile.delete();
-			return tmpDir.toUri();
-			//TODO delete tmp files
-		} catch (IOException e1) {
-			// TODO
-			throw new RuntimeException(e1);
-		}
-=======
 	private URI saveTemporaryFingerprintFile(UUID fingerprintId) {
 			Fingerprint fp = persistenceService.getFaModelByUUID(fingerprintId, Fingerprint.class);
 			Blob fingerprintFile = persistenceService.getBlobByUUID(fp.getFileId());
@@ -312,7 +275,6 @@ public class LocalKnimeJobService implements JobService {
 				// TODO
 				throw new RuntimeException(e1);
 			}
->>>>>>> master
 	}
 
 	private void loadWorkflow(Workflow workflow) throws LoadingFailedException {

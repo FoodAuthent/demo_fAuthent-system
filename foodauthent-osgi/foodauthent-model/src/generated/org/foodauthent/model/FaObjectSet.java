@@ -22,10 +22,15 @@ import java.util.Objects;
 public class FaObjectSet   extends FaModel {
 
 
-  protected java.util.List<java.util.UUID> fingerprints;
-  protected java.util.List<java.util.UUID> products;
   protected java.util.List<java.util.UUID> sops;
+  protected java.util.List<java.util.UUID> products;
+  protected java.util.List<java.util.UUID> metadata;
+  protected java.util.List<java.util.UUID> tags;
+  protected java.util.List<java.util.UUID> models;
+  protected java.util.List<java.util.UUID> predictions;
   protected java.util.List<java.util.UUID> workflows;
+  protected java.util.List<java.util.UUID> fingerprints;
+  protected java.util.List<java.util.UUID> fingerprintsets;
   protected java.util.List<java.util.UUID> files;
   
   public String getTypeID() {
@@ -42,10 +47,15 @@ public class FaObjectSet   extends FaModel {
   
   private FaObjectSet(FaObjectSetBuilder builder) {
     
-    fingerprints = immutable(builder.fingerprints);
-    products = immutable(builder.products);
     sops = immutable(builder.sops);
+    products = immutable(builder.products);
+    metadata = immutable(builder.metadata);
+    tags = immutable(builder.tags);
+    models = immutable(builder.models);
+    predictions = immutable(builder.predictions);
     workflows = immutable(builder.workflows);
+    fingerprints = immutable(builder.fingerprints);
+    fingerprintsets = immutable(builder.fingerprintsets);
     files = immutable(builder.files);
     
     
@@ -66,16 +76,16 @@ public class FaObjectSet   extends FaModel {
             return false;
         }
         FaObjectSet ent = (FaObjectSet)o;
-        return Objects.equals(fingerprints, ent.fingerprints) && Objects.equals(products, ent.products) && Objects.equals(sops, ent.sops) && Objects.equals(workflows, ent.workflows) && Objects.equals(files, ent.files);
+        return Objects.equals(sops, ent.sops) && Objects.equals(products, ent.products) && Objects.equals(metadata, ent.metadata) && Objects.equals(tags, ent.tags) && Objects.equals(models, ent.models) && Objects.equals(predictions, ent.predictions) && Objects.equals(workflows, ent.workflows) && Objects.equals(fingerprints, ent.fingerprints) && Objects.equals(fingerprintsets, ent.fingerprintsets) && Objects.equals(files, ent.files);
     }
 
 
   /**
-   * Get fingerprints
-   * @return fingerprints 
+   * Get sops
+   * @return sops 
    */
-  public java.util.List<java.util.UUID> getFingerprints() {
-        return fingerprints;
+  public java.util.List<java.util.UUID> getSops() {
+        return sops;
     }
     
   /**
@@ -87,11 +97,35 @@ public class FaObjectSet   extends FaModel {
     }
     
   /**
-   * Get sops
-   * @return sops 
+   * Get metadata
+   * @return metadata 
    */
-  public java.util.List<java.util.UUID> getSops() {
-        return sops;
+  public java.util.List<java.util.UUID> getMetadata() {
+        return metadata;
+    }
+    
+  /**
+   * Get tags
+   * @return tags 
+   */
+  public java.util.List<java.util.UUID> getTags() {
+        return tags;
+    }
+    
+  /**
+   * Get models
+   * @return models 
+   */
+  public java.util.List<java.util.UUID> getModels() {
+        return models;
+    }
+    
+  /**
+   * Get predictions
+   * @return predictions 
+   */
+  public java.util.List<java.util.UUID> getPredictions() {
+        return predictions;
     }
     
   /**
@@ -100,6 +134,22 @@ public class FaObjectSet   extends FaModel {
    */
   public java.util.List<java.util.UUID> getWorkflows() {
         return workflows;
+    }
+    
+  /**
+   * Get fingerprints
+   * @return fingerprints 
+   */
+  public java.util.List<java.util.UUID> getFingerprints() {
+        return fingerprints;
+    }
+    
+  /**
+   * Get fingerprintsets
+   * @return fingerprintsets 
+   */
+  public java.util.List<java.util.UUID> getFingerprintsets() {
+        return fingerprintsets;
     }
     
   /**
@@ -128,10 +178,15 @@ public class FaObjectSet   extends FaModel {
 	 */
 	public static FaObjectSetBuilder builder(FaObjectSet entity) {
 		FaObjectSetBuilder builder = builder();
-        builder.fingerprints = entity.fingerprints;
-        builder.products = entity.products;
         builder.sops = entity.sops;
+        builder.products = entity.products;
+        builder.metadata = entity.metadata;
+        builder.tags = entity.tags;
+        builder.models = entity.models;
+        builder.predictions = entity.predictions;
         builder.workflows = entity.workflows;
+        builder.fingerprints = entity.fingerprints;
+        builder.fingerprintsets = entity.fingerprintsets;
         builder.files = entity.files;
  		return builder;
   	}
@@ -143,18 +198,23 @@ public class FaObjectSet   extends FaModel {
             
         }
     
-        private java.util.List<java.util.UUID> fingerprints = new java.util.ArrayList<>();
-        private java.util.List<java.util.UUID> products = new java.util.ArrayList<>();
         private java.util.List<java.util.UUID> sops = new java.util.ArrayList<>();
+        private java.util.List<java.util.UUID> products = new java.util.ArrayList<>();
+        private java.util.List<java.util.UUID> metadata = new java.util.ArrayList<>();
+        private java.util.List<java.util.UUID> tags = new java.util.ArrayList<>();
+        private java.util.List<java.util.UUID> models = new java.util.ArrayList<>();
+        private java.util.List<java.util.UUID> predictions = new java.util.ArrayList<>();
         private java.util.List<java.util.UUID> workflows = new java.util.ArrayList<>();
+        private java.util.List<java.util.UUID> fingerprints = new java.util.ArrayList<>();
+        private java.util.List<java.util.UUID> fingerprintsets = new java.util.ArrayList<>();
         private java.util.List<java.util.UUID> files = new java.util.ArrayList<>();
 
         /**
-         * Get fingerprints
-         * @return fingerprints 
+         * Get sops
+         * @return sops 
          */
-        public FaObjectSetBuilder setFingerprints(java.util.List<java.util.UUID> fingerprints) {
-             this.fingerprints = fingerprints;
+        public FaObjectSetBuilder setSops(java.util.List<java.util.UUID> sops) {
+             this.sops = sops;
              return this;
         }
 
@@ -168,11 +228,38 @@ public class FaObjectSet   extends FaModel {
         }
 
         /**
-         * Get sops
-         * @return sops 
+         * Get metadata
+         * @return metadata 
          */
-        public FaObjectSetBuilder setSops(java.util.List<java.util.UUID> sops) {
-             this.sops = sops;
+        public FaObjectSetBuilder setMetadata(java.util.List<java.util.UUID> metadata) {
+             this.metadata = metadata;
+             return this;
+        }
+
+        /**
+         * Get tags
+         * @return tags 
+         */
+        public FaObjectSetBuilder setTags(java.util.List<java.util.UUID> tags) {
+             this.tags = tags;
+             return this;
+        }
+
+        /**
+         * Get models
+         * @return models 
+         */
+        public FaObjectSetBuilder setModels(java.util.List<java.util.UUID> models) {
+             this.models = models;
+             return this;
+        }
+
+        /**
+         * Get predictions
+         * @return predictions 
+         */
+        public FaObjectSetBuilder setPredictions(java.util.List<java.util.UUID> predictions) {
+             this.predictions = predictions;
              return this;
         }
 
@@ -182,6 +269,24 @@ public class FaObjectSet   extends FaModel {
          */
         public FaObjectSetBuilder setWorkflows(java.util.List<java.util.UUID> workflows) {
              this.workflows = workflows;
+             return this;
+        }
+
+        /**
+         * Get fingerprints
+         * @return fingerprints 
+         */
+        public FaObjectSetBuilder setFingerprints(java.util.List<java.util.UUID> fingerprints) {
+             this.fingerprints = fingerprints;
+             return this;
+        }
+
+        /**
+         * Get fingerprintsets
+         * @return fingerprintsets 
+         */
+        public FaObjectSetBuilder setFingerprintsets(java.util.List<java.util.UUID> fingerprintsets) {
+             this.fingerprintsets = fingerprintsets;
              return this;
         }
 

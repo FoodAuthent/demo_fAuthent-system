@@ -59,17 +59,32 @@
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
-      if (data.hasOwnProperty('fingerprints')) {
-        obj['fingerprints'] = ApiClient.convertToType(data['fingerprints'], ['String']);
+      if (data.hasOwnProperty('sops')) {
+        obj['sops'] = ApiClient.convertToType(data['sops'], ['String']);
       }
       if (data.hasOwnProperty('products')) {
         obj['products'] = ApiClient.convertToType(data['products'], ['String']);
       }
-      if (data.hasOwnProperty('sops')) {
-        obj['sops'] = ApiClient.convertToType(data['sops'], ['String']);
+      if (data.hasOwnProperty('metadata')) {
+        obj['metadata'] = ApiClient.convertToType(data['metadata'], ['String']);
+      }
+      if (data.hasOwnProperty('tags')) {
+        obj['tags'] = ApiClient.convertToType(data['tags'], ['String']);
+      }
+      if (data.hasOwnProperty('models')) {
+        obj['models'] = ApiClient.convertToType(data['models'], ['String']);
+      }
+      if (data.hasOwnProperty('predictions')) {
+        obj['predictions'] = ApiClient.convertToType(data['predictions'], ['String']);
       }
       if (data.hasOwnProperty('workflows')) {
         obj['workflows'] = ApiClient.convertToType(data['workflows'], ['String']);
+      }
+      if (data.hasOwnProperty('fingerprints')) {
+        obj['fingerprints'] = ApiClient.convertToType(data['fingerprints'], ['String']);
+      }
+      if (data.hasOwnProperty('fingerprintsets')) {
+        obj['fingerprintsets'] = ApiClient.convertToType(data['fingerprintsets'], ['String']);
       }
       if (data.hasOwnProperty('files')) {
         obj['files'] = ApiClient.convertToType(data['files'], ['String']);
@@ -79,21 +94,41 @@
   }
 
   /**
-   * @member {Array.<String>} fingerprints
+   * @member {Array.<String>} sops
    */
-  exports.prototype['fingerprints'] = undefined;
+  exports.prototype['sops'] = undefined;
   /**
    * @member {Array.<String>} products
    */
   exports.prototype['products'] = undefined;
   /**
-   * @member {Array.<String>} sops
+   * @member {Array.<String>} metadata
    */
-  exports.prototype['sops'] = undefined;
+  exports.prototype['metadata'] = undefined;
+  /**
+   * @member {Array.<String>} tags
+   */
+  exports.prototype['tags'] = undefined;
+  /**
+   * @member {Array.<String>} models
+   */
+  exports.prototype['models'] = undefined;
+  /**
+   * @member {Array.<String>} predictions
+   */
+  exports.prototype['predictions'] = undefined;
   /**
    * @member {Array.<String>} workflows
    */
   exports.prototype['workflows'] = undefined;
+  /**
+   * @member {Array.<String>} fingerprints
+   */
+  exports.prototype['fingerprints'] = undefined;
+  /**
+   * @member {Array.<String>} fingerprintsets
+   */
+  exports.prototype['fingerprintsets'] = undefined;
   /**
    * @member {Array.<String>} files
    */

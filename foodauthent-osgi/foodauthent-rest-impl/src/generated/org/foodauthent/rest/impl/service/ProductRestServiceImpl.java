@@ -64,7 +64,7 @@ public class ProductRestServiceImpl implements ProductRestService {
     /**
      * Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.
      *
-     * @param pageNumber the page number starting at 0
+     * @param pageNumber the page number starting at 1
      * @param pageSize entries per page, minimum 1
      * @param keywords Keywords to search for
      * @return the response
@@ -88,14 +88,14 @@ public class ProductRestServiceImpl implements ProductRestService {
     }
 
     /**
-     * Delete a product specified by gtin.
+     * Delete a product specified by id.
      *
-     * @param gtin 
+     * @param productId 
      * @return the response
      */
-    public Response removeProductByGtin(java.util.UUID gtin) {
+    public Response removeProductById(java.util.UUID productId) {
         
-            service.removeProductByGtin(gtin);
+            service.removeProductById(productId);
             
                 return Response.ok().build();
     }

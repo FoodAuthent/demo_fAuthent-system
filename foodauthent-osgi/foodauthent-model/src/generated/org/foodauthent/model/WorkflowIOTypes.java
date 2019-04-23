@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.foodauthent.model.FingerprintSetType;
+import org.foodauthent.model.FingerprintType;
 import org.foodauthent.model.ModelType;
 
 
@@ -24,7 +24,7 @@ import org.foodauthent.model.ModelType;
 public class WorkflowIOTypes   extends FaModel {
 
 
-  protected FingerprintSetType fingerprintsetType;
+  protected FingerprintType fingerprintType;
   protected ModelType modelType;
   
   public String getTypeID() {
@@ -41,7 +41,7 @@ public class WorkflowIOTypes   extends FaModel {
   
   private WorkflowIOTypes(WorkflowIOTypesBuilder builder) {
     
-    fingerprintsetType = immutable(builder.fingerprintsetType);
+    fingerprintType = immutable(builder.fingerprintType);
     modelType = immutable(builder.modelType);
     
     
@@ -62,16 +62,16 @@ public class WorkflowIOTypes   extends FaModel {
             return false;
         }
         WorkflowIOTypes ent = (WorkflowIOTypes)o;
-        return Objects.equals(fingerprintsetType, ent.fingerprintsetType) && Objects.equals(modelType, ent.modelType);
+        return Objects.equals(fingerprintType, ent.fingerprintType) && Objects.equals(modelType, ent.modelType);
     }
 
 
   /**
-   * Get fingerprintsetType
-   * @return fingerprintsetType 
+   * Get fingerprintType
+   * @return fingerprintType 
    */
-  public FingerprintSetType getFingerprintsetType() {
-        return fingerprintsetType;
+  public FingerprintType getFingerprintType() {
+        return fingerprintType;
     }
     
   /**
@@ -100,7 +100,7 @@ public class WorkflowIOTypes   extends FaModel {
 	 */
 	public static WorkflowIOTypesBuilder builder(WorkflowIOTypes entity) {
 		WorkflowIOTypesBuilder builder = builder();
-        builder.fingerprintsetType = entity.fingerprintsetType;
+        builder.fingerprintType = entity.fingerprintType;
         builder.modelType = entity.modelType;
  		return builder;
   	}
@@ -112,15 +112,15 @@ public class WorkflowIOTypes   extends FaModel {
             
         }
     
-        private FingerprintSetType fingerprintsetType;
+        private FingerprintType fingerprintType;
         private ModelType modelType;
 
         /**
-         * Get fingerprintsetType
-         * @return fingerprintsetType 
+         * Get fingerprintType
+         * @return fingerprintType 
          */
-        public WorkflowIOTypesBuilder setFingerprintsetType(FingerprintSetType fingerprintsetType) {
-             this.fingerprintsetType = fingerprintsetType;
+        public WorkflowIOTypesBuilder setFingerprintType(FingerprintType fingerprintType) {
+             this.fingerprintType = fingerprintType;
              return this;
         }
 

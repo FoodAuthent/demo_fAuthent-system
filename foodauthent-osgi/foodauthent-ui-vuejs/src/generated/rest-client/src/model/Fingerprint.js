@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient'], factory);
+    define(['../ApiClient', '../model/FingerprintType'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./FingerprintType'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.Fingerprint = factory(root.FoodAuthentSwaggerApi.ApiClient);
+    root.FoodAuthentSwaggerApi.Fingerprint = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FingerprintType);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, FingerprintType) {
   'use strict';
 
 
@@ -63,13 +63,9 @@
       if (data.hasOwnProperty('fa-id')) {
         obj['fa-id'] = ApiClient.convertToType(data['fa-id'], 'String');
       }
-      if (data.hasOwnProperty('metadata')) {
-        obj['metadata'] = ApiClient.convertToType(data['metadata'], 'String');
+      if (data.hasOwnProperty('sample-id')) {
+        obj['sample-id'] = ApiClient.convertToType(data['sample-id'], 'String');
       }
-<<<<<<< HEAD
-      if (data.hasOwnProperty('additional-properties')) {
-        obj['additional-properties'] = ApiClient.convertToType(data['additional-properties'], Object);
-=======
       if (data.hasOwnProperty('file-id')) {
         obj['file-id'] = ApiClient.convertToType(data['file-id'], 'String');
       }
@@ -78,7 +74,6 @@
       }
       if (data.hasOwnProperty('type')) {
         obj['type'] = FingerprintType.constructFromObject(data['type']);
->>>>>>> master
       }
     }
     return obj;
@@ -90,24 +85,24 @@
    */
   exports.prototype['fa-id'] = undefined;
   /**
-   * Placeholder for the actual metadata.
-   * @member {String} metadata
+   * The fa-id of the sample the fingerprint is associated with.
+   * @member {String} sample-id
    */
-  exports.prototype['metadata'] = undefined;
+  exports.prototype['sample-id'] = undefined;
   /**
-<<<<<<< HEAD
-   * Key-value-map for additional properties.
-   * @member {Object.<String, String>} additional-properties
-=======
+   * Id referencing the fingerprint file.
+   * @member {String} file-id
+   */
+  exports.prototype['file-id'] = undefined;
+  /**
    * reference to sop used to create the fingerprint
    * @member {String} sop-id
    */
   exports.prototype['sop-id'] = undefined;
   /**
    * @member {module:model/FingerprintType} type
->>>>>>> master
    */
-  exports.prototype['additional-properties'] = undefined;
+  exports.prototype['type'] = undefined;
 
 
 

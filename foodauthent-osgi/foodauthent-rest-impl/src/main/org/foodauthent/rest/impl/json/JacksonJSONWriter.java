@@ -44,6 +44,7 @@ public class JacksonJSONWriter implements MessageBodyWriter<Object>, Feature {
 		if (String.class.isAssignableFrom(type)) {
 			IOUtils.write((String) value, entityStream, StandardCharsets.UTF_8);
 		} else {
+			String writeValueAsString = mapper.writeValueAsString(value);
 			mapper.writeValue(entityStream, value);
 		}
 	}

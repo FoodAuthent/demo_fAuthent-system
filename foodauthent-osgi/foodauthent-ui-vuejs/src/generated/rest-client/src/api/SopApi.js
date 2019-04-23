@@ -106,7 +106,7 @@
      * Finds SOPs by some key words or return all sop&#39;s.
      * Muliple tags can be provided with comma separated strings. Use keyword1, keyword2, keyword3 for testing. If no keyword is specified, all entries will be considered.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.pageNumber the page number starting at 0
+     * @param {Number} opts.pageNumber the page number starting at 1
      * @param {Number} opts.pageSize entries per page, minimum 1
      * @param {Array.<String>} opts.keywords Keywords to search for
      * @param {module:api/SopApi~findSOPByKeywordCallback} callback The callback function, accepting three arguments: error, data, response

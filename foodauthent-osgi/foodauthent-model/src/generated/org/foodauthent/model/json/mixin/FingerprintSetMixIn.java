@@ -3,8 +3,6 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.Fingerprint;
-import org.foodauthent.model.FingerprintSetType;
 
 import java.util.UUID;
 
@@ -49,20 +47,14 @@ public interface FingerprintSetMixIn {
     @JsonProperty("fa-id")
     public java.util.UUID getFaId();
     
-    @JsonProperty("product-id")
-    public java.util.UUID getProductId();
-    
-    @JsonProperty("fingerprints")
-    public java.util.List<Fingerprint> getFingerprints();
-    
-    @JsonProperty("file-id")
-    public java.util.UUID getFileId();
+    @JsonProperty("fingerprint-ids")
+    public java.util.List<java.util.UUID> getFingerprintIds();
     
     @JsonProperty("name")
     public String getName();
     
-    @JsonProperty("type")
-    public FingerprintSetType getType();
+    @JsonProperty("description")
+    public String getDescription();
     
     @JsonProperty("class-label")
     public String getClassLabel();
@@ -89,20 +81,14 @@ public interface FingerprintSetMixIn {
         @JsonProperty("fa-id")
         public FingerprintSetMixInBuilder setFaId(final java.util.UUID faId);
         
-        @JsonProperty("product-id")
-        public FingerprintSetMixInBuilder setProductId(final java.util.UUID productId);
-        
-        @JsonProperty("fingerprints")
-        public FingerprintSetMixInBuilder setFingerprints(final java.util.List<Fingerprint> fingerprints);
-        
-        @JsonProperty("file-id")
-        public FingerprintSetMixInBuilder setFileId(final java.util.UUID fileId);
+        @JsonProperty("fingerprint-ids")
+        public FingerprintSetMixInBuilder setFingerprintIds(final java.util.List<java.util.UUID> fingerprintIds);
         
         @JsonProperty("name")
         public FingerprintSetMixInBuilder setName(final String name);
         
-        @JsonProperty("type")
-        public FingerprintSetMixInBuilder setType(final FingerprintSetType type);
+        @JsonProperty("description")
+        public FingerprintSetMixInBuilder setDescription(final String description);
         
         @JsonProperty("class-label")
         public FingerprintSetMixInBuilder setClassLabel(final String classLabel);

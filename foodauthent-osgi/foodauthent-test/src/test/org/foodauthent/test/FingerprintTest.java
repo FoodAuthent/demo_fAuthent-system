@@ -11,10 +11,8 @@ import java.util.UUID;
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
-import org.foodauthent.model.FingerprintSetType;
-import org.foodauthent.model.FingerprintSetType.NameEnum;
+import org.foodauthent.model.FingerprintType;
 import org.foodauthent.rest.api.service.FingerprintRestService;
-import org.hamcrest.core.IsCollectionContaining;
 import org.junit.Test;
 
 /**
@@ -24,10 +22,11 @@ public class FingerprintTest extends AbstractITTest {
 
     @Test
     public void testSaveAndRetrieveFingerprintSetMetadata() {
-	Fingerprint fp = Fingerprint.builder().setMetadata("fp metadata").build();
-	FingerprintSet fps = FingerprintSet.builder().setName("myset").setProductId(UUID.randomUUID())
-		.setType(FingerprintSetType.builder().setName(NameEnum.BRUKER).build())
-		.setFingerprints(Arrays.asList(fp)).setFileId(UUID.randomUUID()).build();
+	Fingerprint fp = Fingerprint.builder().setSampleId(UUID.randomUUID()).setFileId(UUID.randomUUID()).setType(
+		FingerprintType.builder().setName(org.foodauthent.model.FingerprintType.NameEnum.BRUKER).build())
+		.build();
+	FingerprintSet fps = FingerprintSet.builder().setName("myset").setFingerprintIds(Arrays.asList(fp.getFaId()))
+		.build();
 
 	FingerprintRestService fingerprintService = restService(FingerprintRestService.class);
 	fingerprintService.createFingerprintSet(fps);

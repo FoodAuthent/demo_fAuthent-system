@@ -1,12 +1,8 @@
 {
   "fields" : [ {
-    "label" : "Metadata",
-    "model" : "metadata",
+    "label" : "Sample-id",
+    "model" : "sample-id",
     "required" : false,
-<<<<<<< HEAD
-    "type" : "input",
-    "inputType" : "text"
-=======
     "idprovider" : "select-sample",
     "fieldName" : "fa-id",
     "type" : "selectModel"
@@ -42,6 +38,5 @@
         } ]
       } ]
     }
->>>>>>> master
   } ]
 }

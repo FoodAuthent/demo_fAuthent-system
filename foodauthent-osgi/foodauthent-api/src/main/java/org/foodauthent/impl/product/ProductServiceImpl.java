@@ -47,8 +47,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void removeProductByGtin(UUID gtin) {
-	persistenceService.removeFaModelByUUID(gtin, Product.class);
+    public void removeProductById(UUID productId) {
+	persistenceService.removeFaModelByUUID(productId, Product.class);
     }
 
     @Override
