@@ -18,6 +18,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import "vue-form-generator/dist/vfg.css";
 
+import store from '@/store'
+
 Vue.use(ModuleLibrary);
 
 Vue.use(ModuleLibrary2);
@@ -35,12 +37,27 @@ Vue.component("fieldLoadFile", fieldLoadFile);
 
 
 Vue.config.productionTip = false
+Vue.config.devtools = true
+
+router.beforeEach((to, from, next) => {
+	  // redirect to login page if not logged in and trying to access a restricted page
+	  const publicPages = ['/register','/login'];
+	  const authRequired = !publicPages.includes(to.path);
+	  const loggedIn = store.state.isLogged;
+
+	  if (authRequired && !loggedIn) {
+	    return next('/login');
+	  }
+
+	  next();
+	})
 
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

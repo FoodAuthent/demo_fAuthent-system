@@ -5,17 +5,14 @@
         <md-app-toolbar class="md-primary">
             <span class="md-title">SOP</span>
         </md-app-toolbar>
-        <md-app-drawer md-permanent="full">
-            <!--  <md-toolbar class="md-transparent" md-elevation="0">
-          Navigation
-        </md-toolbar> -->
+    <!--    <md-app-drawer md-permanent="full">
             <md-list v-for="route in this.$router.options.routes">
                 <md-list-item>
                     <md-icon>label</md-icon>
                     <router-link :to="route.path" class="md-list-item-text">{{route.name}}</router-link>
                 </md-list-item>
             </md-list>
-        </md-app-drawer>
+        </md-app-drawer> -->
 
         <md-app-content>
             <b-card no-body>
