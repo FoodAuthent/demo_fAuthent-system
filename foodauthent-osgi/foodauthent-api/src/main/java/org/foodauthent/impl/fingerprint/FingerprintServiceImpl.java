@@ -1,5 +1,7 @@
 package org.foodauthent.impl.fingerprint;
 
+import static org.foodauthent.api.internal.persistence.PersistenceService.toArray;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -26,8 +28,6 @@ import org.slf4j.LoggerFactory;
 @Component(service=FingerprintService.class)
 public class FingerprintServiceImpl implements FingerprintService {
 
-    private static final Logger logger = LoggerFactory.getLogger(FingerprintServiceImpl.class);
-
     @Reference(cardinality=ReferenceCardinality.MANDATORY)
     private PersistenceService persistenceService;
 
@@ -45,8 +45,8 @@ public class FingerprintServiceImpl implements FingerprintService {
     @Override
     public FingerprintSetPageResult findFingerprintSetByKeyword(Integer pageNumber, Integer pageSize,
 	    List<String> keywords) {
-	ResultPage<FingerprintSet> res = persistenceService.findByKeywordsPaged(keywords, FingerprintSet.class,
-		pageNumber, pageSize);
+	ResultPage<FingerprintSet> res = persistenceService.findByKeywordsPaged(FingerprintSet.class,
+		pageNumber, pageSize, toArray(keywords));
 	return FingerprintSetPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }

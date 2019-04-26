@@ -75,7 +75,7 @@ public class LocalKnimeJobService implements JobService {
 		if(model == null) {
 			throw new InitJobException("No model given");
 		}
-		if (workflow.getType() != org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW) {
+		if (workflow.getType() != org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW_E680F8C1) {
 			throw new InitJobException("Referenced workflow is not a prediction workflow");
 		}
 
@@ -163,7 +163,7 @@ public class LocalKnimeJobService implements JobService {
 		if(fingerprintSets == null) {
 			throw new InitJobException("No fingerprint set given");
 		}
-		if (workflow.getType() != org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW) {
+		if (workflow.getType() != org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB) {
 			// TODO throw appropriate exception
 			throw new InitJobException("Referenced workflow is not a prediction workflow");
 		}

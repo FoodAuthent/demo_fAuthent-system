@@ -103,7 +103,7 @@ public class PopulateModels {
 		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build()).build();
 	Workflow wf = Workflow.builder().setName("my training workflow").setDescription("desc")
 		.setParameters(Arrays.asList(wfp1, wfp2))
-		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW).setFileId(fileId)
+		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB).setFileId(fileId)
 		.setRepresentation(RepresentationEnum.KNIME).setInputTypes(inputTypes).setOutputTypes(outputTypes)
 		.build(); // TODO set more (or even all) properties
 	return workflows().createWorkflow(wf).readEntity(UUID.class);
@@ -127,7 +127,7 @@ public class PopulateModels {
 		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build())
 		.build();
 	Workflow wf = Workflow.builder().setName("my_prediction_workflow").setDescription("desc").setParameters(Arrays.asList(wfp1, wfp2))
-		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW)
+		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW_E680F8C1)
 		.setRepresentation(RepresentationEnum.KNIME)
 		.setInputTypes(inputTypes)
 		.setFileId(fileId)

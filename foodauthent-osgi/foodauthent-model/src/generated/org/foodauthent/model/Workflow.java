@@ -53,9 +53,9 @@ public class Workflow   extends FaModel {
    * The type of the workflow.  IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity.
    */
   public static enum TypeEnum {
-    PREDICTION_WORKFLOW("prediction_workflow"),
+    PREDICTION_WORKFLOW_E680F8C1("prediction_workflow_e680f8c1"),
     
-    TRAINING_WORKFLOW("training_workflow");
+    TRAINING_WORKFLOW_64B046CB("training_workflow_64b046cb");
 
     private String value;
 

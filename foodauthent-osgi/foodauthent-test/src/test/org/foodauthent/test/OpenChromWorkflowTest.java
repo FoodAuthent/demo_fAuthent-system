@@ -56,7 +56,7 @@ public class OpenChromWorkflowTest extends AbstractITTest {
 		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build()).build();
 	Workflow wf = Workflow.builder().setName("my training workflow").setDescription("desc")
 		.setParameters(Arrays.asList(wfp1, wfp2))
-		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW).setFileId(fileId)
+		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB).setFileId(fileId)
 		.setRepresentation(RepresentationEnum.KNIME).setInputTypes(inputTypes).build();
 
 	WorkflowRestService workflowService = restService(WorkflowRestService.class);

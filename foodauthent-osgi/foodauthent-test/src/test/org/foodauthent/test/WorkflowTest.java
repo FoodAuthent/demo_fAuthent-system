@@ -9,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,6 +35,7 @@ import org.foodauthent.model.Workflow;
 import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.Workflow.WorkflowBuilder;
 import org.foodauthent.model.WorkflowIOTypes;
+import org.foodauthent.model.WorkflowPageResult;
 import org.foodauthent.model.WorkflowParameter;
 import org.foodauthent.model.WorkflowParameter.TypeEnum;
 import org.foodauthent.rest.api.service.FileRestService;
@@ -42,6 +44,7 @@ import org.foodauthent.rest.api.service.ModelRestService;
 import org.foodauthent.rest.api.service.ProductRestService;
 import org.foodauthent.rest.api.service.SampleRestService;
 import org.foodauthent.rest.api.service.WorkflowRestService;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -55,6 +58,14 @@ public class WorkflowTest extends AbstractITTest {
     private WorkflowRestService workflowService = restService(WorkflowRestService.class);
     private WebTarget webTarget = webTarget();
     
+    @Before
+    public void clearAllWorkflows() {
+	WorkflowRestService ws = restService(WorkflowRestService.class);
+	List<Workflow> workflows = ws.findWorkflowByKeyword(1, Integer.MAX_VALUE, null)
+		.readEntity(WorkflowPageResult.class).getResults();
+	workflows.stream().forEach(wf -> ws.removeWorkflowById(wf.getFaId()));
+    }
+
     @Test
     public void testUploadAndRunPredictionWorkflow() throws InterruptedException {
 	UUID wfId = uploadPredictionWorkflow();
@@ -88,6 +99,14 @@ public class WorkflowTest extends AbstractITTest {
 	PredictionPageResult predictionPage = response.readEntity(PredictionPageResult.class);
 	assertThat("exactly one entry expected", predictionPage.getResultCount(), is(1));
 	assertThat("unexpected prediction", predictionPage.getResults().get(0), is(prediction));
+	
+	predictionPage = workflowService
+		.findPredictionsByFingerprintSetId(fingerprintSetId, 1, 10, Collections.emptyList())
+		.readEntity(PredictionPageResult.class);
+	assertThat(predictionPage.getResultCount(), is(1));
+	predictionPage = workflowService.findPredictionsByFingerprintSetId(fingerprintSetId, 1, 10, asList("blub"))
+		.readEntity(PredictionPageResult.class);
+	assertThat(predictionPage.getResultCount(), is(0));
     }
     
     private UUID uploadPredictionWorkflow() {
@@ -105,7 +124,7 @@ public class WorkflowTest extends AbstractITTest {
 		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build()).build();
 	Workflow wf = Workflow.builder().setName("my_prediction_workflow").setDescription("desc")
 		.setParameters(Arrays.asList(wfp1, wfp2))
-		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW)
+		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW_E680F8C1)
 		.setRepresentation(RepresentationEnum.KNIME).setInputTypes(inputTypes)
 		.setFileId(predictionWorkflowFileId).build(); // TODO set more (or even all) properties
 
@@ -138,7 +157,7 @@ public class WorkflowTest extends AbstractITTest {
 		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build())
 		.build();
 	WorkflowBuilder wfb = Workflow.builder().setName("inconsistent_prediction_workflow").setDescription("desc")
-		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW)
+		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW_E680F8C1)
 		//on purpose not a knime workflow
 		.setRepresentation(RepresentationEnum.CWL)
 		.setInputTypes(inputTypes)
@@ -155,7 +174,7 @@ public class WorkflowTest extends AbstractITTest {
 	//TODO use 'assertThat' instead!
 	
 	//wrong type
-	wfb.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW);
+	wfb.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB);
 	//post workflow
 	wfId = workflowService.createWorkflow(wfb.build()).readEntity(UUID.class);
 	
@@ -208,7 +227,7 @@ public class WorkflowTest extends AbstractITTest {
 		.build();
 	Workflow wf = Workflow.builder().setName("my training workflow").setDescription("desc")
 		.setParameters(Arrays.asList(wfp1, wfp2))
-		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW)
+		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB)
 		.setFileId(fileId)
 		.setRepresentation(RepresentationEnum.KNIME)
 		.setInputTypes(inputTypes)
@@ -280,6 +299,48 @@ public class WorkflowTest extends AbstractITTest {
 		.setClassLabel("label2").build();
 	return asList(fpService.createFingerprintSet(fps).readEntity(UUID.class),
 		fpService.createFingerprintSet(fps2).readEntity(UUID.class));
+    }
+    
+    @Test
+    public void testFindWorkflows() {
+	WorkflowRestService ws = restService(WorkflowRestService.class);
+	Workflow wf1 = Workflow.builder().setDescription("desc1").setName("wf1name")
+		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW_E680F8C1)
+		.setRepresentation(RepresentationEnum.KNIME).setFileId(UUID.randomUUID()).build();
+	Workflow wf2 = Workflow.builder().setDescription("desc2").setName("wf2name")
+		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW_E680F8C1)
+		.setRepresentation(RepresentationEnum.KNIME).setFileId(UUID.randomUUID()).build();
+	Workflow wf3 = Workflow.builder().setDescription("desc3").setName("wf3name")
+		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB)
+		.setRepresentation(RepresentationEnum.KNIME).setFileId(UUID.randomUUID()).build();
+	Workflow wf4 = Workflow.builder().setDescription("desc4").setName("wf4name")
+		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB)
+		.setRepresentation(RepresentationEnum.KNIME).setFileId(UUID.randomUUID()).build();
+
+	ws.createWorkflow(wf1);
+	ws.createWorkflow(wf2);
+	ws.createWorkflow(wf3);
+	ws.createWorkflow(wf4);
+	
+	WorkflowPageResult wfPage = ws.findPredictionWorkflows(1, 10, Collections.emptyList())
+		.readEntity(WorkflowPageResult.class);
+	assertThat(wfPage.getResultCount(), is(2));
+	
+	wfPage = ws.findPredictionWorkflows(1, 10, asList("wf1"))
+		.readEntity(WorkflowPageResult.class);
+	assertThat(wfPage.getResultCount(), is(1));
+	
+	wfPage = ws.findPredictionWorkflows(1, 10, asList("wf1blub"))
+		.readEntity(WorkflowPageResult.class);
+	assertThat(wfPage.getResultCount(), is(0));
+
+	wfPage = ws.findPredictionWorkflows(1, 10, asList("wf1", "desc2", "desc3"))
+		.readEntity(WorkflowPageResult.class);
+	assertThat(wfPage.getResultCount(), is(2));
+	
+	wfPage = ws.findTrainingWorkflows(1, 10, asList("wf3"))
+		.readEntity(WorkflowPageResult.class);
+	assertThat(wfPage.getResultCount(), is(1));
     }
 
     private UUID uploadModel() {

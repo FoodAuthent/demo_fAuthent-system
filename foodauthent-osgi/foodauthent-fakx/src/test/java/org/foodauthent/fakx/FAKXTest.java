@@ -103,7 +103,7 @@ public class FAKXTest {
 
 	private static Workflow createWorkflow(List<Tag> tag) {
 		Workflow.RepresentationEnum repr = Workflow.RepresentationEnum.PYTHON;
-		Workflow.TypeEnum type = Workflow.TypeEnum.PREDICTION_WORKFLOW;
+		Workflow.TypeEnum type = Workflow.TypeEnum.PREDICTION_WORKFLOW_E680F8C1;
 		WorkflowParameter param = WorkflowParameter.builder().setName("name").setRequired(true)
 				.setType(WorkflowParameter.TypeEnum.NUMBER).setValue("0").build();
 

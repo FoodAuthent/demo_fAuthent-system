@@ -1,5 +1,7 @@
 package org.foodauthent.impl.sop;
 
+import static org.foodauthent.api.internal.persistence.PersistenceService.toArray;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -21,8 +23,6 @@ import org.slf4j.LoggerFactory;
  */
 @Component(service=SopService.class)
 public class SopServiceImpl implements SopService {
-
-    private static final Logger logger = LoggerFactory.getLogger(SopServiceImpl.class);
 
     @Reference(cardinality=ReferenceCardinality.MANDATORY)
     private PersistenceService persistenceService;
@@ -49,7 +49,8 @@ public class SopServiceImpl implements SopService {
 
     @Override
     public SOPPageResult findSOPByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	ResultPage<SOP> res = persistenceService.findByKeywordsPaged(keywords, SOP.class, pageNumber, pageSize);
+	ResultPage<SOP> res = persistenceService.findByKeywordsPaged(SOP.class, pageNumber, pageSize,
+		toArray(keywords));
 	return SOPPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }

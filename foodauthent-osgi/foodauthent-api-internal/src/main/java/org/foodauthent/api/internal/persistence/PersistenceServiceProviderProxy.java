@@ -87,13 +87,13 @@ public class PersistenceServiceProviderProxy implements PersistenceService {
 		provider.removeFaModelByUUID(uuid, modelType);
 	}
 
-	public <T extends FaModel> List<T> findByKeywords(Collection<String> keywords, Class<T> modelType) {
-		return provider.findByKeywords(keywords, modelType);
+	public <T extends FaModel> List<T> findByKeywords(Class<T> modelType, String[]... keywordSuperSet) {
+		return provider.findByKeywords(modelType, keywordSuperSet);
 	}
 
-	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
-			int pageNumber, int pageSize) {
-		return provider.findByKeywordsPaged(keywords, modelType, pageNumber, pageSize);
+	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Class<T> modelType, int pageNumber, int pageSize,
+			String[]... keywordSuperSet) {
+		return provider.findByKeywordsPaged(modelType, pageNumber, pageSize, keywordSuperSet);
 	}
 
 	public Blob getBlobByUUID(UUID uuid) {

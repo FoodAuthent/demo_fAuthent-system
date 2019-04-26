@@ -3352,9 +3352,13 @@ components:
             and PredicitonWorkflowOutput-entity.
           type: string
           #TODO another potential type: preprocessing workflow
+          # Note: the types are decorated with unique identifiers
+          # in order to be able to reliably filter them with a simple keyword search.
+          # It's a workaround for the prototype and a more sophisticated solution
+          # (e.g. the option for property-specific queries) is required.
           enum:
-            - prediction_workflow
-            - training_workflow
+            - prediction_workflow_e680f8c1
+            - training_workflow_64b046cb
         parameters:
           description: "The parameters of the workflow, TODO - should maybe be a map."
           type: array

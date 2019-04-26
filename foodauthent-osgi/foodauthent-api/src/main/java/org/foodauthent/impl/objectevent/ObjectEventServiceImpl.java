@@ -1,5 +1,7 @@
 package org.foodauthent.impl.objectevent;
 
+import static org.foodauthent.api.internal.persistence.PersistenceService.toArray;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -25,7 +27,8 @@ public class ObjectEventServiceImpl implements ObjectEventService {
 
     @Override
     public ObjectEventPageResult findObjectEventByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	ResultPage<ObjectEvent> res = persistenceService.findByKeywordsPaged(keywords, ObjectEvent.class, pageNumber, pageSize);
+	ResultPage<ObjectEvent> res = persistenceService.findByKeywordsPaged(ObjectEvent.class, pageNumber, pageSize,
+		toArray(keywords));
 	return ObjectEventPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }

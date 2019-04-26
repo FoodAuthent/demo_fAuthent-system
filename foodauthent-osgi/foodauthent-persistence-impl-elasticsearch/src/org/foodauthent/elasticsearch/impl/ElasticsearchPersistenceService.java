@@ -1,7 +1,10 @@
 package org.foodauthent.elasticsearch.impl;
 
+import static java.util.Arrays.stream;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +19,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.api.internal.persistence.Blob;
+import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.api.internal.persistence.PersistenceServiceProvider;
 import org.foodauthent.elasticsearch.ClientService;
 import org.foodauthent.elasticsearch.ClientServiceListener;
@@ -153,7 +157,7 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 	}
 
 	@Override
-	public <T extends FaModel> List<T> findByKeywords(Collection<String> keywords, Class<T> modelType) {
+	public <T extends FaModel> List<T> findByKeywords(Class<T> modelType, String[]... keywordSuperSet) {
 		return op.search(QueryBuilders.simpleQueryStringQuery(String.join(" AND ", keywords)), classTarget(modelType),
 				op.manifest(modelType));
 	}
@@ -230,14 +234,18 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 	}
 
 	@Override
-	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
-			int pageNumber, int pageSize) {
+	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Class<T> modelType, int pageNumber, int pageSize,
+			String[]... orgKeywordSuperSet) {
 		final SearchRequest request = op.searchRequest(classTarget(modelType));
 		final SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
-		if (keywords.isEmpty()) {
+		
+		String[][] keywordSuperSet = PersistenceService.removeEmptyListsAndKeywords(orgKeywordSuperSet);
+		if (keywordSuperSet.length == 0) {
 			sourceBuilder.query(QueryBuilders.matchAllQuery());
 		} else {
-			sourceBuilder.query(QueryBuilders.simpleQueryStringQuery(String.join(" AND ", keywords)));
+			String query = stream(keywordSuperSet).map(s -> String.join(" AND ", s)).map(s -> "(" + s + ")")
+					.collect(Collectors.joining(" OR "));
+			sourceBuilder.query(QueryBuilders.simpleQueryStringQuery(query));
 		}
 		sourceBuilder.from((pageNumber - 1) * pageSize);
 		sourceBuilder.size(pageSize);
