@@ -31,6 +31,10 @@ class Convert {
     public static final Person toPerson(final String dn, final UserBase userBase,
 	    final PersonService<Person> personService) {
 	final Person person = personService.newEntryInstance(dn);
+	
+	//test the username here is missing
+	person.setUserName(userBase.getGivenName());
+	
 	person.setCommonName(userBase.getGivenName() + " " + userBase.getLastName());
 	person.setDescription(userBase.getDescription());
 	person.setBusinessCategory(userBase.getBusinessCategory());

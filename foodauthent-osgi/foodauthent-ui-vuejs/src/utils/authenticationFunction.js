@@ -1,128 +1,149 @@
 import router from '@/router'
 import store from '@/store'
 var MyObject = function () {
+    var varDn = '';
+    var generatedPassword = '';
+    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+    var apiClient = new ApiClient();
+    //only for test---
+    apiClient.basePath = window.location.origin + "/v0/foodauthent";
+    //Authentication Api
+    var AuthenticationApi = require("../generated/rest-client/src/api/AuthenticationApi.js");
+    var authenticationApi = new AuthenticationApi(apiClient);
+    //User Api
+    var UserApi = require("../generated/rest-client/src/api/UserApi.js");
+    var userApi = new UserApi(apiClient);
 
-  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-  var apiClient = new ApiClient();
-  //only for test---
-  apiClient.basePath = window.location.origin + "/v0/foodauthent";
-  //only for test---
-  //Authentication Api
-  var AuthenticationApi = require("../generated/rest-client/src/api/AuthenticationApi.js");
-  var authenticationApi = new AuthenticationApi(apiClient);
-  //User Api
-  var UserApi = require("../generated/rest-client/src/api/UserApi.js");
-  var userApi = new UserApi(apiClient);
- 
-  
-var test = function(self){
-if(self.username == 'test' && self.password == 'test'){
-console.log("user ok");
-fetch('https://jsonplaceholder.typicode.com/users/1')
-  .then(response => response.json())
-  .then(json => {
-	  	  console.log("JSON", json);
-		  console.log("token", json.company.catchPhrase);
-          localStorage.setItem('token', json.company.catchPhrase);
-          store.commit('LOGIN_USER')
-          router.push('/')
-      }, () => {
-          self.infoError = true
-          self.password = ''
-      })		
-	} else{
-		console.log("user not ok");
-        self.infoError = 5
-        self.password = ''
-	}
-  }
-  
-  var loginFunction = function(self){
-	    console.log('Login');
-	    console.log('Username ',self.username);
-	    console.log('Password ',self.password);
-	    var callback = function (error, data, response) {
-	      console.log("data:", data);
-	      console.log("response:", response);
-	      if(response.body !== null){
-	    	  console.log("User is: ",response);
-	    	  localStorage.setItem('user', response)
-	      }
-	      if (error) {
-	        self.infoError = true;
-	        console.error(error);
-	      } else {
-	        console.log("API called successfully. Returned data: ", data);
-	        router.push('/');
-	      }
-	    };
-	    var opt = {
-	      username: self.username,
-	      password: self.password
-	      };
-	    userApi.getUser(
-	      opt,
-	      callback
-	    );
-	  };
-  
-  var retrieveToken = function (self) {
-	    console.log('Retrieve Token');
-	    console.log('Username ',self.username);
-	    console.log('Password ',self.password);
-	    var callback = function (error, data, response) {
-	      console.log("data:", data);
-	      console.log("response:", response);
-	      if(response.body !== null){
-	    	  console.log("Response token is: ",response);
-	      }
-	      if (error) {
-	        //this.response = data;
-	        console.error(error);
-	      } else {
-	        console.log("API called successfully. Returned data: ", data);
-	      }
-	    };
-	    var opt = {
-	      username: self.username,
-	      password: self.password
-	      };
-	    authenticationApi.authenticateUserJSONWebToken(
-	      opt,
-	      callback
-	    );
-	  };
-	  
-	  var saveUser = function (json, self) {
-		    console.log('Save User');
-		    var callback = function (error, data, response) {
-		      console.log("data:", data);
-		      console.log("response:", response);
-		      if (error) {
-		        console.error(error);
-		        self.showError = 5;
-		      } else {
-		        self.response = data.results;
-		        self.showSuccess = 5;
-		        console.log("API called successfully. Returned data: ", data);
-		      }
-		    };
-		    var opt = {
-		      model: json
-		    };
-		    userApi.createUser(
-		      opt,
-		      callback
-		    );
-		  };
-  
-  
+    var loginFunction = function (json, self) {
+        console.log('Login function');
+        console.log(json);
+        var callback = function (error, data, response) {
+            console.log("data:", data);
+            console.log("response:", response);
+            if (error) {
+                console.error(error);
+                self.infoError = 5;
+            } else {
+                self.response = data.results;
+                console.log("Response login", self.response);
+                localStorage.setItem('token', data);
+                store.commit('LOGIN_USER');
+                router.push('/')
+                console.log("API called successfully. Returned data: ", data);
+            }
+        };
+        var userAuthenticationRequest = json;
+        authenticationApi.authenticateUserJSONWebToken(
+            userAuthenticationRequest,
+            callback
+        );
+    };
 
-  return {
-	  test: test,
-	  retrieveToken: retrieveToken,
-	  saveUser: saveUser
-  }
+    /** ONLY FOR TEST */
+    var testLogin = function (json, self) {
+        console.log("login fake json", json);
+        fetch('https://jsonplaceholder.typicode.com/users/1')
+            .then(response => response.json())
+            .then(json => {
+                console.log("JSON", json);
+                console.log("token", json.company.catchPhrase);
+                localStorage.setItem('token', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
+                store.commit('LOGIN_USER');
+                router.push('/')
+            }, () => {
+                self.infoError = true
+                self.password = ''
+            })
+    }
+    /** */
+   
+    var registerUser = function(json,self){
+    	console.log("Save user and generate password");
+    	saveUser(json, self, generatePassword);
+    	console.log("RegisterUser end");
+    }
+    
+
+    var saveUser = function (json, self, callbackGeneratePassword) {
+        console.log('Save User');
+        var callback = function (error, data, response) {
+            console.log("data:", data);
+            console.log("response:", response);
+            if (error) {
+                console.error(error);
+                self.infoError = 5;
+            } else {
+                self.response = data.results;
+                varDn = data.dn;
+                console.log("API called successfully. Returned data: ", data);
+                callbackGeneratePassword(self, changePassword);
+            }
+        };
+        var userCreateRequest = json;
+         userApi.createUser(
+            userCreateRequest,
+            callback
+        );
+    };
+    
+    var generatePassword = function (self, changePasswordCallback) {
+        console.log('generatePassword');
+        var callback = function (error, data, response) {
+            console.log("data:", data);
+            console.log("response:", response);
+            if (error) {
+                console.error(error);
+                self.infoError = 5;
+            } else {
+            	generatedPassword = data;
+                console.log("API called successfully. Returned data: ", data);
+                changePasswordCallback(self);
+            }
+        };
+        var dn = varDn;
+	    var opt = {
+                length: 8
+      	    };
+         userApi.generatePassword(
+            dn,
+            opt,
+            callback
+        );
+    };
+    
+    var changePassword = function (self) {
+        console.log('changePassword', generatedPassword);
+        var callback = function (error, data, response) {
+            console.log("data:", data);
+            console.log("response:", response);
+            if (error) {
+                console.error(error);
+                self.infoError = 5;
+            } else {
+                console.log("API called successfully. Returned data: ", data);
+                router.push('/login');
+            }
+        };
+        var dn = varDn;
+        var changePasswordRequest = {
+      	  "current": generatedPassword,
+      	  "new": self.password
+      	};
+        console.log("Password change",changePasswordRequest );
+         userApi.setPassword(
+         dn, 
+         changePasswordRequest, 
+         callback
+        );
+    };
+
+
+
+    return {
+        loginFunction: loginFunction,
+        registerUser: registerUser,
+        testLogin: testLogin,
+    }
 }();
 
 export default MyObject;

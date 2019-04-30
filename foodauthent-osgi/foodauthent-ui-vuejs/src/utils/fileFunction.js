@@ -24,11 +24,6 @@ var MyObject = function () {
     );
   };
   var createFileMetadata = function (fileJson, file, self) {
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-    apiClient.basePath = window.location.origin + "/v0/foodauthent";
-    var FileApi = require("../generated/rest-client/src/api/FileApi.js");
-    var fileApi = new FileApi(apiClient);
     console.log('Create File Metadata');
     var callback = function (error, data, response) {
       console.log("createFileMetadata data:", data);
@@ -49,11 +44,6 @@ var MyObject = function () {
   };
 
   var uploadFile = function (varFileId, fileJson, self) {
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-    apiClient.basePath = window.location.origin + "/v0/foodauthent";
-    var FileApi = require("../generated/rest-client/src/api/FileApi.js");
-    var fileApi = new FileApi(apiClient);
     console.log('Upload file');
     var callback2 = function (error, data, response) {
       console.log("uploadFile data:", data);

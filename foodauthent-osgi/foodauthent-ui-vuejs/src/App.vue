@@ -7,7 +7,7 @@
 
 
         <b-nav-item-dropdown right v-if="loggedIn">
-        <template slot="button-content"><em>ITEMS</em></template>
+        <template slot="button-content"><em>ENTITIES</em></template>
             <md-list v-for="route in this.$router.options.routes">
                 <md-list-item v-if="!route.meta.notdisplay">
                     <b-dropdown-item><router-link :to="route.path"">{{route.name}}</router-link></b-dropdown-item>
@@ -21,7 +21,7 @@
           <b-dropdown-item v-if="!loggedIn"><router-link :to="{ path: '/register' }">Register</router-link></b-dropdown-item>
           <b-dropdown-item v-if="loggedIn"><router-link :to="{ path: '/logout' }">Logout</router-link></b-dropdown-item>
         </b-nav-item-dropdown> -->
-        
+
         <b-nav-item v-if="!loggedIn"><router-link :to="{ path: '/login' }">LOGIN</router-link></b-nav-item>
         <b-nav-item v-if="!loggedIn"><router-link :to="{ path: '/register' }">REGISTER</router-link></b-nav-item>
         <b-nav-item v-if="loggedIn"><router-link :to="{ path: '/logout' }">LOGOUT</router-link></b-nav-item>
