@@ -1,7 +1,5 @@
 package org.foodauthent.test;
 
-import javax.ws.rs.client.WebTarget;
-
 import org.junit.BeforeClass;
 import org.osgi.framework.BundleException;
 
@@ -28,14 +26,4 @@ public abstract class AbstractITTest {
 	// b.start();
 	// }
     }
-
-    @Deprecated
-    protected final WebTarget webTarget() {
-	return TestUtils.newWebTarget();
-    }
-    
-    protected final <S> S restService(Class<S> serviceClass) {
-	return TestUtils.createClientProxy(serviceClass);
-    }
-
 }

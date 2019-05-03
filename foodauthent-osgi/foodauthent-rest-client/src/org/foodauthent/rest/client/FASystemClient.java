@@ -1,4 +1,4 @@
-package org.foodauthent.data;
+package org.foodauthent.rest.client;
 
 import java.io.File;
 import java.util.UUID;
@@ -9,14 +9,16 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
-import org.foodauthent.api.WorkflowService;
-import org.foodauthent.model.FileMetadata;
+import org.foodauthent.rest.api.service.CustomMetadataRestService;
 import org.foodauthent.rest.api.service.FileRestService;
 import org.foodauthent.rest.api.service.FingerprintRestService;
 import org.foodauthent.rest.api.service.InfoRestService;
+import org.foodauthent.rest.api.service.ModelRestService;
 import org.foodauthent.rest.api.service.ProductRestService;
 import org.foodauthent.rest.api.service.SampleRestService;
+import org.foodauthent.rest.api.service.SopRestService;
 import org.foodauthent.rest.api.service.WorkflowRestService;
 import org.foodauthent.rest.impl.json.JacksonJSONReader;
 import org.foodauthent.rest.impl.json.JacksonJSONWriter;
@@ -29,11 +31,11 @@ import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
  * 
  * @author Martin Horn, University of Konstanz
  */
-public class FASystem {
+public class FASystemClient {
 
     private static final WebTarget WEB_TARGET = newWebTarget();
 
-    private FASystem() {
+    private FASystemClient() {
 	// utility class
     }
     
@@ -61,6 +63,26 @@ public class FASystem {
 	return createClientProxy(InfoRestService.class);
     }
     
+    public static CustomMetadataRestService customMetadata() {
+	return createClientProxy(CustomMetadataRestService.class);
+    }
+    
+    public static ModelRestService models() {
+	return createClientProxy(ModelRestService.class);
+    }
+    
+    public static SopRestService sops() {
+	return createClientProxy(SopRestService.class);
+    }
+    
+    public static <T> T handleResp(Response response, Class<T> entityType) {
+	if (response.getStatusInfo().getFamily() == Status.Family.SUCCESSFUL) {
+	    return response.readEntity(entityType);
+	} else {
+	    throw new IllegalStateException(response.readEntity(String.class));
+	}
+    }
+   
     private static WebTarget newWebTarget() {
 	Client client = ClientBuilder.newClient().register(JacksonJSONWriter.class, Integer.MAX_VALUE)
 		.register(JacksonJSONReader.class, Integer.MAX_VALUE).register(MultiPartFeature.class);

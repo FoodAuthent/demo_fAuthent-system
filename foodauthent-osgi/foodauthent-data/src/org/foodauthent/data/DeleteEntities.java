@@ -1,7 +1,7 @@
 package org.foodauthent.data;
 
-import static org.foodauthent.data.FASystem.products;
-import static org.foodauthent.data.FASystem.workflows;
+import static org.foodauthent.rest.client.FASystemClient.products;
+import static org.foodauthent.rest.client.FASystemClient.workflows;
 
 import java.util.List;
 

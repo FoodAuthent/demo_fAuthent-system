@@ -1,5 +1,8 @@
 package org.foodauthent.test;
 
+import static org.foodauthent.rest.client.FASystemClient.files;
+import static org.foodauthent.rest.client.FASystemClient.products;
+import static org.foodauthent.rest.client.FASystemClient.sops;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -14,9 +17,6 @@ import javax.ws.rs.core.Response;
 import org.foodauthent.model.FaObjectSet;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.SOP;
-import org.foodauthent.rest.api.service.FileRestService;
-import org.foodauthent.rest.api.service.ProductRestService;
-import org.foodauthent.rest.api.service.SopRestService;
 import org.junit.Test;
 
 public class ZipExporterTest extends AbstractITTest {
@@ -26,12 +26,12 @@ public class ZipExporterTest extends AbstractITTest {
 
 	// 1. Create and upload a product
 	Product product = Product.builder().setBrand("Krusty Burger").setGtin("0123456789").build();
-	restService(ProductRestService.class).createProduct(product);
+	products().createProduct(product);
 
 	// 2. Create and upload an SOP
 	SOP sop = SOP.builder().setName("best_sop").setDescription("Exclusive to Krusty Burger")
 		.setFileId(UUID.randomUUID()).setProductId(UUID.randomUUID()).build();
-	restService(SopRestService.class).createNewSOP(sop);
+	sops().createNewSOP(sop);
 
 	// 3. Create FaObjectSet with ids
 	List<UUID> productIds = Arrays.asList(product.getFaId());
@@ -43,7 +43,7 @@ public class ZipExporterTest extends AbstractITTest {
 	tempFile.deleteOnExit();
 
 	// 5. Export product and SOP to temporary file
-	Response response = restService(FileRestService.class).exportFile("zip", objectSet);
+	Response response = files().exportFile("zip", objectSet);
 	
 	// 6. Check response
 	assertNotNull(response);

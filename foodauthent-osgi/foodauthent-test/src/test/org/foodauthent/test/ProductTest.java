@@ -1,5 +1,6 @@
 package org.foodauthent.test;
 
+import static org.foodauthent.rest.client.FASystemClient.products;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -11,6 +12,7 @@ import java.util.UUID;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.ProductPageResult;
 import org.foodauthent.rest.api.service.ProductRestService;
+import org.foodauthent.rest.client.FASystemClient;
 import org.junit.Test;
 
 /**
@@ -27,7 +29,7 @@ public class ProductTest extends AbstractITTest{
     public void test() {
 	boolean idExists = false;
 	
-	ProductRestService s = restService(ProductRestService.class);
+	ProductRestService s = products(); 
 	ProductPageResult productPage = s.findProductByKeyword(1, 10, null).readEntity(ProductPageResult.class);
 	assertEquals(1, productPage.getPageNumber().intValue());
 	assertEquals(10, productPage.getResults().size());

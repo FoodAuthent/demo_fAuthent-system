@@ -3,7 +3,6 @@ package org.foodauthent.data;
 import static java.util.Arrays.asList;
 import static org.foodauthent.data.DeleteEntities.clearAllProducts;
 import static org.foodauthent.data.DeleteEntities.clearAllWorkflows;
-import static org.foodauthent.data.FASystem.info;
 import static org.foodauthent.data.ListFiles.listBfrOilFingerprintFiles;
 import static org.foodauthent.data.PopulateFiles.populateFileMetadata;
 import static org.foodauthent.data.PopulateFiles.populateFiles;
@@ -21,6 +20,7 @@ import static org.foodauthent.data.ReadModels.readBfrOilFingerprintSets;
 import static org.foodauthent.data.ReadModels.readBfrOilFingerprints;
 import static org.foodauthent.data.ReadModels.readBfrOilSamples;
 import static org.foodauthent.data.ReadModels.readOilProducts;
+import static org.foodauthent.rest.client.FASystemClient.info;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -52,7 +52,7 @@ public class PopulateDataApp {
 	
 	//TODO delete blobs and all other missing entities
 	List<UUID> trainingwfIds = doitWithRes("Populate training workflows", () -> {
-	    return asList(populateTestTrainingWorkflow());
+	    return asList(populateTestTrainingWorkflow(), populateTrainingWorkflowOpenChromRandomForest());
 	});
 
 	List<UUID> predictionwfIds = doitWithRes("Populate prediction workflows", () -> {

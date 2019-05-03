@@ -1,12 +1,13 @@
 package org.foodauthent.data;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.foodauthent.data.FASystem.files;
-import static org.foodauthent.data.FASystem.fingerprints;
-import static org.foodauthent.data.FASystem.products;
-import static org.foodauthent.data.FASystem.samples;
-import static org.foodauthent.data.FASystem.uploadFileData;
-import static org.foodauthent.data.FASystem.workflows;
+import static org.foodauthent.rest.client.FASystemClient.files;
+import static org.foodauthent.rest.client.FASystemClient.fingerprints;
+import static org.foodauthent.rest.client.FASystemClient.handleResp;
+import static org.foodauthent.rest.client.FASystemClient.products;
+import static org.foodauthent.rest.client.FASystemClient.samples;
+import static org.foodauthent.rest.client.FASystemClient.uploadFileData;
+import static org.foodauthent.rest.client.FASystemClient.workflows;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -30,6 +31,7 @@ import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.WorkflowIOTypes;
 import org.foodauthent.model.WorkflowParameter;
 import org.foodauthent.model.WorkflowParameter.TypeEnum;
+import org.foodauthent.rest.client.FASystemClient;
 
 /**
  * 
@@ -169,13 +171,13 @@ public class PopulateModels {
     }
     
     public static UUID train(UUID workflowId, List<UUID> fingerprintsetIds) {
-	return workflows().createTrainingJob(workflowId, fingerprintsetIds, false).readEntity(TrainingJob.class)
+	return handleResp(workflows().createTrainingJob(workflowId, fingerprintsetIds, false), TrainingJob.class)
 		.getModelId();
     }
 
     public static UUID predict(UUID workflowId, UUID fingerprintsetId, UUID modelId) {
-	return workflows().createPredictionJob(workflowId, fingerprintsetId, modelId, false)
-		.readEntity(PredictionJob.class).getPredictionId();
+	return handleResp(workflows().createPredictionJob(workflowId, fingerprintsetId, modelId, false),
+		PredictionJob.class).getPredictionId();
     }
 
 }

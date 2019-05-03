@@ -1,6 +1,13 @@
 package org.foodauthent.test;
 
 import static java.util.Arrays.asList;
+import static org.foodauthent.rest.client.FASystemClient.files;
+import static org.foodauthent.rest.client.FASystemClient.fingerprints;
+import static org.foodauthent.rest.client.FASystemClient.models;
+import static org.foodauthent.rest.client.FASystemClient.products;
+import static org.foodauthent.rest.client.FASystemClient.samples;
+import static org.foodauthent.rest.client.FASystemClient.uploadFileData;
+import static org.foodauthent.rest.client.FASystemClient.workflows;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -13,9 +20,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.FileMetadata;
@@ -38,12 +42,7 @@ import org.foodauthent.model.WorkflowIOTypes;
 import org.foodauthent.model.WorkflowPageResult;
 import org.foodauthent.model.WorkflowParameter;
 import org.foodauthent.model.WorkflowParameter.TypeEnum;
-import org.foodauthent.rest.api.service.FileRestService;
-import org.foodauthent.rest.api.service.FingerprintRestService;
-import org.foodauthent.rest.api.service.ModelRestService;
-import org.foodauthent.rest.api.service.ProductRestService;
-import org.foodauthent.rest.api.service.SampleRestService;
-import org.foodauthent.rest.api.service.WorkflowRestService;
+import org.foodauthent.rest.client.FASystemClient;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -55,15 +54,11 @@ import org.junit.Test;
 
 public class WorkflowTest extends AbstractITTest {
     
-    private WorkflowRestService workflowService = restService(WorkflowRestService.class);
-    private WebTarget webTarget = webTarget();
-    
     @Before
     public void clearAllWorkflows() {
-	WorkflowRestService ws = restService(WorkflowRestService.class);
-	List<Workflow> workflows = ws.findWorkflowByKeyword(1, Integer.MAX_VALUE, null)
+	List<Workflow> workflows = workflows().findWorkflowByKeyword(1, Integer.MAX_VALUE, null)
 		.readEntity(WorkflowPageResult.class).getResults();
-	workflows.stream().forEach(wf -> ws.removeWorkflowById(wf.getFaId()));
+	workflows.stream().forEach(wf -> workflows().removeWorkflowById(wf.getFaId()));
     }
 
     @Test
@@ -73,7 +68,7 @@ public class WorkflowTest extends AbstractITTest {
 	UUID modelId = uploadModel();
 
 	/* run prediction workflow */
-	Response response = workflowService.createPredictionJob(wfId, fingerprintSetId, modelId, true);
+	Response response = workflows().createPredictionJob(wfId, fingerprintSetId, modelId, true);
 	try {
 	    assertThat("Unexpected server response", response.getStatus(), is(200));
 	} catch (AssertionError e) {
@@ -86,25 +81,25 @@ public class WorkflowTest extends AbstractITTest {
 	Thread.sleep(2000);
 
 	/* retrieve prediction result */
-	predictionJob = workflowService.getPredictionJob(predictionJob.getFaId()).readEntity(PredictionJob.class);
+	predictionJob = workflows().getPredictionJob(predictionJob.getFaId()).readEntity(PredictionJob.class);
 	assertEquals("Execution failed: " + predictionJob.getStatusMessage(), StatusEnum.SUCCESS,
 		predictionJob.getStatus());
-	Prediction prediction = workflowService.getPredictionResult(predictionJob.getPredictionId())
+	Prediction prediction = workflows().getPredictionResult(predictionJob.getPredictionId())
 		.readEntity(Prediction.class);
 	assertEquals(prediction.getPredictionMap().size(), 2);
 	
 	/* retrieve prediction by fingerprintset-id */
-	response = workflowService.findPredictionByKeyword(1, 10, Arrays.asList(fingerprintSetId.toString()));
+	response = workflows().findPredictionByKeyword(1, 10, Arrays.asList(fingerprintSetId.toString()));
 	assertThat("unexpected server response", response.getStatus(), is(200));
 	PredictionPageResult predictionPage = response.readEntity(PredictionPageResult.class);
 	assertThat("exactly one entry expected", predictionPage.getResultCount(), is(1));
 	assertThat("unexpected prediction", predictionPage.getResults().get(0), is(prediction));
 	
-	predictionPage = workflowService
+	predictionPage = workflows()
 		.findPredictionsByFingerprintSetId(fingerprintSetId, 1, 10, Collections.emptyList())
 		.readEntity(PredictionPageResult.class);
 	assertThat(predictionPage.getResultCount(), is(1));
-	predictionPage = workflowService.findPredictionsByFingerprintSetId(fingerprintSetId, 1, 10, asList("blub"))
+	predictionPage = workflows().findPredictionsByFingerprintSetId(fingerprintSetId, 1, 10, asList("blub"))
 		.readEntity(PredictionPageResult.class);
 	assertThat(predictionPage.getResultCount(), is(0));
     }
@@ -128,7 +123,7 @@ public class WorkflowTest extends AbstractITTest {
 		.setRepresentation(RepresentationEnum.KNIME).setInputTypes(inputTypes)
 		.setFileId(predictionWorkflowFileId).build(); // TODO set more (or even all) properties
 
-	return workflowService.createWorkflow(wf).readEntity(UUID.class);
+	return workflows().createWorkflow(wf).readEntity(UUID.class);
     }
    
     private UUID uploadPredictionWorkflowFile() {
@@ -137,12 +132,11 @@ public class WorkflowTest extends AbstractITTest {
         FileMetadata fileMeta = FileMetadata.builder().setName("PredictionWorkflow").setDate(LocalDate.now())
         	.setDescription("file description").setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW)
         	.setVersion(0).build();
-        UUID predictionWorkflowFileId = webTarget.path("file").request(MediaType.APPLICATION_JSON)
-        	.post(Entity.entity(fileMeta, MediaType.APPLICATION_JSON), UUID.class);
-        Response response = TestUtils.uploadFileData(webTarget, fileMeta.getFaId(),
-        	new File("files/workflows/PredictionWorkflow.knwf"));
-        assertEquals(200, response.getStatus());
-               return predictionWorkflowFileId;
+	UUID predictionWorkflowFileId = files().createFileMetadata(fileMeta).readEntity(UUID.class);
+	Response response = FASystemClient.uploadFileData(fileMeta.getFaId(),
+		new File("files/workflows/PredictionWorkflow.knwf"));
+	assertEquals(200, response.getStatus());
+	return predictionWorkflowFileId;
     }
 
     @Test
@@ -164,10 +158,10 @@ public class WorkflowTest extends AbstractITTest {
 		.setFileId(predictionWorkflowFileId);
 	
 	//post workflow
-	UUID wfId = workflowService.createWorkflow(wfb.build()).readEntity(UUID.class);
+	UUID wfId = workflows().createWorkflow(wfb.build()).readEntity(UUID.class);
 
 	// try to run prediction job
-	Response response = workflowService.createPredictionJob(wfId, fingerprintSetId, modelId, true);
+	Response response = workflows().createPredictionJob(wfId, fingerprintSetId, modelId, true);
 	assertEquals("Unexpected status code", 500, response.getStatus());
 	String message = response.readEntity(String.class);
 	assertTrue(message.contains("not a knime workflow"));
@@ -176,10 +170,10 @@ public class WorkflowTest extends AbstractITTest {
 	//wrong type
 	wfb.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB);
 	//post workflow
-	wfId = workflowService.createWorkflow(wfb.build()).readEntity(UUID.class);
+	wfId = workflows().createWorkflow(wfb.build()).readEntity(UUID.class);
 	
 	// try to run prediction job
-	response = workflowService.createPredictionJob(wfId, fingerprintSetId, modelId, true);
+	response = workflows().createPredictionJob(wfId, fingerprintSetId, modelId, true);
 	assertEquals("Unexpected status code", 500, response.getStatus());
 	message = response.readEntity(String.class);
 	assertTrue(message.contains("not a prediction workflow"));
@@ -191,7 +185,7 @@ public class WorkflowTest extends AbstractITTest {
 	UUID fingerprintSetId = uploadFingerprintSets().get(0);
 	UUID modelId = uploadModel();
 
-	Response response = workflowService.createPredictionJob(wfId, fingerprintSetId, modelId, false);
+	Response response = workflows().createPredictionJob(wfId, fingerprintSetId, modelId, false);
 	try {
 	    assertThat("Unexpected server response", response.getStatus(), is(200));
 	} catch (AssertionError e) {
@@ -211,8 +205,8 @@ public class WorkflowTest extends AbstractITTest {
 	FileMetadata fileMeta = FileMetadata.builder().setName("TrainingWorkflow").setDate(LocalDate.now())
 		.setDescription("file description").setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW)
 		.setVersion(0).build();
-	UUID fileId = restService(FileRestService.class).createFileMetadata(fileMeta).readEntity(UUID.class);
-	TestUtils.uploadFileData(webTarget, fileId, new File("files/workflows/TrainingWorkflow.knwf"));
+	UUID fileId = files().createFileMetadata(fileMeta).readEntity(UUID.class);
+	uploadFileData(fileId, new File("files/workflows/TrainingWorkflow.knwf"));
 
 	// upload workflow metadata
 	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("train_param1").setRequired(false)
@@ -233,12 +227,12 @@ public class WorkflowTest extends AbstractITTest {
 		.setInputTypes(inputTypes)
 		.setOutputTypes(outputTypes)
 		.build(); // TODO set more (or even all) properties
-	UUID wfId = workflowService.createWorkflow(wf).readEntity(UUID.class);
+	UUID wfId = workflows().createWorkflow(wf).readEntity(UUID.class);
 	
 	List<UUID> fingerprintSetIds = uploadFingerprintSets();
 
 	/* run training workflow */
-	Response response = workflowService.createTrainingJob(wfId, fingerprintSetIds, true);
+	Response response = workflows().createTrainingJob(wfId, fingerprintSetIds, true);
 	try {
 	    assertThat("Unexpected server response", response.getStatus(), is(200));
 	} catch (AssertionError e) {
@@ -251,10 +245,10 @@ public class WorkflowTest extends AbstractITTest {
 	Thread.sleep(2000);
 
 	/* retrieve training result */
-	trainingJob = workflowService.getTrainingJob(trainingJob.getFaId()).readEntity(TrainingJob.class);
+	trainingJob = workflows().getTrainingJob(trainingJob.getFaId()).readEntity(TrainingJob.class);
 	assertEquals("Execution failed: " + trainingJob.getStatusMessage(),
 		org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS, trainingJob.getStatus());
-	Model model = restService(ModelRestService.class).getModelById(trainingJob.getModelId()).readEntity(Model.class);
+	Model model = models().getModelById(trainingJob.getModelId()).readEntity(Model.class);
 	assertEquals(model.getType().getName(), ModelType.NameEnum.KNIME_WORKFLOW);
     }
 
@@ -262,48 +256,46 @@ public class WorkflowTest extends AbstractITTest {
         
         //upload product
         Product p = Product.builder().setBrand("my_product").setGtin("1234").build();
-        UUID productId = restService(ProductRestService.class).createProduct(p).readEntity(UUID.class);
+        UUID productId = products().createProduct(p).readEntity(UUID.class);
         
         //upload sample
         Sample s = Sample.builder().setProductId(productId).build();
-        UUID sampleId = restService(SampleRestService.class).createSample(s).readEntity(UUID.class);
+        UUID sampleId = samples().createSample(s).readEntity(UUID.class);
         
         //upload fingerprint files
 	FileMetadata fpFile1 = FileMetadata.builder().setName("fingerprint1")
 		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).build();
-	restService(FileRestService.class).createFileMetadata(fpFile1);
-	TestUtils.uploadFileData(webTarget, fpFile1.getFaId(), new File("files/fingerprints/fp1.zip"));
+	files().createFileMetadata(fpFile1);
+	uploadFileData(fpFile1.getFaId(), new File("files/fingerprints/fp1.zip"));
 	FileMetadata fpFile2 = FileMetadata.builder().setName("fingerprint2")
 		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).build();
-	restService(FileRestService.class).createFileMetadata(fpFile2);
-	TestUtils.uploadFileData(webTarget, fpFile2.getFaId(), new File("files/fingerprints/fp2.zip"));
+	files().createFileMetadata(fpFile2);
+	uploadFileData(fpFile2.getFaId(), new File("files/fingerprints/fp2.zip"));
 	FileMetadata fpFile3 = FileMetadata.builder().setName("fingerprint3")
 		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).build();
-	restService(FileRestService.class).createFileMetadata(fpFile3);
-	TestUtils.uploadFileData(webTarget, fpFile3.getFaId(), new File("files/fingerprints/fp3.zip"));
+	files().createFileMetadata(fpFile3);
+	uploadFileData(fpFile3.getFaId(), new File("files/fingerprints/fp3.zip"));
 
  
 	//upload fingerprints
-	FingerprintRestService fpService = restService(FingerprintRestService.class);
 	Fingerprint fp1 = Fingerprint.builder().setSampleId(sampleId).setFileId(fpFile1.getFaId()).build();
-	fpService.createFingerprint(fp1);
+	fingerprints().createFingerprint(fp1);
 	Fingerprint fp2 = Fingerprint.builder().setSampleId(sampleId).setFileId(fpFile2.getFaId()).build();
-	fpService.createFingerprint(fp2);
+	fingerprints().createFingerprint(fp2);
 	Fingerprint fp3 = Fingerprint.builder().setSampleId(sampleId).setFileId(fpFile3.getFaId()).build();
-	fpService.createFingerprint(fp3);
+	fingerprints().createFingerprint(fp3);
      
         // upload fingerprint sets
 	FingerprintSet fps = FingerprintSet.builder().setName("myset1")
 		.setFingerprintIds(Arrays.asList(fp1.getFaId(), fp2.getFaId())).setClassLabel("label1").build();
 	FingerprintSet fps2 = FingerprintSet.builder().setName("myset2").setFingerprintIds(Arrays.asList(fp3.getFaId()))
 		.setClassLabel("label2").build();
-	return asList(fpService.createFingerprintSet(fps).readEntity(UUID.class),
-		fpService.createFingerprintSet(fps2).readEntity(UUID.class));
+	return asList(fingerprints().createFingerprintSet(fps).readEntity(UUID.class),
+		fingerprints().createFingerprintSet(fps2).readEntity(UUID.class));
     }
     
     @Test
     public void testFindWorkflows() {
-	WorkflowRestService ws = restService(WorkflowRestService.class);
 	Workflow wf1 = Workflow.builder().setDescription("desc1").setName("wf1name")
 		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW_E680F8C1)
 		.setRepresentation(RepresentationEnum.KNIME).setFileId(UUID.randomUUID()).build();
@@ -317,40 +309,39 @@ public class WorkflowTest extends AbstractITTest {
 		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB)
 		.setRepresentation(RepresentationEnum.KNIME).setFileId(UUID.randomUUID()).build();
 
-	ws.createWorkflow(wf1);
-	ws.createWorkflow(wf2);
-	ws.createWorkflow(wf3);
-	ws.createWorkflow(wf4);
+	workflows().createWorkflow(wf1);
+	workflows().createWorkflow(wf2);
+	workflows().createWorkflow(wf3);
+	workflows().createWorkflow(wf4);
 	
-	WorkflowPageResult wfPage = ws.findPredictionWorkflows(1, 10, Collections.emptyList())
+	WorkflowPageResult wfPage = workflows().findPredictionWorkflows(1, 10, Collections.emptyList())
 		.readEntity(WorkflowPageResult.class);
 	assertThat(wfPage.getResultCount(), is(2));
 	
-	wfPage = ws.findPredictionWorkflows(1, 10, asList("wf1"))
+	wfPage = workflows().findPredictionWorkflows(1, 10, asList("wf1"))
 		.readEntity(WorkflowPageResult.class);
 	assertThat(wfPage.getResultCount(), is(1));
 	
-	wfPage = ws.findPredictionWorkflows(1, 10, asList("wf1blub"))
+	wfPage = workflows().findPredictionWorkflows(1, 10, asList("wf1blub"))
 		.readEntity(WorkflowPageResult.class);
 	assertThat(wfPage.getResultCount(), is(0));
 
-	wfPage = ws.findPredictionWorkflows(1, 10, asList("wf1", "desc2", "desc3"))
+	wfPage = workflows().findPredictionWorkflows(1, 10, asList("wf1", "desc2", "desc3"))
 		.readEntity(WorkflowPageResult.class);
 	assertThat(wfPage.getResultCount(), is(2));
 	
-	wfPage = ws.findTrainingWorkflows(1, 10, asList("wf3"))
+	wfPage = workflows().findTrainingWorkflows(1, 10, asList("wf3"))
 		.readEntity(WorkflowPageResult.class);
 	assertThat(wfPage.getResultCount(), is(1));
     }
 
     private UUID uploadModel() {
-        
-        /* upload model */
+
+	/* upload model */
 	ModelType modelType = ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build();
 	Model m = Model.builder().setName("mymodel").setType(modelType).build();
-	       return webTarget.path("model").request(MediaType.APPLICATION_JSON)
-        	.post(Entity.entity(m, MediaType.APPLICATION_JSON), UUID.class);
-        // TODO upload model file
+	return models().createModel(m).readEntity(UUID.class);
+	// TODO upload model file
     }
 
 }

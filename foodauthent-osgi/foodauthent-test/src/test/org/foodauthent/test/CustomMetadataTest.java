@@ -1,5 +1,7 @@
 package org.foodauthent.test;
 
+import static org.foodauthent.rest.client.FASystemClient.customMetadata;
+import static org.foodauthent.rest.client.FASystemClient.products;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -14,8 +16,6 @@ import javax.ws.rs.core.Response;
 
 import org.apache.commons.io.IOUtils;
 import org.foodauthent.model.Product;
-import org.foodauthent.rest.api.service.CustomMetadataRestService;
-import org.foodauthent.rest.api.service.ProductRestService;
 import org.junit.Test;
 
 /**
@@ -28,12 +28,12 @@ public class CustomMetadataTest extends AbstractITTest {
     @Test
     public void testSaveCustomMetadata() throws Exception {
 	Product p = Product.builder().setBrand("brand").setGtin("gtin").build();
-	UUID productId = restService(ProductRestService.class).createProduct(p).readEntity(UUID.class);
+	UUID productId = products().createProduct(p).readEntity(UUID.class);
 
 	String json = IOUtils.toString(new FileInputStream(new File("files/json/custommetadata_fingerprintset.json")),
 		StandardCharsets.UTF_8);
 
-	Response r = restService(CustomMetadataRestService.class).saveCustomMetadata("fingerprintset", "foodauthent_v0",
+	Response r = customMetadata().saveCustomMetadata("fingerprintset", "foodauthent_v0",
 		productId, json);
 	assertThat("Unexpected response", 200, is(r.getStatus()));
 
@@ -41,7 +41,7 @@ public class CustomMetadataTest extends AbstractITTest {
     
     @Test
     public void testGetCustomMetadataSchemaList() {
-	List<String> schemas = restService(CustomMetadataRestService.class).getCustomMetadataSchemas("fingerprintset")
+	List<String> schemas = customMetadata().getCustomMetadataSchemas("fingerprintset")
 		.readEntity(new GenericType<List<String>>() {
 		});
 	assertThat("Unexpected schema id", "foodauthent_v0", is(schemas.get(0)));
