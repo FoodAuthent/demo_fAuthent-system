@@ -2374,6 +2374,7 @@ components:
          enum:
            - knime_workflow
            - knime_python
+           - knime_random_forest
            - pmml
            
     ObjectEvent:

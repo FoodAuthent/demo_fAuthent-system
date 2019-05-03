@@ -136,6 +136,38 @@ public class PopulateModels {
 	return workflows().createWorkflow(wf).readEntity(UUID.class);
     }
     
+    public static UUID populateTrainingWorkflowOpenChromRandomForest() {
+	String workflowName = "PredictionWorkflow OpenChrom RandomForest";
+	String workflowDesc = "Prediction workflow that uses OpenChrom to read and preprocess the signals and a random forest to learn the model.";
+	
+        // upload workflow file
+	FileMetadata fileMeta = FileMetadata.builder().setName(workflowName)
+		.setDate(LocalDate.now())
+		.setDescription(workflowDesc)
+		.setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW).setVersion(0).build();
+	       UUID fileId = files().createFileMetadata(fileMeta).readEntity(UUID.class);
+        uploadFileData(fileId, new File("files/workflows/PredictionWorkflow.knwf"));
+	
+	// upload workflow metadata
+	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("pred_param1").setRequired(false)
+		.setValue("pred_paramValue1").setType(TypeEnum.NUMBER).build();
+	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("pred_param2").setRequired(true)
+		.setValue("pred_paramValue2").setType(TypeEnum.STRING).build();
+	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
+		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build()).build();
+	WorkflowIOTypes outputTypes = WorkflowIOTypes.builder()
+		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_RANDOM_FOREST).build()).build();
+	Workflow wf = Workflow.builder().setName(workflowName).setDescription(workflowDesc).setParameters(Arrays.asList(wfp1, wfp2))
+		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB)
+		.setRepresentation(RepresentationEnum.KNIME)
+		.setInputTypes(inputTypes)
+		.setOutputTypes(outputTypes)
+		.setFileId(fileId)
+		.build();
+	
+	return workflows().createWorkflow(wf).readEntity(UUID.class);
+    }
+    
     public static UUID train(UUID workflowId, List<UUID> fingerprintsetIds) {
 	return workflows().createTrainingJob(workflowId, fingerprintsetIds, false).readEntity(TrainingJob.class)
 		.getModelId();

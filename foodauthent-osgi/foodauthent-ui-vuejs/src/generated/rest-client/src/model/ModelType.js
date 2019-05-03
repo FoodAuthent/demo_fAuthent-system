@@ -93,6 +93,11 @@
      */
     "knime_python": "knime_python",
     /**
+     * value: "knime_random_forest"
+     * @const
+     */
+    "knime_random_forest": "knime_random_forest",
+    /**
      * value: "pmml"
      * @const
      */

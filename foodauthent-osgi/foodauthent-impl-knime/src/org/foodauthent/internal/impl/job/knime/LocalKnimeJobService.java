@@ -1,6 +1,9 @@
 package org.foodauthent.internal.impl.job.knime;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
@@ -12,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.json.Json;
 import javax.json.JsonValue;
@@ -24,6 +26,7 @@ import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.FAExceptions.InitJobException;
 import org.foodauthent.internal.impl.job.knime.KnimeExecutor.LoadingFailedException;
 import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.FileMetadata.TypeEnum;
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
@@ -45,6 +48,8 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ServiceScope;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -53,6 +58,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
  */
 @Component(service = JobService.class, immediate = true, scope = ServiceScope.SINGLETON)
 public class LocalKnimeJobService implements JobService {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(LocalKnimeJobService.class);
 
 	@Reference(cardinality = ReferenceCardinality.MANDATORY)
 	private PersistenceService persistenceService;
@@ -224,16 +231,34 @@ public class LocalKnimeJobService implements JobService {
 								.setStatusMessage("Failed to read workflow output: " + e.getMessage()).build());
 						return;
 					}
-					// TODO: store model file!
+
 					String modelUri = trainingOutput.getModelUri();
-					UUID modelFileId = UUID.randomUUID();
+					UUID modelFileId;
+					String modelName = "generated model by " + workflow.getName();
+					File modelFile = new File(modelUri);
+					if(modelFile.exists()) {
+						FileMetadata fileMeta = FileMetadata.builder().setName(modelName).setType(TypeEnum.KNIME_MODEL).build();
+						modelFileId = fileMeta.getFaId();
+						persistenceService.save(fileMeta);
+						try (BufferedInputStream in = new BufferedInputStream(new FileInputStream(modelFile))) {
+							Blob blob = new Blob(fileMeta.getFaId(), in);
+							persistenceService.save(blob);
+						} catch (IOException e) {
+							// TODO
+							throw new RuntimeException(e);
+						}
+					} else {
+						LOGGER.warn("workflow '" + workflow.getName() + "' didn't output a model file");
+						//TODO remove
+						modelFileId = UUID.randomUUID();
+					}
 
 					// store new model (metadata and file) to the data base
 					ModelType modelType = ModelType.builder()
 							.setName(ModelType.NameEnum.valueOf(
 									workflow.getOutputTypes().getModelType().getName().toString().toUpperCase()))
 							.build();
-					Model model = Model.builder().setName("generated model by " + workflow.getName())
+					Model model = Model.builder().setName(modelName)
 							.setDate(LocalDate.now())
 							.setType(modelType)
 							.setWorkflowId(workflow.getFaId())
