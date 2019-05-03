@@ -32,8 +32,7 @@ class Convert {
 	    final PersonService<Person> personService) {
 	final Person person = personService.newEntryInstance(dn);
 	
-	//test the username here is missing
-	person.setUserName(userBase.getGivenName());
+	person.setUserName(userBase.getUserName());
 	
 	person.setCommonName(userBase.getGivenName() + " " + userBase.getLastName());
 	person.setDescription(userBase.getDescription());

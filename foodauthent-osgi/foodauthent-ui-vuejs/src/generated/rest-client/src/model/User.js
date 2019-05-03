@@ -48,10 +48,10 @@
    * @implements module:model/UserBase
    * @param givenName {} givenName / first name
    * @param lastName {} last name
-   * @param dn {} LDAP dn
    * @param userName {} unique userid
+   * @param dn {} LDAP dn
    */
-  var exports = function(givenName, lastName, dn, userName) {
+  var exports = function(givenName, lastName, userName, dn) {
     var _this = this;
 
     UserBase.call(_this, givenName, lastName);
@@ -112,6 +112,12 @@ exports.prototype['givenName'] = undefined;
    * @member {String} lastName
    */
 exports.prototype['lastName'] = undefined;
+
+  /**
+   * username
+   * @member {String} userName
+   */
+exports.prototype['userName'] = undefined;
 
   /**
    * email addresses

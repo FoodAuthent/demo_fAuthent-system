@@ -45,6 +45,10 @@ public class UserCreateRequest extends UserBase  {
         throw new IllegalArgumentException("lastName must not be null.");
     }
     lastName = immutable(builder.lastName);
+    if(builder.userName == null) {
+        throw new IllegalArgumentException("userName must not be null.");
+    }
+    userName = immutable(builder.userName);
     mail = immutable(builder.mail);
     description = immutable(builder.description);
     faxNumbers = immutable(builder.faxNumbers);
@@ -62,10 +66,6 @@ public class UserCreateRequest extends UserBase  {
         throw new IllegalArgumentException("parentDn must not be null.");
     }
     parentDn = immutable(builder.parentDn);
-    if(builder.userName == null) {
-        throw new IllegalArgumentException("userName must not be null.");
-    }
-    userName = immutable(builder.userName);
     
     
   }
@@ -126,6 +126,7 @@ public class UserCreateRequest extends UserBase  {
         builder.title = entity.title;
         builder.givenName = entity.givenName;
         builder.lastName = entity.lastName;
+        builder.userName = entity.userName;
         builder.mail = entity.mail;
         builder.description = entity.description;
         builder.faxNumbers = entity.faxNumbers;
@@ -140,7 +141,6 @@ public class UserCreateRequest extends UserBase  {
         builder.employeeNumber = entity.employeeNumber;
         builder.labeledURI = entity.labeledURI;
         builder.parentDn = entity.parentDn;
-        builder.userName = entity.userName;
  		return builder;
   	}
   	
@@ -154,6 +154,7 @@ public class UserCreateRequest extends UserBase  {
         private String title;
         private String givenName;
         private String lastName;
+        private String userName;
         private java.util.List<String> mail = new java.util.ArrayList<>();
         private String description;
         private java.util.List<String> faxNumbers = new java.util.ArrayList<>();
@@ -168,7 +169,6 @@ public class UserCreateRequest extends UserBase  {
         private String employeeNumber;
         private java.util.List<String> labeledURI = new java.util.ArrayList<>();
         private String parentDn;
-        private String userName;
 
         /**
          * title
@@ -200,6 +200,18 @@ public class UserCreateRequest extends UserBase  {
                  throw new IllegalArgumentException("lastName must not be null.");
              }
              this.lastName = lastName;
+             return this;
+        }
+
+        /**
+         * unique userid
+         * @return userName , never <code>null</code>
+         */
+        public UserCreateRequestBuilder setUserName(String userName) {
+             if(userName == null) {
+                 throw new IllegalArgumentException("userName must not be null.");
+             }
+             this.userName = userName;
              return this;
         }
 
@@ -329,18 +341,6 @@ public class UserCreateRequest extends UserBase  {
                  throw new IllegalArgumentException("parentDn must not be null.");
              }
              this.parentDn = parentDn;
-             return this;
-        }
-
-        /**
-         * unique userid
-         * @return userName , never <code>null</code>
-         */
-        public UserCreateRequestBuilder setUserName(String userName) {
-             if(userName == null) {
-                 throw new IllegalArgumentException("userName must not be null.");
-             }
-             this.userName = userName;
              return this;
         }
 

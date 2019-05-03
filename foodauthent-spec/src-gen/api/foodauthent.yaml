@@ -3177,6 +3177,10 @@ components:
           description: last name
           type: string
           nullable: true
+        userName:
+          description: username
+          type: string
+          nullable: true
         mail:
           description: email addresses
           type: array

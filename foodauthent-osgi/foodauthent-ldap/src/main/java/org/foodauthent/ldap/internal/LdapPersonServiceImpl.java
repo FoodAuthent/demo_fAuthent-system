@@ -7,7 +7,9 @@ import org.foodauthent.common.exception.EntityAlreadyExistsException;
 import org.foodauthent.common.exception.InvalidOperationException;
 import org.foodauthent.common.exception.ServiceException;
 import org.foodauthent.ldap.LdapOperationManager;
+import org.foodauthent.ldap.LdapOrganizationalUnitService;
 import org.foodauthent.ldap.LdapPersonService;
+import org.foodauthent.ldap.beans.LdapOrganizationalUnit;
 import org.foodauthent.ldap.beans.LdapPerson;
 import org.foodauthent.ldap.config.LDAPConfig;
 import org.ldaptive.LdapException;
@@ -32,6 +34,9 @@ public class LdapPersonServiceImpl extends AbstractLdapEntryService<LdapPerson> 
 	@Reference(cardinality = ReferenceCardinality.MANDATORY)
 	private LdapOperationManager ldapOperationManager;
 
+	@Reference(cardinality = ReferenceCardinality.MANDATORY)
+	private LdapOrganizationalUnitService ldapOrganizationalUnitService;
+	
 	private static final SearchTemplates oneTermTemplate = new SearchTemplates( //
 			createFilters(OBJECT_CLASS_FILTER, //
 					"(|(givenName={term1})(sn={term1}))", //
@@ -98,6 +103,21 @@ public class LdapPersonServiceImpl extends AbstractLdapEntryService<LdapPerson> 
 		final LdapPerson instance = super.newEntryInstance();
 		instance.setDn(identifier);
 		return instance;
+	}
+
+	@Override
+	public LdapPerson add(LdapPerson v) throws EntityAlreadyExistsException, ServiceException {
+		final String dn = v.getDn();
+		final String usersDn = dn.substring(dn.indexOf(",") + 1);
+		final String orgDn = usersDn.substring(usersDn.indexOf(",") + 1);
+		if (!ldapOperationManager.entryExists(orgDn)) {
+			throw new ServiceException(String.format("User Organization dn % does not exist", orgDn));
+		}
+		if (!ldapOperationManager.entryExists(usersDn)) {
+			LdapOrganizationalUnit ou = new LdapOrganizationalUnit(usersDn);
+			ldapOrganizationalUnitService.add(ou);
+		}
+		return super.add(v);
 	}
 
 }

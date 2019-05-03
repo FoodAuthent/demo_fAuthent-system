@@ -21,13 +21,13 @@ public class DeleteEntities {
     }
     
     public static void clearAllWorkflows() {
-	List<Workflow> workflows = workflows().findWorkflowByKeyword(1, Integer.MAX_VALUE, null)
+	List<Workflow> workflows = workflows().findWorkflowByKeyword(1, 1000, null)
 		.readEntity(WorkflowPageResult.class).getResults();
 	workflows.stream().forEach(wf -> workflows().removeWorkflowById(wf.getFaId()));
     }
     
     public static void clearAllProducts() {
-	List<Product> products = products().findProductByKeyword(1, Integer.MAX_VALUE, null)
+	List<Product> products = products().findProductByKeyword(1, 1000, null)
 		.readEntity(ProductPageResult.class).getResults();
 	products.stream().forEach(p -> products().removeProductById(p.getFaId()));
     }

@@ -26,6 +26,7 @@ public class UserBase   extends FaModel {
   protected String title;
   protected String givenName;
   protected String lastName;
+  protected String userName;
   protected java.util.List<String> mail;
   protected String description;
   protected java.util.List<String> faxNumbers;
@@ -63,6 +64,7 @@ public class UserBase   extends FaModel {
         throw new IllegalArgumentException("lastName must not be null.");
     }
     lastName = immutable(builder.lastName);
+    userName = immutable(builder.userName);
     mail = immutable(builder.mail);
     description = immutable(builder.description);
     faxNumbers = immutable(builder.faxNumbers);
@@ -95,7 +97,7 @@ public class UserBase   extends FaModel {
             return false;
         }
         UserBase ent = (UserBase)o;
-        return Objects.equals(title, ent.title) && Objects.equals(givenName, ent.givenName) && Objects.equals(lastName, ent.lastName) && Objects.equals(mail, ent.mail) && Objects.equals(description, ent.description) && Objects.equals(faxNumbers, ent.faxNumbers) && Objects.equals(phoneNumbers, ent.phoneNumbers) && Objects.equals(homePhoneNumbers, ent.homePhoneNumbers) && Objects.equals(mobilePhoneNumbers, ent.mobilePhoneNumbers) && Objects.equals(businessCategory, ent.businessCategory) && Objects.equals(postalAddress, ent.postalAddress) && Objects.equals(billingAddress, ent.billingAddress) && Objects.equals(secretary, ent.secretary) && Objects.equals(employeeType, ent.employeeType) && Objects.equals(employeeNumber, ent.employeeNumber) && Objects.equals(labeledURI, ent.labeledURI);
+        return Objects.equals(title, ent.title) && Objects.equals(givenName, ent.givenName) && Objects.equals(lastName, ent.lastName) && Objects.equals(userName, ent.userName) && Objects.equals(mail, ent.mail) && Objects.equals(description, ent.description) && Objects.equals(faxNumbers, ent.faxNumbers) && Objects.equals(phoneNumbers, ent.phoneNumbers) && Objects.equals(homePhoneNumbers, ent.homePhoneNumbers) && Objects.equals(mobilePhoneNumbers, ent.mobilePhoneNumbers) && Objects.equals(businessCategory, ent.businessCategory) && Objects.equals(postalAddress, ent.postalAddress) && Objects.equals(billingAddress, ent.billingAddress) && Objects.equals(secretary, ent.secretary) && Objects.equals(employeeType, ent.employeeType) && Objects.equals(employeeNumber, ent.employeeNumber) && Objects.equals(labeledURI, ent.labeledURI);
     }
 
 
@@ -121,6 +123,14 @@ public class UserBase   extends FaModel {
    */
   public String getLastName() {
         return lastName;
+    }
+    
+  /**
+   * username
+   * @return userName 
+   */
+  public String getUserName() {
+        return userName;
     }
     
   /**
@@ -248,6 +258,7 @@ public class UserBase   extends FaModel {
         builder.title = entity.title;
         builder.givenName = entity.givenName;
         builder.lastName = entity.lastName;
+        builder.userName = entity.userName;
         builder.mail = entity.mail;
         builder.description = entity.description;
         builder.faxNumbers = entity.faxNumbers;
@@ -274,6 +285,7 @@ public class UserBase   extends FaModel {
         private String title;
         private String givenName;
         private String lastName;
+        private String userName;
         private java.util.List<String> mail = new java.util.ArrayList<>();
         private String description;
         private java.util.List<String> faxNumbers = new java.util.ArrayList<>();
@@ -318,6 +330,15 @@ public class UserBase   extends FaModel {
                  throw new IllegalArgumentException("lastName must not be null.");
              }
              this.lastName = lastName;
+             return this;
+        }
+
+        /**
+         * username
+         * @return userName 
+         */
+        public UserBaseBuilder setUserName(String userName) {
+             this.userName = userName;
              return this;
         }
 

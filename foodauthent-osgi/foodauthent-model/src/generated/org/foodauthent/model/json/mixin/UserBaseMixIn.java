@@ -62,6 +62,9 @@ public interface UserBaseMixIn {
     @JsonProperty("lastName")
     public String getLastName();
     
+    @JsonProperty("userName")
+    public String getUserName();
+    
     @JsonProperty("mail")
     public java.util.List<String> getMail();
     
@@ -132,6 +135,9 @@ public interface UserBaseMixIn {
         
         @JsonProperty("lastName")
         public UserBaseMixInBuilder setLastName(final String lastName);
+        
+        @JsonProperty("userName")
+        public UserBaseMixInBuilder setUserName(final String userName);
         
         @JsonProperty("mail")
         public UserBaseMixInBuilder setMail(final java.util.List<String> mail);

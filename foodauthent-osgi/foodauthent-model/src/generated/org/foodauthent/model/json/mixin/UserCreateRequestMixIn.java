@@ -56,6 +56,9 @@ public interface UserCreateRequestMixIn {
     @JsonProperty("lastName")
     public String getLastName();
     
+    @JsonProperty("userName")
+    public String getUserName();
+    
     @JsonProperty("mail")
     public java.util.List<String> getMail();
     
@@ -98,9 +101,6 @@ public interface UserCreateRequestMixIn {
     @JsonProperty("parentDn")
     public String getParentDn();
     
-    @JsonProperty("userName")
-    public String getUserName();
-    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -128,6 +128,9 @@ public interface UserCreateRequestMixIn {
         
         @JsonProperty("lastName")
         public UserCreateRequestMixInBuilder setLastName(final String lastName);
+        
+        @JsonProperty("userName")
+        public UserCreateRequestMixInBuilder setUserName(final String userName);
         
         @JsonProperty("mail")
         public UserCreateRequestMixInBuilder setMail(final java.util.List<String> mail);
@@ -170,9 +173,6 @@ public interface UserCreateRequestMixIn {
         
         @JsonProperty("parentDn")
         public UserCreateRequestMixInBuilder setParentDn(final String parentDn);
-        
-        @JsonProperty("userName")
-        public UserCreateRequestMixInBuilder setUserName(final String userName);
         
     }
 

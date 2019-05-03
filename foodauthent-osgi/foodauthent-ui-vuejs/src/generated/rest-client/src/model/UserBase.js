@@ -73,6 +73,9 @@
       if (data.hasOwnProperty('lastName')) {
         obj['lastName'] = ApiClient.convertToType(data['lastName'], 'String');
       }
+      if (data.hasOwnProperty('userName')) {
+        obj['userName'] = ApiClient.convertToType(data['userName'], 'String');
+      }
       if (data.hasOwnProperty('mail')) {
         obj['mail'] = ApiClient.convertToType(data['mail'], ['String']);
       }
@@ -131,6 +134,11 @@
    * @member {String} lastName
    */
   exports.prototype['lastName'] = undefined;
+  /**
+   * username
+   * @member {String} userName
+   */
+  exports.prototype['userName'] = undefined;
   /**
    * email addresses
    * @member {Array.<String>} mail
