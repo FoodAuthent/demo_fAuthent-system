@@ -192,52 +192,6 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
-
-    /**
-     * Callback function to receive the result of the removeSOPById operation.
-     * @callback module:api/SopApi~removeSOPByIdCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Delete a sop specified by id.
-     * @param {String} sopId 
-     * @param {module:api/SopApi~removeSOPByIdCallback} callback The callback function, accepting three arguments: error, data, response
-     */
-    this.removeSOPById = function(sopId, callback) {
-      var postBody = null;
-
-      // verify the required parameter 'sopId' is set
-      if (sopId === undefined || sopId === null) {
-        throw new Error("Missing the required parameter 'sopId' when calling removeSOPById");
-      }
-
-
-      var pathParams = {
-        'sop-id': sopId
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['jwtAuth'];
-      var contentTypes = [];
-      var accepts = [];
-      var returnType = null;
-
-      return this.apiClient.callApi(
-        '/sop/{sop-id}', 'DELETE',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
   };
 
   return exports;

@@ -65,6 +65,15 @@ public interface FileService {
     ImportResult importFile(java.util.UUID fileId);
         
     /**
+     * Removes the file and it&#39;s metadata for the given id
+     *
+     * @param fileId 
+     *
+     * 
+     */
+    void removeFileMetadataAndData(java.util.UUID fileId);
+        
+    /**
      * Uploads (and replaces) the actual file-data for the given file id
      *
      * @param fileId 

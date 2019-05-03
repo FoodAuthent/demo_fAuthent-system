@@ -92,7 +92,7 @@ public interface PersistenceService {
     /**
      * @param uuid
      */
-    void removeFaModelByUUID(UUID uuid, Class<?> modelType) throws NoSuchElementException;
+    void removeFaModelByUUID(UUID uuid) throws NoSuchElementException;
     
     /**
      * Queries all fa-models filtered by the given keywords.
@@ -208,5 +208,7 @@ public interface PersistenceService {
 		}
 		return res.toArray(new String[0][]);
 	}
+
+	public void removeBlobByUUID(UUID faId);
 
 }

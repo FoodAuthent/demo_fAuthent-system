@@ -50,11 +50,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void removeProductById(UUID productId) {
-	persistenceService.removeFaModelByUUID(productId, Product.class);
-    }
-
-    @Override
     public void updatedProduct(Product product) {
 	persistenceService.replace(product);
     }

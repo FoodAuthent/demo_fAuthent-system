@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.foodauthent.rest.api.service.CustomMetadataRestService;
+import org.foodauthent.rest.api.service.EntityRestService;
 import org.foodauthent.rest.api.service.FileRestService;
 import org.foodauthent.rest.api.service.FingerprintRestService;
 import org.foodauthent.rest.api.service.InfoRestService;
@@ -75,6 +76,10 @@ public class FASystemClient {
 	return createClientProxy(SopRestService.class);
     }
     
+    public static EntityRestService entities() {
+	return createClientProxy(EntityRestService.class);
+    }
+   
     public static <T> T handleResp(Response response, Class<T> entityType) {
 	if (response.getStatusInfo().getFamily() == Status.Family.SUCCESSFUL) {
 	    return response.readEntity(entityType);

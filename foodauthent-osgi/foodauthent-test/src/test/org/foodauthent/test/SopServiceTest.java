@@ -1,5 +1,6 @@
 package org.foodauthent.test;
 
+import static org.foodauthent.rest.client.FASystemClient.entities;
 import static org.foodauthent.rest.client.FASystemClient.sops;
 import static org.junit.Assert.assertEquals;
 
@@ -33,7 +34,7 @@ public class SopServiceTest extends AbstractITTest {
 	// remove all sops first
 	List<SOP> allSops = s.findSOPByKeyword(1, Integer.MAX_VALUE, Collections.emptyList())
 		.readEntity(SOPPageResult.class).getResults();
-	allSops.forEach(sop -> s.removeSOPById(sop.getFaId()));
+	allSops.forEach(sop -> entities().removeEntity(sop.getFaId()));
 	
 	//test what happens when there are no sops
 	SOPPageResult sopPage = s.findSOPByKeyword(1, 10, null).readEntity(SOPPageResult.class);

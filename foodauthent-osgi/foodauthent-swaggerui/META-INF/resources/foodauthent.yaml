@@ -27,6 +27,8 @@ tags:
     description: 'All endpoints to deal with tags, i.e. query, delete, add, ...'
   - name: file
     description: All endpoint that deal with files.
+  - name: entity
+    description: Generic endpoint to deal with all kinds fa-entities (workflows, models, files, ...)
   - name: custom-metadata
     description: Endpoints that deal with custom metadata.
   - name: authentication
@@ -56,6 +58,23 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SystemInfo"
+                
+  /entity/{fa-id}:
+    delete:
+      tags:
+        - entity
+      description: Delete an fa-entity with specified by id (files or models).
+      operationId: removeEntity
+      parameters:
+        - name: fa-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: entity successfully deleted.
       
   /sop:
     get:
@@ -119,21 +138,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SOP'
-    delete:
-      tags:
-        - sop
-      description: Delete a sop specified by id.
-      operationId: removeSOPById
-      parameters:
-        - name: sop-id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: SOP successfully deleted.
   /file:
     post:
       tags:
@@ -178,6 +182,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FileMetadata'
+    delete:
+      tags:
+        - file
+      description: Removes the file and it's metadata for the given id
+      operationId: removeFileMetadataAndData
+      parameters:
+        - name: file-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: File metadata and data successfully removed.
 
   '/file/{file-id}/import':
     get:
@@ -446,7 +465,7 @@ paths:
       operationId: updatedProduct
       responses:
         '200':
-          description: SOP successfully deleted.
+          description: SOP successfully updated.
       requestBody:
         content:
           application/json:
@@ -500,21 +519,6 @@ paths:
                 $ref: '#/components/schemas/Product'
         '404':
           description: TODO, add response reference
-    delete:
-      tags:
-        - product
-      description: Delete a product specified by id.
-      operationId: removeProductById
-      parameters:
-        - name: product-id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: Product successfully deleted.
 
   /prediction:
     get:
@@ -708,21 +712,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflow'
-    delete:
-      tags:
-        - workflow
-      description: Delete a workflow specified by id.
-      operationId: removeWorkflowById
-      parameters:
-        - name: workflow-id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: Workflow successfully deleted.
 
   /workflow/training:
     get:

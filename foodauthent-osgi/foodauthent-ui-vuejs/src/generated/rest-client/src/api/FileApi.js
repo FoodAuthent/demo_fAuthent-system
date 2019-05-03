@@ -291,6 +291,52 @@
     }
 
     /**
+     * Callback function to receive the result of the removeFileMetadataAndData operation.
+     * @callback module:api/FileApi~removeFileMetadataAndDataCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Removes the file and it&#39;s metadata for the given id
+     * @param {String} fileId 
+     * @param {module:api/FileApi~removeFileMetadataAndDataCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.removeFileMetadataAndData = function(fileId, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'fileId' is set
+      if (fileId === undefined || fileId === null) {
+        throw new Error("Missing the required parameter 'fileId' when calling removeFileMetadataAndData");
+      }
+
+
+      var pathParams = {
+        'file-id': fileId
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['jwtAuth'];
+      var contentTypes = [];
+      var accepts = [];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/file/{file-id}', 'DELETE',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the saveFileData operation.
      * @callback module:api/FileApi~saveFileDataCallback
      * @param {String} error Error message, if any.

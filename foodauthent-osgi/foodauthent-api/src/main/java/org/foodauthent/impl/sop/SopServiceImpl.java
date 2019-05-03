@@ -43,11 +43,6 @@ public class SopServiceImpl implements SopService {
     }
     
     @Override
-    public void removeSOPById(UUID sopId) {
-	persistenceService.removeFaModelByUUID(sopId, SOP.class);
-    }
-
-    @Override
     public SOPPageResult findSOPByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
 	ResultPage<SOP> res = persistenceService.findByKeywordsPaged(SOP.class, pageNumber, pageSize,
 		toArray(keywords));

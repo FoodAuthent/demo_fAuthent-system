@@ -1,6 +1,7 @@
 package org.foodauthent.test;
 
 import static java.util.Arrays.asList;
+import static org.foodauthent.rest.client.FASystemClient.entities;
 import static org.foodauthent.rest.client.FASystemClient.files;
 import static org.foodauthent.rest.client.FASystemClient.fingerprints;
 import static org.foodauthent.rest.client.FASystemClient.models;
@@ -58,7 +59,7 @@ public class WorkflowTest extends AbstractITTest {
     public void clearAllWorkflows() {
 	List<Workflow> workflows = workflows().findWorkflowByKeyword(1, Integer.MAX_VALUE, null)
 		.readEntity(WorkflowPageResult.class).getResults();
-	workflows.stream().forEach(wf -> workflows().removeWorkflowById(wf.getFaId()));
+	workflows.stream().forEach(wf -> entities().removeEntity(wf.getFaId()));
     }
 
     @Test

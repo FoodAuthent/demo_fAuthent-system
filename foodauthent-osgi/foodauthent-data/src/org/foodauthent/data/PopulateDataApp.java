@@ -1,7 +1,12 @@
 package org.foodauthent.data;
 
 import static java.util.Arrays.asList;
+import static org.foodauthent.data.DeleteEntities.clearAllFingerprintSetsAndFingerprints;
+import static org.foodauthent.data.DeleteEntities.clearAllModelsAndTrainingJobs;
+import static org.foodauthent.data.DeleteEntities.clearAllPredictionsAndPredictionJobs;
 import static org.foodauthent.data.DeleteEntities.clearAllProducts;
+import static org.foodauthent.data.DeleteEntities.clearAllSamples;
+import static org.foodauthent.data.DeleteEntities.clearAllSops;
 import static org.foodauthent.data.DeleteEntities.clearAllWorkflows;
 import static org.foodauthent.data.ListFiles.listBfrOilFingerprintFiles;
 import static org.foodauthent.data.PopulateFiles.populateFileMetadata;
@@ -48,9 +53,16 @@ public class PopulateDataApp {
 	doit("Delete all products and workflows", () -> {
 	    clearAllProducts();
 	    clearAllWorkflows();
+	    clearAllFingerprintSetsAndFingerprints();
+	    clearAllSamples();
+	    clearAllModelsAndTrainingJobs();
+	    clearAllPredictionsAndPredictionJobs();
+	    clearAllSops();
 	});
-	
-	//TODO delete blobs and all other missing entities
+
+	// log("System Info after Initialisation");
+	// log(info().getInfo().readEntity(SystemInfo.class));
+
 	List<UUID> trainingwfIds = doitWithRes("Populate training workflows", () -> {
 	    return asList(populateTestTrainingWorkflow(), populateTrainingWorkflowOpenChromRandomForest());
 	});

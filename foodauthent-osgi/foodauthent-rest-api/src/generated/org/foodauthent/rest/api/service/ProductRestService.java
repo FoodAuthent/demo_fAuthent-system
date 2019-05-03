@@ -82,17 +82,6 @@ public interface ProductRestService{
 );
 
     /**
-     * Delete a product specified by id.
-     *
-     * @param productId 
-     * @return the response
-     */
-    @DELETE
-    @Path("/product/{product-id}")
-    public Response removeProductById(@PathParam("product-id") java.util.UUID productId
-);
-
-    /**
      * TODO
      *
      * @param product TODO

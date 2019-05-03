@@ -233,18 +233,5 @@ public class WorkflowRestServiceImpl implements WorkflowRestService {
             Object res = service.getWorkflowById(workflowId);
             return Response.ok(res).build();
     }
-
-    /**
-     * Delete a workflow specified by id.
-     *
-     * @param workflowId 
-     * @return the response
-     */
-    public Response removeWorkflowById(java.util.UUID workflowId) {
-        
-            service.removeWorkflowById(workflowId);
-            
-                return Response.ok().build();
-    }
 }
 

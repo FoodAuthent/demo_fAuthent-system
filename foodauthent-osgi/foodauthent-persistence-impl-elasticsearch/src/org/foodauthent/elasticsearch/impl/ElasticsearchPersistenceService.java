@@ -158,8 +158,10 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 	@Override
 	public <T extends FaModel> List<T> findByKeywords(Class<T> modelType, String[]... keywordSuperSet) {
-		return op.search(QueryBuilders.simpleQueryStringQuery(String.join(" AND ", keywords)), classTarget(modelType),
-				op.manifest(modelType));
+		//TODO test
+		String query = stream(keywordSuperSet).map(s -> String.join(" AND ", s)).map(s -> "(" + s + ")")
+				.collect(Collectors.joining(" OR "));
+		return op.search(QueryBuilders.simpleQueryStringQuery(query), classTarget(modelType), op.manifest(modelType));
 	}
 
 	@Override
@@ -243,6 +245,7 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 		if (keywordSuperSet.length == 0) {
 			sourceBuilder.query(QueryBuilders.matchAllQuery());
 		} else {
+			//TODO test
 			String query = stream(keywordSuperSet).map(s -> String.join(" AND ", s)).map(s -> "(" + s + ")")
 					.collect(Collectors.joining(" OR "));
 			sourceBuilder.query(QueryBuilders.simpleQueryStringQuery(query));
@@ -275,8 +278,15 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 	}
 
 	@Override
-	public void removeFaModelByUUID(UUID uuid, Class<?> modelType) {
-		op.delete(uuid.toString(), classTarget(modelType));
+	public void removeFaModelByUUID(UUID uuid) {
+		//TODO test and fix
+		op.delete(uuid.toString(), classTarget(FaModel.class));
+	}
+	
+	@Override
+	public void removeBlobByUUID(UUID faId) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

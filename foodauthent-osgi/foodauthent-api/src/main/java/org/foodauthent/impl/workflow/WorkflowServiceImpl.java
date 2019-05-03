@@ -91,11 +91,6 @@ public class WorkflowServiceImpl implements WorkflowService {
     }
     
     @Override
-    public void removeWorkflowById(UUID workflowId) {
-	persistenceService.removeFaModelByUUID(workflowId, Workflow.class);
-    }
-
-    @Override
     public UUID createWorkflow(final Workflow workflow) {
 	persistenceService.save(workflow);
 	return workflow.getFaId();

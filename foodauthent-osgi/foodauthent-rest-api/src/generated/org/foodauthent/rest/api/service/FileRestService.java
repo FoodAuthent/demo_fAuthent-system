@@ -95,6 +95,17 @@ public interface FileRestService{
 );
 
     /**
+     * Removes the file and it&#39;s metadata for the given id
+     *
+     * @param fileId 
+     * @return the response
+     */
+    @DELETE
+    @Path("/file/{file-id}")
+    public Response removeFileMetadataAndData(@PathParam("file-id") java.util.UUID fileId
+);
+
+    /**
      * Uploads (and replaces) the actual file-data for the given file id
      *
      * @param fileId 

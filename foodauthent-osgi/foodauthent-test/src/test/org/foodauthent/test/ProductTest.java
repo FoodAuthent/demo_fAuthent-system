@@ -1,5 +1,6 @@
 package org.foodauthent.test;
 
+import static org.foodauthent.rest.client.FASystemClient.entities;
 import static org.foodauthent.rest.client.FASystemClient.products;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -51,7 +52,7 @@ public class ProductTest extends AbstractITTest{
 	assertEquals(2, productPage.getResultCount().intValue());
 	
 	//Test Delete
-	s.removeProductById(UUID.fromString("45cceda9-e54b-4b1d-9b94-c269b5f5cac7"));
+	entities().removeEntity(UUID.fromString("45cceda9-e54b-4b1d-9b94-c269b5f5cac7"));
 	allProducts = s.findProductByKeyword(1, 10000, Collections.emptyList()).readEntity(ProductPageResult.class).getResults();
 	idExists = allProducts.stream().anyMatch(t -> t.getBrand().equals("TestBrand2"));
 	assertFalse(idExists);

@@ -55,15 +55,6 @@ public interface ProductService {
     Product getProductById(java.util.UUID productId);
         
     /**
-     * Delete a product specified by id.
-     *
-     * @param productId 
-     *
-     * 
-     */
-    void removeProductById(java.util.UUID productId);
-        
-    /**
      * TODO
      *
      * @param product TODO
