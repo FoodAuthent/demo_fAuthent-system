@@ -2,62 +2,6 @@
 <?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="136">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="net.openchrom.csd.converter.supplier.agilent.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.csd.converter.supplier.cdf.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.csd.converter.supplier.ezchrom.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.csd.converter.supplier.finnigan.dat.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.csd.converter.supplier.finnigan.raw.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.csd.converter.supplier.labjack.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.csd.converter.supplier.masshunter.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.csd.converter.supplier.moduvision.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.csd.converter.supplier.perkinelmer.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.csd.converter.supplier.shimadzu.gc10.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.csd.converter.supplier.shimadzu.gcd.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.csd.converter.supplier.varian.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.absciex.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.agilent.hp.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.agilent.icp.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.bruker.flex.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.cdf.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.chromtech.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.cms.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.finnigan.cgm.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.finnigan.element.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.finnigan.icis.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.finnigan.itds.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.finnigan.its40.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.finnigan.mat.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.finnigan.raw.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.leco.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.masshunter.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.mgf.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.nist.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.pdf.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.shimadzu.lcd.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.shimadzu.qgd.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.shimadzu.qp5000.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.shimadzu.spc.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.varian.sms.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.varian.xms.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.vg.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.msd.converter.supplier.waters.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.nmr.converter.supplier.bruker.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.nmr.converter.supplier.jcampdx.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.pcr.converter.supplier.egu.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.pcr.converter.supplier.ixo.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.rcp.compilation.community.converter.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.wsd.converter.supplier.abif.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.wsd.converter.supplier.absciex.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.wsd.converter.supplier.agilent.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.wsd.converter.supplier.camag.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.wsd.converter.supplier.chromulan.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.xir.converter.supplier.csv.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.xir.converter.supplier.nicolet.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.xxd.converter.supplier.dataapex.feature.feature.group" version="0.0.0"/>
-<unit id="net.openchrom.xxd.converter.supplier.massfinder.feature.feature.group" version="0.0.0"/>
-<repository location="https://update.openchrom.net/repositories/community/latest/converter"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.glassfish.javax.json" version="0.0.0"/>
 <unit id="com.knime.features.enterprise.client.exampleserver.feature.group" version="0.0.0"/>
 <unit id="com.knime.features.enterprise.client.feature.group" version="0.0.0"/>
@@ -136,12 +80,8 @@
 <repository location="http://update.knime.com/analytics-platform/3.6"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="net.openchrom.xxd.process.supplier.knime.feature.feature.group" version="0.0.0"/>
-<repository location="https://update.openchrom.net/repositories/knime/3.3.2/repository"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="net.openchrom.platform.feature.feature.group" version="0.0.0"/>
-<repository location="https://update.openchrom.net/repositories/community/latest/platform"/>
+<unit id="net.openchrom.knime.node.nmr.feature.feature.group" version="0.0.0"/>
+<repository location="https://update.openchrom.net/repositories/knime"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="ch.qos.logback.classic" version="0.0.0"/>

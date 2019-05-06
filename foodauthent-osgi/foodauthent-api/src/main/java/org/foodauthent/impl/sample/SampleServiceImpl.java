@@ -1,5 +1,7 @@
 package org.foodauthent.impl.sample;
 
+import static org.foodauthent.api.internal.persistence.PersistenceService.toArray;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -25,7 +27,8 @@ public class SampleServiceImpl implements SampleService {
 
     @Override
     public SamplePageResult findSampleByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	ResultPage<Sample> res = persistenceService.findByKeywordsPaged(keywords, Sample.class, pageNumber, pageSize);
+	ResultPage<Sample> res = persistenceService.findByKeywordsPaged(Sample.class, pageNumber, pageSize,
+		toArray(keywords));
 	return SamplePageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }

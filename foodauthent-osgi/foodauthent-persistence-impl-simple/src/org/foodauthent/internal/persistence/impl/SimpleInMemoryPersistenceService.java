@@ -1,5 +1,7 @@
 package org.foodauthent.internal.persistence.impl;
 
+import static java.util.Arrays.stream;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import org.apache.commons.io.IOUtils;
 import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.api.internal.exception.NoSuchIDException;
 import org.foodauthent.api.internal.persistence.Blob;
+import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.api.internal.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.FaModel;
@@ -75,7 +78,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 
 		List<ModelPropertiesSupplier<?>> tmp = new ArrayList<>();
 
-		tmp.add(createMPS(Workflow.class, m -> m.getDescription(), m -> m.getName()));
+		tmp.add(createMPS(Workflow.class, m -> m.getDescription(), m -> m.getName(), m -> m.getType().toString()));
 		tmp.add(createMPS(SOP.class, m -> m.getDescription(), m -> m.getName()));
 		tmp.add(createMPS(Product.class, m -> m.getBrand()));
 		tmp.add(createMPS(Model.class, m -> m.getDescription(), m -> m.getName(),
@@ -97,28 +100,27 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends FaModel> List<T> findByKeywords(final Collection<String> orgKeywords, final Class<T> modelType) {
+	public <T extends FaModel> List<T> findByKeywords(final Class<T> modelType, String[]... orgKeywordSuperSet) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Seaching fields: name, descrption");
 		}
+		String[][] keywordSuperSet = PersistenceService.removeEmptyListsAndKeywords(orgKeywordSuperSet);
 
-		Collection<String> keywords = removeEmptyKeywords(orgKeywords);
-
-		List<T> filterByModelType = (List<T>) models.values().stream()
+		List<T> filteredByModelType = (List<T>) models.values().stream()
 				.filter(m -> modelType.isAssignableFrom(m.getClass())).collect(Collectors.toList());
-		if (keywords.isEmpty()) {
-			return filterByModelType;
+		if (keywordSuperSet.length == 0) {
+			return filteredByModelType;
 		}
 
 		ModelPropertiesSupplier<T> mps = (ModelPropertiesSupplier<T>) modelPropertiesSupplier.get(modelType);
-		return filterByModelType.stream().filter(m -> containsKeywords(keywords, mps.getPropertyValues(m)))
+		return filteredByModelType.stream().filter(m -> containsKeywords(keywordSuperSet, mps.getPropertyValues(m)))
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
-			int pageNumber, int pageSize) {
-		List<T> res = findByKeywords(keywords, modelType);
+	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Class<T> modelType, int pageNumber, int pageSize,
+			String[]... keywords) {
+		List<T> res = findByKeywords(modelType, keywords);
 		// Please don't override otherwise the research and paginations doesn't work
 		// int start = pageNumber * pageSize;
 		int start = (pageNumber - 1) * pageSize;
@@ -143,31 +145,14 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 		};
 	}
 	
-	private static Collection<String> removeEmptyKeywords(Collection<String> keywords) {
-		// Remove empty keywords
-		return keywords.stream().filter(item -> !(item == null || "".equals(item))).collect(Collectors.toList());
-	}
-
-	/**
-	 * 
-	 * @param key
-	 * @param keywords
-	 * @return Check if there is a match for a keyword list
-	 */
-	private static boolean containsAKeyword(String key, Collection<String> keywords) {
-		if (key == null) {
-			return false;
+	private static boolean containsKeywords(String[][] keywordSuperSet, Collection<String> propertyValues) {
+		for (String[] keywords : keywordSuperSet) {
+			if (!stream(keywords).map(String::toLowerCase)
+					.anyMatch(k -> propertyValues.stream().anyMatch(p -> p.contains(k)))) {
+				return false;
+			}
 		}
-		// check for matching
-		if (keywords.stream().map(s -> s.toLowerCase()).anyMatch(key.toLowerCase()::contains)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	private static boolean containsKeywords(Collection<String> keywords, Collection<String> propertyValues) {
-		return propertyValues.stream().anyMatch(k -> containsAKeyword(k, keywords));
+		return true;
 	}
 
 	@Override
@@ -198,8 +183,13 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 	}
 
 	@Override
-	public void removeFaModelByUUID(UUID uuid, Class<?> modelType) {
+	public void removeFaModelByUUID(UUID uuid) {
 		models.remove(uuid);
+	}
+	
+	@Override
+	public void removeBlobByUUID(UUID uuid) {
+		blobs.remove(uuid);
 	}
 
 	/**

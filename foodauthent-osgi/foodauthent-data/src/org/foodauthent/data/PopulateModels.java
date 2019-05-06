@@ -1,12 +1,13 @@
 package org.foodauthent.data;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.foodauthent.data.FASystem.files;
-import static org.foodauthent.data.FASystem.fingerprints;
-import static org.foodauthent.data.FASystem.products;
-import static org.foodauthent.data.FASystem.samples;
-import static org.foodauthent.data.FASystem.uploadFileData;
-import static org.foodauthent.data.FASystem.workflows;
+import static org.foodauthent.rest.client.FASystemClient.files;
+import static org.foodauthent.rest.client.FASystemClient.fingerprints;
+import static org.foodauthent.rest.client.FASystemClient.handleResp;
+import static org.foodauthent.rest.client.FASystemClient.products;
+import static org.foodauthent.rest.client.FASystemClient.samples;
+import static org.foodauthent.rest.client.FASystemClient.uploadFileData;
+import static org.foodauthent.rest.client.FASystemClient.workflows;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -30,6 +31,7 @@ import org.foodauthent.model.Workflow.RepresentationEnum;
 import org.foodauthent.model.WorkflowIOTypes;
 import org.foodauthent.model.WorkflowParameter;
 import org.foodauthent.model.WorkflowParameter.TypeEnum;
+import org.foodauthent.rest.client.FASystemClient;
 
 /**
  * 
@@ -103,7 +105,7 @@ public class PopulateModels {
 		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build()).build();
 	Workflow wf = Workflow.builder().setName("my training workflow").setDescription("desc")
 		.setParameters(Arrays.asList(wfp1, wfp2))
-		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW).setFileId(fileId)
+		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB).setFileId(fileId)
 		.setRepresentation(RepresentationEnum.KNIME).setInputTypes(inputTypes).setOutputTypes(outputTypes)
 		.build(); // TODO set more (or even all) properties
 	return workflows().createWorkflow(wf).readEntity(UUID.class);
@@ -127,7 +129,7 @@ public class PopulateModels {
 		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build())
 		.build();
 	Workflow wf = Workflow.builder().setName("my_prediction_workflow").setDescription("desc").setParameters(Arrays.asList(wfp1, wfp2))
-		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW)
+		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW_E680F8C1)
 		.setRepresentation(RepresentationEnum.KNIME)
 		.setInputTypes(inputTypes)
 		.setFileId(fileId)
@@ -136,14 +138,46 @@ public class PopulateModels {
 	return workflows().createWorkflow(wf).readEntity(UUID.class);
     }
     
+    public static UUID populateTrainingWorkflowOpenChromRandomForest() {
+	String workflowName = "PredictionWorkflow OpenChrom RandomForest";
+	String workflowDesc = "Prediction workflow that uses OpenChrom to read and preprocess the signals and a random forest to learn the model.";
+	
+        // upload workflow file
+	FileMetadata fileMeta = FileMetadata.builder().setName(workflowName)
+		.setDate(LocalDate.now())
+		.setDescription(workflowDesc)
+		.setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW).setVersion(0).build();
+	       UUID fileId = files().createFileMetadata(fileMeta).readEntity(UUID.class);
+        uploadFileData(fileId, new File("files/workflows/PredictionWorkflow.knwf"));
+	
+	// upload workflow metadata
+	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("pred_param1").setRequired(false)
+		.setValue("pred_paramValue1").setType(TypeEnum.NUMBER).build();
+	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("pred_param2").setRequired(true)
+		.setValue("pred_paramValue2").setType(TypeEnum.STRING).build();
+	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
+		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build()).build();
+	WorkflowIOTypes outputTypes = WorkflowIOTypes.builder()
+		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_RANDOM_FOREST).build()).build();
+	Workflow wf = Workflow.builder().setName(workflowName).setDescription(workflowDesc).setParameters(Arrays.asList(wfp1, wfp2))
+		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB)
+		.setRepresentation(RepresentationEnum.KNIME)
+		.setInputTypes(inputTypes)
+		.setOutputTypes(outputTypes)
+		.setFileId(fileId)
+		.build();
+	
+	return workflows().createWorkflow(wf).readEntity(UUID.class);
+    }
+    
     public static UUID train(UUID workflowId, List<UUID> fingerprintsetIds) {
-	return workflows().createTrainingJob(workflowId, fingerprintsetIds, false).readEntity(TrainingJob.class)
+	return handleResp(workflows().createTrainingJob(workflowId, fingerprintsetIds, false), TrainingJob.class)
 		.getModelId();
     }
 
     public static UUID predict(UUID workflowId, UUID fingerprintsetId, UUID modelId) {
-	return workflows().createPredictionJob(workflowId, fingerprintsetId, modelId, false)
-		.readEntity(PredictionJob.class).getPredictionId();
+	return handleResp(workflows().createPredictionJob(workflowId, fingerprintsetId, modelId, false),
+		PredictionJob.class).getPredictionId();
     }
 
 }

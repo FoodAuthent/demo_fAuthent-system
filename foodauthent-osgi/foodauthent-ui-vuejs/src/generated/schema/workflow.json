@@ -19,11 +19,11 @@
     "validator" : "string",
     "inputName" : "type",
     "values" : [ {
-      "id" : "prediction_workflow",
-      "name" : "Prediction_workflow"
+      "id" : "prediction_workflow_e680f8c1",
+      "name" : "Prediction_workflow_e680f8c1"
     }, {
-      "id" : "training_workflow",
-      "name" : "Training_workflow"
+      "id" : "training_workflow_64b046cb",
+      "name" : "Training_workflow_64b046cb"
     } ]
   }, {
     "label" : "Parameters",

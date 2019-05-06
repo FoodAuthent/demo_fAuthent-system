@@ -1,5 +1,7 @@
 package org.foodauthent.impl.transaction;
 
+import static org.foodauthent.api.internal.persistence.PersistenceService.toArray;
+
 import java.util.UUID;
 
 import org.foodauthent.api.TransactionService;
@@ -24,9 +26,10 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public DiscoveryServiceTransactionPageResult findTransactionByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords) {
-	ResultPage<DiscoveryServiceTransaction> res = persistenceService.findByKeywordsPaged(keywords, DiscoveryServiceTransaction.class, pageNumber, pageSize);
-	return DiscoveryServiceTransactionPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
-		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
+	ResultPage<DiscoveryServiceTransaction> res = persistenceService
+		.findByKeywordsPaged(DiscoveryServiceTransaction.class, pageNumber, pageSize, toArray(keywords));
+	return DiscoveryServiceTransactionPageResult.builder().setPageCount(res.getTotalNumPages())
+		.setPageNumber(pageNumber).setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
 
     @Override

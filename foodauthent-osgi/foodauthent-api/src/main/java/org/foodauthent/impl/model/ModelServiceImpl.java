@@ -42,7 +42,8 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     public ModelPageResult findModelByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	ResultPage<Model> res = persistenceService.findByKeywordsPaged(keywords, Model.class, pageNumber, pageSize);
+	ResultPage<Model> res = persistenceService.findByKeywordsPaged(Model.class, pageNumber, pageSize,
+		PersistenceService.toArray(keywords));
 	return ModelPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }

@@ -1,5 +1,7 @@
 package org.foodauthent.impl.product;
 
+import static org.foodauthent.api.internal.persistence.PersistenceService.toArray;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -41,14 +43,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductPageResult findProductByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	ResultPage<Product> res = persistenceService.findByKeywordsPaged(keywords, Product.class, pageNumber, pageSize);
+	ResultPage<Product> res = persistenceService.findByKeywordsPaged(Product.class, pageNumber, pageSize,
+		toArray(keywords));
 	return ProductPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
-    }
-
-    @Override
-    public void removeProductById(UUID productId) {
-	persistenceService.removeFaModelByUUID(productId, Product.class);
     }
 
     @Override

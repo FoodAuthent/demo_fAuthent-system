@@ -1,8 +1,7 @@
 package org.foodauthent.data;
 
-import static org.foodauthent.data.FASystem.files;
-import static org.foodauthent.data.FASystem.products;
-import static org.foodauthent.data.FASystem.uploadFileData;
+import static org.foodauthent.rest.client.FASystemClient.files;
+import static org.foodauthent.rest.client.FASystemClient.uploadFileData;
 
 import java.io.File;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.foodauthent.model.FileMetadata;
-import org.foodauthent.model.FileMetadata.TypeEnum;
 
 /**
  * 

@@ -1,7 +1,6 @@
 package org.foodauthent.api.internal.persistence;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -83,17 +82,23 @@ public class PersistenceServiceProviderProxy implements PersistenceService {
 		return provider.getFaModelByUUID(uuid, modelType);
 	}
 
-	public void removeFaModelByUUID(UUID uuid, Class<?> modelType) throws NoSuchElementException {
-		provider.removeFaModelByUUID(uuid, modelType);
+	@Override
+	public void removeFaModelByUUID(UUID uuid) throws NoSuchElementException {
+		provider.removeFaModelByUUID(uuid);
+	}
+	
+	@Override
+	public void removeBlobByUUID(UUID uuid) {
+		provider.removeBlobByUUID(uuid);
 	}
 
-	public <T extends FaModel> List<T> findByKeywords(Collection<String> keywords, Class<T> modelType) {
-		return provider.findByKeywords(keywords, modelType);
+	public <T extends FaModel> List<T> findByKeywords(Class<T> modelType, String[]... keywordSuperSet) {
+		return provider.findByKeywords(modelType, keywordSuperSet);
 	}
 
-	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
-			int pageNumber, int pageSize) {
-		return provider.findByKeywordsPaged(keywords, modelType, pageNumber, pageSize);
+	public <T extends FaModel> ResultPage<T> findByKeywordsPaged(Class<T> modelType, int pageNumber, int pageSize,
+			String[]... keywordSuperSet) {
+		return provider.findByKeywordsPaged(modelType, pageNumber, pageSize, keywordSuperSet);
 	}
 
 	public Blob getBlobByUUID(UUID uuid) {

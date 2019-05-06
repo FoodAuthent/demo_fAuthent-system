@@ -1,6 +1,7 @@
 package org.foodauthent.test;
 
 import static java.util.Arrays.asList;
+import static org.foodauthent.rest.client.FASystemClient.fingerprints;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.junit.Assert.assertThat;
@@ -13,6 +14,7 @@ import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
 import org.foodauthent.model.FingerprintType;
 import org.foodauthent.rest.api.service.FingerprintRestService;
+import org.foodauthent.rest.client.FASystemClient;
 import org.junit.Test;
 
 /**
@@ -28,14 +30,13 @@ public class FingerprintTest extends AbstractITTest {
 	FingerprintSet fps = FingerprintSet.builder().setName("myset").setFingerprintIds(Arrays.asList(fp.getFaId()))
 		.build();
 
-	FingerprintRestService fingerprintService = restService(FingerprintRestService.class);
-	fingerprintService.createFingerprintSet(fps);
+	fingerprints().createFingerprintSet(fps);
 
-	FingerprintSet result = fingerprintService.getFingerprintSetById(fps.getFaId())
+	FingerprintSet result = fingerprints().getFingerprintSetById(fps.getFaId())
 		.readEntity(FingerprintSet.class);
 	assertThat("Unexpected fingerprint set", fps, is(result));
 
-	FingerprintSetPageResult resultPage = fingerprintService.findFingerprintSetByKeyword(1, 100, asList("myset"))
+	FingerprintSetPageResult resultPage = fingerprints().findFingerprintSetByKeyword(1, 100, asList("myset"))
 		.readEntity(FingerprintSetPageResult.class);
 	assertThat("Fingerprint set not contained in result", resultPage.getResults(), hasItem(fps));
     }

@@ -1,5 +1,8 @@
 package org.foodauthent.api.internal.persistence;
 
+import static java.util.Arrays.stream;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -89,22 +92,36 @@ public interface PersistenceService {
     /**
      * @param uuid
      */
-    void removeFaModelByUUID(UUID uuid, Class<?> modelType) throws NoSuchElementException;
+    void removeFaModelByUUID(UUID uuid) throws NoSuchElementException;
     
-    <T extends FaModel> List<T> findByKeywords(Collection<String> keywords, Class<T> modelType);
+    /**
+     * Queries all fa-models filtered by the given keywords.
+     * 
+     * @param modelType
+     * @param keywordSuperSet
+	 *            a list of lists of keywords, if all lists are empty or no list is
+	 *            given, all models are considered. Otherwise at least one keyword
+	 *            from each list must match in order to be selected.
+     * @return
+     */
+	<T extends FaModel> List<T> findByKeywords(Class<T> modelType, String[]... keywordSuperSet);
 
     /**
-     * Queries a limited number of the specified fa-model, filtered by the given
-     * keywords.
-     * 
-     * @param keywords if list is empty, all models are considered
-     * @param modelType
-     * @param pageNumber
-     * @param pageSize
-     * @return pair of the list of results and the number of available pages
-     */
-    <T extends FaModel> ResultPage<T> findByKeywordsPaged(Collection<String> keywords, Class<T> modelType,
-	    int pageNumber, int pageSize);
+	 * Queries a limited number of the specified fa-model, filtered by the given
+	 * keywords.
+	 * 
+	 * @param modelType
+	 * @param pageNumber
+	 * @param pageSize
+	 * @param keywordSuperSet
+	 *            a list of lists of keywords, if all lists are empty or no list is
+	 *            given, all models are considered. Otherwise at least one keyword
+	 *            from each list must match in order to be selected.
+	 * 
+	 * @return pair of the list of results and the number of available pages
+	 */
+	<T extends FaModel> ResultPage<T> findByKeywordsPaged(Class<T> modelType, int pageNumber, int pageSize,
+			String[]... keywordSuperSet);
 
     /**
      * TODO
@@ -160,5 +177,38 @@ public interface PersistenceService {
 	List<T> getResult();
 	
     }
+    
+    /**
+     * Shortcut to turn a list of keywords into an array.
+     */
+	public static String[] toArray(List<String> keywords) {
+		return keywords.toArray(new String[keywords.size()]);
+	}
+	
+	/**
+	 * Shortcut to create an array of keywords.
+	 */
+	public static String[] toArray(String... keywords) {
+		return keywords;
+	}
+	
+	/**
+	 * 
+	 * @param keywordSuperSet
+	 * @return
+	 */
+	public static String[][] removeEmptyListsAndKeywords(String[]... keywordSuperSet) {
+		// Remove empty keywords
+		List<String[]> res = new ArrayList<String[]>(keywordSuperSet.length);
+		for (String[] keywords : keywordSuperSet) {
+			String[] newList = stream(keywords).filter(item -> !(item == null || "".equals(item))).toArray(l -> new String[l]);
+			if (newList.length > 0) {
+				res.add(newList);
+			}
+		}
+		return res.toArray(new String[0][]);
+	}
+
+	public void removeBlobByUUID(UUID faId);
 
 }

@@ -170,13 +170,4 @@ public interface WorkflowService {
      */
     Workflow getWorkflowById(java.util.UUID workflowId);
         
-    /**
-     * Delete a workflow specified by id.
-     *
-     * @param workflowId 
-     *
-     * 
-     */
-    void removeWorkflowById(java.util.UUID workflowId);
-        
 }

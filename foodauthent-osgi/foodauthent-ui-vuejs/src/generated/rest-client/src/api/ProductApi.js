@@ -238,52 +238,6 @@
     }
 
     /**
-     * Callback function to receive the result of the removeProductById operation.
-     * @callback module:api/ProductApi~removeProductByIdCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Delete a product specified by id.
-     * @param {String} productId 
-     * @param {module:api/ProductApi~removeProductByIdCallback} callback The callback function, accepting three arguments: error, data, response
-     */
-    this.removeProductById = function(productId, callback) {
-      var postBody = null;
-
-      // verify the required parameter 'productId' is set
-      if (productId === undefined || productId === null) {
-        throw new Error("Missing the required parameter 'productId' when calling removeProductById");
-      }
-
-
-      var pathParams = {
-        'product-id': productId
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['jwtAuth'];
-      var contentTypes = [];
-      var accepts = [];
-      var returnType = null;
-
-      return this.apiClient.callApi(
-        '/product/{product-id}', 'DELETE',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
      * Callback function to receive the result of the updatedProduct operation.
      * @callback module:api/ProductApi~updatedProductCallback
      * @param {String} error Error message, if any.

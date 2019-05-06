@@ -1,8 +1,13 @@
 package org.foodauthent.data;
 
+import static java.util.Arrays.asList;
+import static org.foodauthent.data.DeleteEntities.clearAllFingerprintSetsAndFingerprints;
+import static org.foodauthent.data.DeleteEntities.clearAllModelsAndTrainingJobs;
+import static org.foodauthent.data.DeleteEntities.clearAllPredictionsAndPredictionJobs;
 import static org.foodauthent.data.DeleteEntities.clearAllProducts;
+import static org.foodauthent.data.DeleteEntities.clearAllSamples;
+import static org.foodauthent.data.DeleteEntities.clearAllSops;
 import static org.foodauthent.data.DeleteEntities.clearAllWorkflows;
-import static org.foodauthent.data.FASystem.info;
 import static org.foodauthent.data.ListFiles.listBfrOilFingerprintFiles;
 import static org.foodauthent.data.PopulateFiles.populateFileMetadata;
 import static org.foodauthent.data.PopulateFiles.populateFiles;
@@ -12,20 +17,21 @@ import static org.foodauthent.data.PopulateModels.populateProducts;
 import static org.foodauthent.data.PopulateModels.populateSamples;
 import static org.foodauthent.data.PopulateModels.populateTestPedictionWorkflow;
 import static org.foodauthent.data.PopulateModels.populateTestTrainingWorkflow;
+import static org.foodauthent.data.PopulateModels.populateTrainingWorkflowOpenChromRandomForest;
+import static org.foodauthent.data.PopulateModels.predict;
 import static org.foodauthent.data.PopulateModels.train;
 import static org.foodauthent.data.ReadModels.readBfrOilFileMetadata;
 import static org.foodauthent.data.ReadModels.readBfrOilFingerprintSets;
 import static org.foodauthent.data.ReadModels.readBfrOilFingerprints;
 import static org.foodauthent.data.ReadModels.readBfrOilSamples;
 import static org.foodauthent.data.ReadModels.readOilProducts;
+import static org.foodauthent.rest.client.FASystemClient.info;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -47,15 +53,22 @@ public class PopulateDataApp {
 	doit("Delete all products and workflows", () -> {
 	    clearAllProducts();
 	    clearAllWorkflows();
+	    clearAllFingerprintSetsAndFingerprints();
+	    clearAllSamples();
+	    clearAllModelsAndTrainingJobs();
+	    clearAllPredictionsAndPredictionJobs();
+	    clearAllSops();
 	});
-	
-	//TODO delete blobs and all other missing entities
-	UUID trainingwfId = doitWithRes("Populate training workflows", () -> {
-	    return populateTestTrainingWorkflow();
+
+	// log("System Info after Initialisation");
+	// log(info().getInfo().readEntity(SystemInfo.class));
+
+	List<UUID> trainingwfIds = doitWithRes("Populate training workflows", () -> {
+	    return asList(populateTestTrainingWorkflow(), populateTrainingWorkflowOpenChromRandomForest());
 	});
-	
-	UUID predictionwfId = doitWithRes("Populate prediction workflows", () -> {
-	    return populateTestPedictionWorkflow();
+
+	List<UUID> predictionwfIds = doitWithRes("Populate prediction workflows", () -> {
+	    return asList(populateTestPedictionWorkflow());
 	});
 
 	doit("Populate products", () -> {
@@ -82,12 +95,11 @@ public class PopulateDataApp {
 	    return populateFingerprintSets(readBfrOilFingerprintSets());
 	});
 
-	UUID modelId = doitWithRes("Train models", () -> {
-	    return train(trainingwfId, Arrays.asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1)));
+	List<UUID> modelIds = doitWithRes("Train models", () -> {
+	    return asList(train(trainingwfIds.get(0), asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1))));
 	});
-	
-	doit("Run prediction", () -> {
-	    PopulateModels.predict(predictionwfId, fingerprintsetIds.get(0), modelId);
+	doit("Run predictions", () -> {
+	    predict(predictionwfIds.get(0), fingerprintsetIds.get(0), modelIds.get(0));
 	});
 
 	log("System Info");

@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FoodAuthent REST Client
+Bundle-SymbolicName: org.foodauthent.rest.client
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ClassPath: .
+Automatic-Module-Name: org.foodauthent.test
+Export-Package: org.foodauthent.rest.client
+Require-Bundle: org.junit;bundle-version="4.12.0",
+ javax.annotation,
+ org.glassfish.hk2.api;bundle-version="2.5.0",
+ org.glassfish.hk2.locator;bundle-version="2.5.0",
+ org.glassfish.hk2.utils;bundle-version="2.5.0",
+ org.glassfish.jersey.inject.jersey-hk2;bundle-version="2.27.0",
+ org.glassfish.jersey.core.jersey-common;bundle-version="2.27.1"
+Bundle-ActivationPolicy: lazy
+Import-Package: javax.ws.rs.client;version="2.0.1",
+ javax.ws.rs.core;version="2.1.99",
+ org.foodauthent.rest.api.service,
+ org.foodauthent.rest.impl.json,
+ org.glassfish.jersey.client;version="2.27.0",
+ org.glassfish.jersey.client.proxy;version="2.27.0",
+ org.glassfish.jersey.media.multipart;version="2.27.0",
+ org.glassfish.jersey.media.multipart.file;version="2.27.0"

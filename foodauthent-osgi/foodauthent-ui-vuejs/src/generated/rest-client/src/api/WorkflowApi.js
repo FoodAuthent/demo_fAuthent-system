@@ -776,52 +776,6 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
-
-    /**
-     * Callback function to receive the result of the removeWorkflowById operation.
-     * @callback module:api/WorkflowApi~removeWorkflowByIdCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Delete a workflow specified by id.
-     * @param {String} workflowId 
-     * @param {module:api/WorkflowApi~removeWorkflowByIdCallback} callback The callback function, accepting three arguments: error, data, response
-     */
-    this.removeWorkflowById = function(workflowId, callback) {
-      var postBody = null;
-
-      // verify the required parameter 'workflowId' is set
-      if (workflowId === undefined || workflowId === null) {
-        throw new Error("Missing the required parameter 'workflowId' when calling removeWorkflowById");
-      }
-
-
-      var pathParams = {
-        'workflow-id': workflowId
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['jwtAuth'];
-      var contentTypes = [];
-      var accepts = [];
-      var returnType = null;
-
-      return this.apiClient.callApi(
-        '/workflow/{workflow-id}', 'DELETE',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
   };
 
   return exports;

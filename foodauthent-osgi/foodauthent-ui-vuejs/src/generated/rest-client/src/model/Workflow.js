@@ -184,15 +184,15 @@
    */
   exports.TypeEnum = {
     /**
-     * value: "prediction_workflow"
+     * value: "prediction_workflow_e680f8c1"
      * @const
      */
-    "prediction_workflow": "prediction_workflow",
+    "prediction_workflow_e680f8c1": "prediction_workflow_e680f8c1",
     /**
-     * value: "training_workflow"
+     * value: "training_workflow_64b046cb"
      * @const
      */
-    "training_workflow": "training_workflow"  };
+    "training_workflow_64b046cb": "training_workflow_64b046cb"  };
 
 
   return exports;

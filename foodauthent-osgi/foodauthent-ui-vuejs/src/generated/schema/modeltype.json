@@ -13,6 +13,9 @@
       "id" : "knime_python",
       "name" : "Knime_python"
     }, {
+      "id" : "knime_random_forest",
+      "name" : "Knime_random_forest"
+    }, {
       "id" : "pmml",
       "name" : "Pmml"
     } ]

@@ -88,19 +88,6 @@ public class ProductRestServiceImpl implements ProductRestService {
     }
 
     /**
-     * Delete a product specified by id.
-     *
-     * @param productId 
-     * @return the response
-     */
-    public Response removeProductById(java.util.UUID productId) {
-        
-            service.removeProductById(productId);
-            
-                return Response.ok().build();
-    }
-
-    /**
      * TODO
      *
      * @param product TODO

@@ -29,6 +29,8 @@ public class ModelType   extends FaModel {
     
     KNIME_PYTHON("knime_python"),
     
+    KNIME_RANDOM_FOREST("knime_random_forest"),
+    
     PMML("pmml");
 
     private String value;

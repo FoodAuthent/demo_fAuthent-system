@@ -151,6 +151,14 @@ public class FileServiceImpl implements FileService {
     public FileMetadata getFileMetadata(UUID fileId) {
 	return persistenceService.getFaModelByUUID(fileId, FileMetadata.class);
     }
+    
+    @Override
+    public void removeFileMetadataAndData(UUID fileId) {
+	//remove data
+	persistenceService.removeBlobByUUID(fileId);
+	//remove metadata
+	persistenceService.removeFaModelByUUID(fileId);
+    }
 
     @Override
     public ImportResult importFile(UUID fileId) {

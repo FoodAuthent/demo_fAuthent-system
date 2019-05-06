@@ -101,6 +101,19 @@ public class FileRestServiceImpl implements FileRestService {
     }
 
     /**
+     * Removes the file and it&#39;s metadata for the given id
+     *
+     * @param fileId 
+     * @return the response
+     */
+    public Response removeFileMetadataAndData(java.util.UUID fileId) {
+        
+            service.removeFileMetadataAndData(fileId);
+            
+                return Response.ok().build();
+    }
+
+    /**
      * Uploads (and replaces) the actual file-data for the given file id
      *
      * @param fileId 
