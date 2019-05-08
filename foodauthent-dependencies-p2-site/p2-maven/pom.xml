@@ -398,6 +398,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 										</artifact>
 									</artifacts>
 								</feature>
+								<!-- 
 								<feature>
 									<id>org.eclipse.jdt.junit5.runtime.feature</id>
 									<version>1.0.200.qualifier</version>
@@ -552,6 +553,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 										</artifact>
 									</artifacts>
 								</feature>
+								 -->
 								<feature>
 									<id>com.typesafe.feature</id>
 									<version>1.3.3.qualifier</version>
