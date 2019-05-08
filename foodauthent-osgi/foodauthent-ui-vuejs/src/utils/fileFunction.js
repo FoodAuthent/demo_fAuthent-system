@@ -1,10 +1,14 @@
 var MyObject = function () {
+	  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+	  var apiClient = new ApiClient();
+	  //only for test---
+	  apiClient.basePath = window.location.origin + "/v0/foodauthent";
+	  //only for test---
+	  var FileApi = require("../generated/rest-client/src/api/FileApi.js");
+	  var fileApi = new FileApi(apiClient);
+
+	
   var getFile = function (fileIdJson, self) {
-    var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-    var apiClient = new ApiClient();
-    apiClient.basePath = window.location.origin + "/v0/foodauthent";
-    var FileApi = require("../generated/rest-client/src/api/FileApi.js");
-    var fileApi = new FileApi(apiClient);
     console.log('Get File');
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -63,12 +67,56 @@ var MyObject = function () {
       callback2
     );
   };
-
+  
+  var importFile = function (varFileId, self) {
+	    console.log('Upload file');
+	    var callback = function (error, data, response) {
+	      console.log("ImportFile data:", data);
+	      console.log("ImportFile response:", response);
+	      if (error) {
+	        console.error(error);
+	      } else {
+	        self.value = data;
+	        console.log("Import file API called successfully. Returned data: ", data);
+	      }
+	    };
+	    var fileId = varFileId;
+	    fileApi.importFile(
+	      fileId,
+	      callback
+	    );
+	  };
+	  
+	  var exportFile = function (varFileId, self) {
+		    console.log('Upload file');
+		    var callback = function (error, data, response) {
+		      console.log("ImportFile data:", data);
+		      console.log("ImportFile response:", response);
+		      if (error) {
+		        console.error(error);
+		      } else {
+		        self.value = data;
+		        console.log("Import file API called successfully. Returned data: ", data);
+		      }
+		    };
+		    var fileType = varFileId;
+		    var faObjectSet = "";
+		    fileApi.importFile(
+		    	fileType,
+		    	faObjectSet,
+		      callback
+		    );
+		  };
+  
+  
 
   return {
     getFile: getFile,
     createFileMetadata: createFileMetadata,
-    uploadFile: uploadFile
+    uploadFile: uploadFile,
+    importFile: importFile,
+    exportFile: exportFile
+    
   }
 }();
 

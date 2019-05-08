@@ -16,6 +16,7 @@ import Login from '@/components/login/Login'
 import Logout from '@/components/login/Logout'
 import Register from '@/components/login/Register'
 //import Test from '@/components/test/Test'
+import File from '@/components/file/File'
 
 
 Vue.use(Router)
@@ -26,73 +27,73 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
-      meta: { notdisplay: false }
+      meta: { Experiments: true }
     },
       {
       path: '/sop',
       name: 'Sop',
       component: Sop,
-      meta: { notdisplay: false }
+      meta: { Experiments: true }
      },
       {
       path: '/product',
       name: 'Product',
       component: Product,
-      meta: { notdisplay: false }
+      meta: { Experiments: true }
     },
       {
       path: '/prediction',
       name: 'Prediction',
       component: Prediction,
-      meta: { notdisplay: false }
+      meta: { Experiments: true }
     },
     {
       path: '/predictionjob',
       name: 'Prediction Job',
       component: Predictionjob,
-      meta: { notdisplay: false }
+      meta: { Analytics: true }
     },
         {
       path: '/trainingjob',
       name: 'Training Job',
       component: Trainingjob,
-      meta: { notdisplay: false }
+      meta: { Analytics: true }
     },
       {
       path: '/fingerprint',
       name: 'Fingerprint Set',
       component: Fingerprint,
-      meta: { notdisplay: false }
+      meta: { Analytics: true }
     },
       {
       path: '/workflow',
       name: 'Workflow',
       component: Workflow,
-      meta: { notdisplay: false }
+      meta: { Analytics: true }
     },
      {
       path: '/model',
       name: 'Model',
       component: Model,
-      meta: { notdisplay: false }
+      meta: { Tracing: true }
       },
     {
      path: '/objectEvent',
      name: 'ObjectEvent',
      component: ObjectEvent,
-     meta: { notdisplay: false }
+     meta: { Tracing: true }
      },
      {
      path: '/discoveryService',
      name: 'DiscoveryService',
      component: DiscoveryService,
-     meta: { notdisplay: false }
+     meta: { Tracing: true }
      },
      {
      path: '/sample',
      name: 'Sample',
      component: Sample,
-     meta: { notdisplay: false }
+     meta: { Tracing: true }
      },
      {
      path: '/login',
@@ -112,6 +113,12 @@ export default new Router({
      component: Register,
      meta: { notdisplay: true }
      },
+     {
+         path: '/file',
+         name: 'File',
+         component: File,
+         meta: { Tracing: true }
+         },
 //         {
 //             path: '/test',
 //             name: 'Test',

@@ -3,10 +3,10 @@
 <div class="page-container">
     <md-app>
         <md-app-toolbar class="md-primary">
-            <span class="md-title">Workflow</span>
+            <span class="md-title">File</span>
         </md-app-toolbar>
-     <!--    <md-app-drawer md-permanent="full">
-           <md-list v-for="route in this.$router.options.routes">
+      <!--  <md-app-drawer md-permanent="full">
+            <md-list v-for="route in this.$router.options.routes">
                 <md-list-item>
                     <md-icon>label</md-icon>
                     <router-link :to="route.path" class="md-list-item-text">{{route.name}}</router-link>
@@ -19,12 +19,12 @@
                 <b-tabs card>
                     <b-tab title="Results" active>
                         <generalTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
-                        :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
+                        :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :handleDeleteOk="handleDeleteOk" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
                             <slot></slot>
                         </generalTable>
                     </b-tab>
                     <b-tab title="Create new">
-                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder"></generalForm>
+                    <!--    <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder"></generalForm> -->
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -39,10 +39,14 @@
 <script>
 import generalTable from '@/components/general/GeneralTable';
 import generalForm from '@/components/general/GeneralForm';
-var getWorkflows = require("@/utils/workflowFunction.js").default.getWorkflows;
-var findWorkflowById = require("@/utils/workflowFunction.js").default.findWorkflowById;
-var saveWorkflow = require("@/utils/workflowFunction.js").default.saveWorkflow;
-import jsonschema from "@/generated/schema/workflow.json";
+
+var getFiles = require("@/utils/fileFunction.js").default.getModels;
+var importFile = require("@/utils/fileFunction.js").default.importFile;
+var exportFile = require("@/utils/fileFunction.js").default.importFile;
+
+import jsonschema from "@/generated/schema/filemetadata.json";
+
+
 
 console.log(jsonschema.fields);
 
@@ -108,26 +112,29 @@ export default {
                 //check if it is a valid UUID
                 var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
                 if (re.test(self.filter)) {
-                    findWorkflowById(self);
+                    findModelById(self);
                 } else {
-                    getWorkflows(self);
+                    //findModelByKeyword(self);
+                    getfiles(self);
                 }
             },
             myPaginationHandler(page) {
                 let self = this;
                 self.currentPage = page;
-                getWorkflows(self);
+                getModels(self);
                 self.currentPage = 1;
             },
             loadTableData() {
                 console.log("Load table data");
                 let self = this;
-                getWorkflows(self);
+                console.log("current page", self.currentPage);
+                console.log("per page", self.perPage);
+                getfiles(self);
             },
             save() {
                 let self = this;
                 console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
-                saveWorkflow(JSON.stringify(this.model, undefined, 4), self);
+                saveModel(JSON.stringify(this.model, undefined, 4), self);
                 self.model = {}
             },
             myRowClickHandler(record, index) {
@@ -137,6 +144,11 @@ export default {
             handleEditOk() {
                 let self = this;
                 console.log("This is the model", self.model);
+            },
+            handleDeleteOk() {
+                let self = this;
+                console.log("gtin:", self.selected["gtin"]);
+                deleteModel(self.selected["gtin"], self);
             },
                 myRowClickHandler(record, index) {
                 this.selected = record;

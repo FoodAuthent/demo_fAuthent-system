@@ -7,13 +7,38 @@
         </md-app-toolbar>
 
         <md-app-drawer md-permanent="full">
-            <!--<md-toolbar class="md-transparent" md-elevation="0">
-          Navigation
-        </md-toolbar>-->
-            <md-list v-for="route in this.$router.options.routes">
-                <md-list-item v-if="!route.meta.notdisplay">
+        
+            <md-toolbar class="md-transparent" md-elevation="0">
+          Experiments
+        </md-toolbar>
+            <md-list v-if="route.meta.Experiments" v-for="route in this.$router.options.routes">
+                <md-list-item>
                     <md-icon>label</md-icon>
-                    <!-- <span class="md-list-item-text">SOP</span> -->
+                  <!--  <span class="md-list-item-text">Experiments</span> -->
+                    <router-link :to="route.path" class="md-list-item-text">{{route.name}}</router-link>
+                </md-list-item>
+            </md-list>
+  			<hr>
+            <md-toolbar class="md-transparent" md-elevation="0">
+          Analytics
+        </md-toolbar>
+            <md-list v-if="route.meta.Analytics" v-for="route in this.$router.options.routes">
+                <md-list-item>
+                    <md-icon>label</md-icon>
+                  <!--  <span class="md-list-item-text">Analytics</span> -->
+                    <router-link :to="route.path" class="md-list-item-text">{{route.name}}</router-link>
+                </md-list-item>
+            </md-list>
+       
+        
+     <hr>
+           <md-toolbar class="md-transparent" md-elevation="0">
+          Tracing
+        </md-toolbar>
+            <md-list v-if="route.meta.Tracing" v-for="route in this.$router.options.routes">
+                <md-list-item>
+                    <md-icon>label</md-icon>
+                <!--    <span class="md-list-item-text">Tracing</span> -->
                     <router-link :to="route.path" class="md-list-item-text">{{route.name}}</router-link>
                 </md-list-item>
             </md-list>
@@ -26,6 +51,7 @@
 </div>
 
 </template>
+
 
 <script>
 </script>

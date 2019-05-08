@@ -19,11 +19,11 @@
                 <b-tabs card>
                     <b-tab title="Results" active>
                         <generalTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
-                        :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :handleDeleteOk="handleDeleteOk" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
+                        :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
                             <slot></slot>
                         </generalTable>
                     </b-tab>
-                    <b-tab title="Form">
+                    <b-tab title="Create new">
                         <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder"></generalForm>
                     </b-tab>
                 </b-tabs>
@@ -140,11 +140,6 @@ export default {
             handleEditOk() {
                 let self = this;
                 console.log("This is the model", self.model);
-            },
-            handleDeleteOk() {
-                let self = this;
-                console.log("gtin:", self.selected["gtin"]);
-                //TODO delete function
             },
                 myRowClickHandler(record, index) {
                 this.selected = record;

@@ -40,7 +40,7 @@
                         <b-btn size="sm" v-b-modal.modalMeta @click.stop="showMetadata(row.item, row.index, $event.target)">
                             <md-icon>search</md-icon>
                         </b-btn>
-                        <b-btn size="sm" v-b-modal.modalDelete>
+                        <b-btn size="sm" v-b-modal.modalDelete @click.stop="showDelete(row.item, row.index, $event.target)">
                             <md-icon>delete_forever</md-icon>
                         </b-btn>
                     </div>
@@ -72,7 +72,7 @@
     <!-- MODAL Delete -->
     <b-modal id="modalDelete" title="Delete" @ok="handleDeleteOk">
         <p>Are you sure do you want to delete this record?</p>
-        <pre v-if="selected" v-html="JSON.stringify(selected, undefined, 4)"></pre>
+        <pre v-if="selected" v-html="JSON.stringify(itemsDelete, undefined, 4)"></pre>
     </b-modal>
 
 </div>
@@ -86,6 +86,7 @@ var schemaIdHolder = {
 
 var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
 var getCustomMetadata = require("@/utils/commonFunction.js").default.getCustomMetadata;
+var deleteEntity = require("@/utils/commonFunction.js").default.deleteEntity;
 export default {
     props: {
         items: Array,
@@ -103,10 +104,6 @@ export default {
         schemaIdHolder: Object,
         pageOptionsPerPage: Array,
         search: {
-            type: Function,
-            required: true
-        },
-        handleDeleteOk: {
             type: Function,
             required: true
         },
@@ -129,7 +126,8 @@ export default {
     },
     data() {
         return {
-            filterVal: ''
+            filterVal: '',
+            itemsDelete: null,
              }
     },
     mounted() {
@@ -161,6 +159,18 @@ export default {
             info(item, index, button) {
                 this.model = item;
                 this.$root.$emit('bv::show::modal', 'modalEdit', button);
+            },
+             showDelete(item, index, button) {
+                let self = this;
+               console.log("ITEM", item);
+               self.itemsDelete = item
+                console.log("General selected", self.itemsDelete);
+                this.$root.$emit('bv::show::modal', 'modalDelete', button);
+            },
+               handleDeleteOk() {
+                let self = this;
+                console.log("fa-id:", self.itemsDelete["fa-id"]);
+                deleteEntity(self.itemsDelete["fa-id"], self);
             },
            showMetadata(item, index, button) {
                let self = this;

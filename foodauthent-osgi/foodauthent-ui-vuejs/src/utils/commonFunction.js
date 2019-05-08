@@ -8,6 +8,9 @@ var MyObject = function () {
 // ///////////GET METADATA SCHEMA
 	  var CustomMetadataApi = require("@/generated/rest-client/src/api/CustomMetadataApi.js");
 	  var customMetadataApi = new CustomMetadataApi(apiClient);
+	  
+	  var EntityApi = require("@/generated/rest-client/src/api/EntityApi.js");
+	  var entityApi = new EntityApi(apiClient);
 
 	  var getModelSchemas = function(modelID,schemas,schemaIdHolder){
 		 // console.log("Schema at begin",schemas);
@@ -185,12 +188,36 @@ var MyObject = function () {
       }
     }
   };
+  
+  var deleteEntity = function (id, self) {
+	    console.log('Delete Entity');
+	    var callback = function (error, data, response) {
+	      console.log("data:", data);
+	      console.log("response:", response);
+	      if (error) {
+	        console.error(error);
+	        self.showError = true;
+	      } else {
+	        self.response = data.results;
+	        self.showSuccess = true;
+	        console.log("API called successfully. Returned data: ", data);
+	      }
+	    };
+	    var opt = {
+	    	faId: id
+	    };
+	     entityApi.removeEntity(
+	       opt,
+	       callback
+	     );
+	  };
 
   return {
     renderCustomField: renderCustomField,
     getModelSchemas: getModelSchemas,
     saveCustomMetadata : saveCustomMetadata,
-    getCustomMetadata: getCustomMetadata
+    getCustomMetadata: getCustomMetadata,
+    deleteEntity: deleteEntity
   }
 }();
 

@@ -49,7 +49,8 @@ var MyObject = function () {
 	    var opt = {
 	      pageNumber: self.currentPage,
 	      pageSize: self.perPage,
-	      keywords: filterArray
+	      keywords: filterArray,
+	      jwtToken: 'Authorization': 'Bearer' + localStorage.getItem('token');
 	    };
 	    sopApi.findSOPByKeyword(
 	      opt,
