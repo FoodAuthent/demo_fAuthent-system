@@ -1,14 +1,25 @@
+var workflowApi;
+function setUpApi(){
+	  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+	  var apiClient = new ApiClient();
+	  
+	  if(localStorage.getItem('token')){
+		  console.log("Inside the token set");
+		  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
+		  apiClient.defaultHeaders = headerToken;  
+	  }
+	  //only for test---
+	  apiClient.basePath = window.location.origin + "/v0/foodauthent";
+	  //only for test---
+	  var WorkflowApi = require("../generated/rest-client/src/api/WorkflowApi.js");
+	  workflowApi = new WorkflowApi(apiClient);
+}
+
+
 var MyObject = function () {
-  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-  var apiClient = new ApiClient();
-  //only for test---
-  apiClient.basePath = window.location.origin + "/v0/foodauthent";
-  //only for test---
-  var WorkflowApi = require("../generated/rest-client/src/api/WorkflowApi.js");
-  var workflowApi = new WorkflowApi(apiClient);
-  
-  
+
   var getWorkflows = function (self) {
+	  setUpApi();
 	    console.log('Get Workflows');
 	    console.log('self Filter ',self.filter);
 	    var filterArray = null;
@@ -57,6 +68,7 @@ var MyObject = function () {
   
 
 var findWorkflowById = function (self) {
+	setUpApi();
     console.log('Search Workflow for ID: ',self.filter);
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -93,6 +105,7 @@ var findWorkflowById = function (self) {
 
 
   var getPredictions = function (self) {
+	  setUpApi();
     console.log('Get  Prediction');
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -126,6 +139,7 @@ var findWorkflowById = function (self) {
   };
   
   var findPredictionByKeyword = function (self) {
+	  setUpApi();
 	  	var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
 	    console.log('Search Prediction for Keywords: ',filterArray);
 	    var callback = function (error, data, response) {
@@ -164,6 +178,7 @@ var findWorkflowById = function (self) {
 	  };
 	  
 	  var findPredictionById = function (self) {
+		  setUpApi();
 		    console.log('Search Prediction for ID: ',self.filter);
 		    var callback = function (error, data, response) {
 		      console.log("data:", data);
@@ -199,6 +214,7 @@ var findWorkflowById = function (self) {
 		  };
 
   var getPredictionJobs = function (self) {
+	  setUpApi();
     console.log('Get Prediction Job');
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -234,6 +250,7 @@ var findWorkflowById = function (self) {
   
   
   var findPredictionJobsByKeyword = function (self) {
+	  setUpApi();
 	  	var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
 	    console.log('Search Prediction for Keywords: ',filterArray);
 	    var callback = function (error, data, response) {
@@ -273,6 +290,7 @@ var findWorkflowById = function (self) {
   
  
   var findPredictionJobById = function (self) {
+	  setUpApi();
 	    console.log('Search Prediction for ID: ',self.filter);
 	    var callback = function (error, data, response) {
 	      console.log("data:", data);
@@ -309,6 +327,7 @@ var findWorkflowById = function (self) {
 	  
 
   var getTrainingJobs = function (self) {
+	  setUpApi();
     console.log('Get Trainingjob');
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -343,6 +362,7 @@ var findWorkflowById = function (self) {
   
   
   var findTrainingJobsByKeyword = function (self) {
+	  setUpApi();
 	  	var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
 	    console.log('Search Training JOb for Keywords: ',filterArray);
 	    var callback = function (error, data, response) {
@@ -383,6 +403,7 @@ var findWorkflowById = function (self) {
 	  
 	  
 	  var findPredictionJobById = function (self) {
+		  setUpApi();
 		    console.log('Search Training Job for ID: ',self.filter);
 		    var callback = function (error, data, response) {
 		      console.log("data:", data);
@@ -419,6 +440,7 @@ var findWorkflowById = function (self) {
 
 
   var saveWorkflow = function (json, self) {
+	  setUpApi();
     console.log('Save Workflow');
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -442,6 +464,7 @@ var findWorkflowById = function (self) {
   };
 
   var savePredictionJob = function (json, self) {
+	  setUpApi();
     console.log('Save Prediction Job');
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -466,6 +489,7 @@ var findWorkflowById = function (self) {
   };
 
   var saveTrainingJob = function (json, self) {
+	  setUpApi();
     console.log('Save Prediction Job');
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -490,6 +514,7 @@ var findWorkflowById = function (self) {
   };
 
   var deleteWorkflow = function (id, self) {
+	  setUpApi();
     console.log('Delete Products');
     var callback = function (error, data, response) {
       console.log("data:", data);

@@ -1,15 +1,24 @@
+var sopApi;
+function setUpApi(){
+	  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+	  var apiClient = new ApiClient();
+	  
+	  if(localStorage.getItem('token')){
+		  console.log("Inside the token set");
+		  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
+		  apiClient.defaultHeaders = headerToken;  
+	  }
+	  //only for test---
+	  apiClient.basePath = window.location.origin + "/v0/foodauthent";
+	  //only for test---
+	  var SopApi = require("../generated/rest-client/src/api/SopApi.js");
+	  sopApi = new SopApi(apiClient);
+}
+
 var MyObject = function () {
 
-  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-  var apiClient = new ApiClient();
-  //only for test---
-  apiClient.basePath = window.location.origin + "/v0/foodauthent";
-  //only for test---
-  var SopApi = require("../generated/rest-client/src/api/SopApi.js");
-  var sopApi = new SopApi(apiClient);
-
-  
   var getSops = function (self) {
+		setUpApi();
 	    console.log('Get SOPs');
 	    console.log('self Filter ',self.filter);
 	    console.log('self perPage ',self.perPage);
@@ -49,8 +58,7 @@ var MyObject = function () {
 	    var opt = {
 	      pageNumber: self.currentPage,
 	      pageSize: self.perPage,
-	      keywords: filterArray,
-	      jwtToken: 'Authorization: Bearer' + localStorage.getItem('token')
+	      keywords: filterArray
 	    };
 	    sopApi.findSOPByKeyword(
 	      opt,
@@ -60,6 +68,7 @@ var MyObject = function () {
 	  
  
   var saveSop = function (json, self) {
+	setUpApi();
     console.log('Save Sop');
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -83,6 +92,7 @@ var MyObject = function () {
  
 	  
 	  var findSopById = function (self) {
+			setUpApi();
 		    console.log('Search SOP for id: ',self.filter);
 		    var callback = function (error, data, response) {
 		      console.log("data:", data);
@@ -122,6 +132,7 @@ var MyObject = function () {
 
   
   var deleteSop = function (id, self) {
+		setUpApi();
 	    var callback = function (error, data, response) {
 	      console.log("data:", data);
 	      console.log("response:", response);
@@ -141,6 +152,7 @@ var MyObject = function () {
 	  };
   
   var updateSop = function (json, self) {
+		setUpApi();
 	    console.log('Update Products');
 	    var callback = function (error, data, response) {
 	      console.log("data:", data);

@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/FaObjectSet', '../model/FileMetadata', '../model/ImportResult'], factory);
+    define(['../ApiClient', '../model/FaObjectSet', '../model/FileMetadata', '../model/FilePageResult', '../model/ImportResult'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/FaObjectSet'), require('../model/FileMetadata'), require('../model/ImportResult'));
+    module.exports = factory(require('../ApiClient'), require('../model/FaObjectSet'), require('../model/FileMetadata'), require('../model/FilePageResult'), require('../model/ImportResult'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.FileApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FaObjectSet, root.FoodAuthentSwaggerApi.FileMetadata, root.FoodAuthentSwaggerApi.ImportResult);
+    root.FoodAuthentSwaggerApi.FileApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.FaObjectSet, root.FoodAuthentSwaggerApi.FileMetadata, root.FoodAuthentSwaggerApi.FilePageResult, root.FoodAuthentSwaggerApi.ImportResult);
   }
-}(this, function(ApiClient, FaObjectSet, FileMetadata, ImportResult) {
+}(this, function(ApiClient, FaObjectSet, FileMetadata, FilePageResult, ImportResult) {
   'use strict';
 
   /**
@@ -143,6 +143,58 @@
 
       return this.apiClient.callApi(
         '/file/{file-id}/export', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getAllFiles operation.
+     * @callback module:api/FileApi~getAllFilesCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/FilePageResult} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Returns all the files
+     * Returns the all the files metadata.
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.pageNumber the page number starting at 1
+     * @param {Number} opts.pageSize entries per page, minimum 1
+     * @param {Array.<String>} opts.keywords Keywords to search for
+     * @param {module:api/FileApi~getAllFilesCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/FilePageResult}
+     */
+    this.getAllFiles = function(opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'pageNumber': opts['pageNumber'],
+        'pageSize': opts['pageSize'],
+      };
+      var collectionQueryParams = {
+        'keywords': {
+          value: opts['keywords'],
+          collectionFormat: 'multi'
+        },
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['jwtAuth'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = FilePageResult;
+
+      return this.apiClient.callApi(
+        '/file', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

@@ -1,18 +1,29 @@
-var MyObject = function () {
+var entityApi;
+var customMetadataApi;
+function setUpApi(){
 	  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
 	  var apiClient = new ApiClient();
-	  // only for test---
+	  
+	  if(localStorage.getItem('token')){
+		  console.log("Inside the token set");
+		  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
+		  apiClient.defaultHeaders = headerToken;  
+	  }
+	  //only for test---
 	  apiClient.basePath = window.location.origin + "/v0/foodauthent";
-	  // only for test---
-	
-// ///////////GET METADATA SCHEMA
+	  //only for test---
 	  var CustomMetadataApi = require("@/generated/rest-client/src/api/CustomMetadataApi.js");
-	  var customMetadataApi = new CustomMetadataApi(apiClient);
+	  customMetadataApi = new CustomMetadataApi(apiClient);
 	  
 	  var EntityApi = require("@/generated/rest-client/src/api/EntityApi.js");
-	  var entityApi = new EntityApi(apiClient);
+	  entityApi = new EntityApi(apiClient);
+}
+
+var MyObject = function () {
+
 
 	  var getModelSchemas = function(modelID,schemas,schemaIdHolder){
+		  setUpApi();
 		 // console.log("Schema at begin",schemas);
 		  //console.log("schemaIdHolder.schemaID",schemaIdHolder.schemaID);
 		  if (typeof schemas !== 'undefined' && schemas.length > 0) {
@@ -94,6 +105,7 @@ var MyObject = function () {
 	  
 	  // ///////////SAVE METADATA
 		  var saveCustomMetadata = function (schemas, faId) {
+			  setUpApi();
 			  console.log("faId",faId);
 			  var dataModel = {}
 			  var schemaID ;
@@ -135,6 +147,7 @@ var MyObject = function () {
 			  
 			  /////////////GET METADATA
 			  var getCustomMetadata = function (modelID, schemaID, faID, self) {
+				  setUpApi();
 				    console.log('Get Custom Metadata', modelID, schemaID, faID);
 				    var callback = function (error, data, response) {
 				      console.log("data:", data);
@@ -190,6 +203,7 @@ var MyObject = function () {
   };
   
   var deleteEntity = function (id, self) {
+	  setUpApi();
 	    console.log('Delete Entity');
 	    var callback = function (error, data, response) {
 	      console.log("data:", data);

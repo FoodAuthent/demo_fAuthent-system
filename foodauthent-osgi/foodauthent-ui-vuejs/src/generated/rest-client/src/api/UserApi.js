@@ -83,7 +83,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = [];
       var contentTypes = ['application/json'];
       var accepts = ['application/json', 'text/plain'];
       var returnType = User;
@@ -276,7 +276,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = [];
       var contentTypes = [];
       var accepts = ['text/plain'];
       var returnType = String;
@@ -425,7 +425,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = [];
       var contentTypes = ['application/json'];
       var accepts = ['text/plain'];
       var returnType = null;

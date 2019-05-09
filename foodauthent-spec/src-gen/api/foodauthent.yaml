@@ -139,6 +139,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/SOP'
   /file:
+    get:
+      tags:
+        - file
+      summary: Returns all the files
+      description: Returns the all the files metadata.
+      operationId: getAllFiles
+      parameters:
+        - $ref: "#/components/parameters/pageNumber"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/keywords"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilePageResult'
     post:
       tags:
         - file
@@ -958,6 +975,7 @@ paths:
               $ref: '#/components/schemas/UserAuthenticationRequest'
         description: TODO
         required: true
+      "security": []
 
   /authenticate/jwt/verify:
     post:
@@ -980,6 +998,7 @@ paths:
           text/plain:
             schema:
               type: string
+      "security": []
 
   /authenticate/jwt/refresh:
     post:
@@ -1006,6 +1025,7 @@ paths:
           text/plain:
             schema:
               type: string
+      "security": []
 
             
   /user:
@@ -1039,6 +1059,7 @@ paths:
               $ref: '#/components/schemas/UserCreateRequest'
         description: TODO
         required: true
+      "security": []
 
 
   /user/{dn}:        
@@ -1170,7 +1191,8 @@ paths:
         404:
           $ref: "#/components/responses/ModelNotFoundResponse" 
         500:
-          $ref: "#/components/responses/FAException"  
+          $ref: "#/components/responses/FAException" 
+      "security": [] 
 
   /user/{dn}/pwset:        
     post:
@@ -1203,7 +1225,8 @@ paths:
             schema:
               $ref: '#/components/schemas/ChangePasswordRequest'
         description: TODO
-        required: true   
+        required: true 
+      "security": []  
 
   /user/group:
     post:
@@ -2953,6 +2976,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SOP'
+            
+    FilePageResult:
+      type: object
+      x-no-faid: true
+      properties:
+        pageNumber:
+          type: integer
+        pageCount:
+          type: integer
+        resultCount:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileMetadata'
             
     SystemInfo:
       x-no-faid: true

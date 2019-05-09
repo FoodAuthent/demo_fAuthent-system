@@ -22,102 +22,134 @@ import File from '@/components/file/File'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home,
-      meta: { Experiments: true }
-    },
-      {
-      path: '/sop',
-      name: 'Sop',
-      component: Sop,
-      meta: { Experiments: true }
-     },
-      {
-      path: '/product',
-      name: 'Product',
-      component: Product,
-      meta: { Experiments: true }
-    },
-      {
-      path: '/prediction',
-      name: 'Prediction',
-      component: Prediction,
-      meta: { Experiments: true }
-    },
-    {
-      path: '/predictionjob',
-      name: 'Prediction Job',
-      component: Predictionjob,
-      meta: { Analytics: true }
+    routes: [
+        {
+            path: '/',
+            name: 'Home',
+            component: Home,
+            meta: {
+                Experiments: true
+            }
     },
         {
-      path: '/trainingjob',
-      name: 'Training Job',
-      component: Trainingjob,
-      meta: { Analytics: true }
+            path: '/sop',
+            name: 'Sop',
+            component: Sop,
+            meta: {
+                Experiments: true
+            }
+     },
+        {
+            path: '/product',
+            name: 'Product',
+            component: Product,
+            meta: {
+                Experiments: true
+            }
     },
-      {
-      path: '/fingerprint',
-      name: 'Fingerprint Set',
-      component: Fingerprint,
-      meta: { Analytics: true }
+        {
+            path: '/sample',
+            name: 'Sample',
+            component: Sample,
+            meta: {
+                Experiments: true
+            }
+        },
+        {
+            path: '/fingerprint',
+            name: 'Fingerprint Set',
+            component: Fingerprint,
+            meta: {
+                Experiments: true
+            }
+          },
+        {
+            path: '/prediction',
+            name: 'Prediction',
+            component: Prediction,
+            meta: {
+                Analytics: true
+            }
     },
-      {
-      path: '/workflow',
-      name: 'Workflow',
-      component: Workflow,
-      meta: { Analytics: true }
+        {
+            path: '/predictionjob',
+            name: 'Prediction Job',
+            component: Predictionjob,
+            meta: {
+                Analytics: true
+            }
     },
-     {
-      path: '/model',
-      name: 'Model',
-      component: Model,
-      meta: { Tracing: true }
-      },
-    {
-     path: '/objectEvent',
-     name: 'ObjectEvent',
-     component: ObjectEvent,
-     meta: { Tracing: true }
+        {
+            path: '/trainingjob',
+            name: 'Training Job',
+            component: Trainingjob,
+            meta: {
+                Analytics: true
+            }
+    },
+        {
+            path: '/model',
+            name: 'Model',
+            component: Model,
+            meta: {
+                Analytics: true
+            }
+        },
+        {
+            path: '/workflow',
+            name: 'Workflow',
+            component: Workflow,
+            meta: {
+                Analytics: true
+            }
+    },
+        {
+            path: '/objectEvent',
+            name: 'ObjectEvent',
+            component: ObjectEvent,
+            meta: {
+                Tracing: true
+            }
      },
-     {
-     path: '/discoveryService',
-     name: 'DiscoveryService',
-     component: DiscoveryService,
-     meta: { Tracing: true }
+        {
+            path: '/discoveryService',
+            name: 'DiscoveryService',
+            component: DiscoveryService,
+            meta: {
+                Tracing: true
+            }
      },
-     {
-     path: '/sample',
-     name: 'Sample',
-     component: Sample,
-     meta: { Tracing: true }
+        {
+            path: '/login',
+            name: 'Login',
+            component: Login,
+            meta: {
+                notdisplay: true
+            }
      },
-     {
-     path: '/login',
-     name: 'Login',
-     component: Login,
-     meta: { notdisplay: true }
+        {
+            path: '/logout',
+            name: 'Logout',
+            component: Logout,
+            meta: {
+                notdisplay: true
+            }
      },
-     {
-     path: '/logout',
-     name: 'Logout',
-     component: Logout,
-     meta: { notdisplay: true }
+        {
+            path: '/register',
+            name: 'Register',
+            component: Register,
+            meta: {
+                notdisplay: true
+            }
      },
-     {
-     path: '/register',
-     name: 'Register',
-     component: Register,
-     meta: { notdisplay: true }
-     },
-     {
-         path: '/file',
-         name: 'File',
-         component: File,
-         meta: { Tracing: true }
+        {
+            path: '/file',
+            name: 'File',
+            component: File,
+            meta: {
+                Tracing: true
+            }
          },
 //         {
 //             path: '/test',
@@ -126,5 +158,3 @@ export default new Router({
 //             },
   ]
 });
-
-

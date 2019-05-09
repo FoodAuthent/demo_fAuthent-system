@@ -38,6 +38,8 @@ public class ModelUtil {
         mapper.addMixIn(FaObjectSet.FaObjectSetBuilder.class, FaObjectSetMixIn.FaObjectSetMixInBuilder.class);
         mapper.addMixIn(FileMetadata.class, FileMetadataMixIn.class);
         mapper.addMixIn(FileMetadata.FileMetadataBuilder.class, FileMetadataMixIn.FileMetadataMixInBuilder.class);
+        mapper.addMixIn(FilePageResult.class, FilePageResultMixIn.class);
+        mapper.addMixIn(FilePageResult.FilePageResultBuilder.class, FilePageResultMixIn.FilePageResultMixInBuilder.class);
         mapper.addMixIn(Fingerprint.class, FingerprintMixIn.class);
         mapper.addMixIn(Fingerprint.FingerprintBuilder.class, FingerprintMixIn.FingerprintMixInBuilder.class);
         mapper.addMixIn(FingerprintSet.class, FingerprintSetMixIn.class);

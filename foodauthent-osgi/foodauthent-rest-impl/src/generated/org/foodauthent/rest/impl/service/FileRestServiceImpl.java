@@ -13,6 +13,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.foodauthent.model.FaObjectSet;
 import java.io.File;
 import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.FilePageResult;
 import org.foodauthent.model.ImportResult;
 
 import org.foodauthent.api.FileService;
@@ -61,6 +62,20 @@ public class FileRestServiceImpl implements FileRestService {
     public Response exportFile(String fileType, FaObjectSet faObjectSet) {
         
             Object res = service.exportFile(fileType, faObjectSet);
+            return Response.ok(res).build();
+    }
+
+    /**
+     * Returns the all the files metadata.
+     *
+     * @param pageNumber the page number starting at 1
+     * @param pageSize entries per page, minimum 1
+     * @param keywords Keywords to search for
+     * @return the response
+     */
+    public Response getAllFiles(Integer pageNumber, Integer pageSize, java.util.List<String> keywords) {
+        
+            Object res = service.getAllFiles(pageNumber, pageSize, keywords);
             return Response.ok(res).build();
     }
 

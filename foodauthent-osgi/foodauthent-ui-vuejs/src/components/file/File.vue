@@ -19,7 +19,7 @@
                 <b-tabs card>
                     <b-tab title="Results" active>
                         <generalTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
-                        :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :handleDeleteOk="handleDeleteOk" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
+                        :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :handleDeleteOk="handleDeleteOk" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk"  :pageType="pageType" :schemaIdHolder="schemaIdHolder">
                             <slot></slot>
                         </generalTable>
                     </b-tab>
@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import generalTable from '@/components/general/GeneralTable';
+import generalTable from '@/components/file/FileTable';
 import generalForm from '@/components/general/GeneralForm';
 
-var getFiles = require("@/utils/fileFunction.js").default.getModels;
+var getAllFiles = require("@/utils/fileFunction.js").default.getAllFiles;
 var importFile = require("@/utils/fileFunction.js").default.importFile;
 var exportFile = require("@/utils/fileFunction.js").default.importFile;
 
@@ -115,13 +115,13 @@ export default {
                     findModelById(self);
                 } else {
                     //findModelByKeyword(self);
-                    getfiles(self);
+                    getAllFiles(self);
                 }
             },
             myPaginationHandler(page) {
                 let self = this;
                 self.currentPage = page;
-                getModels(self);
+                getAllFiles(self);
                 self.currentPage = 1;
             },
             loadTableData() {
@@ -129,12 +129,12 @@ export default {
                 let self = this;
                 console.log("current page", self.currentPage);
                 console.log("per page", self.perPage);
-                getfiles(self);
+                getAllFiles(self);
             },
             save() {
                 let self = this;
                 console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
-                saveModel(JSON.stringify(this.model, undefined, 4), self);
+                //saveModel(JSON.stringify(this.model, undefined, 4), self);
                 self.model = {}
             },
             myRowClickHandler(record, index) {
@@ -148,7 +148,7 @@ export default {
             handleDeleteOk() {
                 let self = this;
                 console.log("gtin:", self.selected["gtin"]);
-                deleteModel(self.selected["gtin"], self);
+               // deleteModel(self.selected["gtin"], self);
             },
                 myRowClickHandler(record, index) {
                 this.selected = record;

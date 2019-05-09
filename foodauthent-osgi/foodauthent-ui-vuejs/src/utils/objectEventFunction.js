@@ -1,14 +1,25 @@
+var objectEventApi;
+function setUpApi(){
+	  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+	  var apiClient = new ApiClient();
+	  
+	  if(localStorage.getItem('token')){
+		  console.log("Inside the token set");
+		  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
+		  apiClient.defaultHeaders = headerToken;  
+	  }
+	  //only for test---
+	  apiClient.basePath = window.location.origin + "/v0/foodauthent";
+	  //only for test---
+	  var ObjectEventApi = require("../generated/rest-client/src/api/ObjectEventApi.js");
+	  objectEventApi = new ObjectEventApi(apiClient);
+}
+
 var MyObject = function () {
-  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-  var apiClient = new ApiClient();
-  //only for test---
-  apiClient.basePath = window.location.origin + "/v0/foodauthent";
-  //only for test---
-  var ObjectEventApi = require("../generated/rest-client/src/api/ObjectEventApi.js");
-  var objectEventApi = new ObjectEventApi(apiClient);
   
   
   var getObjectEvent = function (self) {
+	  setUpApi();
 	    console.log('Get ObjectEvent');
 	    console.log('self Filter ',self.filter);
 	    var filterArray = null;
@@ -56,6 +67,7 @@ var MyObject = function () {
 	  };
 	  
 	  var findObjectEventById = function (self) {
+		  setUpApi();
 		    console.log('Search ObjectEvent for Id: ',self.filter);
 		    var callback = function (error, data, response) {
 		      console.log("data:", data);
@@ -92,6 +104,7 @@ var MyObject = function () {
 
   
   var saveObjectEvent = function (json, self) {
+	  setUpApi();
     console.log('Save ObjectEvent');
     var callback = function (error, data, response) {
       console.log("data:", data);

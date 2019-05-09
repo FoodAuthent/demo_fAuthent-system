@@ -6,6 +6,7 @@ package org.foodauthent.api;
 import org.foodauthent.model.FaObjectSet;
 import java.io.File;
 import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.FilePageResult;
 import org.foodauthent.model.ImportResult;
 
 import org.foodauthent.common.exception.FAExceptions;
@@ -36,6 +37,17 @@ public interface FileService {
      * @return the result
      */
     File exportFile(String fileType, FaObjectSet faObjectSet);
+        
+    /**
+     * Returns the all the files metadata.
+     *
+     * @param pageNumber the page number starting at 1
+     * @param pageSize entries per page, minimum 1
+     * @param keywords Keywords to search for
+     *
+     * @return the result
+     */
+    FilePageResult getAllFiles(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
     /**
      * Let one download the actual file data.

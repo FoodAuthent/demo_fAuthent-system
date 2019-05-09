@@ -18,7 +18,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import "vue-form-generator/dist/vfg.css";
 
-import store from '@/store'
+import store from '@/store';
+
 
 Vue.use(ModuleLibrary);
 

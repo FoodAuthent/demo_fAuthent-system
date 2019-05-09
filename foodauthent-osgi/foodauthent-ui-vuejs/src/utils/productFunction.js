@@ -1,15 +1,26 @@
+var productApi;
+var saveCustomMetadata = require("@/utils/commonFunction.js").default.saveCustomMetadata;
+function setUpApi(){
+	  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+	  var apiClient = new ApiClient();
+	  
+	  if(localStorage.getItem('token')){
+		  console.log("Inside the token set");
+		  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
+		  apiClient.defaultHeaders = headerToken;  
+	  }
+	  //only for test---
+	  apiClient.basePath = window.location.origin + "/v0/foodauthent";
+	  //only for test---
+	  var ProductApi = require("../generated/rest-client/src/api/ProductApi.js");
+	  productApi = new ProductApi(apiClient);
+}
+
+
 var MyObject = function () {
-  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-  var apiClient = new ApiClient();
-  //only for test---
-  apiClient.basePath = window.location.origin + "/v0/foodauthent";
-  //only for test---
-  var ProductApi = require("../generated/rest-client/src/api/ProductApi.js");
-  var saveCustomMetadata = require("@/utils/commonFunction.js").default.saveCustomMetadata;
-  var productApi = new ProductApi(apiClient);
-  
   
   var getProducts = function (self) {
+	  setUpApi();
 	    console.log('Get Products');
 	    console.log('self Filter ',self.filter);
 	    console.log('self perPage ',self.perPage);
@@ -59,6 +70,7 @@ var MyObject = function () {
 	  
   
   var saveProducts = function (json, self) {
+	  setUpApi();
     console.log('Save Products');
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -84,6 +96,7 @@ var MyObject = function () {
   };
 
     var deleteProducts = function (id, self) {
+    	setUpApi();
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -103,6 +116,7 @@ var MyObject = function () {
   };
   
     var updateProducts = function (json, self) {
+    	setUpApi();
     console.log('Update Products');
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -129,6 +143,7 @@ var MyObject = function () {
  
 	  
 	  var findProductByGtin = function (self) {
+		  setUpApi();
 		    console.log('Search Products for Gtin: ',self.filter);
 		    var callback = function (error, data, response) {
 		      console.log("data:", data);

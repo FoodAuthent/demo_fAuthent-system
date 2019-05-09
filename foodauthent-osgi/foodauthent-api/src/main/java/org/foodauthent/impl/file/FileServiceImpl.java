@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -17,13 +18,17 @@ import org.foodauthent.api.internal.exception.ServiceNotAvailableException;
 import org.foodauthent.api.internal.filereader.RawFileReader;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
+import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
 import org.foodauthent.common.exception.FAExceptions;
 import org.foodauthent.common.exception.FAExceptions.InvalidDataException;
 import org.foodauthent.common.exception.FAExceptions.InvalidInputException;
 import org.foodauthent.model.FaObjectSet;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
+import org.foodauthent.model.FilePageResult;
 import org.foodauthent.model.ImportResult;
+import org.foodauthent.model.Model;
+import org.foodauthent.model.ModelPageResult;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -201,4 +206,13 @@ public class FileServiceImpl implements FileService {
 	    return null;
 	}
     }
+
+    @Override
+    public FilePageResult getAllFiles(Integer pageNumber, Integer pageSize, List<String> keywords) {
+	ResultPage<FileMetadata> res = persistenceService.findByKeywordsPaged(FileMetadata.class, pageNumber, pageSize,
+		PersistenceService.toArray(keywords));
+	return FilePageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
+    }
+    
 }

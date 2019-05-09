@@ -1,17 +1,25 @@
+var fingerprintApi;
+var saveCustomMetadata = require("@/utils/commonFunction.js").default.saveCustomMetadata;
+function setUpApi(){
+	  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+	  var apiClient = new ApiClient();
+	  
+	  if(localStorage.getItem('token')){
+		  console.log("Inside the token set");
+		  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
+		  apiClient.defaultHeaders = headerToken;  
+	  }
+	  //only for test---
+	  apiClient.basePath = window.location.origin + "/v0/foodauthent";
+	  //only for test---
+	  var FingerprintApi = require("../generated/rest-client/src/api/FingerprintApi.js");
+	  fingerprintApi = new FingerprintApi(apiClient);
+}
+
 var Fingerprints = function () {
-
-  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-  var apiClient = new ApiClient();
-  // only for test---
-  apiClient.basePath = window.location.origin + "/v0/foodauthent";
-  // only for test---
-  var FingerprintApi = require("../generated/rest-client/src/api/FingerprintApi.js");
-  var saveCustomMetadata = require("@/utils/commonFunction.js").default.saveCustomMetadata;
-  var fingerprintApi = new FingerprintApi(apiClient);
- 
-
-  
+	
   var getFingerprints = function (self) {
+	    setUpApi();
 	    console.log('Get Fingerprints');
 	    console.log('self Filter ',self.filter);
 	    var filterArray = null;
@@ -60,6 +68,7 @@ var Fingerprints = function () {
  
 
   var saveFingerprints = function (json, self) {
+	setUpApi();
     console.log("saveFingerprints");
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -89,6 +98,7 @@ var Fingerprints = function () {
   
 	  
 	  var findFingerprintById = function (self) {
+		    setUpApi();
 		    console.log('Search Fingerprint for id: ',self.filter);
 		    var callback = function (error, data, response) {
 		      console.log("data:", data);
@@ -124,6 +134,7 @@ var Fingerprints = function () {
 
 
   var deleteFingerprint = function (id, self) {
+	setUpApi();
     console.log('Delete fingerprint');
     var callback = function (error, data, response) {
       console.log("data:", data);

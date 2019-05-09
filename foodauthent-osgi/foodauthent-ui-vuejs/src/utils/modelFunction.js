@@ -1,14 +1,24 @@
+var modelApi;
+function setUpApi(){
+	  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+	  var apiClient = new ApiClient();
+	  
+	  if(localStorage.getItem('token')){
+		  console.log("Inside the token set");
+		  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
+		  apiClient.defaultHeaders = headerToken;  
+	  }
+	  //only for test---
+	  apiClient.basePath = window.location.origin + "/v0/foodauthent";
+	  //only for test---
+	  var ModelApi = require("../generated/rest-client/src/api/ModelApi.js");
+	  modelApi = new ModelApi(apiClient);
+}
+
 var MyObject = function () {
-  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
-  var apiClient = new ApiClient();
-  //only for test---
-  apiClient.basePath = window.location.origin + "/v0/foodauthent";
-  //only for test---
-  var ModelApi = require("../generated/rest-client/src/api/ModelApi.js");
-  var modelApi = new ModelApi(apiClient);
-  
-  
+   
   var getModels = function (self) {
+	  setUpApi();
 	    console.log('Get Models');
 	    console.log('self Filter ',self.filter);
 	    var filterArray = null;
@@ -58,6 +68,7 @@ var MyObject = function () {
 
   
   var saveModel = function (json, self) {
+	  setUpApi();
     console.log('Save Model');
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -81,6 +92,7 @@ var MyObject = function () {
   };
 
     var deleteModel = function (id, self) {
+  	  setUpApi();
     console.log('Delete model');
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -107,6 +119,7 @@ var MyObject = function () {
   
 	  
 	  var findModelById = function (self) {
+		  setUpApi();
 		    console.log('Search Model for Id: ',self.filter);
 		    var callback = function (error, data, response) {
 		      console.log("data:", data);
@@ -141,6 +154,7 @@ var MyObject = function () {
 		  };
   
   var updateModel = function (json, self) {
+	  setUpApi();
 	    console.log('Update Model');
 	    var callback = function (error, data, response) {
 	      console.log("data:", data);
