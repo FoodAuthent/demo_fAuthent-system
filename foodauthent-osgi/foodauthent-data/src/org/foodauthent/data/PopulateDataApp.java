@@ -50,7 +50,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class PopulateDataApp {
 
     public static void main(String[] args) throws JsonProcessingException {
-	doit("Delete all products and workflows", () -> {
+	doit("Delete all entities", () -> {
 	    clearAllProducts();
 	    clearAllWorkflows();
 	    clearAllFingerprintSetsAndFingerprints();
@@ -96,7 +96,8 @@ public class PopulateDataApp {
 	});
 
 	List<UUID> modelIds = doitWithRes("Train models", () -> {
-	    return asList(train(trainingwfIds.get(0), asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1))));
+	    return asList(train(trainingwfIds.get(0), asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1))),
+		    train(trainingwfIds.get(1), asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1))));
 	});
 	doit("Run predictions", () -> {
 	    predict(predictionwfIds.get(0), fingerprintsetIds.get(0), modelIds.get(0));

@@ -1,5 +1,6 @@
 package org.foodauthent.data;
 
+import static java.util.Arrays.asList;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.foodauthent.rest.client.FASystemClient.files;
 import static org.foodauthent.rest.client.FASystemClient.fingerprints;
@@ -139,8 +140,8 @@ public class PopulateModels {
     }
     
     public static UUID populateTrainingWorkflowOpenChromRandomForest() {
-	String workflowName = "PredictionWorkflow OpenChrom RandomForest";
-	String workflowDesc = "Prediction workflow that uses OpenChrom to read and preprocess the signals and a random forest to learn the model.";
+	String workflowName = "TrainingWorkflow_OpenChrom_RandomForest";
+	String workflowDesc = "Training workflow that uses OpenChrom to read and preprocess the signals and a random forest to learn the model.";
 	
         // upload workflow file
 	FileMetadata fileMeta = FileMetadata.builder().setName(workflowName)
@@ -148,18 +149,20 @@ public class PopulateModels {
 		.setDescription(workflowDesc)
 		.setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW).setVersion(0).build();
 	       UUID fileId = files().createFileMetadata(fileMeta).readEntity(UUID.class);
-        uploadFileData(fileId, new File("files/workflows/PredictionWorkflow.knwf"));
+        uploadFileData(fileId, new File("files/workflows/TrainingWorkflow_OpenChrom_RandomForest.knwf"));
 	
 	// upload workflow metadata
-	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("pred_param1").setRequired(false)
-		.setValue("pred_paramValue1").setType(TypeEnum.NUMBER).build();
-	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("pred_param2").setRequired(true)
-		.setValue("pred_paramValue2").setType(TypeEnum.STRING).build();
+	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("binning_min_ppm").setRequired(true)
+		.setValue(".018").setType(TypeEnum.NUMBER).build();
+	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("binning_max_ppm").setRequired(true)
+		.setValue("10.5").setType(TypeEnum.NUMBER).build();
+	WorkflowParameter wfp3 = WorkflowParameter.builder().setName("binning_width_ppm").setRequired(true)
+		.setValue(".0002").setType(TypeEnum.NUMBER).build();
 	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
 		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build()).build();
 	WorkflowIOTypes outputTypes = WorkflowIOTypes.builder()
 		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_RANDOM_FOREST).build()).build();
-	Workflow wf = Workflow.builder().setName(workflowName).setDescription(workflowDesc).setParameters(Arrays.asList(wfp1, wfp2))
+	Workflow wf = Workflow.builder().setName(workflowName).setDescription(workflowDesc).setParameters(asList(wfp1, wfp2, wfp3))
 		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB)
 		.setRepresentation(RepresentationEnum.KNIME)
 		.setInputTypes(inputTypes)
