@@ -1,86 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="141">
+<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="142">
 <locations>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="com.knime.features.enterprise.client.exampleserver.feature.group" version="0.0.0"/>
-<unit id="com.knime.features.enterprise.client.feature.group" version="0.0.0"/>
-<unit id="com.knime.features.enterprise.server.rest.feature.group" version="0.0.0"/>
-<unit id="com.knime.features.enterprise.server.ws.client.feature.group" version="0.0.0"/>
-<unit id="com.knime.features.enterprise.slave.feature.group" version="0.0.0"/>
-<unit id="com.knime.features.explorer.serverspace.feature.group" version="0.0.0"/>
-<unit id="com.knime.features.licenses.feature.group" version="0.0.0"/>
-<unit id="com.knime.features.pmml.compilation.java.jario.feature.group" version="0.0.0"/>
-<unit id="com.knime.features.reportbatch.feature.group" version="0.0.0"/>
-<unit id="com.knime.features.reporting.designer.feature.group" version="0.0.0"/>
-<unit id="com.knime.features.reporting.runtime.feature.group" version="0.0.0"/>
-<unit id="com.knime.features.workbench.repository.custom.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.ecf.core.feature.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.ecf.core.feature.source.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.ecf.core.ssl.feature.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.ecf.core.ssl.feature.source.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.ecf.filetransfer.feature.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.ecf.filetransfer.feature.source.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.ecf.filetransfer.httpclient4.feature.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.ecf.filetransfer.httpclient4.feature.source.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature.source.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.ecf.filetransfer.ssl.feature.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.ecf.filetransfer.ssl.feature.source.feature.group" version="0.0.0"/>
-<unit id="org.glassfish.javax.json" version="0.0.0"/>
-<unit id="org.knime.features.base.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.base.filehandling.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.base.pmml.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.base.pmml.translation.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.base.pmml2.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.base.source.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.base.widedata.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.bigdata.connectors.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.build.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.chem.types.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.cluster.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.datageneration.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.distmatrix.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.expressions.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.ext.exttool.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.ext.itemset.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.ext.jep.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.ext.jfreechart.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.ext.libsvm.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.ext.lucene.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.ext.md.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.ext.perl.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.ext.svg.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.ext.webservice.client.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.ext.webservice.client.ppilot.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.externals.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.jpmml.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.js.quickforms.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.js.views.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.json.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.json.source.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.ext.jep.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.ext.jep.source.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.mongodb.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.neighborgram.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.network.distmatrix.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.network.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.optimization.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.personalproductivity.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.python2.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.python2.source.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.r.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.rest.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.scm.git.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.sdk.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.semanticweb.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.virtual.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.wizard.feature.group" version="0.0.0"/>
-<unit id="org.knime.features.xml.feature.group" version="0.0.0"/>
-<unit id="org.knime.product.desktop" version="0.0.0"/>
-<unit id="org.knime.product.desktop.feature.group" version="0.0.0"/>
-<unit id="org.knime.targetPlatform.feature.group" version="0.0.0"/>
-<repository location="http://update.knime.com/analytics-platform/3.6"/>
-</location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="ch.qos.logback.classic" version="0.0.0"/>
 <unit id="ch.qos.logback.classic.source" version="0.0.0"/>
@@ -272,6 +192,84 @@
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="net.openchrom.knime.node.nmr.feature.feature.group" version="0.0.0"/>
 <repository location="https://update.openchrom.net/repositories/knime"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="com.knime.features.enterprise.client.exampleserver.feature.group" version="0.0.0"/>
+<unit id="com.knime.features.enterprise.client.feature.group" version="0.0.0"/>
+<unit id="com.knime.features.enterprise.server.rest.feature.group" version="0.0.0"/>
+<unit id="com.knime.features.enterprise.server.ws.client.feature.group" version="0.0.0"/>
+<unit id="com.knime.features.enterprise.slave.feature.group" version="0.0.0"/>
+<unit id="com.knime.features.explorer.serverspace.feature.group" version="0.0.0"/>
+<unit id="com.knime.features.licenses.feature.group" version="0.0.0"/>
+<unit id="com.knime.features.pmml.compilation.java.jario.feature.group" version="0.0.0"/>
+<unit id="com.knime.features.reportbatch.feature.group" version="0.0.0"/>
+<unit id="com.knime.features.reporting.designer.feature.group" version="0.0.0"/>
+<unit id="com.knime.features.reporting.runtime.feature.group" version="0.0.0"/>
+<unit id="com.knime.features.workbench.repository.custom.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.ecf.core.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.ecf.core.feature.source.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.ecf.core.ssl.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.ecf.core.ssl.feature.source.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.ecf.filetransfer.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.ecf.filetransfer.feature.source.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.ecf.filetransfer.httpclient4.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.ecf.filetransfer.httpclient4.feature.source.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature.source.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.ecf.filetransfer.ssl.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.ecf.filetransfer.ssl.feature.source.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.base.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.base.filehandling.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.base.pmml.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.base.pmml.translation.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.base.pmml2.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.base.source.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.base.widedata.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.bigdata.connectors.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.build.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.chem.types.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.cluster.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.datageneration.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.distmatrix.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.expressions.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.exttool.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.itemset.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.jep.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.jep.source.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.jfreechart.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.libsvm.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.lucene.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.md.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.perl.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.svg.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.webservice.client.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.webservice.client.ppilot.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.externals.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.jpmml.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.js.quickforms.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.js.views.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.json.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.json.source.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.mongodb.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.neighborgram.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.network.distmatrix.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.network.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.optimization.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.personalproductivity.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.python2.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.python2.source.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.r.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.rest.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.scm.git.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.sdk.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.semanticweb.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.virtual.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.wizard.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.xml.feature.group" version="0.0.0"/>
+<unit id="org.knime.product.desktop" version="0.0.0"/>
+<unit id="org.knime.product.desktop.feature.group" version="0.0.0"/>
+<unit id="org.knime.targetPlatform.feature.group" version="0.0.0"/>
+<repository location="http://update.knime.com/analytics-platform/3.6"/>
 </location>
 </locations>
 </target>

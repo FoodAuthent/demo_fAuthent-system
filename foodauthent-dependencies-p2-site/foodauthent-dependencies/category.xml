@@ -75,6 +75,12 @@
    <feature id="org.knime.features.json.source" version="0.0.0">
       <category name="org.knime.platform"/>
    </feature>
+   <feature id="org.knime.features.ext.jep" version="0.0.0">
+      <category name="org.knime.platform"/>
+   </feature>
+   <feature id="org.knime.features.ext.jep.source" version="0.0.0">
+      <category name="org.knime.platform"/>
+   </feature>
    <feature id="org.knime.features.base.source" version="0.0.0">
       <category name="org.knime.platform"/>
    </feature>
