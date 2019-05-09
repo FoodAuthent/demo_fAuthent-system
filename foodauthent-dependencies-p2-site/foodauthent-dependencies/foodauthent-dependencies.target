@@ -58,6 +58,8 @@
 <unit id="org.knime.features.js.views.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.json.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.json.source.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.jep.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.jep.source.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.mongodb.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.neighborgram.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.network.distmatrix.feature.group" version="0.0.0"/>
