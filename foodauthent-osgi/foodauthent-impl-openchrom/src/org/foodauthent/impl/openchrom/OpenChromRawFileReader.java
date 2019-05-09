@@ -13,7 +13,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.eclipse.chemclipse.nmr.converter.core.ScanConverterNMR;
-import org.eclipse.chemclipse.nmr.model.core.IMeasurementNMR;
 import org.eclipse.chemclipse.processing.core.IProcessingInfo;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.foodauthent.api.internal.filereader.RawFileReader;
@@ -103,17 +102,6 @@ public class OpenChromRawFileReader implements RawFileReader {
 		if (processingInfo == null) {
 			if (logger.isErrorEnabled()) {
 				logger.error("Processing failed");
-			}
-		} else {
-			Object processingResult = processingInfo.getProcessingResult();
-			// System.err.println(processingResult.getClass());
-			if (processingResult instanceof IMeasurementNMR) {
-				IMeasurementNMR scan = (IMeasurementNMR) processingResult;
-				result.putAll(scan.getHeaderDataMap());
-			} else {
-				if (logger.isErrorEnabled()) {
-					logger.error("Processing failed");
-				}
 			}
 		}
 		return result;
