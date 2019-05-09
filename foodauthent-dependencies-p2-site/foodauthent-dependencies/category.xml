@@ -180,17 +180,17 @@
    <feature id="com.google.feature" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
-   <feature id="org.eclipse.jdt.junit5.runtime.feature" version="0.0.0">
+   <feature id="org.junit5.feature" version="0.0.0">
       <category name="org.foodauthent.maven"/>
-   </feature>
-   <feature id="net.openchrom.xxd.process.supplier.knime.feature" version="0.0.0">
-      <category name="net.openchrom"/>
    </feature>
    <feature id="de.unirostock.sems.feature" version="0.0.0">
       <category name="org.foodauthent.maven"/>
    </feature>
    <feature id="de.unirostock.sems.feature.source" version="0.0.0">
       <category name="org.foodauthent.maven"/>
+   </feature>
+   <feature url="features/net.openchrom.knime.node.nmr.feature_1.1.3.201905021825.jar" id="net.openchrom.knime.node.nmr.feature" version="0.0.0">
+      <category name="net.openchrom"/>
    </feature>
    <category-def name="org.foodauthent.custom" label="FoodAuthent Custom Dependencies"/>
    <category-def name="org.foodauthent.maven" label="FoodAuthent Maven Dependencies"/>
