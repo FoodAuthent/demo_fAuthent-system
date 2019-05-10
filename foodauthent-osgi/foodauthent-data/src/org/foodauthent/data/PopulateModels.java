@@ -2,17 +2,16 @@ package org.foodauthent.data;
 
 import static java.util.Arrays.asList;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.foodauthent.rest.client.FASystemClient.files;
-import static org.foodauthent.rest.client.FASystemClient.fingerprints;
-import static org.foodauthent.rest.client.FASystemClient.handleResp;
-import static org.foodauthent.rest.client.FASystemClient.products;
-import static org.foodauthent.rest.client.FASystemClient.samples;
-import static org.foodauthent.rest.client.FASystemClient.uploadFileData;
-import static org.foodauthent.rest.client.FASystemClient.workflows;
+import static org.foodauthent.rest.client.FASystemClientUtil.files;
+import static org.foodauthent.rest.client.FASystemClientUtil.fingerprints;
+import static org.foodauthent.rest.client.FASystemClientUtil.handleResp;
+import static org.foodauthent.rest.client.FASystemClientUtil.products;
+import static org.foodauthent.rest.client.FASystemClientUtil.samples;
+import static org.foodauthent.rest.client.FASystemClientUtil.uploadFileData;
+import static org.foodauthent.rest.client.FASystemClientUtil.workflows;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -51,21 +50,21 @@ public class PopulateModels {
      * @param fingerprints
      * @return the new fa-ids in the same order as the provided fingerprints
      */
-    public static List<UUID> populateFingerprints(List<Fingerprint> fingerprints) {
-	return fingerprints.stream().map(f -> fingerprints().createFingerprint(f).readEntity(UUID.class))
+    public static List<UUID> populateFingerprints(List<Fingerprint> fingerprints, FASystemClient c) {
+	return fingerprints.stream().map(f -> fingerprints(c).createFingerprint(f).readEntity(UUID.class))
 		.collect(Collectors.toList());
     }
     
-    public static List<UUID> populateFingerprintSets(List<FingerprintSet> fingerprintSets) {
-	return fingerprintSets.stream().map(f -> fingerprints().createFingerprintSet(f).readEntity(UUID.class))
+    public static List<UUID> populateFingerprintSets(List<FingerprintSet> fingerprintSets, FASystemClient c) {
+	return fingerprintSets.stream().map(f -> fingerprints(c).createFingerprintSet(f).readEntity(UUID.class))
 		.collect(Collectors.toList());
     }
     
-    public static List<UUID> populateRandomProducts(int numProducts) {
+    public static List<UUID> populateRandomProducts(int numProducts, FASystemClient c) {
 	return IntStream.range(0, numProducts).mapToObj(i -> {
 	    Product p = Product.builder().setBrand(randomAlphabetic(5)).setGtin(randomAlphabetic(5))
 		    .setComment(randomAlphabetic(5)).setCompanyName(randomAlphabetic(5)).build();
-	    return products().createProduct(p).readEntity(UUID.class);
+	    return products(c).createProduct(p).readEntity(UUID.class);
 	}).collect(Collectors.toList());
     }
     
@@ -74,8 +73,8 @@ public class PopulateModels {
      * @param products
      * @return the new fa-ids in the same order as the provided products
      */
-    public static List<UUID> populateProducts(List<Product> products) {
-	return products.stream().map(p -> products().createProduct(p).readEntity(UUID.class))
+    public static List<UUID> populateProducts(List<Product> products, FASystemClient c) {
+	return products.stream().map(p -> products(c).createProduct(p).readEntity(UUID.class))
 		.collect(Collectors.toList());
     }
     
@@ -83,11 +82,11 @@ public class PopulateModels {
      * @param  samples
      * @return the new fa-ids in the same order as the provided samples 
      */
-    public static List<UUID> populateSamples(List<Sample> samples) {
-	return samples.stream().map(s -> samples().createSample(s).readEntity(UUID.class)).collect(Collectors.toList());
+    public static List<UUID> populateSamples(List<Sample> samples, FASystemClient c) {
+	return samples.stream().map(s -> samples(c).createSample(s).readEntity(UUID.class)).collect(Collectors.toList());
     }
    
-    public static UUID populateTrainingWorkflowOpenChromRandomForest() {
+    public static UUID populateTrainingWorkflowOpenChromRandomForest(FASystemClient c) {
 	String workflowName = "TrainingWorkflow_OpenChrom_RandomForest";
 	String workflowDesc = "Training workflow that uses OpenChrom to read and preprocess the signals and a random forest to learn the model.";
 	
@@ -96,8 +95,8 @@ public class PopulateModels {
 		.setDate(LocalDate.now())
 		.setDescription(workflowDesc)
 		.setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW).setVersion(0).build();
-	       UUID fileId = files().createFileMetadata(fileMeta).readEntity(UUID.class);
-        uploadFileData(fileId, new File("files/workflows/TrainingWorkflow_OpenChrom_RandomForest.knwf"));
+	       UUID fileId = files(c).createFileMetadata(fileMeta).readEntity(UUID.class);
+        uploadFileData(fileId, new File("files/workflows/TrainingWorkflow_OpenChrom_RandomForest.knwf"), c);
 	
 	// upload workflow metadata
 	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("binning_min_ppm").setRequired(true)
@@ -118,10 +117,10 @@ public class PopulateModels {
 		.setFileId(fileId)
 		.build();
 	
-	return workflows().createWorkflow(wf).readEntity(UUID.class);
+	return workflows(c).createWorkflow(wf).readEntity(UUID.class);
     }
     
-    public static UUID populatePredictionWorkflowOpenChromRandomForest() {
+    public static UUID populatePredictionWorkflowOpenChromRandomForest(FASystemClient c) {
 	String workflowName = "PredictionWorkflow_OpenChrom_RandomForest";
 	String workflowDesc = "Prediction workflow that uses OpenChrom to read and preprocess the signals and a random forest for the actual prediction.";
 	
@@ -130,8 +129,8 @@ public class PopulateModels {
 		.setDate(LocalDate.now())
 		.setDescription(workflowDesc)
 		.setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW).setVersion(0).build();
-	       UUID fileId = files().createFileMetadata(fileMeta).readEntity(UUID.class);
-        uploadFileData(fileId, new File("files/workflows/PredictionWorkflow_OpenChrom_RandomForest.knwf"));
+	       UUID fileId = files(c).createFileMetadata(fileMeta).readEntity(UUID.class);
+        uploadFileData(fileId, new File("files/workflows/PredictionWorkflow_OpenChrom_RandomForest.knwf"), c);
 	
 	// upload workflow metadata
 	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("binning_min_ppm").setRequired(true)
@@ -150,16 +149,16 @@ public class PopulateModels {
 		.setFileId(fileId)
 		.build();
 	
-	return workflows().createWorkflow(wf).readEntity(UUID.class);
+	return workflows(c).createWorkflow(wf).readEntity(UUID.class);
     }
     
-    public static UUID train(UUID workflowId, List<UUID> fingerprintsetIds) {
-	return handleResp(workflows().createTrainingJob(workflowId, fingerprintsetIds, false), TrainingJob.class)
+    public static UUID train(UUID workflowId, List<UUID> fingerprintsetIds, FASystemClient c) {
+	return handleResp(workflows(c).createTrainingJob(workflowId, fingerprintsetIds, false), TrainingJob.class)
 		.getModelId();
     }
 
-    public static UUID predict(UUID workflowId, UUID fingerprintsetId, UUID modelId) {
-	return handleResp(workflows().createPredictionJob(workflowId, fingerprintsetId, modelId, false),
+    public static UUID predict(UUID workflowId, UUID fingerprintsetId, UUID modelId, FASystemClient c) {
+	return handleResp(workflows(c).createPredictionJob(workflowId, fingerprintsetId, modelId, false),
 		PredictionJob.class).getPredictionId();
     }
 

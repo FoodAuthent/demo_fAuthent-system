@@ -1,7 +1,7 @@
 package org.foodauthent.test;
 
-import static org.foodauthent.rest.client.FASystemClient.entities;
-import static org.foodauthent.rest.client.FASystemClient.sops;
+import static org.foodauthent.rest.client.FASystemClientUtil.entities;
+import static org.foodauthent.rest.client.FASystemClientUtil.sops;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
 import org.foodauthent.model.SOP;
 import org.foodauthent.model.SOPPageResult;
 import org.foodauthent.rest.api.service.SopRestService;
-import org.foodauthent.rest.client.FASystemClient;
+import org.foodauthent.rest.client.FASystemClientUtil;
 import org.junit.Test;
 
 /**
@@ -29,12 +29,12 @@ public class SopServiceTest extends AbstractITTest {
     
     @Test
     public void testFindSOPsByKeywords() {
-	SopRestService s = sops();
+	SopRestService s = sops(client());
 	
 	// remove all sops first
 	List<SOP> allSops = s.findSOPByKeyword(1, Integer.MAX_VALUE, Collections.emptyList())
 		.readEntity(SOPPageResult.class).getResults();
-	allSops.forEach(sop -> entities().removeEntity(sop.getFaId()));
+	allSops.forEach(sop -> entities(client()).removeEntity(sop.getFaId()));
 	
 	//test what happens when there are no sops
 	SOPPageResult sopPage = s.findSOPByKeyword(1, 10, null).readEntity(SOPPageResult.class);

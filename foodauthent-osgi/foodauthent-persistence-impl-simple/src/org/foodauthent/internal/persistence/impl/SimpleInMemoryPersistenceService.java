@@ -147,7 +147,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 	private static boolean containsKeywords(String[][] keywordSuperSet, Collection<String> propertyValues) {
 		for (String[] keywords : keywordSuperSet) {
 			if (!stream(keywords).map(String::toLowerCase)
-					.anyMatch(k -> propertyValues.stream().anyMatch(p -> p.contains(k)))) {
+					.anyMatch(k -> propertyValues.stream().anyMatch(p -> (p != null ? p.contains(k) : false)))) {
 				return false;
 			}
 		}
