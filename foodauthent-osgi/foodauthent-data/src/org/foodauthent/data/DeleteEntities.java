@@ -90,7 +90,9 @@ public class DeleteEntities {
 		.getResults();
 	models.forEach(m -> {
 	    entities().removeEntity(m.getFaId());
-	    files().removeFileMetadataAndData(m.getFileId());
+	    if (m.getFileId() != null) {
+		files().removeFileMetadataAndData(m.getFileId());
+	    }
 	});
     }
    

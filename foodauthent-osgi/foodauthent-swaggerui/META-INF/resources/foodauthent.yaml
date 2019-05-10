@@ -2570,7 +2570,13 @@ components:
             The map key is the fingerprint-id. 
           type: object
           additionalProperties:
-            $ref: "#/components/schemas/PredictionInstance"
+            description: map from class label to probability
+            type: object
+            additionalProperties:
+              type: number
+              format: float
+              maximum: 1
+              minimum: 0
         workflow-id:
           description: Workflow used for the prediction.
           type: string
@@ -2586,29 +2592,7 @@ components:
           type: string
           format: uuid
           example: ''
-        class-labels:
-          description: available class labels
-          type: array
-          items:
-            type: string
     
-    PredictionInstance:
-      x-no-faid: true
-      description: One particular prediction for a fingerprint.
-      type: object
-      properties:
-        class-label:
-          description: the predicted class
-          type: string
-        probabilities:
-          description: the probability distribution over all classes
-          type: array
-          items:
-            type: number
-            format: float
-            maximum: 1
-            minimum: 0
-          
     PredictionJob:
       description: Represents prediction job.
       type: object
@@ -2708,7 +2692,13 @@ components:
             The map key is the fingerprint-id. 
           type: object
           additionalProperties:
-            $ref: "#/components/schemas/PredictionInstance"
+            description: map from class label to probability
+            type: object
+            additionalProperties:
+              type: number
+              format: float
+              maximum: 1
+              minimum: 0
 
     Product:
       description: >-

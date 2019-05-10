@@ -3,7 +3,6 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.PredictionInstance;
 
 import java.util.UUID;
 
@@ -49,7 +48,7 @@ public interface PredictionMixIn {
     public java.util.UUID getFaId();
     
     @JsonProperty("prediction-map")
-    public java.util.Map<String, PredictionInstance> getPredictionMap();
+    public java.util.Map<String, java.util.Map<String, Float>> getPredictionMap();
     
     @JsonProperty("workflow-id")
     public java.util.UUID getWorkflowId();
@@ -59,9 +58,6 @@ public interface PredictionMixIn {
     
     @JsonProperty("model-id")
     public java.util.UUID getModelId();
-    
-    @JsonProperty("class-labels")
-    public java.util.List<String> getClassLabels();
     
 
     /**
@@ -86,7 +82,7 @@ public interface PredictionMixIn {
         public PredictionMixInBuilder setFaId(final java.util.UUID faId);
         
         @JsonProperty("prediction-map")
-        public PredictionMixInBuilder setPredictionMap(final java.util.Map<String, PredictionInstance> predictionMap);
+        public PredictionMixInBuilder setPredictionMap(final java.util.Map<String, java.util.Map<String, Float>> predictionMap);
         
         @JsonProperty("workflow-id")
         public PredictionMixInBuilder setWorkflowId(final java.util.UUID workflowId);
@@ -96,9 +92,6 @@ public interface PredictionMixIn {
         
         @JsonProperty("model-id")
         public PredictionMixInBuilder setModelId(final java.util.UUID modelId);
-        
-        @JsonProperty("class-labels")
-        public PredictionMixInBuilder setClassLabels(final java.util.List<String> classLabels);
         
     }
 

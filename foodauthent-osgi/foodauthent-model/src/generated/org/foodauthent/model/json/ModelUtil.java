@@ -74,8 +74,6 @@ public class ModelUtil {
         mapper.addMixIn(OrganizationalPostalAddress.OrganizationalPostalAddressBuilder.class, OrganizationalPostalAddressMixIn.OrganizationalPostalAddressMixInBuilder.class);
         mapper.addMixIn(PostalAddress.class, PostalAddressMixIn.class);
         mapper.addMixIn(PostalAddress.PostalAddressBuilder.class, PostalAddressMixIn.PostalAddressMixInBuilder.class);
-        mapper.addMixIn(PredictionInstance.class, PredictionInstanceMixIn.class);
-        mapper.addMixIn(PredictionInstance.PredictionInstanceBuilder.class, PredictionInstanceMixIn.PredictionInstanceMixInBuilder.class);
         mapper.addMixIn(PredictionJob.class, PredictionJobMixIn.class);
         mapper.addMixIn(PredictionJob.PredictionJobBuilder.class, PredictionJobMixIn.PredictionJobMixInBuilder.class);
         mapper.addMixIn(PredictionJobPageResult.class, PredictionJobPageResultMixIn.class);

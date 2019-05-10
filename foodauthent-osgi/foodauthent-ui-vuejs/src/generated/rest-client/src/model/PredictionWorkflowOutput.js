@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/PredictionInstance'], factory);
+    define(['../ApiClient'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./PredictionInstance'));
+    module.exports = factory(require('../ApiClient'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.PredictionWorkflowOutput = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.PredictionInstance);
+    root.FoodAuthentSwaggerApi.PredictionWorkflowOutput = factory(root.FoodAuthentSwaggerApi.ApiClient);
   }
-}(this, function(ApiClient, PredictionInstance) {
+}(this, function(ApiClient) {
   'use strict';
 
 
@@ -69,7 +69,7 @@
 
   /**
    * The predictions for each individual fingerprint. The map key is the fingerprint-id.
-   * @member {Object.<String, module:model/PredictionInstance>} prediction-map
+   * @member {Object.<String, Object.<String, Number>>} prediction-map
    */
   exports.prototype['prediction-map'] = undefined;
 

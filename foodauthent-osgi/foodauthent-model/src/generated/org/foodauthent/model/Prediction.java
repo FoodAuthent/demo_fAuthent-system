@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.foodauthent.model.PredictionInstance;
 
 
 
@@ -24,11 +23,10 @@ public class Prediction   extends FaModel {
 
 
   protected java.util.UUID faId;
-  protected java.util.Map<String, PredictionInstance> predictionMap;
+  protected java.util.Map<String, java.util.Map<String, Float>> predictionMap;
   protected java.util.UUID workflowId;
   protected java.util.UUID fingerprintsetId;
   protected java.util.UUID modelId;
-  protected java.util.List<String> classLabels;
   
   public String getTypeID() {
     return "Prediction";
@@ -45,7 +43,6 @@ public class Prediction   extends FaModel {
     workflowId = immutable(builder.workflowId);
     fingerprintsetId = immutable(builder.fingerprintsetId);
     modelId = immutable(builder.modelId);
-    classLabels = immutable(builder.classLabels);
     
     faId = generateFaIdIfMissing(faId);
     
@@ -66,7 +63,7 @@ public class Prediction   extends FaModel {
             return false;
         }
         Prediction ent = (Prediction)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(predictionMap, ent.predictionMap) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetId, ent.fingerprintsetId) && Objects.equals(modelId, ent.modelId) && Objects.equals(classLabels, ent.classLabels);
+        return Objects.equals(faId, ent.faId) && Objects.equals(predictionMap, ent.predictionMap) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetId, ent.fingerprintsetId) && Objects.equals(modelId, ent.modelId);
     }
 
 
@@ -82,7 +79,7 @@ public class Prediction   extends FaModel {
    * The predictions for each individual fingerprint. The map key is the fingerprint-id.
    * @return predictionMap 
    */
-  public java.util.Map<String, PredictionInstance> getPredictionMap() {
+  public java.util.Map<String, java.util.Map<String, Float>> getPredictionMap() {
         return predictionMap;
     }
     
@@ -110,14 +107,6 @@ public class Prediction   extends FaModel {
         return modelId;
     }
     
-  /**
-   * available class labels
-   * @return classLabels 
-   */
-  public java.util.List<String> getClassLabels() {
-        return classLabels;
-    }
-    
   
  	/**
   	 * @return a newly created builder
@@ -141,7 +130,6 @@ public class Prediction   extends FaModel {
         builder.workflowId = entity.workflowId;
         builder.fingerprintsetId = entity.fingerprintsetId;
         builder.modelId = entity.modelId;
-        builder.classLabels = entity.classLabels;
  		return builder;
   	}
   	
@@ -153,11 +141,10 @@ public class Prediction   extends FaModel {
         }
     
         private java.util.UUID faId;
-        private java.util.Map<String, PredictionInstance> predictionMap = new java.util.HashMap<>();
+        private java.util.Map<String, java.util.Map<String, Float>> predictionMap = new java.util.HashMap<>();
         private java.util.UUID workflowId;
         private java.util.UUID fingerprintsetId;
         private java.util.UUID modelId;
-        private java.util.List<String> classLabels = new java.util.ArrayList<>();
 
         /**
          * A global id within the FoodAuthent-system.
@@ -172,7 +159,7 @@ public class Prediction   extends FaModel {
          * The predictions for each individual fingerprint. The map key is the fingerprint-id.
          * @return predictionMap 
          */
-        public PredictionBuilder setPredictionMap(java.util.Map<String, PredictionInstance> predictionMap) {
+        public PredictionBuilder setPredictionMap(java.util.Map<String, java.util.Map<String, Float>> predictionMap) {
              this.predictionMap = predictionMap;
              return this;
         }
@@ -201,15 +188,6 @@ public class Prediction   extends FaModel {
          */
         public PredictionBuilder setModelId(java.util.UUID modelId) {
              this.modelId = modelId;
-             return this;
-        }
-
-        /**
-         * available class labels
-         * @return classLabels 
-         */
-        public PredictionBuilder setClassLabels(java.util.List<String> classLabels) {
-             this.classLabels = classLabels;
              return this;
         }
 

@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -154,7 +155,6 @@ public class LocalKnimeJobService implements JobService {
 					}
 					Prediction prediction = Prediction.builder().setFingerprintsetId(fingerprintSet.getFaId())
 							.setWorkflowId(workflow.getFaId()).setModelId(model.getFaId())
-							.setClassLabels(model.getClassLabels())
 							.setPredictionMap(predictionOutput.getPredictionMap()).build();
 					persistenceService.save(prediction);
 
@@ -242,10 +242,16 @@ public class LocalKnimeJobService implements JobService {
 					}
 
 					String modelUri = trainingOutput.getModelUri();
-					UUID modelFileId;
+					UUID modelFileId = null;
 					String modelName = "generated model by " + workflow.getName();
-					File modelFile = new File(modelUri);
-					if(modelFile.exists()) {
+					File modelFile = null;
+					try {
+						modelFile = new File(new URI(modelUri));
+					} catch (URISyntaxException e1) {
+						LOGGER.warn(
+								"workflow '" + workflow.getName() + "' didn't return a valid model URL: " + modelUri);
+					}
+					if(modelFile != null && modelFile.exists()) {
 						FileMetadata fileMeta = FileMetadata.builder().setName(modelName).setType(TypeEnum.KNIME_MODEL).build();
 						modelFileId = fileMeta.getFaId();
 						persistenceService.save(fileMeta);
@@ -258,8 +264,6 @@ public class LocalKnimeJobService implements JobService {
 						}
 					} else {
 						LOGGER.warn("workflow '" + workflow.getName() + "' didn't output a model file");
-						//TODO remove
-						modelFileId = UUID.randomUUID();
 					}
 
 					// store new model (metadata and file) to the data base

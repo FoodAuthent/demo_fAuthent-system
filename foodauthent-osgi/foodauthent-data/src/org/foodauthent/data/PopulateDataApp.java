@@ -13,10 +13,9 @@ import static org.foodauthent.data.PopulateFiles.populateFileMetadata;
 import static org.foodauthent.data.PopulateFiles.populateFiles;
 import static org.foodauthent.data.PopulateModels.populateFingerprintSets;
 import static org.foodauthent.data.PopulateModels.populateFingerprints;
+import static org.foodauthent.data.PopulateModels.populatePredictionWorkflowOpenChromRandomForest;
 import static org.foodauthent.data.PopulateModels.populateProducts;
 import static org.foodauthent.data.PopulateModels.populateSamples;
-import static org.foodauthent.data.PopulateModels.populateTestPedictionWorkflow;
-import static org.foodauthent.data.PopulateModels.populateTestTrainingWorkflow;
 import static org.foodauthent.data.PopulateModels.populateTrainingWorkflowOpenChromRandomForest;
 import static org.foodauthent.data.PopulateModels.predict;
 import static org.foodauthent.data.PopulateModels.train;
@@ -64,11 +63,11 @@ public class PopulateDataApp {
 	// log(info().getInfo().readEntity(SystemInfo.class));
 
 	List<UUID> trainingwfIds = doitWithRes("Populate training workflows", () -> {
-	    return asList(populateTestTrainingWorkflow(), populateTrainingWorkflowOpenChromRandomForest());
+	    return asList(populateTrainingWorkflowOpenChromRandomForest());
 	});
 
 	List<UUID> predictionwfIds = doitWithRes("Populate prediction workflows", () -> {
-	    return asList(populateTestPedictionWorkflow());
+	    return asList(populatePredictionWorkflowOpenChromRandomForest());
 	});
 
 	doit("Populate products", () -> {
@@ -96,29 +95,35 @@ public class PopulateDataApp {
 	});
 
 	List<UUID> modelIds = doitWithRes("Train models", () -> {
-	    return asList(train(trainingwfIds.get(0), asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1))),
-		    train(trainingwfIds.get(1), asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1))));
+	    return asList(train(trainingwfIds.get(0),
+		    asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1), fingerprintsetIds.get(2))));
 	});
 	doit("Run predictions", () -> {
 	    predict(predictionwfIds.get(0), fingerprintsetIds.get(0), modelIds.get(0));
+	    predict(predictionwfIds.get(0), fingerprintsetIds.get(5), modelIds.get(0));
+	    predict(predictionwfIds.get(0), fingerprintsetIds.get(6), modelIds.get(0));
 	});
 
 	log("System Info");
 	log(info().getInfo().readEntity(SystemInfo.class));
     }
 
-    private static SimpleDateFormat sdf = new SimpleDateFormat("DD/MM/YYYY hh:mm:ss");
+    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     private static void doit(String message, Runnable op) {
-	System.out.print(sdf.format(new Date(System.currentTimeMillis())) + "  " + message + " ... ");
+	long start = System.currentTimeMillis();
+	System.out.print(sdf.format(new Date(start)) + "  " + message + " ... ");
 	op.run();
-	System.out.println("done");
+	long end = System.currentTimeMillis();
+	System.out.println("done (" + (end - start) / 1000 + " sec)");
     }
 
     private static <T> T doitWithRes(String message, Supplier<T> op) {
-	System.out.print(sdf.format(new Date(System.currentTimeMillis())) + "  " + message + " ... ");
+	long start = System.currentTimeMillis();
+	System.out.print(sdf.format(new Date(start)) + "  " + message + " ... ");
 	T res = op.get();
-	System.out.println("done");
+	long end = System.currentTimeMillis();
+	System.out.println("done (" + (end - start) / 1000 + " sec)");
 	return res;
     }
 

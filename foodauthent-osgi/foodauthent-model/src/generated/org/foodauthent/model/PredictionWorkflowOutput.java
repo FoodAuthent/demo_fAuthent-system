@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.foodauthent.model.PredictionInstance;
 
 
 
@@ -23,7 +22,7 @@ import org.foodauthent.model.PredictionInstance;
 public class PredictionWorkflowOutput   extends FaModel {
 
 
-  protected java.util.Map<String, PredictionInstance> predictionMap;
+  protected java.util.Map<String, java.util.Map<String, Float>> predictionMap;
   
   public String getTypeID() {
     return "PredictionWorkflowOutput";
@@ -67,7 +66,7 @@ public class PredictionWorkflowOutput   extends FaModel {
    * The predictions for each individual fingerprint. The map key is the fingerprint-id.
    * @return predictionMap 
    */
-  public java.util.Map<String, PredictionInstance> getPredictionMap() {
+  public java.util.Map<String, java.util.Map<String, Float>> getPredictionMap() {
         return predictionMap;
     }
     
@@ -100,13 +99,13 @@ public class PredictionWorkflowOutput   extends FaModel {
             
         }
     
-        private java.util.Map<String, PredictionInstance> predictionMap = new java.util.HashMap<>();
+        private java.util.Map<String, java.util.Map<String, Float>> predictionMap = new java.util.HashMap<>();
 
         /**
          * The predictions for each individual fingerprint. The map key is the fingerprint-id.
          * @return predictionMap 
          */
-        public PredictionWorkflowOutputBuilder setPredictionMap(java.util.Map<String, PredictionInstance> predictionMap) {
+        public PredictionWorkflowOutputBuilder setPredictionMap(java.util.Map<String, java.util.Map<String, Float>> predictionMap) {
              this.predictionMap = predictionMap;
              return this;
         }
