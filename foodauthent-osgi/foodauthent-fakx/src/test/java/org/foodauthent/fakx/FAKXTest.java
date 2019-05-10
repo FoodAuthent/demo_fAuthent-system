@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import org.foodauthent.model.*;
+import org.foodauthent.model.FileMetadata.ContentTypeEnum;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -79,7 +80,7 @@ public class FAKXTest {
 
 	private static FileMetadata createFileMetadata() {
 		return FileMetadata.builder().setFaId(UUID.randomUUID()).setType(FileMetadata.TypeEnum.FINGERPRINT_BRUKER)
-				.setName("name").setContentType("contentType").setUploadName("uploadName").setDescription("description")
+				.setName("name").setContentType(ContentTypeEnum.OCTET_STREAM).setUploadName("uploadName").setDescription("description")
 				.setAuthor("author").setDate(LocalDate.now()).setUploadDate(LocalDate.now()).setVersion(0).build();
 	}
 

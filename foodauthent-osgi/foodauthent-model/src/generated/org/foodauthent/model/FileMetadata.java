@@ -53,11 +53,32 @@ public class FileMetadata   extends FaModel {
 
   }
 
+  /**
+   * file content type
+   */
+  public static enum ContentTypeEnum {
+    ZIP("application/zip"),
+    
+    OCTET_STREAM("application/octet-stream");
+
+    private String value;
+
+    ContentTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+  }
+
 
   protected java.util.UUID faId;
   protected TypeEnum type;
   protected String name;
-  protected String contentType;
+  protected ContentTypeEnum contentType;
   protected String uploadName;
   protected String description;
   protected String author;
@@ -139,7 +160,7 @@ public class FileMetadata   extends FaModel {
    * file content type
    * @return contentType 
    */
-  public String getContentType() {
+  public ContentTypeEnum getContentType() {
         return contentType;
     }
     
@@ -241,7 +262,7 @@ public class FileMetadata   extends FaModel {
         private java.util.UUID faId;
         private TypeEnum type;
         private String name;
-        private String contentType;
+        private ContentTypeEnum contentType;
         private String uploadName;
         private String description;
         private String author;
@@ -281,7 +302,7 @@ public class FileMetadata   extends FaModel {
          * file content type
          * @return contentType 
          */
-        public FileMetadataBuilder setContentType(String contentType) {
+        public FileMetadataBuilder setContentType(ContentTypeEnum contentType) {
              this.contentType = contentType;
              return this;
         }

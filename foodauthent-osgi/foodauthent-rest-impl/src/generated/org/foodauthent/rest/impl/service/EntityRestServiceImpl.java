@@ -3,13 +3,20 @@
  */
 package org.foodauthent.rest.impl.service;
 
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-import org.foodauthent.api.EntityService;
-import org.foodauthent.rest.api.service.EntityRestService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+
+
+import org.foodauthent.api.EntityService;
+import org.foodauthent.api.ServiceRegistry;
+
+import org.foodauthent.rest.api.service.EntityRestService;
+
+import org.foodauthent.common.exception.FAExceptions;
 
 /**
  * FoodAuthent Swagger API

@@ -86,8 +86,9 @@ public interface PersistenceService {
      * @param uuid
      * @param modelType
      * @return
+     * @throws NoSuchElementException if no model for the given id and type can be found
      */
-    <T extends FaModel> T getFaModelByUUID(UUID uuid, Class<T> modelType);
+    <T extends FaModel> T getFaModelByUUID(UUID uuid, Class<T> modelType) throws NoSuchElementException;
     
     /**
      * @param uuid
@@ -130,9 +131,10 @@ public interface PersistenceService {
      * 
      * @param uuid
      * @return
+     * @throws NoSuchElementException if there is no blob for the given id
      */
     //TODO rename to getFileByUUID??
-    Blob getBlobByUUID(UUID uuid);
+    Blob getBlobByUUID(UUID uuid) throws NoSuchElementException;
     
     /**
      * Saves an entity represented by a {@link JsonNode} and a type id

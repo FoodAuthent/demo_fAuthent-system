@@ -2073,8 +2073,10 @@ components:
           type: string
         contentType:
           description: file content type
-          example: application/zip
           type: string
+          enum:
+            - application/zip
+            - application/octet-stream
         uploadName:
           description: >-
             The name of the file as uploaded. Will be set automatically if left

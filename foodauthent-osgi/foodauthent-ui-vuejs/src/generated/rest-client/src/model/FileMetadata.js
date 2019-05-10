@@ -114,7 +114,7 @@
   exports.prototype['name'] = undefined;
   /**
    * file content type
-   * @member {String} contentType
+   * @member {module:model/FileMetadata.ContentTypeEnum} contentType
    */
   exports.prototype['contentType'] = undefined;
   /**
@@ -195,6 +195,23 @@
      * @const
      */
     "fakx": "fakx"  };
+
+  /**
+   * Allowed values for the <code>contentType</code> property.
+   * @enum {String}
+   * @readonly
+   */
+  exports.ContentTypeEnum = {
+    /**
+     * value: "application/zip"
+     * @const
+     */
+    "zip": "application/zip",
+    /**
+     * value: "application/octet-stream"
+     * @const
+     */
+    "octet-stream": "application/octet-stream"  };
 
 
   return exports;
