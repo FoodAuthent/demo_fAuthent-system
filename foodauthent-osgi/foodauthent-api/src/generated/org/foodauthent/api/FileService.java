@@ -32,11 +32,12 @@ public interface FileService {
      * Export FoodAuthent components
      *
      * @param fileType 
+     * @param fileId 
      * @param faObjectSet Specifies a set of fa-objects to be exported.
      *
      * @return the result
      */
-    File exportFile(String fileType, FaObjectSet faObjectSet);
+    File exportFile(String fileType, java.util.UUID fileId, FaObjectSet faObjectSet);
         
     /**
      * Returns the all the files metadata.

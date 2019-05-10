@@ -253,6 +253,12 @@ paths:
         required: true
         schema:
           type: string
+      - name: file-id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       requestBody:
         content:
           application/json:
@@ -1795,7 +1801,7 @@ components:
       schema:
         enum:
           - product
-          - fingerprintset
+          - sample
           - sop
     schema-id:
       name: schema-id

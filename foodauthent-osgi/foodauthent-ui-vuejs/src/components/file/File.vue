@@ -42,7 +42,7 @@ import generalForm from '@/components/general/GeneralForm';
 
 var getAllFiles = require("@/utils/fileFunction.js").default.getAllFiles;
 var importFile = require("@/utils/fileFunction.js").default.importFile;
-var exportFile = require("@/utils/fileFunction.js").default.importFile;
+var exportFile = require("@/utils/fileFunction.js").default.exportFile;
 
 import jsonschema from "@/generated/schema/filemetadata.json";
 

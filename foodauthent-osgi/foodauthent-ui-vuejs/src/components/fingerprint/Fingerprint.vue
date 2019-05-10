@@ -83,7 +83,7 @@ export default {
             perPage: 10,
             filter: null,
             model: {},
-            pageType: "fingerprintset",
+            pageType: "noType",
             schemas: schemas,
             itemsMetadata: {},
             resultsCount: 1,

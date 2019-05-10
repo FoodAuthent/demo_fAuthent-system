@@ -1,5 +1,6 @@
 package org.foodauthent.impl.file;
 
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -27,8 +28,6 @@ import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.TypeEnum;
 import org.foodauthent.model.FilePageResult;
 import org.foodauthent.model.ImportResult;
-import org.foodauthent.model.Model;
-import org.foodauthent.model.ModelPageResult;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -186,9 +185,9 @@ public class FileServiceImpl implements FileService {
 	return result;
     }
 
-    @Override
-    public File exportFile(String fileType, FaObjectSet faObjectSet) {
 
+    @Override
+    public File exportFile(String fileType, UUID fileId, FaObjectSet faObjectSet) {
 	Exporter exporter;
 	if (fileType.equals("zip")) {
 	    exporter = new ZipExporter(persistenceService);

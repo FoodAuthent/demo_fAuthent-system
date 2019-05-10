@@ -34,7 +34,7 @@
             <b-table bordered striped hover show-empty responsive :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="myRowClickHandler">
                 <template slot="actions" slot-scope="row">
                     <div class="widewidth">
-                        <b-btn size="sm" v-b-modal.modalMeta @click.stop="dowloadFile(row.item, row.index, $event.target)">
+                        <b-btn size="sm"  @click.stop="dowloadFile(row.item, row.index, $event.target)">
                             <md-icon>get_app</md-icon>
                         </b-btn>
                         <b-btn size="sm" v-b-modal.modalDelete @click.stop="showDelete(row.item, row.index, $event.target)">
@@ -74,6 +74,7 @@ var schemaIdHolder = {
 
 var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
 var deleteEntity = require("@/utils/commonFunction.js").default.deleteEntity;
+var exportFile = require("@/utils/fileFunction.js").default.exportFile;
 export default {
     props: {
         items: Array,
@@ -161,9 +162,9 @@ export default {
            dowloadFile(item, index, button) {
                let self = this;
                console.log("DWNLOAD ITEM", item);
-               if(this.pageType != 'noType'){
-               //toDO download file
-               }
+               console.log("ITEM FA-ID", item["fa-id"]);
+               console.log("ITEM TYPE", item["type"]);
+              exportFile(item["fa-id"], item["type"], self);
             },
             onFiltered(filteredItems) {
                 // Trigger pagination to update the number of buttons/pages due to filtering

@@ -13,7 +13,7 @@
 
 <!-- MODAL SEARCH -->
  <!--<b-modal :id="schema.modalId" :title="schema.modalId" size="lg">-->
-<b-modal :id="schema.idprovider" :title="schema.idprovider" size="lg" @show="loadData" @cancel="handleCancel">
+<b-modal :id="schema.idprovider" :title="schema.idprovider" size="xl" @show="loadData" @cancel="handleCancel" @ok="handleOk">
 <!-- Table -->
 <template>
 <div id="searchtable">
@@ -92,6 +92,7 @@ export default {
   methods: {
     loadData() {
       let self = this;
+      document.body.classList.add("modal-open");
       if (this.schema.idprovider == "select-product") {
         getProducts(self);
       } else if (this.schema.idprovider == "select-fingerprint") {
@@ -125,6 +126,12 @@ export default {
     },
     handleCancel() {
       this.value = "";
+    console.log("Inside hadle cancel modal");
+    document.body.classList.remove("modal-open");
+    },
+    handleOk(){
+    console.log("Inside hadle ok modal");
+    document.body.classList.remove("modal-open");
     },
     search() {
       let self = this;

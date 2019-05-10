@@ -106,16 +106,22 @@
      * Import a file
      * Export FoodAuthent components
      * @param {String} fileType 
+     * @param {String} fileId 
      * @param {module:model/FaObjectSet} faObjectSet Specifies a set of fa-objects to be exported.
      * @param {module:api/FileApi~exportFileCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
-    this.exportFile = function(fileType, faObjectSet, callback) {
+    this.exportFile = function(fileType, fileId, faObjectSet, callback) {
       var postBody = faObjectSet;
 
       // verify the required parameter 'fileType' is set
       if (fileType === undefined || fileType === null) {
         throw new Error("Missing the required parameter 'fileType' when calling exportFile");
+      }
+
+      // verify the required parameter 'fileId' is set
+      if (fileId === undefined || fileId === null) {
+        throw new Error("Missing the required parameter 'fileId' when calling exportFile");
       }
 
       // verify the required parameter 'faObjectSet' is set
@@ -125,6 +131,7 @@
 
 
       var pathParams = {
+        'file-id': fileId
       };
       var queryParams = {
         'file-type': fileType,

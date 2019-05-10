@@ -41,9 +41,12 @@ public class ZipExporterTest extends AbstractITTest {
 	// 4. Create temporary file
 	File tempFile = File.createTempFile("export", ".zip");
 	tempFile.deleteOnExit();
+	
+	//Add file UUID for the URL
+	UUID fileId = UUID.randomUUID();
 
 	// 5. Export product and SOP to temporary file
-	Response response = files().exportFile("zip", objectSet);
+	Response response = files().exportFile("zip",fileId, objectSet);
 	
 	// 6. Check response
 	assertNotNull(response);

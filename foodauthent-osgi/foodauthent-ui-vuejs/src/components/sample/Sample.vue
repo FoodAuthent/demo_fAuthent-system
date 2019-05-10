@@ -45,7 +45,6 @@ var saveSample = require("@/utils/sampleFunction.js").default.saveSample;
 import jsonschema from "@/generated/schema/sample.json";
 
 
-
 console.log(jsonschema.fields);
 
 function getFun(val) {
@@ -84,7 +83,7 @@ export default {
             perPage: 10,
             filter: null,
             model: {},
-            pageType: "noType",
+            pageType: "sample",
             schemas: schemas,
             itemsMetadata: {},
             resultsCount: 1,

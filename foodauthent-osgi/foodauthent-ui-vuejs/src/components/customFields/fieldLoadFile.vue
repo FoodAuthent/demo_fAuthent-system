@@ -57,10 +57,15 @@ export default {
     methods: {
         loadFile() {
                 let self = this;
+                console.log("Model file",self.modelFile);
+                if (typeof self.modelFile !== 'undefined' || self.modelFile != null){
                 createFileMetadata(JSON.stringify(self.modelFile, undefined, 4), self.file, self);
+                }
+                document.body.classList.remove("modal-open");
             },
             handleCancel() {
                 this.value = "";
+                document.body.classList.remove("modal-open");
             }
     },
     computed: {}

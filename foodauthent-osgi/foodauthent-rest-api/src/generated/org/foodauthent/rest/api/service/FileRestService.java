@@ -48,6 +48,7 @@ public interface FileRestService{
      * Export FoodAuthent components
      *
      * @param fileType 
+     * @param fileId 
      * @param faObjectSet Specifies a set of fa-objects to be exported.
      * @return the response
      */
@@ -56,6 +57,7 @@ public interface FileRestService{
     @Consumes({ "application/json" })
     @Produces({ "application/binary" })
     public Response exportFile(@QueryParam("file-type")String fileType
+, @PathParam("file-id") java.util.UUID fileId
 , FaObjectSet faObjectSet
 );
 

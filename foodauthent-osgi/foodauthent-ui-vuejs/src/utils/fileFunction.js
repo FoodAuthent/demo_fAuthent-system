@@ -151,23 +151,43 @@ var MyObject = function () {
 	    );
 	  };
 	  
-	  var exportFile = function (varFileId, self) {
+	  var  forceFileDownload = function (data){
+    	  console.log("forceFileDownload");
+	      const url = window.URL.createObjectURL(new Blob([data]))
+	      const link = document.createElement('a')
+	      link.href = url
+	      link.setAttribute('download', 'file.zip') //or any other extension
+	      document.body.appendChild(link)
+	      link.click();
+};
+	  
+	  var exportFile = function (varFileId, type, self) {
 			setUpApi();
-		    console.log('Upload file');
+		    console.log('Export file');
 		    var callback = function (error, data, response) {
-		      console.log("ImportFile data:", data);
-		      console.log("ImportFile response:", response);
+		      console.log("exportFile data:", data);
+		      console.log("exportFile response:", response);
 		      if (error) {
 		        console.error(error);
 		      } else {
 		        self.value = data;
-		        console.log("Import file API called successfully. Returned data: ", data);
+		        console.log("Export file API called successfully. Returned data: ", data);
+		        forceFileDownload(data);
 		      }
 		    };
-		    var fileType = varFileId;
-		    var faObjectSet = "";
-		    fileApi.importFile(
+		    var fileType = type;
+		    var fileId = varFileId;
+		    var faObjectSet = {
+		    		  "sops": [
+		    			    "eb89253a-6920-4efd-bad4-18409d91e06e"
+		    			  ],
+		    			  "products": [
+		    			    "aec414db-7d17-4d55-995e-dc6383df90e5"
+		    			  ]
+		    			};
+		    fileApi.exportFile(
 		    	fileType,
+		    	fileId,
 		    	faObjectSet,
 		      callback
 		    );
