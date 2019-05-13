@@ -8,11 +8,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -26,6 +28,7 @@ import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.common.exception.FAExceptions.InitJobException;
 import org.foodauthent.internal.impl.job.knime.KnimeExecutor.LoadingFailedException;
 import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.FileMetadata.ContentTypeEnum;
 import org.foodauthent.model.FileMetadata.TypeEnum;
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
@@ -89,6 +92,14 @@ public class LocalKnimeJobService implements JobService {
 		if (workflow.getRepresentation() != RepresentationEnum.KNIME) {
 			throw new InitJobException("Referenced workflow is not a knime workflow");
 		}
+		
+		// check whether the model is compatible with the workflow
+		if (!workflow.getInputTypes().getModelType().getName().toString()
+				.equals(model.getType().getName().toString())) {
+			throw new InitJobException(
+					"Workflows required model type (" + workflow.getInputTypes().getModelType().getName()
+							+ ") not compatible with the provided model (" + model.getType().getName() + ")");
+		}
 
 		try {
 			loadWorkflow(workflow);
@@ -96,21 +107,21 @@ public class LocalKnimeJobService implements JobService {
 			throw new InitJobException("Problem initializing job: " + e1.getMessage(), e1);
 		}
 
-		// check whether the model is compatible with the workflow
-		assert workflow.getInputTypes().getModelType().getName().toString()
-				.equals(model.getType().getName().toString());
-		// TODO otherwise throw proper exception
-
 		// get fingerprint set file(s)
 		List<String> tempFingerprintFileURIs = fingerprintSet.getFingerprintIds().stream()
 				.map(id -> saveTemporaryFingerprintFile(id).toString()).collect(Collectors.toList());
 
-		// TODO get actual model file
-		// persistenceService.getBlobByUUID(model.getModelFileId());
+		//save model file
+		URI modelURI;
+		try {
+			modelURI = saveTemporaryFile(model.getFileId(), "fa_model", ".model");
+		} catch (NoSuchElementException e) {
+			throw new InitJobException("No model file found", e);
+		}
 
 		// assemble workflow input
 		PredictionWorkflowInput workflowInput = PredictionWorkflowInput.builder()
-				.setFingerprintURIs(tempFingerprintFileURIs).setModelURI("TODO:modelURI")
+				.setFingerprintURIs(tempFingerprintFileURIs).setModelURI(modelURI.toString())
 				.setFingerprintset(fingerprintSet).setParameters(workflow.getParameters()).build();
 
 		// TODO doesn't work, but should
@@ -144,7 +155,6 @@ public class LocalKnimeJobService implements JobService {
 					}
 					Prediction prediction = Prediction.builder().setFingerprintsetId(fingerprintSet.getFaId())
 							.setWorkflowId(workflow.getFaId()).setModelId(model.getFaId())
-							.setClassLabels(model.getClassLabels())
 							.setPredictionMap(predictionOutput.getPredictionMap()).build();
 					persistenceService.save(prediction);
 
@@ -171,8 +181,7 @@ public class LocalKnimeJobService implements JobService {
 			throw new InitJobException("No fingerprint set given");
 		}
 		if (workflow.getType() != org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB) {
-			// TODO throw appropriate exception
-			throw new InitJobException("Referenced workflow is not a prediction workflow");
+			throw new InitJobException("Referenced workflow is not a training workflow");
 		}
 
 		if (workflow.getRepresentation() != RepresentationEnum.KNIME) {
@@ -233,10 +242,16 @@ public class LocalKnimeJobService implements JobService {
 					}
 
 					String modelUri = trainingOutput.getModelUri();
-					UUID modelFileId;
+					UUID modelFileId = null;
 					String modelName = "generated model by " + workflow.getName();
-					File modelFile = new File(modelUri);
-					if(modelFile.exists()) {
+					File modelFile = null;
+					try {
+						modelFile = new File(new URI(modelUri));
+					} catch (URISyntaxException e1) {
+						LOGGER.warn(
+								"workflow '" + workflow.getName() + "' didn't return a valid model URL: " + modelUri);
+					}
+					if(modelFile != null && modelFile.exists()) {
 						FileMetadata fileMeta = FileMetadata.builder().setName(modelName).setType(TypeEnum.KNIME_MODEL).build();
 						modelFileId = fileMeta.getFaId();
 						persistenceService.save(fileMeta);
@@ -249,8 +264,6 @@ public class LocalKnimeJobService implements JobService {
 						}
 					} else {
 						LOGGER.warn("workflow '" + workflow.getName() + "' didn't output a model file");
-						//TODO remove
-						modelFileId = UUID.randomUUID();
 					}
 
 					// store new model (metadata and file) to the data base
@@ -282,24 +295,34 @@ public class LocalKnimeJobService implements JobService {
 	}
 	
 	private URI saveTemporaryFingerprintFile(UUID fingerprintId) {
-			Fingerprint fp = persistenceService.getFaModelByUUID(fingerprintId, Fingerprint.class);
-			Blob fingerprintFile = persistenceService.getBlobByUUID(fp.getFileId());
-			try {
-				File tmpFile = File.createTempFile("fa_fingerprint_" + fingerprintFile.getFaId(), ".zip");
-				FileOutputStream out = new FileOutputStream(tmpFile);
-				IOUtils.copy(fingerprintFile.getData(), out);
-				out.flush();
-				out.close();
-				Path tmpDir = Files.createTempDirectory("fa_fingerprint_" + fingerprintFile.getFaId());
+		Fingerprint fp = persistenceService.getFaModelByUUID(fingerprintId, Fingerprint.class);
+		return saveTemporaryFile(fp.getFileId(), "fa_fingerprint", ".zip");
+	}
+
+	private URI saveTemporaryFile(UUID fileId, String prefix, String suffix) {
+		try {
+			Blob blob = persistenceService.getBlobByUUID(fileId);
+			FileMetadata meta = persistenceService.getFaModelByUUID(fileId, FileMetadata.class);
+			File tmpFile = File.createTempFile(prefix + fileId, suffix);
+			FileOutputStream out = new FileOutputStream(tmpFile);
+			IOUtils.copy(blob.getData(), out);
+			out.flush();
+			out.close();
+			if (meta.getContentType() == ContentTypeEnum.ZIP) {
+				Path tmpDir = Files.createTempDirectory(prefix + fileId);
 				FileUtil.unzip(tmpFile, tmpDir.toFile());
 				tmpFile.delete();
 				// TODO delete tmp files
 				tmpDir.toFile().deleteOnExit();
 				return tmpDir.toUri();
-			} catch (IOException e1) {
-				// TODO
-				throw new RuntimeException(e1);
+			} else {
+				tmpFile.deleteOnExit();
+				return tmpFile.toURI();
 			}
+		} catch (IOException e1) {
+			// TODO
+			throw new RuntimeException(e1);
+		}
 	}
 
 	private void loadWorkflow(Workflow workflow) throws LoadingFailedException {

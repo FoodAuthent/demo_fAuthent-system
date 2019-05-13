@@ -13,10 +13,9 @@ import static org.foodauthent.data.PopulateFiles.populateFileMetadata;
 import static org.foodauthent.data.PopulateFiles.populateFiles;
 import static org.foodauthent.data.PopulateModels.populateFingerprintSets;
 import static org.foodauthent.data.PopulateModels.populateFingerprints;
+import static org.foodauthent.data.PopulateModels.populatePredictionWorkflowOpenChromRandomForest;
 import static org.foodauthent.data.PopulateModels.populateProducts;
 import static org.foodauthent.data.PopulateModels.populateSamples;
-import static org.foodauthent.data.PopulateModels.populateTestPedictionWorkflow;
-import static org.foodauthent.data.PopulateModels.populateTestTrainingWorkflow;
 import static org.foodauthent.data.PopulateModels.populateTrainingWorkflowOpenChromRandomForest;
 import static org.foodauthent.data.PopulateModels.predict;
 import static org.foodauthent.data.PopulateModels.train;
@@ -25,7 +24,7 @@ import static org.foodauthent.data.ReadModels.readBfrOilFingerprintSets;
 import static org.foodauthent.data.ReadModels.readBfrOilFingerprints;
 import static org.foodauthent.data.ReadModels.readBfrOilSamples;
 import static org.foodauthent.data.ReadModels.readOilProducts;
-import static org.foodauthent.rest.client.FASystemClient.info;
+import static org.foodauthent.rest.client.FASystemClientUtil.info;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,6 +38,7 @@ import org.foodauthent.model.FaModel;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.SystemInfo;
 import org.foodauthent.model.json.ObjectMapperUtil;
+import org.foodauthent.rest.client.FASystemClient;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -50,74 +50,89 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class PopulateDataApp {
 
     public static void main(String[] args) throws JsonProcessingException {
-	doit("Delete all products and workflows", () -> {
-	    clearAllProducts();
-	    clearAllWorkflows();
-	    clearAllFingerprintSetsAndFingerprints();
-	    clearAllSamples();
-	    clearAllModelsAndTrainingJobs();
-	    clearAllPredictionsAndPredictionJobs();
-	    clearAllSops();
+	
+	//config - TODO parse from args
+	boolean runTrainingAndPredictionJobs = true;
+	FASystemClient c = new FASystemClient("localhost", 9090);
+	
+	doit("Delete all entities", () -> {
+	    clearAllProducts(c);
+	    clearAllWorkflows(c);
+	    clearAllFingerprintSetsAndFingerprints(c);
+	    clearAllSamples(c);
+	    clearAllModelsAndTrainingJobs(c);
+	    clearAllPredictionsAndPredictionJobs(c);
+	    clearAllSops(c);
 	});
 
 	// log("System Info after Initialisation");
 	// log(info().getInfo().readEntity(SystemInfo.class));
 
 	List<UUID> trainingwfIds = doitWithRes("Populate training workflows", () -> {
-	    return asList(populateTestTrainingWorkflow(), populateTrainingWorkflowOpenChromRandomForest());
+	    return asList(populateTrainingWorkflowOpenChromRandomForest(c));
 	});
 
 	List<UUID> predictionwfIds = doitWithRes("Populate prediction workflows", () -> {
-	    return asList(populateTestPedictionWorkflow());
+	    return asList(populatePredictionWorkflowOpenChromRandomForest(c));
 	});
 
 	doit("Populate products", () -> {
-	    populateProducts(readOilProducts());
+	    populateProducts(readOilProducts(), c);
 	});
 
 	doit("Populate samples", () -> {
-	    populateSamples(readBfrOilSamples());
+	    populateSamples(readBfrOilSamples(), c);
 	});
 
 	doit("Populate fingerprint files", () -> {
 	    List<FileMetadata> metaList = readBfrOilFileMetadata();
-	    populateFileMetadata(metaList);
+	    populateFileMetadata(metaList, c);
 	    Map<String, UUID> name2uuidMap = metaList.stream()
 		    .collect(Collectors.toMap(m -> m.getName(), m -> m.getFaId()));
-	    populateFiles(listBfrOilFingerprintFiles(), name2uuidMap);
+	    populateFiles(listBfrOilFingerprintFiles(), name2uuidMap, c);
 	});
 
 	doit("Populate fingerprints", () -> {
-	    populateFingerprints(readBfrOilFingerprints());
+	    populateFingerprints(readBfrOilFingerprints(), c);
 	});
 
 	List<UUID> fingerprintsetIds = doitWithRes("Populate fingerprint sets", () -> {
-	    return populateFingerprintSets(readBfrOilFingerprintSets());
+	    return populateFingerprintSets(readBfrOilFingerprintSets(), c);
 	});
 
-	List<UUID> modelIds = doitWithRes("Train models", () -> {
-	    return asList(train(trainingwfIds.get(0), asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1))));
-	});
-	doit("Run predictions", () -> {
-	    predict(predictionwfIds.get(0), fingerprintsetIds.get(0), modelIds.get(0));
-	});
+	if (runTrainingAndPredictionJobs) {
+	    List<UUID> modelIds = doitWithRes("Train models", () -> {
+		return asList(train(trainingwfIds.get(0),
+			asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1), fingerprintsetIds.get(2)), c));
+	    });
+
+	    doit("Run predictions", () -> {
+		predict(predictionwfIds.get(0), fingerprintsetIds.get(0), modelIds.get(0), c);
+		predict(predictionwfIds.get(0), fingerprintsetIds.get(5), modelIds.get(0), c);
+		predict(predictionwfIds.get(0), fingerprintsetIds.get(6), modelIds.get(0), c);
+	    });
+	}
 
 	log("System Info");
-	log(info().getInfo().readEntity(SystemInfo.class));
+	log(info(c).getInfo().readEntity(SystemInfo.class));
     }
 
-    private static SimpleDateFormat sdf = new SimpleDateFormat("DD/MM/YYYY hh:mm:ss");
+    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     private static void doit(String message, Runnable op) {
-	System.out.print(sdf.format(new Date(System.currentTimeMillis())) + "  " + message + " ... ");
+	long start = System.currentTimeMillis();
+	System.out.print(sdf.format(new Date(start)) + "  " + message + " ... ");
 	op.run();
-	System.out.println("done");
+	long end = System.currentTimeMillis();
+	System.out.println("done (" + (end - start) / 1000 + " sec)");
     }
 
     private static <T> T doitWithRes(String message, Supplier<T> op) {
-	System.out.print(sdf.format(new Date(System.currentTimeMillis())) + "  " + message + " ... ");
+	long start = System.currentTimeMillis();
+	System.out.print(sdf.format(new Date(start)) + "  " + message + " ... ");
 	T res = op.get();
-	System.out.println("done");
+	long end = System.currentTimeMillis();
+	System.out.println("done (" + (end - start) / 1000 + " sec)");
 	return res;
     }
 

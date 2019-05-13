@@ -1,7 +1,7 @@
 package org.foodauthent.test;
 
-import static org.foodauthent.rest.client.FASystemClient.entities;
-import static org.foodauthent.rest.client.FASystemClient.products;
+import static org.foodauthent.rest.client.FASystemClientUtil.entities;
+import static org.foodauthent.rest.client.FASystemClientUtil.products;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -13,7 +13,7 @@ import java.util.UUID;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.ProductPageResult;
 import org.foodauthent.rest.api.service.ProductRestService;
-import org.foodauthent.rest.client.FASystemClient;
+import org.foodauthent.rest.client.FASystemClientUtil;
 import org.junit.Test;
 
 /**
@@ -30,7 +30,7 @@ public class ProductTest extends AbstractITTest{
     public void test() {
 	boolean idExists = false;
 	
-	ProductRestService s = products(); 
+	ProductRestService s = products(client()); 
 	ProductPageResult productPage = s.findProductByKeyword(1, 10, null).readEntity(ProductPageResult.class);
 	assertEquals(1, productPage.getPageNumber().intValue());
 	assertEquals(10, productPage.getResults().size());
@@ -52,7 +52,7 @@ public class ProductTest extends AbstractITTest{
 	assertEquals(2, productPage.getResultCount().intValue());
 	
 	//Test Delete
-	entities().removeEntity(UUID.fromString("45cceda9-e54b-4b1d-9b94-c269b5f5cac7"));
+	entities(client()).removeEntity(UUID.fromString("45cceda9-e54b-4b1d-9b94-c269b5f5cac7"));
 	allProducts = s.findProductByKeyword(1, 10000, Collections.emptyList()).readEntity(ProductPageResult.class).getResults();
 	idExists = allProducts.stream().anyMatch(t -> t.getBrand().equals("TestBrand2"));
 	assertFalse(idExists);

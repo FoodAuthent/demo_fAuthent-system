@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import org.foodauthent.model.FileMetadata.TypeEnum;
+import org.foodauthent.model.FileMetadata.ContentTypeEnum;
 
 
 import org.foodauthent.model.FileMetadata;
@@ -56,7 +57,7 @@ public interface FileMetadataMixIn {
     public String getName();
     
     @JsonProperty("contentType")
-    public String getContentType();
+    public ContentTypeEnum getContentType();
     
     @JsonProperty("uploadName")
     public String getUploadName();
@@ -108,7 +109,7 @@ public interface FileMetadataMixIn {
         public FileMetadataMixInBuilder setName(final String name);
         
         @JsonProperty("contentType")
-        public FileMetadataMixInBuilder setContentType(final String contentType);
+        public FileMetadataMixInBuilder setContentType(final ContentTypeEnum contentType);
         
         @JsonProperty("uploadName")
         public FileMetadataMixInBuilder setUploadName(final String uploadName);

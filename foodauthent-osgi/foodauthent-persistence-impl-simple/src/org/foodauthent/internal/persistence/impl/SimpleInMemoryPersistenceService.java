@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 import org.foodauthent.api.internal.exception.ModelExistsException;
-import org.foodauthent.api.internal.exception.NoSuchIDException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.api.internal.persistence.PersistenceServiceProvider;
@@ -148,7 +147,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 	private static boolean containsKeywords(String[][] keywordSuperSet, Collection<String> propertyValues) {
 		for (String[] keywords : keywordSuperSet) {
 			if (!stream(keywords).map(String::toLowerCase)
-					.anyMatch(k -> propertyValues.stream().anyMatch(p -> p.contains(k)))) {
+					.anyMatch(k -> propertyValues.stream().anyMatch(p -> (p != null ? p.contains(k) : false)))) {
 				return false;
 			}
 		}
@@ -175,11 +174,12 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 
 	@Override
 	public <T extends FaModel> T getFaModelByUUID(final UUID uuid, Class<T> modelType) throws NoSuchElementException {
-		try {
-			return (T) models.get(uuid);
-		} catch (final NoSuchIDException e) {
-			throw new NoSuchElementException(e.getLocalizedMessage());
+		T model = (T) models.get(uuid);
+		if (model == null) {
+			throw new NoSuchElementException(
+					"no model of type '" + modelType.getSimpleName() + "' for id '" + uuid + "' found");
 		}
+		return model;
 	}
 
 	@Override
@@ -260,13 +260,13 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 
 	@Override
 	public Blob getBlobByUUID(UUID uuid) {
-		try {
-			return new Blob(uuid, new ByteArrayInputStream(blobs.get(uuid)));
-		} catch (final NoSuchIDException e) {
-			throw new NoSuchElementException(e.getLocalizedMessage());
+		byte[] blob = blobs.get(uuid);
+		if (blob == null) {
+			throw new NoSuchElementException("No blob for id " + uuid + " found");
 		}
+		return new Blob(uuid, new ByteArrayInputStream(blobs.get(uuid)));
 	}
-	
+
 	@Override
 	public int getPriority() {
 		return 0;

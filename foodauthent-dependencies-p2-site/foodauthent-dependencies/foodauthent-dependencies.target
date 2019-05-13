@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="141">
+<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="143">
 <locations>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="net.openchrom.knime.node.nmr.feature.feature.group" version="0.0.0"/>
+<repository location="https://update.openchrom.net/repositories/knime"/>
+</location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="com.knime.features.enterprise.client.exampleserver.feature.group" version="0.0.0"/>
 <unit id="com.knime.features.enterprise.client.feature.group" version="0.0.0"/>
@@ -26,7 +30,6 @@
 <unit id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature.source.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.ecf.filetransfer.ssl.feature.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.ecf.filetransfer.ssl.feature.source.feature.group" version="0.0.0"/>
-<unit id="org.glassfish.javax.json" version="0.0.0"/>
 <unit id="org.knime.features.base.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.base.filehandling.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.base.pmml.feature.group" version="0.0.0"/>
@@ -44,6 +47,7 @@
 <unit id="org.knime.features.ext.exttool.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.ext.itemset.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.ext.jep.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.jep.source.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.ext.jfreechart.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.ext.libsvm.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.ext.lucene.feature.group" version="0.0.0"/>
@@ -266,10 +270,6 @@
 <unit id="slf4j.api" version="0.0.0"/>
 <unit id="slf4j.api.source" version="0.0.0"/>
 <repository location="http://repository.foodauthent.net/p2/p2-maven-1.0.1-SNAPSHOT"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="net.openchrom.knime.node.nmr.feature.feature.group" version="0.0.0"/>
-<repository location="https://update.openchrom.net/repositories/knime"/>
 </location>
 </locations>
 </target>

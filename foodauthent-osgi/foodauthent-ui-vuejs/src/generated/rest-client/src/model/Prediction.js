@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/PredictionInstance'], factory);
+    define(['../ApiClient'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./PredictionInstance'));
+    module.exports = factory(require('../ApiClient'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.Prediction = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.PredictionInstance);
+    root.FoodAuthentSwaggerApi.Prediction = factory(root.FoodAuthentSwaggerApi.ApiClient);
   }
-}(this, function(ApiClient, PredictionInstance) {
+}(this, function(ApiClient) {
   'use strict';
 
 
@@ -74,9 +74,6 @@
       if (data.hasOwnProperty('model-id')) {
         obj['model-id'] = ApiClient.convertToType(data['model-id'], 'String');
       }
-      if (data.hasOwnProperty('class-labels')) {
-        obj['class-labels'] = ApiClient.convertToType(data['class-labels'], ['String']);
-      }
     }
     return obj;
   }
@@ -88,7 +85,7 @@
   exports.prototype['fa-id'] = undefined;
   /**
    * The predictions for each individual fingerprint. The map key is the fingerprint-id.
-   * @member {Object.<String, module:model/PredictionInstance>} prediction-map
+   * @member {Object.<String, Object.<String, Number>>} prediction-map
    */
   exports.prototype['prediction-map'] = undefined;
   /**
@@ -106,11 +103,6 @@
    * @member {String} model-id
    */
   exports.prototype['model-id'] = undefined;
-  /**
-   * available class labels
-   * @member {Array.<String>} class-labels
-   */
-  exports.prototype['class-labels'] = undefined;
 
 
 

@@ -1,7 +1,7 @@
 package org.foodauthent.test;
 
-import org.junit.BeforeClass;
-import org.osgi.framework.BundleException;
+import org.foodauthent.rest.client.FASystemClient;
+import org.junit.Before;
 
 /**
  * 
@@ -9,9 +9,11 @@ import org.osgi.framework.BundleException;
  *
  */
 public abstract class AbstractITTest {
+    
+    private FASystemClient faSystemClient;
 
-    @BeforeClass
-    public static void setup() throws BundleException {
+//    @BeforeClass
+//    public static void setup() throws BundleException {
 	// Bundle bundle = FrameworkUtil.getBundle(ServiceLoader.class);
 	// if (bundle.getState() != Bundle.ACTIVE) {
 	// bundle.start();
@@ -25,5 +27,14 @@ public abstract class AbstractITTest {
 	// for (Bundle b : jerseyBundles) {
 	// b.start();
 	// }
+//    }
+    
+    @Before
+    public void setup() {
+	faSystemClient = new FASystemClient("localhost", 9090);
+    }
+    
+    protected FASystemClient client() {
+	return faSystemClient;
     }
 }
