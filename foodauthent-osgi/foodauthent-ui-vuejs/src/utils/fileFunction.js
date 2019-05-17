@@ -192,6 +192,29 @@ var MyObject = function () {
 		      callback
 		    );
 		  };
+		  
+		  var deleteFile = function (fileId, self) {
+			 if(fileId !== undefined && fileId !== null){
+			  setUpApi();
+			    console.log('Delete File',fileId);
+			    var callback = function (error, data, response) {
+			      console.log("data:", data);
+			      console.log("response:", response);
+			      if (error) {
+			        console.error(error);
+			        //self.showError = true;
+			      } else {
+			        self.response = response;
+			        //self.showSuccess = true;
+			        console.log("API called successfully. Returned data: ", data);
+			      }
+			    };
+			    fileApi.removeFileMetadataAndData(
+			       fileId,
+			       callback
+			     );
+			  }
+			  };
   
   
 
@@ -201,7 +224,8 @@ var MyObject = function () {
     uploadFile: uploadFile,
     importFile: importFile,
     exportFile: exportFile,
-    getAllFiles: getAllFiles
+    getAllFiles: getAllFiles,
+    deleteFile: deleteFile
     
   }
 }();

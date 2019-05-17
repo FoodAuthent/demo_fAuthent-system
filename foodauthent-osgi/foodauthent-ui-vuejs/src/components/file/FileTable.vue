@@ -75,6 +75,7 @@ var schemaIdHolder = {
 var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
 var deleteEntity = require("@/utils/commonFunction.js").default.deleteEntity;
 var exportFile = require("@/utils/fileFunction.js").default.exportFile;
+var deleteFile = require("@/utils/fileFunction.js").default.deleteFile;
 export default {
     props: {
         items: Array,
@@ -157,13 +158,11 @@ export default {
                handleDeleteOk() {
                 let self = this;
                 console.log("fa-id:", self.itemsDelete["fa-id"]);
-                deleteEntity(self.itemsDelete["fa-id"], self);
+                deleteFile(self.itemsDelete["fa-id"], self);
             },
            dowloadFile(item, index, button) {
                let self = this;
                console.log("DWNLOAD ITEM", item);
-               console.log("ITEM FA-ID", item["fa-id"]);
-               console.log("ITEM TYPE", item["type"]);
               exportFile(item["fa-id"], item["type"], self);
             },
             onFiltered(filteredItems) {

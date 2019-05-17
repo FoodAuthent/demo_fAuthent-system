@@ -44,7 +44,16 @@
             </md-list>
         </md-app-drawer>
         <md-app-content>
-
+		<div id="tableInfo"> 
+				<table class="table table-striped">
+				  <tbody>
+				    <tr v-for="(value, key) in items">
+				      <td>{{ key }}</td>
+				      <td>{{ value }}</td>
+				    </tr>
+				  </tbody>
+				</table>
+		</div>
         </md-app-content>
     </md-app>
 
@@ -54,6 +63,26 @@
 
 
 <script>
+var getInfo = require("@/utils/commonFunction.js").default.getInfo;
+export default {
+    name: "Sop",
+    data() {
+        return {
+            items: []
+        };
+    },
+    mounted() {
+        this.loadTableData();
+    },
+    methods: {
+        loadTableData() {
+                console.log("Load table data");
+                let self = this;
+                getInfo(self);
+            }
+    }
+};
+
 </script>
 <style lang="scss" scoped>
 

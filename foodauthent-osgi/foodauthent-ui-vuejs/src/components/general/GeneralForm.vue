@@ -9,7 +9,7 @@
     </b-alert>
     <div class="panel panel-default">
         <div class="panel panel-default">
-            <div class="panel-heading">FORM</div>
+            <div class="panel-heading">Create New</div>
             <div class="panel-body">
                 <vue-form-generator :schema="schema" :model="model" :options="formOptions">
                 </vue-form-generator>
@@ -32,6 +32,7 @@
 
         <div class="button-div">
             <b-button variant="primary" @click="save">Save</b-button>
+            <b-button variant="warning" @click="cancel">Cancel</b-button>
         </div>
     </div>
 
@@ -66,6 +67,10 @@ export default {
         schemaIdHolder: Object,
         pageType: String,
         save: {
+            type: Function,
+            required: true
+        },
+        cancel: {
             type: Function,
             required: true
         }

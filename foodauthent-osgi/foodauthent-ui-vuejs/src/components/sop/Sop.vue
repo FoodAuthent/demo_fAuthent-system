@@ -20,11 +20,10 @@
                     <b-tab title="Results" active>
                         <generalTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
                         :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
-                            <slot></slot>
                         </generalTable>
                     </b-tab>
                     <b-tab title="Create new">
-                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder"></generalForm>
+                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -48,6 +47,7 @@ var saveFile = require("@/utils/fileFunction.js").default.saveFile;
 import jsonschema from "@/generated/schema/sop.json";
 var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
 var getCustomMetadata = require("@/utils/commonFunction.js").default.getCustomMetadata;
+var deleteFile = require("@/utils/fileFunction.js").default.deleteFile;
 
 console.log(jsonschema.fields);
 
@@ -82,7 +82,7 @@ export default {
     data() {
         return {
             items: [],
-            fields: [],
+            fields: jsonschema.fields,
             currentPage: 1,
             perPage: 10,
             filter: null,
@@ -133,9 +133,14 @@ export default {
             },
             save() {
                 let self = this;
-                console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
-                saveSop(JSON.stringify(this.model, undefined, 4), self);
+                console.log("POST BODY", JSON.stringify(self.model, undefined, 4));
+                saveSop(JSON.stringify(self.model, undefined, 4), self);
                 self.model = {}
+            },
+            cancel() {
+                let self = this;
+                deleteFile(self.model["file-id"]);
+                self.model = {};
             },
             myRowClickHandler(record, index) {
 		       console.log(record); // This will be the item data for the row

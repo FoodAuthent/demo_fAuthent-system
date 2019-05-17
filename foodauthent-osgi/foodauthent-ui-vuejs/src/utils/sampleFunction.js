@@ -52,6 +52,7 @@ var MyObject = function () {
 	          jsonResult[i]['actions'] = '';
 	        }
 	        self.items = data.results;
+	        console.log("Items", self.items);
 	        console.log("API called successfully. Returned data: ", data);
 	      }
 	    };

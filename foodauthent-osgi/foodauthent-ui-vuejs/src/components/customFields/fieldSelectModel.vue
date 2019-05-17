@@ -13,7 +13,7 @@
 
 <!-- MODAL SEARCH -->
  <!--<b-modal :id="schema.modalId" :title="schema.modalId" size="lg">-->
-<b-modal :id="schema.idprovider" :title="schema.idprovider" size="xl" @show="loadData" @cancel="handleCancel" @ok="handleOk">
+<b-modal :id="schema.idprovider" scrollable :title="schema.idprovider" size="xl" @show="loadData" @cancel="handleCancel" @ok="handleOk" @close="handleCancel">
 <!-- Table -->
 <template>
 <div id="searchtable">
@@ -67,11 +67,13 @@ var getProducts = require("@/utils/productFunction.js").default.getProducts;
 var getFingerprints = require("@/utils/fingerprintFunction.js").default.getFingerprints;
 var getWorkflows = require("@/utils/workflowFunction.js").default.getWorkflows;
 var getModels = require("@/utils/modelFunction.js").default.getModels;
+var getSops = require("@/utils/sopFunction.js").default.getSops;
 
 var findProductByGtin = require("@/utils/productFunction.js").default.findProductByGtin;
 var findFingerprintSetById = require("@/utils/fingerprintFunction.js").default.findFingerprintById;
 var findWorkflowById = require("@/utils/workflowFunction.js").default.findWorkflowById;
 var findModelById = require("@/utils/modelFunction.js").default.findModelById;
+var findSopById = require("@/utils/sopFunction.js").default.findSopById;
 
 const regex1 = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
 const regex2 = /\b\d{8}(?:\d{4,6})?\b/;
@@ -101,8 +103,10 @@ export default {
         getWorkflows(self);
       } else if (this.schema.idprovider == "select-model") {
         getModels(self);
-      }else {
-        alert("NO method found");
+      } else if (this.schema.idprovider == "select-sop") {
+        getSops(self);
+      } else {
+        console.log("NO method found");
       }
     },
     myRowClickHandler(record, index) {
@@ -125,7 +129,7 @@ export default {
     	//document.getElementById("refreshTableModal").click();
     },
     handleCancel() {
-      this.value = "";
+    this.value = "";
     console.log("Inside hadle cancel modal");
     document.body.classList.remove("modal-open");
     },
@@ -143,7 +147,9 @@ export default {
         self.searchWorkflow();
       } else if (this.schema.idprovider == "select-model") {
         self.searchModel();
-      }else {
+      }else if (this.schema.idprovider == "select-sop") {
+        self.searchSop();
+      } else {
         alert("NO method found");
       }
     },
@@ -182,6 +188,15 @@ export default {
 	    	findModelById(self);
 			} else {
 	   		getModels(self);
+			}
+    },
+        searchSop(){
+    	let self = this;
+	    //check if it is a valid UUID
+		if (regex1.test(self.filter)) {
+	    	findSopById(self);
+			} else {
+	   		getSops(self);
 			}
     },
   },

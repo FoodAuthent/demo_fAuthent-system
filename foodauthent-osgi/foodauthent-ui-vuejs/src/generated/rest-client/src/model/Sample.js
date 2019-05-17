@@ -69,8 +69,8 @@
       if (data.hasOwnProperty('sop-id')) {
         obj['sop-id'] = ApiClient.convertToType(data['sop-id'], 'String');
       }
-      if (data.hasOwnProperty('sampleId')) {
-        obj['sampleId'] = ApiClient.convertToType(data['sampleId'], 'String');
+      if (data.hasOwnProperty('sample-id')) {
+        obj['sample-id'] = ApiClient.convertToType(data['sample-id'], 'String');
       }
       if (data.hasOwnProperty('dateOfSampleDrawing')) {
         obj['dateOfSampleDrawing'] = ApiClient.convertToType(data['dateOfSampleDrawing'], 'String');
@@ -111,9 +111,9 @@
   exports.prototype['sop-id'] = undefined;
   /**
    * Sample Id
-   * @member {String} sampleId
+   * @member {String} sample-id
    */
-  exports.prototype['sampleId'] = undefined;
+  exports.prototype['sample-id'] = undefined;
   /**
    * Date of Sample Drawing
    * @member {String} dateOfSampleDrawing

@@ -17,6 +17,7 @@ function setUpApi(){
 	  
 	  var EntityApi = require("@/generated/rest-client/src/api/EntityApi.js");
 	  entityApi = new EntityApi(apiClient);
+	  	  
 }
 
 var MyObject = function () {
@@ -202,9 +203,9 @@ var MyObject = function () {
     }
   };
   
-  var deleteEntity = function (id, self) {
+  var deleteEntity = function (faId, self) {
 	  setUpApi();
-	    console.log('Delete Entity');
+	    console.log('Delete Entity',faId);
 	    var callback = function (error, data, response) {
 	      console.log("data:", data);
 	      console.log("response:", response);
@@ -212,26 +213,115 @@ var MyObject = function () {
 	        console.error(error);
 	        self.showError = true;
 	      } else {
-	        self.response = data.results;
+	        self.response = response;
 	        self.showSuccess = true;
 	        console.log("API called successfully. Returned data: ", data);
 	      }
 	    };
-	    var opt = {
-	    	faId: id
-	    };
 	     entityApi.removeEntity(
-	       opt,
+	       faId,
 	       callback
 	     );
 	  };
+	  
+	  var getInfo = function (self) {
+		  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+		  var apiClient = new ApiClient();
+		  var InfoApi = require("@/generated/rest-client/src/api/InfoApi.js");
+		  var infoApi = new InfoApi(apiClient);
+			setUpApi();
+		    console.log('Get INFO');
+		    var callback = function (error, data, response) {
+		      console.log("data:", data);
+		      console.log("response:", response);
+		      if (error) {
+		        //this.response = data;
+		        console.error(error);
+		      } else {
+//		        var jsonResult = data.results;|
+		        self.items = data;
+		        console.log("API called successfully. Returned data: ", data);
+		      }
+		    };
+		    infoApi.getInfo(
+		      callback
+		    );
+		  };
+		  
+		var getLinkInfo = function(faId, infoType, self){
+		var generalApi;
+		  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
+		  var apiClient = new ApiClient();
+		  if(localStorage.getItem('token')){
+			  console.log("Inside the token set");
+			  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
+			  apiClient.defaultHeaders = headerToken;  
+		  }
+		  //only for test---
+		  apiClient.basePath = window.location.origin + "/v0/foodauthent";
+		  //only for test---
+		  if(infoType == 'upload-file'){
+		  var FileApi = require("@/generated/rest-client/src/api/FileApi.js");
+		  generalApi = new FileApi(apiClient);
+		  }else if(infoType == 'select-fingerprint'){
+		  var FingerprintApi = require("@/generated/rest-client/src/api/FingerprintApi.js");
+		  generalApi = new FingerprintApi(apiClient);
+		}else if(infoType == 'select-model'){
+		  var ModelApi = require("@/generated/rest-client/src/api/ModelApi.js");
+		  generalApi = new ModelApi(apiClient);
+		}else if(infoType == 'select-product'){
+		  var ProductApi = require("@/generated/rest-client/src/api/ProductApi.js");
+		  generalApi = new ProductApi(apiClient);
+		}else if(infoType == 'select-sop'){
+		  var SopApi = require("@/generated/rest-client/src/api/SopApi.js");
+		  generalApi = new SopApi(apiClient);
+		}else if (infoType == 'select-workflow'){
+			  var WorkflowApi = require("@/generated/rest-client/src/api/WorkflowApi.js");
+			  generalApi = new WorkflowApi(apiClient);
+		}else{
+			console.log("This type of data doesnt exist", infoType);
+		}
+		    console.log('Get LINK info');
+		    var callback = function (error, data, response) {
+		      console.log("data:", data);
+		      console.log("response:", response);
+		      if (error) {
+		        //this.response = data;
+		        console.error(error);
+		      } else {
+		        var jsonResult = [];
+		        jsonResult.push(response.body);
+//		        self.itemLink = data.results;
+		        self.itemLink = jsonResult;
+		        console.log("API called successfully. Returned data: ", data);
+		      }
+		    };
+			  if(infoType == 'upload-file'){
+				  generalApi.getFileMetadata(faId,callback);
+				  }else if(infoType == 'select-fingerprint'){
+					  generalApi.getFingerprintById(faId,callback);
+				}else if(infoType == 'select-model'){
+					generalApi.getModelById(faId,callback);
+				}else if(infoType == 'select-product'){
+					generalApi.getProductById(faId,callback);
+				}else if(infoType == 'select-sop'){
+					generalApi.getSOPById(faId,callback);
+				}else if(infoType == 'select-workflow'){
+					generalApi.getWorkflowById(faId,callback);
+				} else {
+				console.log('Something goes wrong, this type doesnt exist',infoType);
+				}
+ 
+		  };
 
   return {
     renderCustomField: renderCustomField,
     getModelSchemas: getModelSchemas,
     saveCustomMetadata : saveCustomMetadata,
     getCustomMetadata: getCustomMetadata,
-    deleteEntity: deleteEntity
+    deleteEntity: deleteEntity,
+    getInfo: getInfo,
+    getLinkInfo: getLinkInfo
   }
 }();
 

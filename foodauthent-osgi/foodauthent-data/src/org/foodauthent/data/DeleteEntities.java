@@ -42,13 +42,8 @@ public class DeleteEntities {
 	// utility class
     }
     
-<<<<<<< .merge_file_qlwBOF
-    public static void clearAllWorkflows() {
-	List<Workflow> workflows = workflows().findWorkflowByKeyword(1, 1000, null)
-=======
     public static void clearAllWorkflows(FASystemClient c) {
 	List<Workflow> workflows = workflows(c).findWorkflowByKeyword(1, Integer.MAX_VALUE, null)
->>>>>>> .merge_file_bkY9fY
 		.readEntity(WorkflowPageResult.class).getResults();
 	workflows.stream().forEach(wf -> {
 	    entities(c).removeEntity(wf.getFaId());
@@ -56,13 +51,8 @@ public class DeleteEntities {
 	});
     }
    
-<<<<<<< .merge_file_qlwBOF
-    public static void clearAllProducts() {
-	List<Product> products = products().findProductByKeyword(1, 1000, null)
-=======
     public static void clearAllProducts(FASystemClient c) {
 	List<Product> products = products(c).findProductByKeyword(1, Integer.MAX_VALUE, null)
->>>>>>> .merge_file_bkY9fY
 		.readEntity(ProductPageResult.class).getResults();
 	products.stream().forEach(p -> entities(c).removeEntity(p.getFaId()));
     }

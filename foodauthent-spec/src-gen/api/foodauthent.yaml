@@ -2845,8 +2845,10 @@ components:
         type: object
         x-ui-vue.js:
         - name: product-id
+          id-provider: select-product
         - name: sop-id
-        - name: sampleId
+          id-provider: select-sop
+        - name: sample-id
         - name: dateOfSampleDrawing
         - name: lot
         - name: samplingPlace
@@ -2867,7 +2869,7 @@ components:
             description: referenced sop used to create the sample
             type: string
             format: uuid
-          sampleId:
+          sample-id:
             description: Sample Id
             type: string
             example: 401234500000123

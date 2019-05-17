@@ -32,7 +32,20 @@
         <b-row>
             <!-- TABLE -->
             <b-table bordered striped hover show-empty responsive :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="myRowClickHandler">
-                <template slot="actions" slot-scope="row">
+									 
+
+				<!-- THE IDs ARE LINKS -->
+	 			<template v-for="(field, index) in fields" :slot="field.model" slot-scope="data">
+			      <div v-if="checkLinkField(field.idprovider)">
+			        	<b-button variant="link"v-b-modal.linkModal @click="linkFunction(data.value, field.idprovider)" >{{ data.value }}</b-button>
+			      </div>
+			       <div v-else>
+			       		{{data.value}}
+			       </div>
+			    </template>
+					    
+				<!-- ACTIONS edit-delete-info -->
+                <template slot="actions" slot-scope="row" v-slot:actions>
                     <div class="widewidth">
                         <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)">
                             <md-icon>edit</md-icon>
@@ -44,13 +57,13 @@
                             <md-icon>delete_forever</md-icon>
                         </b-btn>
                     </div>
-                </template>
+                </template> 
+
+                
             </b-table>
         </b-row>
     </b-container>
-
-
-
+    
     <!-- PAGINATION -->
     <b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page.sync="perPage" v-model="currentPage" />
 
@@ -74,6 +87,18 @@
         <p>Are you sure do you want to delete this record?</p>
         <pre v-if="selected" v-html="JSON.stringify(itemsDelete, undefined, 4)"></pre>
     </b-modal>
+    
+    <!-- MODAL LINK -->
+        <b-modal id="linkModal" size="xl" title="INFO">
+        <div class="panel panel-default">
+        <!-- TABLE TO DISPLAY THE RESULT 
+        <b-table responsive :items="itemLink"></b-table> -->
+        <!-- JSON RESULT -->
+        <div class="panel-body">
+             <pre v-html="JSON.stringify(itemLink, undefined, 4)"></pre>
+         </div>
+        </div>
+    </b-modal>
 
 </div>
 
@@ -86,6 +111,7 @@ var schemaIdHolder = {
 
 var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
 var getCustomMetadata = require("@/utils/commonFunction.js").default.getCustomMetadata;
+var getLinkInfo = require("@/utils/commonFunction.js").default.getLinkInfo;
 var deleteEntity = require("@/utils/commonFunction.js").default.deleteEntity;
 export default {
     props: {
@@ -128,7 +154,8 @@ export default {
         return {
             filterVal: '',
             itemsDelete: null,
-             }
+            itemLink: null
+               }
     },
     mounted() {
         this.onProp(this.filter);
@@ -160,6 +187,18 @@ export default {
                 this.model = item;
                 this.$root.$emit('bv::show::modal', 'modalEdit', button);
             },
+            linkFunction(faId,infoType){
+            let self = this;
+            console.log("infoType: ", infoType);
+			getLinkInfo(faId,infoType,self );
+            },
+            checkLinkField(idProvider){
+            if(idProvider !== undefined && idProvider !== null){
+             return idProvider.startsWith("select-") || idProvider.startsWith("upload-");
+             }else{
+             return false
+             }
+            },
              showDelete(item, index, button) {
                 let self = this;
                console.log("ITEM", item);
@@ -190,6 +229,7 @@ export default {
                 this.currentPage = 1;
             }
     }
+      
 }
 
 </script>

@@ -20,11 +20,10 @@
                     <b-tab title="Results" active>
                         <generalTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
                         :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
-                            <slot></slot>
                         </generalTable>
                     </b-tab>
                     <b-tab title="Create new">
-                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder"></generalForm>
+                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -45,6 +44,7 @@ var getCustomMetadata = require("@/utils/commonFunction.js").default.getCustomMe
 import jsonschema from "@/generated/schema/fingerprintset.json";
 var saveFingerprints = require("@/utils/fingerprintFunction.js").default.saveFingerprints;
 var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
+var deleteFile = require("@/utils/fileFunction.js").default.deleteFile;
 console.log(jsonschema.fields);
 
 function getFun(val) {
@@ -78,7 +78,7 @@ export default {
     data() {
         return {
             items: [],
-            fields: [],
+            fields: jsonschema.fields,
             currentPage: 1,
             perPage: 10,
             filter: null,
@@ -130,6 +130,11 @@ export default {
                 console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
                 saveFingerprints(JSON.stringify(this.model, undefined, 4), self);
                 self.model = {}
+            },
+             cancel() {
+                let self = this;
+                deleteFile(self.model["file-id"]);
+                self.model = {};
             },
             myRowClickHandler(record, index) {
 		       console.log(record); // This will be the item data for the row

@@ -53,7 +53,7 @@ public interface SampleMixIn {
     @JsonProperty("sop-id")
     public java.util.UUID getSopId();
     
-    @JsonProperty("sampleId")
+    @JsonProperty("sample-id")
     public String getSampleId();
     
     @JsonProperty("dateOfSampleDrawing")
@@ -102,7 +102,7 @@ public interface SampleMixIn {
         @JsonProperty("sop-id")
         public SampleMixInBuilder setSopId(final java.util.UUID sopId);
         
-        @JsonProperty("sampleId")
+        @JsonProperty("sample-id")
         public SampleMixInBuilder setSampleId(final String sampleId);
         
         @JsonProperty("dateOfSampleDrawing")

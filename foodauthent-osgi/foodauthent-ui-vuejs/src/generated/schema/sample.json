@@ -3,17 +3,19 @@
     "label" : "Product-id",
     "model" : "product-id",
     "required" : false,
-    "type" : "input",
-    "inputType" : "text"
+    "idprovider" : "select-product",
+    "fieldName" : "fa-id",
+    "type" : "selectModel"
   }, {
     "label" : "Sop-id",
     "model" : "sop-id",
     "required" : false,
-    "type" : "input",
-    "inputType" : "text"
+    "idprovider" : "select-sop",
+    "fieldName" : "fa-id",
+    "type" : "selectModel"
   }, {
-    "label" : "SampleId",
-    "model" : "sampleId",
+    "label" : "Sample-id",
+    "model" : "sample-id",
     "required" : false,
     "type" : "input",
     "inputType" : "text"

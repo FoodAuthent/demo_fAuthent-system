@@ -3,16 +3,25 @@
  */
 package org.foodauthent.rest.impl.service;
 
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-import org.foodauthent.api.FileService;
-import org.foodauthent.common.exception.FAExceptions;
-import org.foodauthent.model.FaObjectSet;
-import org.foodauthent.model.FileMetadata;
-import org.foodauthent.rest.api.service.FileRestService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+
+import org.foodauthent.model.FaObjectSet;
+import java.io.File;
+import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.FilePageResult;
+import org.foodauthent.model.ImportResult;
+
+import org.foodauthent.api.FileService;
+import org.foodauthent.api.ServiceRegistry;
+
+import org.foodauthent.rest.api.service.FileRestService;
+
+import org.foodauthent.common.exception.FAExceptions;
 
 /**
  * FoodAuthent Swagger API

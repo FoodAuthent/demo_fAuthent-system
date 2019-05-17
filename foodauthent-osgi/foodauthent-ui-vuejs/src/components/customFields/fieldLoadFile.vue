@@ -4,7 +4,7 @@
     <input class="form-control" type="text" v-model="value" :disabled="disabled" :maxlength="schema.max" :placeholder="schema.placeholder" :readonly="schema.readonly" :idprovider="schema.idprovider" :buttonLabel="schema.buttonLabel">
 
     <!-- MODAL FILE FORM -->
-    <b-modal :id="schema.idprovider" :title="schema.idprovider" size="lg" @ok="loadFile" @cancel="handleCancel">
+    <b-modal :id="schema.idprovider" :title="schema.idprovider" size="lg" @ok="loadFile" @cancel="handleCancel" @close="handleCancel">
         <template>
             <div class="container" id="fileForm">
                 <div class="panel panel-default">
@@ -40,6 +40,7 @@ import VueFormGenerator from "vue-form-generator";
 import jsonschemafile from "@/generated/schema/filemetadata.json";
 var createFileMetadata = require("@/utils/fileFunction.js").default.createFileMetadata;
 var uploadFile = require("@/utils/fileFunction.js").default.uploadFile;
+var deleteFile = require("@/utils/fileFunction.js").default.deleteFile;
 export default {
     mixins: [VueFormGenerator.abstractField],
     data() {
@@ -64,6 +65,7 @@ export default {
                 document.body.classList.remove("modal-open");
             },
             handleCancel() {
+            	deleteFile(this.value);
                 this.value = "";
                 document.body.classList.remove("modal-open");
             }
