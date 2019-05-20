@@ -41,6 +41,10 @@
          id="org.eclipse.equinox.p2.rcp.feature"
          version="0.0.0"/>
 
+   <includes
+         id="net.openchrom.knime.node.nmr.feature"
+         version="0.0.0"/>
+
    <plugin
          id="org.eclipse.jface"
          download-size="0"
@@ -1211,6 +1215,89 @@
          install-size="0"
          version="0.0.0"
          fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.ext.jep"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="net.openchrom.knime.base"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.openchrom.knime.node.base"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.openchrom.knime.node.fid.base"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.openchrom.knime.node.fid.table"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.openchrom.knime.node.nmr.apodization"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.openchrom.knime.node.nmr.digitalfilter"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.openchrom.knime.node.nmr.ft"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.openchrom.knime.node.nmr.io.bruker"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.openchrom.knime.node.nmr.phasecorrection"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.openchrom.knime.node.nmr.table"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.knime.datageneration"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>
