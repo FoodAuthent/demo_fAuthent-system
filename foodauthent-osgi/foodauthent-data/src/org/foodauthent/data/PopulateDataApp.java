@@ -50,11 +50,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class PopulateDataApp {
 
     public static void main(String[] args) throws JsonProcessingException {
-	
-	//config - TODO parse from args
+
+	// config - TODO parse from args
 	boolean runTrainingAndPredictionJobs = true;
 	FASystemClient c = new FASystemClient("localhost", 9090);
-	
+
 	doit("Delete all entities", () -> {
 	    clearAllProducts(c);
 	    clearAllWorkflows(c);

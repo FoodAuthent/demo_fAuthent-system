@@ -4,12 +4,11 @@ import static java.util.Arrays.stream;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -23,6 +22,7 @@ import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.api.internal.persistence.PersistenceServiceProvider;
 import org.foodauthent.elasticsearch.ClientService;
 import org.foodauthent.elasticsearch.ClientServiceListener;
+import org.foodauthent.elasticsearch.impl.ElasticsearchOperation.IdResult;
 import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResult;
 import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResultItem;
 import org.foodauthent.model.FaModel;
@@ -279,14 +279,23 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 	@Override
 	public void removeFaModelByUUID(UUID uuid) {
-		//TODO test and fix
-		op.delete(uuid.toString(), classTarget(FaModel.class));
+		final Optional<IdResult> r = op.ids(uuid.toString());
+		if (r.isPresent()) {
+			op.delete(r.get().id(), r.get().target());
+		}
 	}
 	
 	@Override
 	public void removeBlobByUUID(UUID faId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
+		if (fileStorageService != null) {
+			try {
+				fileStorageService.delete(faId);
+			} catch (IOException e) {
+				// ignore
+			}
+		} else {
+			op.delete(faId.toString(), blobTarget());
+		}
 	}
 
 	@Override

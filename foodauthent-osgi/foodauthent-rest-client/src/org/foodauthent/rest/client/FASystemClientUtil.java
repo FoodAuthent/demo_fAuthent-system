@@ -3,10 +3,7 @@ package org.foodauthent.rest.client;
 import java.io.File;
 import java.util.UUID;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -21,11 +18,7 @@ import org.foodauthent.rest.api.service.ProductRestService;
 import org.foodauthent.rest.api.service.SampleRestService;
 import org.foodauthent.rest.api.service.SopRestService;
 import org.foodauthent.rest.api.service.WorkflowRestService;
-import org.foodauthent.rest.impl.json.JacksonJSONReader;
-import org.foodauthent.rest.impl.json.JacksonJSONWriter;
-import org.glassfish.jersey.client.proxy.WebResourceFactory;
 import org.glassfish.jersey.media.multipart.MultiPart;
-import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
 
 /**

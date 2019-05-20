@@ -34,6 +34,10 @@ import org.slf4j.LoggerFactory
 import java.lang.reflect.{ Type, ParameterizedType }
 import com.fasterxml.jackson.core.`type`.TypeReference
 import collection.JavaConverters._
+import org.elasticsearch.index.query.IdsQueryBuilder
+import org.elasticsearch.index.query.IdsQueryBuilder
+import org.elasticsearch.client.RequestOptions
+import java.util.Optional
 
 /**
  * Commonly used operations for communicating with Elasticsearch
@@ -43,6 +47,14 @@ import collection.JavaConverters._
  * @author Sven Böckelmann
  */
 class ElasticsearchOperation(val client: RestHighLevelClient) {
+  
+  /**
+   * result dto for searching by ids
+   */
+  case class IdResult(
+    id: String,
+    target: Target)
+    
 
   val mapper = ObjectMapperUtil.newObjectMapper.registerModule(new Json4sScalaModule)
 
@@ -306,7 +318,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
     sourceBuilder.from(from)
     sourceBuilder.size(size)
     request.source(sourceBuilder)
-    val response = client.search(request)
+    val response = client.search(request, RequestOptions.DEFAULT)
     response.getHits.getHits.map(f => {
       read[T](f.getSourceAsString)
     })
@@ -337,7 +349,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
     sourceBuilder.query(query)
     sourceBuilder.fetchSource(false)
     request.source(sourceBuilder)
-    val response = client.search(request)
+    val response = client.search(request, RequestOptions.DEFAULT)
     if (response.getHits.getTotalHits == 0) {
       return None
     }
@@ -346,6 +358,29 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
     }).toList)
   }
 
+   /**
+   * Get Documents for Object Ids
+   *
+   * @param id id to search for
+   * @return SearchResult with totalHits and list of results
+   */
+  def ids(id: String): Optional[IdResult] = {
+    val query = new IdsQueryBuilder()
+    query.addIds(id)
+    val request = new SearchRequest
+    val sourceBuilder = new SearchSourceBuilder()
+    sourceBuilder.query(query)
+    request.source(sourceBuilder)
+    val response = client.search(request, RequestOptions.DEFAULT)
+    if (response.getHits.getTotalHits == 1) {
+      val hit = response.getHits.getAt(0)
+      return Optional.of(new IdResult(hit.getId, new Target(hit.getIndex, hit.getType)))
+    }
+    return Optional.empty();
+  }
+
+  
+  
   /**
    * Perform SearchRequest on Elasticsearch.
    * Results will be returned SearchResult which provides information for hits.
@@ -356,7 +391,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
    * @return SearchResult with totalHits and list of results
    */
   def search[T](request: SearchRequest)(implicit mf: Manifest[T]): SearchResult[T] = {
-    val response = client.search(request)
+    val response = client.search(request, RequestOptions.DEFAULT)
     if (response.getHits.getTotalHits == 0) {
       return new SearchResult(0, List.empty[SearchResultItem[T]])
     }
@@ -414,7 +449,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
     val sourceBuilder = new SearchSourceBuilder()
     sourceBuilder.query(query)
     request.source(sourceBuilder)
-    val response = client.search(request)
+    val response = client.search(request, RequestOptions.DEFAULT)
     if (response.getHits.getTotalHits == 0) {
       return List.empty[T].asJava
     }
@@ -454,7 +489,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
     sourceBuilder.query(query)
     sourceBuilder.sort(sort)
     request.source(sourceBuilder)
-    val response = client.search(request)
+    val response = client.search(request, RequestOptions.DEFAULT)
     if (response.getHits.getTotalHits == 0) {
       return List.empty[T]
     }
@@ -576,7 +611,7 @@ object ElasticsearchUtil {
       }
     }
   }
-
+  
   /**
    * Complex case class with detailed information on hits
    */
@@ -614,6 +649,6 @@ object ElasticsearchUtil {
      * serialized entity for hit document source
      */
     item: T)
-
+    
 }
 
