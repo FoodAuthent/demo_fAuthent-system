@@ -114,9 +114,6 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 	private UUID saveToFileStorageService(Blob blob) throws ModelExistsException {
 		try {
-			if (fileStorageService.exists(blob.getFaId())) {
-				throw new ModelExistsException("An entity with the given id already exists.");
-			}
 			fileStorageService.save(blob.getFaId(), blob.getData());
 			return blob.getFaId();
 		} catch (IOException e) {
