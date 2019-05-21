@@ -2239,6 +2239,7 @@ components:
       x-ui-vue.js:
       - name: code
       - name: text
+      - name: values
       properties:
         code:
           description: GPC attribute code
@@ -2275,6 +2276,7 @@ components:
       x-ui-vue.js:
       - name: code
       - name: text
+      - name: attributes
       properties:
         code:
           description: GPC brick code

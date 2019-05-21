@@ -83,6 +83,72 @@
           "required" : false,
           "type" : "input",
           "inputType" : "text"
+        }, {
+          "label" : "Attributes",
+          "model" : "attributes",
+          "required" : false,
+          "type" : "array",
+          "validator" : "array",
+          "showRemoveButton" : true,
+          "itemFieldClasses" : "form-control",
+          "itemContainerClasses" : "input-group pb-2",
+          "newElementButtonLabelClasses" : "btn btn-outline-dark",
+          "removeElementButtonClasses" : "btn btn-danger input-group-append",
+          "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
+          "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
+          "newElementButtonLabel" : "Add",
+          "inputName" : "attributes",
+          "items" : {
+            "type" : "object",
+            "schema" : {
+              "fields" : [ {
+                "label" : "Code",
+                "model" : "code",
+                "required" : false,
+                "type" : "input",
+                "inputType" : "text"
+              }, {
+                "label" : "Text",
+                "model" : "text",
+                "required" : false,
+                "type" : "input",
+                "inputType" : "text"
+              }, {
+                "label" : "Values",
+                "model" : "values",
+                "required" : false,
+                "type" : "array",
+                "validator" : "array",
+                "showRemoveButton" : true,
+                "itemFieldClasses" : "form-control",
+                "itemContainerClasses" : "input-group pb-2",
+                "newElementButtonLabelClasses" : "btn btn-outline-dark",
+                "removeElementButtonClasses" : "btn btn-danger input-group-append",
+                "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
+                "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
+                "newElementButtonLabel" : "Add",
+                "inputName" : "values",
+                "items" : {
+                  "type" : "object",
+                  "schema" : {
+                    "fields" : [ {
+                      "label" : "Code",
+                      "model" : "code",
+                      "required" : false,
+                      "type" : "input",
+                      "inputType" : "text"
+                    }, {
+                      "label" : "Text",
+                      "model" : "text",
+                      "required" : false,
+                      "type" : "input",
+                      "inputType" : "text"
+                    } ]
+                  }
+                }
+              } ]
+            }
+          }
         } ]
       }
     }
