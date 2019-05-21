@@ -2992,6 +2992,30 @@ components:
           items:
             $ref: '#/components/schemas/FileMetadata'
             
+    ImportFile:
+      type: object
+      x-ui-vue.js:
+        - name: file-id
+          id-provider: upload-file
+        - name: name
+        - name: description
+      properties:
+        fa-id:
+          description: A global id within the FoodAuthent-system.
+          type: string
+          format: uuid
+          example: ''
+        file-id:
+          description: Id referencing the file in the fa-system.
+          type: string
+          format: uuid
+        name:
+          description: A short SOP name
+          type: string
+        description:
+          description: A short description of the sop
+          type: string
+            
     SystemInfo:
       x-no-faid: true
       description: The system status with some statistics etc.

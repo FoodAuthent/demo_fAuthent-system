@@ -131,64 +131,53 @@ var MyObject = function () {
     );
   };
   
-  var importFile = function (varFileId, self) {
+  var importFile = function (fileId, self) {
 		setUpApi();
-	    console.log('Upload file');
+	    console.log('Import file');
 	    var callback = function (error, data, response) {
 	      console.log("ImportFile data:", data);
 	      console.log("ImportFile response:", response);
 	      if (error) {
 	        console.error(error);
+	        self.showError = 5;
 	      } else {
 	        self.value = data;
+	        self.showSuccess = 5;
 	        console.log("Import file API called successfully. Returned data: ", data);
 	      }
 	    };
-	    var fileId = varFileId;
 	    fileApi.importFile(
 	      fileId,
 	      callback
 	    );
 	  };
 	  
-	  var  forceFileDownload = function (data){
+	  var  forceFileDownload = function (data, uploadName){
     	  console.log("forceFileDownload");
 	      const url = window.URL.createObjectURL(new Blob([data]))
 	      const link = document.createElement('a')
 	      link.href = url
-	      link.setAttribute('download', 'file.zip') //or any other extension
+	      link.setAttribute('download', uploadName) 
 	      document.body.appendChild(link)
 	      link.click();
 };
 	  
-	  var exportFile = function (varFileId, type, self) {
+	  var downloadFile = function (varFileId, uploadName, self) {
 			setUpApi();
-		    console.log('Export file');
+		    console.log('Download file');
 		    var callback = function (error, data, response) {
 		      console.log("exportFile data:", data);
 		      console.log("exportFile response:", response);
 		      if (error) {
 		        console.error(error);
 		      } else {
-		        self.value = data;
+		        //self.value = data;
 		        console.log("Export file API called successfully. Returned data: ", data);
-		        forceFileDownload(data);
+		        forceFileDownload(data, uploadName);
 		      }
 		    };
-		    var fileType = type;
-		    var fileId = varFileId;
-		    var faObjectSet = {
-		    		  "sops": [
-		    			    "eb89253a-6920-4efd-bad4-18409d91e06e"
-		    			  ],
-		    			  "products": [
-		    			    "aec414db-7d17-4d55-995e-dc6383df90e5"
-		    			  ]
-		    			};
-		    fileApi.exportFile(
-		    	fileType,
-		    	fileId,
-		    	faObjectSet,
+		    fileApi.getFileData(
+		      varFileId,
 		      callback
 		    );
 		  };
@@ -223,7 +212,7 @@ var MyObject = function () {
     createFileMetadata: createFileMetadata,
     uploadFile: uploadFile,
     importFile: importFile,
-    exportFile: exportFile,
+    downloadFile: downloadFile,
     getAllFiles: getAllFiles,
     deleteFile: deleteFile
     

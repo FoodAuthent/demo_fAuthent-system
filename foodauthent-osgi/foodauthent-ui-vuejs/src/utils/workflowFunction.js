@@ -425,7 +425,7 @@ var findWorkflowById = function (self) {
 	  
 	  
 	  
-	  var findPredictionJobById = function (self) {
+	  var findTriningJobById = function (self) {
 		  setUpApi();
 		    console.log('Search Training Job for ID: ',self.filter);
 		    var callback = function (error, data, response) {
@@ -486,7 +486,7 @@ var findWorkflowById = function (self) {
     );
   };
 
-  var savePredictionJob = function (json, self) {
+  var savePredictionJob = function (workflowId, fingerprintsetId, modelId, self) {
 	  setUpApi();
     console.log('Save Prediction Job');
     var callback = function (error, data, response) {
@@ -501,19 +501,19 @@ var findWorkflowById = function (self) {
         console.log("API called successfully. Returned data: ", data);
       }
     };
-    //TO-DO set the right requested fields
-    var opt = {
-      product: json
-    };
+    var opt = {};
     workflowApi.createPredictionJob(
+	  workflowId,
+	  fingerprintsetId,
+	  modelId,
       opt,
       callback
     );
   };
 
-  var saveTrainingJob = function (json, self) {
+  var saveTrainingJob = function (workflowId, fingerprintsetId, self) {
 	  setUpApi();
-    console.log('Save Prediction Job');
+    console.log('Save Training Job');
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -526,12 +526,10 @@ var findWorkflowById = function (self) {
         console.log("API called successfully. Returned data: ", data);
       }
     };
-    //TO-DO set the right requested fields
-    var opt = {
-      product: json
-    };
+    var fingerprintsetIds = [fingerprintsetId];
     workflowApi.createTrainingJob(
-      opt,
+     workflowId,
+     fingerprintsetIds,
       callback
     );
   };
@@ -576,7 +574,7 @@ var findWorkflowById = function (self) {
     findPredictionJobById: findPredictionJobById,
     findPredictionJobsByKeyword: findPredictionJobsByKeyword,
     findTrainingJobsByKeyword: findTrainingJobsByKeyword,
-    findPredictionJobById: findPredictionJobById,
+    findTriningJobById: findTriningJobById,
     findWorkflowById: findWorkflowById
   }
 }();

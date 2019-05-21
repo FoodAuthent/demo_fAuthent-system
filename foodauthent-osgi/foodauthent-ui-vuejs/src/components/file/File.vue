@@ -41,10 +41,9 @@ import generalTable from '@/components/file/FileTable';
 import generalForm from '@/components/general/GeneralForm';
 
 var getAllFiles = require("@/utils/fileFunction.js").default.getAllFiles;
-var importFile = require("@/utils/fileFunction.js").default.importFile;
-var exportFile = require("@/utils/fileFunction.js").default.exportFile;
+var getFile = require("@/utils/fileFunction.js").default.getFile;
 
-import jsonschema from "@/generated/schema/filemetadata.json";
+import jsonschema from "@/generated/schema/importfile.json";
 
 
 
@@ -112,9 +111,8 @@ export default {
                 //check if it is a valid UUID
                 var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
                 if (re.test(self.filter)) {
-                    findModelById(self);
+                    getFile(self.selected["fa-id"]);
                 } else {
-                    //findModelByKeyword(self);
                     getAllFiles(self);
                 }
             },
@@ -147,8 +145,7 @@ export default {
             },
             handleDeleteOk() {
                 let self = this;
-                console.log("gtin:", self.selected["gtin"]);
-               // deleteModel(self.selected["gtin"], self);
+                console.log("fa-id:", self.selected["fa-id"]);
             },
                 myRowClickHandler(record, index) {
                 this.selected = record;

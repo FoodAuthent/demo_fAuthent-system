@@ -54,6 +54,8 @@ public class ModelUtil {
         mapper.addMixIn(GPCAttributeValue.GPCAttributeValueBuilder.class, GPCAttributeValueMixIn.GPCAttributeValueMixInBuilder.class);
         mapper.addMixIn(GPCBrick.class, GPCBrickMixIn.class);
         mapper.addMixIn(GPCBrick.GPCBrickBuilder.class, GPCBrickMixIn.GPCBrickMixInBuilder.class);
+        mapper.addMixIn(ImportFile.class, ImportFileMixIn.class);
+        mapper.addMixIn(ImportFile.ImportFileBuilder.class, ImportFileMixIn.ImportFileMixInBuilder.class);
         mapper.addMixIn(ImportResult.class, ImportResultMixIn.class);
         mapper.addMixIn(ImportResult.ImportResultBuilder.class, ImportResultMixIn.ImportResultMixInBuilder.class);
         mapper.addMixIn(Model.class, ModelMixIn.class);

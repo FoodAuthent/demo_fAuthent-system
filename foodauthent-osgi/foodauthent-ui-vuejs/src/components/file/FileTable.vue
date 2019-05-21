@@ -74,8 +74,8 @@ var schemaIdHolder = {
 
 var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
 var deleteEntity = require("@/utils/commonFunction.js").default.deleteEntity;
-var exportFile = require("@/utils/fileFunction.js").default.exportFile;
-var deleteFile = require("@/utils/fileFunction.js").default.deleteFile;
+var downloadFile = require("@/utils/fileFunction.js").default.downloadFile;
+var deleteFile = require("@/utils/fileFunction.js").default.deleteFile; 
 export default {
     props: {
         items: Array,
@@ -163,7 +163,7 @@ export default {
            dowloadFile(item, index, button) {
                let self = this;
                console.log("DWNLOAD ITEM", item);
-              exportFile(item["fa-id"], item["type"], self);
+              downloadFile(item["fa-id"], item["uploadName"], self);
             },
             onFiltered(filteredItems) {
                 // Trigger pagination to update the number of buttons/pages due to filtering
