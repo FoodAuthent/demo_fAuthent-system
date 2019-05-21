@@ -134,7 +134,8 @@ public class DeleteEntities {
 	    List<SOP> sops = response.readEntity(SOPPageResult.class).getResults();
 	    sops.forEach(sop -> {
 		entities(c).removeEntity(sop.getFaId());
-		files(c).removeFileMetadataAndData(sop.getFileId());
+		if (sop.getFileId() != null)
+		    files(c).removeFileMetadataAndData(sop.getFileId());
 	    });
 	}
     }
