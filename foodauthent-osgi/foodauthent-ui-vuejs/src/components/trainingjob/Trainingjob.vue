@@ -23,7 +23,7 @@
                         </generalTable>
                     </b-tab>
                     <b-tab title="Create new">
-                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder"></generalForm>
+                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :showSuccess="showSuccess" :showError="showError"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -129,7 +129,7 @@ export default {
             save() {
                 let self = this;
                 console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
-                saveTrainingJob(JSON.stringify(this.model, undefined, 4), self);
+                saveTrainingJob(self.model["workflow-id"],self.model["fingerprint-set-id"], self);
                 self.model = {}
             },
             myRowClickHandler(record, index) {

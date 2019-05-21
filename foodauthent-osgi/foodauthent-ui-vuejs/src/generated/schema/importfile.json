@@ -1,0 +1,22 @@
+{
+  "fields" : [ {
+    "label" : "File-id",
+    "model" : "file-id",
+    "required" : false,
+    "idprovider" : "upload-file",
+    "fieldName" : "fa-id",
+    "type" : "loadFile"
+  }, {
+    "label" : "Name",
+    "model" : "name",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Description",
+    "model" : "description",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}
