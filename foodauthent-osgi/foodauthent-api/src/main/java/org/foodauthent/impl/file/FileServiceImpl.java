@@ -167,7 +167,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public ImportResult importFile(UUID fileId) {
 
-	FileMetadata fileMeta = new FileServiceImpl().getFileMetadata(fileId);
+	FileMetadata fileMeta = getFileMetadata(fileId);
 
 	Importer importer;
 	if (fileMeta.getType() == FileMetadata.TypeEnum.ZIP) {

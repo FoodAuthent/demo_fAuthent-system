@@ -24,7 +24,7 @@
                         </generalTable>
                     </b-tab>
                     <b-tab title="Create new">
-                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder"></generalForm>
+                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :showSuccess="showSuccess" :showError="showError"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>

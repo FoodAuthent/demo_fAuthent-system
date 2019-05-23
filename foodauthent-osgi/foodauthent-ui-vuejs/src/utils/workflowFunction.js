@@ -531,6 +531,7 @@ var findWorkflowById = function (self) {
       }
     };
     var fingerprintsetIds = [fingerprintsetId];
+<<<<<<< HEAD
     var opt = {
     		async: true
     };
@@ -538,6 +539,11 @@ var findWorkflowById = function (self) {
      workflowId,
      fingerprintsetIds,
      opt,
+=======
+    workflowApi.createTrainingJob(
+     workflowId,
+     fingerprintsetIds,
+>>>>>>> massimo
       callback
     );
   };

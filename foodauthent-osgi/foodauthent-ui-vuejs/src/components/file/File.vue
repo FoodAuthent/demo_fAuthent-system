@@ -23,8 +23,8 @@
                             <slot></slot>
                         </generalTable>
                     </b-tab>
-                    <b-tab title="Create new">
-                    <!--    <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder"></generalForm> -->
+                    <b-tab title="Import File">
+                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :showSuccess="showSuccess" :showError="showError"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -42,7 +42,6 @@ import generalForm from '@/components/general/GeneralForm';
 
 var getAllFiles = require("@/utils/fileFunction.js").default.getAllFiles;
 var getFile = require("@/utils/fileFunction.js").default.getFile;
-
 import jsonschema from "@/generated/schema/importfile.json";
 
 
@@ -131,8 +130,9 @@ export default {
             },
             save() {
                 let self = this;
-                console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
-                //saveModel(JSON.stringify(this.model, undefined, 4), self);
+                console.log("POST BODY", JSON.stringify(self.model, undefined, 4));
+                console.log("FILE ID", self.model["file-id"]);
+                importFile(self.model["file-id"], self);
                 self.model = {}
             },
             myRowClickHandler(record, index) {

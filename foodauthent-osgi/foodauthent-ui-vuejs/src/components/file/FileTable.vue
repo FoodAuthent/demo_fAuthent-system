@@ -76,6 +76,7 @@ var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchem
 var deleteEntity = require("@/utils/commonFunction.js").default.deleteEntity;
 var downloadFile = require("@/utils/fileFunction.js").default.downloadFile;
 var deleteFile = require("@/utils/fileFunction.js").default.deleteFile; 
+
 export default {
     props: {
         items: Array,

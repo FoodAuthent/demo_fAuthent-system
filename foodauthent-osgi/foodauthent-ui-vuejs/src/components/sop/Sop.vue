@@ -22,8 +22,8 @@
                         :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
                         </generalTable>
                     </b-tab>
-                    <b-tab title="Create new">
-                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder"></generalForm>
+                    <b-tab id="SopForm" title="Create new">
+                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :showSuccess="showSuccess" :showError="showError"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -92,6 +92,8 @@ export default {
             itemsMetadata: {},
             resultsCount: 1,
             selected: {},
+            showSuccess: 0,
+            showError: 0,
             schemaIdHolder: {
 			    schemaID: "withOutSchema"
 			},
