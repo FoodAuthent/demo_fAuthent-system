@@ -1,6 +1,10 @@
 <template>
 
 <div class="container" id="container">
+      <div class="d-flex align-items-center" v-if="loading">
+    		<strong>Saving...</strong>
+    		<b-spinner variant="success" class="ml-auto"></b-spinner>
+  		</div>
     <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
         <p>Operation success</p>
     </b-alert>
@@ -66,6 +70,7 @@ export default {
         formOptions: Object,
         schemaIdHolder: Object,
         pageType: String,
+        loading: Boolean,
         save: {
             type: Function,
             required: true

@@ -40,10 +40,8 @@ import generalTable from '@/components/general/GeneralTable';
 import generalForm from '@/components/general/GeneralForm';
 var getFingerprints = require("@/utils/fingerprintFunction.js").default.getFingerprints;
 var findFingerprintSetById = require("@/utils/fingerprintFunction.js").default.findFingerprintById;
-var getCustomMetadata = require("@/utils/commonFunction.js").default.getCustomMetadata;
 import jsonschema from "@/generated/schema/fingerprintset.json";
 var saveFingerprints = require("@/utils/fingerprintFunction.js").default.saveFingerprints;
-var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchemas;
 var deleteFile = require("@/utils/fileFunction.js").default.deleteFile;
 console.log(jsonschema.fields);
 

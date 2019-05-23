@@ -1,5 +1,4 @@
 var fingerprintApi;
-var saveCustomMetadata = require("@/utils/commonFunction.js").default.saveCustomMetadata;
 function setUpApi(){
 	  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
 	  var apiClient = new ApiClient();
@@ -9,9 +8,9 @@ function setUpApi(){
 		  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
 		  apiClient.defaultHeaders = headerToken;  
 	  }
-	  //only for test---
+	  // only for test---
 	  apiClient.basePath = window.location.origin + "/v0/foodauthent";
-	  //only for test---
+	  // only for test---
 	  var FingerprintApi = require("../generated/rest-client/src/api/FingerprintApi.js");
 	  fingerprintApi = new FingerprintApi(apiClient);
 }
@@ -65,8 +64,8 @@ var Fingerprints = function () {
 	    );
 	  };
 
- 
 
+	  
   var saveFingerprints = function (json, self) {
 	setUpApi();
     console.log("saveFingerprints");
@@ -78,15 +77,9 @@ var Fingerprints = function () {
         console.error(error);
         self.showError = 5;
       } else {
-        if (data) {
-          self.items = data.results;
-          self.showSuccess = 5;
-          saveCustomMetadata(self.schemas,data);
-          console.log("API called successfully. Returned data: ", data);
-        } else {
-          self.items = [];
-        }
-
+        self.response = data.results;
+        self.showSuccess = 5;
+        console.log("API called successfully. Returned data: ", data);
       }
     };
     var fingerprintSet = json;

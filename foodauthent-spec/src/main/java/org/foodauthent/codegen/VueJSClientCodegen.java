@@ -16,12 +16,12 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import io.swagger.models.properties.RefProperty;
 import io.swagger.util.Json;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
+import io.swagger.v3.oas.models.media.UUIDSchema;
 
 /**
  * Code generator for vue.js-forms json-files (see, e.g.,
@@ -201,7 +201,7 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 				String[] tmp = arrayProp.getItems().get$ref().split("/");
 				String itemSchemaName = tmp[tmp.length - 1];
 				addFieldsInfo(models.get(itemSchemaName), fields, models);
-			} else if (arrayProp.getItems() instanceof StringSchema) {
+			} else if (arrayProp.getItems() instanceof StringSchema || arrayProp.getItems() instanceof UUIDSchema) {
 				//Array of string does not need items, otherwise it doesn't work
 				field.remove("items");
 				//addStaticProperties(items, STRING_STATIC_FIELDS);

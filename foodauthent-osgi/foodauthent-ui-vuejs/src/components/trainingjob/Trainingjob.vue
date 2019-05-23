@@ -23,7 +23,7 @@
                         </generalTable>
                     </b-tab>
                     <b-tab title="Create new">
-                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :showSuccess="showSuccess" :showError="showError"></generalForm>
+                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :showSuccess="showSuccess" :showError="showError" :loading="loading"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -83,6 +83,7 @@ export default {
             currentPage: 1,
             perPage: 10,
             filter: null,
+            loading: false,
             model: {},
             pageType: "noType",
             schemas: schemas,
@@ -128,6 +129,7 @@ export default {
             },
             save() {
                 let self = this;
+                self.loading = true;
                 console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
                 saveTrainingJob(self.model["workflow-id"],self.model["fingerprint-set-id"], self);
                 self.model = {}
@@ -139,6 +141,9 @@ export default {
             handleEditOk() {
                 let self = this;
                 console.log("This is the model", self.model);
+            },
+            cancel(){
+            self.model = {}
             },
                 myRowClickHandler(record, index) {
                 this.selected = record;

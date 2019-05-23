@@ -1,15 +1,8 @@
 {
   "fields" : [ {
-    "label" : "Product-id",
-    "model" : "product-id",
+    "label" : "Fingerprint-ids",
+    "model" : "fingerprint-ids",
     "required" : true,
-    "idprovider" : "select-product",
-    "fieldName" : "fa-id",
-    "type" : "selectModel"
-  }, {
-    "label" : "Fingerprints",
-    "model" : "fingerprints",
-    "required" : false,
     "type" : "array",
     "validator" : "array",
     "showRemoveButton" : true,
@@ -20,50 +13,18 @@
     "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
     "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
     "newElementButtonLabel" : "Add",
-    "inputName" : "fingerprints",
-    "items" : {
-      "type" : "object",
-      "schema" : {
-        "fields" : [ {
-          "label" : "Metadata",
-          "model" : "metadata",
-          "required" : false,
-          "type" : "input",
-          "inputType" : "text"
-        } ]
-      }
-    }
-  }, {
-    "label" : "File-id",
-    "model" : "file-id",
-    "required" : true,
-    "idprovider" : "upload-file",
-    "fieldName" : "fa-id",
-    "type" : "loadFile"
+    "inputName" : "fingerprint-ids"
   }, {
     "label" : "Name",
     "model" : "name",
-    "required" : false,
+    "required" : true,
     "type" : "input",
     "inputType" : "text"
   }, {
-    "label" : "Type",
-    "model" : "type",
-    "required" : true,
-    "type" : "object",
-    "schema" : {
-      "fields" : [ {
-        "label" : "Name",
-        "model" : "name",
-        "required" : true,
-        "type" : "select",
-        "validator" : "string",
-        "inputName" : "name",
-        "values" : [ {
-          "id" : "bruker",
-          "name" : "Bruker"
-        } ]
-      } ]
-    }
+    "label" : "Class-label",
+    "model" : "class-label",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
   } ]
 }

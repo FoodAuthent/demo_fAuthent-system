@@ -108,6 +108,7 @@ export default {
       } else {
         console.log("NO method found");
       }
+      document.body.classList.remove("modal-open");
     },
     myRowClickHandler(record, index) {
       this.value = record[this.schema.fieldName];

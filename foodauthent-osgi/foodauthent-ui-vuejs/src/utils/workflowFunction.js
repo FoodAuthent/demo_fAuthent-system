@@ -501,7 +501,9 @@ var findWorkflowById = function (self) {
         console.log("API called successfully. Returned data: ", data);
       }
     };
-    var opt = {};
+    var opt = {
+    		async: true
+    };
     workflowApi.createPredictionJob(
 	  workflowId,
 	  fingerprintsetId,
@@ -520,16 +522,22 @@ var findWorkflowById = function (self) {
       if (error) {
         console.error(error);
         self.showError = 5;
+        self.loading = false;
       } else {
         self.response = data.results;
         self.showSuccess = 5;
+        self.loading = false;
         console.log("API called successfully. Returned data: ", data);
       }
     };
     var fingerprintsetIds = [fingerprintsetId];
+    var opt = {
+    		async: true
+    };
     workflowApi.createTrainingJob(
      workflowId,
      fingerprintsetIds,
+     opt,
       callback
     );
   };
