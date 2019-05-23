@@ -112,10 +112,13 @@ var MyObject = function () {
       console.log("response:", response);
       if (error) {
         console.error(error);
-        self.showError = 5;
+        self.response = response.error.message;
+        self.showError = true;
+        self.loading = false;
       } else {
         self.response = data.results;
         self.showSuccess = 5;
+        self.loading = false;
         console.log("API called successfully. Returned data: ", data);
       }
     };

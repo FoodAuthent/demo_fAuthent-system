@@ -1,5 +1,6 @@
 var entityApi;
 var customMetadataApi;
+var sampleApi
 function setUpApi(){
 	  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
 	  var apiClient = new ApiClient();
@@ -17,6 +18,9 @@ function setUpApi(){
 	  
 	  var EntityApi = require("@/generated/rest-client/src/api/EntityApi.js");
 	  entityApi = new EntityApi(apiClient);
+	  
+	  var SampleApi = require("@/generated/rest-client/src/api/SampleApi.js");
+	  sampleApi = new SampleApi(apiClient);
 	  	  
 }
 
@@ -260,22 +264,22 @@ var MyObject = function () {
 		  //only for test---
 		  apiClient.basePath = window.location.origin + "/v0/foodauthent";
 		  //only for test---
-		  if(infoType == 'upload-file'){
+		  if(infoType == 'file-id'){
 		  var FileApi = require("@/generated/rest-client/src/api/FileApi.js");
 		  generalApi = new FileApi(apiClient);
-		  }else if(infoType == 'select-fingerprint'){
+		  }else if(infoType == 'fingerprint-id' || infoType == 'fingerprint-ids'){
 		  var FingerprintApi = require("@/generated/rest-client/src/api/FingerprintApi.js");
 		  generalApi = new FingerprintApi(apiClient);
-		}else if(infoType == 'select-model'){
+		}else if(infoType == 'model-id'){
 		  var ModelApi = require("@/generated/rest-client/src/api/ModelApi.js");
 		  generalApi = new ModelApi(apiClient);
-		}else if(infoType == 'select-product'){
+		}else if(infoType == 'product-id'){
 		  var ProductApi = require("@/generated/rest-client/src/api/ProductApi.js");
 		  generalApi = new ProductApi(apiClient);
-		}else if(infoType == 'select-sop'){
+		}else if(infoType == 'sop-id'){
 		  var SopApi = require("@/generated/rest-client/src/api/SopApi.js");
 		  generalApi = new SopApi(apiClient);
-		}else if (infoType == 'select-workflow'){
+		}else if (infoType == 'workflow-id'){
 			  var WorkflowApi = require("@/generated/rest-client/src/api/WorkflowApi.js");
 			  generalApi = new WorkflowApi(apiClient);
 		}else{
@@ -292,27 +296,69 @@ var MyObject = function () {
 		        var jsonResult = [];
 		        jsonResult.push(response.body);
 //		        self.itemLink = data.results;
-		        self.itemLink = jsonResult;
+		        if(infoType == 'fingerprint-id' || infoType == 'fingerprint-ids'){
+		        	console.log("result is: ",jsonResult);
+		        	console.log("sample-id is: ",jsonResult[0]['sample-id']);
+		        	findSampleById (jsonResult[0]['sample-id'],self);
+		        }else{
+		        	self.itemLink = jsonResult;
+		        }
+				document.body.classList.remove("modal-open");
 		        console.log("API called successfully. Returned data: ", data);
 		      }
 		    };
-			  if(infoType == 'upload-file'){
+			  if(infoType == 'file-id'){
 				  generalApi.getFileMetadata(faId,callback);
-				  }else if(infoType == 'select-fingerprint'){
+				  }else if(infoType == 'fingerprint-id' || infoType == 'fingerprint-ids'){
 					  generalApi.getFingerprintById(faId,callback);
-				}else if(infoType == 'select-model'){
+				}else if(infoType == 'model-id'){
 					generalApi.getModelById(faId,callback);
-				}else if(infoType == 'select-product'){
+				}else if(infoType == 'product-id'){
 					generalApi.getProductById(faId,callback);
-				}else if(infoType == 'select-sop'){
+				}else if(infoType == 'sop-id'){
 					generalApi.getSOPById(faId,callback);
-				}else if(infoType == 'select-workflow'){
+				}else if(infoType == 'workflow-id'){
 					generalApi.getWorkflowById(faId,callback);
 				} else {
 				console.log('Something goes wrong, this type doesnt exist',infoType);
 				}
  
 		  };
+		  
+		  var findSampleById = function (faId, self) {
+			  setUpApi();
+			    console.log('Search sample for Id: ',faId);
+			    var callback = function (error, data, response) {
+			      console.log("data:", data);
+			      console.log("response:", response);
+			      if(data !== undefined && data !== null){
+			    	  self.resultsCount = data.resultCount; 
+			      }else{
+			    	  self.resultsCount = 0;
+			      }
+			      if(response.body !== null){
+			    	  self.pageCount = response.body.pageCount; 
+			      }else{
+			    	  self.pageCount = 0;
+			      }
+			      if (error) {
+			        //this.response = data;
+			        console.error(error);
+			      } else {
+			        var jsonResult = [];
+			        jsonResult.push(response.body);
+			        jsonResult[0]['actions'] = '';
+			        self.itemLink  = jsonResult;
+			        console.log("Items For Id are: ",self.items);
+			        console.log("API called successfully. Returned data: ", data);
+			      }
+			    };
+			    var sampleId = faId;
+			    sampleApi.getSampleById(
+			      sampleId,
+			      callback
+			    );
+			  };
 
   return {
     renderCustomField: renderCustomField,

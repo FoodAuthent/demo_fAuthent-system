@@ -139,10 +139,13 @@ var MyObject = function () {
 	      console.log("ImportFile response:", response);
 	      if (error) {
 	        console.error(error);
-	        self.showError = 5;
+	        self.response = response.error.message;
+	        self.showError = true;
+	        self.loading = false;
 	      } else {
 	        self.value = data;
 	        self.showSuccess = 5;
+	        self.loading = false;
 	        console.log("Import file API called successfully. Returned data: ", data);
 	      }
 	    };
@@ -193,7 +196,7 @@ var MyObject = function () {
 			        console.error(error);
 			        //self.showError = true;
 			      } else {
-			        self.response = response;
+			        //self.response = response;
 			        //self.showSuccess = true;
 			        console.log("API called successfully. Returned data: ", data);
 			      }

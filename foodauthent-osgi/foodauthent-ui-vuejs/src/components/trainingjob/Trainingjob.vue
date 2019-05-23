@@ -23,7 +23,7 @@
                         </generalTable>
                     </b-tab>
                     <b-tab title="Create new">
-                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :showSuccess="showSuccess" :showError="showError" :loading="loading"></generalForm>
+                    	<generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :response="response" :showSuccess="showSuccess" :showError="showError" :loading="loading"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -43,7 +43,6 @@ var findTrainingJobsByKeyword = require("@/utils/workflowFunction.js").default.f
 var findTrainingJobsById = require("@/utils/workflowFunction.js").default.findTrainingJobsById;
 var saveTrainingJob = require("@/utils/workflowFunction.js").default.saveTrainingJob;
 import jsonschema from "@/generated/schema/training.json";
-
 
 
 console.log(jsonschema.fields);
@@ -87,6 +86,7 @@ export default {
             model: {},
             pageType: "noType",
             schemas: schemas,
+            response: "",
             itemsMetadata: {},
             resultsCount: 1,
             selected: {},
@@ -142,8 +142,9 @@ export default {
                 let self = this;
                 console.log("This is the model", self.model);
             },
-            cancel(){
-            self.model = {}
+             cancel() {
+                let self = this;
+                self.model = {};
             },
                 myRowClickHandler(record, index) {
                 this.selected = record;

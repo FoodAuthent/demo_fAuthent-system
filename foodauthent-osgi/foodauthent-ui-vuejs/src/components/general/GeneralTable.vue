@@ -36,13 +36,23 @@
 
 				<!-- THE IDs ARE LINKS -->
 	 			<template v-for="(field, index) in fields" :slot="field.model" slot-scope="data">
-			      <div v-if="checkLinkField(field.idprovider)">
-			        	<b-button variant="link"v-b-modal.linkModal @click="linkFunction(data.value, field.idprovider)" >{{ data.value }}</b-button>
+			      <div v-if="checkLinkField(field.model)">
+					      <div v-if="checkArray(data.value)">
+							      <ul id="listOfIds">
+									  <li v-for="(id, index) in data.value">
+									   <b-button variant="link"v-b-modal.linkModal @click="linkFunction(id, field.model)" >{{ id }}</b-button>
+									  </li>
+								</ul>
+					      </div>
+					       <div v-else>
+					        	<b-button variant="link"v-b-modal.linkModal @click="linkFunction(data.value, field.model)" >{{ data.value }}</b-button>
+					      </div>
 			      </div>
 			       <div v-else>
 			       		{{data.value}}
 			       </div>
-			    </template>
+			    </template> 
+			    
 					    
 				<!-- ACTIONS edit-delete-info -->
                 <template slot="actions" slot-scope="row" v-slot:actions>
@@ -189,15 +199,20 @@ export default {
             },
             linkFunction(faId,infoType){
             let self = this;
+            console.log("faId: ", faId);
             console.log("infoType: ", infoType);
 			getLinkInfo(faId,infoType,self );
+			document.body.classList.remove("modal-open");
             },
-            checkLinkField(idProvider){
-            if(idProvider !== undefined && idProvider !== null){
-             return idProvider.startsWith("select-") || idProvider.startsWith("upload-");
+            checkLinkField(model){
+            if(model !== undefined && model !== null && model != 'fa-id' && model != 'sample-id'){
+             return model.includes("-id") || model.includes("-ids");
              }else{
              return false
              }
+            },
+            checkArray(field){
+           	return  Array.isArray(field);
             },
              showDelete(item, index, button) {
                 let self = this;
@@ -233,3 +248,8 @@ export default {
 }
 
 </script>
+<style>
+ul {
+  list-style-type: none;
+}
+</style>

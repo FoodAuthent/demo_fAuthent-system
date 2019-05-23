@@ -23,7 +23,7 @@
                         </generalTable>
                     </b-tab>
                     <b-tab title="Create new">
-                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :showSuccess="showSuccess" :showError="showError"></generalForm>
+							<generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :response="response" :showSuccess="showSuccess" :showError="showError" :loading="loading"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -81,7 +81,9 @@ export default {
             perPage: 10,
             filter: null,
             model: {},
+            response: "",
             pageType: "noType",
+            loading: false,
             schemas: schemas,
             itemsMetadata: {},
             resultsCount: 1,
@@ -125,13 +127,13 @@ export default {
             },
             save() {
                 let self = this;
+                self.loading = true;
                 console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
                 saveFingerprints(JSON.stringify(this.model, undefined, 4), self);
                 self.model = {}
             },
              cancel() {
                 let self = this;
-                deleteFile(self.model["file-id"]);
                 self.model = {};
             },
             myRowClickHandler(record, index) {

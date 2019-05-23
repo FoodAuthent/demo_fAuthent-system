@@ -42,6 +42,16 @@
                     <router-link :to="route.path" class="md-list-item-text">{{route.name}}</router-link>
                 </md-list-item>
             </md-list>
+         <hr>
+         <md-toolbar class="md-transparent" md-elevation="0">
+          Misc
+        </md-toolbar>
+            <md-list v-if="route.meta.Misc" v-for="route in this.$router.options.routes">
+                <md-list-item>
+                    <md-icon>label</md-icon>
+                    <router-link :to="route.path" class="md-list-item-text">{{route.name}}</router-link>
+                </md-list-item>
+            </md-list>
         </md-app-drawer>
         <md-app-content>
 		<div id="tableInfo"> 

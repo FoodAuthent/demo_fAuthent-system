@@ -28,7 +28,7 @@ export default new Router({
             name: 'Home',
             component: Home,
             meta: {
-                Experiments: true
+               
             }
     },
         {
@@ -148,7 +148,7 @@ export default new Router({
             name: 'File',
             component: File,
             meta: {
-                Tracing: true
+                Misc: true
             }
          },
 //         {

@@ -23,7 +23,7 @@
                         </generalTable>
                     </b-tab>
                     <b-tab id="SopForm" title="Create new">
-                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :showSuccess="showSuccess" :showError="showError"></generalForm>
+                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :response="response" :showSuccess="showSuccess" :showError="showError" :loading="loading"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -87,7 +87,9 @@ export default {
             perPage: 10,
             filter: null,
             model: {},
+            response: "",
             pageType: "sop",
+            loading: false,
             schemas: schemas,
             itemsMetadata: {},
             resultsCount: 1,
@@ -135,13 +137,16 @@ export default {
             },
             save() {
                 let self = this;
+                self.loading = true;
                 console.log("POST BODY", JSON.stringify(self.model, undefined, 4));
                 saveSop(JSON.stringify(self.model, undefined, 4), self);
-                self.model = {}
+                self.model = {};
             },
             cancel() {
                 let self = this;
+                if(self.model["file-id"] != "" && self.model["file-id"] != null){
                 deleteFile(self.model["file-id"]);
+                }
                 self.model = {};
             },
             myRowClickHandler(record, index) {

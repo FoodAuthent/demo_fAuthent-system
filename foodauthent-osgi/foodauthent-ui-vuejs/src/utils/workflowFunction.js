@@ -136,7 +136,7 @@ var findWorkflowById = function (self) {
       pageSize: self.perPage,
       keywords: filterArray
     };
-    workflowApi.findPredictionWorkflows(
+    workflowApi.findPredictionByKeyword(
       opt,
       callback
     );
@@ -178,7 +178,7 @@ var findWorkflowById = function (self) {
 	      pageSize: self.perPage,
 	      keywords: filterArray
 	    };
-	     workflowApi.findPredictionWorkflows(
+	     workflowApi.findPredictionByKeyword(
 	      opt,
 	      callback
 	    );
@@ -470,10 +470,13 @@ var findWorkflowById = function (self) {
       console.log("response:", response);
       if (error) {
         console.error(error);
-        self.showError = 5;
+        self.response = response.error.message;
+        self.showError = true;
+        self.loading = false;
       } else {
         self.response = data.results;
         self.showSuccess = 5;
+        self.loading = false;
         console.log("API called successfully. Returned data: ", data);
       }
     };
@@ -494,10 +497,13 @@ var findWorkflowById = function (self) {
       console.log("response:", response);
       if (error) {
         console.error(error);
-        self.showError = 5;
+        self.response = response.error.message;
+        self.showError = true;
+        self.loading = false;
       } else {
         self.response = data.results;
         self.showSuccess = 5;
+        self.loading = false;
         console.log("API called successfully. Returned data: ", data);
       }
     };
@@ -521,7 +527,8 @@ var findWorkflowById = function (self) {
       console.log("response:", response);
       if (error) {
         console.error(error);
-        self.showError = 5;
+        self.response = response.error.message;
+        self.showError = true;
         self.loading = false;
       } else {
         self.response = data.results;
@@ -531,7 +538,6 @@ var findWorkflowById = function (self) {
       }
     };
     var fingerprintsetIds = [fingerprintsetId];
-<<<<<<< HEAD
     var opt = {
     		async: true
     };
@@ -539,11 +545,6 @@ var findWorkflowById = function (self) {
      workflowId,
      fingerprintsetIds,
      opt,
-=======
-    workflowApi.createTrainingJob(
-     workflowId,
-     fingerprintsetIds,
->>>>>>> massimo
       callback
     );
   };

@@ -1,10 +1,10 @@
 <template>
 
 <div class="container" id="container">
-      <div class="d-flex align-items-center" v-if="loading">
+    <!--  <div class="d-flex align-items-center" v-if="loading">
     		<strong>Saving...</strong>
     		<b-spinner variant="success" class="ml-auto"></b-spinner>
-  		</div>
+  		</div> -->
     <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
         <p>Operation success</p>
     </b-alert>
@@ -24,7 +24,7 @@
                 <b-card-header header-tag="header" class="p-1" role="tab">
                     <b-btn block v-b-toggle="'accordion'+key" variant="info">{{currentschema.title}}</b-btn>
                 </b-card-header>
-                <b-collapse :id="'accordion'+key" visible=false accordion="my-accordion" role="tabpanel">
+                <b-collapse :id="'accordion'+key" accordion="my-accordion" role="tabpanel">
                     <b-card-body>
                         <vue-form-generator :schema="currentschema" :model="currentschema.model" :options="formOptions">
                         </vue-form-generator>
@@ -69,6 +69,7 @@ export default {
         model: Object,
         formOptions: Object,
         schemaIdHolder: Object,
+        response: String,
         pageType: String,
         loading: Boolean,
         save: {

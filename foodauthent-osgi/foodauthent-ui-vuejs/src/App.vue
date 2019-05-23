@@ -33,7 +33,17 @@
                     <b-dropdown-item><router-link :to="route.path"">{{route.name}}</router-link></b-dropdown-item>
                 </md-list-item>
             </md-list>
-        </b-nav-item-dropdown>      
+        </b-nav-item-dropdown>  
+        
+        	<!--  Misc  -->
+        <b-nav-item-dropdown right v-if="loggedIn">
+        <template slot="button-content"><em>Misc</em></template>
+            <md-list v-if="route.meta.Misc" v-for="route in this.$router.options.routes">
+                <md-list-item>
+                    <b-dropdown-item><router-link :to="route.path"">{{route.name}}</router-link></b-dropdown-item>
+                </md-list-item>
+            </md-list>
+        </b-nav-item-dropdown>    
 
      <!--   <b-nav-item-dropdown right>
           <template slot="button-content"><em>USER</em></template>

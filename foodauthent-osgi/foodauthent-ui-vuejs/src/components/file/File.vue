@@ -24,7 +24,7 @@
                         </generalTable>
                     </b-tab>
                     <b-tab title="Import File">
-                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :showSuccess="showSuccess" :showError="showError"></generalForm>
+                        <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :response="response" :showSuccess="showSuccess" :showError="showError" :loading="loading"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -84,7 +84,9 @@ export default {
             perPage: 10,
             filter: null,
             model: {},
+            response: "",
             pageType: "noType",
+            loading: false,
             schemas: schemas,
             itemsMetadata: {},
             resultsCount: 1,
@@ -130,6 +132,7 @@ export default {
             },
             save() {
                 let self = this;
+                self.loading = true;
                 console.log("POST BODY", JSON.stringify(self.model, undefined, 4));
                 console.log("FILE ID", self.model["file-id"]);
                 importFile(self.model["file-id"], self);
