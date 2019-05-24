@@ -62,15 +62,16 @@ export default {
                 if (typeof self.modelFile !== 'undefined' || self.modelFile != null){
                 createFileMetadata(JSON.stringify(self.modelFile, undefined, 4), self.file, self);
                 }
-                document.body.classList.remove("modal-open");
             },
             handleCancel() {
-            	deleteFile(this.value);
+            	//deleteFile(this.value);
                 this.value = "";
-                document.body.classList.remove("modal-open");
             }
     },
-    computed: {}
+        mounted() {
+        },
+    computed: {
+    }
 };
 
 </script>
@@ -82,6 +83,10 @@ export default {
 
 .input-group {
     flex-wrap: nowrap;
+}
+
+.modal-open {
+overflow: auto !important;
 }
 
 </style>

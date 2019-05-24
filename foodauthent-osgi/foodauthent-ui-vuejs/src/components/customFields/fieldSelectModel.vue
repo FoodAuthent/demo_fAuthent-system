@@ -12,7 +12,6 @@
         :buttonLabel="schema.buttonLabel">
 
 <!-- MODAL SEARCH -->
- <!--<b-modal :id="schema.modalId" :title="schema.modalId" size="lg">-->
 <b-modal :id="schema.idprovider" scrollable :title="schema.idprovider" size="xl" @show="loadData" @cancel="handleCancel" @ok="handleOk" @close="handleCancel">
 <!-- Table -->
 <template>
@@ -95,15 +94,17 @@ export default {
       filter: null
     };
   },
+  mounted() {
+    document.body.classList.remove("modal-open");
+    },
   methods: {
     loadData() {
       let self = this;
-      document.body.classList.add("modal-open");
       if (this.schema.idprovider == "select-product") {
         getProducts(self);
       } else if (this.schema.idprovider == "select-fingerprint") {
         getFingerprints(self);
-      } else if (this.schema.idprovider == "select-fingerprintset") {
+      } else if (this.schema.idprovider == "select-fingerprintset-id") {
         getFingerprintset(self);
       }  else if (this.schema.idprovider == "select-workflow") {
         getWorkflows(self);
@@ -116,7 +117,7 @@ export default {
       } else {
         console.log("NO method found");
       }
-      document.body.classList.remove("modal-open");
+
     },
     myRowClickHandler(record, index) {
       this.value = record[this.schema.fieldName];
@@ -140,11 +141,9 @@ export default {
     handleCancel() {
     this.value = "";
     console.log("Inside hadle cancel modal");
-    document.body.classList.remove("modal-open");
     },
     handleOk(){
     console.log("Inside hadle ok modal");
-    document.body.classList.remove("modal-open");
     },
     search() {
       let self = this;
@@ -152,7 +151,7 @@ export default {
         self.searchProduct();
       } else if (this.schema.idprovider == "select-fingerprint") {
         self.searchFingerprints();
-      } else if (this.schema.idprovider == "select-fingerprintset") {
+      } else if (this.schema.idprovider == "select-fingerprintset-id") {
       self.searchFingerprintset();
       }  else if (this.schema.idprovider == "select-workflow") {
         self.searchWorkflow();
@@ -233,6 +232,7 @@ export default {
   },
   computed: {
     sortOptions() {
+        document.body.classList.remove("modal-open");
       // Create an options list from our fields
       return this.fields.filter(f => f.sortable).map(f => {
         return { text: f.label, value: f.key };
@@ -249,5 +249,9 @@ export default {
 }
 .input-group {
   flex-wrap: nowrap;
+}
+
+.modal-open {
+overflow: auto !important;
 }
 </style>
