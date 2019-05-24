@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -68,9 +69,10 @@ public class FileServiceImpl implements FileService {
 	Blob blob = persistenceService.getBlobByUUID(fileId);
 	try {
 	    Path path = Files.createTempFile("file", null);
-	    Files.copy(blob.getData(), path);
+	    Files.copy(blob.getData(), path, StandardCopyOption.REPLACE_EXISTING);
 	    return path.toFile();
 	} catch (IOException e) {
+	    logger.error(e.getMessage(), e);
 	    return null;
 	}
     }
