@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Sop from '@/components/sop/Sop'
 import Product from '@/components/product/Product'
 import Fingerprint from '@/components/fingerprint/Fingerprint'
+import Fingerprintset from '@/components/fingerprintset/Fingerprintset'
 import Workflow from '@/components/workflow/Workflow'
 import Prediction from '@/components/prediction/Prediction'
 import Predictionjob from '@/components/predictionjob/Predictionjob'
@@ -56,13 +57,21 @@ export default new Router({
             }
         },
         {
-            path: '/fingerprint',
+            path: '/fingerprintset',
             name: 'Fingerprint Set',
-            component: Fingerprint,
+            component: Fingerprintset,
             meta: {
                 Experiments: true
             }
           },
+          {
+              path: '/fingerprint',
+              name: 'Fingerprint',
+              component: Fingerprint,
+              meta: {
+                  Experiments: true
+              }
+            },
         {
             path: '/prediction',
             name: 'Prediction',

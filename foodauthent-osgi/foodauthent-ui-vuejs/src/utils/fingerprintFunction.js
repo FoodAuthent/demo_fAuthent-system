@@ -58,7 +58,7 @@ var Fingerprints = function () {
 	      pageSize: self.perPage,
 	      keywords: filterArray
 	    };
-	    fingerprintApi.findFingerprintSetByKeyword(
+	    fingerprintApi.findFingerprintByKeyword(
 	      opt,
 	      callback
 	    );
@@ -147,12 +147,37 @@ var findFingerprintById = function(self){
 	      callback
 	    );
 	  };
+	  
+	  var saveFingerprint = function (json, self) {
+			setUpApi();
+		    console.log("saveFingerprintset");
+		    var callback = function (error, data, response) {
+		      console.log("data:", data);
+		      console.log("response:", response);
+		      if (error) {
+		        console.error(error);
+		        self.response = response.error.message;
+		        self.showError = true;
+		        self.loading = false;
+		      } else {
+		        self.response = data.results;
+		        self.showSuccess = 5;
+		        self.loading = false;
+		        console.log("API called successfully. Returned data: ", data);
+		      }
+		    };
+		    var fingerprintSet = json;
+		    fingerprintApi.createFingerprint(
+		      fingerprintSet,
+		      callback
+		    );
+		  };
 
 
 	  
-  var saveFingerprints = function (json, self) {
+  var saveFingerprintset = function (json, self) {
 	setUpApi();
-    console.log("saveFingerprints");
+    console.log("saveFingerprintset");
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -240,7 +265,8 @@ var findFingerprintById = function(self){
   return {
 	getFingerprintset: getFingerprintset,
 	getFingerprints: getFingerprints,
-    saveFingerprints: saveFingerprints,
+    saveFingerprintset: saveFingerprintset,
+    saveFingerprint: saveFingerprint,
     deleteFingerprint: deleteFingerprint,
     findFingerprintById: findFingerprintById,
     findFingerprintSetById: findFingerprintSetById

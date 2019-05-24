@@ -267,7 +267,7 @@ var MyObject = function () {
 		  if(infoType == 'file-id'){
 		  var FileApi = require("@/generated/rest-client/src/api/FileApi.js");
 		  generalApi = new FileApi(apiClient);
-		  }else if(infoType == 'fingerprint-id' || infoType == 'fingerprint-ids'){
+		  }else if(infoType == 'fingerprint-id' || infoType == 'fingerprint-ids' || infoType == 'fingerprintset-ids'){
 		  var FingerprintApi = require("@/generated/rest-client/src/api/FingerprintApi.js");
 		  generalApi = new FingerprintApi(apiClient);
 		}else if(infoType == 'model-id'){
@@ -296,7 +296,7 @@ var MyObject = function () {
 		        var jsonResult = [];
 		        jsonResult.push(response.body);
 //		        self.itemLink = data.results;
-		        if(infoType == 'fingerprint-id' || infoType == 'fingerprint-ids'){
+		        if(infoType == 'fingerprint-id' || infoType == 'fingerprint-ids' || infoType == 'fingerprintset-ids'){
 		        	console.log("result is: ",jsonResult);
 		        	console.log("sample-id is: ",jsonResult[0]['sample-id']);
 		        	findSampleById (jsonResult[0]['sample-id'],self);
@@ -309,7 +309,7 @@ var MyObject = function () {
 		    };
 			  if(infoType == 'file-id'){
 				  generalApi.getFileMetadata(faId,callback);
-				  }else if(infoType == 'fingerprint-id' || infoType == 'fingerprint-ids'){
+				  }else if(infoType == 'fingerprint-id' || infoType == 'fingerprint-ids' || infoType == 'fingerprintset-ids'){
 					  generalApi.getFingerprintById(faId,callback);
 				}else if(infoType == 'model-id'){
 					generalApi.getModelById(faId,callback);

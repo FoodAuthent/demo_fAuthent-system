@@ -38,10 +38,10 @@
 <script>
 import generalTable from '@/components/general/GeneralTable';
 import generalForm from '@/components/general/GeneralForm';
-var getFingerprints = require("@/utils/fingerprintFunction.js").default.getFingerprints;
-var findFingerprintById = require("@/utils/fingerprintFunction.js").default.findFingerprintById;
-import jsonschema from "@/generated/schema/fingerprint.json";
-var saveFingerprint = require("@/utils/fingerprintFunction.js").default.saveFingerprint;
+var getFingerprintset = require("@/utils/fingerprintFunction.js").default.getFingerprintset;
+var findFingerprintSetById = require("@/utils/fingerprintFunction.js").default.findFingerprintById;
+import jsonschema from "@/generated/schema/fingerprintset.json";
+var saveFingerprintset = require("@/utils/fingerprintFunction.js").default.saveFingerprintset;
 var deleteFile = require("@/utils/fileFunction.js").default.deleteFile;
 console.log(jsonschema.fields);
 
@@ -109,9 +109,9 @@ export default {
                 //check if it is a valid UUID
                 var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
                 if (re.test(self.filter)) {
-                    findFingerprintById(self);
+                    findFingerprintSetById(self);
                 } else {
-                    getFingerprints(self);
+                    getFingerprintset(self);
                 }
             },
             myPaginationHandler(page) {
@@ -123,13 +123,13 @@ export default {
             loadTableData() {
                 console.log("Load table data");
                 let self = this;
-                getFingerprints(self);
+                getFingerprintset(self);
             },
             save() {
                 let self = this;
                 self.loading = true;
                 console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
-                saveFingerprint(JSON.stringify(this.model, undefined, 4), self);
+                saveFingerprintset(JSON.stringify(this.model, undefined, 4), self);
                 self.model = {}
             },
              cancel() {

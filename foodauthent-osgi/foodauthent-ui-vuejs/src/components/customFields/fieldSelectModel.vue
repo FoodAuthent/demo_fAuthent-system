@@ -65,15 +65,19 @@
 import VueFormGenerator from "vue-form-generator";
 var getProducts = require("@/utils/productFunction.js").default.getProducts;
 var getFingerprints = require("@/utils/fingerprintFunction.js").default.getFingerprints;
+var getFingerprintset = require("@/utils/fingerprintFunction.js").default.getFingerprintset;
 var getWorkflows = require("@/utils/workflowFunction.js").default.getWorkflows;
 var getModels = require("@/utils/modelFunction.js").default.getModels;
 var getSops = require("@/utils/sopFunction.js").default.getSops;
+var getSample = require("@/utils/sampleFunction.js").default.getSample;
 
 var findProductByGtin = require("@/utils/productFunction.js").default.findProductByGtin;
 var findFingerprintById = require("@/utils/fingerprintFunction.js").default.findFingerprintById;
+var findFingerprintSetById = require("@/utils/fingerprintFunction.js").default.findFingerprintSetById;
 var findWorkflowById = require("@/utils/workflowFunction.js").default.findWorkflowById;
 var findModelById = require("@/utils/modelFunction.js").default.findModelById;
 var findSopById = require("@/utils/sopFunction.js").default.findSopById;
+var findSampleById = require("@/utils/sampleFunction.js").default.findSampleById;
 
 const regex1 = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
 const regex2 = /\b\d{8}(?:\d{4,6})?\b/;
@@ -98,14 +102,17 @@ export default {
       if (this.schema.idprovider == "select-product") {
         getProducts(self);
       } else if (this.schema.idprovider == "select-fingerprint") {
-      //todo create another endpoint to retrieve fingerprint and not fingerprintSET
         getFingerprints(self);
+      } else if (this.schema.idprovider == "select-fingerprintset") {
+        getFingerprintset(self);
       }  else if (this.schema.idprovider == "select-workflow") {
         getWorkflows(self);
       } else if (this.schema.idprovider == "select-model") {
         getModels(self);
       } else if (this.schema.idprovider == "select-sop") {
         getSops(self);
+     } else if (this.schema.idprovider == "select-sample") {
+        getSample(self);
       } else {
         console.log("NO method found");
       }
@@ -145,12 +152,16 @@ export default {
         self.searchProduct();
       } else if (this.schema.idprovider == "select-fingerprint") {
         self.searchFingerprints();
+      } else if (this.schema.idprovider == "select-fingerprintset") {
+      self.searchFingerprintset();
       }  else if (this.schema.idprovider == "select-workflow") {
         self.searchWorkflow();
       } else if (this.schema.idprovider == "select-model") {
         self.searchModel();
       }else if (this.schema.idprovider == "select-sop") {
         self.searchSop();
+      }else if (this.schema.idprovider == "select-sample") {
+        self.searchSample();
       } else {
         alert("NO method found");
       }
@@ -167,9 +178,21 @@ export default {
 	},
 	searchFingerprints(){
     	let self = this;
-    	console.log("Inside search fingeprint select provider etc");
-	    //fingerprint can be only searched by ID
+	    //check if it is a valid UUID
+		if (regex1.test(self.filter)) {
 	   		findFingerprintById(self);
+	   	}else{
+	   	getFingerprints(self);
+	   	}
+    },
+	searchFingerprintset(){
+    	let self = this;
+	    //check if it is a valid UUID
+		if (regex1.test(self.filter)) {
+	    findFingerprintsetById(self);
+	   	}else{
+	   	getFingerprintset(self);
+	   	}
     },
     searchWorkflow(){
     	let self = this;
@@ -196,6 +219,15 @@ export default {
 	    	findSopById(self);
 			} else {
 	   		getSops(self);
+			}
+    },
+     searchSample(){
+    	let self = this;
+	    //check if it is a valid UUID
+		if (regex1.test(self.filter)) {
+	    	findSampleById(self);
+			} else {
+	   		getSample(self);
 			}
     },
   },
