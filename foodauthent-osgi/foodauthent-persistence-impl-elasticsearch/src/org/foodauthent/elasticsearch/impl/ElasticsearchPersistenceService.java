@@ -155,7 +155,7 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 	@Override
 	public <T extends FaModel> List<T> findByKeywords(Class<T> modelType, String[]... keywordSuperSet) {
-		//TODO test
+		// TODO test
 		String query = stream(keywordSuperSet).map(s -> String.join(" AND ", s)).map(s -> "(" + s + ")")
 				.collect(Collectors.joining(" OR "));
 		return op.search(QueryBuilders.simpleQueryStringQuery(query), classTarget(modelType), op.manifest(modelType));
@@ -237,12 +237,12 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 			String[]... orgKeywordSuperSet) {
 		final SearchRequest request = op.searchRequest(classTarget(modelType));
 		final SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
-		
+
 		String[][] keywordSuperSet = PersistenceService.removeEmptyListsAndKeywords(orgKeywordSuperSet);
 		if (keywordSuperSet.length == 0) {
 			sourceBuilder.query(QueryBuilders.matchAllQuery());
 		} else {
-			//TODO test
+			// TODO test
 			String query = stream(keywordSuperSet).map(s -> String.join(" AND ", s)).map(s -> "(" + s + ")")
 					.collect(Collectors.joining(" OR "));
 			sourceBuilder.query(QueryBuilders.simpleQueryStringQuery(query));
@@ -281,7 +281,7 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 			op.delete(r.get().id(), r.get().target());
 		}
 	}
-	
+
 	@Override
 	public void removeBlobByUUID(UUID faId) {
 		if (fileStorageService != null) {
@@ -323,13 +323,17 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 	@Override
 	public <T extends FaModel> long getModelCount(Class<T> modelType) {
-		// TODO
-		return -1;
+		final Target target = classTarget(modelType);
+		return op.getDocumentCount(target.indexName());
 	}
 
 	@Override
 	public long getBlobCount() {
-		// TODO
-		return -1;
+		if (fileStorageService == null) {
+			final Target target = blobTarget();
+			return op.getDocumentCount(target.indexName());
+		} else {
+			return op.getDocumentCount("filemetadata");
+		}
 	}
 }

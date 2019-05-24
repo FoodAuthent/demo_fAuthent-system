@@ -42,7 +42,7 @@ var getPredictionJobs = require("@/utils/workflowFunction.js").default.getPredic
 var findPredictionJobsByKeyword = require("@/utils/workflowFunction.js").default.findPredictionJobsByKeyword;
 var findPredictionJobById = require("@/utils/workflowFunction.js").default.findPredictionJobById;
 var savePredictionJob = require("@/utils/workflowFunction.js").default.savePredictionJob;
-import jsonschema from "@/generated/schema/prediction.json";
+import jsonschema from "@/schema/prediction.json";
 console.log(jsonschema.fields);
 
 function getFun(val) {
