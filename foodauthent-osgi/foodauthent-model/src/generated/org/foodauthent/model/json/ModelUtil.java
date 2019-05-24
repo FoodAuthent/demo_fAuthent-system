@@ -42,6 +42,8 @@ public class ModelUtil {
         mapper.addMixIn(FilePageResult.FilePageResultBuilder.class, FilePageResultMixIn.FilePageResultMixInBuilder.class);
         mapper.addMixIn(Fingerprint.class, FingerprintMixIn.class);
         mapper.addMixIn(Fingerprint.FingerprintBuilder.class, FingerprintMixIn.FingerprintMixInBuilder.class);
+        mapper.addMixIn(FingerprintPageResult.class, FingerprintPageResultMixIn.class);
+        mapper.addMixIn(FingerprintPageResult.FingerprintPageResultBuilder.class, FingerprintPageResultMixIn.FingerprintPageResultMixInBuilder.class);
         mapper.addMixIn(FingerprintSet.class, FingerprintSetMixIn.class);
         mapper.addMixIn(FingerprintSet.FingerprintSetBuilder.class, FingerprintSetMixIn.FingerprintSetMixInBuilder.class);
         mapper.addMixIn(FingerprintSetPageResult.class, FingerprintSetPageResultMixIn.class);

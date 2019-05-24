@@ -22,6 +22,7 @@ import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.api.internal.persistence.PersistenceServiceProvider;
 import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.FaModel;
+import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ObjectEvent;
@@ -86,6 +87,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 		tmp.add(createMPS(Sample.class, m -> m.getApplication(), m -> m.getSopId().toString(),
 				m -> m.getComments().stream().collect(Collectors.joining(","))));
 		tmp.add(createMPS(FingerprintSet.class, m -> m.getDescription(), m-> m.getName()));
+		tmp.add(createMPS(Fingerprint.class, m -> m.getSampleId().toString(), m-> m.getSopId().toString()));
 		tmp.add(createMPS(Prediction.class, m -> m.getModelId().toString(), m -> m.getFingerprintsetId().toString(),
 				m -> m.getWorkflowId().toString()));
 
