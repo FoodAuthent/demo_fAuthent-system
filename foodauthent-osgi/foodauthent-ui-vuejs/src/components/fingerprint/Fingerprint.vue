@@ -38,7 +38,7 @@
 <script>
 import generalTable from '@/components/general/GeneralTable';
 import generalForm from '@/components/general/GeneralForm';
-var getFingerprints = require("@/utils/fingerprintFunction.js").default.getFingerprints;
+var getFingerprintset = require("@/utils/fingerprintFunction.js").default.getFingerprintset;
 var findFingerprintSetById = require("@/utils/fingerprintFunction.js").default.findFingerprintById;
 import jsonschema from "@/generated/schema/fingerprintset.json";
 var saveFingerprints = require("@/utils/fingerprintFunction.js").default.saveFingerprints;
@@ -111,7 +111,7 @@ export default {
                 if (re.test(self.filter)) {
                     findFingerprintSetById(self);
                 } else {
-                    getFingerprints(self);
+                    getFingerprintset(self);
                 }
             },
             myPaginationHandler(page) {
@@ -123,7 +123,7 @@ export default {
             loadTableData() {
                 console.log("Load table data");
                 let self = this;
-                getFingerprints(self);
+                getFingerprintset(self);
             },
             save() {
                 let self = this;

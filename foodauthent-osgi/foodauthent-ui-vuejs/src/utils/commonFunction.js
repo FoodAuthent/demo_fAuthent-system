@@ -279,7 +279,7 @@ var MyObject = function () {
 		}else if(infoType == 'sop-id'){
 		  var SopApi = require("@/generated/rest-client/src/api/SopApi.js");
 		  generalApi = new SopApi(apiClient);
-		}else if (infoType == 'workflow-id'){
+		}else if (infoType == 'workflow-id' || infoType == 'prediction-id'){
 			  var WorkflowApi = require("@/generated/rest-client/src/api/WorkflowApi.js");
 			  generalApi = new WorkflowApi(apiClient);
 		}else{
@@ -319,6 +319,8 @@ var MyObject = function () {
 					generalApi.getSOPById(faId,callback);
 				}else if(infoType == 'workflow-id'){
 					generalApi.getWorkflowById(faId,callback);
+				}else if(infoType == 'prediction-id'){
+					generalApi.getPredictionResult(faId,callback);
 				} else {
 				console.log('Something goes wrong, this type doesnt exist',infoType);
 				}

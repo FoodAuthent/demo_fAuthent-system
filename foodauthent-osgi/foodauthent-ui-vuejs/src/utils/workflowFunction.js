@@ -245,6 +245,7 @@ var findWorkflowById = function (self) {
         console.error(error);
       } else {
         self.items = data.results;
+        console.log("ITEM for prediction job are: ",self.items);
         console.log("API called successfully. Returned data: ", data);
       }
     };

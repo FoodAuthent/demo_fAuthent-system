@@ -51,7 +51,7 @@
 			       <div v-else>
 			       		{{data.value}}
 			       </div>
-			    </template> 
+			    </template>
 			    
 					    
 				<!-- ACTIONS edit-delete-info -->
@@ -99,7 +99,7 @@
     </b-modal>
     
     <!-- MODAL LINK -->
-        <b-modal id="linkModal" size="xl" title="INFO">
+        <b-modal id="linkModal" scrollable size="xl" title="INFO">
         <div class="panel panel-default">
         <!-- TABLE TO DISPLAY THE RESULT 
         <b-table responsive :items="itemLink"></b-table> -->

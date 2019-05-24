@@ -2135,30 +2135,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            
-    ImportFile:
-      type: object
-      x-ui-vue.js:
-        - name: file-id
-          id-provider: upload-file
-        - name: name
-        - name: description
-      properties:
-        fa-id:
-          description: A global id within the FoodAuthent-system.
-          type: string
-          format: uuid
-          example: ''
-        file-id:
-          description: Id referencing the file in the fa-system.
-          type: string
-          format: uuid
-        name:
-          description: A short SOP name
-          type: string
-        description:
-          description: A short description of the sop
-          type: string
 
     # should always be part of a fingerprint set
     Fingerprint:
@@ -2338,6 +2314,8 @@ components:
         - name: tags
         - name: file-id
           id-provider: upload-file
+        - name: workflow-id
+          id-provider: select-workflow
         #- name: fingerprintset-ids
       properties:
         fa-id:
@@ -2791,7 +2769,7 @@ components:
         labelDescription:
           description: Label Description
           type: string
-          example: 'Bayernland AllgÃƒÂ¤uer Emmentaler 45%, ca. 1kg'
+          example: 'Bayernland AllgÃƒÆ’Ã‚Â¤uer Emmentaler 45%, ca. 1kg'
         companyName:
           description: Company Name
           type: string
@@ -2799,7 +2777,7 @@ components:
         productClassification:
           description: Product Classification
           type: string
-          example: 10000028 - KÃƒÂ¤se / KÃƒÂ¤seersatz (leicht verderblich)
+          example: 10000028 - KÃƒÆ’Ã‚Â¤se / KÃƒÆ’Ã‚Â¤seersatz (leicht verderblich)
         countryOfOrigin:
           description: Country Of Origin
           type: string
@@ -2807,7 +2785,7 @@ components:
         regionOfOriginClaims:
           description: Region Of Origin-Claims
           type: string
-          example: Ãƒâ€žthopia
+          example: ÃƒÆ’Ã¢â‚¬Å¾thopia
         ingredientStatement:
           $ref: '#/components/schemas/ProductIngredientStatement'
         comment:
@@ -2829,7 +2807,7 @@ components:
         text:
           type: string
       example: >-
-        de: Zutaten pasteurisierte KUHMILCH, MilchsÃƒÂ¤urebakterienkulturen, mikrobieller Labaustauschstoff, Speisesalz
+        de: Zutaten pasteurisierte KUHMILCH, MilchsÃƒÆ’Ã‚Â¤urebakterienkulturen, mikrobieller Labaustauschstoff, Speisesalz
         en: ingredients...
 
     ProductPageResult:

@@ -17,9 +17,93 @@ function setUpApi(){
 
 var Fingerprints = function () {
 	
-  var getFingerprints = function (self) {
+	var getFingerprints = function(self){
+		setUpApi();
+	    console.log('Get Fingerprint');
+	    console.log('self Filter ',self.filter);
+	    var filterArray = null;
+	    if(self.filter !== null){
+	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+	    }
+	    console.log('Filter ',filterArray);
+	    var callback = function (error, data, response) {
+	      console.log("data:", data);
+	      console.log("response:", response);
+	      if(data !== undefined && data !== null){
+	    	  self.resultsCount = data.resultCount; 
+	      }else{
+	    	  self.resultsCount = 0;
+	      }
+	      if(response.body !== null){
+	    	  self.pageCount = response.body.pageCount; 
+	      }else{
+	    	  self.pageCount = 0;
+	      }
+	      if (error) {
+	        // this.response = data;
+	        console.error(error);
+	      } else {
+	        var jsonResult = data.results;
+	        var length = jsonResult.length;
+	        for (var i = 0; i < length; i++) {
+	          // console.log(jsonResult[i]);
+	          jsonResult[i]['actions'] = '';
+	        }
+	        self.items = data.results;
+	        console.log("API called successfully. Returned data: ", data);
+	      }
+	    };
+	    var opt = {
+	      pageNumber: self.currentPage,
+	      pageSize: self.perPage,
+	      keywords: filterArray
+	    };
+	    fingerprintApi.findFingerprintSetByKeyword(
+	      opt,
+	      callback
+	    );
+	  };
+
+
+var findFingerprintById = function(self){
+	setUpApi();
+    console.log('Search Fingerprint for id: ',self.filter);
+    var callback = function (error, data, response) {
+      console.log("data:", data);
+      console.log("response:", response);
+      if(data !== undefined && data !== null){
+    	  self.resultsCount = data.resultCount; 
+      }else{
+    	  self.resultsCount = 0;
+      }
+      if(response.body !== null){
+    	  self.pageCount = response.body.pageCount; 
+      }else{
+    	  self.pageCount = 0;
+      }
+      if (error) {
+        // this.response = data;
+        console.error(error);
+      } else {
+        var jsonResult = [];
+        jsonResult.push(response.body);
+        jsonResult[0]['actions'] = '';
+        self.items = jsonResult;
+        // console.log("Items For ID are: ",self.items);
+        console.log("API called successfully. Returned data: ", data);
+      }
+    };
+    var fingerprintId = self.filter;
+    fingerprintApi.getFingerprintById(
+    fingerprintId,
+      callback
+    );
+  };
+
+	
+  var getFingerprintset = function (self) {
 	    setUpApi();
-	    console.log('Get Fingerprints');
+	    console.log('Get Fingerprintset');
 	    console.log('self Filter ',self.filter);
 	    var filterArray = null;
 	    if(self.filter !== null){
@@ -89,10 +173,10 @@ var Fingerprints = function () {
       fingerprintSet,
       callback
     );
-  }
+  };
   
 	  
-	  var findFingerprintById = function (self) {
+	  var findFingerprintSetById = function (self) {
 		    setUpApi();
 		    console.log('Search Fingerprint for id: ',self.filter);
 		    var callback = function (error, data, response) {
@@ -154,10 +238,12 @@ var Fingerprints = function () {
   };
 
   return {
-    getFingerprints: getFingerprints,
+	getFingerprintset: getFingerprintset,
+	getFingerprints: getFingerprints,
     saveFingerprints: saveFingerprints,
     deleteFingerprint: deleteFingerprint,
-    findFingerprintById: findFingerprintById
+    findFingerprintById: findFingerprintById,
+    findFingerprintSetById: findFingerprintSetById
   }
 
 }();

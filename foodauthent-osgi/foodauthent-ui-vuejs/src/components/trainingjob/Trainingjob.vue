@@ -18,9 +18,9 @@
             <b-card no-body>
                 <b-tabs card>
                     <b-tab title="Results" active>
-                        <generalTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
+                        <trainingjobTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
                         :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
-                        </generalTable>
+                        </trainingjobTable>
                     </b-tab>
                     <b-tab title="Create new">
                     	<generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :response="response" :showSuccess="showSuccess" :showError="showError" :loading="loading"></generalForm>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import generalTable from '@/components/general/GeneralTable';
+import trainingjobTable from '@/components/trainingjob/TrainingjobTable';
 import generalForm from '@/components/general/GeneralForm';
 var getTrainingJobs = require("@/utils/workflowFunction.js").default.getTrainingJobs;
 var findTrainingJobsByKeyword = require("@/utils/workflowFunction.js").default.findTrainingJobsByKeyword;
@@ -151,7 +151,7 @@ export default {
             }
     },
     components: {
-        generalTable,
+        trainingjobTable,
         generalForm
     }
 }

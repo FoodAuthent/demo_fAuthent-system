@@ -18,9 +18,10 @@
             <b-card no-body>
                 <b-tabs card>
                     <b-tab title="Results" active>
-                        <generalTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
+                        <predictionjobTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
                         :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
-                        </generalTable>
+
+                        </predictionjobTable>
                     </b-tab>
                     <b-tab title="Create new">
                     	<generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :showSuccess="showSuccess" :response="response" :showError="showError" :loading="loading"></generalForm>
@@ -36,13 +37,13 @@
 </template>
 
 <script>
-import generalTable from '@/components/general/GeneralTable';
+import predictionjobTable from '@/components/predictionjob/PredictionjobTable';
 import generalForm from '@/components/general/GeneralForm';
 var getPredictionJobs = require("@/utils/workflowFunction.js").default.getPredictionJobs;
 var findPredictionJobsByKeyword = require("@/utils/workflowFunction.js").default.findPredictionJobsByKeyword;
 var findPredictionJobById = require("@/utils/workflowFunction.js").default.findPredictionJobById;
 var savePredictionJob = require("@/utils/workflowFunction.js").default.savePredictionJob;
-import jsonschema from "@/generated/schema/prediction.json";
+import jsonschema from "@/schema/createPredictionJob.json";
 console.log(jsonschema.fields);
 
 function getFun(val) {
@@ -151,7 +152,7 @@ export default {
             }
     },
     components: {
-        generalTable,
+        predictionjobTable,
         generalForm
     }
 }

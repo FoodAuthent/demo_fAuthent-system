@@ -92,5 +92,12 @@
     "idprovider" : "upload-file",
     "fieldName" : "fa-id",
     "type" : "loadFile"
+  }, {
+    "label" : "Workflow-id",
+    "model" : "workflow-id",
+    "required" : false,
+    "idprovider" : "select-workflow",
+    "fieldName" : "fa-id",
+    "type" : "selectModel"
   } ]
 }

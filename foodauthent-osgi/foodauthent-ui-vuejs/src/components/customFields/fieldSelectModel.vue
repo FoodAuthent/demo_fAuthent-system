@@ -70,7 +70,7 @@ var getModels = require("@/utils/modelFunction.js").default.getModels;
 var getSops = require("@/utils/sopFunction.js").default.getSops;
 
 var findProductByGtin = require("@/utils/productFunction.js").default.findProductByGtin;
-var findFingerprintSetById = require("@/utils/fingerprintFunction.js").default.findFingerprintById;
+var findFingerprintById = require("@/utils/fingerprintFunction.js").default.findFingerprintById;
 var findWorkflowById = require("@/utils/workflowFunction.js").default.findWorkflowById;
 var findModelById = require("@/utils/modelFunction.js").default.findModelById;
 var findSopById = require("@/utils/sopFunction.js").default.findSopById;
@@ -98,6 +98,7 @@ export default {
       if (this.schema.idprovider == "select-product") {
         getProducts(self);
       } else if (this.schema.idprovider == "select-fingerprint") {
+      //todo create another endpoint to retrieve fingerprint and not fingerprintSET
         getFingerprints(self);
       }  else if (this.schema.idprovider == "select-workflow") {
         getWorkflows(self);
@@ -166,12 +167,9 @@ export default {
 	},
 	searchFingerprints(){
     	let self = this;
-	    //check if it is a valid UUID
-		if (regex1.test(self.filter)) {
-	   		findFingerprintSetById(self);
-			} else {
-	    	getFingerprints(self);
-			}
+    	console.log("Inside search fingeprint select provider etc");
+	    //fingerprint can be only searched by ID
+	   		findFingerprintById(self);
     },
     searchWorkflow(){
     	let self = this;
