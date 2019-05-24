@@ -107,4 +107,5 @@ public class FileStorageServiceImpl implements FileStorageService {
 	public void unbindConfigurationService(ConfigurationService configurationService) {
 		this.configurationService = null;
 	}
+
 }

@@ -40,7 +40,7 @@ import generalTable from '@/components/general/GeneralTable';
 import generalForm from '@/components/general/GeneralForm';
 var findPredictionById = require("@/utils/workflowFunction.js").default.getPredictions;
 var findPredictionByKeywords = require("@/utils/workflowFunction.js").default.findPredictionByKeyword;
-import jsonschema from "@/generated/schema/prediction.json";
+import jsonschema from "@/schema/prediction.json";
 
 
 

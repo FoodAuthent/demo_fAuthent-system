@@ -38,7 +38,7 @@
 
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
-import jsonschema from '@/generated/schema/prediction.json';
+import jsonschema from '@/schema/prediction.json';
 import {
     EndpointUrl
 }

@@ -38,6 +38,7 @@ import org.elasticsearch.index.query.IdsQueryBuilder
 import org.elasticsearch.index.query.IdsQueryBuilder
 import org.elasticsearch.client.RequestOptions
 import java.util.Optional
+import org.apache.http.util.EntityUtils
 
 /**
  * Commonly used operations for communicating with Elasticsearch
@@ -137,6 +138,26 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
     get[T](target.indexName, target.typeName, id)
   }
 
+  /**
+   * document count for indexName
+   *
+   * @param indexName
+   * @return documentCount
+   */
+  def getDocumentCount(indexName: String): Long = {
+    if (!ElasticsearchUtil.indexExists(client, indexName)) {
+      return 0;  
+    }
+    try {
+      val response = client.getLowLevelClient.performRequest("GET", "/_cat/count/"+indexName+"?h=count")
+      val entity = response.getEntity
+      val result = EntityUtils.toString(entity).trim()
+      return result.toLong
+    } catch {
+      case t: Throwable => return -1
+    }
+  }
+  
   /**
    * get model entity from Elasticsearch without implicit Target
    *

@@ -39,7 +39,7 @@ import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg.css";
 var saveTrainingJob = require("@/utils/workflowFunction.js").default
     .saveTrainingJob;
-import jsonschema from "@/generated/schema/training.json";
+import jsonschema from "@/schema/training.json";
 
 console.log(jsonschema.fields);
 

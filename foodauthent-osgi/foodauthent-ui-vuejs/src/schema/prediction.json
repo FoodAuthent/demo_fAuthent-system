@@ -7,10 +7,17 @@
     "fieldName" : "fa-id",
     "type" : "selectModel"
   }, {
-    "label" : "Fingerprint-set-id",
-    "model" : "fingerprint-set-id",
+    "label" : "Fingerprintset-id",
+    "model" : "fingerprintset-id",
     "required" : false,
     "idprovider" : "select-fingerprint",
+    "fieldName" : "fa-id",
+    "type" : "selectModel"
+  }, {
+    "label" : "Model-id",
+    "model" : "model-id",
+    "required" : false,
+    "idprovider" : "select-model",
     "fieldName" : "fa-id",
     "type" : "selectModel"
   } ]

@@ -52,7 +52,7 @@
 var getPredictions = require("@/utils/workflowFunction.js").default.getPredictions;
 var findPredictionById = require("@/utils/workflowFunction.js").default.getPredictions;
 var findPredictionByKeywords = require("@/utils/workflowFunction.js").default.findPredictionByKeyword;
-import jsonschema from "@/generated/schema/prediction.json";
+import jsonschema from "@/schema/prediction.json";
 export default {
     name: "Workflow",
     data() {

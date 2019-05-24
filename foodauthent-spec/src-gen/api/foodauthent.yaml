@@ -333,6 +333,25 @@ paths:
               $ref: "#/components/schemas/File"
               
   /fingerprint:
+    get:
+      tags:
+        - fingerprint
+      summary: Finds fingerprint by some key words or return all fingerprint.
+      description: >-
+        Muliple keywords can be provided with comma separated strings,e.g. use keyword1,
+        keyword2, keyword3.
+      operationId: findFingerprintByKeyword
+      parameters:
+        - $ref: "#/components/parameters/pageNumber"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/keywords"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FingerprintPageResult'
     post:
       tags:
         - fingerprint
@@ -2215,6 +2234,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FingerprintSet'
+            
+    FingerprintPageResult:
+      type: object
+      x-no-faid: true
+      properties:
+        pageNumber:
+          type: integer
+        pageCount:
+          type: integer
+        resultCount:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fingerprint'
 
     FingerprintType:
       x-no-faid: true

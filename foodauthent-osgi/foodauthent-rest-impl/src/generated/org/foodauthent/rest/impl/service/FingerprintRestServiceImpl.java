@@ -11,6 +11,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
 import org.foodauthent.model.Fingerprint;
+import org.foodauthent.model.FingerprintPageResult;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
 
@@ -59,6 +60,20 @@ public class FingerprintRestServiceImpl implements FingerprintRestService {
     public Response createFingerprintSet(FingerprintSet fingerprintSet) {
         
             Object res = service.createFingerprintSet(fingerprintSet);
+            return Response.ok(res).build();
+    }
+
+    /**
+     * Muliple keywords can be provided with comma separated strings,e.g. use keyword1, keyword2, keyword3.
+     *
+     * @param pageNumber the page number starting at 1
+     * @param pageSize entries per page, minimum 1
+     * @param keywords Keywords to search for
+     * @return the response
+     */
+    public Response findFingerprintByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords) {
+        
+            Object res = service.findFingerprintByKeyword(pageNumber, pageSize, keywords);
             return Response.ok(res).build();
     }
 

@@ -42,7 +42,7 @@ var getTrainingJobs = require("@/utils/workflowFunction.js").default.getTraining
 var findTrainingJobsByKeyword = require("@/utils/workflowFunction.js").default.findTrainingJobsByKeyword;
 var findTrainingJobsById = require("@/utils/workflowFunction.js").default.findTrainingJobsById;
 var saveTrainingJob = require("@/utils/workflowFunction.js").default.saveTrainingJob;
-import jsonschema from "@/generated/schema/training.json";
+import jsonschema from "@/schema/training.json";
 
 
 console.log(jsonschema.fields);

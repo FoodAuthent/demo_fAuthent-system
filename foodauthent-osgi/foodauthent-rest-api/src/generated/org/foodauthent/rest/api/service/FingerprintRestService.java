@@ -7,6 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.Fingerprint;
+import org.foodauthent.model.FingerprintPageResult;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
 
@@ -53,6 +54,22 @@ public interface FingerprintRestService{
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createFingerprintSet(FingerprintSet fingerprintSet
+);
+
+    /**
+     * Muliple keywords can be provided with comma separated strings,e.g. use keyword1, keyword2, keyword3.
+     *
+     * @param pageNumber the page number starting at 1
+     * @param pageSize entries per page, minimum 1
+     * @param keywords Keywords to search for
+     * @return the response
+     */
+    @GET
+    @Path("/fingerprint")
+    @Produces({ "application/json" })
+    public Response findFingerprintByKeyword(@QueryParam("pageNumber")Integer pageNumber
+, @QueryParam("pageSize")Integer pageSize
+, @QueryParam("keywords")java.util.List<String> keywords
 );
 
     /**

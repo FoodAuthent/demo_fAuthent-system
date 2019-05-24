@@ -9,6 +9,7 @@ import org.foodauthent.api.FingerprintService;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
 import org.foodauthent.model.Fingerprint;
+import org.foodauthent.model.FingerprintPageResult;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.FingerprintSetPageResult;
 import org.foodauthent.model.PredictionPageResult;
@@ -40,6 +41,14 @@ public class FingerprintServiceImpl implements FingerprintService {
     @Override
     public FingerprintSet getFingerprintSetById(UUID fingerprintsetId) {
 	return persistenceService.getFaModelByUUID(fingerprintsetId, FingerprintSet.class);
+    }
+    
+    @Override
+    public FingerprintPageResult findFingerprintByKeyword(Integer pageNumber, Integer pageSize, List<String> keywords) {
+	ResultPage<Fingerprint> res = persistenceService.findByKeywordsPaged(Fingerprint.class, pageNumber, pageSize,
+		toArray(keywords));
+	return FingerprintPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
+		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
 
     @Override
