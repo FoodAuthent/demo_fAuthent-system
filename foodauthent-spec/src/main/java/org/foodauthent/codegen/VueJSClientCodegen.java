@@ -141,8 +141,26 @@ public class VueJSClientCodegen extends DefaultCodegen implements CodegenConfig 
 		if (uiInfo.containsKey("id-provider")) {
 			field.put("idprovider", uiInfo.get("id-provider"));
 		}
-
-		if (prop.getType() == null && prop.get$ref() != null) {
+		
+		if(uiInfo.containsKey("id-list-provider")) {
+			addStaticProperties(field, ARRAY_STATIC_FIELDS);
+			field.put("inputName", name);
+			ObjectNode items = Json.mapper().createObjectNode();
+			field.set("items", items);
+			items.put("type", "object");
+			ObjectNode schema = Json.mapper().createObjectNode();
+			items.set("schema", schema);
+			ArrayNode fields = Json.mapper().createArrayNode();
+			schema.set("fields", fields);
+			ObjectNode f = Json.mapper().createObjectNode();
+			fields.add(f);
+			f.put("label", uiInfo.get("id-list-label"));
+			f.put("model", uiInfo.get("id-list-model"));
+			f.put("required", "false");
+			f.put("idprovider", uiInfo.get("id-list-provider"));
+			f.put("fieldName", "fa-id");
+			f.put("type", "selectModel");
+		} else if (prop.getType() == null && prop.get$ref() != null) {
 			String[] tmp = prop.get$ref().split("/");
 			String schemaName = tmp[tmp.length - 1];
 			addStaticProperties(field, OBJECT_STATIC_FIELDS);

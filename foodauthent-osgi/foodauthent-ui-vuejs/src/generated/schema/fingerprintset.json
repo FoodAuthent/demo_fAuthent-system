@@ -13,7 +13,20 @@
     "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
     "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
     "newElementButtonLabel" : "Add",
-    "inputName" : "fingerprint-ids"
+    "inputName" : "fingerprint-ids",
+    "items" : {
+      "type" : "object",
+      "schema" : {
+        "fields" : [ {
+          "label" : "Fingerprint-id",
+          "model" : "fingerprint-id",
+          "required" : "false",
+          "idprovider" : "select-fingerprint",
+          "fieldName" : "fa-id",
+          "type" : "selectModel"
+        } ]
+      }
+    }
   }, {
     "label" : "Name",
     "model" : "name",

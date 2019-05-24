@@ -2220,6 +2220,9 @@ components:
         - fingerprint-ids
       x-ui-vue.js:
         - name: fingerprint-ids
+          id-list-provider: select-fingerprint
+          id-list-model: fingerprint-id
+          id-list-label: Fingerprint-id
         - name: name
         - name: class-label
       properties:
@@ -2375,6 +2378,9 @@ components:
         - name: workflow-id
           id-provider: select-workflow
         - name: fingerprintset-ids
+          id-list-provider: select-fingerprintset-id
+          id-list-model: fingerprintset-id
+          id-list-label: Fingerprintset-id
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
