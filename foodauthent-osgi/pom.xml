@@ -38,8 +38,8 @@
 			<version>${scala.version}</version>
 		</dependency>
 	</dependencies>
-	
-	
+
+
 	<profiles>
 		<profile>
 			<id>macOS</id>
@@ -145,6 +145,13 @@
 							<arch>x86_64</arch>
 						</environment>
 					</environments>
+					<filters>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>log4j.over.slf4j</id>
+							<removeAll />
+						</filter>
+					</filters>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -179,14 +186,14 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		
+
 	</build>
 	<modules>
 		<module>foodauthent-jwt</module>
 		<module>foodauthent-auth</module>
 		<module>foodauthent-common</module>
 		<module>foodauthent-config</module>
-		<module>foodauthent-ldap</module> 
+		<module>foodauthent-ldap</module>
 		<module>foodauthent-model</module>
 		<module>foodauthent-jersey-filter</module>
 		<module>foodauthent-osgi-logging</module>
@@ -211,9 +218,6 @@
 		<module>foodauthent-auth-feature</module>
 		<module>foodauthent-product-runtime</module>
 		<module>foodauthent-fakx</module>
-		<!-- 
-		 <module>foodauthent-test</module>
-		<module>foodauthent-product-application</module>
-		  -->
+		<!-- <module>foodauthent-test</module> <module>foodauthent-product-application</module> -->
 	</modules>
 </project>

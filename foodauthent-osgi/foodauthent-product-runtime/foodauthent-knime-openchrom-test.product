@@ -35,7 +35,6 @@
    <features>
       <feature id="io.swagger.feature"/>
       <feature id="org.glassfish.jersey.feature"/>
-      <feature id="org.slf4j.feature"/>
       <feature id="org.joda.time.feature"/>
       <feature id="org.apache.commons.feature"/>
       <feature id="org.apache.httpcomponents.feature"/>
