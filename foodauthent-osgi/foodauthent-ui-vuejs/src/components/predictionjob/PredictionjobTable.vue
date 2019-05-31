@@ -35,7 +35,8 @@
         				 
         				 <!-- LINK for prediction since it is not present in jsonschema it is hardcoded -->
         				 <template slot="prediction-id" slot-scope="data">
-        				 			<b-button variant="link"v-b-modal.linkModal @click="linkFunction(data.value, 'prediction-id')" >{{ data.value }}</b-button>
+        				 		<!--	<b-button variant="link"v-b-modal.linkModal @click="linkFunction(data.value, 'prediction-id')" >{{ data.value }}</b-button> -->
+        				 			<router-link :to="{ path: 'prediction', query: { faid: data.value  } }">{{ data.value }}</router-link>
 						 </template> 
         
       

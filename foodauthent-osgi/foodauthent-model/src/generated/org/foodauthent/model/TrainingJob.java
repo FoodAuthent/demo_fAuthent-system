@@ -47,6 +47,7 @@ public class TrainingJob   extends FaModel {
 
   protected java.util.UUID faId;
   protected java.util.UUID modelId;
+  protected java.util.List<java.util.UUID> fingerprintsetIds;
   protected StatusEnum status;
   protected String statusMessage;
   
@@ -62,6 +63,7 @@ public class TrainingJob   extends FaModel {
     
     faId = immutable(builder.faId);
     modelId = immutable(builder.modelId);
+    fingerprintsetIds = immutable(builder.fingerprintsetIds);
     status = immutable(builder.status);
     statusMessage = immutable(builder.statusMessage);
     
@@ -84,7 +86,7 @@ public class TrainingJob   extends FaModel {
             return false;
         }
         TrainingJob ent = (TrainingJob)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(modelId, ent.modelId) && Objects.equals(status, ent.status) && Objects.equals(statusMessage, ent.statusMessage);
+        return Objects.equals(faId, ent.faId) && Objects.equals(modelId, ent.modelId) && Objects.equals(fingerprintsetIds, ent.fingerprintsetIds) && Objects.equals(status, ent.status) && Objects.equals(statusMessage, ent.statusMessage);
     }
 
 
@@ -102,6 +104,14 @@ public class TrainingJob   extends FaModel {
    */
   public java.util.UUID getModelId() {
         return modelId;
+    }
+    
+  /**
+   * Reference to the fingerprint sets the model has been trained on
+   * @return fingerprintsetIds 
+   */
+  public java.util.List<java.util.UUID> getFingerprintsetIds() {
+        return fingerprintsetIds;
     }
     
   /**
@@ -140,6 +150,7 @@ public class TrainingJob   extends FaModel {
 		TrainingJobBuilder builder = builder();
         builder.faId = entity.faId;
         builder.modelId = entity.modelId;
+        builder.fingerprintsetIds = entity.fingerprintsetIds;
         builder.status = entity.status;
         builder.statusMessage = entity.statusMessage;
  		return builder;
@@ -154,6 +165,7 @@ public class TrainingJob   extends FaModel {
     
         private java.util.UUID faId;
         private java.util.UUID modelId;
+        private java.util.List<java.util.UUID> fingerprintsetIds = new java.util.ArrayList<>();
         private StatusEnum status;
         private String statusMessage;
 
@@ -172,6 +184,15 @@ public class TrainingJob   extends FaModel {
          */
         public TrainingJobBuilder setModelId(java.util.UUID modelId) {
              this.modelId = modelId;
+             return this;
+        }
+
+        /**
+         * Reference to the fingerprint sets the model has been trained on
+         * @return fingerprintsetIds 
+         */
+        public TrainingJobBuilder setFingerprintsetIds(java.util.List<java.util.UUID> fingerprintsetIds) {
+             this.fingerprintsetIds = fingerprintsetIds;
              return this;
         }
 

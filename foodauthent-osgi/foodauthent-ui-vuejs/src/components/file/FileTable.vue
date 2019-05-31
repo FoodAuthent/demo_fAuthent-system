@@ -34,6 +34,9 @@
             <b-table bordered striped hover show-empty responsive :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="myRowClickHandler">
                 <template slot="actions" slot-scope="row">
                     <div class="widewidth">
+                      <!--  <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)">
+                           <md-icon>edit</md-icon>
+                        </b-btn>  -->
                         <b-btn size="sm"  @click.stop="dowloadFile(row.item, row.index, $event.target)">
                             <md-icon>get_app</md-icon>
                         </b-btn>
@@ -76,6 +79,7 @@ var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchem
 var deleteEntity = require("@/utils/commonFunction.js").default.deleteEntity;
 var downloadFile = require("@/utils/fileFunction.js").default.downloadFile;
 var deleteFile = require("@/utils/fileFunction.js").default.deleteFile; 
+var updateFile = require("@/utils/fileFunction.js").default.updateFile; 
 
 export default {
     props: {
@@ -104,10 +108,6 @@ export default {
             type: Function,
             required: true
         },
-        handleEditOk: {
-            type: Function,
-            required: true
-            },
         refresh: {
             type: Function,
             required: true
@@ -147,6 +147,7 @@ export default {
             },
             info(item, index, button) {
                 this.model = item;
+                console.log("Model modal", this.model);
                 this.$root.$emit('bv::show::modal', 'modalEdit', button);
             },
              showDelete(item, index, button) {
@@ -155,6 +156,12 @@ export default {
                self.itemsDelete = item
                 console.log("General selected", self.itemsDelete);
                 this.$root.$emit('bv::show::modal', 'modalDelete', button);
+            },
+            handleEditOk() {
+            let self = this;
+			console.log("FILE MODEL ", self.model);
+			//var fileId = self.model['fa-id'];
+			//updateFile(fileId, self.model, self);
             },
                handleDeleteOk() {
                 let self = this;

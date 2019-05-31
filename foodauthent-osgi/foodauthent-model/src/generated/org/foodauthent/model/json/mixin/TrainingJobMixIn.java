@@ -51,6 +51,9 @@ public interface TrainingJobMixIn {
     @JsonProperty("model-id")
     public java.util.UUID getModelId();
     
+    @JsonProperty("fingerprintset-ids")
+    public java.util.List<java.util.UUID> getFingerprintsetIds();
+    
     @JsonProperty("status")
     public StatusEnum getStatus();
     
@@ -81,6 +84,9 @@ public interface TrainingJobMixIn {
         
         @JsonProperty("model-id")
         public TrainingJobMixInBuilder setModelId(final java.util.UUID modelId);
+        
+        @JsonProperty("fingerprintset-ids")
+        public TrainingJobMixInBuilder setFingerprintsetIds(final java.util.List<java.util.UUID> fingerprintsetIds);
         
         @JsonProperty("status")
         public TrainingJobMixInBuilder setStatus(final StatusEnum status);

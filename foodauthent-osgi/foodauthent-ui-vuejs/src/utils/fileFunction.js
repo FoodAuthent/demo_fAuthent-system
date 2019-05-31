@@ -207,6 +207,28 @@ var MyObject = function () {
 			     );
 			  }
 			  };
+			  
+			    var updateFile = function (fileId, self) {
+			     setUpApi();
+			    console.log('Update File');
+			    var callback = function (error, data, response) {
+			      console.log("data:", data);
+			      console.log("response:", response);
+			      if (error) {
+			        console.error(error);
+			        self.showError = true;
+			      } else {
+			        self.response = response.statusText;
+			        self.showSuccess = true;
+			        console.log("API called successfully. Returned data: ", data);
+			      }
+			    };
+			    fileApi.saveFileData(
+			       fileId, 
+			       filedata,
+			       callback
+			     );
+			  };
   
   
 
@@ -217,7 +239,8 @@ var MyObject = function () {
     importFile: importFile,
     downloadFile: downloadFile,
     getAllFiles: getAllFiles,
-    deleteFile: deleteFile
+    deleteFile: deleteFile,
+    updateFile: updateFile
     
   }
 }();

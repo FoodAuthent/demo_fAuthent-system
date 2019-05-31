@@ -10,24 +10,17 @@
         :readonly="schema.readonly"
         :idprovider="schema.idprovider"
         :buttonLabel="schema.buttonLabel">
+         <b-btn size="sm" class="fieldButton" @click="openCustomModal">{{schema.idprovider}}</b-btn>
+         </input>
+
 
 <!-- MODAL SEARCH -->
-<b-modal :id="schema.idprovider" scrollable :title="schema.idprovider" size="xl" @show="loadData" @cancel="handleCancel" @ok="handleOk" @close="handleCancel">
+<b-modal :id="idModal" scrollable :title="schema.idprovider" size="xl" @show="loadData" @cancel="handleCancel" @ok="handleOk" @close="handleCancel">
 <!-- Table -->
 <template>
 <div id="searchtable">
-  <!-- <b-form-group horizontal label="SEARCH" class="mb-1">
           <b-input-group>
-            <b-form-input v-model="filter" placeholder="Type to Search" />
-            <b-input-group-append>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
-            </b-input-group-append>
-          </b-input-group>
-        </b-form-group> -->
-       <!-- <b-btn id="refreshTableModal" isHidden=true variant="primary" size="sm" @click="loadData"><md-icon>autorenew</md-icon></b-btn> -->
-         <b-form-group horizontal label="SEARCH" class="mb-50">
-          <b-input-group>
-            <b-form-input v-model="filter" placeholder="Search for gtin/id or keywords" />
+            <b-form-input v-model="filter" placeholder="Search for id or keywords" />
             <b-input-group-append>
             <b-btn :disabled="!filter" variant="primary" @click="search">Search</b-btn>
               <b-btn :disabled="!filter" @click="clearSearch">Clear</b-btn>
@@ -48,14 +41,13 @@
          @row-clicked="myRowClickHandler"
 >
 </b-table>
-<!--<b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage" /> -->
 <!-- PAGINATION -->
 <b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page="perPage" v-model="currentPage" />
 
 </div>
 </template>
   </b-modal>
-  </div>
+   </div>
 </template>
 
 
@@ -85,6 +77,7 @@ export default {
   data() {
     return {
       items: [],
+      idModal: '',
       fields: null,
       currentPage: 1,
       perPage: 10,
@@ -95,16 +88,17 @@ export default {
     };
   },
   mounted() {
-    document.body.classList.remove("modal-open");
+  //used for array to have unique id
+  	this.idModal = this.schema.idprovider+Math.random();
     },
   methods: {
-    loadData() {
+    loadData() {    
       let self = this;
       if (this.schema.idprovider == "select-product") {
         getProducts(self);
       } else if (this.schema.idprovider == "select-fingerprint") {
         getFingerprints(self);
-      } else if (this.schema.idprovider == "select-fingerprintset-id") {
+      } else if (this.schema.idprovider == "select-fingerprintset") {
         getFingerprintset(self);
       }  else if (this.schema.idprovider == "select-workflow") {
         getWorkflows(self);
@@ -119,13 +113,13 @@ export default {
       }
 
     },
+    openCustomModal(){
+    window.scrollTo(0, 0);
+    this.$root.$emit("bv::show::modal", this.idModal);
+    },
     myRowClickHandler(record, index) {
       this.value = record[this.schema.fieldName];
     },
-   // onFiltered(filteredItems) {
-    //  this.totalRows = filteredItems.length;
-    //  this.currentPage = 1;
-   // },
    //Manage the pagination, when a page number is pressed this call the API to get the results for the new page
     myPaginationHandler(page){
     	let self = this;
@@ -140,10 +134,8 @@ export default {
     },
     handleCancel() {
     this.value = "";
-    console.log("Inside hadle cancel modal");
     },
     handleOk(){
-    console.log("Inside hadle ok modal");
     },
     search() {
       let self = this;
@@ -151,7 +143,7 @@ export default {
         self.searchProduct();
       } else if (this.schema.idprovider == "select-fingerprint") {
         self.searchFingerprints();
-      } else if (this.schema.idprovider == "select-fingerprintset-id") {
+      } else if (this.schema.idprovider == "select-fingerprintset") {
       self.searchFingerprintset();
       }  else if (this.schema.idprovider == "select-workflow") {
         self.searchWorkflow();
@@ -250,7 +242,9 @@ export default {
 .input-group {
   flex-wrap: nowrap;
 }
-
+.fieldButton{
+height: fit-content;
+}
 .modal-open {
 overflow: auto !important;
 }

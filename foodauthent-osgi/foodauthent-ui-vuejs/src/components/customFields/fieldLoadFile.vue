@@ -2,7 +2,8 @@
 
 <div class="field-wrap">
     <input class="form-control" type="text" v-model="value" :disabled="disabled" :maxlength="schema.max" :placeholder="schema.placeholder" :readonly="schema.readonly" :idprovider="schema.idprovider" :buttonLabel="schema.buttonLabel">
-
+ 	<b-btn size="sm" class="fieldButton" @click="openCustomModal(schema.idprovider)">{{schema.idprovider}}</b-btn>
+ 	</input>
     <!-- MODAL FILE FORM -->
     <b-modal :id="schema.idprovider" :title="schema.idprovider" size="lg" @ok="loadFile" @cancel="handleCancel" @close="handleCancel">
         <template>
@@ -63,6 +64,10 @@ export default {
                 createFileMetadata(JSON.stringify(self.modelFile, undefined, 4), self.file, self);
                 }
             },
+    openCustomModal(id){
+    window.scrollTo(0, 0);
+    this.$root.$emit("bv::show::modal", id);
+    },
             handleCancel() {
             	//deleteFile(this.value);
                 this.value = "";

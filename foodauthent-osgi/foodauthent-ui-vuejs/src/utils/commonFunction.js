@@ -6,7 +6,6 @@ function setUpApi(){
 	  var apiClient = new ApiClient();
 	  
 	  if(localStorage.getItem('token')){
-		  console.log("Inside the token set");
 		  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
 		  apiClient.defaultHeaders = headerToken;  
 	  }
@@ -29,8 +28,6 @@ var MyObject = function () {
 
 	  var getModelSchemas = function(modelID,schemas,schemaIdHolder){
 		  setUpApi();
-		 // console.log("Schema at begin",schemas);
-		  //console.log("schemaIdHolder.schemaID",schemaIdHolder.schemaID);
 		  if (typeof schemas !== 'undefined' && schemas.length > 0) {
 //			  schemas.splice(0,schemas.length);
 			  schemas = [];
@@ -111,7 +108,6 @@ var MyObject = function () {
 	  // ///////////SAVE METADATA
 		  var saveCustomMetadata = function (schemas, faId) {
 			  setUpApi();
-			  console.log("faId",faId);
 			  var dataModel = {}
 			  var schemaID ;
 			  var modelID ;
@@ -122,7 +118,6 @@ var MyObject = function () {
 				  var modelID = currentSchema.modelID;
 				  dataModel[currentSchema.key] = currentSchema.model ;
 			  }
-			    console.log('Save Custom Metadata Schemas ',schemas);
 			    var callback = function (error, data, response) {
 			      console.log("data:", data);
 			      console.log("response:", response);
@@ -133,7 +128,7 @@ var MyObject = function () {
 			        self.response = data.results;
 			        console.log("Data", data);
 			        saveMetadata(data);
-			        self.showSuccess = true;
+			        //self.showSuccess = 5;
 			        console.log("API called successfully. Returned data: ", data);
 			      }
 			    };
@@ -153,7 +148,6 @@ var MyObject = function () {
 			  /////////////GET METADATA
 			  var getCustomMetadata = function (modelID, schemaID, faID, self) {
 				  setUpApi();
-				    console.log('Get Custom Metadata', modelID, schemaID, faID);
 				    var callback = function (error, data, response) {
 				      console.log("data:", data);
 				      console.log("response:", response);
@@ -178,7 +172,7 @@ var MyObject = function () {
 		  // ////////////
 	 
   var renderCustomField = function (self, jsonschema) {
-    console.log(jsonschema.fields);
+    //console.log(jsonschema.fields);
 
     function getFun(val) {
       return function () {
@@ -234,7 +228,6 @@ var MyObject = function () {
 		  var InfoApi = require("@/generated/rest-client/src/api/InfoApi.js");
 		  var infoApi = new InfoApi(apiClient);
 			setUpApi();
-		    console.log('Get INFO');
 		    var callback = function (error, data, response) {
 		      console.log("data:", data);
 		      console.log("response:", response);
@@ -257,7 +250,6 @@ var MyObject = function () {
 		  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
 		  var apiClient = new ApiClient();
 		  if(localStorage.getItem('token')){
-			  console.log("Inside the token set");
 			  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
 			  apiClient.defaultHeaders = headerToken;  
 		  }
@@ -297,8 +289,6 @@ var MyObject = function () {
 		        jsonResult.push(response.body);
 //		        self.itemLink = data.results;
 		        if(infoType == 'fingerprint-id' || infoType == 'fingerprint-ids' || infoType == 'fingerprintset-ids'){
-		        	console.log("result is: ",jsonResult);
-		        	console.log("sample-id is: ",jsonResult[0]['sample-id']);
 		        	findSampleById (jsonResult[0]['sample-id'],self);
 		        }else{
 		        	self.itemLink = jsonResult;
@@ -329,7 +319,6 @@ var MyObject = function () {
 		  
 		  var findSampleById = function (faId, self) {
 			  setUpApi();
-			    console.log('Search sample for Id: ',faId);
 			    var callback = function (error, data, response) {
 			      console.log("data:", data);
 			      console.log("response:", response);
@@ -351,7 +340,6 @@ var MyObject = function () {
 			        jsonResult.push(response.body);
 			        jsonResult[0]['actions'] = '';
 			        self.itemLink  = jsonResult;
-			        console.log("Items For Id are: ",self.items);
 			        console.log("API called successfully. Returned data: ", data);
 			      }
 			    };

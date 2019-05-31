@@ -25,7 +25,6 @@ var MyObject = function () {
                 self.infoError = 5;
             } else {
                 self.response = data.results;
-                console.log("Response login", self.response);
                 localStorage.setItem('token', data);
                 store.commit('LOGIN_USER');
                 router.push('/')
@@ -41,12 +40,9 @@ var MyObject = function () {
 
     /** ONLY FOR TEST */
     var testLogin = function (json, self) {
-        console.log("login fake json", json);
         fetch('https://jsonplaceholder.typicode.com/users/1')
             .then(response => response.json())
             .then(json => {
-                console.log("JSON", json);
-                console.log("token", json.company.catchPhrase);
                 localStorage.setItem('token', "fake test token");
                 store.commit('LOGIN_USER');
                 router.push('/')
@@ -58,9 +54,7 @@ var MyObject = function () {
     /** */
    
     var registerUser = function(json,self){
-    	console.log("Save user and generate password");
     	saveUser(json, self, generatePassword);
-    	console.log("RegisterUser end");
     }
     
 
@@ -112,7 +106,6 @@ var MyObject = function () {
     };
     
     var changePassword = function (self) {
-        console.log('changePassword', generatedPassword);
         var callback = function (error, data, response) {
             console.log("data:", data);
             console.log("response:", response);
@@ -129,7 +122,6 @@ var MyObject = function () {
       	  "current": generatedPassword,
       	  "new": self.password
       	};
-        console.log("Password change",changePasswordRequest );
          userApi.setPassword(
          dn, 
          changePasswordRequest, 

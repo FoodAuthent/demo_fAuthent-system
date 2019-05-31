@@ -520,9 +520,24 @@ var findWorkflowById = function (self) {
     );
   };
 
-  var saveTrainingJob = function (workflowId, fingerprintsetId, self) {
+  var saveTrainingJob = function (workflowId, fingerprintsetIdsBefore, self) {
 	  setUpApi();
     console.log('Save Training Job');
+    //just a workaround, the back end wait for a list of UUID string, not object
+    var idsFingerprintset =[]; 
+    try {
+        for (var key in fingerprintsetIdss) {
+            if (fingerprintsetIdsBefore.hasOwnProperty(key)) {           
+                idsFingerprintset.push(fingerprintsetIdsBefore[key]["fingerprintset-id"]);
+            }
+        }
+    	}
+    	catch(err) {
+    	  self.response = err.message;
+    	  self.showError = true;
+    	  self.loading = false;
+    	}
+
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -538,10 +553,10 @@ var findWorkflowById = function (self) {
         console.log("API called successfully. Returned data: ", data);
       }
     };
-    var fingerprintsetIds = [fingerprintsetId];
     var opt = {
     		async: true
     };
+    var fingerprintsetIds = idsFingerprintset;
     workflowApi.createTrainingJob(
      workflowId,
      fingerprintsetIds,
@@ -568,7 +583,7 @@ var findWorkflowById = function (self) {
     var opt = {
       id: id
     };
-    alert("When the Api will support thie features it will work and delete this id: " + id);
+    //alert("When the Api will support thie features it will work and delete this id: " + id);
     // productApi.createProduct(
     //   opt,
     //   callback

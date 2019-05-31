@@ -43,34 +43,10 @@ var getPredictionJobs = require("@/utils/workflowFunction.js").default.getPredic
 var findPredictionJobsByKeyword = require("@/utils/workflowFunction.js").default.findPredictionJobsByKeyword;
 var findPredictionJobById = require("@/utils/workflowFunction.js").default.findPredictionJobById;
 var savePredictionJob = require("@/utils/workflowFunction.js").default.savePredictionJob;
-import jsonschema from "@/schema/createPredictionJob.json";
+import jsonschema from "@/schema/prediction.json";
 console.log(jsonschema.fields);
 
-function getFun(val) {
-    return function() {
-        this.$root.$emit("bv::show::modal", val);
-    };
-}
 
-if (jsonschema.fields) {
-    for (var i = 0; i < jsonschema.fields.length; i++) {
-        var currentField = jsonschema.fields[i];
-
-        if (currentField.idprovider) {
-            console.log("Provider: ", currentField.idprovider);
-
-            var buttton = [{
-                classes: "btn-location",
-
-                label: currentField.idprovider,
-
-                onclick: getFun(currentField.idprovider)
-            }];
-
-            currentField.buttons = buttton;
-        }
-    }
-}
 var schemas = [];
 
 export default {
@@ -102,6 +78,9 @@ export default {
         };
     },
     mounted() {
+    if(this.$route.query.faid != null || typeof this.$route.query.faid !== 'undefined'){
+    this.filter = this.$route.query.faid;
+    }
         this.loadTableData();
     },
     methods: {

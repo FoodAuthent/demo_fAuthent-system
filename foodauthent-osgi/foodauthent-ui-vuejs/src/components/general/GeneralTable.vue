@@ -40,12 +40,14 @@
 					      <div v-if="checkArray(data.value)">
 							      <ul id="listOfIds">
 									  <li v-for="(id, index) in data.value">
-									   <b-button variant="link"v-b-modal.linkModal @click="linkFunction(id, field.model)" >{{ id }}</b-button>
+									  <!-- <b-button variant="link"v-b-modal.linkModal @click="linkFunction(id, field.model)" >{{ id }}</b-button> -->
+									   <router-link :to="{ path: field.model.replace('-id',''), query: { faid: id  } }">{{ id }}</router-link>
 									  </li>
 								</ul>
 					      </div>
 					       <div v-else>
-					        	<b-button variant="link"v-b-modal.linkModal @click="linkFunction(data.value, field.model)" >{{ data.value }}</b-button>
+					        	<!--<b-button variant="link"v-b-modal.linkModal @click="linkFunction(data.value, field.model)" >{{ data.value }}</b-button>-->
+					        	<router-link :to="{ path: field.model.replace('-id',''), query: { faid: data.value  } }">{{ data.value }}</router-link>
 					      </div>
 			      </div>
 			       <div v-else>
@@ -57,10 +59,10 @@
 				<!-- ACTIONS edit-delete-info -->
                 <template slot="actions" slot-scope="row" v-slot:actions>
                     <div class="widewidth">
-                        <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)">
+                     <b-btn :disabled="!hasEdit" size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)">
                             <md-icon>edit</md-icon>
-                        </b-btn>
-                        <b-btn size="sm" v-b-modal.modalMeta @click.stop="showMetadata(row.item, row.index, $event.target)">
+                        </b-btn> 
+                        <b-btn :disabled="!hasMetadata" size="sm" v-b-modal.modalMeta @click.stop="showMetadata(row.item, row.index, $event.target)">
                             <md-icon>search</md-icon>
                         </b-btn>
                         <b-btn size="sm" v-b-modal.modalDelete @click.stop="showDelete(row.item, row.index, $event.target)">
@@ -78,8 +80,9 @@
     <b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page.sync="perPage" v-model="currentPage" />
 
     <!-- MODAL EDIT -->
-    <b-modal id="modalEdit" title="edit" @ok="handleEditOk">
+    <b-modal id="modalEdit" title="edit" @ok="handleEditOk(model)">
         <vue-form-generator :schema="schema" :model="model" :options="formOptions"> </vue-form-generator>
+       <!-- <pre v-html="JSON.stringify(model, undefined, 4)"></pre> -->
     </b-modal>
     
         <!-- MODAL METADATA -->
@@ -98,7 +101,7 @@
         <pre v-if="selected" v-html="JSON.stringify(itemsDelete, undefined, 4)"></pre>
     </b-modal>
     
-    <!-- MODAL LINK -->
+    <!-- MODAL LINK 
         <b-modal id="linkModal" scrollable size="xl" title="INFO">
         <div class="panel panel-default">
         <!-- TABLE TO DISPLAY THE RESULT 
@@ -108,7 +111,7 @@
              <pre v-html="JSON.stringify(itemLink, undefined, 4)"></pre>
          </div>
         </div>
-    </b-modal>
+    </b-modal> -->
 
 </div>
 
@@ -137,6 +140,7 @@ export default {
         schema: Object,
         model: Object,
         pageType: String,
+        hasEdit: Boolean,
         schemaIdHolder: Object,
         pageOptionsPerPage: Array,
         search: {
@@ -157,20 +161,23 @@ export default {
             },
         refresh: {
             type: Function,
-            required: true
+            required: false
         }
     },
     data() {
         return {
             filterVal: '',
             itemsDelete: null,
-            itemLink: null
+            itemLink: null,
+            hasMetadata: false,
+            hasEdit: false
                }
     },
     mounted() {
         this.onProp(this.filter);
         this.$watch('filter', this.onProp);
         if(this.pageType != 'noType'){
+        this.hasMetadata = true;
         getModelSchemas(this.pageType, {}, this.schemaIdHolder);
         }
     },
@@ -205,7 +212,7 @@ export default {
 			document.body.classList.remove("modal-open");
             },
             checkLinkField(model){
-            if(model !== undefined && model !== null && model != 'fa-id' && model != 'sample-id'){
+            if(model !== undefined && model !== null && model != 'fa-id'){
              return model.includes("-id") || model.includes("-ids");
              }else{
              return false
@@ -228,10 +235,13 @@ export default {
             },
            showMetadata(item, index, button) {
                let self = this;
-               console.log("ITEM", item);
+               //console.log("ITEM", item);
                if(this.pageType != 'noType'){
                getCustomMetadata(this.pageType, this.schemaIdHolder.schemaID, item["fa-id"], self);
                }
+            },
+            getPath(infoType){
+            return infoType.replace('-id','');
             },
            //Manage the ok button to confirm the Metadata action
             handleMetadataOk() {

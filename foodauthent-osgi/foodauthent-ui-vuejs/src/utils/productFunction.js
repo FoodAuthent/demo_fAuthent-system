@@ -128,7 +128,7 @@ var MyObject = function () {
         console.error(error);
         self.showError = true;
       } else {
-        self.response = data.results;
+        self.response = response.statusText;
         self.showSuccess = true;
         console.log("API called successfully. Returned data: ", data);
       }
@@ -136,12 +136,11 @@ var MyObject = function () {
     var opt = {
       product: json
     };
-    console.log("json:", json);
-    alert("When the Api will support this features it will work and update this id: "+json["fa-id"]);
-    // productApi.updateProduct(
-    //   opt,
-    //   callback
-    // );
+    //alert("When the Api will support this features it will work and update this id: "+json["fa-id"]);
+     productApi.updatedProduct(
+       opt,
+       callback
+     );
   };
  
 	  
@@ -180,6 +179,43 @@ var MyObject = function () {
 		      callback
 		    );
 		  };
+		  
+		  
+		  var findProductById = function (self) {
+			  setUpApi();
+			    console.log('Search Products for Id: ',self.filter);
+			    var callback = function (error, data, response) {
+			      console.log("data:", data);
+			      console.log("response:", response);
+			      if(data !== undefined && data !== null){
+			    	  self.resultsCount = data.resultCount; 
+			      }else{
+			    	  self.resultsCount = 0;
+			      }
+			      if(response.body !== null){
+			    	  self.pageCount = response.body.pageCount; 
+			      }else{
+			    	  self.pageCount = 0;
+			      }
+			      if (error) {
+			        //this.response = data;
+			        console.error(error);
+			        self.items=[];
+			      } else {
+			        var jsonResult = [];
+			        jsonResult.push(response.body);
+			        jsonResult[0]['actions'] = '';
+			        self.items = jsonResult;
+			        console.log("API called successfully. Returned data: ", data);
+			      }
+			    };
+			    var productId = self.filter;
+			    productApi.getProductById(
+			      productId,
+			      callback
+			    );
+			  };
+
 
 
   return {
@@ -187,7 +223,8 @@ var MyObject = function () {
     saveProducts: saveProducts,
     deleteProducts: deleteProducts,
     updateProducts: updateProducts,
-    findProductByGtin: findProductByGtin
+    findProductByGtin: findProductByGtin,
+    findProductById: findProductById
   }
 }();
 

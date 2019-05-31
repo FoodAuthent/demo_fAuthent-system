@@ -57,7 +57,7 @@ export default new Router({
             }
         },
         {
-            path: '/fingerprintset',
+            path: '/fingerprintsets',
             name: 'Fingerprint Set',
             component: Fingerprintset,
             meta: {
@@ -65,7 +65,7 @@ export default new Router({
             }
           },
           {
-              path: '/fingerprint',
+              path: '/fingerprints',
               name: 'Fingerprint',
               component: Fingerprint,
               meta: {

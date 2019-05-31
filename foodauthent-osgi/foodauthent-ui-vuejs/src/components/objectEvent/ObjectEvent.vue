@@ -19,7 +19,7 @@
                 <b-tabs card>
                     <b-tab title="Results" active>
                         <generalTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
-                        :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
+                        :pageOptionsPerPage.sync="pageOptionsPerPage" :model.sync="model" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :hasEdit="hasEdit">
                         </generalTable>
                     </b-tab>
                     <b-tab title="Create new">
@@ -45,31 +45,6 @@ var saveObjectEvent = require("@/utils/objectEventFunction.js").default.saveObje
 
 console.log(jsonschema.fields);
 
-function getFun(val) {
-    return function() {
-        this.$root.$emit("bv::show::modal", val);
-    };
-}
-
-if (jsonschema.fields) {
-    for (var i = 0; i < jsonschema.fields.length; i++) {
-        var currentField = jsonschema.fields[i];
-
-        if (currentField.idprovider) {
-            console.log("Provider: ", currentField.idprovider);
-
-            var buttton = [{
-                classes: "btn-location",
-
-                label: currentField.idprovider,
-
-                onclick: getFun(currentField.idprovider)
-            }];
-
-            currentField.buttons = buttton;
-        }
-    }
-}
 var schemas = [];
 
 export default {
@@ -83,6 +58,7 @@ export default {
             model: {},
             response: "",
             pageType: "noType",
+            hasEdit: false,
             loading: false,
             schemas: schemas,
             itemsMetadata: {},
@@ -101,6 +77,9 @@ export default {
         };
     },
     mounted() {
+        if(this.$route.query.faid != null || typeof this.$route.query.faid !== 'undefined'){
+    this.filter = this.$route.query.faid;
+    }
         this.loadTableData();
     },
     methods: {

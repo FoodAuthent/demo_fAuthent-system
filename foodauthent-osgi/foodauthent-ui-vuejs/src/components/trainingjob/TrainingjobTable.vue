@@ -35,7 +35,8 @@
         				 
 		 <!-- LINK for model since it is not present in jsonschema it is hardcoded -->
 		 <template slot="model-id" slot-scope="data">
-		 			<b-button variant="link"v-b-modal.linkModal @click="linkFunction(data.value, 'model-id')" >{{ data.value }}</b-button>
+		 			<!--<b-button variant="link"v-b-modal.linkModal @click="linkFunction(data.value, 'model-id')" >{{ data.value }}</b-button>-->
+		 			<router-link :to="{ path: 'model', query: { faid: data.value  } }">{{ data.value }}</router-link>
 		 </template> 
         
     </b-table>

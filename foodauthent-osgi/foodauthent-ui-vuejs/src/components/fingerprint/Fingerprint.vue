@@ -45,31 +45,6 @@ var saveFingerprint = require("@/utils/fingerprintFunction.js").default.saveFing
 var deleteFile = require("@/utils/fileFunction.js").default.deleteFile;
 console.log(jsonschema.fields);
 
-function getFun(val) {
-    return function() {
-        this.$root.$emit("bv::show::modal", val);
-    };
-}
-
-if (jsonschema.fields) {
-    for (var i = 0; i < jsonschema.fields.length; i++) {
-        var currentField = jsonschema.fields[i];
-
-        if (currentField.idprovider) {
-            console.log("Provider: ", currentField.idprovider);
-
-            var buttton = [{
-                classes: "btn-location",
-
-                label: currentField.idprovider,
-
-                onclick: getFun(currentField.idprovider)
-            }];
-
-            currentField.buttons = buttton;
-        }
-    }
-}
 var schemas = [];
 
 export default {
@@ -83,6 +58,7 @@ export default {
             model: {},
             response: "",
             pageType: "noType",
+            hasEdit: false,
             loading: false,
             schemas: schemas,
             itemsMetadata: {},
@@ -101,6 +77,9 @@ export default {
         };
     },
     mounted() {
+    if(this.$route.query.faid != null || typeof this.$route.query.faid !== 'undefined'){
+    this.filter = this.$route.query.faid;
+    }
         this.loadTableData();
     },
     methods: {

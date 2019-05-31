@@ -66,6 +66,9 @@
       if (data.hasOwnProperty('model-id')) {
         obj['model-id'] = ApiClient.convertToType(data['model-id'], 'String');
       }
+      if (data.hasOwnProperty('fingerprintset-ids')) {
+        obj['fingerprintset-ids'] = ApiClient.convertToType(data['fingerprintset-ids'], ['String']);
+      }
       if (data.hasOwnProperty('status')) {
         obj['status'] = ApiClient.convertToType(data['status'], 'String');
       }
@@ -86,6 +89,11 @@
    * @member {String} model-id
    */
   exports.prototype['model-id'] = undefined;
+  /**
+   * Reference to the fingerprint sets the model has been trained on
+   * @member {Array.<String>} fingerprintset-ids
+   */
+  exports.prototype['fingerprintset-ids'] = undefined;
   /**
    * @member {module:model/TrainingJob.StatusEnum} status
    */

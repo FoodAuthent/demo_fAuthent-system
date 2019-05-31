@@ -19,7 +19,7 @@
                 <b-tabs card>
                     <b-tab title="Results" active>
                         <generalTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
-                        :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
+                        :pageOptionsPerPage.sync="pageOptionsPerPage" :model.sync="model" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :hasEdit="hasEdit">
                         </generalTable>
                     </b-tab>
                     <b-tab title="Create new">
@@ -41,37 +41,15 @@ import generalForm from '@/components/general/GeneralForm';
 var getProducts = require("@/utils/productFunction.js").default.getProducts;
 var findProductByGtin = require("@/utils/productFunction.js").default.findProductByGtin;
 var saveProducts = require("@/utils/productFunction.js").default.saveProducts;
+var findProductById = require("@/utils/productFunction.js").default.findProductById;
+var updateProducts = require("@/utils/productFunction.js").default.updateProducts;
 import jsonschema from "@/generated/schema/product.json";
 
 
 
 console.log(jsonschema.fields);
 
-function getFun(val) {
-    return function() {
-        this.$root.$emit("bv::show::modal", val);
-    };
-}
 
-if (jsonschema.fields) {
-    for (var i = 0; i < jsonschema.fields.length; i++) {
-        var currentField = jsonschema.fields[i];
-
-        if (currentField.idprovider) {
-            console.log("Provider: ", currentField.idprovider);
-
-            var buttton = [{
-                classes: "btn-location",
-
-                label: currentField.idprovider,
-
-                onclick: getFun(currentField.idprovider)
-            }];
-
-            currentField.buttons = buttton;
-        }
-    }
-}
 var schemas = [];
 
 export default {
@@ -85,6 +63,7 @@ export default {
             model: {},
             response: "",
             pageType: "product",
+            hasEdit: true,
             loading: false,
             schemas: schemas,
             itemsMetadata: {},
@@ -103,10 +82,24 @@ export default {
         };
     },
     mounted() {
+     if(this.$route.query.faid != null || typeof this.$route.query.faid !== 'undefined'){
+    this.filter = this.$route.query.faid;
+    }
         this.loadTableData();
     },
     methods: {
-            search() {
+             search() {
+                let self = this;
+                //check if it is a valid UUID
+                var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
+                if (re.test(self.filter)) {
+                    findProductById(self);
+                } else {
+                    getProducts(self);
+                }
+            },
+            //not used
+            searchByGtin() {
                 const regex = /\b\d{8}(?:\d{4,6})?\b/;
                 let self = this;
                 var str = self.filter;
@@ -126,15 +119,13 @@ export default {
             loadTableData() {
                 console.log("Load table data");
                 let self = this;
-                console.log("current page", self.currentPage);
-                console.log("per page", self.perPage);
                 getProducts(self);
             },
             save() {
                 let self = this;
                 self.loading = true;
-                console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
-                saveProducts(JSON.stringify(this.model, undefined, 4), self);
+                console.log("POST BODY", JSON.stringify(self.model, undefined, 4));
+                saveProducts(JSON.stringify(self.model, undefined, 4), self);
                 self.model = {}
             },
              cancel() {
@@ -145,9 +136,10 @@ export default {
 		       console.log(record); // This will be the item data for the row
 		       this.selected = record;
             },
-            handleEditOk() {
+            handleEditOk(modelUpdate) {
                 let self = this;
-                console.log("This is the model", self.model);
+                delete modelUpdate["actions"];
+                updateProducts(JSON.stringify(modelUpdate, undefined, 4), self);
             },
                 myRowClickHandler(record, index) {
                 this.selected = record;

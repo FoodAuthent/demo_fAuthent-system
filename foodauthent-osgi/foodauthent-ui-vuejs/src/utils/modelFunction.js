@@ -20,13 +20,10 @@ var MyObject = function () {
   var getModels = function (self) {
 	  setUpApi();
 	    console.log('Get Models');
-	    console.log('self Filter ',self.filter);
 	    var filterArray = null;
 	    if(self.filter !== null){
 	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
-	    console.log("Filter are: ",filterArray);
 	    }
-	    console.log('Filter ',filterArray);
 	    var callback = function (error, data, response) {
 	      console.log("data:", data);
 	      console.log("response:", response);
@@ -70,6 +67,16 @@ var MyObject = function () {
   var saveModel = function (json, self) {
 	  setUpApi();
     console.log('Save Model');
+    //just a workaround, the backend wait for a list of UUID string, not object
+    var idsFingerprintset =[];  
+    var tempArray = json["fingerprintset-ids"];
+    for (var key in tempArray) {
+        if (tempArray.hasOwnProperty(key)) {           
+            //console.log(key, fingerprintsetIdss[key]["fingerprintset-id"]);
+            idsFingerprintset.push(tempArray[key]["fingerprintset-id"]);
+        }
+    }
+    json["fingerprintset-ids"] = idsFingerprintset;
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -145,7 +152,6 @@ var MyObject = function () {
 		        jsonResult.push(response.body);
 		        jsonResult[0]['actions'] = '';
 		        self.items = jsonResult;
-		        console.log("Items For Id are: ",self.items);
 		        console.log("API called successfully. Returned data: ", data);
 		      }
 		    };

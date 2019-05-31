@@ -2378,7 +2378,7 @@ components:
         - name: workflow-id
           id-provider: select-workflow
         - name: fingerprintset-ids
-          id-list-provider: select-fingerprintset-id
+          id-list-provider: select-fingerprintset
           id-list-model: fingerprintset-id
           id-list-label: Fingerprintset-id
       properties:
@@ -3158,6 +3158,12 @@ components:
           type: string
           format: uuid
           example: ''
+        fingerprintset-ids:
+          description: Reference to the fingerprint sets the model has been trained on
+          format: array
+          items:
+            type: string
+            format: uuid
         status:
           type: string
           enum:
