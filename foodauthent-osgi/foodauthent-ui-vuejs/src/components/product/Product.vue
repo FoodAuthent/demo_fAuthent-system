@@ -23,7 +23,7 @@
                         </generalTable>
                     </b-tab>
                     <b-tab title="Create new">
-                   			 <generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :response="response" :showSuccess="showSuccess" :showError="showError" :loading="loading"></generalForm>
+						<generalForm :schema="schema" :model="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :response="response" :showSuccess="showSuccess" :showError="showError" :loading="loading"></generalForm>		
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -66,19 +66,21 @@ export default {
             hasEdit: true,
             loading: false,
             schemas: schemas,
+            showSuccess: false,
+            showError: false,
             itemsMetadata: {},
             resultsCount: 1,
             selected: {},
             schemaIdHolder: {
 			    schemaID: "withOutSchema"
 			},
-            pageCount: 0,
-            schema: jsonschema,
-            pageOptionsPerPage: [5, 10, 25, 50, 100],
             formOptions: {
 		        validateAfterLoad: true,
 		        validateAfterChanged: true
-		    }
+		    },
+            pageCount: 0,
+            schema: jsonschema,
+            pageOptionsPerPage: [5, 10, 25, 50, 100]
         };
     },
     mounted() {

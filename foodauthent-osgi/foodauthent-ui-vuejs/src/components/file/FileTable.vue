@@ -34,9 +34,9 @@
             <b-table bordered striped hover show-empty responsive :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="myRowClickHandler">
                 <template slot="actions" slot-scope="row">
                     <div class="widewidth">
-                      <!--  <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)">
-                           <md-icon>edit</md-icon>
-                        </b-btn>  -->
+                       <b-btn size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)">
+                           <md-icon>update</md-icon>
+                        </b-btn> 
                         <b-btn size="sm"  @click.stop="dowloadFile(row.item, row.index, $event.target)">
                             <md-icon>get_app</md-icon>
                         </b-btn>
@@ -54,9 +54,16 @@
     <!-- PAGINATION -->
     <b-pagination v-on:input="myPaginationHandler(currentPage)" :total-rows="resultsCount" :per-page.sync="perPage" v-model="currentPage" />
 
-    <!-- MODAL EDIT -->
-    <b-modal id="modalEdit" title="edit" @ok="handleEditOk">
-        <vue-form-generator :schema="schema" :model="model" :options="formOptions"> </vue-form-generator>
+    <!-- MODAL FILE UPDATE -->
+    <b-modal id="modalEdit" title="update file" @ok="handleEditOk">
+       <!-- <vue-form-generator :schema="schema" :model="model" :options="formOptions"> </vue-form-generator>-->
+           <b-form-file
+		      v-model="file"
+		      :state="Boolean(file)"
+		      placeholder="Choose a file..."
+		      drop-placeholder="Drop file here..."
+		    ></b-form-file>
+    <!--<div class="mt-3">Selected file: {{ file ? file.name : '' }}</div>-->
     </b-modal>
     
 
@@ -117,6 +124,7 @@ export default {
         return {
             filterVal: '',
             itemsDelete: null,
+            file: null
              }
     },
     mounted() {
@@ -159,9 +167,10 @@ export default {
             },
             handleEditOk() {
             let self = this;
-			console.log("FILE MODEL ", self.model);
-			//var fileId = self.model['fa-id'];
-			//updateFile(fileId, self.model, self);
+			//console.log("FILE MODEL ", self.model);
+			console.log("FILE UPDATE ");
+			var fileId = self.model['fa-id'];
+			updateFile(fileId, self.file, self);
             },
                handleDeleteOk() {
                 let self = this;

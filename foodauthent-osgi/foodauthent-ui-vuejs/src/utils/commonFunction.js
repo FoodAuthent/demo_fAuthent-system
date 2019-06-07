@@ -125,7 +125,7 @@ var MyObject = function () {
 			        console.error(error);
 			        self.showError = true;
 			      } else {
-			        self.response = data.results;
+			        self.response = response;
 			        console.log("Data", data);
 			        saveMetadata(data);
 			        //self.showSuccess = 5;

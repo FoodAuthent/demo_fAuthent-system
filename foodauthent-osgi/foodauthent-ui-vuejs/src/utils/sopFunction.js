@@ -81,7 +81,7 @@ var MyObject = function () {
         self.loading = false;
       } else {
         self.response = data.results;
-        self.showSuccess = 5;
+        self.showSuccess = true;
         self.loading = false;
         console.log("API called successfully. Returned data: ", data);
       }
@@ -145,7 +145,7 @@ var MyObject = function () {
 	        self.showError = 5;
 	      } else {
 	        //self.response = data.results;
-	        self.showSuccess = 5;
+	        self.showSuccess = true;
 	        console.log("API called successfully. Returned data: ", data);
 	      }
 	    };

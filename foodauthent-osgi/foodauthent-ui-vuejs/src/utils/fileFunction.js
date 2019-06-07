@@ -144,7 +144,7 @@ var MyObject = function () {
 	        self.loading = false;
 	      } else {
 	        self.value = data;
-	        self.showSuccess = 5;
+	        self.showSuccess = true;
 	        self.loading = false;
 	        console.log("Import file API called successfully. Returned data: ", data);
 	      }
@@ -208,7 +208,7 @@ var MyObject = function () {
 			  }
 			  };
 			  
-			    var updateFile = function (fileId, self) {
+			    var updateFile = function (fileId, filedata, self) {
 			     setUpApi();
 			    console.log('Update File');
 			    var callback = function (error, data, response) {

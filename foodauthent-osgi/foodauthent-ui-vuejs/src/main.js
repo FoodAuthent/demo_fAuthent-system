@@ -18,6 +18,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import "vue-form-generator/dist/vfg.css";
 
+
 import store from '@/store';
 
 
@@ -35,6 +36,8 @@ Vue.use(BootstrapVue);
 
 Vue.component("fieldSelectModel", fieldSelectModel);
 Vue.component("fieldLoadFile", fieldLoadFile);
+
+
 
 
 Vue.config.productionTip = false

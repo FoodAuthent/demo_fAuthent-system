@@ -6,7 +6,7 @@
     		<b-spinner variant="success" class="ml-auto"></b-spinner>
   		</div> 
     <b-alert :show="showSuccess" dismissible variant="success" @dismissed="showSuccess=false">
-        <p>Operation success</p>
+        <p>Operation success </p>
     </b-alert>
     <b-alert :show="showError" dismissible variant="danger" @dismissed="showError=false">
         <p>There is a problem {{response}}</p>
@@ -62,16 +62,16 @@ import "vue-form-generator/dist/vfg.css";
 
 export default {
     props: {
-        showSuccess: Number,
-        showError: Number,
+        showSuccess: Boolean,
+        showError: Boolean,
         schema: Object,
         schemas: Array,
         model: Object,
-        formOptions: Object,
         schemaIdHolder: Object,
         response: String,
         pageType: String,
         loading: Boolean,
+        formOptions: Object,
         save: {
             type: Function,
             required: true
@@ -83,10 +83,16 @@ export default {
     },
     data() {
         return {
-            }
+           }
     },
+   watch: {
+	//For some reason after saving, when the model change showSuccess and showError change and alert is displayed
+    model: function () {
+      this.showSuccess= false;
+      this.showError= false;
+    }
+  },
     methods: {
-        
     },
     mounted() {
     if(this.pageType != 'noType'){

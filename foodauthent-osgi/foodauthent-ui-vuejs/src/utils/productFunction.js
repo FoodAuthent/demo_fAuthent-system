@@ -84,7 +84,7 @@ var MyObject = function () {
         self.response = data.results;
         console.log("Data", data);
         saveCustomMetadata(self.schemas,data);
-        self.showSuccess = 5;
+        self.showSuccess = true;
         self.loading = false;
         console.log("API called successfully. Returned data: ", data);
       }

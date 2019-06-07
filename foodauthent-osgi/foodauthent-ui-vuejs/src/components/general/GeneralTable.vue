@@ -104,9 +104,7 @@
     <!-- MODAL LINK 
         <b-modal id="linkModal" scrollable size="xl" title="INFO">
         <div class="panel panel-default">
-        <!-- TABLE TO DISPLAY THE RESULT 
-        <b-table responsive :items="itemLink"></b-table> -->
-        <!-- JSON RESULT -->
+        <b-table responsive :items="itemLink"></b-table>
         <div class="panel-body">
              <pre v-html="JSON.stringify(itemLink, undefined, 4)"></pre>
          </div>

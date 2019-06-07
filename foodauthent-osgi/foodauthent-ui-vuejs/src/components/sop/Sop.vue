@@ -70,8 +70,8 @@ export default {
             itemsMetadata: {},
             resultsCount: 1,
             selected: {},
-            showSuccess: 0,
-            showError: 0,
+            showSuccess: false,
+            showError: false,
             schemaIdHolder: {
 			    schemaID: "withOutSchema"
 			},
