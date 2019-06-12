@@ -125,6 +125,22 @@ public interface PersistenceService {
 			String[]... keywordSuperSet);
 
     /**
+	 * Queries a limited number of the specified fa-model which has references to the given fa-id
+	 * 
+	 * @param modelType
+	 * @param pageNumber
+	 * @param pageSize
+	 * @param keywordSuperSet
+	 *            a list of lists of keywords, if all lists are empty or no list is
+	 *            given, all models are considered. Otherwise at least one keyword
+	 *            from each list must match in order to be selected.
+	 * 
+	 * @return pair of the list of results and the number of available pages
+	 */
+	<T extends FaModel> ResultPage<T> findByRelationPaged(Class<T> modelType, int pageNumber, int pageSize,
+			String referencedFieldName, UUID faId);
+	
+    /**
      * TODO
      * 
      * Important note: uuid's of blobs do intentionally overlap with uuid's of fa-models!!

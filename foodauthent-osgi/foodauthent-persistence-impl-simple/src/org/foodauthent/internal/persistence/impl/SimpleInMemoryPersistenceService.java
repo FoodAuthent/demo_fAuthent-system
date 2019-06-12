@@ -307,4 +307,11 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 		};
 	}
 
+	@Override
+	public <T extends FaModel> ResultPage<T> findByRelationPaged(Class<T> modelType, int pageNumber, int pageSize,
+			String referencedFieldName, UUID faId) {
+		// not implemented
+		throw new UnsupportedOperationException();
+	}
+
 }

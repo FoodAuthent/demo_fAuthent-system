@@ -123,4 +123,10 @@ public class PersistenceServiceProviderProxy implements PersistenceService {
 		return provider.getBlobCount();
 	}
 
+	@Override
+	public <T extends FaModel> ResultPage<T> findByRelationPaged(Class<T> modelType, int pageNumber, int pageSize,
+			String referencedFieldName, UUID faId) {
+		return provider.findByRelationPaged(modelType, pageNumber, pageSize, referencedFieldName, faId);
+	}
+
 }

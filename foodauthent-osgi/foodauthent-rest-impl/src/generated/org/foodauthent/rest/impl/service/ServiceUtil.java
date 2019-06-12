@@ -25,6 +25,7 @@ public class ServiceUtil {
         res.add(EntityRestServiceImpl.class);
         res.add(ObjectEventRestServiceImpl.class);
         res.add(SampleRestServiceImpl.class);
+        res.add(RelationRestServiceImpl.class);
         res.add(CustomMetadataRestServiceImpl.class);
         res.add(ModelRestServiceImpl.class);
         res.add(SopRestServiceImpl.class);

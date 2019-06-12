@@ -51,4 +51,5 @@ Service-Component: OSGI-INF/org.foodauthent.rest.impl.service.AuthenticationRest
  OSGI-INF/org.foodauthent.rest.impl.service.OrganizationRestServiceImpl.xml,
  OSGI-INF/org.foodauthent.rest.impl.service.InfoRestServiceImpl.xml,
  OSGI-INF/org.foodauthent.rest.impl.service.EntityRestServiceImpl.xml,
- OSGI-INF/org.foodauthent.rest.impl.service.FingerprintsetRestServiceImpl.xml
+ OSGI-INF/org.foodauthent.rest.impl.service.FingerprintsetRestServiceImpl.xml,
+ OSGI-INF/org.foodauthent.rest.impl.service.RelationRestServiceImpl.xml

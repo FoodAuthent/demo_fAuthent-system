@@ -336,4 +336,36 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 			return op.getDocumentCount("filemetadata");
 		}
 	}
+
+	@Override
+	public <T extends FaModel> ResultPage<T> findByRelationPaged(Class<T> modelType, int pageNumber, int pageSize,
+			String referencedFieldName, UUID faId) {
+		final SearchRequest request = op.searchRequest(classTarget(modelType));
+		final SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+		sourceBuilder.query(QueryBuilders.termQuery(referencedFieldName, faId.toString()));
+		sourceBuilder.from((pageNumber - 1) * pageSize);
+		sourceBuilder.size(pageSize);
+		request.source(sourceBuilder);
+		final SearchResult<T> result = op.search(request, op.manifest(modelType));
+		final List<SearchResultItem<T>> res = op.resultAsJava(result, modelType);
+		return new ResultPage<T>() {
+
+			@Override
+			public int getTotalNumPages() {
+				return result.resultTotalCount() == 0 ? 0
+						: (int) Math.ceil((float) (result.resultTotalCount() / (float) pageSize));
+			}
+
+			@Override
+			public int getTotalNumEntries() {
+				return (int) result.resultTotalCount();
+			}
+
+			@Override
+			public List<T> getResult() {
+				return res.stream().map(r -> r.item()).collect(Collectors.toList());
+			}
+
+		};
+	}
 }

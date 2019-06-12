@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" immediate="true" name="org.foodauthent.impl.relation.RelationServiceImpl">
+   <service scope="singleton">
+      <provide interface="org.foodauthent.api.RelationService"/>
+   </service>
+   <reference bind="bindRelationDelegate" cardinality="0..n" interface="org.foodauthent.impl.relation.RelationDelegate" name="RelationDelegate" policy="dynamic" unbind="unbindRelationDelegate"/>
+   <implementation class="org.foodauthent.impl.relation.RelationServiceImpl"/>
+</scr:component>

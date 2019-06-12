@@ -41,6 +41,8 @@ tags:
     description: All ObjectEvent related endpoints.
   - name: Transaction
     description: All Transaction related endpoints.
+  - name: relation
+    description: Find entities by foreign key relationships
     
 paths:
 
@@ -1722,7 +1724,83 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscoveryServiceTransaction'
+
+
+  /relation/entities:
+    get:
+      tags:
+        - relation
+      summary: get entities with support for foreign key relationships
+      operationId: getEntities
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  type: string                  
         
+  /relation/entity/{entity-name}:
+    get:
+      tags:
+        - relation
+      summary: get supported foreign key relations for entity
+      operationId: getSupportedEntities
+      parameters:
+        - in: path
+          name: entity-name
+          description: root entity name.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  type: string
+                  
+  /relation/entity/{entity-name}/{fa-id}/{referenced-entity}:
+    get:
+      tags:
+        - relation
+      summary: get supported foreign key relations for entity
+      operationId: getForeignKeyEntities
+      parameters:
+        - in: path
+          name: entity-name
+          description: root entity name.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: fa-id
+          description: fa-id to match with in referenced entities.
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - in: path
+          name: referenced-entity
+          description: root entity name.
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/pageNumber"
+        - $ref: "#/components/parameters/pageSize"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                                    
   /sample:
     get:
       tags:
