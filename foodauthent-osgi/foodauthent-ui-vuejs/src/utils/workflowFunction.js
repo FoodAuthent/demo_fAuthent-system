@@ -476,7 +476,7 @@ var findWorkflowById = function (self) {
         self.loading = false;
       } else {
         self.response = data.results;
-        self.showSuccess = true;
+        self.showSuccess = 5;
         self.loading = false;
         console.log("API called successfully. Returned data: ", data);
       }
@@ -503,7 +503,7 @@ var findWorkflowById = function (self) {
         self.loading = false;
       } else {
         self.response = data.results;
-        self.showSuccess = true;
+        self.showSuccess = 5;
         self.loading = false;
         console.log("API called successfully. Returned data: ", data);
       }
@@ -548,7 +548,7 @@ var findWorkflowById = function (self) {
         self.loading = false;
       } else {
         self.response = data.results;
-        self.showSuccess = true;
+        self.showSuccess = 5;
         self.loading = false;
         console.log("API called successfully. Returned data: ", data);
       }
@@ -576,7 +576,7 @@ var findWorkflowById = function (self) {
         self.showError = true;
       } else {
         self.response = data.results;
-        self.showSuccess = true;
+        self.showSuccess = 5;
         console.log("API called successfully. Returned data: ", data);
       }
     };

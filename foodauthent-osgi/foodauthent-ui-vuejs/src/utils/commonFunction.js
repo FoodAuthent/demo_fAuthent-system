@@ -212,7 +212,7 @@ var MyObject = function () {
 	        self.showError = true;
 	      } else {
 	        self.response = response;
-	        self.showSuccess = true;
+	        self.showSuccess = 5;
 	        console.log("API called successfully. Returned data: ", data);
 	      }
 	    };

@@ -144,7 +144,7 @@ var MyObject = function () {
 	        self.loading = false;
 	      } else {
 	        self.value = data;
-	        self.showSuccess = true;
+	        self.showSuccess = 5;
 	        self.loading = false;
 	        console.log("Import file API called successfully. Returned data: ", data);
 	      }
@@ -219,7 +219,7 @@ var MyObject = function () {
 			        self.showError = true;
 			      } else {
 			        self.response = response.statusText;
-			        self.showSuccess = true;
+			        self.showSuccess = 5;
 			        console.log("API called successfully. Returned data: ", data);
 			      }
 			    };

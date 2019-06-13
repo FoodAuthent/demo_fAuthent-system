@@ -81,9 +81,11 @@ var MyObject = function () {
         self.loading = false;
       } else {
         self.response = data.results;
-        self.showSuccess = true;
+        //self.showSuccess = true;
+        self.showSuccess = 5;
         self.loading = false;
         console.log("API called successfully. Returned data: ", data);
+        document.getElementById("refreshTable").click();
       }
     };
     var sop = json;

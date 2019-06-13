@@ -84,7 +84,7 @@ var MyObject = function () {
         self.response = data.results;
         console.log("Data", data);
         saveCustomMetadata(self.schemas,data);
-        self.showSuccess = true;
+        self.showSuccess = 5;
         self.loading = false;
         console.log("API called successfully. Returned data: ", data);
       }
@@ -108,7 +108,7 @@ var MyObject = function () {
         self.showError = true;
       } else {
         self.response = data.results;
-        self.showSuccess = true;
+        self.showSuccess = 5;
         console.log("API called successfully. Returned data: ", data);
       }
     };
@@ -129,7 +129,7 @@ var MyObject = function () {
         self.showError = true;
       } else {
         self.response = response.statusText;
-        self.showSuccess = true;
+        self.showSuccess = 5;
         console.log("API called successfully. Returned data: ", data);
       }
     };

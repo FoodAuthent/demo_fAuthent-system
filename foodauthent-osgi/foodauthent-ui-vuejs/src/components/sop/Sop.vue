@@ -19,7 +19,7 @@
                 <b-tabs card>
                     <b-tab title="Results" active>
                          <generalTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
-                        :pageOptionsPerPage.sync="pageOptionsPerPage" :model.sync="model" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :hasEdit="hasEdit">
+                        :pageOptionsPerPage.sync="pageOptionsPerPage" :model.sync="model" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :entity="entity" :schemaIdHolder="schemaIdHolder" :hasEdit="hasEdit">
                         </generalTable>
                     </b-tab>
                     <b-tab id="SopForm" title="Create new">
@@ -64,6 +64,7 @@ export default {
             model: {},
             response: "",
             pageType: "sop",
+            entity: "sop",
             hasEdit: false,
             loading: false,
             schemas: schemas,

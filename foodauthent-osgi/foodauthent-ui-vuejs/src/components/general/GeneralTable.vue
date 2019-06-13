@@ -5,7 +5,7 @@
         <!-- UPDATE -->
         <b-row>
             <b-col>
-                <b-btn id="refreshTable" variant="primary" size="sm" @click="refresh">
+                <b-btn id="refreshTable" variant="primary" size="sm" @click="loadTableData">
                     <md-icon>autorenew</md-icon>
                 </b-btn>
             </b-col>
@@ -31,7 +31,7 @@
         </b-row>
         <b-row>
             <!-- TABLE -->
-            <b-table bordered striped hover show-empty responsive :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="myRowClickHandler">
+            <b-table ref="table" bordered striped hover show-empty responsive :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="myRowClickHandler">
 									 
 
 				<!-- THE IDs ARE LINKS -->
@@ -40,13 +40,11 @@
 					      <div v-if="checkArray(data.value)">
 							      <ul id="listOfIds">
 									  <li v-for="(id, index) in data.value">
-									  <!-- <b-button variant="link"v-b-modal.linkModal @click="linkFunction(id, field.model)" >{{ id }}</b-button> -->
 									   <router-link :to="{ path: field.model.replace('-id',''), query: { faid: id  } }">{{ id }}</router-link>
 									  </li>
 								</ul>
 					      </div>
 					       <div v-else>
-					        	<!--<b-button variant="link"v-b-modal.linkModal @click="linkFunction(data.value, field.model)" >{{ data.value }}</b-button>-->
 					        	<router-link :to="{ path: field.model.replace('-id',''), query: { faid: data.value  } }">{{ data.value }}</router-link>
 					      </div>
 			      </div>
@@ -59,10 +57,15 @@
 				<!-- ACTIONS edit-delete-info -->
                 <template slot="actions" slot-scope="row" v-slot:actions>
                     <div class="widewidth">
-                     <b-btn :disabled="!hasEdit" size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)">
+ 
+					  <b-dropdown v-if="hasRelation" id="relations" text="Relations" class="m-2">
+					    <b-dropdown-item-button v-b-modal.relationModal v-for="item in relationItems" @click="getRelations(item, row.item, row.index, $event.target)">{{item}}</b-dropdown-item-button>
+					  </b-dropdown>
+  
+                     <b-btn v-if="hasEdit" size="sm" v-b-modal.modalEdit @click.stop="info(row.item, row.index, $event.target)">
                             <md-icon>edit</md-icon>
                         </b-btn> 
-                        <b-btn :disabled="!hasMetadata" size="sm" v-b-modal.modalMeta @click.stop="showMetadata(row.item, row.index, $event.target)">
+                        <b-btn v-if="hasMetadata" size="sm" v-b-modal.modalMeta @click.stop="showMetadata(row.item, row.index, $event.target)">
                             <md-icon>search</md-icon>
                         </b-btn>
                         <b-btn size="sm" v-b-modal.modalDelete @click.stop="showDelete(row.item, row.index, $event.target)">
@@ -101,15 +104,13 @@
         <pre v-if="selected" v-html="JSON.stringify(itemsDelete, undefined, 4)"></pre>
     </b-modal>
     
-    <!-- MODAL LINK 
-        <b-modal id="linkModal" scrollable size="xl" title="INFO">
+    <!-- MODAL relation -->
+        <b-modal id="relationModal" scrollable size="xl" title="RELATIONS">
         <div class="panel panel-default">
-        <b-table responsive :items="itemLink"></b-table>
-        <div class="panel-body">
-             <pre v-html="JSON.stringify(itemLink, undefined, 4)"></pre>
-         </div>
+        <b-table bordered striped hover show-empty responsive :items="relationResult">
+        </b-table>
         </div>
-    </b-modal> -->
+    </b-modal>   
 
 </div>
 
@@ -124,6 +125,8 @@ var getModelSchemas = require("@/utils/commonFunction.js").default.getModelSchem
 var getCustomMetadata = require("@/utils/commonFunction.js").default.getCustomMetadata;
 var getLinkInfo = require("@/utils/commonFunction.js").default.getLinkInfo;
 var deleteEntity = require("@/utils/commonFunction.js").default.deleteEntity;
+var getEntities = require("@/utils/relationFunction.js").default.getEntities;
+var getForeignKeyEntities = require("@/utils/relationFunction.js").default.getForeignKeyEntities;
 export default {
     props: {
         items: Array,
@@ -138,6 +141,7 @@ export default {
         schema: Object,
         model: Object,
         pageType: String,
+        entity: String,
         hasEdit: Boolean,
         schemaIdHolder: Object,
         pageOptionsPerPage: Array,
@@ -157,7 +161,7 @@ export default {
             type: Function,
             required: true
             },
-        refresh: {
+        loadTableData: {
             type: Function,
             required: false
         }
@@ -167,8 +171,12 @@ export default {
             filterVal: '',
             itemsDelete: null,
             itemLink: null,
+            relationResult: null,
             hasMetadata: false,
-            hasEdit: false
+            hasEdit: false,
+            hasRelation: false,
+            entities: null,
+            relationItems: []
                }
     },
     mounted() {
@@ -178,6 +186,7 @@ export default {
         this.hasMetadata = true;
         getModelSchemas(this.pageType, {}, this.schemaIdHolder);
         }
+        getEntities(this);
     },
     methods: {
         onProp(filter) {
@@ -201,6 +210,10 @@ export default {
             info(item, index, button) {
                 this.model = item;
                 this.$root.$emit('bv::show::modal', 'modalEdit', button);
+            },
+            getRelations(type, item, index, button){
+			let self = this;
+            getForeignKeyEntities(self.entity, type, item["fa-id"], self);
             },
             linkFunction(faId,infoType){
             let self = this;
@@ -230,6 +243,7 @@ export default {
                 let self = this;
                 console.log("fa-id:", self.itemsDelete["fa-id"]);
                 deleteEntity(self.itemsDelete["fa-id"], self);
+                document.getElementById("refreshTable").click();
             },
            showMetadata(item, index, button) {
                let self = this;

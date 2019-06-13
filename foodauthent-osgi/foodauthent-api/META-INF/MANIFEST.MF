@@ -47,7 +47,11 @@ Service-Component:
  OSGI-INF/org.foodauthent.impl.info.InfoServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.entity.EntityServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.relation.ProductRelationDelegate.xml,
- OSGI-INF/org.foodauthent.impl.relation.RelationServiceImpl.xml
+ OSGI-INF/org.foodauthent.impl.relation.RelationServiceImpl.xml,
+ OSGI-INF/org.foodauthent.impl.relation.SampleRelationDelegate.xml,
+ OSGI-INF/org.foodauthent.impl.relation.WorkflowRelationDelegate.xml,
+ OSGI-INF/org.foodauthent.impl.relation.SOPRelationDelegate.xml,
+ OSGI-INF/org.foodauthent.impl.relation.ModelRelationDelegate.xml
 Require-Capability: osgi.extender;
  filter:="(&(osgi.extender=osgi.component)(version>=1.2)(!(version>=2.0)))"
 Require-Bundle: com.google.guava;bundle-version="17.0.0",

@@ -19,7 +19,7 @@
                 <b-tabs card>
                     <b-tab title="Results" active>
                         <predictionjobTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
-                        :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :schemaIdHolder="schemaIdHolder">
+                        :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :entity="entity"  :schemaIdHolder="schemaIdHolder">
 
                         </predictionjobTable>
                     </b-tab>
@@ -60,6 +60,7 @@ export default {
             model: {},
             response: "",
             pageType: "noType",
+            entity: "predictionJob",
             loading: false,
             schemas: schemas,
             itemsMetadata: {},
