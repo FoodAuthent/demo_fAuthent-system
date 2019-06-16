@@ -94,20 +94,24 @@ public class FileServiceImpl implements FileService {
 
 	fileMeta = FileMetadata.builder(fileMeta).setUploadName(upfileDetail.getFileName())
 		.setUploadDate(LocalDate.now()).build();
+	if(TypeEnum.ZIP.equals(fileMeta.getType())) {
+	    return IsaImporter.importIsaFile(fileId, upfile, persistenceService);
+	}else {
+	    try {
+		    if (TypeEnum.FINGERPRINT_BRUKER.equals(fileMeta.getType())) {
+			fileMeta = updateFinterprintMetadata(fileMeta, upfile);
+		    }
 
-	try {
-	    if (TypeEnum.FINGERPRINT_BRUKER.equals(fileMeta.getType())) {
-		fileMeta = updateFinterprintMetadata(fileMeta, upfile);
-	    }
+		    persistenceService.replace(fileMeta);
 
-	    persistenceService.replace(fileMeta);
+		    // new uuid for the blob (the same id as the one of metadata!)
+		    persistenceService.save(new Blob(fileId, upfile));
 
-	    // new uuid for the blob (the same id as the one of metadata!)
-	    persistenceService.save(new Blob(fileId, upfile));
-
-	    return fileId;
-	} catch (Exception e) {
-	    throw new FARuntimeException(e);
+		    return fileId;
+		} catch (Exception e) {
+		    throw new FARuntimeException(e);
+		}
+    
 	}
     }
 
