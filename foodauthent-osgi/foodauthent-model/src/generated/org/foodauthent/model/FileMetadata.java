@@ -34,6 +34,8 @@ public class FileMetadata   extends FaModel {
     
     SOP_PDF("sop_pdf"),
     
+    ISA_FILE("isa_file"),
+    
     FINGERPRINT_BRUKER("fingerprint_bruker"),
     
     ZIP("zip"),

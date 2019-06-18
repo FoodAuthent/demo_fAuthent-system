@@ -94,7 +94,8 @@ public class FileServiceImpl implements FileService {
 
 	fileMeta = FileMetadata.builder(fileMeta).setUploadName(upfileDetail.getFileName())
 		.setUploadDate(LocalDate.now()).build();
-	if(TypeEnum.ZIP.equals(fileMeta.getType())) {
+	if(TypeEnum.ISA_FILE.equals(fileMeta.getType())) {
+	    
 	    return IsaImporter.importIsaFile(fileId, upfile, persistenceService);
 	}else {
 	    try {

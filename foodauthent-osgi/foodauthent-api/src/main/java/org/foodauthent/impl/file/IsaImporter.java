@@ -10,10 +10,13 @@ package org.foodauthent.impl.file;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -34,6 +37,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.IOUtils;
+import org.foodauthent.api.FileService;
 import org.foodauthent.api.internal.exception.FARuntimeException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
@@ -53,15 +57,14 @@ import org.foodauthent.model.FileMetadata.TypeEnum;
 //import org.foodauthent.model.json.ObjectMapperUtil;
 //import org.foodauthent.rest.client.FASystemClient;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.osgi.service.component.annotations.Component;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.main.JsonSchema;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
-
 public class IsaImporter {
-
     public static UUID importIsaFile(UUID fileId, InputStream upfile, PersistenceService persistenceService) {
 	
 	//FASystemClient c = new FASystemClient("localhost", 9090);
@@ -94,13 +97,27 @@ public class IsaImporter {
 		    br.lines().forEach(s ->s_rows.add(Arrays.asList(s.split("\t"))));
 		    //s_rows.forEach(r -> Arrays.asList(r).forEach(c->System.out.print(c)));
 		} else if (entry.getName().toLowerCase().contains(".pdf")) {
-		    //Path p = Files.createTempFile(entry.getName().replace(".pdf", ""),".pdf");
-		    //Files.copy(zipStream, p,StandardCopyOption.REPLACE_EXISTING);
-		    //sop_pdf_file = p.toFile();
+		    Path p = Files.createTempFile(entry.getName().replace(".pdf", ""),".pdf");
+		    Files.copy(zipStream, p,StandardCopyOption.REPLACE_EXISTING);
+		    FileInputStream temp_in = new FileInputStream(p.toString());
+		    
+		    
+//		    File targetFile = new File("c:/Arbeit/Foodauthent/myPDF2.pdf");
+//		    OutputStream outStream = new FileOutputStream(targetFile);
+//
+//		    byte[] buffer = new byte[8 * 1024];
+//		    int bytesRead;
+//		    while ((bytesRead = temp_in.read(buffer)) != -1) {
+//		        outStream.write(buffer, 0, bytesRead);
+//		    }
+//		    IOUtils.closeQuietly(temp_in);
+//		    IOUtils.closeQuietly(outStream);//sop_pdf_file = p.toFile();
 		    
 		    //FILE--------------------------------------
 		    // upload sop pdf file
-		    FileMetadata fileMeta = FileMetadata.builder().setName(entry.getName())
+		    FileMetadata fileMeta = FileMetadata.builder()
+			    //.setName(entry.getName())
+			    .setName("myPdf.pdf")
 			    .setDate(LocalDate.now())
 			    .setDescription("Document for Standard Operating Procedures(sop)")
 			    .setType(org.foodauthent.model.FileMetadata.TypeEnum.SOP_PDF)		
@@ -113,14 +130,17 @@ public class IsaImporter {
 			sop_pdf_UUID= persistenceService.save(fileMeta).getFaId();
 
 			    // new uuid for the blob (the same id as the one of metadata!)
-			  pdf_id = persistenceService.save(new Blob(sop_pdf_UUID,zipStream ));
-
+			  pdf_id = persistenceService.save(new Blob(sop_pdf_UUID,temp_in ));
+			  //pdf_id = sop_pdf_UUID;
+			  // fileService = service.saveFileData(fileId, filedata, filedataDetail);
+			    
 			    //return fileId;
 			} catch (Exception e) {
 			    throw new FARuntimeException(e);
 			}finally {
 			    System.out.println("new PDF FILE: " + pdf_id);
-				      
+			    IOUtils.closeQuietly(temp_in);
+//				         
 			}
 		    //sop_pdf_UUID = files(c).createFileMetadata(fileMeta).readEntity(UUID.class);
 		    
