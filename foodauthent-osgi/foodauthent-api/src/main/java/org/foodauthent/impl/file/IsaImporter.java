@@ -60,6 +60,8 @@ public class IsaImporter {
 	final List<List<String>> investigationRaws = new ArrayList<List<String>>();
 	final List<List<String>> studyRows = new ArrayList<List<String>>();
 	final List<List<String>> assayRows = new ArrayList<List<String>>();
+	final Map<String,UUID> fingerprint_files = new HashMap<String,UUID>(); 
+
 	UUID sop_pdf_UUID = null;
 	try (final BufferedInputStream bis = new BufferedInputStream(upfile);
 		final ZipInputStream zipStream = new ZipInputStream(upfile)) {
@@ -107,7 +109,31 @@ public class IsaImporter {
 			Files.delete(p);
 		    }
 
-		} // end if pdf
+		}  else {		// Save all other files and their names (assumption: bruker-files
+		    
+		    //don't save the same file multiple times
+		    if(fingerprint_files.containsKey(entry.getName()))
+			continue;
+		    
+		    FileMetadata fileMeta = FileMetadata.builder()
+			    .setName(entry.getName()).setDate(LocalDate.now())
+			    .setContentType(ContentTypeEnum.OCTET_STREAM)
+			    .setDescription("raw data of fingerprint")
+			    .setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).setVersion(0).build();
+		    try {
+
+			UUID file_meta_ID = persistenceService.save(fileMeta).getFaId();
+			UUID file_ID = persistenceService.save(new Blob(file_meta_ID, zipStream));
+			// new uuid for the blob (the same id as the one of metadata!)
+			fingerprint_files.put(
+				entry.getName(),
+				file_ID
+				);
+			LOG.info("BRUKER ID: " + file_ID);
+		    } catch (Exception e) {
+			throw new FARuntimeException(e);
+		    }
+		}
 		zipStream.closeEntry();
 
 	    }
@@ -214,7 +240,16 @@ public class IsaImporter {
 		if (!table_values.get("Sample Name").equals(assay_row.get(0))) {
 		    continue;
 		}
-		Fingerprint finger = Fingerprint.builder().setSampleId(sampleId).setSopId(sopId).build();
+		//Fingerprint 
+		// Foreign keys: SampleID, SopID, FileID
+		
+		int index =assay_col_names.indexOf("Derived Spectral Data File");
+		
+		Fingerprint finger = Fingerprint.builder()
+			.setSampleId(sampleId)
+			.setSopId(sopId)
+			.setFileId(fingerprint_files.get(assay_row.get(index)))
+			.build();
 		UUID fingerprint_id = persistenceService.save(finger).getFaId();
 		LOG.info("FINGERPRINT: " + fingerprint_id);
 		String body = "{ \"metaboliteprofiling_nmr\" : {";
