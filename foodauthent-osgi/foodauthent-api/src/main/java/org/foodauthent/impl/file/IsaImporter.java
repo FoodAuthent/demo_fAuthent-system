@@ -3,6 +3,7 @@ package org.foodauthent.impl.file;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,6 +24,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.input.TeeInputStream;
 import org.foodauthent.api.internal.exception.FARuntimeException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
@@ -54,17 +56,20 @@ public class IsaImporter {
 
     private static final Logger LOG = LoggerFactory.getLogger(IsaImporter.class);
 
-    public static UUID importIsaFile(UUID fileId, InputStream upfile, PersistenceService persistenceService) {
+    public static UUID importIsaFile(UUID fileId, InputStream in, PersistenceService persistenceService)
+	    throws IOException {
 
 	ZipEntry entry;
 	final List<List<String>> investigationRaws = new ArrayList<List<String>>();
 	final List<List<String>> studyRows = new ArrayList<List<String>>();
 	final List<List<String>> assayRows = new ArrayList<List<String>>();
-	final Map<String,UUID> fingerprint_files = new HashMap<String,UUID>(); 
+	final Map<String, UUID> fingerprint_files = new HashMap<String, UUID>();
 
+	final Path isaFilePath = Files.createTempFile("isa", "zip");
+	Files.copy(in, isaFilePath, StandardCopyOption.REPLACE_EXISTING);
+	
 	UUID sop_pdf_UUID = null;
-	try (final BufferedInputStream bis = new BufferedInputStream(upfile);
-		final ZipInputStream zipStream = new ZipInputStream(upfile)) {
+	try (final ZipInputStream zipStream = new ZipInputStream(new FileInputStream(isaFilePath.toString()))) {
 	    while ((entry = zipStream.getNextEntry()) != null) {
 		final InputStreamReader isr = new InputStreamReader(zipStream, StandardCharsets.UTF_8);
 		final BufferedReader br = new BufferedReader(isr);
@@ -81,10 +86,9 @@ public class IsaImporter {
 		    br.lines().forEach(s -> studyRows.add(Arrays.asList(s.split(TAB))));
 		    // s_rows.forEach(r -> Arrays.asList(r).forEach(c->System.out.print(c)));
 		} else if (entry.getName().toLowerCase().contains(PDF_SUFFIX)) {
-		     Path p = Files.createTempFile(entry.getName().replace(PDF_SUFFIX, ""),
-		     PDF_SUFFIX);
-		     Files.copy(zipStream, p, StandardCopyOption.REPLACE_EXISTING);
-		     FileInputStream temp_in = new FileInputStream(p.toString());
+		    Path p = Files.createTempFile(entry.getName().replace(PDF_SUFFIX, ""), PDF_SUFFIX);
+		    Files.copy(zipStream, p, StandardCopyOption.REPLACE_EXISTING);
+		    FileInputStream temp_in = new FileInputStream(p.toString());
 		    // upload sop pdf file
 		    FileMetadata fileMeta = FileMetadata.builder()
 			    // .setName(entry.getName())
@@ -109,26 +113,22 @@ public class IsaImporter {
 			Files.delete(p);
 		    }
 
-		}  else {		// Save all other files and their names (assumption: bruker-files
-		    
-		    //don't save the same file multiple times
-		    if(fingerprint_files.containsKey(entry.getName()))
+		} else { // Save all other files and their names (assumption: bruker-files
+
+		    // don't save the same file multiple times
+		    if (fingerprint_files.containsKey(entry.getName()))
 			continue;
-		    
-		    FileMetadata fileMeta = FileMetadata.builder()
-			    .setName(entry.getName()).setDate(LocalDate.now())
-			    .setContentType(ContentTypeEnum.OCTET_STREAM)
-			    .setDescription("raw data of fingerprint")
-			    .setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).setVersion(0).build();
+
+		    FileMetadata fileMeta = FileMetadata.builder().setName(entry.getName()).setDate(LocalDate.now())
+			    .setContentType(ContentTypeEnum.OCTET_STREAM).setDescription("raw data of fingerprint")
+			    .setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).setVersion(0)
+			    .build();
 		    try {
 
 			UUID file_meta_ID = persistenceService.save(fileMeta).getFaId();
 			UUID file_ID = persistenceService.save(new Blob(file_meta_ID, zipStream));
 			// new uuid for the blob (the same id as the one of metadata!)
-			fingerprint_files.put(
-				entry.getName(),
-				file_ID
-				);
+			fingerprint_files.put(entry.getName(), file_ID);
 			LOG.info("BRUKER ID: " + file_ID);
 		    } catch (Exception e) {
 			throw new FARuntimeException(e);
@@ -139,7 +139,7 @@ public class IsaImporter {
 	    }
 	} catch (IOException e) {
 	    LOG.error(e.getMessage(), e);
-	}
+	} 
 
 	List<Sample> samples = new ArrayList<>();
 
@@ -240,16 +240,13 @@ public class IsaImporter {
 		if (!table_values.get("Sample Name").equals(assay_row.get(0))) {
 		    continue;
 		}
-		//Fingerprint 
+		// Fingerprint
 		// Foreign keys: SampleID, SopID, FileID
-		
-		int index =assay_col_names.indexOf("Derived Spectral Data File");
-		
-		Fingerprint finger = Fingerprint.builder()
-			.setSampleId(sampleId)
-			.setSopId(sopId)
-			.setFileId(fingerprint_files.get(assay_row.get(index)))
-			.build();
+
+		int index = assay_col_names.indexOf("Derived Spectral Data File");
+
+		Fingerprint finger = Fingerprint.builder().setSampleId(sampleId).setSopId(sopId)
+			.setFileId(fingerprint_files.get(assay_row.get(index))).build();
 		UUID fingerprint_id = persistenceService.save(finger).getFaId();
 		LOG.info("FINGERPRINT: " + fingerprint_id);
 		String body = "{ \"metaboliteprofiling_nmr\" : {";
@@ -290,7 +287,9 @@ public class IsaImporter {
 	    saveCustomMetadata("sample", "foodauthent_v0", fingerSetID, inv_body, persistenceService);
 
 	}
-	return fileId;
+	final FileInputStream isaInputStream = new FileInputStream(isaFilePath.toString());
+	final UUID isaFileId = persistenceService.save(new Blob(fileId, isaInputStream));
+	return isaFileId;
     }
 
     private static void saveCustomMetadata(String modelId, String schemaId, UUID faId, String body,

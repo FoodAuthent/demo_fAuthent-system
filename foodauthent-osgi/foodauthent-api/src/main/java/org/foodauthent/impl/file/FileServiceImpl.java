@@ -1,6 +1,5 @@
 package org.foodauthent.impl.file;
 
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -94,25 +93,24 @@ public class FileServiceImpl implements FileService {
 
 	fileMeta = FileMetadata.builder(fileMeta).setUploadName(upfileDetail.getFileName())
 		.setUploadDate(LocalDate.now()).build();
-	if(TypeEnum.ISA_FILE.equals(fileMeta.getType())) {
-	    
-	    return IsaImporter.importIsaFile(fileId, upfile, persistenceService);
-	}else {
-	    try {
-		    if (TypeEnum.FINGERPRINT_BRUKER.equals(fileMeta.getType())) {
-			fileMeta = updateFinterprintMetadata(fileMeta, upfile);
-		    }
+	try {
+	    if (TypeEnum.ISA_FILE.equals(fileMeta.getType())) {
 
-		    persistenceService.replace(fileMeta);
-
-		    // new uuid for the blob (the same id as the one of metadata!)
-		    persistenceService.save(new Blob(fileId, upfile));
-
-		    return fileId;
-		} catch (Exception e) {
-		    throw new FARuntimeException(e);
+		return IsaImporter.importIsaFile(fileId, upfile, persistenceService);
+	    } else {
+		if (TypeEnum.FINGERPRINT_BRUKER.equals(fileMeta.getType())) {
+		    fileMeta = updateFinterprintMetadata(fileMeta, upfile);
 		}
-    
+
+		persistenceService.replace(fileMeta);
+
+		// new uuid for the blob (the same id as the one of metadata!)
+		persistenceService.save(new Blob(fileId, upfile));
+
+		return fileId;
+	    }
+	} catch (Exception e) {
+	    throw new FARuntimeException(e);
 	}
     }
 
@@ -162,12 +160,12 @@ public class FileServiceImpl implements FileService {
     public FileMetadata getFileMetadata(UUID fileId) {
 	return persistenceService.getFaModelByUUID(fileId, FileMetadata.class);
     }
-    
+
     @Override
     public void removeFileMetadataAndData(UUID fileId) {
-	//remove data
+	// remove data
 	persistenceService.removeBlobByUUID(fileId);
-	//remove metadata
+	// remove metadata
 	persistenceService.removeFaModelByUUID(fileId);
     }
 
@@ -191,7 +189,6 @@ public class FileServiceImpl implements FileService {
 
 	return result;
     }
-
 
     @Override
     public File exportFile(String fileType, UUID fileId, FaObjectSet faObjectSet) {
@@ -220,5 +217,5 @@ public class FileServiceImpl implements FileService {
 	return FilePageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
-    
+
 }

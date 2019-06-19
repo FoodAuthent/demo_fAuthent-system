@@ -42,6 +42,7 @@ import generalForm from '@/components/general/GeneralForm';
 
 var getAllFiles = require("@/utils/fileFunction.js").default.getAllFiles;
 var getFile = require("@/utils/fileFunction.js").default.getFile;
+var importFile = require("@/utils/fileFunction.js").default.importFile;
 import jsonschema from "@/generated/schema/importfile.json";
 
 
