@@ -18,7 +18,7 @@
             <b-card no-body>
                 <b-tabs card>
                     <b-tab title="Results" active>
-                        <trainingjobTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :refresh="loadTableData" :myPaginationHandler="myPaginationHandler"
+                        <trainingjobTable :items="items" :fields="fields" :schema.sync="schema" :currentPage="currentPage" :perPage.sync="perPage" :filter.sync="filter" :resultsCount="resultsCount" :selected="selected" :pageCount="pageCount" :loadTableData="loadTableData" :myPaginationHandler="myPaginationHandler"
                         :pageOptionsPerPage.sync="pageOptionsPerPage" :search="search" :myRowClickHandler="myRowClickHandler" :handleEditOk="handleEditOk" :itemsMetadata.sync="itemsMetadata" :pageType="pageType" :entity="entity"  :schemaIdHolder="schemaIdHolder">
                         </trainingjobTable>
                     </b-tab>

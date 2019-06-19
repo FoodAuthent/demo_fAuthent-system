@@ -24,8 +24,8 @@ public class RelationServiceImpl implements RelationService {
 		{
 			put("product", new String[] { "sample", "sop" });
 			put("workflow", new String[] { "model", "prediction" });
-			put("sample", new String[] { "fingerprint" });
-			put("sop", new String[] { "fingerprint", "sample" });
+			put("sample", new String[] { "fingerprints" });
+			put("sop", new String[] { "fingerprints", "sample" });
 			put("model", new String[] { "prediction", "trainingJob" });
 
 		}

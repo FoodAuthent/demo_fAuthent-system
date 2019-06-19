@@ -105,6 +105,7 @@ var MyObject = function () {
 			      } else {
 			        self.relationResult = data.results;
 			        console.log("API called successfully. Returned data: ", data);
+		            window.scrollTo(0, 0);
 			      }
 			    };
 			    var opt = {

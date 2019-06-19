@@ -105,12 +105,34 @@
     </b-modal>
     
     <!-- MODAL relation -->
-        <b-modal id="relationModal" scrollable size="xl" title="RELATIONS">
-        <div class="panel panel-default">
-        <b-table bordered striped hover show-empty responsive :items="relationResult">
-        </b-table>
-        </div>
-    </b-modal>   
+	<b-modal id="relationModal" scrollable size="xl" title="RELATIONS">
+	    <div v-if='relationResult'>
+	        <table aria-busy="false" aria-colcount="5" class="table b-table table-striped table-hover table-bordered" id="modalTableRelations">
+	            <thead role="rowgroup" class="">
+	                <tr role="row">
+	                    <th v-for="(item, key) in relationResult[0]" role="columnheader" scope="col" aria-colindex="1" class="">{{key}}</th>
+	                </tr>
+	            </thead>
+	            <tbody role="rowgroup" class="">
+	                <tr v-for="(item, key) in relationResult[0]" aria-rowindex="1" role="row" class="">
+	                    <td v-for="(item, key) in relationResult[0]" role="cell" aria-colindex="1" class="">
+	                        <div v-if="checkLinkFieldForRelation(key)">
+	                            <div v-if="key=='fa-id'">
+	                                <router-link :to="{ path: pathRelation, query: { faid: item  } }">{{ item }}</router-link>
+	                            </div>
+	                            <div v-else>
+	                            <router-link :to="{ path: key.replace('-id',''), query: { faid: item  } }">{{ item }}</router-link>
+	                            </div>
+	                        </div>
+	                        <div v-else>
+	                            {{item}}
+	                        </div>
+	                    </td>
+	                </tr>
+	            </tbody>
+	        </table>
+	    </div>
+	</b-modal>
 
 </div>
 
@@ -176,6 +198,7 @@ export default {
             hasEdit: false,
             hasRelation: false,
             entities: null,
+            pathRelation: '',
             relationItems: []
                }
     },
@@ -212,7 +235,8 @@ export default {
                 this.$root.$emit('bv::show::modal', 'modalEdit', button);
             },
             getRelations(type, item, index, button){
-			let self = this;
+            let self = this;
+            this.pathRelation = type;
             getForeignKeyEntities(self.entity, type, item["fa-id"], self);
             },
             linkFunction(faId,infoType){
@@ -226,7 +250,14 @@ export default {
             if(model !== undefined && model !== null && model != 'fa-id'){
              return model.includes("-id") || model.includes("-ids");
              }else{
-             return false
+             return false;
+             }
+            },
+           checkLinkFieldForRelation(model){
+            if(model !== undefined && model !== null){
+             return model.includes("-id") || model.includes("-ids");
+             }else{
+             return false;
              }
             },
             checkArray(field){
@@ -251,9 +282,6 @@ export default {
                if(this.pageType != 'noType'){
                getCustomMetadata(this.pageType, this.schemaIdHolder.schemaID, item["fa-id"], self);
                }
-            },
-            getPath(infoType){
-            return infoType.replace('-id','');
             },
            //Manage the ok button to confirm the Metadata action
             handleMetadataOk() {
