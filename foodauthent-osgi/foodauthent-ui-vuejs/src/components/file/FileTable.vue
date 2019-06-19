@@ -5,7 +5,7 @@
         <!-- UPDATE -->
         <b-row>
             <b-col>
-                <b-btn id="refreshTable" variant="primary" size="sm" @click="refresh">
+                <b-btn id="refreshTable" variant="primary" size="sm" @click="loadTableData">
                     <md-icon>autorenew</md-icon>
                 </b-btn>
             </b-col>
@@ -115,7 +115,7 @@ export default {
             type: Function,
             required: true
         },
-        refresh: {
+        loadTableData: {
             type: Function,
             required: true
         }
