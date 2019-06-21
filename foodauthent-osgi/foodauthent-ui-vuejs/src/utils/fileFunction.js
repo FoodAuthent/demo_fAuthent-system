@@ -1,8 +1,9 @@
 var fileApi;
+
 function setUpApi(){
 	  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
 	  var apiClient = new ApiClient();
-	  
+
 	  if(localStorage.getItem('token')){
 		  console.log("Inside the token set");
 		  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
@@ -16,8 +17,6 @@ function setUpApi(){
 }
 
 var MyObject = function () {
-	
-	
 	
 	  var getAllFiles = function (self) {
 		setUpApi();
@@ -68,7 +67,7 @@ var MyObject = function () {
 	    );
 	  };
 
-  var getFile = function (fileIdJson, self) {
+  var getFile = function (self) {
 	setUpApi();
     console.log('Get File');
     var callback = function (error, data, response) {
@@ -82,12 +81,13 @@ var MyObject = function () {
         console.log("API called successfully. Returned data: ", data);
       }
     };
-    var fileId = fileIdJson;
+    var fileId = self.filter;
     fileApi.getFileData(
       fileId,
       callback
     );
   };
+  
   var createFileMetadata = function (fileJson, file, self) {
 	setUpApi();
     console.log('Create File Metadata');
@@ -155,17 +155,21 @@ var MyObject = function () {
 	    );
 	  };
 	  
-	  var  forceFileDownload = function (data, uploadName){
-    	  console.log("forceFileDownload");
-	      const url = window.URL.createObjectURL(new Blob([data]))
-	      const link = document.createElement('a')
-	      link.href = url
-	      link.setAttribute('download', uploadName) 
-	      document.body.appendChild(link)
+	  var  forceFileDownload = function (data, uploadName, fileContentType){
+    	  console.log("forceFileDownload"); 
+    	  console.log("fileContentType",fileContentType); 
+    	  const blob = new Blob([data],{type: fileContentType});
+    	  const url = window.URL.createObjectURL(blob);
+	      const link = document.createElement('a');
+	      link.href = url;
+	      link.setAttribute('download', uploadName);
+	      document.body.appendChild(link);
 	      link.click();
+	      URL.revokeObjectURL(url);
+	      document.body.removeChild(link);
 };
-	  
-	  var downloadFile = function (varFileId, uploadName, self) {
+
+	  var downloadFile = function (varFileId, uploadName, fileContentType, self) {
 			setUpApi();
 		    console.log('Download file');
 		    var callback = function (error, data, response) {
@@ -176,7 +180,7 @@ var MyObject = function () {
 		      } else {
 		        //self.value = data;
 		        console.log("Export file API called successfully. Returned data: ", data);
-		        forceFileDownload(data, uploadName);
+		        forceFileDownload(data, uploadName, fileContentType);
 		      }
 		    };
 		    fileApi.getFileData(

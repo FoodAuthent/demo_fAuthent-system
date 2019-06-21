@@ -41,7 +41,6 @@ import generalTable from '@/components/file/FileTable';
 import generalForm from '@/components/general/GeneralForm';
 
 var getAllFiles = require("@/utils/fileFunction.js").default.getAllFiles;
-var getFile = require("@/utils/fileFunction.js").default.getFile;
 var importFile = require("@/utils/fileFunction.js").default.importFile;
 import jsonschema from "@/generated/schema/importfile.json";
 
@@ -88,13 +87,7 @@ export default {
     methods: {
             search() {
                 let self = this;
-                //check if it is a valid UUID
-                var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
-                if (re.test(self.filter)) {
-                    getFile(self.selected["fa-id"]);
-                } else {
-                    getAllFiles(self);
-                }
+                getAllFiles(self);
             },
             myPaginationHandler(page) {
                 let self = this;

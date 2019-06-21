@@ -139,7 +139,7 @@ export default {
                 this.filterVal = filter;
             },
             onSearch() {
-                this.$emit('update:filter', this.filterVal)
+                this.$emit('update:filter', this.filterVal);
             },
             clearSearch() {
                 this.$emit('update:filter', null);
@@ -180,7 +180,7 @@ export default {
            dowloadFile(item, index, button) {
                let self = this;
                console.log("DWNLOAD ITEM", item);
-              downloadFile(item["fa-id"], item["uploadName"], self);
+              downloadFile(item["fa-id"], item["uploadName"],item["contentType"], self);
             },
             onFiltered(filteredItems) {
                 // Trigger pagination to update the number of buttons/pages due to filtering
