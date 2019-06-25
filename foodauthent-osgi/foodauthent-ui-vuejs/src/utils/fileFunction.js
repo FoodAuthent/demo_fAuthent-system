@@ -155,10 +155,20 @@ var MyObject = function () {
 	    );
 	  };
 	  
-	  var  forceFileDownload = function (data, uploadName, fileContentType){
+	  var  forceFileDownload = function (file, uploadName, fileContentType){
     	  console.log("forceFileDownload"); 
-    	  console.log("fileContentType",fileContentType); 
-    	  const blob = new Blob([data],{type: fileContentType});
+    	  
+    	  //It add .txt by default if the file doesn't have extension
+    	  //Check and open an alert 
+    	  var re = /(?:\.([^.]+))?$/;
+    	  var ext = re.exec(uploadName)[1];
+    	  console.log("EXT", ext);
+    	  if(ext == undefined && fileContentType == null){
+    		  alert("The file was uploaded with no extension(.pdf, .zip, ...), it will be downloaded as .txt by default");
+    	  }
+    	  
+    	  const blob = new Blob([file],{type: fileContentType});
+    	  console.log("BLOB",blob);
     	  const url = window.URL.createObjectURL(blob);
 	      const link = document.createElement('a');
 	      link.href = url;
@@ -168,6 +178,7 @@ var MyObject = function () {
 	      URL.revokeObjectURL(url);
 	      document.body.removeChild(link);
 };
+
 
 	  var downloadFile = function (varFileId, uploadName, fileContentType, self) {
 			setUpApi();
@@ -180,7 +191,7 @@ var MyObject = function () {
 		      } else {
 		        //self.value = data;
 		        console.log("Export file API called successfully. Returned data: ", data);
-		        forceFileDownload(data, uploadName, fileContentType);
+		        forceFileDownload(response.body, uploadName, fileContentType);
 		      }
 		    };
 		    fileApi.getFileData(

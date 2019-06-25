@@ -298,7 +298,7 @@ paths:
             application/binary:
               schema:
                 type: string
-                format: binary
+                format: byte
     put:
       tags:
         - file

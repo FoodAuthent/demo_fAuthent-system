@@ -101,7 +101,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/custommetadata/{model-type}/{schema-id}/{fa-id}', 'GET',
@@ -156,7 +156,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/schema+json'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/custommetadata/{model-type}/{schema-id}', 'GET',
@@ -204,7 +204,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = [String];
+      var returnType = '[String]';
 
       return this.apiClient.callApi(
         '/custommetadata/{model-type}', 'GET',

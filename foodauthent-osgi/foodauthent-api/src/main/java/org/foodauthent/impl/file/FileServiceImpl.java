@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.io.IOUtils;
 import org.foodauthent.api.FileService;
 import org.foodauthent.api.internal.exception.FARuntimeException;
 import org.foodauthent.api.internal.exception.ServiceNotAvailableException;
@@ -64,12 +64,10 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public File getFileData(UUID fileId) {
+    public byte[] getFileData(UUID fileId) {
 	Blob blob = persistenceService.getBlobByUUID(fileId);
 	try {
-	    Path path = Files.createTempFile("file", null);
-	    Files.copy(blob.getData(), path, StandardCopyOption.REPLACE_EXISTING);
-	    return path.toFile();
+	    return IOUtils.toByteArray(blob.getData());
 	} catch (IOException e) {
 	    logger.error(e.getMessage(), e);
 	    return null;

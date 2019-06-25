@@ -86,7 +86,7 @@
       var authNames = [];
       var contentTypes = ['application/json'];
       var accepts = ['text/plain'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/authenticate/jwt', 'POST',
@@ -133,7 +133,7 @@
       var authNames = [];
       var contentTypes = ['text/plain'];
       var accepts = ['text/plain'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/authenticate/jwt/refresh', 'POST',

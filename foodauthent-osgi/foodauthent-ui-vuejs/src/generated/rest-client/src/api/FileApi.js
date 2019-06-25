@@ -85,7 +85,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/file', 'POST',
@@ -146,7 +146,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/binary'];
-      var returnType = File;
+      var returnType = 'File';
 
       return this.apiClient.callApi(
         '/file/{file-id}/export', 'POST',
@@ -198,7 +198,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = FilePageResult;
+      var returnType = 'FilePageResult';
 
       return this.apiClient.callApi(
         '/file', 'GET',
@@ -211,7 +211,7 @@
      * Callback function to receive the result of the getFileData operation.
      * @callback module:api/FileApi~getFileDataCallback
      * @param {String} error Error message, if any.
-     * @param {File} data The data returned by the service call.
+     * @param {Blob} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -219,7 +219,7 @@
      * Let one download the actual file data.
      * @param {String} fileId 
      * @param {module:api/FileApi~getFileDataCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link File}
+     * data is of type: {@link Blob}
      */
     this.getFileData = function(fileId, callback) {
       var postBody = null;
@@ -245,7 +245,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/binary'];
-      var returnType = File;
+      var returnType = 'Blob';
 
       return this.apiClient.callApi(
         '/file/{file-id}/data', 'GET',
@@ -292,7 +292,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = FileMetadata;
+      var returnType = 'FileMetadata';
 
       return this.apiClient.callApi(
         '/file/{file-id}', 'GET',
@@ -340,7 +340,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = ImportResult;
+      var returnType = 'ImportResult';
 
       return this.apiClient.callApi(
         '/file/{file-id}/import', 'GET',
@@ -440,7 +440,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['multipart/form-data'];
       var accepts = ['application/json'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/file/{file-id}/data', 'PUT',

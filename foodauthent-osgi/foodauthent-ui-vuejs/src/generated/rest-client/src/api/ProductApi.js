@@ -82,7 +82,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/product', 'POST',
@@ -129,7 +129,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = Product;
+      var returnType = 'Product';
 
       return this.apiClient.callApi(
         '/product/findByGtin', 'GET',
@@ -181,7 +181,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = ProductPageResult;
+      var returnType = 'ProductPageResult';
 
       return this.apiClient.callApi(
         '/product', 'GET',
@@ -228,7 +228,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = Product;
+      var returnType = 'Product';
 
       return this.apiClient.callApi(
         '/product/{product-id}', 'GET',

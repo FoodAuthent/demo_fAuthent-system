@@ -85,7 +85,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/sop', 'POST',
@@ -137,7 +137,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = SOPPageResult;
+      var returnType = 'SOPPageResult';
 
       return this.apiClient.callApi(
         '/sop', 'GET',
@@ -184,7 +184,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = SOP;
+      var returnType = 'SOP';
 
       return this.apiClient.callApi(
         '/sop/{sop-id}', 'GET',

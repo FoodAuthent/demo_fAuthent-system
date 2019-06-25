@@ -194,7 +194,12 @@
      * value: "fakx"
      * @const
      */
-    "fakx": "fakx"  };
+    "fakx": "fakx",
+    /**
+     * value: "isa_file"
+     * @const
+     */
+    "isa_file": "isa_file"  };
 
   /**
    * Allowed values for the <code>contentType</code> property.

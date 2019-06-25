@@ -57,7 +57,7 @@ public interface FileService {
      *
      * @return the result
      */
-    File getFileData(java.util.UUID fileId);
+    byte[] getFileData(java.util.UUID fileId);
         
     /**
      * Returns the file metadata.

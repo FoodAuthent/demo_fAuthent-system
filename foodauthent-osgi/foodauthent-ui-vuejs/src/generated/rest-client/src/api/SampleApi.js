@@ -83,7 +83,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/sample', 'POST',
@@ -135,7 +135,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = SamplePageResult;
+      var returnType = 'SamplePageResult';
 
       return this.apiClient.callApi(
         '/sample', 'GET',
@@ -182,7 +182,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = Sample;
+      var returnType = 'Sample';
 
       return this.apiClient.callApi(
         '/sample/{sample-id}', 'GET',

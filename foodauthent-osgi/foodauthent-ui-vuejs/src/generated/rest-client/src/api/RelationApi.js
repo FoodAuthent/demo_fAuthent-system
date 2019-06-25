@@ -79,7 +79,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = [String];
+      var returnType = '[String]';
 
       return this.apiClient.callApi(
         '/relation/entities', 'GET',
@@ -146,7 +146,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = Object;
+      var returnType = 'Object';
 
       return this.apiClient.callApi(
         '/relation/entity/{entity-name}/{fa-id}/{referenced-entity}', 'GET',
@@ -193,7 +193,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = [String];
+      var returnType = '[String]';
 
       return this.apiClient.callApi(
         '/relation/entity/{entity-name}', 'GET',

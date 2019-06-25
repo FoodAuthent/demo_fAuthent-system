@@ -86,7 +86,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json', 'text/plain'];
-      var returnType = Organization;
+      var returnType = 'Organization';
 
       return this.apiClient.callApi(
         '/organization', 'POST',
@@ -181,7 +181,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/plain'];
-      var returnType = Organization;
+      var returnType = 'Organization';
 
       return this.apiClient.callApi(
         '/organization/{dn}', 'GET',
@@ -235,7 +235,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json', 'text/plain'];
-      var returnType = Organization;
+      var returnType = 'Organization';
 
       return this.apiClient.callApi(
         '/organization/{dn}', 'PUT',

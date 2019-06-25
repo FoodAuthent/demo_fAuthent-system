@@ -80,7 +80,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = SystemInfo;
+      var returnType = 'SystemInfo';
 
       return this.apiClient.callApi(
         '/info', 'GET',

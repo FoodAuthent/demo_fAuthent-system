@@ -85,7 +85,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/fingerprint', 'POST',
@@ -131,7 +131,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/fingerprintset', 'POST',
@@ -183,7 +183,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = FingerprintPageResult;
+      var returnType = 'FingerprintPageResult';
 
       return this.apiClient.callApi(
         '/fingerprint', 'GET',
@@ -235,7 +235,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = FingerprintSetPageResult;
+      var returnType = 'FingerprintSetPageResult';
 
       return this.apiClient.callApi(
         '/fingerprintset', 'GET',
@@ -282,7 +282,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = Fingerprint;
+      var returnType = 'Fingerprint';
 
       return this.apiClient.callApi(
         '/fingerprint/{fingerprint-id}', 'GET',
@@ -329,7 +329,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = FingerprintSet;
+      var returnType = 'FingerprintSet';
 
       return this.apiClient.callApi(
         '/fingerprintset/{fingerprintset-id}', 'GET',

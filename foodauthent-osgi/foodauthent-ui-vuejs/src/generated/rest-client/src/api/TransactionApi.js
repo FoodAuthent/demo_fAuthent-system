@@ -83,7 +83,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/discovery/transaction', 'POST',
@@ -135,7 +135,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = DiscoveryServiceTransactionPageResult;
+      var returnType = 'DiscoveryServiceTransactionPageResult';
 
       return this.apiClient.callApi(
         '/discovery/transaction', 'GET',
@@ -182,7 +182,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = DiscoveryServiceTransaction;
+      var returnType = 'DiscoveryServiceTransaction';
 
       return this.apiClient.callApi(
         '/discovery/transaction/{transaction-id}', 'GET',

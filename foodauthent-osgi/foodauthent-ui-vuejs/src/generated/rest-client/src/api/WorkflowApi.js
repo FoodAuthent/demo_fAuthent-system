@@ -104,7 +104,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = PredictionJob;
+      var returnType = 'PredictionJob';
 
       return this.apiClient.callApi(
         '/workflow/prediction/job', 'POST',
@@ -165,7 +165,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = TrainingJob;
+      var returnType = 'TrainingJob';
 
       return this.apiClient.callApi(
         '/workflow/training/job', 'POST',
@@ -209,7 +209,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/workflow', 'POST',
@@ -261,7 +261,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = PredictionPageResult;
+      var returnType = 'PredictionPageResult';
 
       return this.apiClient.callApi(
         '/prediction', 'GET',
@@ -313,7 +313,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = PredictionJobPageResult;
+      var returnType = 'PredictionJobPageResult';
 
       return this.apiClient.callApi(
         '/workflow/prediction/job', 'GET',
@@ -365,7 +365,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = WorkflowPageResult;
+      var returnType = 'WorkflowPageResult';
 
       return this.apiClient.callApi(
         '/workflow/prediction', 'GET',
@@ -423,7 +423,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = PredictionPageResult;
+      var returnType = 'PredictionPageResult';
 
       return this.apiClient.callApi(
         '/prediction/relation/{fingerprintset-id}', 'GET',
@@ -475,7 +475,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = TrainingJobPageResult;
+      var returnType = 'TrainingJobPageResult';
 
       return this.apiClient.callApi(
         '/workflow/training/job', 'GET',
@@ -527,7 +527,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = WorkflowPageResult;
+      var returnType = 'WorkflowPageResult';
 
       return this.apiClient.callApi(
         '/workflow/training', 'GET',
@@ -579,7 +579,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = WorkflowPageResult;
+      var returnType = 'WorkflowPageResult';
 
       return this.apiClient.callApi(
         '/workflow', 'GET',
@@ -626,7 +626,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = PredictionJob;
+      var returnType = 'PredictionJob';
 
       return this.apiClient.callApi(
         '/workflow/prediction/job/{job-id}', 'GET',
@@ -673,7 +673,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = Prediction;
+      var returnType = 'Prediction';
 
       return this.apiClient.callApi(
         '/prediction/{prediction-id}', 'GET',
@@ -720,7 +720,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = TrainingJob;
+      var returnType = 'TrainingJob';
 
       return this.apiClient.callApi(
         '/workflow/training/job/{job-id}', 'GET',
@@ -768,7 +768,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = Workflow;
+      var returnType = 'Workflow';
 
       return this.apiClient.callApi(
         '/workflow/{workflow-id}', 'GET',

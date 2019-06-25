@@ -298,7 +298,7 @@ paths:
             application/binary:
               schema:
                 type: string
-                format: binary
+                format: byte
     put:
       tags:
         - file
@@ -2195,6 +2195,7 @@ components:
             - fingerprint_bruker
             - zip
             - fakx
+            - isa_file
         name:
           description: A name for the file.
           type: string

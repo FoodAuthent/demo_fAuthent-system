@@ -24,7 +24,7 @@
                         </generalTable>
                     </b-tab>
                     <b-tab title="Import File">
-                        <generalForm :schema="schema" :model.sync="model" :schemas="schemas" :options="formOptions" :save="save" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :response="response" :showSuccess="showSuccess" :showError="showError" :loading="loading"></generalForm>
+                        <generalForm :schema="schema" :model.sync="model" :schemas="schemas" :options="formOptions" :save="save" :cancel="cancel" :pageType="pageType" :schemaIdHolder="schemaIdHolder" :response="response" :showSuccess="showSuccess" :showError="showError" :loading="loading"></generalForm>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -42,6 +42,7 @@ import generalForm from '@/components/general/GeneralForm';
 
 var getAllFiles = require("@/utils/fileFunction.js").default.getAllFiles;
 var importFile = require("@/utils/fileFunction.js").default.importFile;
+var deleteFile = require("@/utils/fileFunction.js").default.deleteFile;
 import jsonschema from "@/generated/schema/importfile.json";
 
 
@@ -117,6 +118,13 @@ export default {
             handleDeleteOk() {
                 let self = this;
                 console.log("fa-id:", self.selected["fa-id"]);
+            },
+            cancel() {
+                let self = this;
+                if(self.model["file-id"] != "" && self.model["file-id"] != null){
+                deleteFile(self.model["file-id"]);
+                }
+                self.model = {};
             },
                 myRowClickHandler(record, index) {
                 this.selected = record;

@@ -86,7 +86,7 @@
       var authNames = [];
       var contentTypes = ['application/json'];
       var accepts = ['application/json', 'text/plain'];
-      var returnType = User;
+      var returnType = 'User';
 
       return this.apiClient.callApi(
         '/user', 'POST',
@@ -133,7 +133,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json', 'text/plain'];
-      var returnType = UserGroup;
+      var returnType = 'UserGroup';
 
       return this.apiClient.callApi(
         '/user/group', 'POST',
@@ -279,7 +279,7 @@
       var authNames = [];
       var contentTypes = [];
       var accepts = ['text/plain'];
-      var returnType = String;
+      var returnType = 'String';
 
       return this.apiClient.callApi(
         '/user/{dn}/pwgen', 'GET',
@@ -327,7 +327,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/plain'];
-      var returnType = User;
+      var returnType = 'User';
 
       return this.apiClient.callApi(
         '/user/{dn}', 'GET',
@@ -375,7 +375,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/plain'];
-      var returnType = UserGroup;
+      var returnType = 'UserGroup';
 
       return this.apiClient.callApi(
         '/user/group/{dn}', 'GET',
@@ -482,7 +482,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json', 'text/plain'];
-      var returnType = User;
+      var returnType = 'User';
 
       return this.apiClient.callApi(
         '/user/{dn}', 'PUT',
@@ -536,7 +536,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json', 'text/plain'];
-      var returnType = UserGroup;
+      var returnType = 'UserGroup';
 
       return this.apiClient.callApi(
         '/user/group/{dn}', 'PUT',
