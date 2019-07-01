@@ -90,7 +90,7 @@ public class IsaImporter {
 		    Files.copy(zipStream, p, StandardCopyOption.REPLACE_EXISTING);
 		    FileInputStream temp_in = new FileInputStream(p.toString());
 		    // upload sop pdf file
-		    FileMetadata fileMeta = FileMetadata.builder()
+		    FileMetadata fileMeta = FileMetadata.builder().setUploadName("sop.pdf")
 			    // .setName(entry.getName())
 			    .setName(entry.getName()).setDate(LocalDate.now())
 			    .setContentType(ContentTypeEnum.OCTET_STREAM)
