@@ -22,7 +22,8 @@ var MyObject = function () {
 	    console.log('Get Models');
 	    var filterArray = null;
 	    if(self.filter !== null){
-	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+//	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+	    var filterArray = self.filter.split(" ");
 	    }
 	    var callback = function (error, data, response) {
 	      console.log("data:", data);

@@ -26,7 +26,8 @@ var MyObject = function () {
 	    console.log('self currentPage ',self.currentPage);
 	    var filterArray = null;
 	    if(self.filter !== null){
-	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+	    //var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+	    var filterArray = self.filter.split(" ");
 	    }
 	    console.log('Filter ',filterArray);
 	    var callback = function (error, data, response) {
@@ -157,16 +158,14 @@ var MyObject = function () {
 	  
 	  var  forceFileDownload = function (file, uploadName, fileContentType){
     	  console.log("forceFileDownload"); 
-    	  
-    	  //It add .txt by default if the file doesn't have extension
+    	  //Chrome add .txt by default if the file doesn't have extension
     	  //Check and open an alert 
+    	  var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
     	  var re = /(?:\.([^.]+))?$/;
     	  var ext = re.exec(uploadName)[1];
-    	  console.log("EXT", ext);
-    	  if(ext == undefined && fileContentType == null){
-    		  alert("The file was uploaded with no extension(.pdf, .zip, ...), it will be downloaded as .txt by default");
+    	  if(isChrome && ext == undefined && fileContentType == null){
+    		  alert("The file was uploaded with no extension(.pdf, .zip, ...), Google Chrome will download it as .txt by default");
     	  }
-    	  
     	  const blob = new Blob([file],{type: fileContentType});
     	  console.log("BLOB",blob);
     	  const url = window.URL.createObjectURL(blob);

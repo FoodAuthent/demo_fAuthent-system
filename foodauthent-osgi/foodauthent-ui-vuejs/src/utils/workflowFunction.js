@@ -23,7 +23,8 @@ var MyObject = function () {
 	    console.log('Get Workflows');
 	    var filterArray = null;
 	    if(self.filter !== null){
-	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+//	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+	    var filterArray = self.filter.split(" ");
 	    }
 	    console.log('Filter ',filterArray);
 	    var callback = function (error, data, response) {
@@ -108,7 +109,8 @@ var findWorkflowById = function (self) {
     console.log('Get  Prediction');
     var filterArray = null;
     if(self.filter !== null){
-    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+//    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+      var filterArray = self.filter.split(" ");
     }
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -146,7 +148,8 @@ var findWorkflowById = function (self) {
 	  setUpApi();
 	    var filterArray = null;
 	    if(self.filter !== null){
-	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+//	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+	    var filterArray = self.filter.split(" ");
 	    }
 	    console.log('Search Prediction for Keywords: ',filterArray);
 	    var callback = function (error, data, response) {
@@ -225,7 +228,8 @@ var findWorkflowById = function (self) {
     console.log('Get Prediction Job');
     var filterArray = null;
     if(self.filter !== null){
-    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+//    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+      var filterArray = self.filter.split(" ");
     }
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -266,7 +270,8 @@ var findWorkflowById = function (self) {
 	  setUpApi();
 	    var filterArray = null;
 	    if(self.filter !== null){
-	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+//	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+	    var filterArray = self.filter.split(" ");
 	    }
 	    console.log('Search Prediction for Keywords: ',filterArray);
 	    var callback = function (error, data, response) {
@@ -347,7 +352,8 @@ var findWorkflowById = function (self) {
     console.log('Get Trainingjob');
     var filterArray = null;
     if(self.filter !== null){
-    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+//    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+      var filterArray = self.filter.split(" ");
     }
     var callback = function (error, data, response) {
       console.log("data:", data);
@@ -386,7 +392,8 @@ var findWorkflowById = function (self) {
 	  setUpApi();
 	    var filterArray = null;
 	    if(self.filter !== null){
-	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+//	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);
+	    var filterArray = self.filter.split(" ");
 	    }
 	    console.log('Search Training JOb for Keywords: ',filterArray);
 	    var callback = function (error, data, response) {

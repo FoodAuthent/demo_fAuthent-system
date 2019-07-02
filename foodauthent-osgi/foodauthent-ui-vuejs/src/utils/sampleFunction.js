@@ -24,7 +24,8 @@ var MyObject = function () {
 	    console.log('self Filter ',self.filter);
 	    var filterArray = null;
 	    if(self.filter !== null){
-	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+//	    var filterArray = self.filter.replace(/^\s+|\s+$/g,"").split(/\s*,\s*/);	
+	    var filterArray = self.filter.split(" ");
 	    console.log("Filter are: ",filterArray);
 	    }
 	    console.log('Filter ',filterArray);
