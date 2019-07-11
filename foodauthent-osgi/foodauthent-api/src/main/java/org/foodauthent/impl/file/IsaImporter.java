@@ -90,7 +90,7 @@ public class IsaImporter {
 		    Files.copy(zipStream, p, StandardCopyOption.REPLACE_EXISTING);
 		    FileInputStream temp_in = new FileInputStream(p.toString());
 		    // upload sop pdf file
-		    FileMetadata fileMeta = FileMetadata.builder()
+		    FileMetadata fileMeta = FileMetadata.builder().setUploadName(entry.getName())
 			    // .setName(entry.getName())
 			    .setName(entry.getName()).setDate(LocalDate.now())
 			    .setContentType(ContentTypeEnum.OCTET_STREAM)
@@ -119,9 +119,14 @@ public class IsaImporter {
 		    if (fingerprint_files.containsKey(entry.getName()))
 			continue;
 
-		    FileMetadata fileMeta = FileMetadata.builder().setName(entry.getName()).setDate(LocalDate.now())
-			    .setContentType(ContentTypeEnum.OCTET_STREAM).setDescription("raw data of fingerprint")
-			    .setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).setVersion(0)
+		    FileMetadata fileMeta = FileMetadata.builder()
+			    .setUploadName(entry.getName())
+			    .setName(entry.getName())
+			    .setDate(LocalDate.now())
+			    .setContentType(ContentTypeEnum.ZIP)
+			    .setDescription("raw data of fingerprint")
+			    .setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER)
+			    .setVersion(0)
 			    .build();
 		    try {
 
