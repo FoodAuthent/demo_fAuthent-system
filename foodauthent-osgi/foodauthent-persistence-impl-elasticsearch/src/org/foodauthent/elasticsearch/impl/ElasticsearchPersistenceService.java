@@ -106,8 +106,10 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 	@Override
 	public UUID save(Blob blob) throws ModelExistsException {
 		if (fileStorageService != null) {
+			LOG.info("save data to FileStorageService");
 			return saveToFileStorageService(blob);
 		} else {
+			LOG.info("save data to Elasticsearch");
 			return saveToElasticsearch(blob);
 		}
 	}

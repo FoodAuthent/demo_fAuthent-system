@@ -77,7 +77,7 @@ public class DeleteEntities {
 		fps.getFingerprintIds().forEach(fpid -> {
 		    Fingerprint fp = fingerprints(c).getFingerprintById(fpid).readEntity(Fingerprint.class);
 		    entities(c).removeEntity(fpid);
-		    if (fp != null) {
+		    if (fp != null && fp.getFileId() != null) {
 			files(c).removeFileMetadataAndData(fp.getFileId());
 		    }
 		});

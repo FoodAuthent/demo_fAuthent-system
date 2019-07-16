@@ -9,7 +9,6 @@ RUN mkdir -p /opt/foodauthent
 COPY maven/org.foodauthent.runtime /opt/foodauthent/runtime
 
 COPY config /config
-
 COPY bin /opt/foodauthent/bin
 RUN chmod +x /opt/foodauthent/bin/run.sh
 
