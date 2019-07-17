@@ -1,9 +1,7 @@
 package org.foodauthent.impl.file;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,7 +22,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.input.TeeInputStream;
 import org.foodauthent.api.internal.exception.FARuntimeException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
@@ -67,7 +64,7 @@ public class IsaImporter {
 
 	final Path isaFilePath = Files.createTempFile("isa", "zip");
 	Files.copy(in, isaFilePath, StandardCopyOption.REPLACE_EXISTING);
-	
+	UUID fingerprintSetId = null;
 	UUID sop_pdf_UUID = null;
 	try (final ZipInputStream zipStream = new ZipInputStream(new FileInputStream(isaFilePath.toString()))) {
 	    while ((entry = zipStream.getNextEntry()) != null) {
@@ -273,6 +270,7 @@ public class IsaImporter {
 		    .setClassLabel(table_values.get("Characteristics[ProductClassification]")).build();
 
 	    UUID fingerSetID = persistenceService.save(fingerSet).getFaId();
+	    fingerprintSetId = fingerSetID;
 	    LOG.info("FINGERPRINT-SET " + fingerSetID);
 	    // CUSTOM METADATA for Fingerprint-set
 	    // Investigation
@@ -294,7 +292,7 @@ public class IsaImporter {
 	}
 	final FileInputStream isaInputStream = new FileInputStream(isaFilePath.toString());
 	final UUID isaFileId = persistenceService.save(new Blob(fileId, isaInputStream));
-	return isaFileId;
+	return fingerprintSetId;
     }
 
     private static void saveCustomMetadata(String modelId, String schemaId, UUID faId, String body,
