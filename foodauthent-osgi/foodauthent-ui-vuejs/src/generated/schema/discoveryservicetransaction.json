@@ -318,7 +318,25 @@
     "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
     "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
     "newElementButtonLabel" : "Add",
-    "inputName" : "ilmd"
+    "inputName" : "ilmd",
+    "items" : {
+      "type" : "object",
+      "schema" : {
+        "fields" : [ {
+          "label" : "Type",
+          "model" : "type",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        }, {
+          "label" : "Value",
+          "model" : "value",
+          "required" : false,
+          "type" : "input",
+          "inputType" : "text"
+        } ]
+      }
+    }
   }, {
     "label" : "EventTime",
     "model" : "eventTime",

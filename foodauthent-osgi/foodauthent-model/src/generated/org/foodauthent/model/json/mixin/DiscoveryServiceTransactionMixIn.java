@@ -87,7 +87,7 @@ public interface DiscoveryServiceTransactionMixIn {
     public java.util.List<BizTransaction> getDestinationList();
     
     @JsonProperty("ilmd")
-    public java.util.List<String> getIlmd();
+    public java.util.List<BizTransaction> getIlmd();
     
     @JsonProperty("eventTime")
     public LocalDate getEventTime();
@@ -148,7 +148,7 @@ public interface DiscoveryServiceTransactionMixIn {
         public DiscoveryServiceTransactionMixInBuilder setDestinationList(final java.util.List<BizTransaction> destinationList);
         
         @JsonProperty("ilmd")
-        public DiscoveryServiceTransactionMixInBuilder setIlmd(final java.util.List<String> ilmd);
+        public DiscoveryServiceTransactionMixInBuilder setIlmd(final java.util.List<BizTransaction> ilmd);
         
         @JsonProperty("eventTime")
         public DiscoveryServiceTransactionMixInBuilder setEventTime(final LocalDate eventTime);

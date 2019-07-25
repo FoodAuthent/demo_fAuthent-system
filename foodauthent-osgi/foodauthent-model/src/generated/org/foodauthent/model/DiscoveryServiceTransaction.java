@@ -62,7 +62,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   protected java.util.List<GPCBrick> bricks;
   protected java.util.List<BizTransaction> sourceList;
   protected java.util.List<BizTransaction> destinationList;
-  protected java.util.List<String> ilmd;
+  protected java.util.List<BizTransaction> ilmd;
   protected LocalDate eventTime;
   
   public String getTypeID() {
@@ -213,7 +213,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * ilmd
    * @return ilmd 
    */
-  public java.util.List<String> getIlmd() {
+  public java.util.List<BizTransaction> getIlmd() {
         return ilmd;
     }
     
@@ -279,7 +279,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         private java.util.List<GPCBrick> bricks = new java.util.ArrayList<>();
         private java.util.List<BizTransaction> sourceList = new java.util.ArrayList<>();
         private java.util.List<BizTransaction> destinationList = new java.util.ArrayList<>();
-        private java.util.List<String> ilmd = new java.util.ArrayList<>();
+        private java.util.List<BizTransaction> ilmd = new java.util.ArrayList<>();
         private LocalDate eventTime;
 
         /**
@@ -394,7 +394,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * ilmd
          * @return ilmd 
          */
-        public DiscoveryServiceTransactionBuilder setIlmd(java.util.List<String> ilmd) {
+        public DiscoveryServiceTransactionBuilder setIlmd(java.util.List<BizTransaction> ilmd) {
              this.ilmd = ilmd;
              return this;
         }

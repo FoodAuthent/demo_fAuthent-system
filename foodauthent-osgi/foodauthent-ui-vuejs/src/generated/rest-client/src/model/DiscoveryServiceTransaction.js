@@ -97,7 +97,7 @@
         obj['destinationList'] = ApiClient.convertToType(data['destinationList'], [BizTransaction]);
       }
       if (data.hasOwnProperty('ilmd')) {
-        obj['ilmd'] = ApiClient.convertToType(data['ilmd'], ['String']);
+        obj['ilmd'] = ApiClient.convertToType(data['ilmd'], [BizTransaction]);
       }
       if (data.hasOwnProperty('eventTime')) {
         obj['eventTime'] = ApiClient.convertToType(data['eventTime'], 'Date');
@@ -168,7 +168,7 @@
   exports.prototype['destinationList'] = undefined;
   /**
    * ilmd
-   * @member {Array.<String>} ilmd
+   * @member {Array.<module:model/BizTransaction>} ilmd
    */
   exports.prototype['ilmd'] = undefined;
   /**
