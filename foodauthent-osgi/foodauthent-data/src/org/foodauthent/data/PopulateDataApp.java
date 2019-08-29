@@ -13,6 +13,7 @@ import static org.foodauthent.data.PopulateFiles.populateFileMetadata;
 import static org.foodauthent.data.PopulateFiles.populateFiles;
 import static org.foodauthent.data.PopulateModels.populateFingerprintSets;
 import static org.foodauthent.data.PopulateModels.populateFingerprints;
+import static org.foodauthent.data.PopulateModels.populatePredictionWorkflowOneClassClassification;
 import static org.foodauthent.data.PopulateModels.populatePredictionWorkflowOpenChromRandomForest;
 import static org.foodauthent.data.PopulateModels.populateProducts;
 import static org.foodauthent.data.PopulateModels.populateSamples;
@@ -69,11 +70,13 @@ public class PopulateDataApp {
 	// log(info().getInfo().readEntity(SystemInfo.class));
 
 	List<UUID> trainingwfIds = doitWithRes("Populate training workflows", () -> {
-	    return asList(populateTrainingWorkflowOpenChromRandomForest(c));
+	    return asList(populateTrainingWorkflowOpenChromRandomForest(c),
+		    PopulateModels.populateTrainingWorkflowOneClassClassification(c));
 	});
 
 	List<UUID> predictionwfIds = doitWithRes("Populate prediction workflows", () -> {
-	    return asList(populatePredictionWorkflowOpenChromRandomForest(c));
+	    return asList(populatePredictionWorkflowOpenChromRandomForest(c),
+		    populatePredictionWorkflowOneClassClassification(c));
 	});
 
 	doit("Populate products", () -> {
@@ -103,13 +106,16 @@ public class PopulateDataApp {
 	if (runTrainingAndPredictionJobs) {
 	    List<UUID> modelIds = doitWithRes("Train models", () -> {
 		return asList(train(trainingwfIds.get(0),
-			asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1), fingerprintsetIds.get(2)), c));
+			asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1), fingerprintsetIds.get(2)), c),
+			train(trainingwfIds.get(1), asList(fingerprintsetIds.get(0)), c));
 	    });
 
 	    doit("Run predictions", () -> {
 		predict(predictionwfIds.get(0), fingerprintsetIds.get(0), modelIds.get(0), c);
 		predict(predictionwfIds.get(0), fingerprintsetIds.get(5), modelIds.get(0), c);
 		predict(predictionwfIds.get(0), fingerprintsetIds.get(6), modelIds.get(0), c);
+		predict(predictionwfIds.get(1), fingerprintsetIds.get(5), modelIds.get(1), c);
+		predict(predictionwfIds.get(1), fingerprintsetIds.get(0), modelIds.get(1), c);
 	    });
 	}
 

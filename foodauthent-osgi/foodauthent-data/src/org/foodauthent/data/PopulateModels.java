@@ -152,6 +152,63 @@ public class PopulateModels {
 	return workflows(c).createWorkflow(wf).readEntity(UUID.class);
     }
     
+    public static UUID populateTrainingWorkflowOneClassClassification(FASystemClient c) {
+	String workflowName = "TrainingWorkflow_OneClassClassification";
+	String workflowDesc = "Training workflow that only requires one single class to 'train' a model.";
+	
+        // upload workflow file
+	FileMetadata fileMeta = FileMetadata.builder().setName(workflowName)
+		.setDate(LocalDate.now())
+		.setDescription(workflowDesc)
+		.setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW).setVersion(0).build();
+	       UUID fileId = files(c).createFileMetadata(fileMeta).readEntity(UUID.class);
+        uploadFileData(fileId, new File("files/workflows/TrainingWorkflow_OneClassClassification.knwf"), c);
+	
+	// upload workflow metadata
+	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
+		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build()).build();
+	WorkflowIOTypes outputTypes = WorkflowIOTypes.builder()
+		//actually the wrong type!
+		.setModelType(ModelType.builder().setName(ModelType.NameEnum.PMML).build()).build();
+	Workflow wf = Workflow.builder().setName(workflowName).setDescription(workflowDesc)
+		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB)
+		.setRepresentation(RepresentationEnum.KNIME)
+		.setInputTypes(inputTypes)
+		.setOutputTypes(outputTypes)
+		.setFileId(fileId)
+		.build();
+	
+	return workflows(c).createWorkflow(wf).readEntity(UUID.class);
+    }
+    
+    public static UUID populatePredictionWorkflowOneClassClassification(FASystemClient c) {
+	String workflowName = "PredictionWorkflow_OneClassClassification";
+	String workflowDesc = "Prediction workflow that uses a one-class-classification model to differentiate inliers and outliers (right now it's just a random decision).";
+
+	// upload workflow file
+	FileMetadata fileMeta = FileMetadata.builder().setName(workflowName).setDate(LocalDate.now())
+		.setDescription(workflowDesc).setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW)
+		.setVersion(0).build();
+	UUID fileId = files(c).createFileMetadata(fileMeta).readEntity(UUID.class);
+	uploadFileData(fileId, new File("files/workflows/PredictionWorkflow_OneClassClassification.knwf"), c);
+
+	// upload workflow metadata
+	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("inlier_class_label").setRequired(true)
+		.setValue("Inlier").setType(TypeEnum.STRING).build();
+	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("outlier_class_label").setRequired(true)
+		.setValue("Outlier").setType(TypeEnum.STRING).build();
+	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
+		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build())
+		// actually the wrong model type
+		.setModelType(ModelType.builder().setName(NameEnum.PMML).build()).build();
+	Workflow wf = Workflow.builder().setName(workflowName).setDescription(workflowDesc)
+		.setParameters(asList(wfp1, wfp2))
+		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW_E680F8C1)
+		.setRepresentation(RepresentationEnum.KNIME).setInputTypes(inputTypes).setFileId(fileId).build();
+
+	return workflows(c).createWorkflow(wf).readEntity(UUID.class);
+    }
+   
     public static UUID train(UUID workflowId, List<UUID> fingerprintsetIds, FASystemClient c) {
 	return handleResp(workflows(c).createTrainingJob(workflowId, fingerprintsetIds, false), TrainingJob.class)
 		.getModelId();
