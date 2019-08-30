@@ -69,6 +69,15 @@ public interface FileService {
     FileMetadata getFileMetadata(java.util.UUID fileId);
         
     /**
+     * Get sha256 checksum for file
+     *
+     * @param fileId 
+     *
+     * @return the result
+     */
+    String getFileSHA256(java.util.UUID fileId);
+        
+    /**
      * Import FoodAuthent components from an existing ZIP file and return the ids of the components.
      *
      * @param fileId 

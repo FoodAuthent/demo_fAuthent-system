@@ -4,6 +4,8 @@ import static java.util.Arrays.stream;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.security.DigestInputStream;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -16,6 +18,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.NullOutputStream;
 import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
@@ -38,6 +41,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.foodauthent.digest.DigestUtil;
 
 /**
  * A simple persistence service, that holds objects in memory.
@@ -69,9 +73,9 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 	private final Map<String, JsonNode> customModels;
 
 	private final Map<UUID, byte[]> blobs;
-	
+
 	private final Map<Class<?>, ModelPropertiesSupplier<?>> modelPropertiesSupplier;
-	
+
 	@SuppressWarnings("unchecked")
 	public SimpleInMemoryPersistenceService() {
 		this.models = new LinkedHashMap<UUID, FaModel>();
@@ -88,8 +92,8 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 				m -> m.getWorkflowId().toString()));
 		tmp.add(createMPS(Sample.class, m -> m.getApplication(), m -> m.getSopId().toString(),
 				m -> m.getComments().stream().collect(Collectors.joining(","))));
-		tmp.add(createMPS(FingerprintSet.class, m -> m.getDescription(), m-> m.getName()));
-		tmp.add(createMPS(Fingerprint.class, m -> m.getSampleId().toString(), m-> m.getSopId().toString()));
+		tmp.add(createMPS(FingerprintSet.class, m -> m.getDescription(), m -> m.getName()));
+		tmp.add(createMPS(Fingerprint.class, m -> m.getSampleId().toString(), m -> m.getSopId().toString()));
 		tmp.add(createMPS(Prediction.class, m -> m.getModelId().toString(), m -> m.getFingerprintsetId().toString(),
 				m -> m.getWorkflowId().toString()));
 
@@ -97,7 +101,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 				m -> m.getEpcList().stream().map(e -> e.getEpc()).collect(Collectors.joining(","))));
 		tmp.add(createMPS(DiscoveryServiceTransaction.class,
 				m -> m.getEpcList().stream().map(e -> e.getEpc()).collect(Collectors.joining(","))));
-		
+
 		modelPropertiesSupplier = tmp.stream().collect(Collectors.toMap(mps -> mps.getModelClass(), mps -> mps));
 	}
 
@@ -147,7 +151,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 
 		};
 	}
-	
+
 	private static boolean containsKeywords(String[][] keywordSuperSet, Collection<String> propertyValues) {
 		for (String[] keywords : keywordSuperSet) {
 			if (!stream(keywords).map(String::toLowerCase)
@@ -190,7 +194,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 	public void removeFaModelByUUID(UUID uuid) {
 		models.remove(uuid);
 	}
-	
+
 	@Override
 	public void removeBlobByUUID(UUID uuid) {
 		blobs.remove(uuid);
@@ -285,7 +289,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 	public long getBlobCount() {
 		return blobs.size();
 	}
-	
+
 	private interface ModelPropertiesSupplier<T extends FaModel> {
 
 		Class<T> getModelClass();
@@ -321,4 +325,20 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 			DiscoveryServiceSearchFilter discoveryServiceSearchFilter, int pageNumber, int pageSize) {
 		// Not implemented
 		throw new UnsupportedOperationException();
-	}}
+	}
+
+	@Override
+	public String getBlobSHA256(UUID uuid) throws NoSuchElementException {
+		final Blob blob = getBlobByUUID(uuid);
+		if (blob != null) {
+			try {
+				final DigestInputStream d = DigestUtil.sha256DigestInputStream(blob.getData());
+				IOUtils.copy(d, new NullOutputStream());
+				return DigestUtil.toHex(d.getMessageDigest());
+			} catch (NoSuchAlgorithmException | IOException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		return null;
+	}
+}

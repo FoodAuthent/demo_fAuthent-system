@@ -20,6 +20,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: org.foodauthent.api.elasticsearch
 Import-Package: com.google.common.io;version="16.0.0",
  org.apache.commons.io,
+ org.apache.commons.io.output,
  org.apache.http,
  org.apache.http.entity,
  org.apache.http.message,

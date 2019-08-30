@@ -163,6 +163,18 @@ public interface PersistenceService {
     Blob getBlobByUUID(UUID uuid) throws NoSuchElementException;
     
     /**
+     * TODO
+     * 
+     * Important note: uuid's of blobs do intentionally overlap with uuid's of fa-models!!
+     * 
+     * @param uuid
+     * @return
+     * @throws NoSuchElementException if there is no blob for the given id
+     */
+    //TODO rename to getFileSHA256??
+    String getBlobSHA256(UUID uuid) throws NoSuchElementException;
+    
+    /**
      * Saves an entity represented by a {@link JsonNode} and a type id
      * @param model the actual entity instance
      * @param typeId an id uniquely describing the object type represented by the json node

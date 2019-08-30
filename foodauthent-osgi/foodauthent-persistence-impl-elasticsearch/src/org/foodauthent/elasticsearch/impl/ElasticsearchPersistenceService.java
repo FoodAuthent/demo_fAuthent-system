@@ -4,6 +4,8 @@ import static java.util.Arrays.stream;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.security.DigestInputStream;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,8 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.NullOutputStream;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.BoolQueryBuilder;
@@ -47,6 +51,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.foodauthent.digest.DigestUtil;
 import com.google.common.io.CharStreams;
 
 import scala.Option;
@@ -547,6 +552,29 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 		return DiscoveryServiceTransactionPageResult.builder().setPageCount(pageSize).setPageNumber(pageNumber)
 				.setResults(transaction).setResultCount(transaction.size()).build();
+	}
+
+	@Override
+	public String getBlobSHA256(UUID uuid) throws NoSuchElementException {
+		if (fileStorageService != null) {
+			try {
+				return fileStorageService.getSHA256(uuid);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		final Blob blob = getBlobByUUID(uuid);
+		if (blob != null) {
+			try {
+				final DigestInputStream d = DigestUtil.sha256DigestInputStream(blob.getData());
+				IOUtils.copy(d, new NullOutputStream());
+				return DigestUtil.toHex(d.getMessageDigest());
+			} catch (NoSuchAlgorithmException | IOException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		return null;
+		
 	}
 
 }

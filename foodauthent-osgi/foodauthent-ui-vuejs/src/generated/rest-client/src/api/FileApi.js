@@ -302,6 +302,53 @@
     }
 
     /**
+     * Callback function to receive the result of the getFileSHA256 operation.
+     * @callback module:api/FileApi~getFileSHA256Callback
+     * @param {String} error Error message, if any.
+     * @param {String} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get sha256 checksum for file
+     * @param {String} fileId 
+     * @param {module:api/FileApi~getFileSHA256Callback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link String}
+     */
+    this.getFileSHA256 = function(fileId, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'fileId' is set
+      if (fileId === undefined || fileId === null) {
+        throw new Error("Missing the required parameter 'fileId' when calling getFileSHA256");
+      }
+
+
+      var pathParams = {
+        'file-id': fileId
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['jwtAuth'];
+      var contentTypes = [];
+      var accepts = ['text/plain'];
+      var returnType = 'String';
+
+      return this.apiClient.callApi(
+        '/file/{file-id}/sha256', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the importFile operation.
      * @callback module:api/FileApi~importFileCallback
      * @param {String} error Error message, if any.

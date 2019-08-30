@@ -6,7 +6,9 @@ Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: org.foodauthent.persistence.simple
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: com.fasterxml.jackson.databind;version="2.8.10",
+ com.foodauthent.digest,
  org.apache.commons.io,
+ org.apache.commons.io.output,
  org.apache.commons.lang3.tuple;version="3.3.1",
  org.foodauthent.api.internal.exception,
  org.foodauthent.api.internal.persistence,

@@ -138,4 +138,9 @@ public class PersistenceServiceProviderProxy implements PersistenceService {
 		return provider.findTransactionByFilter(discoveryServiceSearchFilter, pageNumber, pageSize);
 	}
 
+	@Override
+	public String getBlobSHA256(UUID uuid) throws NoSuchElementException {
+		return provider.getBlobSHA256(uuid);
+	}
+
 }

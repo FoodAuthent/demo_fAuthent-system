@@ -102,6 +102,18 @@ public interface FileRestService{
 );
 
     /**
+     * Get sha256 checksum for file
+     *
+     * @param fileId 
+     * @return the response
+     */
+    @GET
+    @Path("/file/{file-id}/sha256")
+    @Produces({ "text/plain" })
+    public Response getFileSHA256(@PathParam("file-id") java.util.UUID fileId
+);
+
+    /**
      * Import FoodAuthent components from an existing ZIP file and return the ids of the components.
      *
      * @param fileId 

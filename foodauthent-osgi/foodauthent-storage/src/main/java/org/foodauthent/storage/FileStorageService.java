@@ -15,5 +15,7 @@ public interface FileStorageService {
 	public boolean delete(UUID id) throws IOException;
 	
 	public boolean exists(UUID id) throws IOException;
+
+	String getSHA256(UUID id) throws IOException;
 	
 }

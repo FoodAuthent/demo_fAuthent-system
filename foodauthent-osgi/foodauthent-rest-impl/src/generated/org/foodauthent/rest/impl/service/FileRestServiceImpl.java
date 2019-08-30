@@ -105,6 +105,18 @@ public class FileRestServiceImpl implements FileRestService {
     }
 
     /**
+     * Get sha256 checksum for file
+     *
+     * @param fileId 
+     * @return the response
+     */
+    public Response getFileSHA256(java.util.UUID fileId) {
+        
+            Object res = service.getFileSHA256(fileId);
+            return Response.ok(res).build();
+    }
+
+    /**
      * Import FoodAuthent components from an existing ZIP file and return the ids of the components.
      *
      * @param fileId 

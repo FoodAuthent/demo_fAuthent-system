@@ -299,6 +299,7 @@ paths:
               schema:
                 type: string
                 format: byte
+
     put:
       tags:
         - file
@@ -333,7 +334,29 @@ paths:
           multipart/form-data:
             schema:
               $ref: "#/components/schemas/File"
-              
+
+  '/file/{file-id}/sha256':
+    get:
+      tags:
+        - file
+      description: Get sha256 checksum for file
+      operationId: getFileSHA256
+      parameters:
+        - name: file-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The file data.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+
   /fingerprint:
     get:
       tags:

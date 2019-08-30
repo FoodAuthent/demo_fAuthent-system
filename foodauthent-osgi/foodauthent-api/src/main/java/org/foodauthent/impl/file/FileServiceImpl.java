@@ -216,4 +216,9 @@ public class FileServiceImpl implements FileService {
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
 
+    @Override
+    public String getFileSHA256(UUID fileId) {
+	return persistenceService.getBlobSHA256(fileId);
+    }
+
 }

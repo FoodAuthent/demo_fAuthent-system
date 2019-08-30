@@ -1,9 +1,14 @@
 package org.foodauthent.storage.impl.s3;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.security.DigestInputStream;
 import java.util.UUID;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.NullOutputStream;
 import org.foodauthent.config.ConfigurationService;
 import org.foodauthent.storage.FileStorageService;
 import org.osgi.service.component.annotations.Component;
@@ -11,11 +16,15 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.foodauthent.digest.DigestUtil;
+
 import io.minio.MinioClient;
 import io.minio.ObjectStat;
 
 @Component(service = FileStorageService.class)
 public class FileStorageServiceImpl implements FileStorageService {
+
+	public String SHA256_KEY = "X-SHA256";
 
 	private MinioClient client;
 
@@ -45,10 +54,38 @@ public class FileStorageServiceImpl implements FileStorageService {
 			if (!isExist) {
 				client.makeBucket(bucketName);
 			}
-			client.putObject(bucketName, id.toString(), in, contentType);
+			final DigestInputStream input = DigestUtil.sha256DigestInputStream(in);
+			client.putObject(bucketName, id.toString(), input, contentType);
+			final String sha256 = DigestUtil.toHex(input.getMessageDigest());
+			client.putObject(bucketName, id.toString() + ".sha256", new ByteArrayInputStream(sha256.getBytes(StandardCharsets.UTF_8)), "text/plain");
 		} catch (Exception e) {
 			throw new IOException(e);
 		}
+	}
+
+	@Override
+	public String getSHA256(UUID id) throws IOException {
+		try {
+			try {
+				final InputStream in = client.getObject(bucketName, id.toString() + ".sha256");
+				if (in != null) {
+					return IOUtils.toString(in, StandardCharsets.UTF_8);
+				}
+			} catch (Exception e) {
+				LOG.warn(e.getMessage());
+			}
+			final InputStream file = client.getObject(bucketName, id.toString());
+			if (file != null) {
+				final DigestInputStream d = DigestUtil.sha256DigestInputStream(file);
+				IOUtils.copy(d, new NullOutputStream());
+				final String sha256 = DigestUtil.toHex(d.getMessageDigest());
+				client.putObject(bucketName, id.toString() + ".sha256", new ByteArrayInputStream(sha256.getBytes(StandardCharsets.UTF_8)), "text/plain");
+				return sha256;
+			}
+		} catch (Exception e) {
+			throw new IOException(e);
+		}
+		return null;
 	}
 
 	@Override
@@ -97,7 +134,7 @@ public class FileStorageServiceImpl implements FileStorageService {
 		this.bucketName = bucketName;
 		try {
 			this.client = new MinioClient(endpoint, accessKey, secrectKey);
-			LOG.info("configured endpoint "+endpoint);
+			LOG.info("configured endpoint " + endpoint);
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
 		}
