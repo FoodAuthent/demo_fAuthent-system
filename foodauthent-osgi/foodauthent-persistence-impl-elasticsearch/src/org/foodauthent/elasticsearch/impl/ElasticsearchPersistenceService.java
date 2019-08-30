@@ -486,11 +486,6 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 			}
 		}
 		
-		//QUERY FOR eventTime
-		if(dssf.getEventTime() != null) {
-			qb.must(QueryBuilders.termsQuery("eventTime", dssf.getEventTime().toString()));
-		}
-		
 		// QUERY FOR GTIN
 		if (dssf.getGtin() != null) {
 			qb.must(QueryBuilders.termsQuery("gtin.keyword", dssf.getGtin()));
