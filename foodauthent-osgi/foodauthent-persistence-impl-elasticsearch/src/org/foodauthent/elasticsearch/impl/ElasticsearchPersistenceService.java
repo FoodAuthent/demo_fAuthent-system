@@ -14,8 +14,11 @@ import java.util.stream.Collectors;
 
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.foodauthent.api.internal.exception.EntityNotFoundException;
 import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
@@ -25,8 +28,17 @@ import org.foodauthent.elasticsearch.ClientServiceListener;
 import org.foodauthent.elasticsearch.impl.ElasticsearchOperation.IdResult;
 import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResult;
 import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResultItem;
+import org.foodauthent.model.BizTransaction;
+import org.foodauthent.model.DiscoveryServiceSearchFilter;
+import org.foodauthent.model.DiscoveryServiceTransaction;
+import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
+import org.foodauthent.model.Epc;
 import org.foodauthent.model.FaModel;
+import org.foodauthent.model.GPCAttribute;
+import org.foodauthent.model.GPCAttributeValue;
+import org.foodauthent.model.GPCBrick;
 import org.foodauthent.model.Product;
+import org.foodauthent.model.QuantityElement;
 import org.foodauthent.storage.FileStorageService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -370,4 +382,176 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 		};
 	}
+
+	/**
+	 * Search DiscoveryServiceTransaction by filters
+	 */
+	@Override
+	public DiscoveryServiceTransactionPageResult findTransactionByFilter(DiscoveryServiceSearchFilter dssf,
+			int pageNumber, int pageSize) {
+
+		BoolQueryBuilder qb = QueryBuilders.boolQuery();
+
+		// QUERY FOR epcList
+		if (dssf.getEpcList().size() > 0) {
+			BoolQueryBuilder epcQuery = QueryBuilders.boolQuery();
+			for (Epc epc : dssf.getEpcList()) {
+				epcQuery.must(QueryBuilders.termsQuery("epcList.epc.keyword", epc.getEpc()));
+			}
+			qb.must(epcQuery);
+		}
+
+		// QUERY FOR bizStep
+		if (dssf.getBizStep() != null) {
+			qb.must(QueryBuilders.termsQuery("bizStep.keyword", dssf.getBizStep()));
+		}
+
+		// QUERY FOR Readpoint
+		if (dssf.getReadPoint() != null) {
+			qb.must(QueryBuilders.termsQuery("readPoint.keyword", dssf.getReadPoint()));
+		}
+
+		// QUERY FOR QuantityList
+		if (dssf.getQuantityList().size() > 0) {
+			for (QuantityElement qe : dssf.getQuantityList()) {
+			 if(qe.getEpcClass() != null) {
+				qb.must(QueryBuilders.termsQuery("quantityList.epcClass.keyword", qe.getEpcClass())); 
+			 }	
+			 if(qe.getQuantity() != null) {
+				 qb.must(QueryBuilders.termsQuery("quantityList.quantity.keyword", qe.getQuantity()));  
+			 }	
+			 if(qe.getUom() != null) {
+				 qb.must(QueryBuilders.termsQuery("quantityList.uom.keyword", qe.getUom()));  
+			 }	
+			}
+		}
+
+		// QUERY FOR Action
+		if (dssf.getAction() != null) {
+			qb.must(QueryBuilders.termsQuery("action.keyword", dssf.getAction()));
+		}
+
+		// QUERY FOR disposition
+		if (dssf.getDisposition() != null) {
+			qb.must(QueryBuilders.termsQuery("disposition.keyword", dssf.getDisposition()));
+		}
+
+		// QUERY FOR bizTransactionList
+		if (dssf.getBizTransactionList().size() > 0) {
+			for (BizTransaction bt : dssf.getBizTransactionList()) {
+				if(bt.getType() != null || bt.getValue() != null) {
+					if(bt.getType() != null) {
+						qb.must(QueryBuilders.termsQuery("bizTransactionList.type.keyword", bt.getType()));
+					}
+					if(bt.getValue() != null) {
+						qb.must(QueryBuilders.termsQuery("bizTransactionList.value.keyword", bt.getValue()));
+					}
+				}
+			}
+		}
+
+		// QUERY FOR SourceList
+		if (dssf.getSourceList().size() > 0) {
+			for (BizTransaction bt : dssf.getSourceList()) {
+				if(bt.getType() != null) {
+					qb.must(QueryBuilders.termsQuery("sourceList.type.keyword", bt.getType()));
+				}
+				if(bt.getValue()!= null) {
+					qb.must(QueryBuilders.termsQuery("sourceList.value.keyword", bt.getValue()));
+				}
+			}
+		}
+
+		// QUERY FOR destinationList
+		if (dssf.getDestinationList().size() > 0) {
+			for (BizTransaction bt : dssf.getDestinationList()) {
+				if(bt.getType() != null) {
+					qb.must(QueryBuilders.termsQuery("destinationList.type.keyword", bt.getType()));
+				}
+				if(bt.getValue() != null) {
+					qb.must(QueryBuilders.termsQuery("destinationList.value.keyword", bt.getValue()));
+				}
+			}
+		}
+
+		// QUERY FOR ilmd
+		if (dssf.getIlmd().size() > 0) {
+			for (BizTransaction bt : dssf.getIlmd()) {
+				if(bt.getType() != null) {
+					qb.must(QueryBuilders.termsQuery("ilmd.type.keyword", bt.getType()));
+				}
+				if(bt.getValue() != null) {
+					qb.must(QueryBuilders.termsQuery("ilmd.value.keyword", bt.getValue()));
+				}
+			}
+		}
+		
+		//QUERY FOR eventTime
+		if(dssf.getEventTime() != null) {
+			qb.must(QueryBuilders.termsQuery("eventTime", dssf.getEventTime().toString()));
+		}
+		
+		// QUERY FOR GTIN
+		if (dssf.getGtin() != null) {
+			qb.must(QueryBuilders.termsQuery("gtin.keyword", dssf.getGtin()));
+		}
+
+		// QUERY FOR Bricks
+		if (dssf.getBricks().size() > 0) {
+			for (GPCBrick brick : dssf.getBricks()) {
+				if(brick.getCode() != null) {
+					qb.must(QueryBuilders.termsQuery("bricks.code.keyword", brick.getCode()));
+				}
+				if(brick.getText() != null) {
+					qb.must(QueryBuilders.termsQuery("bricks.text.tokenized", brick.getText().toLowerCase().split("\\s+")));
+				}
+				for (GPCAttribute attribute : brick.getAttributes()) {
+					if(attribute.getCode() != null) {
+						qb.must(QueryBuilders.termsQuery("bricks.attributes.code.keyword", attribute.getCode()));
+					}
+					if(attribute.getText() != null) {
+						qb.must(QueryBuilders.termsQuery("bricks.attributes.text", attribute.getText().toLowerCase().split("\\s+")));	
+					}
+					for (GPCAttributeValue value : attribute.getValues()) {
+						if(value.getCode() != null) {
+							qb.must(QueryBuilders.termsQuery("bricks.attributes.values.code.keyword", value.getCode()));
+						}
+						if(value.getText() != null) {
+							qb.must(QueryBuilders.termsQuery("bricks.attributes.values.text", value.getText().toLowerCase().split("\\s+")));	
+						}
+					}
+				}
+
+			}
+		}
+
+		// QUERY FOR eventTime Range
+		if (dssf.getEventTimeFrom() != null || dssf.getEventTimeTo() != null) {
+			final RangeQueryBuilder queryBuilder = QueryBuilders.rangeQuery("eventTime");
+			if (dssf.getEventTimeFrom() != null) {
+				// queryBuilder.gte(Date.from(dssf.getTimeFrom().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()).getTime());
+				queryBuilder.from(dssf.getEventTimeFrom().toString());
+			}
+			if (dssf.getEventTimeTo() != null) {
+				// queryBuilder.lte(Date.from(dssf.getTimeTo().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()).getTime());
+				queryBuilder.to(dssf.getEventTimeTo().toString());
+			}
+		
+			qb.must(queryBuilder);
+		}
+
+		System.out.println("Query: " + qb);
+
+		List<DiscoveryServiceTransaction> transaction = op.search(qb, classTarget(DiscoveryServiceTransaction.class),
+				op.manifest(DiscoveryServiceTransaction.class));
+
+		if (transaction.isEmpty()) {
+			throw new EntityNotFoundException();
+			//throw new NoSuchElementException();
+		}
+
+		return DiscoveryServiceTransactionPageResult.builder().setPageCount(pageSize).setPageNumber(pageNumber)
+				.setResults(transaction).setResultCount(transaction.size()).build();
+	}
+
 }

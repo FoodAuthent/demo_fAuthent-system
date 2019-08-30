@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/DiscoveryServiceTransaction', '../model/DiscoveryServiceTransactionPageResult'], factory);
+    define(['../ApiClient', '../model/DiscoveryServiceSearchFilter', '../model/DiscoveryServiceTransaction', '../model/DiscoveryServiceTransactionPageResult'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/DiscoveryServiceTransaction'), require('../model/DiscoveryServiceTransactionPageResult'));
+    module.exports = factory(require('../ApiClient'), require('../model/DiscoveryServiceSearchFilter'), require('../model/DiscoveryServiceTransaction'), require('../model/DiscoveryServiceTransactionPageResult'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.TransactionApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.DiscoveryServiceTransaction, root.FoodAuthentSwaggerApi.DiscoveryServiceTransactionPageResult);
+    root.FoodAuthentSwaggerApi.TransactionApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.DiscoveryServiceSearchFilter, root.FoodAuthentSwaggerApi.DiscoveryServiceTransaction, root.FoodAuthentSwaggerApi.DiscoveryServiceTransactionPageResult);
   }
-}(this, function(ApiClient, DiscoveryServiceTransaction, DiscoveryServiceTransactionPageResult) {
+}(this, function(ApiClient, DiscoveryServiceSearchFilter, DiscoveryServiceTransaction, DiscoveryServiceTransactionPageResult) {
   'use strict';
 
   /**
@@ -87,6 +87,53 @@
 
       return this.apiClient.callApi(
         '/discovery/transaction', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the findTransactionByFilter operation.
+     * @callback module:api/TransactionApi~findTransactionByFilterCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/DiscoveryServiceTransactionPageResult} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Find Transaction by filters
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.pageNumber the page number starting at 1
+     * @param {Number} opts.pageSize entries per page, minimum 1
+     * @param {module:model/DiscoveryServiceSearchFilter} opts.discoveryServiceSearchFilter 
+     * @param {module:api/TransactionApi~findTransactionByFilterCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/DiscoveryServiceTransactionPageResult}
+     */
+    this.findTransactionByFilter = function(opts, callback) {
+      opts = opts || {};
+      var postBody = opts['discoveryServiceSearchFilter'];
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'pageNumber': opts['pageNumber'],
+        'pageSize': opts['pageSize'],
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['jwtAuth'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = 'DiscoveryServiceTransactionPageResult';
+
+      return this.apiClient.callApi(
+        '/discovery/transaction/findTransactionByFilter', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

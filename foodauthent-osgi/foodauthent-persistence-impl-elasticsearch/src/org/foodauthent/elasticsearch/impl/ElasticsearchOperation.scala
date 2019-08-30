@@ -39,6 +39,7 @@ import org.elasticsearch.index.query.IdsQueryBuilder
 import org.elasticsearch.client.RequestOptions
 import java.util.Optional
 import org.apache.http.util.EntityUtils
+import com.fasterxml.jackson.databind.SerializationFeature
 
 /**
  * Commonly used operations for communicating with Elasticsearch
@@ -65,6 +66,7 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   val LOG = LoggerFactory.getLogger(getClass)
 
   def write[T <: AnyRef](value: T): String = {
+    mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     mapper.writeValueAsString(value)
   }
 

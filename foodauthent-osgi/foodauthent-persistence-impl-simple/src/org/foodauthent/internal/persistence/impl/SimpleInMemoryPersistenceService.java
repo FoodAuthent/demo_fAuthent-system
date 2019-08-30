@@ -20,7 +20,9 @@ import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.api.internal.persistence.PersistenceServiceProvider;
+import org.foodauthent.model.DiscoveryServiceSearchFilter;
 import org.foodauthent.model.DiscoveryServiceTransaction;
+import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintSet;
@@ -314,4 +316,9 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 		throw new UnsupportedOperationException();
 	}
 
-}
+	@Override
+	public DiscoveryServiceTransactionPageResult findTransactionByFilter(
+			DiscoveryServiceSearchFilter discoveryServiceSearchFilter, int pageNumber, int pageSize) {
+		// Not implemented
+		throw new UnsupportedOperationException();
+	}}

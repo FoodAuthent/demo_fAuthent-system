@@ -1724,8 +1724,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscoveryServiceTransaction'
+                
+  '/discovery/transaction/findTransactionByFilter':
+    post:
+      tags:
+        - Transaction
+      description: Find Transaction by filters
+      operationId: findTransactionByFilter
+      parameters:
+        - $ref: "#/components/parameters/pageNumber"
+        - $ref: "#/components/parameters/pageSize"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscoveryServiceTransactionPageResult'
+        '404':
+          description: TODO, add response reference
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiscoveryServiceSearchFilter'
 
-
+                      
+                      
   /relation/entities:
     get:
       tags:
@@ -2093,6 +2118,71 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DiscoveryServiceTransaction'
+            
+    DiscoveryServiceSearchFilter:
+      description: DiscoveryServiceTransactionFilter
+      type: object
+      x-no-faid: true
+      properties:
+        epcList:
+          description: List of epcs
+          type: array
+          items:
+            $ref: "#/components/schemas/Epc"
+        bizStep:
+          description: EPCIS bizStep
+          type: string
+        readPoint:
+          description: Read point
+          type: string
+        quantityList:
+          description: List of quantity
+          type: array
+          items: 
+            $ref: "#/components/schemas/QuantityElement"
+        action:
+          description: Event action.
+          type: string
+        disposition:
+          description: EPCIS Disposition
+          type: string
+        bizTransactionList:
+          description: List of bizTransactions
+          type: array
+          items:
+            $ref: "#/components/schemas/BizTransaction"
+        gtin:
+          description: Global Trade Item Number
+          type: string
+        bricks:
+          description: bricks
+          type: array
+          items:
+            $ref: "#/components/schemas/GPCBrick"
+        sourceList:
+          description: List of sources
+          type: array
+          items:
+            $ref: "#/components/schemas/BizTransaction"
+        destinationList:
+          description: List of destinations
+          type: array
+          items:
+            $ref: "#/components/schemas/BizTransaction"
+        ilmd:
+          description: ilmd
+          type: array
+          items:
+            $ref: "#/components/schemas/BizTransaction"
+        eventTimeFrom:
+          description: start date for the research
+          type: string
+          format: date
+        eventTimeTo:
+          description: end date for the research
+          type: string
+          format: date
+    
             
     Epc:
       type: object

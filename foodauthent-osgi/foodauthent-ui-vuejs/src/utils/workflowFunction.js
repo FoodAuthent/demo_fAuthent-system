@@ -504,8 +504,13 @@ var findWorkflowById = function (self) {
       console.log("data:", data);
       console.log("response:", response);
       if (error) {
-        console.error(error);
+    	console.log("the error is: ",error)
+        //console.error(error);
+    	if(response){
         self.response = response.error.message;
+    	} else {
+    	self.response = "Error please try again: "+ error;	
+    	}
         self.showError = true;
         self.loading = false;
       } else {
@@ -513,7 +518,7 @@ var findWorkflowById = function (self) {
         self.showSuccess = 5;
         self.loading = false;
         console.log("API called successfully. Returned data: ", data);
-      }
+      } 
     };
     var opt = {
     		async: true

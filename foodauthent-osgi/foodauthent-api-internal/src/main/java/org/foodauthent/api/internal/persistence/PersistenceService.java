@@ -3,12 +3,14 @@ package org.foodauthent.api.internal.persistence;
 import static java.util.Arrays.stream;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import org.foodauthent.api.internal.exception.ModelExistsException;
+import org.foodauthent.model.DiscoveryServiceSearchFilter;
+import org.foodauthent.model.DiscoveryServiceTransaction;
+import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
 
@@ -123,6 +125,14 @@ public interface PersistenceService {
 	 */
 	<T extends FaModel> ResultPage<T> findByKeywordsPaged(Class<T> modelType, int pageNumber, int pageSize,
 			String[]... keywordSuperSet);
+	
+	
+	/**
+	 * 
+	 * @param discoveryServiceSearchFilter
+	 * @return
+	 */
+	DiscoveryServiceTransactionPageResult findTransactionByFilter(DiscoveryServiceSearchFilter discoveryServiceSearchFilter, int pageNumber, int pageSize);
 
     /**
 	 * Queries a limited number of the specified fa-model which has references to the given fa-id

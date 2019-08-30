@@ -28,6 +28,8 @@ public class ModelUtil {
         mapper.addMixIn(BizTransaction.BizTransactionBuilder.class, BizTransactionMixIn.BizTransactionMixInBuilder.class);
         mapper.addMixIn(ChangePasswordRequest.class, ChangePasswordRequestMixIn.class);
         mapper.addMixIn(ChangePasswordRequest.ChangePasswordRequestBuilder.class, ChangePasswordRequestMixIn.ChangePasswordRequestMixInBuilder.class);
+        mapper.addMixIn(DiscoveryServiceSearchFilter.class, DiscoveryServiceSearchFilterMixIn.class);
+        mapper.addMixIn(DiscoveryServiceSearchFilter.DiscoveryServiceSearchFilterBuilder.class, DiscoveryServiceSearchFilterMixIn.DiscoveryServiceSearchFilterMixInBuilder.class);
         mapper.addMixIn(DiscoveryServiceTransaction.class, DiscoveryServiceTransactionMixIn.class);
         mapper.addMixIn(DiscoveryServiceTransaction.DiscoveryServiceTransactionBuilder.class, DiscoveryServiceTransactionMixIn.DiscoveryServiceTransactionMixInBuilder.class);
         mapper.addMixIn(DiscoveryServiceTransactionPageResult.class, DiscoveryServiceTransactionPageResultMixIn.class);

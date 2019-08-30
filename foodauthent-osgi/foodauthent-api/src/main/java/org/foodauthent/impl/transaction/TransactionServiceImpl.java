@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.foodauthent.api.TransactionService;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
+import org.foodauthent.model.DiscoveryServiceSearchFilter;
 import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
 import org.osgi.service.component.annotations.Component;
@@ -43,8 +44,9 @@ public class TransactionServiceImpl implements TransactionService {
 	return persistenceService.getFaModelByUUID(transactionId, DiscoveryServiceTransaction.class);
     }
 
-
-
-  
-
+    @Override
+    public DiscoveryServiceTransactionPageResult findTransactionByFilter(Integer pageNumber, Integer pageSize, DiscoveryServiceSearchFilter discoveryServiceSearchFilter) {
+	return persistenceService.findTransactionByFilter(discoveryServiceSearchFilter, pageNumber, pageSize);
+    }
+    
 }

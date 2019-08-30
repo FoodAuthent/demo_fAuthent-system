@@ -6,6 +6,7 @@ package org.foodauthent.rest.api.service;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
+import org.foodauthent.model.DiscoveryServiceSearchFilter;
 import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
 
@@ -39,6 +40,23 @@ public interface TransactionRestService{
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createTransaction(DiscoveryServiceTransaction discoveryServiceTransaction
+);
+
+    /**
+     * Find Transaction by filters
+     *
+     * @param pageNumber the page number starting at 1
+     * @param pageSize entries per page, minimum 1
+     * @param discoveryServiceSearchFilter 
+     * @return the response
+     */
+    @POST
+    @Path("/discovery/transaction/findTransactionByFilter")
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    public Response findTransactionByFilter(@QueryParam("pageNumber")Integer pageNumber
+, @QueryParam("pageSize")Integer pageSize
+, DiscoveryServiceSearchFilter discoveryServiceSearchFilter
 );
 
     /**

@@ -10,6 +10,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+import org.foodauthent.model.DiscoveryServiceSearchFilter;
 import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
 
@@ -46,6 +47,20 @@ public class TransactionRestServiceImpl implements TransactionRestService {
     public Response createTransaction(DiscoveryServiceTransaction discoveryServiceTransaction) {
         
             Object res = service.createTransaction(discoveryServiceTransaction);
+            return Response.ok(res).build();
+    }
+
+    /**
+     * Find Transaction by filters
+     *
+     * @param pageNumber the page number starting at 1
+     * @param pageSize entries per page, minimum 1
+     * @param discoveryServiceSearchFilter 
+     * @return the response
+     */
+    public Response findTransactionByFilter(Integer pageNumber, Integer pageSize, DiscoveryServiceSearchFilter discoveryServiceSearchFilter) {
+        
+            Object res = service.findTransactionByFilter(pageNumber, pageSize, discoveryServiceSearchFilter);
             return Response.ok(res).build();
     }
 

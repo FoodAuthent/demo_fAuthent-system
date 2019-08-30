@@ -7,6 +7,9 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import org.foodauthent.api.internal.exception.ModelExistsException;
+import org.foodauthent.model.DiscoveryServiceSearchFilter;
+import org.foodauthent.model.DiscoveryServiceTransaction;
+import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
 import org.osgi.service.component.annotations.Component;
@@ -72,7 +75,7 @@ public class PersistenceServiceProviderProxy implements PersistenceService {
 	public Product findProductByGtin(String gtin) {
 		return provider.findProductByGtin(gtin);
 	}
-	
+
 	@Override
 	public Product getProductById(UUID id) {
 		return provider.getProductById(id);
@@ -86,7 +89,7 @@ public class PersistenceServiceProviderProxy implements PersistenceService {
 	public void removeFaModelByUUID(UUID uuid) throws NoSuchElementException {
 		provider.removeFaModelByUUID(uuid);
 	}
-	
+
 	@Override
 	public void removeBlobByUUID(UUID uuid) {
 		provider.removeBlobByUUID(uuid);
@@ -127,6 +130,12 @@ public class PersistenceServiceProviderProxy implements PersistenceService {
 	public <T extends FaModel> ResultPage<T> findByRelationPaged(Class<T> modelType, int pageNumber, int pageSize,
 			String referencedFieldName, UUID faId) {
 		return provider.findByRelationPaged(modelType, pageNumber, pageSize, referencedFieldName, faId);
+	}
+
+	@Override
+	public DiscoveryServiceTransactionPageResult findTransactionByFilter(
+			DiscoveryServiceSearchFilter discoveryServiceSearchFilter, int pageNumber, int pageSize) {
+		return provider.findTransactionByFilter(discoveryServiceSearchFilter, pageNumber, pageSize);
 	}
 
 }
