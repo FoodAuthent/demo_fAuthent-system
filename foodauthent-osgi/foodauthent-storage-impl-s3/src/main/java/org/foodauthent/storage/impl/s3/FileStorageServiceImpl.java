@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.DigestInputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.io.IOUtils;
@@ -105,7 +107,9 @@ public class FileStorageServiceImpl implements FileStorageService {
 	public boolean delete(UUID id) throws IOException {
 		if (exists(id)) {
 			try {
+				//remove both file and sha256 file
 				client.removeObject(bucketName, id.toString());
+				client.removeObject(bucketName, id.toString()+".sha256");
 			} catch (Exception e) {
 				throw new IOException(e);
 			}

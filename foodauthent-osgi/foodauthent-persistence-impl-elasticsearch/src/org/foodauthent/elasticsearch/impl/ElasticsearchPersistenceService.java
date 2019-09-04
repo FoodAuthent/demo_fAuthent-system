@@ -298,6 +298,12 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 		final Optional<IdResult> r = op.ids(uuid.toString());
 		if (r.isPresent()) {
 			op.delete(r.get().id(), r.get().target());
+			//if we are deleting a filemetadata we also delete the data in the storage
+			if(r.get().target().indexName().equalsIgnoreCase("filemetadata")) {
+				removeBlobByUUID(uuid);
+			}
+		}else {
+			throw new NoSuchElementException();
 		}
 	}
 
@@ -529,11 +535,11 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 		if (dssf.getEventTimeFrom() != null || dssf.getEventTimeTo() != null) {
 			final RangeQueryBuilder queryBuilder = QueryBuilders.rangeQuery("eventTime");
 			if (dssf.getEventTimeFrom() != null) {
-				// queryBuilder.gte(Date.from(dssf.getTimeFrom().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()).getTime());
+//				queryBuilder.gte(Date.from(dssf.getEventTimeFrom().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()).getTime());
 				queryBuilder.from(dssf.getEventTimeFrom().toString());
 			}
 			if (dssf.getEventTimeTo() != null) {
-				// queryBuilder.lte(Date.from(dssf.getTimeTo().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()).getTime());
+//				queryBuilder.lte(Date.from(dssf.getEventTimeTo().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()).getTime());
 				queryBuilder.to(dssf.getEventTimeTo().toString());
 			}
 		
