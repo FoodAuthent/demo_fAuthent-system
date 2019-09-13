@@ -9,8 +9,7 @@ import static org.foodauthent.data.DeleteEntities.clearAllSamples;
 import static org.foodauthent.data.DeleteEntities.clearAllSops;
 import static org.foodauthent.data.DeleteEntities.clearAllWorkflows;
 import static org.foodauthent.data.ListFiles.listBfrOilFingerprintFiles;
-import static org.foodauthent.data.PopulateFiles.populateFileMetadata;
-import static org.foodauthent.data.PopulateFiles.populateFiles;
+import static org.foodauthent.data.PopulateFiles.populateFilesWithMetadata;
 import static org.foodauthent.data.PopulateModels.populateFingerprintSets;
 import static org.foodauthent.data.PopulateModels.populateFingerprints;
 import static org.foodauthent.data.PopulateModels.populatePredictionWorkflowOneClassClassification;
@@ -27,13 +26,12 @@ import static org.foodauthent.data.ReadModels.readBfrOilSamples;
 import static org.foodauthent.data.ReadModels.readOilProducts;
 import static org.foodauthent.rest.client.FASystemClientUtil.info;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.FileMetadata;
@@ -89,10 +87,8 @@ public class PopulateDataApp {
 
 	doit("Populate fingerprint files", () -> {
 	    List<FileMetadata> metaList = readBfrOilFileMetadata();
-	    populateFileMetadata(metaList, c);
-	    Map<String, UUID> name2uuidMap = metaList.stream()
-		    .collect(Collectors.toMap(m -> m.getName(), m -> m.getFaId()));
-	    populateFiles(listBfrOilFingerprintFiles(), name2uuidMap, c);
+	    List<File> files = listBfrOilFingerprintFiles();
+	    populateFilesWithMetadata(files, metaList, c);
 	});
 
 	doit("Populate fingerprints", () -> {
@@ -105,6 +101,9 @@ public class PopulateDataApp {
 
 	if (runTrainingAndPredictionJobs) {
 	    List<UUID> modelIds = doitWithRes("Train models", () -> {
+		//TODO train a model on all fingerprint sets
+		//doesn't work currently because there is some inconsistency in the available fingerprint files (blobs)
+		//and the file and/or fingerprint metadata!
 		return asList(train(trainingwfIds.get(0),
 			asList(fingerprintsetIds.get(0), fingerprintsetIds.get(1), fingerprintsetIds.get(2)), c),
 			train(trainingwfIds.get(1), asList(fingerprintsetIds.get(0)), c));

@@ -29,16 +29,23 @@ public class PopulateFiles {
      * @param files
      * @param type
      */
-    public static void populateFiles(List<File> files, Map<String, UUID> name2uuidMap, FASystemClient c) {
+    public static void populateFilesWithMetadata(List<File> files, List<FileMetadata> metadata, FASystemClient c) {
+
+	Map<String, FileMetadata> name2metaMap = metadata.stream().collect(Collectors.toMap(m -> m.getName(), m -> m));
 	for (File f : files) {
 	    String fileNameWithoutExtension = f.getName().split("\\.")[0];
-	    uploadFileData(name2uuidMap.get(fileNameWithoutExtension), f, c);
+
+	    FileMetadata fileMetadata = name2metaMap.get(fileNameWithoutExtension);
+	    if (fileMetadata != null) {
+		// only populate metadata that has a corresponding file
+		populateFileMetadata(fileMetadata, c);
+		uploadFileData(fileMetadata.getFaId(), f, c);
+	    }
 	}
     }
-   
-    public static List<UUID> populateFileMetadata(List<FileMetadata> meta, FASystemClient c) {
-	return meta.stream().map(m -> files(c).createFileMetadata(m).readEntity(UUID.class))
-		.collect(Collectors.toList());
+
+    private static UUID populateFileMetadata(FileMetadata meta, FASystemClient c) {
+	return files(c).createFileMetadata(meta).readEntity(UUID.class);
     }
-  
+
 }
