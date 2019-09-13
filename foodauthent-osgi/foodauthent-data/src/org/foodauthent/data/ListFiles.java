@@ -20,4 +20,8 @@ public class ListFiles {
 	return Arrays.asList(f.listFiles());
     }
 
+    public static List<File> listEFOilFingerprintFiles() {
+	File f = new File("files/blobs/ef/oils");
+	return Arrays.asList(f.listFiles());
+    }
 }

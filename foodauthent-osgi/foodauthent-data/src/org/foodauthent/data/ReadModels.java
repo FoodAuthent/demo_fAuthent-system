@@ -35,7 +35,18 @@ public class ReadModels {
 	}
     }
 
-    public static List<Product> readOilProducts() {
+    public static List<FileMetadata> readEFOilFileMetadata() {
+	File json = new File("files/filemetadata/ef/oils.json");
+	try {
+	    return ObjectMapperUtil.getObjectMapper().readValue(json, new TypeReference<List<FileMetadata>>() {
+	    });
+	} catch (IOException e) {
+	    // TODO
+	    throw new RuntimeException(e);
+	}
+    }
+
+   public static List<Product> readOilProducts() {
 	File json = new File("files/products/oils.json");
 	try {
 	    return ObjectMapperUtil.getObjectMapper().readValue(json, new TypeReference<List<Product>>() {
@@ -57,8 +68,30 @@ public class ReadModels {
 	}
     }
 
+    public static List<Sample> readEFOilSamples() {
+	File json = new File("files/samples/ef/oils.json");
+	try {
+	    return ObjectMapperUtil.getObjectMapper().readValue(json, new TypeReference<List<Sample>>() {
+	    });
+	} catch (IOException e) {
+	    // TODO
+	    throw new RuntimeException(e);
+	}
+    }
+
     public static List<Fingerprint> readBfrOilFingerprints() {
 	File json = new File("files/fingerprints/bfr/oils.json");
+	try {
+	    return ObjectMapperUtil.getObjectMapper().readValue(json, new TypeReference<List<Fingerprint>>() {
+	    });
+	} catch (IOException e) {
+	    // TODO
+	    throw new RuntimeException(e);
+	}
+    }
+
+    public static List<Fingerprint> readEFOilFingerprints() {
+	File json = new File("files/fingerprints/ef/oils.json");
 	try {
 	    return ObjectMapperUtil.getObjectMapper().readValue(json, new TypeReference<List<Fingerprint>>() {
 	    });
@@ -79,5 +112,15 @@ public class ReadModels {
 	}
     }
 
+    public static List<FingerprintSet> readEFOilFingerprintSets() {
+	File json = new File("files/fingerprintsets/ef/oils.json");
+	try {
+	    return ObjectMapperUtil.getObjectMapper().readValue(json, new TypeReference<List<FingerprintSet>>() {
+	    });
+	} catch (IOException e) {
+	    // TODO
+	    throw new RuntimeException(e);
+	}
+    }
 
 }

@@ -1,86 +1,71 @@
 [ {
-  "name" : "Erdnussöl",
-  "fingerprint-ids" : [ "f8e01e9f-3fe6-44b6-97eb-8d0ec5fe514d", "3235db08-2d05-4758-8093-6713e1a11097", "41d75924-2d80-4f53-aade-5bc2384fc8cf", "6dbc9f2b-ad53-4a28-bcde-e6fe076b8d4e", "8c458ee1-6c9d-4d81-a01e-48583415b78a", "8a2ec007-866e-495a-8cb0-8e815771179d" ],
-  "fa-id" : "c8d52b22-f4d2-4e30-b2d3-a3fbf64c6f98",
-  "class-label" : "Erdnussöl"
+  "name" : "erdnuss",
+  "fingerprint-ids" : [ "00e77d9f-6b37-4413-b016-aaaf05dcd564", "094a79f1-270a-41c1-9089-e4cbbe0b2556", "a537e174-bbcd-42bf-9aa7-d0ad1f147fd4", "84bac209-001b-4c6e-a28c-cd5ec6800275", "5f7c88db-69ec-4238-aab8-2cfc69af4d39", "41aaa5f9-bd36-4063-97ec-1a6f4827e17f" ],
+  "fa-id" : "fef5163b-7bec-465d-a870-dc7168fe4f57",
+  "class-label" : "erdnuss"
 }, {
-  "name" : "Hanföl",
-  "fingerprint-ids" : [ "9d5b64e8-8eeb-4eb7-8633-5b5eea7e317a", "7be0c81f-860f-479d-9d5c-6b8949de8a1e" ],
-  "fa-id" : "1b2be186-bd82-443f-9e83-866945859d1f",
-  "class-label" : "Hanföl"
+  "name" : "hanf",
+  "fingerprint-ids" : [ "542f9a2d-8b21-4f99-853a-d6b2320a28ad", "ff6d7431-d5d6-460d-aaf6-aae06084f58f" ],
+  "fa-id" : "0dabb60e-b653-4abb-aef2-93c53fce1ac3",
+  "class-label" : "hanf"
 }, {
-  "name" : "Haselnussöl",
-  "fingerprint-ids" : [ "6a46ca9c-4fbe-447d-a2ba-d9572a29c5f8" ],
-  "fa-id" : "92ed36a4-ae06-43c8-9846-96c473e43ec3",
-  "class-label" : "Haselnussöl"
+  "name" : "haselnuss",
+  "fingerprint-ids" : [ "235132cd-e867-493c-9fa6-1d1bbcb70b75" ],
+  "fa-id" : "a0bfb857-bdc8-4c86-b6cc-d27c104ecb60",
+  "class-label" : "haselnuss"
 }, {
-  "name" : "Kürbiskernöl",
-  "fingerprint-ids" : [ "37b9e434-9760-49ce-ba38-ae1f19bba920", "70aee69b-0012-4d04-beb4-9a845430da1d", "06e2f399-11bc-49e1-96e1-b41fc6972429", "4513cf30-a0c7-4eea-b58e-5c04b7d6b91e", "97a4914c-0aca-4d6e-ad59-66d248e35fde", "e42a8b12-2ce1-4dc6-b4f8-66a30a8b1052", "cae8c691-b945-4d94-9d66-958753334ac3", "0974f971-0179-401a-9607-b477441262c1", "f0921909-a2e1-4c54-a8a3-943655a63818", "85a17e1c-58f6-407b-8460-def2f9851d63", "cb3ecb9f-74ea-480c-9929-5ff6f7d50926", "f4e9d2fb-1c81-4b35-8537-885555d41198", "1acd19d1-3183-4a02-83e6-f5c3bfdb5ec7", "ebe9daa3-660e-4698-ac44-4ed47db8ef08", "0fb9684c-9b23-4f24-b0ba-d2a9c78721e0", "4d656771-0435-41be-b6f0-1e988abc2b29", "0731f3df-79f5-4e5f-8b1d-414314cd0558", "a75ab905-b431-49e7-a95d-a563f068154e", "e97d3562-b1df-465c-9929-f4fc963e9d21", "bc261c46-5bc0-41e0-ba44-82720a4d55dc", "2eb682da-8846-4144-96f7-c5e362d456d4", "2a53480b-3d7e-461d-86c8-5ef957521a0a", "75d7927f-e462-483e-8259-35a5f9d18285", "b380c0be-93e5-441d-9b0d-62b5e89bf5ba", "65e16148-2bd2-4fe8-be9e-7de7e90a6cfe", "026e5d27-dfa9-4937-9629-5540ee0fe8a0", "ea0b2617-cb78-4064-8591-8999140bed82", "0c9bf7b8-e26c-4f28-ae96-fda3e8b5324d", "28ddcf4c-6e4d-4801-a46f-d2dee7ddd226", "926b7730-b9f4-4fe8-9c73-a4fea467b696", "3134f84a-3c6f-49ef-96ca-c00b62472511", "2b1cb12d-86b3-4e53-9fd0-36d8efde5bca", "0cd50b63-36d6-4433-a8ca-b487e5bd4115", "e7d4adfc-f7c1-43b0-aec8-62493c5bbe5e", "bde65c90-eb13-47ce-8309-383885766b8f", "2e0287b9-bb07-4cf8-9207-e2479e6203f4", "8646756d-b4cb-4448-ac73-a71e2a002027", "43f01e3f-d877-4007-9f79-7e303ddeabce", "48ec88e8-f66e-4fdb-9f9c-a60d25546fe9", "912d1564-3200-45b4-9471-cec228ec750c" ],
-  "fa-id" : "9a57c29a-4031-4f8d-a301-d6bead7b88ff",
-  "class-label" : "Kürbiskernöl"
+  "name" : "kürbis",
+  "fingerprint-ids" : [ "1b2f6d07-b395-4b88-8ba7-67e950f39c4a", "ce4a8374-9735-4151-bbd3-984640cae72a", "be0e39a8-40b7-4523-98ed-045a982bb60c", "07b7d52d-7949-4c97-bb8a-9d06652e60eb", "3ffaf9d9-90b9-43e5-a953-184b52688124", "6d80c3a2-64b4-4dbd-88d9-3af4a3fd9175", "5473f8be-4281-4d0d-a5a2-e3167343d838", "cc9e0df5-ddf1-4934-b8c3-60a0333d160a", "fad50bcb-6fdd-403d-bc50-cc0aa8480e66", "beb1938a-358a-4912-b2ba-3ec3b7f4e105", "af5041af-bf0e-4f28-be6e-abb746e1cc60", "e956e4a6-126a-4f32-ad5f-965dd852b6b4", "a28f9dec-c663-4e95-9b55-e64a708a7e75", "562cce8b-216a-4f8f-99a5-8e464c7c3213", "852b794e-3f58-4b20-b9b4-8220d6eb7d57", "f358e09d-5d15-4dca-b0af-d692cd0673e6", "54a2ab20-bf41-4497-a088-632ad6c7a957", "3408444a-dc19-434b-910f-8d37b823d970", "0fa729f7-6e34-4f8d-a3dc-8733ac4b4588", "b24a552c-412f-4b43-8f7c-315fb6d6ab59", "e4fe2605-3cf8-4290-aab3-221f66529206", "46ca0812-40b6-4b14-8e1c-b973b51e8af9", "2ab59cad-73d4-4dd4-b660-7c56673e13b6", "c329a789-4c12-4bf7-82be-798cf84411f5", "f72bff9a-917c-4740-aeaa-ef675de03273", "d378a805-5d99-4d9b-a1eb-023d92c9cc11", "ac30f4cf-f47d-4802-b594-67b0f03c4376", "61546c7d-9220-4702-9b13-e35d220157c2", "443330e8-6d3b-4a74-8d87-8a97e8f85cbd", "f37a6c5c-c228-43b5-b42f-894bba817911", "3384ea33-c5cd-45e8-bfa5-7e0a03899ffe", "d230ed87-2f79-4c94-b5e3-b38f77c00f87", "f5d55323-dcdf-4788-8956-5f19d7f892f4", "0b2a9dbc-01c1-478a-8966-d47f82f73588", "a22c6ad8-edbc-4c86-963a-0f64ca5e777b", "b535ba1a-8761-4768-84bc-9db6a56b1cae", "089917de-7d3c-441e-ad5e-9ce555997517", "97693aea-e7f7-450e-b007-5db908ec2c00", "dbb343f8-a760-4f9c-ba59-ca5176049c43", "73c16244-2546-42fe-a311-36d092bc43b0" ],
+  "fa-id" : "76f93788-488f-49db-b035-7ae410d7f3a8",
+  "class-label" : "kürbis"
 }, {
-  "name" : "Leindotteröl",
-  "fingerprint-ids" : [ "a7e44f7a-824d-4241-bff8-ae4fccebb680" ],
-  "fa-id" : "08bab88b-93b8-47fb-a14f-2477d0f894bd",
-  "class-label" : "Leindotteröl"
+  "name" : "lein",
+  "fingerprint-ids" : [ "48682618-627e-4d51-9425-115094dee75b", "9860d944-974e-449a-977a-aeecd59110bd", "927ab128-0342-4898-a397-b06f26698795", "574fd20b-b0e0-4ebd-8d25-efc1cfc477ec", "e95903c6-65a9-49f0-bf41-1077deecf435", "79cd65f9-79d9-4d91-ba38-0edc65e7189f", "d7f7dff3-a738-4f60-b3eb-5d6ee7d7a351", "bc299459-c3c7-487f-8ad1-df162e266dfb", "63e8ceb5-661f-4f36-998f-82930e4d9e98", "f1e3b880-1a0a-4ba4-85e2-5565e9ff17d6", "fd609ccb-b6c6-4e3a-9df6-f6b243178136", "ddba35f0-e369-4fd8-8166-9bfa77a52f51", "0fd352d4-fd6c-4187-bc1f-9cb468f9245c", "35aa6250-a403-4038-ad28-3a020a555cdf", "58d1ba3d-1fd8-4f93-bf0c-3f6246459d81", "35ee7a81-7f1c-4557-a5f4-c1048b312ef8" ],
+  "fa-id" : "090bc4d1-e9d5-4516-9d98-9b13722badb5",
+  "class-label" : "lein"
 }, {
-  "name" : "Leinöl",
-  "fingerprint-ids" : [ "d2dfc40f-0826-4267-ab39-95fcb4aebe63", "6c364cb0-c181-48a6-8fa3-07dbfab0e133", "c867b489-70dc-4140-a93c-4cb5b7257575", "6460b5f9-2dba-4def-886d-4a440899bd9f", "e70d90b6-3f60-4f25-a2fc-59affa5edf37", "34103f66-5938-4409-afb5-05efcf99683c", "9ae9ddc8-1f0a-4aef-835a-586c51c5d938", "d596260e-3505-4793-b5ae-b79f1bae76db", "0a75837a-52d0-4d83-b046-69a356182990", "a353d592-5418-4015-9599-c711267e2e1e", "7991c79f-26ff-4667-912e-cb9f2b6f20e2", "b2961587-e49c-4da8-ba5f-91048c0cc2f6", "5fa515f3-3e49-4f79-bb8d-f4452009da58", "2947a277-9bdd-498f-949d-c8e5b4e6f4af", "af1de040-7810-49db-8ac1-9780516caf7f" ],
-  "fa-id" : "dd00f369-6962-4c47-b922-66cf9b5b5599",
-  "class-label" : "Leinöl"
+  "name" : "mohn",
+  "fingerprint-ids" : [ "6714282e-e213-4477-99fe-1f7bc70c3a93" ],
+  "fa-id" : "76d744d6-a82a-437f-86f7-f9b088252db4",
+  "class-label" : "mohn"
 }, {
-  "name" : "Mohnöl",
-  "fingerprint-ids" : [ "82fc4156-8227-4b56-9614-b9ea6926f7d1" ],
-  "fa-id" : "8f292e6a-9af7-4cef-9bae-775aa64966f6",
-  "class-label" : "Mohnöl"
+  "name" : "raps",
+  "fingerprint-ids" : [ "35da0ae4-d4c0-4f98-8a3f-adbc19c40505", "ada11e2d-eb81-4bab-b04d-7574332a1fe2", "eab930e2-463b-4953-b215-a508c6039fc6", "ed90594c-80eb-4ef4-8982-28e22b6b1662", "cb6d8622-5873-4559-8cc1-08fa29b6391e", "f8d47e85-2c74-436f-b99b-c24e7bed0ff6", "be446efa-7fe3-4017-b8a3-7cf8c87a0159", "ea31201b-1f96-43af-8fc1-75ecc1294846", "9f70ffec-124b-44ad-9f90-74fdf2649bd1", "91e9ed12-852b-4673-8766-cc4a59ac304a", "deeccc53-9547-4a92-b682-50547f213867", "659b0150-f5d1-4b8d-b992-fc7e81e65727", "50b9898e-86b9-4cc6-9dbd-fce441a6e618", "085a0345-64cb-469b-9b22-d04c4836947c", "39840254-409e-4c2d-86dc-d341849fd13c", "91c68281-8f00-44f0-b4c5-5949bb2cff7f", "f38b04e2-0c7c-44ab-9c1f-ea731d864c48", "b90b2f3f-8901-4740-b631-2c183d80c947", "d474b7e6-9cfd-43ca-ac93-57a77cab98e4", "cef6a2bd-0047-4c4d-b78b-2872496a16d2", "0dc581c3-2911-4ab3-9583-ec4e56b3e7e1", "da30acc9-803d-4705-877d-63b26b56f839", "f2a744ed-f979-4b8c-a41d-16ac269af835", "b546c37d-bf67-4c83-afac-13ac754db19a", "665add85-b52a-435a-82cd-c9d573b1d4df", "8c19be66-9158-46d4-8556-01dededaaa21", "69d9a339-a269-43ba-a662-7301795689de", "9e4cba7c-9680-4ec2-bef2-d248c528c652", "e0f45f33-b47b-488f-b430-7cce5d6112b6", "26ca26bf-9b05-43c2-8365-a328d8dd5908", "cc54e4a2-c9da-4979-a847-4e16d6123e8c", "39844436-9dfa-4c5a-a28a-70188f6df14e", "1ddc48bd-0074-4ea9-9271-5348b9db1113", "e6dafca6-4c3f-48a0-8162-87e9b177f3e2", "ac2585df-cffe-410f-8972-6f8e213eadb5", "c633a555-4bf7-48d5-b13b-13905bbc388a", "528aec69-86a1-48fd-a6de-6fcb4b0b4dcf", "c71ec13e-9ccb-4faf-be61-ad14facc3f66", "e2fcdcb2-e0bf-4bcf-b328-0516b498a0ab", "028534ed-aa37-4e2a-84f1-4a1aba5ad353", "e8dceb36-04b4-4d65-97b7-1191612b0fd4", "38b312a1-85db-449a-a246-7000881198d8", "12128a74-26eb-4ad2-8ae0-dc082fd172ae", "b9b77442-d3f9-4c3f-b5e8-4092f7ce8c95", "2505f154-fc33-4593-8fe6-9faec19adbd4", "4ebe910a-8951-4738-b327-122439e2c6b8", "5f05eda4-1fb1-4119-a96a-0190f82bc555", "75f18cd0-994b-4cf8-892f-d4fd4404dd10", "c6a3c191-c93a-4a45-8764-8fd4c019cbf3", "40c00069-d2bc-4d05-81d5-de36e6faa69d", "7459458a-e5d0-4a90-be58-bd6b0b81889b", "01ecf43c-52a2-48b6-b03d-987b83c72f56", "8b6fe5f6-2c8e-466c-8e9c-3528d2eefadd", "7d602e50-27db-4f2d-9259-253e4d387984", "8fada976-8cf8-4b3e-8b54-55cf4edd0b62", "2ef53325-a482-4e68-9dc5-cd549a2919f7", "06b00609-14f9-4508-8396-54aebd6b8ff8", "949ee971-5193-4dfa-aa98-e3f22a72d3b8", "65c16705-9934-4473-8ffb-54e444f0e8db", "a574d9fe-924e-4d4b-89fe-87b7e728aeb9", "218d9d7d-4215-49d1-bdd2-b86a3f5b63f4", "82c88499-e80f-4ea1-b69e-04a7a42775d7", "d40288d5-a73e-4bf9-b37f-eacf48224f36", "2c3459c2-99f1-4ab5-b345-e0147d153db4", "b48af14c-3b0b-4fe2-8750-2e1de66dd1e9", "3236fe38-60ed-4aca-bc48-21bbe48d3527", "7f0c807e-66d9-4981-ad53-e304bc00ac91", "185fdcee-8764-4e9d-888e-001040a25525", "ac950902-e7bf-4486-a0c9-d8ffb211d328", "d6e37bdb-9589-41d8-9948-e6e36782c49a", "7ef3da9d-16c7-4dde-9ec7-d1740e3a6810", "00c1deae-af34-4ac8-8d3e-72a826fbddec", "b054dddc-e9ba-4f2f-894d-5f6ab6b90af6", "7868c3c8-4a17-4ec0-8b7f-9626207d938b", "7646a463-b20f-4424-9919-f60de7792ca6", "15e8abf6-d349-4463-8e9d-db6f90c7d38a", "31626d7c-9c45-4d47-b7b0-8f8f2a3af456", "c797e6de-4a6c-4cab-8868-6b2db5b32cf5", "7578e56f-6de2-4dd9-8cb9-52f85aa0acbe", "53e838a7-20f0-4770-bde3-70e2b8ee77a8", "ae9391bd-7748-43c7-8e41-36d7a8ae98a8", "d0300365-ddbe-4b13-972e-e9288bda670a", "2ad02680-7518-4d91-891a-c7d7ff422295", "8b436d4a-f4e2-416e-a7c7-9c0c3e3955ed", "d480f75a-45a2-47c3-b629-343a876944a1", "97b07eec-991d-425b-8589-b1ab082e0766", "caf2776a-9292-4296-86f6-1797ab7ce181", "88498929-3bf5-4248-86e8-ce4e5a8dd77e", "c18a23b9-a52f-4738-a5bb-8f8dd2237f90", "6f284e4e-8f80-4cea-bc9f-e7456463e857", "2c15c425-92ce-47e3-a23e-3cb67572bdb7", "2e44750b-563c-40bb-970c-48ad371c98cd", "22b3995e-d158-4a4e-a644-53f2991d2756", "d94d5a12-a267-4bec-a676-bd1760cbd2a6", "af033e21-652e-42fa-85e3-fc60265dfc78", "c03d371a-9e4c-4a33-9a4d-4fdda93047ba" ],
+  "fa-id" : "536f42bb-ad6e-474d-b6d0-b6f871cec41d",
+  "class-label" : "raps"
 }, {
-  "name" : "Rapsöl",
-  "fingerprint-ids" : [ "44f50f30-1ef7-4818-b7ad-7bd628f01034", "a32881c2-36e9-4943-99cd-eeb121f95e38", "af8c6b73-15ff-4996-bddc-bb4084fb7401", "a3da8012-c493-4ef6-b55f-24a60bf0d66b", "2c8a469f-4e35-43f3-9e90-95766e947361", "754d6900-f975-4f4a-b425-59e0d8de3dc6", "c8db01f8-f0b2-4bdb-b397-26c83c511319", "182c24b6-6f3a-42cb-9ac7-8464b8607d07", "ad20f60b-80cf-401c-b746-d59d0c72e8c2", "cde8b422-7a63-4196-8be0-357e8e0b57d7", "c67e0306-9fa9-48da-b42f-5d11f2ba2180", "94437348-c046-4806-a800-4e227b321127", "3f23751e-a8b6-4f61-a622-b5257592fa66", "c324453d-ca83-4c2a-aae7-3b213d2f3b0f", "694ea5c8-e2d0-46b2-a47f-71c1fdac5532", "2ea4295c-d237-4916-b413-9da5df96733d", "9e7bd937-f6f9-4882-8e58-5981acb4cbc7", "6b0c2c77-31b6-40ca-975b-4e637f0a038e", "efa19c89-d064-496b-aec1-088d7dd7a1d7", "1d471c26-455f-4e59-b154-6a0e617e96d0", "17277da3-a962-467e-b6ea-8bbe5a7ecbf0", "9a3fc4ce-0766-43d6-a3ba-838f9bff18b5", "c78013de-f150-4920-ac6c-4ecc151a520e", "56d964a1-9a6e-46b0-8de9-c243dec3ffe2", "bbd1e25f-7888-4d55-8af7-90072afce415", "b0d21d80-f2ee-463f-b97b-28ca4b606a0c", "14bc00a7-dbe5-423f-b34a-e33cb4db9561", "dc2de34c-226b-48ae-9046-0ae94944a5e8", "446a5367-eba6-4f38-84e0-99e597a9ed7e", "82a84ee1-013a-41a3-ae61-d6258b09e6b4", "38d2f1a3-665e-4715-b3f5-6b77c28094dc", "2149303d-9b04-4236-b715-4d22eafe786f", "c32a5871-1b2b-4d3a-8ba3-b548240b46f0", "8800eb0a-1c41-4f64-96cf-ae1d967e0995", "d4ab803b-b9c1-4b36-92e6-15dd31bcfd83", "932b16a4-7cea-4ce9-b694-dfb8fc8df292", "0b6ebe73-3c4b-4f5f-8e15-63598baeafd6", "99c61a86-f1e1-4dfe-867f-83e947c0ea5d", "4bbd0b57-3f23-41cd-a306-f1419f7855fc", "222a73c5-1024-4917-87ff-0926b19db80a", "afb72987-2620-43cf-9c56-040d606ae1c0", "b1e9e36a-627b-45d0-99d1-9e4e5535e4da", "cd52f6fb-dbd1-4c55-acc8-1f537ea8fda0", "45776235-e38e-4b23-847a-7eb93e955b4e", "76a2a3bc-6253-445b-a51c-42fe10e0a7e9", "ad511501-1493-4946-9df9-97debbcefbdc", "fa633cd4-1905-4bf9-ae1b-d04fd2489d4e", "1ec5b61b-0b4a-4600-890f-c098501534b7", "7df43b5b-2693-4e4c-b98b-08004d5e123b", "46c4912b-7086-46e2-9a4c-5a9fbdd67c3d", "c9acb9ef-b800-4c9a-9312-659e79e3e8bf", "02fe06e9-ec08-4980-a6c1-8c9a6727826e", "f3e137d1-8220-4fdc-9e8f-0d4ef97c9508", "955858e3-9c27-49df-9a14-a81c8f17948a", "1f8d9627-4957-4e41-b4ca-e744bfe6fe02", "daa2f4bb-f066-4f50-8782-45243e36aae6", "5cc59179-9aa5-48c6-9e38-62583e4ada3e", "269dbddc-7a74-48c5-a5da-40029813b678", "74d06e92-7db1-4cf2-bafb-cf88277acda4", "3c2a9661-d516-46cd-a287-b9821951eb78", "5b08e8bc-c11b-4939-9312-49039429f8ac", "ef52dec9-fd54-454d-a500-093039591e3b", "f45c847f-33e8-4f18-9e3b-256ef36db544", "c8d01da1-5d25-4730-8c3c-63272991158e", "05debf48-0207-4bac-b61a-faf23e04ba58", "334cdaed-2cf4-4f37-8ac5-1d2370f139dd", "615eb6b9-58c6-4fec-b524-a9f66e275cf1", "203a707b-0ad2-4af1-bed9-0548ed871321", "6856e8d0-b96e-4b7e-8059-e2194958c642", "e0b0adaf-bc97-429c-803a-20b7b46d7a1c", "5440dddf-0cc1-4719-bc65-bb8a395c185a", "528bc650-79b2-4043-b18c-81445409fe53", "036bb9b0-46c1-4fa1-9272-978c6dce49e5", "5ab8c79e-4107-4a65-a7f2-739ea7c73f81", "3cccef01-790e-4dce-a714-7646eaa56dc7", "e51dfc90-1cc6-4973-8ada-2a88afb061ed", "94f3d545-5f57-49d9-88bd-4bca9e78f804", "d70f6619-fe17-4a40-9fa2-77be87c714b4", "549855b7-cf43-4d4a-97f8-89dc22f52b6a", "231bd576-034a-4322-b5d0-dd509fa32549", "e66e2936-a275-47cd-bf3b-63697c0c4365", "3dcda2c0-d1a5-4e67-b6b4-c91e16729f21", "8108e8ba-53be-4ca5-b7ee-e04feb6a1a41", "7bec4cc0-0987-45f5-b69b-7791089d571a", "6b31f55b-5197-47bc-ae4c-2c2e74c1cfde", "514c805f-118e-4276-88d8-e51be621d448", "d05d6c3f-5797-4a40-ab5c-2921fc3aeedd", "0e0608bf-ab83-4e89-9f41-e5301ed67392", "840ed816-8e69-454c-8493-5a0feec60bd8", "3004c092-1732-4f7b-8446-bd392c745f85", "e176096a-c408-4bd1-a342-71fc481d0585", "ce121d65-4ac3-4072-833b-d5e5e434e6b1", "f8c8bd4b-4291-41df-a75a-f5789743faad", "6ece7292-9015-4f0b-9e35-0a8008cdf777", "fd22c043-d45c-4834-bf54-f3c023378468" ],
-  "fa-id" : "48a2043f-90bf-45d0-935a-9a35f0c35698",
-  "class-label" : "Rapsöl"
+  "name" : "schwarzkümmel",
+  "fingerprint-ids" : [ "fdc0551c-5233-4570-a6d6-217ae8524e33", "38d6c1e4-c028-4f26-aa60-13c31335d77e" ],
+  "fa-id" : "8c02958b-54a1-4269-91fa-e2db80f23583",
+  "class-label" : "schwarzkümmel"
 }, {
-  "name" : "Rapsöl Kosmetika",
-  "fingerprint-ids" : [ "b52b877f-e0f7-4767-9029-bd33f0c3868d" ],
-  "fa-id" : "057c8bb3-ea0a-4f3f-9b62-f7682b824e7a",
-  "class-label" : "Rapsöl Kosmetika"
+  "name" : "senf",
+  "fingerprint-ids" : [ "5ac4585a-42f8-4b20-a1fa-25d1c5bef3b0" ],
+  "fa-id" : "b14042a1-9582-454f-8292-2cdec4e03db9",
+  "class-label" : "senf"
 }, {
-  "name" : "Schwarzkümmelöl",
-  "fingerprint-ids" : [ "478a6c77-bee4-4030-be38-2ed9ce80de85", "e30540c2-6606-4a5f-b0f6-09e0be3001da" ],
-  "fa-id" : "06e5cbe1-23cb-4efa-a499-49576824ee2e",
-  "class-label" : "Schwarzkümmelöl"
+  "name" : "sesam",
+  "fingerprint-ids" : [ "d0b00047-b90e-4363-bf80-c2cc82119169", "673ecf7f-ccf6-4dbf-aa73-8ee04f01c009", "5a81c0b2-0d44-4453-b0f0-50834f07b9d3", "03aa6c76-ca05-4cdb-935b-96fe651011c7", "3f4d4829-b8f4-4f17-b6ee-58b295c84009", "58ed9d0b-ce2a-412a-840c-3886880e879f", "3892931f-ff5f-4539-9ff8-0ad278d43f90", "0d414a52-54fa-4a62-b0dd-3365eadb3c89", "cc986405-410b-43ae-9571-ef8b5efc0ab4", "b99dba6e-f15e-40b8-9bb6-270c582c1cd4" ],
+  "fa-id" : "e81945f6-edf1-4049-87c7-53feb8f64bf7",
+  "class-label" : "sesam"
 }, {
-  "name" : "Senföl",
-  "fingerprint-ids" : [ "b261e1ad-74bb-49c7-b4fc-2307506130f4" ],
-  "fa-id" : "fb85bb02-cbe6-42dc-a472-1133678369ec",
-  "class-label" : "Senföl"
+  "name" : "soja",
+  "fingerprint-ids" : [ "944423aa-d66f-4b7d-b253-49672abb4f0f", "2d8ab8a6-c152-4662-b9e3-4b0619f3712c", "d9272df6-076f-4c3d-8c2a-882d5b73539f" ],
+  "fa-id" : "1d2df43b-7385-43ed-9dca-7bd17c3c6d7e",
+  "class-label" : "soja"
 }, {
-  "name" : "Sesamöl",
-  "fingerprint-ids" : [ "e97a2b06-a1c2-4246-8a74-e2ff290a7e3a", "d0c179cd-2a6e-4d71-95fa-5d53c1eb0da3", "cdf0a93b-0963-4087-b84f-25befb38ab2b", "82f07682-626b-489d-bfe0-e7d570c86397", "b265472d-4fcd-41a9-a538-6f3492cb2f36", "87dcd5f3-eb47-43a5-add0-3a9e770b3170", "306573c6-374f-4fed-9803-dd76d3560d40", "9d3f0585-f933-4415-9771-73b778c16047", "d516a7b2-77fc-43aa-89ef-f6f9e4f4952e", "101566cd-ed55-4d4a-8003-ad6fc97c6cff" ],
-  "fa-id" : "c23ae09e-4a69-405c-bd18-6db1bb87ad1f",
-  "class-label" : "Sesamöl"
+  "name" : "sonnenblumen",
+  "fingerprint-ids" : [ "2967e753-eaaf-4a39-91bf-0defdde7fe36", "74d8770b-b90b-463d-bbfb-c7bb23cca237", "918c3b56-368c-4282-bc9a-27c07ae78d2b", "c43b9e26-9625-40d5-baf3-0b8852db83bf", "3fa632ea-7479-4892-b4b3-0729ac4ae9a2", "28ffa089-4fc8-429f-b0ba-e0db3cf8a8d0", "bc6d6dc1-e1e6-4db7-8b71-2a77605e1f96", "363de9be-ffcc-4e05-a8f2-e9c5066438d6", "2db2604c-4fdc-4734-89e9-ce7758e85e90", "045f1ab4-2817-44a4-99f2-7d4c198bb192", "1ab17bde-a88e-461f-90ce-5a298569525e", "6196dcd1-7761-4022-8360-799f48263107", "294080bc-58b1-46e1-b1ff-c1bbe992d573", "f9ce242d-7924-436d-b195-5d2312c5695d", "c3d2a868-10d0-4212-9054-410844e88cd0", "e67837db-38fc-40d6-b7ac-6484c7d272cf" ],
+  "fa-id" : "825de574-6d06-4fd0-8828-71d990479d80",
+  "class-label" : "sonnenblumen"
 }, {
-  "name" : "Sojaöl",
-  "fingerprint-ids" : [ "27480f9d-6b53-40ce-8330-c63045d11aa4", "6309c6bc-9331-44ef-a316-c2b5288ab7d0", "67b724ff-a812-40ee-ab09-05f1e6895f26" ],
-  "fa-id" : "b1648a76-f04b-4c6a-ab60-ca6ecc57c52a",
-  "class-label" : "Sojaöl"
+  "name" : "traubenkern",
+  "fingerprint-ids" : [ "8cd336ce-8dfb-4a91-8bab-a2e8497cee3b", "846e11dd-3838-463d-a69a-f486863abb60", "5f2a9a42-8dfc-4553-a8cf-5e683fdfa2b4" ],
+  "fa-id" : "a7600664-6ac5-4d27-983a-49132dfc8da1",
+  "class-label" : "traubenkern"
 }, {
-  "name" : "Sonneblumenöl",
-  "fingerprint-ids" : [ "ff6f4642-ce47-42b2-bd1c-702c9e2fa1c0", "5cfdad1f-3248-4704-8de6-3459bc5f39c9", "855c8988-02b2-4a48-8fc1-1a38fb82cf50", "1a1d04e9-e2f9-451a-a9f4-17d39ef807d1", "3e2d0f30-e40b-46ba-a61a-90035b3eb511", "efe0e485-ca4a-44da-a003-8ee7e92f06b2" ],
-  "fa-id" : "a4f353ea-feef-420b-90a7-643adb3dbf02",
-  "class-label" : "Sonneblumenöl"
-}, {
-  "name" : "Sonnenblumenöl",
-  "fingerprint-ids" : [ "0d420b62-8945-4681-b67b-a557f25a68da", "b662d9ea-a24d-455c-8824-d9fe9c0efafe", "30d7cac0-1fe7-4640-bd65-18c7a97eba52", "ca931d21-3da7-4c35-8782-ead82ea959c2", "08759ebf-f17a-4d7b-b0cd-f312be49f96f", "83a76a5f-18a1-43dd-ba17-8631447d180c", "62393d10-2cef-4eee-9d5a-89d34c1450e1", "350ac485-9928-428d-a157-4159d4d61efd", "9b6e4bd1-ec1f-4263-8267-c3e55fdcfc37", "81616ff3-1ff8-4044-8a3b-c2c11270d10f" ],
-  "fa-id" : "55e4e7f6-4b19-4a22-965a-b67fd66a2c0e",
-  "class-label" : "Sonnenblumenöl"
-}, {
-  "name" : "Traubenkernöl",
-  "fingerprint-ids" : [ "9d6c08f7-e143-44e1-becb-861a57f145cb", "f5640786-94ad-4781-abfd-96db12c9fabb", "285a1dce-fc31-444d-9739-c17c3523d931" ],
-  "fa-id" : "97f6f021-3b55-4367-a1c7-15377a3da275",
-  "class-label" : "Traubenkernöl"
-}, {
-  "name" : "Walnussöl",
-  "fingerprint-ids" : [ "1fa54b6c-96e1-46c3-affd-0b6b3949363a", "09950d06-3587-4905-8c55-7e86c5fc6a08", "0b3c4561-26c3-4e2e-ae41-d785775dba8d", "e9a8b6fe-3081-44dc-bc58-df1d8426f552", "549f07f2-35b0-47b3-a291-7e030d0d5fec" ],
-  "fa-id" : "1d346ccb-6b10-44b1-abfb-ade2c7509a7e",
-  "class-label" : "Walnussöl"
+  "name" : "walnuss",
+  "fingerprint-ids" : [ "5c63e2be-4144-467e-a49f-01aa3ead04bd", "850d42a4-d85e-4802-b5bd-ee73b3862f95", "c63a8a1c-a0ac-4395-8b8e-3baf29245983", "ea1142d1-6d6c-426f-b96b-ad32250d4f5e", "5ca1eea6-4a7a-4a79-a636-889d60109fff" ],
+  "fa-id" : "884956ad-a16e-4aa1-a87e-81f8bfbd4436",
+  "class-label" : "walnuss"
 } ]

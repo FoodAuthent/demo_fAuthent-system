@@ -1,0 +1,706 @@
+[ {
+  "name" : "693772-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "917a3e7a-b06b-45fc-aad4-4dcc434e8d26"
+}, {
+  "name" : "693773-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "aeca8100-8a61-4c6a-9ca6-66aac41cdbdd"
+}, {
+  "name" : "693774-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "691b3b97-80ac-4749-8f8e-beed35186e95"
+}, {
+  "name" : "693775-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "e33effb2-aa90-4494-98e9-04c8f2026cf2"
+}, {
+  "name" : "693776-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "ea253f8f-f9a7-4dca-a1d0-62e803c63ff3"
+}, {
+  "name" : "693777-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "83d19fb1-326b-47e0-9b03-5407adec457d"
+}, {
+  "name" : "693778-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "840b4e35-8423-47be-873b-80dcc7286e37"
+}, {
+  "name" : "693779-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "e1f177f5-6633-4b7b-9755-7666156b0ae4"
+}, {
+  "name" : "693780-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "4687865f-6ab3-4e13-bdb3-d00a64f79080"
+}, {
+  "name" : "693781-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "3636389a-a1e8-4af5-8f43-51766545afa6"
+}, {
+  "name" : "693782-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "0d85f6da-8392-4222-af81-9ad94b86b93f"
+}, {
+  "name" : "693783-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "725890c5-9f36-4abd-98ae-ba990fc04167"
+}, {
+  "name" : "693784-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "e7e4759f-8d10-45ad-ab6d-3613221184b7"
+}, {
+  "name" : "693785-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "ad927342-26e4-4a63-9bf5-1c6b1a6d1054"
+}, {
+  "name" : "693786-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "ffa45f94-4d70-463c-bd78-148626892f6c"
+}, {
+  "name" : "693787-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "c03b34f0-456a-4ea6-8148-16c76e1e7942"
+}, {
+  "name" : "693788-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "f445ee6c-901b-4d65-ae03-8c0bd293d930"
+}, {
+  "name" : "693789-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "521eaf79-b60d-48c9-a9df-44a5aa52bb50"
+}, {
+  "name" : "693790-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "f2e5c70d-c1f5-418c-9f4c-4939e86450b6"
+}, {
+  "name" : "693791-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "c9b9bb7b-3edb-4105-a4ec-5f93d4ecf893"
+}, {
+  "name" : "693792-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "a67f736d-9f17-4cf2-89a1-c3fe0eec7ea8"
+}, {
+  "name" : "693793-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "e46e7a52-8b5e-40f0-91a5-df76a765478a"
+}, {
+  "name" : "693794-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "7b653b94-9236-4ddf-bf63-e20233239c30"
+}, {
+  "name" : "808028-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "8ce71177-8714-4073-b5e7-05a7a99f8f06"
+}, {
+  "name" : "808029-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "91bf8c6a-a105-4bc0-a6ab-b4a591451fa2"
+}, {
+  "name" : "808030-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "5f21a79c-372f-4dcf-846c-66974258c3dc"
+}, {
+  "name" : "808031-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "9e797f3d-47ed-4b35-9339-62a35787305c"
+}, {
+  "name" : "808032-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "3fdd7108-703c-4f4b-ac50-de818fdc36fb"
+}, {
+  "name" : "808033-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "86b272bb-40cb-40b3-b11f-9eeee4724276"
+}, {
+  "name" : "808034-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "c9ef8ebb-fcf6-4672-a292-e360ffe52744"
+}, {
+  "name" : "808035-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "476ad19f-3e39-48a6-818d-7a2074e263d3"
+}, {
+  "name" : "808036-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "dc6b5876-d902-4149-869b-5942e924da98"
+}, {
+  "name" : "808037-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "0034c1a3-4bf2-4ee1-939c-e6099a6e1404"
+}, {
+  "name" : "808038-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "a2f2dae4-bdba-4d54-a4ca-b019ed70d174"
+}, {
+  "name" : "808039-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "d232cd3b-015f-4eef-947b-d391ebf6b2f9"
+}, {
+  "name" : "808040-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "01618918-21e2-452d-913d-7a5473e55975"
+}, {
+  "name" : "808041-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "455e058d-d8c3-4917-bd13-9040e6bfcc96"
+}, {
+  "name" : "808042-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "ff83b27c-a09b-4e0b-bfdf-68300ebd879d"
+}, {
+  "name" : "808043-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "b39672b6-4e33-449d-a8d3-fe2620e4fc31"
+}, {
+  "name" : "808044-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "b9158f82-4665-45c6-a0e6-5e784ea29fe9"
+}, {
+  "name" : "808045-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "16c1aa13-ae63-434f-9bc9-3847caa56290"
+}, {
+  "name" : "808046-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "7fee5f3e-b669-40e1-aed4-4ee1761f73d8"
+}, {
+  "name" : "808047-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "333d29a6-8125-4174-9b98-f0224e006b3c"
+}, {
+  "name" : "808048-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "4e6351d4-f39b-4eaa-b9cb-36df9ad56c18"
+}, {
+  "name" : "808049-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "9bfe6d5d-03cb-440c-9c07-36f97f508356"
+}, {
+  "name" : "808050-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "bb72e85e-16ec-4ec2-bb6a-8202d5be6e7c"
+}, {
+  "name" : "808051-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "bf1a9880-e3e8-4952-b58f-39ce61c71cef"
+}, {
+  "name" : "808052-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "aeff6f17-b510-4b6e-a17b-60a6fbcadc6b"
+}, {
+  "name" : "808053-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "4ac21278-01ea-491b-9713-8a967cbbe628"
+}, {
+  "name" : "808054-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "28d6f8b0-9eca-44ff-977f-7ccd282abc31"
+}, {
+  "name" : "808055-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "ebdb8cf9-a4f7-4fa7-a57a-042f51121f93"
+}, {
+  "name" : "808056-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "4cafc3e3-e1e8-49b5-a891-35601d3bb430"
+}, {
+  "name" : "808057-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "cf99021f-7e75-4d1d-97e6-bc3141574efd"
+}, {
+  "name" : "808058-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "81bf93e6-bb2c-4dba-8b07-1feb7cdeee00"
+}, {
+  "name" : "808059-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "65ae4cb1-cca3-4bdc-bbd6-2cf2a5046e30"
+}, {
+  "name" : "808060-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "5e013358-59dd-4c3d-91b7-088daf1ee3c5"
+}, {
+  "name" : "808070-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "d66394f7-cf64-4b9c-b94e-069013066584"
+}, {
+  "name" : "808071-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "e7cdd6b9-b7d6-4cde-ab9f-0e351b0019d5"
+}, {
+  "name" : "808072-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "dc1cdbb6-4e3c-4110-b53c-21a40f0f243d"
+}, {
+  "name" : "808073-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "5f1f258d-e75d-41ad-b202-9ca994d7dc9e"
+}, {
+  "name" : "808074-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "7e5f1961-f943-496b-9bca-f3865096271d"
+}, {
+  "name" : "808075-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "20546672-d678-4b89-b99c-1453654cfa88"
+}, {
+  "name" : "808076-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "5217e46f-91c9-4b8c-878e-c3e700a71ff4"
+}, {
+  "name" : "808131-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "28ad5853-7a2f-47b9-8aba-c0e529686b91"
+}, {
+  "name" : "808132-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "4e5e264f-59f4-49a5-b12b-ad56cce1370b"
+}, {
+  "name" : "808133-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "7e55ccb0-e3bb-4d83-bf9a-0c1d4131afe8"
+}, {
+  "name" : "808134-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "1d1d61f0-6846-40a1-997a-350bad15d6f9"
+}, {
+  "name" : "808135-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "315a54da-5fc0-4042-a54b-4ecbb648d5ac"
+}, {
+  "name" : "808136-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "d7e94679-b416-4325-8e78-533702904def"
+}, {
+  "name" : "808137-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "9a0e8039-5649-4dea-9d58-6e68de2d6579"
+}, {
+  "name" : "808138-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "f541d116-a28b-4ae3-80ea-cb82bebcc708"
+}, {
+  "name" : "808139-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "9d1ae294-3209-47d4-8b11-4b6d4bfacd27"
+}, {
+  "name" : "808140-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "aa90f1f3-c012-419a-af50-5034ed0f8236"
+}, {
+  "name" : "808141-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "141578f2-3a0b-4048-9ddf-d40f1287f663"
+}, {
+  "name" : "808142-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "56964928-b1aa-48e7-baf7-f12b17d44a24"
+}, {
+  "name" : "808143-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "76de9083-7aea-45dd-88ef-7a92b4a3e2f4"
+}, {
+  "name" : "808144-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "e27309e0-601b-4a3a-9b01-b0bb428eff8a"
+}, {
+  "name" : "808145-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "b9d41e9e-7d4c-4e06-a160-f7a73525b302"
+}, {
+  "name" : "808146-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "5b1baf68-c5ab-45b2-9f10-0cb6b57f7b3b"
+}, {
+  "name" : "808147-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "83b0d30c-cd25-4c89-b5de-7757b67ca6c1"
+}, {
+  "name" : "808148-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "30974cfe-4a49-4752-8e87-0c5374c33b5f"
+}, {
+  "name" : "808149-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "d32335ee-18d2-454e-a6c9-75e7e6203075"
+}, {
+  "name" : "808150-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "9de36db9-909d-4127-93e2-330e0c4e6e30"
+}, {
+  "name" : "808151-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "45723287-e24b-4c53-abcb-4040a0eee5ab"
+}, {
+  "name" : "808152-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "4a44fe38-0255-4a04-8621-6124f431e349"
+}, {
+  "name" : "808153-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "a00bb38d-a872-4e1a-91c8-68a4d494a45d"
+}, {
+  "name" : "808154-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "36ceee49-48e8-4add-a4cb-71ecda2beb78"
+}, {
+  "name" : "808155-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "44cac5ec-575d-4927-831c-7d4aa63bb78c"
+}, {
+  "name" : "808156-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "7d042abb-f783-4730-9f85-5f9c12ecfd92"
+}, {
+  "name" : "808157-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "802a38f5-dc48-4ad5-ad09-014ea71271fb"
+}, {
+  "name" : "808158-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "cbf24101-4165-449a-88ec-6abe95553053"
+}, {
+  "name" : "808159-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "be608da4-d443-4f4d-8b42-323b26a4a26d"
+}, {
+  "name" : "808160-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "ce4f7aec-d1ed-4be8-b003-fec0c15a1a1d"
+}, {
+  "name" : "808161-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "69aff783-59c4-4a39-9f5b-ddd569881db1"
+}, {
+  "name" : "808125-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "829a5a58-9d8c-46d2-8681-90e7e42ea466"
+}, {
+  "name" : "808126-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "bab04342-00c9-4453-a2a3-51118688fb9d"
+}, {
+  "name" : "808127-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "2197f3c9-8b7e-485c-977c-24c1524dce86"
+}, {
+  "name" : "808128-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "91b4a7bc-cb52-4b9b-bdc8-be096db5edee"
+}, {
+  "name" : "808129-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "0bbbf166-e1b3-4711-9ccf-5d9252f2eb93"
+}, {
+  "name" : "808130-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "255003a6-b99e-4179-8dbc-61034d39b9d5"
+}, {
+  "name" : "817662-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "3617ce42-a45c-4381-b5d8-7df53e09f493"
+}, {
+  "name" : "817663-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "65e6ef75-de22-4c4d-bea3-ae9e2ccae032"
+}, {
+  "name" : "817664-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "fb5291b7-3c0f-40dc-8fab-d19925bb2dbf"
+}, {
+  "name" : "817665-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "27d0a94c-7a79-48f8-9e6f-30cc78ef27d5"
+}, {
+  "name" : "817666-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "3a96f75d-2ce2-401f-970b-fe085de8b624"
+}, {
+  "name" : "817667-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "4dc01280-5ea9-4400-9066-e868d56e7ac6"
+}, {
+  "name" : "817668-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "b87e4145-0e77-4520-a972-937efa78336e"
+}, {
+  "name" : "817669-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "f3c2fa28-7239-4411-b423-d5e4eb44f8c0"
+}, {
+  "name" : "817670-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "58628972-bff0-473e-90b3-e1201400b773"
+}, {
+  "name" : "817671-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "fd4a28c3-ee88-4a30-82da-5992f7d09323"
+}, {
+  "name" : "817672-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "bcd0bef7-a52c-4d8e-82df-3c046d5115c7"
+}, {
+  "name" : "817673-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "18294e2c-6cfe-4ca4-af30-b409a6bb43f1"
+}, {
+  "name" : "817674-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "8ff00a2e-853f-480b-a60a-a22429ba1fc8"
+}, {
+  "name" : "817675-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "6003c5ea-3aae-48d5-ba29-fdab4984c7b5"
+}, {
+  "name" : "817676-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "0a3951a7-0b85-4237-962c-d30fb0ce1a25"
+}, {
+  "name" : "817677-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "60d8c759-5ebc-4799-8d27-38753ecdab60"
+}, {
+  "name" : "817678-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "6265f7eb-7722-4dbe-ab51-492e4a68e15d"
+}, {
+  "name" : "817679-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "c5518528-e824-4bd8-a703-d4d55f4f7cb8"
+}, {
+  "name" : "817680-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "56dd0d78-14aa-4d42-b914-7c787192c450"
+}, {
+  "name" : "817681-2_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "4c19fccf-f5e9-4937-943b-6da68a84c1f3"
+}, {
+  "name" : "817682-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "0a4dd426-d996-4ab2-980f-253d1c802251"
+}, {
+  "name" : "817683-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "c07b40ce-4c2d-41dc-9a87-1f0c2f47d29f"
+}, {
+  "name" : "817684-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "7bc00428-65e8-46cd-b532-c4ddda93dffc"
+}, {
+  "name" : "817685-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "f4dce7e3-e05f-4158-8c6c-40227c71d1a6"
+}, {
+  "name" : "817686-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "52a80d7a-cb2a-46b1-99ae-6616e19ddbd1"
+}, {
+  "name" : "817687-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "659c8f9d-9650-459a-bb6a-2d73af1cd126"
+}, {
+  "name" : "817688-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "f996dd7a-df9e-47c8-a4f9-740ee3d57556"
+}, {
+  "name" : "817689-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "5ae770c9-f8d3-4b68-a1ec-51708d46ed06"
+}, {
+  "name" : "817690-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "2d4a2f11-f223-4ce3-ae97-3be8b373d838"
+}, {
+  "name" : "817691-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "532fefbe-ad5e-468c-89a2-c56bab73afcf"
+}, {
+  "name" : "817692-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "05e065c8-5f59-4868-980d-aa131223df48"
+}, {
+  "name" : "817693-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "e19868b7-8ba2-4086-a89b-2ff990d76e53"
+}, {
+  "name" : "817694-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "66b51ac8-b168-4b27-812c-ac1808d5ac27"
+}, {
+  "name" : "817695-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "170febee-cd6c-4595-9775-84565fa37a13"
+}, {
+  "name" : "817696-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "09c0518f-1e3d-494d-bacd-207728e7b8fe"
+}, {
+  "name" : "817697-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "58354392-7eff-40d4-a230-7f5869d46305"
+}, {
+  "name" : "817698-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "4348b5b0-54bf-446c-8fdb-cfa97e61e23f"
+}, {
+  "name" : "817699-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "48250ce4-0816-48d8-8212-4faa02ae05fb"
+}, {
+  "name" : "817700-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "ebe97a1b-daa4-4d39-a2cf-15b3e7bd981d"
+}, {
+  "name" : "817701-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "873bbbef-7839-4454-bc02-8269df7252ae"
+}, {
+  "name" : "817702-1_CDCl3",
+  "type" : "fingerprint_bruker",
+  "contentType" : "application/zip",
+  "fa-id" : "5d7253a6-4866-46cd-84b8-f112c91e641a"
+} ]

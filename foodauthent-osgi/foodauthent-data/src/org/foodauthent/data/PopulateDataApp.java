@@ -9,6 +9,7 @@ import static org.foodauthent.data.DeleteEntities.clearAllSamples;
 import static org.foodauthent.data.DeleteEntities.clearAllSops;
 import static org.foodauthent.data.DeleteEntities.clearAllWorkflows;
 import static org.foodauthent.data.ListFiles.listBfrOilFingerprintFiles;
+import static org.foodauthent.data.ListFiles.listEFOilFingerprintFiles;
 import static org.foodauthent.data.PopulateFiles.populateFileMetadata;
 import static org.foodauthent.data.PopulateFiles.populateFiles;
 import static org.foodauthent.data.PopulateModels.populateFingerprintSets;
@@ -24,16 +25,22 @@ import static org.foodauthent.data.ReadModels.readBfrOilFileMetadata;
 import static org.foodauthent.data.ReadModels.readBfrOilFingerprintSets;
 import static org.foodauthent.data.ReadModels.readBfrOilFingerprints;
 import static org.foodauthent.data.ReadModels.readBfrOilSamples;
+import static org.foodauthent.data.ReadModels.readEFOilFileMetadata;
+import static org.foodauthent.data.ReadModels.readEFOilFingerprintSets;
+import static org.foodauthent.data.ReadModels.readEFOilFingerprints;
+import static org.foodauthent.data.ReadModels.readEFOilSamples;
 import static org.foodauthent.data.ReadModels.readOilProducts;
 import static org.foodauthent.rest.client.FASystemClientUtil.info;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.FileMetadata;
@@ -85,6 +92,7 @@ public class PopulateDataApp {
 
 	doit("Populate samples", () -> {
 	    populateSamples(readBfrOilSamples(), c);
+	    populateSamples(readEFOilSamples(), c);
 	});
 
 	doit("Populate fingerprint files", () -> {
@@ -93,14 +101,25 @@ public class PopulateDataApp {
 	    Map<String, UUID> name2uuidMap = metaList.stream()
 		    .collect(Collectors.toMap(m -> m.getName(), m -> m.getFaId()));
 	    populateFiles(listBfrOilFingerprintFiles(), name2uuidMap, c);
+
+	    metaList = readEFOilFileMetadata();
+	    populateFileMetadata(metaList, c);
+	    name2uuidMap = metaList.stream()
+		    .collect(Collectors.toMap(m -> m.getName(), m -> m.getFaId()));
+	    populateFiles(listEFOilFingerprintFiles(), name2uuidMap, c);
 	});
 
 	doit("Populate fingerprints", () -> {
 	    populateFingerprints(readBfrOilFingerprints(), c);
+	    populateFingerprints(readEFOilFingerprints(), c);
 	});
+	
 
 	List<UUID> fingerprintsetIds = doitWithRes("Populate fingerprint sets", () -> {
-	    return populateFingerprintSets(readBfrOilFingerprintSets(), c);
+	    List<UUID> uuids = new ArrayList<>();
+	    uuids.addAll(populateFingerprintSets(readBfrOilFingerprintSets(), c));
+	    uuids.addAll(populateFingerprintSets(readEFOilFingerprintSets(), c));
+	    return uuids;
 	});
 
 	if (runTrainingAndPredictionJobs) {
