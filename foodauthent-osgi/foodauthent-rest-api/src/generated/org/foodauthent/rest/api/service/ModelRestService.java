@@ -8,6 +8,8 @@ import javax.ws.rs.core.Response;
 
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelPageResult;
+import org.foodauthent.model.ObjectEvent;
+import org.foodauthent.model.PublishMetadata;
 
 import org.foodauthent.api.ModelService;
 import org.foodauthent.api.ServiceRegistry;
@@ -67,6 +69,21 @@ public interface ModelRestService{
     @Path("/model/{model-id}")
     @Produces({ "application/json" })
     public Response getModelById(@PathParam("model-id") java.util.UUID modelId
+);
+
+    /**
+     * TODO
+     *
+     * @param modelId 
+     * @param publishMetadata TODO
+     * @return the response
+     */
+    @POST
+    @Path("/model/{model-id}/publish")
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    public Response publishModelById(@PathParam("model-id") java.util.UUID modelId
+, PublishMetadata publishMetadata
 );
 }
 

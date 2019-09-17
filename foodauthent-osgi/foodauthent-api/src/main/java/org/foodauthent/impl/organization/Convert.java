@@ -38,6 +38,21 @@ class Convert {
 	    org.setStateOrProvinceName(postalAddress.getStateOrProvinceName());
 	    org.setPostalAddress(toAddressList(postalAddress));
 	}
+	String destionationIndicator = null;
+	if (organizationBase.getGln() != null) {
+	    destionationIndicator = organizationBase.getGln();
+	    if (organizationBase.getGcpLength() != null) {
+		destionationIndicator = destionationIndicator + ":"+organizationBase.getGcpLength();
+	    } else {
+		destionationIndicator = destionationIndicator + ":7";
+	    }
+	    if (organizationBase.getDiscoverySecret() != null) {
+		destionationIndicator = destionationIndicator + ":"+organizationBase.getDiscoverySecret();
+	    } else {
+		destionationIndicator = destionationIndicator + ":secret";
+	    }
+	    org.setDestinationIndicator(destionationIndicator);
+	}
 	return org;
     }
 
@@ -67,6 +82,13 @@ class Convert {
 		.setOrganizationName(organization.getName()) //
 		.setBillingAddress(toRestOrganizationalPostalAddress(organization.getRegisteredAddress())) //
 		.setPostalAddress(toRestOrganizationalPostalAddress(organization.getPostalAddress()));
+	final String destinationIndicator = organization.getDestinationIndicator();
+	if (destinationIndicator != null) {
+	    final String[] dests = destinationIndicator.split(":");
+	    builder.setGln(dests[0]);
+	    builder.setGcpLength(Integer.valueOf(dests[1]));
+	    builder.setDiscoverySecret(dests[2]);
+	}
 	return builder.build();
     }
 

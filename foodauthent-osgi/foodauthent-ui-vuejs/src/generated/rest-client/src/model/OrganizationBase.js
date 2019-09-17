@@ -72,6 +72,15 @@
       if (data.hasOwnProperty('businessCategory')) {
         obj['businessCategory'] = ApiClient.convertToType(data['businessCategory'], 'String');
       }
+      if (data.hasOwnProperty('gln')) {
+        obj['gln'] = ApiClient.convertToType(data['gln'], 'String');
+      }
+      if (data.hasOwnProperty('gcpLength')) {
+        obj['gcpLength'] = ApiClient.convertToType(data['gcpLength'], 'Number');
+      }
+      if (data.hasOwnProperty('discoverySecret')) {
+        obj['discoverySecret'] = ApiClient.convertToType(data['discoverySecret'], 'String');
+      }
       if (data.hasOwnProperty('postalAddress')) {
         obj['postalAddress'] = OrganizationalPostalAddress.constructFromObject(data['postalAddress']);
       }
@@ -102,6 +111,21 @@
    * @member {String} businessCategory
    */
   exports.prototype['businessCategory'] = undefined;
+  /**
+   * Global Location Number
+   * @member {String} gln
+   */
+  exports.prototype['gln'] = undefined;
+  /**
+   * business category
+   * @member {Number} gcpLength
+   */
+  exports.prototype['gcpLength'] = undefined;
+  /**
+   * Secret Hash Key for discovery service
+   * @member {String} discoverySecret
+   */
+  exports.prototype['discoverySecret'] = undefined;
   /**
    * @member {module:model/OrganizationalPostalAddress} postalAddress
    */

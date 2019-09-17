@@ -716,6 +716,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/Model'
 
+  '/model/{model-id}/publish':
+    post:
+      tags:
+        - model
+      summary: Pusblish model to discovery service by id.
+      description: TODO
+      operationId: publishModelById
+      parameters:
+        - name: model-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublishMetadata'
+        description: TODO
+        required: true
+      responses:
+        '200':
+          description: The published model's ObjectEvent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectEvent'
+
   /workflow:
     get:
       tags:
@@ -2045,7 +2074,30 @@ components:
           description: new password
           type: string
           nullable: false
-          
+
+    PublishMetadata:
+      description: DiscoveryServiceTransaction
+      type: object
+      x-no-faid: true
+      x-ui-vue.js:
+      - name: gtin
+      - name: bricks
+      properties:
+        gtin:
+          description: Global Trade Item Number
+          type: string
+        bricks:
+          description: bricks
+          type: array
+          items:
+            $ref: "#/components/schemas/GPCBrick"
+        epcis:
+          description: save to EPCIS Repository
+          type: boolean
+        discovery:
+          description: send to discovery services
+          type: boolean
+
     DiscoveryServiceTransaction:
       description: DiscoveryServiceTransaction
       type: object
@@ -2780,6 +2832,18 @@ components:
           description: business category
           type: string
           nullable: true
+        gln:
+          description: Global Location Number
+          type: string
+          nullable: true
+        gcpLength:
+          description: business category
+          type: integer
+          nullable: true
+        discoverySecret:
+          description: Secret Hash Key for discovery service
+          type: string
+          nullable: true
         postalAddress:
           $ref: '#/components/schemas/OrganizationalPostalAddress'
         billingAddress:
@@ -3138,7 +3202,7 @@ components:
             # deactivated for now since we don't use it
             # and it requires extra work to clean the BfR-tables
             # to fit the format
-            #format: date-time
+            #format: date
             type: string
             example: 2018-02-22T00:00:00.000Z
           lot:
@@ -3154,7 +3218,7 @@ components:
             # deactivated for now since we don't use it
             # and it requires extra work to clean the BfR-tables
             # to fit the format
-            #format: date-time
+            #format: date
             type: string
             example: 2018-09-12T00:00:00.000Z
           application:

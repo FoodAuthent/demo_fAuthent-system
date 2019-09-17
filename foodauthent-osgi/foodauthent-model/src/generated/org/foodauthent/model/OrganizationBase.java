@@ -27,6 +27,9 @@ public class OrganizationBase   extends FaModel {
   protected java.util.List<String> faxNumbers;
   protected java.util.List<String> phoneNumbers;
   protected String businessCategory;
+  protected String gln;
+  protected Integer gcpLength;
+  protected String discoverySecret;
   protected OrganizationalPostalAddress postalAddress;
   protected OrganizationalPostalAddress billingAddress;
   
@@ -48,6 +51,9 @@ public class OrganizationBase   extends FaModel {
     faxNumbers = immutable(builder.faxNumbers);
     phoneNumbers = immutable(builder.phoneNumbers);
     businessCategory = immutable(builder.businessCategory);
+    gln = immutable(builder.gln);
+    gcpLength = immutable(builder.gcpLength);
+    discoverySecret = immutable(builder.discoverySecret);
     postalAddress = immutable(builder.postalAddress);
     billingAddress = immutable(builder.billingAddress);
     
@@ -69,7 +75,7 @@ public class OrganizationBase   extends FaModel {
             return false;
         }
         OrganizationBase ent = (OrganizationBase)o;
-        return Objects.equals(description, ent.description) && Objects.equals(faxNumbers, ent.faxNumbers) && Objects.equals(phoneNumbers, ent.phoneNumbers) && Objects.equals(businessCategory, ent.businessCategory) && Objects.equals(postalAddress, ent.postalAddress) && Objects.equals(billingAddress, ent.billingAddress);
+        return Objects.equals(description, ent.description) && Objects.equals(faxNumbers, ent.faxNumbers) && Objects.equals(phoneNumbers, ent.phoneNumbers) && Objects.equals(businessCategory, ent.businessCategory) && Objects.equals(gln, ent.gln) && Objects.equals(gcpLength, ent.gcpLength) && Objects.equals(discoverySecret, ent.discoverySecret) && Objects.equals(postalAddress, ent.postalAddress) && Objects.equals(billingAddress, ent.billingAddress);
     }
 
 
@@ -103,6 +109,30 @@ public class OrganizationBase   extends FaModel {
    */
   public String getBusinessCategory() {
         return businessCategory;
+    }
+    
+  /**
+   * Global Location Number
+   * @return gln 
+   */
+  public String getGln() {
+        return gln;
+    }
+    
+  /**
+   * business category
+   * @return gcpLength 
+   */
+  public Integer getGcpLength() {
+        return gcpLength;
+    }
+    
+  /**
+   * Secret Hash Key for discovery service
+   * @return discoverySecret 
+   */
+  public String getDiscoverySecret() {
+        return discoverySecret;
     }
     
   /**
@@ -143,6 +173,9 @@ public class OrganizationBase   extends FaModel {
         builder.faxNumbers = entity.faxNumbers;
         builder.phoneNumbers = entity.phoneNumbers;
         builder.businessCategory = entity.businessCategory;
+        builder.gln = entity.gln;
+        builder.gcpLength = entity.gcpLength;
+        builder.discoverySecret = entity.discoverySecret;
         builder.postalAddress = entity.postalAddress;
         builder.billingAddress = entity.billingAddress;
  		return builder;
@@ -159,6 +192,9 @@ public class OrganizationBase   extends FaModel {
         private java.util.List<String> faxNumbers = new java.util.ArrayList<>();
         private java.util.List<String> phoneNumbers = new java.util.ArrayList<>();
         private String businessCategory;
+        private String gln;
+        private Integer gcpLength;
+        private String discoverySecret;
         private OrganizationalPostalAddress postalAddress;
         private OrganizationalPostalAddress billingAddress;
 
@@ -195,6 +231,33 @@ public class OrganizationBase   extends FaModel {
          */
         public OrganizationBaseBuilder setBusinessCategory(String businessCategory) {
              this.businessCategory = businessCategory;
+             return this;
+        }
+
+        /**
+         * Global Location Number
+         * @return gln 
+         */
+        public OrganizationBaseBuilder setGln(String gln) {
+             this.gln = gln;
+             return this;
+        }
+
+        /**
+         * business category
+         * @return gcpLength 
+         */
+        public OrganizationBaseBuilder setGcpLength(Integer gcpLength) {
+             this.gcpLength = gcpLength;
+             return this;
+        }
+
+        /**
+         * Secret Hash Key for discovery service
+         * @return discoverySecret 
+         */
+        public OrganizationBaseBuilder setDiscoverySecret(String discoverySecret) {
+             this.discoverySecret = discoverySecret;
              return this;
         }
 

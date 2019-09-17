@@ -1,20 +1,36 @@
 package org.foodauthent.fakx;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.*;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.foodauthent.model.*;
+import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.ContentTypeEnum;
+import org.foodauthent.model.Fingerprint;
+import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.FingerprintType;
+import org.foodauthent.model.Model;
+import org.foodauthent.model.ModelType;
+import org.foodauthent.model.Prediction;
+import org.foodauthent.model.Product;
+import org.foodauthent.model.SOP;
+import org.foodauthent.model.Tag;
+import org.foodauthent.model.Workflow;
+import org.foodauthent.model.WorkflowIOTypes;
+import org.foodauthent.model.WorkflowParameter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 public class FAKXTest {
 

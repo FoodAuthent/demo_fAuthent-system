@@ -65,6 +65,15 @@ public interface OrganizationBaseMixIn {
     @JsonProperty("businessCategory")
     public String getBusinessCategory();
     
+    @JsonProperty("gln")
+    public String getGln();
+    
+    @JsonProperty("gcpLength")
+    public Integer getGcpLength();
+    
+    @JsonProperty("discoverySecret")
+    public String getDiscoverySecret();
+    
     @JsonProperty("postalAddress")
     public OrganizationalPostalAddress getPostalAddress();
     
@@ -105,6 +114,15 @@ public interface OrganizationBaseMixIn {
         
         @JsonProperty("businessCategory")
         public OrganizationBaseMixInBuilder setBusinessCategory(final String businessCategory);
+        
+        @JsonProperty("gln")
+        public OrganizationBaseMixInBuilder setGln(final String gln);
+        
+        @JsonProperty("gcpLength")
+        public OrganizationBaseMixInBuilder setGcpLength(final Integer gcpLength);
+        
+        @JsonProperty("discoverySecret")
+        public OrganizationBaseMixInBuilder setDiscoverySecret(final String discoverySecret);
         
         @JsonProperty("postalAddress")
         public OrganizationBaseMixInBuilder setPostalAddress(final OrganizationalPostalAddress postalAddress);

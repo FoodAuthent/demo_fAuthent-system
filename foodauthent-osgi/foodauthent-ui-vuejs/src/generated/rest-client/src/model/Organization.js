@@ -118,6 +118,24 @@ exports.prototype['phoneNumbers'] = undefined;
 exports.prototype['businessCategory'] = undefined;
 
   /**
+   * Global Location Number
+   * @member {String} gln
+   */
+exports.prototype['gln'] = undefined;
+
+  /**
+   * business category
+   * @member {Number} gcpLength
+   */
+exports.prototype['gcpLength'] = undefined;
+
+  /**
+   * Secret Hash Key for discovery service
+   * @member {String} discoverySecret
+   */
+exports.prototype['discoverySecret'] = undefined;
+
+  /**
    * @member {module:model/OrganizationalPostalAddress} postalAddress
    */
 exports.prototype['postalAddress'] = undefined;

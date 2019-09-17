@@ -12,6 +12,8 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelPageResult;
+import org.foodauthent.model.ObjectEvent;
+import org.foodauthent.model.PublishMetadata;
 
 import org.foodauthent.api.ModelService;
 import org.foodauthent.api.ServiceRegistry;
@@ -72,6 +74,19 @@ public class ModelRestServiceImpl implements ModelRestService {
     public Response getModelById(java.util.UUID modelId) {
         
             Object res = service.getModelById(modelId);
+            return Response.ok(res).build();
+    }
+
+    /**
+     * TODO
+     *
+     * @param modelId 
+     * @param publishMetadata TODO
+     * @return the response
+     */
+    public Response publishModelById(java.util.UUID modelId, PublishMetadata publishMetadata) {
+        
+            Object res = service.publishModelById(modelId, publishMetadata);
             return Response.ok(res).build();
     }
 }

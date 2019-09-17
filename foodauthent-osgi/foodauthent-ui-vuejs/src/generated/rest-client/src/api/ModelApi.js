@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/Model', '../model/ModelPageResult'], factory);
+    define(['../ApiClient', '../model/Model', '../model/ModelPageResult', '../model/ObjectEvent', '../model/PublishMetadata'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Model'), require('../model/ModelPageResult'));
+    module.exports = factory(require('../ApiClient'), require('../model/Model'), require('../model/ModelPageResult'), require('../model/ObjectEvent'), require('../model/PublishMetadata'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.ModelApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.Model, root.FoodAuthentSwaggerApi.ModelPageResult);
+    root.FoodAuthentSwaggerApi.ModelApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.Model, root.FoodAuthentSwaggerApi.ModelPageResult, root.FoodAuthentSwaggerApi.ObjectEvent, root.FoodAuthentSwaggerApi.PublishMetadata);
   }
-}(this, function(ApiClient, Model, ModelPageResult) {
+}(this, function(ApiClient, Model, ModelPageResult, ObjectEvent, PublishMetadata) {
   'use strict';
 
   /**
@@ -187,6 +187,60 @@
 
       return this.apiClient.callApi(
         '/model/{model-id}', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the publishModelById operation.
+     * @callback module:api/ModelApi~publishModelByIdCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/ObjectEvent} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Pusblish model to discovery service by id.
+     * TODO
+     * @param {String} modelId 
+     * @param {module:model/PublishMetadata} publishMetadata TODO
+     * @param {module:api/ModelApi~publishModelByIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/ObjectEvent}
+     */
+    this.publishModelById = function(modelId, publishMetadata, callback) {
+      var postBody = publishMetadata;
+
+      // verify the required parameter 'modelId' is set
+      if (modelId === undefined || modelId === null) {
+        throw new Error("Missing the required parameter 'modelId' when calling publishModelById");
+      }
+
+      // verify the required parameter 'publishMetadata' is set
+      if (publishMetadata === undefined || publishMetadata === null) {
+        throw new Error("Missing the required parameter 'publishMetadata' when calling publishModelById");
+      }
+
+
+      var pathParams = {
+        'model-id': modelId
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['jwtAuth'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = 'ObjectEvent';
+
+      return this.apiClient.callApi(
+        '/model/{model-id}/publish', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

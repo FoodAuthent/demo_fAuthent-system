@@ -120,8 +120,10 @@ public class FakxExporter implements Exporter {
 		modelId.stream().map(id -> service.getFaModelByUUID(id, Model.class)).collect(Collectors.toList()));
 	builder.prediction(predictionId.stream().map(id -> service.getFaModelByUUID(id, Prediction.class))
 		.collect(Collectors.toList()));
+	/*
 	builder.fingerprintset(fingerprintSetId.stream().map(id -> service.getFaModelByUUID(id, FingerprintSet.class))
 		.collect(Collectors.toList()));
+		*/
 
 	Archive archive = builder.build();
 	

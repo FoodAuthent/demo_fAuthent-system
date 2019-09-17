@@ -100,6 +100,8 @@ public class ModelUtil {
         mapper.addMixIn(Product.ProductBuilder.class, ProductMixIn.ProductMixInBuilder.class);
         mapper.addMixIn(ProductPageResult.class, ProductPageResultMixIn.class);
         mapper.addMixIn(ProductPageResult.ProductPageResultBuilder.class, ProductPageResultMixIn.ProductPageResultMixInBuilder.class);
+        mapper.addMixIn(PublishMetadata.class, PublishMetadataMixIn.class);
+        mapper.addMixIn(PublishMetadata.PublishMetadataBuilder.class, PublishMetadataMixIn.PublishMetadataMixInBuilder.class);
         mapper.addMixIn(QuantityElement.class, QuantityElementMixIn.class);
         mapper.addMixIn(QuantityElement.QuantityElementBuilder.class, QuantityElementMixIn.QuantityElementMixInBuilder.class);
         mapper.addMixIn(SOP.class, SOPMixIn.class);

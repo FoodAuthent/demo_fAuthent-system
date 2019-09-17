@@ -5,6 +5,8 @@ package org.foodauthent.api;
 
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelPageResult;
+import org.foodauthent.model.ObjectEvent;
+import org.foodauthent.model.PublishMetadata;
 
 import org.foodauthent.common.exception.FAExceptions;
 
@@ -44,5 +46,15 @@ public interface ModelService {
      * @return the result
      */
     Model getModelById(java.util.UUID modelId);
+        
+    /**
+     * TODO
+     *
+     * @param modelId 
+     * @param publishMetadata TODO
+     *
+     * @return the result
+     */
+    ObjectEvent publishModelById(java.util.UUID modelId, PublishMetadata publishMetadata);
         
 }

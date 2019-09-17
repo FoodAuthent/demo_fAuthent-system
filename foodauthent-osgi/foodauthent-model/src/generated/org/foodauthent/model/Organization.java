@@ -40,6 +40,9 @@ public class Organization extends OrganizationBase  {
     faxNumbers = immutable(builder.faxNumbers);
     phoneNumbers = immutable(builder.phoneNumbers);
     businessCategory = immutable(builder.businessCategory);
+    gln = immutable(builder.gln);
+    gcpLength = immutable(builder.gcpLength);
+    discoverySecret = immutable(builder.discoverySecret);
     postalAddress = immutable(builder.postalAddress);
     billingAddress = immutable(builder.billingAddress);
     if(builder.dn == null) {
@@ -111,6 +114,9 @@ public class Organization extends OrganizationBase  {
         builder.faxNumbers = entity.faxNumbers;
         builder.phoneNumbers = entity.phoneNumbers;
         builder.businessCategory = entity.businessCategory;
+        builder.gln = entity.gln;
+        builder.gcpLength = entity.gcpLength;
+        builder.discoverySecret = entity.discoverySecret;
         builder.postalAddress = entity.postalAddress;
         builder.billingAddress = entity.billingAddress;
         builder.dn = entity.dn;
@@ -129,6 +135,9 @@ public class Organization extends OrganizationBase  {
         private java.util.List<String> faxNumbers = new java.util.ArrayList<>();
         private java.util.List<String> phoneNumbers = new java.util.ArrayList<>();
         private String businessCategory;
+        private String gln;
+        private Integer gcpLength;
+        private String discoverySecret;
         private OrganizationalPostalAddress postalAddress;
         private OrganizationalPostalAddress billingAddress;
         private String dn;
@@ -167,6 +176,33 @@ public class Organization extends OrganizationBase  {
          */
         public OrganizationBuilder setBusinessCategory(String businessCategory) {
              this.businessCategory = businessCategory;
+             return this;
+        }
+
+        /**
+         * Global Location Number
+         * @return gln 
+         */
+        public OrganizationBuilder setGln(String gln) {
+             this.gln = gln;
+             return this;
+        }
+
+        /**
+         * business category
+         * @return gcpLength 
+         */
+        public OrganizationBuilder setGcpLength(Integer gcpLength) {
+             this.gcpLength = gcpLength;
+             return this;
+        }
+
+        /**
+         * Secret Hash Key for discovery service
+         * @return discoverySecret 
+         */
+        public OrganizationBuilder setDiscoverySecret(String discoverySecret) {
+             this.discoverySecret = discoverySecret;
              return this;
         }
 
