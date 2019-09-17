@@ -199,6 +199,7 @@
 		<module>foodauthent-model</module>
 		<module>foodauthent-jersey-filter</module>
 		<module>foodauthent-osgi-logging</module>
+		<module>foodauthent-epcis-ftrace</module>
 		<module>foodauthent-api</module>
 		<module>foodauthent-api-internal</module>
 		<module>foodauthent-impl-knime</module>
