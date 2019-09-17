@@ -194,7 +194,7 @@ public class FTraceEPCISEventServiceImpl implements EPCISEventService {
 		if (event.getEventTime() == null) {
 			return datatypeFactory.newXMLGregorianCalendar(new GregorianCalendar());
 		}
-		final GregorianCalendar cal = GregorianCalendar.from(event.getEventTime().atStartOfDay(ZoneId.systemDefault()));
+		final GregorianCalendar cal = GregorianCalendar.from(event.getEventTime().atZoneSameInstant(ZoneId.systemDefault()));
 		return datatypeFactory.newXMLGregorianCalendar(cal);
 	}
 

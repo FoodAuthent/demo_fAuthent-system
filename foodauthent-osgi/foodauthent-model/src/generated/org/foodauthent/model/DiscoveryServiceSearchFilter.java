@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import org.foodauthent.model.BizTransaction;
 import org.foodauthent.model.Epc;
 import org.foodauthent.model.GPCBrick;
@@ -39,8 +39,8 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   protected java.util.List<BizTransaction> sourceList;
   protected java.util.List<BizTransaction> destinationList;
   protected java.util.List<BizTransaction> ilmd;
-  protected LocalDate eventTimeFrom;
-  protected LocalDate eventTimeTo;
+  protected OffsetDateTime eventTimeFrom;
+  protected OffsetDateTime eventTimeTo;
   
   public String getTypeID() {
     return "DiscoveryServiceSearchFilter";
@@ -193,7 +193,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
    * start date for the research
    * @return eventTimeFrom 
    */
-  public LocalDate getEventTimeFrom() {
+  public OffsetDateTime getEventTimeFrom() {
         return eventTimeFrom;
     }
     
@@ -201,7 +201,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
    * end date for the research
    * @return eventTimeTo 
    */
-  public LocalDate getEventTimeTo() {
+  public OffsetDateTime getEventTimeTo() {
         return eventTimeTo;
     }
     
@@ -259,8 +259,8 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         private java.util.List<BizTransaction> sourceList = new java.util.ArrayList<>();
         private java.util.List<BizTransaction> destinationList = new java.util.ArrayList<>();
         private java.util.List<BizTransaction> ilmd = new java.util.ArrayList<>();
-        private LocalDate eventTimeFrom;
-        private LocalDate eventTimeTo;
+        private OffsetDateTime eventTimeFrom;
+        private OffsetDateTime eventTimeTo;
 
         /**
          * List of epcs
@@ -374,7 +374,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
          * start date for the research
          * @return eventTimeFrom 
          */
-        public DiscoveryServiceSearchFilterBuilder setEventTimeFrom(LocalDate eventTimeFrom) {
+        public DiscoveryServiceSearchFilterBuilder setEventTimeFrom(OffsetDateTime eventTimeFrom) {
              this.eventTimeFrom = eventTimeFrom;
              return this;
         }
@@ -383,7 +383,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
          * end date for the research
          * @return eventTimeTo 
          */
-        public DiscoveryServiceSearchFilterBuilder setEventTimeTo(LocalDate eventTimeTo) {
+        public DiscoveryServiceSearchFilterBuilder setEventTimeTo(OffsetDateTime eventTimeTo) {
              this.eventTimeTo = eventTimeTo;
              return this;
         }

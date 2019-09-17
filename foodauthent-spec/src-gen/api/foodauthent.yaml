@@ -2177,7 +2177,8 @@ components:
         eventTime:
           description: When the event happened
           type: string
-          format: date
+          format: date-time
+          example: "2018-09-10T09:15:30+01:00 or 2018-09-10T09:15:30Z"
           
     DiscoveryServiceTransactionPageResult:
       type: object
@@ -2252,11 +2253,13 @@ components:
         eventTimeFrom:
           description: start date for the research
           type: string
-          format: date
+          format: date-time
+          example: "2018-09-10T09:15:30+01:00 or 2018-09-10T09:15:30Z"
         eventTimeTo:
           description: end date for the research
           type: string
-          format: date
+          format: date-time
+          example: "2018-09-10T09:15:30+01:00 or 2018-09-10T09:15:30Z"
     
             
     Epc:
@@ -2771,7 +2774,8 @@ components:
         eventTime:
           description: When the event happened
           type: string
-          format: date
+          format: date-time
+          example: "2007-12-03T10:15:30+01:00"
 
     ObjectEventPageResult:
       type: object

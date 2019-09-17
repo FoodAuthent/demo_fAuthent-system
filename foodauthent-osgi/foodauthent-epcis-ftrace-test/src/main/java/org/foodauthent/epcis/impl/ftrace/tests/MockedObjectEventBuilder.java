@@ -1,6 +1,6 @@
 package org.foodauthent.epcis.impl.ftrace.tests;
 
-import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -17,7 +17,7 @@ public class MockedObjectEventBuilder {
 		final ObjectEvent objectEvent = ObjectEvent.builder() //
 				.setAction(ActionEnum.ADD) //
 				.setBizStep("urn:epcglobal:cbv:bizstep:commissioning") //
-				.setEventTime(LocalDate.now()) //
+				.setEventTime(OffsetDateTime.now()) //
 				.setEpcList(Arrays.asList(
 						"ni://api.foodauthent.net/sha-256;9ed1b204ec3f1b37d318ceaeb3f79dfd7d9743234512bc34818b4c736f82beca?type=fakx")
 						.stream().map(s -> {

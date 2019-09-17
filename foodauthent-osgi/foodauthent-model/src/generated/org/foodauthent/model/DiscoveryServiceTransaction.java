@@ -3,6 +3,7 @@
  */
 package org.foodauthent.model;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -10,11 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import java.time.LocalDate;
-import org.foodauthent.model.BizTransaction;
-import org.foodauthent.model.Epc;
-import org.foodauthent.model.GPCBrick;
-import org.foodauthent.model.QuantityElement;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 
@@ -63,7 +60,8 @@ public class DiscoveryServiceTransaction   extends FaModel {
   protected java.util.List<BizTransaction> sourceList;
   protected java.util.List<BizTransaction> destinationList;
   protected java.util.List<BizTransaction> ilmd;
-  protected LocalDate eventTime;
+  @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+  protected OffsetDateTime eventTime;
   
   public String getTypeID() {
     return "DiscoveryServiceTransaction";
@@ -221,7 +219,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * When the event happened
    * @return eventTime 
    */
-  public LocalDate getEventTime() {
+  public OffsetDateTime getEventTime() {
         return eventTime;
     }
     
@@ -280,7 +278,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         private java.util.List<BizTransaction> sourceList = new java.util.ArrayList<>();
         private java.util.List<BizTransaction> destinationList = new java.util.ArrayList<>();
         private java.util.List<BizTransaction> ilmd = new java.util.ArrayList<>();
-        private LocalDate eventTime;
+        private OffsetDateTime eventTime;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -403,7 +401,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * When the event happened
          * @return eventTime 
          */
-        public DiscoveryServiceTransactionBuilder setEventTime(LocalDate eventTime) {
+        public DiscoveryServiceTransactionBuilder setEventTime(OffsetDateTime eventTime) {
              this.eventTime = eventTime;
              return this;
         }

@@ -113,7 +113,7 @@ public class ModelServiceImpl implements ModelService {
 	final ObjectEventBuilder builder = ObjectEvent.builder() //
 		.setAction(ActionEnum.ADD) //
 		.setBizStep("urn:epcglobal:cbv:bizstep:commissioning") //
-		.setEventTime(LocalDate.now()) //
+		.setEventTime(OffsetDateTime.now()) //
 		.setEpcList(Arrays.asList(
 			String.format("ni://api.foodauthent.net/sha-256;%s?bt=%s&ffmt=application/zip", sha256, bt))
 			.stream().map(s -> {

@@ -3,7 +3,7 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import org.foodauthent.model.BizTransaction;
 import org.foodauthent.model.Epc;
 import org.foodauthent.model.GPCBrick;
@@ -88,10 +88,10 @@ public interface DiscoveryServiceSearchFilterMixIn {
     public java.util.List<BizTransaction> getIlmd();
     
     @JsonProperty("eventTimeFrom")
-    public LocalDate getEventTimeFrom();
+    public OffsetDateTime getEventTimeFrom();
     
     @JsonProperty("eventTimeTo")
-    public LocalDate getEventTimeTo();
+    public OffsetDateTime getEventTimeTo();
     
 
     /**
@@ -149,10 +149,10 @@ public interface DiscoveryServiceSearchFilterMixIn {
         public DiscoveryServiceSearchFilterMixInBuilder setIlmd(final java.util.List<BizTransaction> ilmd);
         
         @JsonProperty("eventTimeFrom")
-        public DiscoveryServiceSearchFilterMixInBuilder setEventTimeFrom(final LocalDate eventTimeFrom);
+        public DiscoveryServiceSearchFilterMixInBuilder setEventTimeFrom(final OffsetDateTime eventTimeFrom);
         
         @JsonProperty("eventTimeTo")
-        public DiscoveryServiceSearchFilterMixInBuilder setEventTimeTo(final LocalDate eventTimeTo);
+        public DiscoveryServiceSearchFilterMixInBuilder setEventTimeTo(final OffsetDateTime eventTimeTo);
         
     }
 

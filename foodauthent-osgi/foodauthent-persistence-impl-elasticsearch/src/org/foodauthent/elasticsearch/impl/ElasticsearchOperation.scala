@@ -1,25 +1,30 @@
 package org.foodauthent.elasticsearch.impl
 
 import java.io.InputStream
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
 import java.util.Collections
+import java.util.Optional
 
+import scala.collection.JavaConverters.seqAsJavaListConverter
 import scala.collection.Set
 import scala.io.Source
-import scala.reflect.ClassTag
 import scala.reflect.ManifestFactory
 
 import org.apache.http.entity.StringEntity
 import org.apache.http.message.BasicHeader
+import org.apache.http.util.EntityUtils
 import org.elasticsearch.action.delete.DeleteRequest
 import org.elasticsearch.action.get.GetRequest
 import org.elasticsearch.action.get.MultiGetRequest
 import org.elasticsearch.action.index.IndexRequest
 import org.elasticsearch.action.search.SearchRequest
 import org.elasticsearch.action.update.UpdateRequest
+import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.ResponseException
-import org.elasticsearch.client.RestClient
 import org.elasticsearch.client.RestHighLevelClient
 import org.elasticsearch.common.xcontent.XContentType
+import org.elasticsearch.index.query.IdsQueryBuilder
 import org.elasticsearch.index.query.QueryBuilder
 import org.elasticsearch.index.query.QueryBuilders
 import org.elasticsearch.search.builder.SearchSourceBuilder
@@ -28,18 +33,13 @@ import org.elasticsearch.search.sort.FieldSortBuilder
 import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResult
 import org.foodauthent.elasticsearch.impl.ElasticsearchUtil.SearchResultItem
 import org.foodauthent.model.json.ObjectMapperUtil
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.json4s.jackson.Json4sScalaModule
 import org.slf4j.LoggerFactory
-import java.lang.reflect.{ Type, ParameterizedType }
+
 import com.fasterxml.jackson.core.`type`.TypeReference
-import collection.JavaConverters._
-import org.elasticsearch.index.query.IdsQueryBuilder
-import org.elasticsearch.index.query.IdsQueryBuilder
-import org.elasticsearch.client.RequestOptions
-import java.util.Optional
-import org.apache.http.util.EntityUtils
 import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.databind.DeserializationFeature
 
 /**
  * Commonly used operations for communicating with Elasticsearch
@@ -67,10 +67,12 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
 
   def write[T <: AnyRef](value: T): String = {
     mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    mapper.registerModule(new JavaTimeModule());
     mapper.writeValueAsString(value)
   }
 
   def read[T](json: String)(implicit mf: Manifest[T]): T = {
+    mapper.enable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
     mapper.readValue(json, typeReference[T](mf))
   }
 

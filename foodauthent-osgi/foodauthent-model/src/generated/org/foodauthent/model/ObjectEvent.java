@@ -3,6 +3,7 @@
  */
 package org.foodauthent.model;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -10,11 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import java.time.LocalDate;
-import org.foodauthent.model.BizTransaction;
-import org.foodauthent.model.Epc;
-import org.foodauthent.model.GPCBrick;
-import org.foodauthent.model.QuantityElement;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 
@@ -60,7 +57,8 @@ public class ObjectEvent   extends FaModel {
   protected java.util.List<BizTransaction> bizTransactionList;
   protected String gtin;
   protected java.util.List<GPCBrick> bricks;
-  protected LocalDate eventTime;
+  @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
+  protected OffsetDateTime eventTime;
   
   public String getTypeID() {
     return "ObjectEvent";
@@ -191,7 +189,7 @@ public class ObjectEvent   extends FaModel {
    * When the event happened
    * @return eventTime 
    */
-  public LocalDate getEventTime() {
+  public OffsetDateTime getEventTime() {
         return eventTime;
     }
     
@@ -244,7 +242,7 @@ public class ObjectEvent   extends FaModel {
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
         private String gtin;
         private java.util.List<GPCBrick> bricks = new java.util.ArrayList<>();
-        private LocalDate eventTime;
+        private OffsetDateTime eventTime;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -340,7 +338,7 @@ public class ObjectEvent   extends FaModel {
          * When the event happened
          * @return eventTime 
          */
-        public ObjectEventBuilder setEventTime(LocalDate eventTime) {
+        public ObjectEventBuilder setEventTime(OffsetDateTime eventTime) {
              this.eventTime = eventTime;
              return this;
         }
