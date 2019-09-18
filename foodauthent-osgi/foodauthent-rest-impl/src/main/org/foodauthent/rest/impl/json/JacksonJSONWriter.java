@@ -18,9 +18,10 @@ import org.foodauthent.model.json.ObjectMapperUtil;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class JacksonJSONWriter implements MessageBodyWriter<Object>, Feature {
-	private final ObjectMapper mapper = ObjectMapperUtil.getObjectMapper();
+	private final ObjectMapper mapper = ObjectMapperUtil.getObjectMapper().registerModule(new JavaTimeModule());;
 
 	/**
 	 * {@inheritDoc}
