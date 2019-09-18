@@ -59,6 +59,9 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
     
 
   val mapper = ObjectMapperUtil.newObjectMapper.registerModule(new Json4sScalaModule)
+    .registerModule(new JavaTimeModule())
+    .enable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE)
+    .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
   /**
    * log4j logger
@@ -66,13 +69,10 @@ class ElasticsearchOperation(val client: RestHighLevelClient) {
   val LOG = LoggerFactory.getLogger(getClass)
 
   def write[T <: AnyRef](value: T): String = {
-    mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-    mapper.registerModule(new JavaTimeModule());
     mapper.writeValueAsString(value)
   }
 
   def read[T](json: String)(implicit mf: Manifest[T]): T = {
-    mapper.enable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
     mapper.readValue(json, typeReference[T](mf))
   }
 
