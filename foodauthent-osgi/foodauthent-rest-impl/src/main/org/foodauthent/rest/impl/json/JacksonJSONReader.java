@@ -17,13 +17,16 @@ import org.apache.commons.io.IOUtils;
 import org.foodauthent.model.json.ObjectMapperUtil;
 
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class JacksonJSONReader implements MessageBodyReader<Object>, Feature {
 
-	private final ObjectMapper mapper = ObjectMapperUtil.getObjectMapper().registerModule(new JavaTimeModule());
+	private final ObjectMapper mapper = ObjectMapperUtil.getObjectMapper() //
+			.registerModule(new JavaTimeModule()). //
+			enable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
 
 	@Override
 	public boolean isReadable(Class<?> arg0, Type arg1, Annotation[] arg2, MediaType arg3) {
