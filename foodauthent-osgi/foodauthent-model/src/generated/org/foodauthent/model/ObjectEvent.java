@@ -57,7 +57,6 @@ public class ObjectEvent   extends FaModel {
   protected java.util.List<BizTransaction> bizTransactionList;
   protected String gtin;
   protected java.util.List<GPCBrick> bricks;
-  @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
   protected OffsetDateTime eventTime;
   
   public String getTypeID() {

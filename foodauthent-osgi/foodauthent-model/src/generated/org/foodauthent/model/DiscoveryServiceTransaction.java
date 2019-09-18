@@ -60,7 +60,6 @@ public class DiscoveryServiceTransaction   extends FaModel {
   protected java.util.List<BizTransaction> sourceList;
   protected java.util.List<BizTransaction> destinationList;
   protected java.util.List<BizTransaction> ilmd;
-  @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
   protected OffsetDateTime eventTime;
   
   public String getTypeID() {
