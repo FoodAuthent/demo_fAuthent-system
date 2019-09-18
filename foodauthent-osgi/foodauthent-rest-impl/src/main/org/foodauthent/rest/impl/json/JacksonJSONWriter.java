@@ -21,7 +21,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class JacksonJSONWriter implements MessageBodyWriter<Object>, Feature {
-	private final ObjectMapper mapper = ObjectMapperUtil.getObjectMapper().registerModule(new JavaTimeModule());;
+	
+	private final ObjectMapper mapper = ObjectMapperUtil.getObjectMapper().registerModule(new JavaTimeModule())
+			.registerModule(new OffsetDateTimeModule());
 
 	/**
 	 * {@inheritDoc}
