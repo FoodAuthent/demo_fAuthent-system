@@ -1758,7 +1758,7 @@ paths:
                 type: array
                 items: 
                    $ref: '#/components/schemas/DiscoveryServiceTransaction' 
-        description: TODO
+        description: list of DiscoveryServiceTransactions
                                 
         
   '/discovery/transaction/{transaction-id}':
@@ -2166,7 +2166,7 @@ components:
           type: array
           items:
             type: string
-          example: "10000111/20000750/30000207,10000111/20000352/30015641"
+          example: "[ '10000111/20000750/30000207', '10000111/20000352/30015641' ]"
         eventTime:
           description: When the event happened
           type: string

@@ -60,7 +60,7 @@
      * Creates/adds a new Transaction.
      * Creates/adds a new Transaction.
      * @param {Object} opts Optional parameters
-     * @param {Array.<DiscoveryServiceTransaction>} opts.discoveryServiceTransaction TODO
+     * @param {Array.<DiscoveryServiceTransaction>} opts.discoveryServiceTransaction list of DiscoveryServiceTransactions
      * @param {module:api/TransactionApi~createTransactionCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<String>}
      */

@@ -53,7 +53,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<UUID> createTransaction(List<DiscoveryServiceTransaction> requestBody) {
-	List<UUID> results = new ArrayList();
+	List<UUID> results = new ArrayList<UUID>();
 	for(DiscoveryServiceTransaction dst : requestBody) {
 	    persistenceService.save(dst);
 	    results.add(dst.getFaId());

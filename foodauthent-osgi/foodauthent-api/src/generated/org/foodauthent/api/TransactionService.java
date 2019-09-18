@@ -20,7 +20,7 @@ public interface TransactionService {
     /**
      * Creates/adds a new Transaction.
      *
-     * @param requestBody TODO
+     * @param requestBody list of DiscoveryServiceTransactions
      *
      * @return the result
      */

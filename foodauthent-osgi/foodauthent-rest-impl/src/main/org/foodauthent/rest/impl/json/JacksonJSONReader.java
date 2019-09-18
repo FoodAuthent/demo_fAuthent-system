@@ -3,8 +3,10 @@ package org.foodauthent.rest.impl.json;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Feature;
@@ -33,19 +35,37 @@ public class JacksonJSONReader implements MessageBodyReader<Object>, Feature {
 		return arg3.isCompatible(MediaType.APPLICATION_JSON_TYPE);
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public Object readFrom(final Class<Object> type, final Type genericType, final Annotation[] annotations,
 			final MediaType mediaType, final MultivaluedMap<String, String> httpHeaders, final InputStream entityStream)
 			throws IOException, WebApplicationException {
-		// TODO: please improve
-		// return string type without any parsing
-		if (String.class.isAssignableFrom(type)) {
+
+		// TODO:
+		// if someone's really having time: use to strategy pattern ;-)
+		
+		ObjectReader reader = null;
+		if (ParameterizedType.class.isAssignableFrom(genericType.getClass()) //
+				&& ((ParameterizedType) genericType).getActualTypeArguments().length == 1 //
+				&& Collection.class.isAssignableFrom(type)) {
+			try {
+
+				reader = mapper.readerFor(mapper.getTypeFactory().constructCollectionType(
+						(Class<? extends Collection>) type,
+						Class.forName(((ParameterizedType) genericType).getActualTypeArguments()[0].getTypeName())));
+			} catch (ClassNotFoundException e) {
+				reader = mapper.readerFor(type);
+			}
+
+		} else if (String.class.isAssignableFrom(type)) {
+			// TODO: please improve
+			// return string type without any parsing
 			return IOUtils.toString(entityStream, StandardCharsets.UTF_8);
+		} else {
+			reader = mapper.readerFor(type);
 		}
-		ObjectReader reader = mapper.readerFor(type);
 		JsonParser jp = reader.getFactory().createParser(entityStream);
-		final Object o = reader.readValue(jp);
-		return o;
+		return reader.readValue(jp);
 	}
 
 	@Override

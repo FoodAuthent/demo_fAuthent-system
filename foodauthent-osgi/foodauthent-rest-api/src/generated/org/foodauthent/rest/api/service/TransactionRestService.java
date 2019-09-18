@@ -32,7 +32,7 @@ public interface TransactionRestService{
     /**
      * Creates/adds a new Transaction.
      *
-     * @param discoveryServiceTransaction TODO
+     * @param discoveryServiceTransaction list of DiscoveryServiceTransactions
      * @return the response
      */
     @POST
