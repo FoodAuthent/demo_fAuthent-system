@@ -2,6 +2,7 @@ package org.foodauthent.rest.impl.json;
 
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -19,7 +20,7 @@ public class OffsetDateTimeModule extends SimpleModule {
 		addSerializer(OffsetDateTime.class, new JsonSerializer<OffsetDateTime>() {
             @Override
             public void serialize(OffsetDateTime offsetDateTime, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
-                jsonGenerator.writeString(DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(offsetDateTime));
+                jsonGenerator.writeString(DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(offsetDateTime.atZoneSameInstant(ZoneId.systemDefault())));
             }
         });		
 	}
