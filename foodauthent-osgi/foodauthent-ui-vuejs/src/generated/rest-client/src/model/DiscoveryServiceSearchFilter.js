@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/BizTransaction', '../model/Epc', '../model/GPCBrick', '../model/QuantityElement'], factory);
+    define(['../ApiClient', '../model/BizTransaction', '../model/Epc', '../model/QuantityElement'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./BizTransaction'), require('./Epc'), require('./GPCBrick'), require('./QuantityElement'));
+    module.exports = factory(require('../ApiClient'), require('./BizTransaction'), require('./Epc'), require('./QuantityElement'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.DiscoveryServiceSearchFilter = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.BizTransaction, root.FoodAuthentSwaggerApi.Epc, root.FoodAuthentSwaggerApi.GPCBrick, root.FoodAuthentSwaggerApi.QuantityElement);
+    root.FoodAuthentSwaggerApi.DiscoveryServiceSearchFilter = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.BizTransaction, root.FoodAuthentSwaggerApi.Epc, root.FoodAuthentSwaggerApi.QuantityElement);
   }
-}(this, function(ApiClient, BizTransaction, Epc, GPCBrick, QuantityElement) {
+}(this, function(ApiClient, BizTransaction, Epc, QuantityElement) {
   'use strict';
 
 
@@ -75,26 +75,20 @@
       if (data.hasOwnProperty('action')) {
         obj['action'] = ApiClient.convertToType(data['action'], 'String');
       }
-      if (data.hasOwnProperty('disposition')) {
-        obj['disposition'] = ApiClient.convertToType(data['disposition'], 'String');
-      }
       if (data.hasOwnProperty('bizTransactionList')) {
         obj['bizTransactionList'] = ApiClient.convertToType(data['bizTransactionList'], [BizTransaction]);
+      }
+      if (data.hasOwnProperty('eventType')) {
+        obj['eventType'] = ApiClient.convertToType(data['eventType'], 'String');
+      }
+      if (data.hasOwnProperty('interfaceId')) {
+        obj['interfaceId'] = ApiClient.convertToType(data['interfaceId'], 'String');
       }
       if (data.hasOwnProperty('gtin')) {
         obj['gtin'] = ApiClient.convertToType(data['gtin'], 'String');
       }
       if (data.hasOwnProperty('bricks')) {
-        obj['bricks'] = ApiClient.convertToType(data['bricks'], [GPCBrick]);
-      }
-      if (data.hasOwnProperty('sourceList')) {
-        obj['sourceList'] = ApiClient.convertToType(data['sourceList'], [BizTransaction]);
-      }
-      if (data.hasOwnProperty('destinationList')) {
-        obj['destinationList'] = ApiClient.convertToType(data['destinationList'], [BizTransaction]);
-      }
-      if (data.hasOwnProperty('ilmd')) {
-        obj['ilmd'] = ApiClient.convertToType(data['ilmd'], [BizTransaction]);
+        obj['bricks'] = ApiClient.convertToType(data['bricks'], ['String']);
       }
       if (data.hasOwnProperty('eventTimeFrom')) {
         obj['eventTimeFrom'] = ApiClient.convertToType(data['eventTimeFrom'], 'Date');
@@ -132,15 +126,21 @@
    */
   exports.prototype['action'] = undefined;
   /**
-   * EPCIS Disposition
-   * @member {String} disposition
-   */
-  exports.prototype['disposition'] = undefined;
-  /**
    * List of bizTransactions
    * @member {Array.<module:model/BizTransaction>} bizTransactionList
    */
   exports.prototype['bizTransactionList'] = undefined;
+  /**
+   * EPCIS eventType
+   * @member {String} eventType
+   * @default 'ObjectEvent'
+   */
+  exports.prototype['eventType'] = 'ObjectEvent';
+  /**
+   * interfaceId
+   * @member {String} interfaceId
+   */
+  exports.prototype['interfaceId'] = undefined;
   /**
    * Global Trade Item Number
    * @member {String} gtin
@@ -148,24 +148,9 @@
   exports.prototype['gtin'] = undefined;
   /**
    * bricks
-   * @member {Array.<module:model/GPCBrick>} bricks
+   * @member {Array.<String>} bricks
    */
   exports.prototype['bricks'] = undefined;
-  /**
-   * List of sources
-   * @member {Array.<module:model/BizTransaction>} sourceList
-   */
-  exports.prototype['sourceList'] = undefined;
-  /**
-   * List of destinations
-   * @member {Array.<module:model/BizTransaction>} destinationList
-   */
-  exports.prototype['destinationList'] = undefined;
-  /**
-   * ilmd
-   * @member {Array.<module:model/BizTransaction>} ilmd
-   */
-  exports.prototype['ilmd'] = undefined;
   /**
    * start date for the research
    * @member {Date} eventTimeFrom

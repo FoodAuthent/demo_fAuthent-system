@@ -1747,14 +1747,19 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-                format: uuid
+                type: array
+                items:
+                 type: string
+                 format: uuid
       requestBody:
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DiscoveryServiceTransaction'
+            application/json:
+              schema:
+                type: array
+                items: 
+                   $ref: '#/components/schemas/DiscoveryServiceTransaction' 
         description: TODO
+                                
         
   '/discovery/transaction/{transaction-id}':
     get:
@@ -2101,20 +2106,17 @@ components:
     DiscoveryServiceTransaction:
       description: DiscoveryServiceTransaction
       type: object
-      x-non-null: true
       x-ui-vue.js:
       - name: epcList
       - name: bizStep
       - name: readPoint
       - name: quantityList
       - name: action
-      - name: disposition
       - name: bizTransactionList
+      - name: eventType
+      - name: interfaceId
       - name: gtin
       - name: bricks
-      - name: sourceList
-      - name: destinationList
-      - name: ilmd
       - name: eventTime
       properties:
         fa-id:
@@ -2144,14 +2146,18 @@ components:
             - ADD
             - OBSERVE
             - DELETE
-        disposition:
-          description: EPCIS Disposition
-          type: string
         bizTransactionList:
           description: List of bizTransactions
           type: array
           items:
             $ref: "#/components/schemas/BizTransaction"
+        eventType:
+          description: EPCIS eventType
+          type: string
+          example: "ObjectEvent"
+        interfaceId:
+          description: interfaceId
+          type: string
         gtin:
           description: Global Trade Item Number
           type: string
@@ -2159,22 +2165,8 @@ components:
           description: bricks
           type: array
           items:
-            $ref: "#/components/schemas/GPCBrick"
-        sourceList:
-          description: List of sources
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
-        destinationList:
-          description: List of destinations
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
-        ilmd:
-          description: ilmd
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
+            type: string
+          example: "10000111/20000750/30000207,10000111/20000352/30015641"
         eventTime:
           description: When the event happened
           type: string
@@ -2220,14 +2212,19 @@ components:
         action:
           description: Event action.
           type: string
-        disposition:
-          description: EPCIS Disposition
-          type: string
         bizTransactionList:
           description: List of bizTransactions
           type: array
           items:
             $ref: "#/components/schemas/BizTransaction"
+        eventType:
+          description: EPCIS eventType
+          type: string
+          default: "ObjectEvent"
+        interfaceId:
+          description: interfaceId
+          type: string
+          format: uuid
         gtin:
           description: Global Trade Item Number
           type: string
@@ -2235,22 +2232,8 @@ components:
           description: bricks
           type: array
           items:
-            $ref: "#/components/schemas/GPCBrick"
-        sourceList:
-          description: List of sources
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
-        destinationList:
-          description: List of destinations
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
-        ilmd:
-          description: ilmd
-          type: array
-          items:
-            $ref: "#/components/schemas/BizTransaction"
+            type: string
+          example: "10000111/20000750/30000207,10000111/20000352/30015641"
         eventTimeFrom:
           description: start date for the research
           type: string
@@ -2717,7 +2700,6 @@ components:
     ObjectEvent:
       description: Object Event Transaction
       type: object
-      x-non-null: true
       x-ui-vue.js:
       - name: epcList
       - name: bizStep
@@ -2771,7 +2753,7 @@ components:
         bricks:
           description: bricks
           type: array
-          items:
+          items: 
             $ref: "#/components/schemas/GPCBrick"
         eventTime:
           description: When the event happened

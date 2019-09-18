@@ -39,7 +39,7 @@ public interface TransactionRestService{
     @Path("/discovery/transaction")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    public Response createTransaction(DiscoveryServiceTransaction discoveryServiceTransaction
+    public Response createTransaction(java.util.List<DiscoveryServiceTransaction> discoveryServiceTransaction
 );
 
     /**

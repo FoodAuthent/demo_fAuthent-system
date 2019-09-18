@@ -44,7 +44,7 @@ public class TransactionRestServiceImpl implements TransactionRestService {
      * @param discoveryServiceTransaction TODO
      * @return the response
      */
-    public Response createTransaction(DiscoveryServiceTransaction discoveryServiceTransaction) {
+    public Response createTransaction(java.util.List<DiscoveryServiceTransaction> discoveryServiceTransaction) {
         
             Object res = service.createTransaction(discoveryServiceTransaction);
             return Response.ok(res).build();

@@ -442,10 +442,6 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 			qb.must(QueryBuilders.termsQuery("action.keyword", dssf.getAction()));
 		}
 
-		// QUERY FOR disposition
-		if (dssf.getDisposition() != null) {
-			qb.must(QueryBuilders.termsQuery("disposition.keyword", dssf.getDisposition()));
-		}
 
 		// QUERY FOR bizTransactionList
 		if (dssf.getBizTransactionList().size() > 0) {
@@ -461,75 +457,24 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 			}
 		}
 
-		// QUERY FOR SourceList
-		if (dssf.getSourceList().size() > 0) {
-			for (BizTransaction bt : dssf.getSourceList()) {
-				if(bt.getType() != null) {
-					qb.must(QueryBuilders.termsQuery("sourceList.type.keyword", bt.getType()));
-				}
-				if(bt.getValue()!= null) {
-					qb.must(QueryBuilders.termsQuery("sourceList.value.keyword", bt.getValue()));
-				}
-			}
-		}
-
-		// QUERY FOR destinationList
-		if (dssf.getDestinationList().size() > 0) {
-			for (BizTransaction bt : dssf.getDestinationList()) {
-				if(bt.getType() != null) {
-					qb.must(QueryBuilders.termsQuery("destinationList.type.keyword", bt.getType()));
-				}
-				if(bt.getValue() != null) {
-					qb.must(QueryBuilders.termsQuery("destinationList.value.keyword", bt.getValue()));
-				}
-			}
-		}
-
-		// QUERY FOR ilmd
-		if (dssf.getIlmd().size() > 0) {
-			for (BizTransaction bt : dssf.getIlmd()) {
-				if(bt.getType() != null) {
-					qb.must(QueryBuilders.termsQuery("ilmd.type.keyword", bt.getType()));
-				}
-				if(bt.getValue() != null) {
-					qb.must(QueryBuilders.termsQuery("ilmd.value.keyword", bt.getValue()));
-				}
-			}
-		}
 		
 		// QUERY FOR GTIN
 		if (dssf.getGtin() != null) {
 			qb.must(QueryBuilders.termsQuery("gtin.keyword", dssf.getGtin()));
 		}
+		
+		//Query for eventType
+		if(dssf.getEventType() != null) {
+			qb.must(QueryBuilders.termQuery("eventType.keyword", dssf.getEventType()));
+		}
+		
+		//Query for interfaceId
+		if(dssf.getInterfaceId() != null) {
+			qb.must(QueryBuilders.termQuery("interfaceId.keyword", dssf.getInterfaceId()));
+		}
 
 		// QUERY FOR Bricks
-		if (dssf.getBricks().size() > 0) {
-			for (GPCBrick brick : dssf.getBricks()) {
-				if(brick.getCode() != null) {
-					qb.must(QueryBuilders.termsQuery("bricks.code.keyword", brick.getCode()));
-				}
-				if(brick.getText() != null) {
-					qb.must(QueryBuilders.termsQuery("bricks.text.tokenized", brick.getText().toLowerCase().split("\\s+")));
-				}
-				for (GPCAttribute attribute : brick.getAttributes()) {
-					if(attribute.getCode() != null) {
-						qb.must(QueryBuilders.termsQuery("bricks.attributes.code.keyword", attribute.getCode()));
-					}
-					if(attribute.getText() != null) {
-						qb.must(QueryBuilders.termsQuery("bricks.attributes.text", attribute.getText().toLowerCase().split("\\s+")));	
-					}
-					for (GPCAttributeValue value : attribute.getValues()) {
-						if(value.getCode() != null) {
-							qb.must(QueryBuilders.termsQuery("bricks.attributes.values.code.keyword", value.getCode()));
-						}
-						if(value.getText() != null) {
-							qb.must(QueryBuilders.termsQuery("bricks.attributes.values.text", value.getText().toLowerCase().split("\\s+")));	
-						}
-					}
-				}
 
-			}
-		}
 
 		// QUERY FOR eventTime Range
 		if (dssf.getEventTimeFrom() != null || dssf.getEventTimeTo() != null) {

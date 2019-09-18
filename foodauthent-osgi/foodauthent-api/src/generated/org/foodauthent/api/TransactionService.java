@@ -20,11 +20,11 @@ public interface TransactionService {
     /**
      * Creates/adds a new Transaction.
      *
-     * @param discoveryServiceTransaction TODO
+     * @param requestBody TODO
      *
      * @return the result
      */
-    java.util.UUID createTransaction(DiscoveryServiceTransaction discoveryServiceTransaction);
+    java.util.List<java.util.UUID> createTransaction(java.util.List<DiscoveryServiceTransaction> requestBody);
         
     /**
      * Find Transaction by filters

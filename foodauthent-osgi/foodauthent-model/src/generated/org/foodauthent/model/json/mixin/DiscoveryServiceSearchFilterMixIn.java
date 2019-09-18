@@ -6,7 +6,6 @@ package org.foodauthent.model.json.mixin;
 import java.time.OffsetDateTime;
 import org.foodauthent.model.BizTransaction;
 import org.foodauthent.model.Epc;
-import org.foodauthent.model.GPCBrick;
 import org.foodauthent.model.QuantityElement;
 
 import java.util.UUID;
@@ -66,26 +65,20 @@ public interface DiscoveryServiceSearchFilterMixIn {
     @JsonProperty("action")
     public String getAction();
     
-    @JsonProperty("disposition")
-    public String getDisposition();
-    
     @JsonProperty("bizTransactionList")
     public java.util.List<BizTransaction> getBizTransactionList();
+    
+    @JsonProperty("eventType")
+    public String getEventType();
+    
+    @JsonProperty("interfaceId")
+    public java.util.UUID getInterfaceId();
     
     @JsonProperty("gtin")
     public String getGtin();
     
     @JsonProperty("bricks")
-    public java.util.List<GPCBrick> getBricks();
-    
-    @JsonProperty("sourceList")
-    public java.util.List<BizTransaction> getSourceList();
-    
-    @JsonProperty("destinationList")
-    public java.util.List<BizTransaction> getDestinationList();
-    
-    @JsonProperty("ilmd")
-    public java.util.List<BizTransaction> getIlmd();
+    public java.util.List<String> getBricks();
     
     @JsonProperty("eventTimeFrom")
     public OffsetDateTime getEventTimeFrom();
@@ -127,26 +120,20 @@ public interface DiscoveryServiceSearchFilterMixIn {
         @JsonProperty("action")
         public DiscoveryServiceSearchFilterMixInBuilder setAction(final String action);
         
-        @JsonProperty("disposition")
-        public DiscoveryServiceSearchFilterMixInBuilder setDisposition(final String disposition);
-        
         @JsonProperty("bizTransactionList")
         public DiscoveryServiceSearchFilterMixInBuilder setBizTransactionList(final java.util.List<BizTransaction> bizTransactionList);
+        
+        @JsonProperty("eventType")
+        public DiscoveryServiceSearchFilterMixInBuilder setEventType(final String eventType);
+        
+        @JsonProperty("interfaceId")
+        public DiscoveryServiceSearchFilterMixInBuilder setInterfaceId(final java.util.UUID interfaceId);
         
         @JsonProperty("gtin")
         public DiscoveryServiceSearchFilterMixInBuilder setGtin(final String gtin);
         
         @JsonProperty("bricks")
-        public DiscoveryServiceSearchFilterMixInBuilder setBricks(final java.util.List<GPCBrick> bricks);
-        
-        @JsonProperty("sourceList")
-        public DiscoveryServiceSearchFilterMixInBuilder setSourceList(final java.util.List<BizTransaction> sourceList);
-        
-        @JsonProperty("destinationList")
-        public DiscoveryServiceSearchFilterMixInBuilder setDestinationList(final java.util.List<BizTransaction> destinationList);
-        
-        @JsonProperty("ilmd")
-        public DiscoveryServiceSearchFilterMixInBuilder setIlmd(final java.util.List<BizTransaction> ilmd);
+        public DiscoveryServiceSearchFilterMixInBuilder setBricks(final java.util.List<String> bricks);
         
         @JsonProperty("eventTimeFrom")
         public DiscoveryServiceSearchFilterMixInBuilder setEventTimeFrom(final OffsetDateTime eventTimeFrom);

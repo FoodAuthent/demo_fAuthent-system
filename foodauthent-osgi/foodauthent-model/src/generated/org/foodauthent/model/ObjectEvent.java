@@ -16,7 +16,7 @@ import org.foodauthent.model.Epc;
 import org.foodauthent.model.GPCBrick;
 import org.foodauthent.model.QuantityElement;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+
 
 
 /**
@@ -25,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ObjectEvent   extends FaModel {
 
   /**

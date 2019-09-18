@@ -13,7 +13,6 @@ import java.util.Objects;
 import java.time.OffsetDateTime;
 import org.foodauthent.model.BizTransaction;
 import org.foodauthent.model.Epc;
-import org.foodauthent.model.GPCBrick;
 import org.foodauthent.model.QuantityElement;
 
 
@@ -33,13 +32,11 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   protected String readPoint;
   protected java.util.List<QuantityElement> quantityList;
   protected String action;
-  protected String disposition;
   protected java.util.List<BizTransaction> bizTransactionList;
+  protected String eventType;
+  protected java.util.UUID interfaceId;
   protected String gtin;
-  protected java.util.List<GPCBrick> bricks;
-  protected java.util.List<BizTransaction> sourceList;
-  protected java.util.List<BizTransaction> destinationList;
-  protected java.util.List<BizTransaction> ilmd;
+  protected java.util.List<String> bricks;
   protected OffsetDateTime eventTimeFrom;
   protected OffsetDateTime eventTimeTo;
   
@@ -62,13 +59,11 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
     readPoint = immutable(builder.readPoint);
     quantityList = immutable(builder.quantityList);
     action = immutable(builder.action);
-    disposition = immutable(builder.disposition);
     bizTransactionList = immutable(builder.bizTransactionList);
+    eventType = immutable(builder.eventType);
+    interfaceId = immutable(builder.interfaceId);
     gtin = immutable(builder.gtin);
     bricks = immutable(builder.bricks);
-    sourceList = immutable(builder.sourceList);
-    destinationList = immutable(builder.destinationList);
-    ilmd = immutable(builder.ilmd);
     eventTimeFrom = immutable(builder.eventTimeFrom);
     eventTimeTo = immutable(builder.eventTimeTo);
     
@@ -90,7 +85,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
             return false;
         }
         DiscoveryServiceSearchFilter ent = (DiscoveryServiceSearchFilter)o;
-        return Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(disposition, ent.disposition) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(sourceList, ent.sourceList) && Objects.equals(destinationList, ent.destinationList) && Objects.equals(ilmd, ent.ilmd) && Objects.equals(eventTimeFrom, ent.eventTimeFrom) && Objects.equals(eventTimeTo, ent.eventTimeTo);
+        return Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(eventType, ent.eventType) && Objects.equals(interfaceId, ent.interfaceId) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(eventTimeFrom, ent.eventTimeFrom) && Objects.equals(eventTimeTo, ent.eventTimeTo);
     }
 
 
@@ -135,19 +130,27 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
     }
     
   /**
-   * EPCIS Disposition
-   * @return disposition 
-   */
-  public String getDisposition() {
-        return disposition;
-    }
-    
-  /**
    * List of bizTransactions
    * @return bizTransactionList 
    */
   public java.util.List<BizTransaction> getBizTransactionList() {
         return bizTransactionList;
+    }
+    
+  /**
+   * EPCIS eventType
+   * @return eventType 
+   */
+  public String getEventType() {
+        return eventType;
+    }
+    
+  /**
+   * interfaceId
+   * @return interfaceId 
+   */
+  public java.util.UUID getInterfaceId() {
+        return interfaceId;
     }
     
   /**
@@ -162,32 +165,8 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
    * bricks
    * @return bricks 
    */
-  public java.util.List<GPCBrick> getBricks() {
+  public java.util.List<String> getBricks() {
         return bricks;
-    }
-    
-  /**
-   * List of sources
-   * @return sourceList 
-   */
-  public java.util.List<BizTransaction> getSourceList() {
-        return sourceList;
-    }
-    
-  /**
-   * List of destinations
-   * @return destinationList 
-   */
-  public java.util.List<BizTransaction> getDestinationList() {
-        return destinationList;
-    }
-    
-  /**
-   * ilmd
-   * @return ilmd 
-   */
-  public java.util.List<BizTransaction> getIlmd() {
-        return ilmd;
     }
     
   /**
@@ -229,13 +208,11 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         builder.readPoint = entity.readPoint;
         builder.quantityList = entity.quantityList;
         builder.action = entity.action;
-        builder.disposition = entity.disposition;
         builder.bizTransactionList = entity.bizTransactionList;
+        builder.eventType = entity.eventType;
+        builder.interfaceId = entity.interfaceId;
         builder.gtin = entity.gtin;
         builder.bricks = entity.bricks;
-        builder.sourceList = entity.sourceList;
-        builder.destinationList = entity.destinationList;
-        builder.ilmd = entity.ilmd;
         builder.eventTimeFrom = entity.eventTimeFrom;
         builder.eventTimeTo = entity.eventTimeTo;
  		return builder;
@@ -253,13 +230,11 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         private String readPoint;
         private java.util.List<QuantityElement> quantityList = new java.util.ArrayList<>();
         private String action;
-        private String disposition;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
+        private String eventType = "ObjectEvent";
+        private java.util.UUID interfaceId;
         private String gtin;
-        private java.util.List<GPCBrick> bricks = new java.util.ArrayList<>();
-        private java.util.List<BizTransaction> sourceList = new java.util.ArrayList<>();
-        private java.util.List<BizTransaction> destinationList = new java.util.ArrayList<>();
-        private java.util.List<BizTransaction> ilmd = new java.util.ArrayList<>();
+        private java.util.List<String> bricks = new java.util.ArrayList<>();
         private OffsetDateTime eventTimeFrom;
         private OffsetDateTime eventTimeTo;
 
@@ -309,20 +284,29 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         }
 
         /**
-         * EPCIS Disposition
-         * @return disposition 
-         */
-        public DiscoveryServiceSearchFilterBuilder setDisposition(String disposition) {
-             this.disposition = disposition;
-             return this;
-        }
-
-        /**
          * List of bizTransactions
          * @return bizTransactionList 
          */
         public DiscoveryServiceSearchFilterBuilder setBizTransactionList(java.util.List<BizTransaction> bizTransactionList) {
              this.bizTransactionList = bizTransactionList;
+             return this;
+        }
+
+        /**
+         * EPCIS eventType
+         * @return eventType 
+         */
+        public DiscoveryServiceSearchFilterBuilder setEventType(String eventType) {
+             this.eventType = eventType;
+             return this;
+        }
+
+        /**
+         * interfaceId
+         * @return interfaceId 
+         */
+        public DiscoveryServiceSearchFilterBuilder setInterfaceId(java.util.UUID interfaceId) {
+             this.interfaceId = interfaceId;
              return this;
         }
 
@@ -339,35 +323,8 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
          * bricks
          * @return bricks 
          */
-        public DiscoveryServiceSearchFilterBuilder setBricks(java.util.List<GPCBrick> bricks) {
+        public DiscoveryServiceSearchFilterBuilder setBricks(java.util.List<String> bricks) {
              this.bricks = bricks;
-             return this;
-        }
-
-        /**
-         * List of sources
-         * @return sourceList 
-         */
-        public DiscoveryServiceSearchFilterBuilder setSourceList(java.util.List<BizTransaction> sourceList) {
-             this.sourceList = sourceList;
-             return this;
-        }
-
-        /**
-         * List of destinations
-         * @return destinationList 
-         */
-        public DiscoveryServiceSearchFilterBuilder setDestinationList(java.util.List<BizTransaction> destinationList) {
-             this.destinationList = destinationList;
-             return this;
-        }
-
-        /**
-         * ilmd
-         * @return ilmd 
-         */
-        public DiscoveryServiceSearchFilterBuilder setIlmd(java.util.List<BizTransaction> ilmd) {
-             this.ilmd = ilmd;
              return this;
         }
 

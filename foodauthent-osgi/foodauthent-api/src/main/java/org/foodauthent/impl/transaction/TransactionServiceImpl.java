@@ -2,6 +2,8 @@ package org.foodauthent.impl.transaction;
 
 import static org.foodauthent.api.internal.persistence.PersistenceService.toArray;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.foodauthent.api.TransactionService;
@@ -33,11 +35,11 @@ public class TransactionServiceImpl implements TransactionService {
 		.setPageNumber(pageNumber).setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
 
-    @Override
-    public UUID createTransaction(DiscoveryServiceTransaction discoveryServiceTransaction) {
-	persistenceService.save(discoveryServiceTransaction);
-	return discoveryServiceTransaction.getFaId();
-    }
+//    @Override
+//    public UUID createTransaction(DiscoveryServiceTransaction discoveryServiceTransaction) {
+//	persistenceService.save(discoveryServiceTransaction);
+//	return discoveryServiceTransaction.getFaId();
+//    }
 
     @Override
     public DiscoveryServiceTransaction getTransactionById(UUID transactionId) {
@@ -47,6 +49,16 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public DiscoveryServiceTransactionPageResult findTransactionByFilter(Integer pageNumber, Integer pageSize, DiscoveryServiceSearchFilter discoveryServiceSearchFilter) {
 	return persistenceService.findTransactionByFilter(discoveryServiceSearchFilter, pageNumber, pageSize);
+    }
+
+    @Override
+    public List<UUID> createTransaction(List<DiscoveryServiceTransaction> requestBody) {
+	List<UUID> results = new ArrayList();
+	for(DiscoveryServiceTransaction dst : requestBody) {
+	    persistenceService.save(dst);
+	    results.add(dst.getFaId());
+	}
+	return results;
     }
     
 }

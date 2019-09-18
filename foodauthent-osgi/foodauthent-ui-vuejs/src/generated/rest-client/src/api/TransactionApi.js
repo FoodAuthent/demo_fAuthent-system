@@ -52,7 +52,7 @@
      * Callback function to receive the result of the createTransaction operation.
      * @callback module:api/TransactionApi~createTransactionCallback
      * @param {String} error Error message, if any.
-     * @param {String} data The data returned by the service call.
+     * @param {Array.<String>} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -60,9 +60,9 @@
      * Creates/adds a new Transaction.
      * Creates/adds a new Transaction.
      * @param {Object} opts Optional parameters
-     * @param {module:model/DiscoveryServiceTransaction} opts.discoveryServiceTransaction TODO
+     * @param {Array.<DiscoveryServiceTransaction>} opts.discoveryServiceTransaction TODO
      * @param {module:api/TransactionApi~createTransactionCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link String}
+     * data is of type: {@link Array.<String>}
      */
     this.createTransaction = function(opts, callback) {
       opts = opts || {};
@@ -83,7 +83,7 @@
       var authNames = ['jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
-      var returnType = 'String';
+      var returnType = '[String]';
 
       return this.apiClient.callApi(
         '/discovery/transaction', 'POST',
