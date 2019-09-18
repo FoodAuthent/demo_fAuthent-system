@@ -14,6 +14,7 @@ import org.foodauthent.model.GPCAttributeValue;
 
 
 
+
 /**
  * Global Product Classification Attribute for storing gpc brick details
  *

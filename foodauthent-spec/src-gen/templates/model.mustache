@@ -14,6 +14,7 @@ import {{import}};
 
 {{#models}}
 {{#model}}
+{{#vendorExtensions.x-non-null}}import com.fasterxml.jackson.annotation.JsonInclude;{{/vendorExtensions.x-non-null}}
 {{#isEnum}}{{>modelEnum}}{{/isEnum}}
 {{^isEnum}}
 
@@ -22,7 +23,8 @@ import {{import}};
  *
  {{>authors}}
  */
-{{>generatedAnnotation}}
+{{>generatedAnnotation}}{{#vendorExtensions.x-non-null}}
+@JsonInclude(JsonInclude.Include.NON_NULL){{/vendorExtensions.x-non-null}}
 public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}} extends FaModel{{/parent}} {
 
     {{#vars}}

@@ -15,6 +15,7 @@ import org.foodauthent.model.ProductIngredientStatement;
 
 
 
+
 /**
  * Global product metadata, e.g., country of origin, etc. There can be multiple fingerprints for one product.
  *

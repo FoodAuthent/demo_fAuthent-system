@@ -15,6 +15,7 @@ import org.foodauthent.model.WorkflowParameter;
 
 
 
+
 /**
  * Describes the input required by a prediction workflow.
  *

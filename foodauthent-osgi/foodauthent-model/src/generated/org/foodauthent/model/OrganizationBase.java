@@ -14,6 +14,7 @@ import org.foodauthent.model.OrganizationalPostalAddress;
 
 
 
+
 /**
  * Organization Base Object
  *

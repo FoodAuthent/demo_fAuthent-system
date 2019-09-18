@@ -15,6 +15,7 @@ import org.foodauthent.model.ModelType;
 
 
 
+
 /**
  * Definition of the workflows input and output types. Types that are not required as input are empty.
  *

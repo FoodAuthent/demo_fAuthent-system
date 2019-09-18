@@ -3,7 +3,6 @@
  */
 package org.foodauthent.model;
 
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,8 +10,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.OffsetDateTime;
+import org.foodauthent.model.BizTransaction;
+import org.foodauthent.model.Epc;
+import org.foodauthent.model.GPCBrick;
+import org.foodauthent.model.QuantityElement;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 
 /**
@@ -21,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ObjectEvent   extends FaModel {
 
   /**

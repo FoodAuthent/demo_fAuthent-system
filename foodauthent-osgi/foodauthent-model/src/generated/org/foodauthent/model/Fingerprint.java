@@ -14,6 +14,7 @@ import org.foodauthent.model.FingerprintType;
 
 
 
+
 /**
  * A fingerprint object representing its metadata.
  *

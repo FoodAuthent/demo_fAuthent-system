@@ -13,6 +13,7 @@ import java.util.Objects;
 
 
 
+
 /**
  * Type of the fingerprint. The referenced file musst reflect this type, too.
  *

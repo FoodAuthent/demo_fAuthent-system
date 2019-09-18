@@ -2101,6 +2101,7 @@ components:
     DiscoveryServiceTransaction:
       description: DiscoveryServiceTransaction
       type: object
+      x-non-null: true
       x-ui-vue.js:
       - name: epcList
       - name: bizStep
@@ -2716,6 +2717,7 @@ components:
     ObjectEvent:
       description: Object Event Transaction
       type: object
+      x-non-null: true
       x-ui-vue.js:
       - name: epcList
       - name: bizStep

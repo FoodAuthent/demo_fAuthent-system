@@ -16,6 +16,7 @@ import org.foodauthent.model.Tag;
 
 
 
+
 /**
  * A model created via training and used for prediction. Can also be a workflow.
  *
