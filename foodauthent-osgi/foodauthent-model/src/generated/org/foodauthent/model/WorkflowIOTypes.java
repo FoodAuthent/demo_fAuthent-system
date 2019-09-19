@@ -27,27 +27,27 @@ public class WorkflowIOTypes   extends FaModel {
 
   protected FingerprintType fingerprintType;
   protected ModelType modelType;
-  
+
   public String getTypeID() {
     return "WorkflowIOTypes";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected WorkflowIOTypes() {}
-  
+
   private WorkflowIOTypes(WorkflowIOTypesBuilder builder) {
     
     fingerprintType = immutable(builder.fingerprintType);
     modelType = immutable(builder.modelType);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -74,7 +74,7 @@ public class WorkflowIOTypes   extends FaModel {
   public FingerprintType getFingerprintType() {
         return fingerprintType;
     }
-    
+
   /**
    * Get modelType
    * @return modelType 
@@ -82,19 +82,19 @@ public class WorkflowIOTypes   extends FaModel {
   public ModelType getModelType() {
         return modelType;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static WorkflowIOTypesBuilder builder() {
   		return new WorkflowIOTypesBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -105,14 +105,14 @@ public class WorkflowIOTypes   extends FaModel {
         builder.modelType = entity.modelType;
  		return builder;
   	}
-  	
-  
+
+
     public static class WorkflowIOTypesBuilder {
-    
+
         protected WorkflowIOTypesBuilder(){
             
         }
-    
+
         private FingerprintType fingerprintType;
         private ModelType modelType;
 
@@ -134,14 +134,14 @@ public class WorkflowIOTypes   extends FaModel {
              return this;
         }
 
-        
+
         public WorkflowIOTypes build() {
             return new WorkflowIOTypes(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -161,6 +161,6 @@ public class WorkflowIOTypes   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

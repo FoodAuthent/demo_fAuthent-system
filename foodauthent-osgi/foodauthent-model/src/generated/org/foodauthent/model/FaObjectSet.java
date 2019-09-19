@@ -33,19 +33,19 @@ public class FaObjectSet   extends FaModel {
   protected java.util.List<java.util.UUID> fingerprints;
   protected java.util.List<java.util.UUID> fingerprintsets;
   protected java.util.List<java.util.UUID> files;
-  
+
   public String getTypeID() {
     return "FaObjectSet";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected FaObjectSet() {}
-  
+
   private FaObjectSet(FaObjectSetBuilder builder) {
     
     sops = immutable(builder.sops);
@@ -58,10 +58,10 @@ public class FaObjectSet   extends FaModel {
     fingerprints = immutable(builder.fingerprints);
     fingerprintsets = immutable(builder.fingerprintsets);
     files = immutable(builder.files);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -88,7 +88,7 @@ public class FaObjectSet   extends FaModel {
   public java.util.List<java.util.UUID> getSops() {
         return sops;
     }
-    
+
   /**
    * Get products
    * @return products 
@@ -96,7 +96,7 @@ public class FaObjectSet   extends FaModel {
   public java.util.List<java.util.UUID> getProducts() {
         return products;
     }
-    
+
   /**
    * Get metadata
    * @return metadata 
@@ -104,7 +104,7 @@ public class FaObjectSet   extends FaModel {
   public java.util.List<java.util.UUID> getMetadata() {
         return metadata;
     }
-    
+
   /**
    * Get tags
    * @return tags 
@@ -112,7 +112,7 @@ public class FaObjectSet   extends FaModel {
   public java.util.List<java.util.UUID> getTags() {
         return tags;
     }
-    
+
   /**
    * Get models
    * @return models 
@@ -120,7 +120,7 @@ public class FaObjectSet   extends FaModel {
   public java.util.List<java.util.UUID> getModels() {
         return models;
     }
-    
+
   /**
    * Get predictions
    * @return predictions 
@@ -128,7 +128,7 @@ public class FaObjectSet   extends FaModel {
   public java.util.List<java.util.UUID> getPredictions() {
         return predictions;
     }
-    
+
   /**
    * Get workflows
    * @return workflows 
@@ -136,7 +136,7 @@ public class FaObjectSet   extends FaModel {
   public java.util.List<java.util.UUID> getWorkflows() {
         return workflows;
     }
-    
+
   /**
    * Get fingerprints
    * @return fingerprints 
@@ -144,7 +144,7 @@ public class FaObjectSet   extends FaModel {
   public java.util.List<java.util.UUID> getFingerprints() {
         return fingerprints;
     }
-    
+
   /**
    * Get fingerprintsets
    * @return fingerprintsets 
@@ -152,7 +152,7 @@ public class FaObjectSet   extends FaModel {
   public java.util.List<java.util.UUID> getFingerprintsets() {
         return fingerprintsets;
     }
-    
+
   /**
    * Get files
    * @return files 
@@ -160,19 +160,19 @@ public class FaObjectSet   extends FaModel {
   public java.util.List<java.util.UUID> getFiles() {
         return files;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static FaObjectSetBuilder builder() {
   		return new FaObjectSetBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -191,14 +191,14 @@ public class FaObjectSet   extends FaModel {
         builder.files = entity.files;
  		return builder;
   	}
-  	
-  
+
+
     public static class FaObjectSetBuilder {
-    
+
         protected FaObjectSetBuilder(){
             
         }
-    
+
         private java.util.List<java.util.UUID> sops = new java.util.ArrayList<>();
         private java.util.List<java.util.UUID> products = new java.util.ArrayList<>();
         private java.util.List<java.util.UUID> metadata = new java.util.ArrayList<>();
@@ -300,14 +300,14 @@ public class FaObjectSet   extends FaModel {
              return this;
         }
 
-        
+
         public FaObjectSet build() {
             return new FaObjectSet(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -327,6 +327,6 @@ public class FaObjectSet   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

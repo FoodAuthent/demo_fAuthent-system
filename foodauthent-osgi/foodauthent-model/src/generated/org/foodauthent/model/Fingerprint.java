@@ -29,15 +29,15 @@ public class Fingerprint   extends FaModel {
   protected java.util.UUID fileId;
   protected java.util.UUID sopId;
   protected FingerprintType type;
-  
+
   public String getTypeID() {
     return "Fingerprint";
   }
-  
 
-  
+
+
   protected Fingerprint() {}
-  
+
   private Fingerprint(FingerprintBuilder builder) {
     
     faId = immutable(builder.faId);
@@ -45,11 +45,11 @@ public class Fingerprint   extends FaModel {
     fileId = immutable(builder.fileId);
     sopId = immutable(builder.sopId);
     type = immutable(builder.type);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -76,7 +76,7 @@ public class Fingerprint   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * The fa-id of the sample the fingerprint is associated with.
    * @return sampleId 
@@ -84,7 +84,7 @@ public class Fingerprint   extends FaModel {
   public java.util.UUID getSampleId() {
         return sampleId;
     }
-    
+
   /**
    * Id referencing the fingerprint file.
    * @return fileId 
@@ -92,7 +92,7 @@ public class Fingerprint   extends FaModel {
   public java.util.UUID getFileId() {
         return fileId;
     }
-    
+
   /**
    * reference to sop used to create the fingerprint
    * @return sopId 
@@ -100,7 +100,7 @@ public class Fingerprint   extends FaModel {
   public java.util.UUID getSopId() {
         return sopId;
     }
-    
+
   /**
    * Get type
    * @return type 
@@ -108,19 +108,19 @@ public class Fingerprint   extends FaModel {
   public FingerprintType getType() {
         return type;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static FingerprintBuilder builder() {
   		return new FingerprintBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -134,14 +134,14 @@ public class Fingerprint   extends FaModel {
         builder.type = entity.type;
  		return builder;
   	}
-  	
-  
+
+
     public static class FingerprintBuilder {
-    
+
         protected FingerprintBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private java.util.UUID sampleId;
         private java.util.UUID fileId;
@@ -193,14 +193,14 @@ public class Fingerprint   extends FaModel {
              return this;
         }
 
-        
+
         public Fingerprint build() {
             return new Fingerprint(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -220,6 +220,6 @@ public class Fingerprint   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

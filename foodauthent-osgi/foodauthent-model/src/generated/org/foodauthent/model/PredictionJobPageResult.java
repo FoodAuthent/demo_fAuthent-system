@@ -28,29 +28,29 @@ public class PredictionJobPageResult   extends FaModel {
   protected Integer pageCount;
   protected Integer resultCount;
   protected java.util.List<PredictionJob> results;
-  
+
   public String getTypeID() {
     return "PredictionJobPageResult";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected PredictionJobPageResult() {}
-  
+
   private PredictionJobPageResult(PredictionJobPageResultBuilder builder) {
     
     pageNumber = immutable(builder.pageNumber);
     pageCount = immutable(builder.pageCount);
     resultCount = immutable(builder.resultCount);
     results = immutable(builder.results);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -77,7 +77,7 @@ public class PredictionJobPageResult   extends FaModel {
   public Integer getPageNumber() {
         return pageNumber;
     }
-    
+
   /**
    * Get pageCount
    * @return pageCount 
@@ -85,7 +85,7 @@ public class PredictionJobPageResult   extends FaModel {
   public Integer getPageCount() {
         return pageCount;
     }
-    
+
   /**
    * Get resultCount
    * @return resultCount 
@@ -93,7 +93,7 @@ public class PredictionJobPageResult   extends FaModel {
   public Integer getResultCount() {
         return resultCount;
     }
-    
+
   /**
    * Get results
    * @return results 
@@ -101,19 +101,19 @@ public class PredictionJobPageResult   extends FaModel {
   public java.util.List<PredictionJob> getResults() {
         return results;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static PredictionJobPageResultBuilder builder() {
   		return new PredictionJobPageResultBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -126,14 +126,14 @@ public class PredictionJobPageResult   extends FaModel {
         builder.results = entity.results;
  		return builder;
   	}
-  	
-  
+
+
     public static class PredictionJobPageResultBuilder {
-    
+
         protected PredictionJobPageResultBuilder(){
             
         }
-    
+
         private Integer pageNumber;
         private Integer pageCount;
         private Integer resultCount;
@@ -175,14 +175,14 @@ public class PredictionJobPageResult   extends FaModel {
              return this;
         }
 
-        
+
         public PredictionJobPageResult build() {
             return new PredictionJobPageResult(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -202,6 +202,6 @@ public class PredictionJobPageResult   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

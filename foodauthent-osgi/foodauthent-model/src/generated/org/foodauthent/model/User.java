@@ -26,15 +26,15 @@ public class User extends UserBase  {
 
   protected String dn;
   protected String userName;
-  
+
   public String getTypeID() {
     return "User";
   }
-  
 
-  
+
+
   protected User() {}
-  
+
   private User(UserBuilder builder) {
     super();
     title = immutable(builder.title);
@@ -67,10 +67,10 @@ public class User extends UserBase  {
         throw new IllegalArgumentException("dn must not be null.");
     }
     dn = immutable(builder.dn);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -97,7 +97,7 @@ public class User extends UserBase  {
   public String getDn() {
         return dn;
     }
-    
+
   /**
    * unique userid
    * @return userName , never <code>null</code>
@@ -105,19 +105,19 @@ public class User extends UserBase  {
   public String getUserName() {
         return userName;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static UserBuilder builder() {
   		return new UserBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -144,14 +144,14 @@ public class User extends UserBase  {
         builder.dn = entity.dn;
  		return builder;
   	}
-  	
-  
+
+
     public static class UserBuilder extends UserBaseBuilder {
-    
+
         protected UserBuilder(){
             super();
         }
-    
+
         private String title;
         private String givenName;
         private String lastName;
@@ -345,14 +345,14 @@ public class User extends UserBase  {
              return this;
         }
 
-        
+
         public User build() {
             return new User(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -372,6 +372,6 @@ public class User extends UserBase  {
             return obj;
         }
     }
-    
+
 
 }

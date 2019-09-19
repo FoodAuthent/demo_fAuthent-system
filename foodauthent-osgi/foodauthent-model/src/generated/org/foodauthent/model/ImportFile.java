@@ -27,26 +27,26 @@ public class ImportFile   extends FaModel {
   protected java.util.UUID fileId;
   protected String name;
   protected String description;
-  
+
   public String getTypeID() {
     return "ImportFile";
   }
-  
 
-  
+
+
   protected ImportFile() {}
-  
+
   private ImportFile(ImportFileBuilder builder) {
     
     faId = immutable(builder.faId);
     fileId = immutable(builder.fileId);
     name = immutable(builder.name);
     description = immutable(builder.description);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -73,7 +73,7 @@ public class ImportFile   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * Id referencing the file in the fa-system.
    * @return fileId 
@@ -81,7 +81,7 @@ public class ImportFile   extends FaModel {
   public java.util.UUID getFileId() {
         return fileId;
     }
-    
+
   /**
    * A short SOP name
    * @return name 
@@ -89,7 +89,7 @@ public class ImportFile   extends FaModel {
   public String getName() {
         return name;
     }
-    
+
   /**
    * A short description of the sop
    * @return description 
@@ -97,19 +97,19 @@ public class ImportFile   extends FaModel {
   public String getDescription() {
         return description;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static ImportFileBuilder builder() {
   		return new ImportFileBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -122,14 +122,14 @@ public class ImportFile   extends FaModel {
         builder.description = entity.description;
  		return builder;
   	}
-  	
-  
+
+
     public static class ImportFileBuilder {
-    
+
         protected ImportFileBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private java.util.UUID fileId;
         private String name;
@@ -171,14 +171,14 @@ public class ImportFile   extends FaModel {
              return this;
         }
 
-        
+
         public ImportFile build() {
             return new ImportFile(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -198,6 +198,6 @@ public class ImportFile   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

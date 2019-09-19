@@ -26,28 +26,28 @@ public class QuantityElement   extends FaModel {
   protected String epcClass;
   protected String quantity;
   protected String uom;
-  
+
   public String getTypeID() {
     return "QuantityElement";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected QuantityElement() {}
-  
+
   private QuantityElement(QuantityElementBuilder builder) {
     
     epcClass = immutable(builder.epcClass);
     quantity = immutable(builder.quantity);
     uom = immutable(builder.uom);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -74,7 +74,7 @@ public class QuantityElement   extends FaModel {
   public String getEpcClass() {
         return epcClass;
     }
-    
+
   /**
    * quantity
    * @return quantity 
@@ -82,7 +82,7 @@ public class QuantityElement   extends FaModel {
   public String getQuantity() {
         return quantity;
     }
-    
+
   /**
    * uom
    * @return uom 
@@ -90,19 +90,19 @@ public class QuantityElement   extends FaModel {
   public String getUom() {
         return uom;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static QuantityElementBuilder builder() {
   		return new QuantityElementBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -114,14 +114,14 @@ public class QuantityElement   extends FaModel {
         builder.uom = entity.uom;
  		return builder;
   	}
-  	
-  
+
+
     public static class QuantityElementBuilder {
-    
+
         protected QuantityElementBuilder(){
             
         }
-    
+
         private String epcClass;
         private String quantity;
         private String uom;
@@ -153,14 +153,14 @@ public class QuantityElement   extends FaModel {
              return this;
         }
 
-        
+
         public QuantityElement build() {
             return new QuantityElement(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -180,6 +180,6 @@ public class QuantityElement   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

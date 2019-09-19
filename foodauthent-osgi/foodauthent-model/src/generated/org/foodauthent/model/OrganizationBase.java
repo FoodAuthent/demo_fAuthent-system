@@ -33,19 +33,19 @@ public class OrganizationBase   extends FaModel {
   protected String discoverySecret;
   protected OrganizationalPostalAddress postalAddress;
   protected OrganizationalPostalAddress billingAddress;
-  
+
   public String getTypeID() {
     return "OrganizationBase";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected OrganizationBase() {}
-  
+
   private OrganizationBase(OrganizationBaseBuilder builder) {
     
     description = immutable(builder.description);
@@ -57,10 +57,10 @@ public class OrganizationBase   extends FaModel {
     discoverySecret = immutable(builder.discoverySecret);
     postalAddress = immutable(builder.postalAddress);
     billingAddress = immutable(builder.billingAddress);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -87,7 +87,7 @@ public class OrganizationBase   extends FaModel {
   public String getDescription() {
         return description;
     }
-    
+
   /**
    * fax numbers
    * @return faxNumbers 
@@ -95,7 +95,7 @@ public class OrganizationBase   extends FaModel {
   public java.util.List<String> getFaxNumbers() {
         return faxNumbers;
     }
-    
+
   /**
    * phone numbers
    * @return phoneNumbers 
@@ -103,7 +103,7 @@ public class OrganizationBase   extends FaModel {
   public java.util.List<String> getPhoneNumbers() {
         return phoneNumbers;
     }
-    
+
   /**
    * business category
    * @return businessCategory 
@@ -111,7 +111,7 @@ public class OrganizationBase   extends FaModel {
   public String getBusinessCategory() {
         return businessCategory;
     }
-    
+
   /**
    * Global Location Number
    * @return gln 
@@ -119,7 +119,7 @@ public class OrganizationBase   extends FaModel {
   public String getGln() {
         return gln;
     }
-    
+
   /**
    * business category
    * @return gcpLength 
@@ -127,7 +127,7 @@ public class OrganizationBase   extends FaModel {
   public Integer getGcpLength() {
         return gcpLength;
     }
-    
+
   /**
    * Secret Hash Key for discovery service
    * @return discoverySecret 
@@ -135,7 +135,7 @@ public class OrganizationBase   extends FaModel {
   public String getDiscoverySecret() {
         return discoverySecret;
     }
-    
+
   /**
    * Get postalAddress
    * @return postalAddress 
@@ -143,7 +143,7 @@ public class OrganizationBase   extends FaModel {
   public OrganizationalPostalAddress getPostalAddress() {
         return postalAddress;
     }
-    
+
   /**
    * Get billingAddress
    * @return billingAddress 
@@ -151,19 +151,19 @@ public class OrganizationBase   extends FaModel {
   public OrganizationalPostalAddress getBillingAddress() {
         return billingAddress;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static OrganizationBaseBuilder builder() {
   		return new OrganizationBaseBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -181,14 +181,14 @@ public class OrganizationBase   extends FaModel {
         builder.billingAddress = entity.billingAddress;
  		return builder;
   	}
-  	
-  
+
+
     public static class OrganizationBaseBuilder {
-    
+
         protected OrganizationBaseBuilder(){
             
         }
-    
+
         private String description;
         private java.util.List<String> faxNumbers = new java.util.ArrayList<>();
         private java.util.List<String> phoneNumbers = new java.util.ArrayList<>();
@@ -280,14 +280,14 @@ public class OrganizationBase   extends FaModel {
              return this;
         }
 
-        
+
         public OrganizationBase build() {
             return new OrganizationBase(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -307,6 +307,6 @@ public class OrganizationBase   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

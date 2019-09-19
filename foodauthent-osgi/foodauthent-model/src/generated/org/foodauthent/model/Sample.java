@@ -33,15 +33,15 @@ public class Sample   extends FaModel {
   protected String bestBeforeDate;
   protected String application;
   protected java.util.List<String> comments;
-  
+
   public String getTypeID() {
     return "Sample";
   }
-  
 
-  
+
+
   protected Sample() {}
-  
+
   private Sample(SampleBuilder builder) {
     
     faId = immutable(builder.faId);
@@ -54,11 +54,11 @@ public class Sample   extends FaModel {
     bestBeforeDate = immutable(builder.bestBeforeDate);
     application = immutable(builder.application);
     comments = immutable(builder.comments);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -85,7 +85,7 @@ public class Sample   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * referenced product fa-id
    * @return productId 
@@ -93,7 +93,7 @@ public class Sample   extends FaModel {
   public java.util.UUID getProductId() {
         return productId;
     }
-    
+
   /**
    * referenced sop used to create the sample
    * @return sopId 
@@ -101,7 +101,7 @@ public class Sample   extends FaModel {
   public java.util.UUID getSopId() {
         return sopId;
     }
-    
+
   /**
    * Sample Id
    * @return sampleId 
@@ -109,7 +109,7 @@ public class Sample   extends FaModel {
   public String getSampleId() {
         return sampleId;
     }
-    
+
   /**
    * Date of Sample Drawing
    * @return dateOfSampleDrawing 
@@ -117,7 +117,7 @@ public class Sample   extends FaModel {
   public String getDateOfSampleDrawing() {
         return dateOfSampleDrawing;
     }
-    
+
   /**
    * Lot
    * @return lot 
@@ -125,7 +125,7 @@ public class Sample   extends FaModel {
   public String getLot() {
         return lot;
     }
-    
+
   /**
    * Sampling Place
    * @return samplingPlace 
@@ -133,7 +133,7 @@ public class Sample   extends FaModel {
   public String getSamplingPlace() {
         return samplingPlace;
     }
-    
+
   /**
    * Best Before Date
    * @return bestBeforeDate 
@@ -141,7 +141,7 @@ public class Sample   extends FaModel {
   public String getBestBeforeDate() {
         return bestBeforeDate;
     }
-    
+
   /**
    * Application
    * @return application 
@@ -149,7 +149,7 @@ public class Sample   extends FaModel {
   public String getApplication() {
         return application;
     }
-    
+
   /**
    * Comment
    * @return comments 
@@ -157,19 +157,19 @@ public class Sample   extends FaModel {
   public java.util.List<String> getComments() {
         return comments;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static SampleBuilder builder() {
   		return new SampleBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -188,14 +188,14 @@ public class Sample   extends FaModel {
         builder.comments = entity.comments;
  		return builder;
   	}
-  	
-  
+
+
     public static class SampleBuilder {
-    
+
         protected SampleBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private java.util.UUID productId;
         private java.util.UUID sopId;
@@ -297,14 +297,14 @@ public class Sample   extends FaModel {
              return this;
         }
 
-        
+
         public Sample build() {
             return new Sample(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -324,6 +324,6 @@ public class Sample   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

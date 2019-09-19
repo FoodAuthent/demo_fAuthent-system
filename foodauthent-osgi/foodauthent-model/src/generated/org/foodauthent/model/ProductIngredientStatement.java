@@ -25,27 +25,27 @@ public class ProductIngredientStatement   extends FaModel {
 
   protected String language;
   protected String text;
-  
+
   public String getTypeID() {
     return "ProductIngredientStatement";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected ProductIngredientStatement() {}
-  
+
   private ProductIngredientStatement(ProductIngredientStatementBuilder builder) {
     
     language = immutable(builder.language);
     text = immutable(builder.text);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -72,7 +72,7 @@ public class ProductIngredientStatement   extends FaModel {
   public String getLanguage() {
         return language;
     }
-    
+
   /**
    * Get text
    * @return text 
@@ -80,19 +80,19 @@ public class ProductIngredientStatement   extends FaModel {
   public String getText() {
         return text;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static ProductIngredientStatementBuilder builder() {
   		return new ProductIngredientStatementBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -103,14 +103,14 @@ public class ProductIngredientStatement   extends FaModel {
         builder.text = entity.text;
  		return builder;
   	}
-  	
-  
+
+
     public static class ProductIngredientStatementBuilder {
-    
+
         protected ProductIngredientStatementBuilder(){
             
         }
-    
+
         private String language;
         private String text;
 
@@ -132,14 +132,14 @@ public class ProductIngredientStatement   extends FaModel {
              return this;
         }
 
-        
+
         public ProductIngredientStatement build() {
             return new ProductIngredientStatement(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -159,6 +159,6 @@ public class ProductIngredientStatement   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

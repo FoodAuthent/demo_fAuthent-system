@@ -14,7 +14,7 @@ import {{import}};
 
 {{#models}}
 {{#model}}
-{{#vendorExtensions.x-non-null}}import com.fasterxml.jackson.annotation.JsonInclude;{{/vendorExtensions.x-non-null}}
+{{#vendorExtensions.x-non-empty}}import com.fasterxml.jackson.annotation.JsonInclude;{{/vendorExtensions.x-non-empty}}
 {{#isEnum}}{{>modelEnum}}{{/isEnum}}
 {{^isEnum}}
 
@@ -23,8 +23,8 @@ import {{import}};
  *
  {{>authors}}
  */
-{{>generatedAnnotation}}{{#vendorExtensions.x-non-null}}
-@JsonInclude(JsonInclude.Include.NON_NULL){{/vendorExtensions.x-non-null}}
+{{>generatedAnnotation}}{{#vendorExtensions.x-non-empty}}
+@JsonInclude(JsonInclude.Include.NON_EMPTY){{/vendorExtensions.x-non-empty}}
 public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}} extends FaModel{{/parent}} {
 
     {{#vars}}
@@ -45,11 +45,11 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}
   {{#vars}}
   protected {{{datatypeWithEnum}}} {{name}};
   {{/vars}}
-  
+
   public String getTypeID() {
     return "{{name}}";
   }
-  
+
 
 {{^parent}}
   {{#vendorExtensions.x-no-faid}}
@@ -59,9 +59,9 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}
   }
   {{/vendorExtensions.x-no-faid}}
 {{/parent}}
-  
+
   protected {{classname}}() {}
-  
+
   private {{classname}}({{classname}}Builder builder) {
     {{#parent}}super();{{/parent}}
     {{#allVars}}
@@ -72,13 +72,13 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}
     {{/required}}
     {{name}} = immutable(builder.{{name}});
     {{/allVars}}
-    
+
     {{^vendorExtensions.x-no-faid}}
     faId = generateFaIdIfMissing(faId);
     {{/vendorExtensions.x-no-faid}}
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -122,20 +122,20 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}
   {{#useBeanValidation}}{{>beanValidation}}{{/useBeanValidation}}public {{{datatypeWithEnum}}} {{getter}}() {
         return {{name}};
     }
-    
+
   {{/vars}}
-  
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static {{classname}}Builder builder() {
   		return new {{classname}}Builder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -147,14 +147,14 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}
     	{{/allVars}}
  		return builder;
   	}
-  	
-  
+
+
     public static class {{classname}}Builder {{#parent}}extends {{{parent}}}Builder {{/parent}}{
-    
+
         protected {{classname}}Builder(){
             {{#parent}}super();{{/parent}}
         }
-    
+
         {{#allVars}}
         private {{{datatypeWithEnum}}} {{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}};
         {{/allVars}}
@@ -186,16 +186,16 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}
              return this;
         }
 
-        {{/isReadOnly}}        
+        {{/isReadOnly}}
         {{/allVars}}
-        
+
         public {{classname}} build() {
             return new {{classname}}(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -215,7 +215,7 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {{^parent}
             return obj;
         }
     }
-    
+
 
 }
 {{/isEnum}}

@@ -27,28 +27,28 @@ public class GPCBrick   extends FaModel {
   protected String code;
   protected String text;
   protected java.util.List<GPCAttribute> attributes;
-  
+
   public String getTypeID() {
     return "GPCBrick";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected GPCBrick() {}
-  
+
   private GPCBrick(GPCBrickBuilder builder) {
     
     code = immutable(builder.code);
     text = immutable(builder.text);
     attributes = immutable(builder.attributes);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -75,7 +75,7 @@ public class GPCBrick   extends FaModel {
   public String getCode() {
         return code;
     }
-    
+
   /**
    * GPC brick human readable text
    * @return text 
@@ -83,7 +83,7 @@ public class GPCBrick   extends FaModel {
   public String getText() {
         return text;
     }
-    
+
   /**
    * Get attributes
    * @return attributes 
@@ -91,19 +91,19 @@ public class GPCBrick   extends FaModel {
   public java.util.List<GPCAttribute> getAttributes() {
         return attributes;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static GPCBrickBuilder builder() {
   		return new GPCBrickBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -115,14 +115,14 @@ public class GPCBrick   extends FaModel {
         builder.attributes = entity.attributes;
  		return builder;
   	}
-  	
-  
+
+
     public static class GPCBrickBuilder {
-    
+
         protected GPCBrickBuilder(){
             
         }
-    
+
         private String code;
         private String text;
         private java.util.List<GPCAttribute> attributes = new java.util.ArrayList<>();
@@ -154,14 +154,14 @@ public class GPCBrick   extends FaModel {
              return this;
         }
 
-        
+
         public GPCBrick build() {
             return new GPCBrick(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -181,6 +181,6 @@ public class GPCBrick   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

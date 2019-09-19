@@ -15,7 +15,7 @@ import org.foodauthent.model.BizTransaction;
 import org.foodauthent.model.Epc;
 import org.foodauthent.model.QuantityElement;
 
-
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 
 /**
@@ -24,6 +24,7 @@ import org.foodauthent.model.QuantityElement;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DiscoveryServiceTransaction   extends FaModel {
 
   /**
@@ -62,15 +63,15 @@ public class DiscoveryServiceTransaction   extends FaModel {
   protected String gtin;
   protected java.util.List<String> bricks;
   protected OffsetDateTime eventTime;
-  
+
   public String getTypeID() {
     return "DiscoveryServiceTransaction";
   }
-  
 
-  
+
+
   protected DiscoveryServiceTransaction() {}
-  
+
   private DiscoveryServiceTransaction(DiscoveryServiceTransactionBuilder builder) {
     
     faId = immutable(builder.faId);
@@ -85,11 +86,11 @@ public class DiscoveryServiceTransaction   extends FaModel {
     gtin = immutable(builder.gtin);
     bricks = immutable(builder.bricks);
     eventTime = immutable(builder.eventTime);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -116,7 +117,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * List of epcs
    * @return epcList 
@@ -124,7 +125,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   public java.util.List<Epc> getEpcList() {
         return epcList;
     }
-    
+
   /**
    * EPCIS bizStep
    * @return bizStep 
@@ -132,7 +133,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   public String getBizStep() {
         return bizStep;
     }
-    
+
   /**
    * Read point
    * @return readPoint 
@@ -140,7 +141,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   public String getReadPoint() {
         return readPoint;
     }
-    
+
   /**
    * List of quantity
    * @return quantityList 
@@ -148,7 +149,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   public java.util.List<QuantityElement> getQuantityList() {
         return quantityList;
     }
-    
+
   /**
    * Event action.
    * @return action 
@@ -156,7 +157,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   public ActionEnum getAction() {
         return action;
     }
-    
+
   /**
    * List of bizTransactions
    * @return bizTransactionList 
@@ -164,7 +165,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   public java.util.List<BizTransaction> getBizTransactionList() {
         return bizTransactionList;
     }
-    
+
   /**
    * EPCIS eventType
    * @return eventType 
@@ -172,7 +173,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   public String getEventType() {
         return eventType;
     }
-    
+
   /**
    * interfaceId
    * @return interfaceId 
@@ -180,7 +181,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   public String getInterfaceId() {
         return interfaceId;
     }
-    
+
   /**
    * Global Trade Item Number
    * @return gtin 
@@ -188,7 +189,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   public String getGtin() {
         return gtin;
     }
-    
+
   /**
    * bricks
    * @return bricks 
@@ -196,7 +197,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   public java.util.List<String> getBricks() {
         return bricks;
     }
-    
+
   /**
    * When the event happened
    * @return eventTime 
@@ -204,19 +205,19 @@ public class DiscoveryServiceTransaction   extends FaModel {
   public OffsetDateTime getEventTime() {
         return eventTime;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static DiscoveryServiceTransactionBuilder builder() {
   		return new DiscoveryServiceTransactionBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -237,14 +238,14 @@ public class DiscoveryServiceTransaction   extends FaModel {
         builder.eventTime = entity.eventTime;
  		return builder;
   	}
-  	
-  
+
+
     public static class DiscoveryServiceTransactionBuilder {
-    
+
         protected DiscoveryServiceTransactionBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private java.util.List<Epc> epcList = new java.util.ArrayList<>();
         private String bizStep;
@@ -366,14 +367,14 @@ public class DiscoveryServiceTransaction   extends FaModel {
              return this;
         }
 
-        
+
         public DiscoveryServiceTransaction build() {
             return new DiscoveryServiceTransaction(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -393,6 +394,6 @@ public class DiscoveryServiceTransaction   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

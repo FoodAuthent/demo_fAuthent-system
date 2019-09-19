@@ -29,19 +29,19 @@ public class PostalAddress   extends FaModel {
   protected String localityName;
   protected String stateOrProvinceName;
   protected String country;
-  
+
   public String getTypeID() {
     return "PostalAddress";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected PostalAddress() {}
-  
+
   private PostalAddress(PostalAddressBuilder builder) {
     
     otherRecipientInformation = immutable(builder.otherRecipientInformation);
@@ -59,10 +59,10 @@ public class PostalAddress   extends FaModel {
     localityName = immutable(builder.localityName);
     stateOrProvinceName = immutable(builder.stateOrProvinceName);
     country = immutable(builder.country);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -89,7 +89,7 @@ public class PostalAddress   extends FaModel {
   public String getOtherRecipientInformation() {
         return otherRecipientInformation;
     }
-    
+
   /**
    * street address part
    * @return street , never <code>null</code>
@@ -97,7 +97,7 @@ public class PostalAddress   extends FaModel {
   public String getStreet() {
         return street;
     }
-    
+
   /**
    * postalCode address part
    * @return postalCode , never <code>null</code>
@@ -105,7 +105,7 @@ public class PostalAddress   extends FaModel {
   public String getPostalCode() {
         return postalCode;
     }
-    
+
   /**
    * locality/city address part
    * @return localityName , never <code>null</code>
@@ -113,7 +113,7 @@ public class PostalAddress   extends FaModel {
   public String getLocalityName() {
         return localityName;
     }
-    
+
   /**
    * stateOrProvinceName address part
    * @return stateOrProvinceName 
@@ -121,7 +121,7 @@ public class PostalAddress   extends FaModel {
   public String getStateOrProvinceName() {
         return stateOrProvinceName;
     }
-    
+
   /**
    * country address part
    * @return country 
@@ -129,19 +129,19 @@ public class PostalAddress   extends FaModel {
   public String getCountry() {
         return country;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static PostalAddressBuilder builder() {
   		return new PostalAddressBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -156,14 +156,14 @@ public class PostalAddress   extends FaModel {
         builder.country = entity.country;
  		return builder;
   	}
-  	
-  
+
+
     public static class PostalAddressBuilder {
-    
+
         protected PostalAddressBuilder(){
             
         }
-    
+
         private String otherRecipientInformation;
         private String street;
         private String postalCode;
@@ -234,14 +234,14 @@ public class PostalAddress   extends FaModel {
              return this;
         }
 
-        
+
         public PostalAddress build() {
             return new PostalAddress(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -261,6 +261,6 @@ public class PostalAddress   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

@@ -43,29 +43,29 @@ public class FingerprintType   extends FaModel {
 
 
   protected NameEnum name;
-  
+
   public String getTypeID() {
     return "FingerprintType";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected FingerprintType() {}
-  
+
   private FingerprintType(FingerprintTypeBuilder builder) {
     
     if(builder.name == null) {
         throw new IllegalArgumentException("name must not be null.");
     }
     name = immutable(builder.name);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -92,19 +92,19 @@ public class FingerprintType   extends FaModel {
   public NameEnum getName() {
         return name;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static FingerprintTypeBuilder builder() {
   		return new FingerprintTypeBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -114,14 +114,14 @@ public class FingerprintType   extends FaModel {
         builder.name = entity.name;
  		return builder;
   	}
-  	
-  
+
+
     public static class FingerprintTypeBuilder {
-    
+
         protected FingerprintTypeBuilder(){
             
         }
-    
+
         private NameEnum name;
 
         /**
@@ -136,14 +136,14 @@ public class FingerprintType   extends FaModel {
              return this;
         }
 
-        
+
         public FingerprintType build() {
             return new FingerprintType(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -163,6 +163,6 @@ public class FingerprintType   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

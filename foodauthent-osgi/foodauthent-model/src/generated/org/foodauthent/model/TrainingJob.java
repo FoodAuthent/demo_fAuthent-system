@@ -51,15 +51,15 @@ public class TrainingJob   extends FaModel {
   protected java.util.List<java.util.UUID> fingerprintsetIds;
   protected StatusEnum status;
   protected String statusMessage;
-  
+
   public String getTypeID() {
     return "TrainingJob";
   }
-  
 
-  
+
+
   protected TrainingJob() {}
-  
+
   private TrainingJob(TrainingJobBuilder builder) {
     
     faId = immutable(builder.faId);
@@ -67,11 +67,11 @@ public class TrainingJob   extends FaModel {
     fingerprintsetIds = immutable(builder.fingerprintsetIds);
     status = immutable(builder.status);
     statusMessage = immutable(builder.statusMessage);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -98,7 +98,7 @@ public class TrainingJob   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * The created model after successful training.
    * @return modelId 
@@ -106,7 +106,7 @@ public class TrainingJob   extends FaModel {
   public java.util.UUID getModelId() {
         return modelId;
     }
-    
+
   /**
    * Reference to the fingerprint sets the model has been trained on
    * @return fingerprintsetIds 
@@ -114,7 +114,7 @@ public class TrainingJob   extends FaModel {
   public java.util.List<java.util.UUID> getFingerprintsetIds() {
         return fingerprintsetIds;
     }
-    
+
   /**
    * Get status
    * @return status 
@@ -122,7 +122,7 @@ public class TrainingJob   extends FaModel {
   public StatusEnum getStatus() {
         return status;
     }
-    
+
   /**
    * A message, e.g., in case the workflow failed.
    * @return statusMessage 
@@ -130,19 +130,19 @@ public class TrainingJob   extends FaModel {
   public String getStatusMessage() {
         return statusMessage;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static TrainingJobBuilder builder() {
   		return new TrainingJobBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -156,14 +156,14 @@ public class TrainingJob   extends FaModel {
         builder.statusMessage = entity.statusMessage;
  		return builder;
   	}
-  	
-  
+
+
     public static class TrainingJobBuilder {
-    
+
         protected TrainingJobBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private java.util.UUID modelId;
         private java.util.List<java.util.UUID> fingerprintsetIds = new java.util.ArrayList<>();
@@ -215,14 +215,14 @@ public class TrainingJob   extends FaModel {
              return this;
         }
 
-        
+
         public TrainingJob build() {
             return new TrainingJob(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -242,6 +242,6 @@ public class TrainingJob   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

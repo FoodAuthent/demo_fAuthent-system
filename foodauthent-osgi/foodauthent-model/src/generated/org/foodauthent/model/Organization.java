@@ -26,15 +26,15 @@ public class Organization extends OrganizationBase  {
 
   protected String dn;
   protected String organizationName;
-  
+
   public String getTypeID() {
     return "Organization";
   }
-  
 
-  
+
+
   protected Organization() {}
-  
+
   private Organization(OrganizationBuilder builder) {
     super();
     description = immutable(builder.description);
@@ -54,10 +54,10 @@ public class Organization extends OrganizationBase  {
         throw new IllegalArgumentException("organizationName must not be null.");
     }
     organizationName = immutable(builder.organizationName);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -84,7 +84,7 @@ public class Organization extends OrganizationBase  {
   public String getDn() {
         return dn;
     }
-    
+
   /**
    * unique OrganizationalUnit name
    * @return organizationName , never <code>null</code>
@@ -92,19 +92,19 @@ public class Organization extends OrganizationBase  {
   public String getOrganizationName() {
         return organizationName;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static OrganizationBuilder builder() {
   		return new OrganizationBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -124,14 +124,14 @@ public class Organization extends OrganizationBase  {
         builder.organizationName = entity.organizationName;
  		return builder;
   	}
-  	
-  
+
+
     public static class OrganizationBuilder extends OrganizationBaseBuilder {
-    
+
         protected OrganizationBuilder(){
             super();
         }
-    
+
         private String description;
         private java.util.List<String> faxNumbers = new java.util.ArrayList<>();
         private java.util.List<String> phoneNumbers = new java.util.ArrayList<>();
@@ -249,14 +249,14 @@ public class Organization extends OrganizationBase  {
              return this;
         }
 
-        
+
         public Organization build() {
             return new Organization(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -276,6 +276,6 @@ public class Organization extends OrganizationBase  {
             return obj;
         }
     }
-    
+
 
 }

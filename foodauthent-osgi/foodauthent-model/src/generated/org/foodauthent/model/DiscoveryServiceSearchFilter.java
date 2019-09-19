@@ -39,19 +39,19 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   protected java.util.List<String> bricks;
   protected OffsetDateTime eventTimeFrom;
   protected OffsetDateTime eventTimeTo;
-  
+
   public String getTypeID() {
     return "DiscoveryServiceSearchFilter";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected DiscoveryServiceSearchFilter() {}
-  
+
   private DiscoveryServiceSearchFilter(DiscoveryServiceSearchFilterBuilder builder) {
     
     epcList = immutable(builder.epcList);
@@ -66,10 +66,10 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
     bricks = immutable(builder.bricks);
     eventTimeFrom = immutable(builder.eventTimeFrom);
     eventTimeTo = immutable(builder.eventTimeTo);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -96,7 +96,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   public java.util.List<Epc> getEpcList() {
         return epcList;
     }
-    
+
   /**
    * EPCIS bizStep
    * @return bizStep 
@@ -104,7 +104,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   public String getBizStep() {
         return bizStep;
     }
-    
+
   /**
    * Read point
    * @return readPoint 
@@ -112,7 +112,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   public String getReadPoint() {
         return readPoint;
     }
-    
+
   /**
    * List of quantity
    * @return quantityList 
@@ -120,7 +120,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   public java.util.List<QuantityElement> getQuantityList() {
         return quantityList;
     }
-    
+
   /**
    * Event action.
    * @return action 
@@ -128,7 +128,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   public String getAction() {
         return action;
     }
-    
+
   /**
    * List of bizTransactions
    * @return bizTransactionList 
@@ -136,7 +136,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   public java.util.List<BizTransaction> getBizTransactionList() {
         return bizTransactionList;
     }
-    
+
   /**
    * EPCIS eventType
    * @return eventType 
@@ -144,7 +144,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   public String getEventType() {
         return eventType;
     }
-    
+
   /**
    * interfaceId
    * @return interfaceId 
@@ -152,7 +152,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   public java.util.UUID getInterfaceId() {
         return interfaceId;
     }
-    
+
   /**
    * Global Trade Item Number
    * @return gtin 
@@ -160,7 +160,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   public String getGtin() {
         return gtin;
     }
-    
+
   /**
    * bricks
    * @return bricks 
@@ -168,7 +168,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   public java.util.List<String> getBricks() {
         return bricks;
     }
-    
+
   /**
    * start date for the research
    * @return eventTimeFrom 
@@ -176,7 +176,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   public OffsetDateTime getEventTimeFrom() {
         return eventTimeFrom;
     }
-    
+
   /**
    * end date for the research
    * @return eventTimeTo 
@@ -184,19 +184,19 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   public OffsetDateTime getEventTimeTo() {
         return eventTimeTo;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static DiscoveryServiceSearchFilterBuilder builder() {
   		return new DiscoveryServiceSearchFilterBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -217,21 +217,21 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         builder.eventTimeTo = entity.eventTimeTo;
  		return builder;
   	}
-  	
-  
+
+
     public static class DiscoveryServiceSearchFilterBuilder {
-    
+
         protected DiscoveryServiceSearchFilterBuilder(){
             
         }
-    
+
         private java.util.List<Epc> epcList = new java.util.ArrayList<>();
         private String bizStep;
         private String readPoint;
         private java.util.List<QuantityElement> quantityList = new java.util.ArrayList<>();
         private String action;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
-        private String eventType = "ObjectEvent";
+        private String eventType;
         private java.util.UUID interfaceId;
         private String gtin;
         private java.util.List<String> bricks = new java.util.ArrayList<>();
@@ -346,14 +346,14 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
              return this;
         }
 
-        
+
         public DiscoveryServiceSearchFilter build() {
             return new DiscoveryServiceSearchFilter(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -373,6 +373,6 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

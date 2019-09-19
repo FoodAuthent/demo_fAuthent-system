@@ -25,27 +25,27 @@ public class BizTransaction   extends FaModel {
 
   protected String type;
   protected String value;
-  
+
   public String getTypeID() {
     return "BizTransaction";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected BizTransaction() {}
-  
+
   private BizTransaction(BizTransactionBuilder builder) {
     
     type = immutable(builder.type);
     value = immutable(builder.value);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -72,7 +72,7 @@ public class BizTransaction   extends FaModel {
   public String getType() {
         return type;
     }
-    
+
   /**
    * Value of transaction
    * @return value 
@@ -80,19 +80,19 @@ public class BizTransaction   extends FaModel {
   public String getValue() {
         return value;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static BizTransactionBuilder builder() {
   		return new BizTransactionBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -103,14 +103,14 @@ public class BizTransaction   extends FaModel {
         builder.value = entity.value;
  		return builder;
   	}
-  	
-  
+
+
     public static class BizTransactionBuilder {
-    
+
         protected BizTransactionBuilder(){
             
         }
-    
+
         private String type;
         private String value;
 
@@ -132,14 +132,14 @@ public class BizTransaction   extends FaModel {
              return this;
         }
 
-        
+
         public BizTransaction build() {
             return new BizTransaction(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -159,6 +159,6 @@ public class BizTransaction   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

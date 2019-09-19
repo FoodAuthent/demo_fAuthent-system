@@ -28,15 +28,15 @@ public class SOP   extends FaModel {
   protected String name;
   protected String description;
   protected java.util.UUID productId;
-  
+
   public String getTypeID() {
     return "SOP";
   }
-  
 
-  
+
+
   protected SOP() {}
-  
+
   private SOP(SOPBuilder builder) {
     
     faId = immutable(builder.faId);
@@ -44,11 +44,11 @@ public class SOP   extends FaModel {
     name = immutable(builder.name);
     description = immutable(builder.description);
     productId = immutable(builder.productId);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -75,7 +75,7 @@ public class SOP   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * Id referencing the file in the fa-system.
    * @return fileId 
@@ -83,7 +83,7 @@ public class SOP   extends FaModel {
   public java.util.UUID getFileId() {
         return fileId;
     }
-    
+
   /**
    * A short SOP name
    * @return name 
@@ -91,7 +91,7 @@ public class SOP   extends FaModel {
   public String getName() {
         return name;
     }
-    
+
   /**
    * A short description of the sop
    * @return description 
@@ -99,7 +99,7 @@ public class SOP   extends FaModel {
   public String getDescription() {
         return description;
     }
-    
+
   /**
    * A reference to a product this sop is made for.
    * @return productId 
@@ -107,19 +107,19 @@ public class SOP   extends FaModel {
   public java.util.UUID getProductId() {
         return productId;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static SOPBuilder builder() {
   		return new SOPBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -133,14 +133,14 @@ public class SOP   extends FaModel {
         builder.productId = entity.productId;
  		return builder;
   	}
-  	
-  
+
+
     public static class SOPBuilder {
-    
+
         protected SOPBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private java.util.UUID fileId;
         private String name;
@@ -192,14 +192,14 @@ public class SOP   extends FaModel {
              return this;
         }
 
-        
+
         public SOP build() {
             return new SOP(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -219,6 +219,6 @@ public class SOP   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

@@ -26,27 +26,27 @@ public class ImportResult   extends FaModel {
 
   protected java.util.List<String> problems;
   protected FaObjectSet importedObjects;
-  
+
   public String getTypeID() {
     return "ImportResult";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected ImportResult() {}
-  
+
   private ImportResult(ImportResultBuilder builder) {
     
     problems = immutable(builder.problems);
     importedObjects = immutable(builder.importedObjects);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -73,7 +73,7 @@ public class ImportResult   extends FaModel {
   public java.util.List<String> getProblems() {
         return problems;
     }
-    
+
   /**
    * Get importedObjects
    * @return importedObjects 
@@ -81,19 +81,19 @@ public class ImportResult   extends FaModel {
   public FaObjectSet getImportedObjects() {
         return importedObjects;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static ImportResultBuilder builder() {
   		return new ImportResultBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -104,14 +104,14 @@ public class ImportResult   extends FaModel {
         builder.importedObjects = entity.importedObjects;
  		return builder;
   	}
-  	
-  
+
+
     public static class ImportResultBuilder {
-    
+
         protected ImportResultBuilder(){
             
         }
-    
+
         private java.util.List<String> problems = new java.util.ArrayList<>();
         private FaObjectSet importedObjects;
 
@@ -133,14 +133,14 @@ public class ImportResult   extends FaModel {
              return this;
         }
 
-        
+
         public ImportResult build() {
             return new ImportResult(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -160,6 +160,6 @@ public class ImportResult   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

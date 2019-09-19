@@ -37,15 +37,15 @@ public class Product   extends FaModel {
   protected ProductIngredientStatement ingredientStatement;
   protected String comment;
   protected java.util.List<GPCBrick> gpcBricks;
-  
+
   public String getTypeID() {
     return "Product";
   }
-  
 
-  
+
+
   protected Product() {}
-  
+
   private Product(ProductBuilder builder) {
     
     faId = immutable(builder.faId);
@@ -60,11 +60,11 @@ public class Product   extends FaModel {
     ingredientStatement = immutable(builder.ingredientStatement);
     comment = immutable(builder.comment);
     gpcBricks = immutable(builder.gpcBricks);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -91,7 +91,7 @@ public class Product   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * Get gtin
    * @return gtin 
@@ -99,7 +99,7 @@ public class Product   extends FaModel {
   public String getGtin() {
         return gtin;
     }
-    
+
   /**
    * Brand
    * @return brand 
@@ -107,7 +107,7 @@ public class Product   extends FaModel {
   public String getBrand() {
         return brand;
     }
-    
+
   /**
    * Target Market
    * @return targetMarket 
@@ -115,7 +115,7 @@ public class Product   extends FaModel {
   public String getTargetMarket() {
         return targetMarket;
     }
-    
+
   /**
    * Label Description
    * @return labelDescription 
@@ -123,7 +123,7 @@ public class Product   extends FaModel {
   public String getLabelDescription() {
         return labelDescription;
     }
-    
+
   /**
    * Company Name
    * @return companyName 
@@ -131,7 +131,7 @@ public class Product   extends FaModel {
   public String getCompanyName() {
         return companyName;
     }
-    
+
   /**
    * Product Classification
    * @return productClassification 
@@ -139,7 +139,7 @@ public class Product   extends FaModel {
   public String getProductClassification() {
         return productClassification;
     }
-    
+
   /**
    * Country Of Origin
    * @return countryOfOrigin 
@@ -147,7 +147,7 @@ public class Product   extends FaModel {
   public String getCountryOfOrigin() {
         return countryOfOrigin;
     }
-    
+
   /**
    * Region Of Origin-Claims
    * @return regionOfOriginClaims 
@@ -155,7 +155,7 @@ public class Product   extends FaModel {
   public String getRegionOfOriginClaims() {
         return regionOfOriginClaims;
     }
-    
+
   /**
    * Get ingredientStatement
    * @return ingredientStatement 
@@ -163,7 +163,7 @@ public class Product   extends FaModel {
   public ProductIngredientStatement getIngredientStatement() {
         return ingredientStatement;
     }
-    
+
   /**
    * Comment
    * @return comment 
@@ -171,7 +171,7 @@ public class Product   extends FaModel {
   public String getComment() {
         return comment;
     }
-    
+
   /**
    * Get gpcBricks
    * @return gpcBricks 
@@ -179,19 +179,19 @@ public class Product   extends FaModel {
   public java.util.List<GPCBrick> getGpcBricks() {
         return gpcBricks;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static ProductBuilder builder() {
   		return new ProductBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -212,14 +212,14 @@ public class Product   extends FaModel {
         builder.gpcBricks = entity.gpcBricks;
  		return builder;
   	}
-  	
-  
+
+
     public static class ProductBuilder {
-    
+
         protected ProductBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private String gtin;
         private String brand;
@@ -341,14 +341,14 @@ public class Product   extends FaModel {
              return this;
         }
 
-        
+
         public Product build() {
             return new Product(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -368,6 +368,6 @@ public class Product   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

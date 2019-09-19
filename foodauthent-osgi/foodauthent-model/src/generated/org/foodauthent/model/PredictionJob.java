@@ -50,26 +50,26 @@ public class PredictionJob   extends FaModel {
   protected java.util.UUID predictionId;
   protected StatusEnum status;
   protected String statusMessage;
-  
+
   public String getTypeID() {
     return "PredictionJob";
   }
-  
 
-  
+
+
   protected PredictionJob() {}
-  
+
   private PredictionJob(PredictionJobBuilder builder) {
     
     faId = immutable(builder.faId);
     predictionId = immutable(builder.predictionId);
     status = immutable(builder.status);
     statusMessage = immutable(builder.statusMessage);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -96,7 +96,7 @@ public class PredictionJob   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * The id of the prediction result if the job has completed successfully.
    * @return predictionId 
@@ -104,7 +104,7 @@ public class PredictionJob   extends FaModel {
   public java.util.UUID getPredictionId() {
         return predictionId;
     }
-    
+
   /**
    * The current status of the prediction job.
    * @return status 
@@ -112,7 +112,7 @@ public class PredictionJob   extends FaModel {
   public StatusEnum getStatus() {
         return status;
     }
-    
+
   /**
    * A message, e.g., in case the workflow failed.
    * @return statusMessage 
@@ -120,19 +120,19 @@ public class PredictionJob   extends FaModel {
   public String getStatusMessage() {
         return statusMessage;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static PredictionJobBuilder builder() {
   		return new PredictionJobBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -145,14 +145,14 @@ public class PredictionJob   extends FaModel {
         builder.statusMessage = entity.statusMessage;
  		return builder;
   	}
-  	
-  
+
+
     public static class PredictionJobBuilder {
-    
+
         protected PredictionJobBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private java.util.UUID predictionId;
         private StatusEnum status;
@@ -194,14 +194,14 @@ public class PredictionJob   extends FaModel {
              return this;
         }
 
-        
+
         public PredictionJob build() {
             return new PredictionJob(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -221,6 +221,6 @@ public class PredictionJob   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

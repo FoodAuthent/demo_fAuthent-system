@@ -82,15 +82,15 @@ public class Workflow   extends FaModel {
   protected java.util.UUID fileId;
   protected WorkflowIOTypes outputTypes;
   protected WorkflowIOTypes inputTypes;
-  
+
   public String getTypeID() {
     return "Workflow";
   }
-  
 
-  
+
+
   protected Workflow() {}
-  
+
   private Workflow(WorkflowBuilder builder) {
     
     faId = immutable(builder.faId);
@@ -115,11 +115,11 @@ public class Workflow   extends FaModel {
     fileId = immutable(builder.fileId);
     outputTypes = immutable(builder.outputTypes);
     inputTypes = immutable(builder.inputTypes);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -146,7 +146,7 @@ public class Workflow   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * Get name
    * @return name , never <code>null</code>
@@ -154,7 +154,7 @@ public class Workflow   extends FaModel {
   public String getName() {
         return name;
     }
-    
+
   /**
    * Get description
    * @return description 
@@ -162,7 +162,7 @@ public class Workflow   extends FaModel {
   public String getDescription() {
         return description;
     }
-    
+
   /**
    * The workflow representation, e.g. represented by a scripting language, cwl or a KNIME-workflow.
    * @return representation , never <code>null</code>
@@ -170,7 +170,7 @@ public class Workflow   extends FaModel {
   public RepresentationEnum getRepresentation() {
         return representation;
     }
-    
+
   /**
    * The type of the workflow.  IMPORTANT: This property determines the required workflow input and output, e.g., PredictionWorkflowInput and PredicitonWorkflowOutput-entity.
    * @return type , never <code>null</code>
@@ -178,7 +178,7 @@ public class Workflow   extends FaModel {
   public TypeEnum getType() {
         return type;
     }
-    
+
   /**
    * The parameters of the workflow, TODO - should maybe be a map.
    * @return parameters 
@@ -186,7 +186,7 @@ public class Workflow   extends FaModel {
   public java.util.List<WorkflowParameter> getParameters() {
         return parameters;
     }
-    
+
   /**
    * Descriptive tags/annotations for the workflow.
    * @return tags 
@@ -194,7 +194,7 @@ public class Workflow   extends FaModel {
   public java.util.List<Tag> getTags() {
         return tags;
     }
-    
+
   /**
    * id referencing the workflow file.
    * @return fileId , never <code>null</code>
@@ -202,7 +202,7 @@ public class Workflow   extends FaModel {
   public java.util.UUID getFileId() {
         return fileId;
     }
-    
+
   /**
    * Get outputTypes
    * @return outputTypes 
@@ -210,7 +210,7 @@ public class Workflow   extends FaModel {
   public WorkflowIOTypes getOutputTypes() {
         return outputTypes;
     }
-    
+
   /**
    * Get inputTypes
    * @return inputTypes 
@@ -218,19 +218,19 @@ public class Workflow   extends FaModel {
   public WorkflowIOTypes getInputTypes() {
         return inputTypes;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static WorkflowBuilder builder() {
   		return new WorkflowBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -249,14 +249,14 @@ public class Workflow   extends FaModel {
         builder.inputTypes = entity.inputTypes;
  		return builder;
   	}
-  	
-  
+
+
     public static class WorkflowBuilder {
-    
+
         protected WorkflowBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private String name;
         private String description;
@@ -370,14 +370,14 @@ public class Workflow   extends FaModel {
              return this;
         }
 
-        
+
         public Workflow build() {
             return new Workflow(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -397,6 +397,6 @@ public class Workflow   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

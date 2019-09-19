@@ -25,19 +25,19 @@ public class UserGroupBase   extends FaModel {
 
   protected String description;
   protected java.util.List<String> members;
-  
+
   public String getTypeID() {
     return "UserGroupBase";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected UserGroupBase() {}
-  
+
   private UserGroupBase(UserGroupBaseBuilder builder) {
     
     description = immutable(builder.description);
@@ -45,10 +45,10 @@ public class UserGroupBase   extends FaModel {
         throw new IllegalArgumentException("members must not be null.");
     }
     members = immutable(builder.members);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -75,7 +75,7 @@ public class UserGroupBase   extends FaModel {
   public String getDescription() {
         return description;
     }
-    
+
   /**
    * list of members user dn
    * @return members , never <code>null</code>
@@ -83,19 +83,19 @@ public class UserGroupBase   extends FaModel {
   public java.util.List<String> getMembers() {
         return members;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static UserGroupBaseBuilder builder() {
   		return new UserGroupBaseBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -106,14 +106,14 @@ public class UserGroupBase   extends FaModel {
         builder.members = entity.members;
  		return builder;
   	}
-  	
-  
+
+
     public static class UserGroupBaseBuilder {
-    
+
         protected UserGroupBaseBuilder(){
             
         }
-    
+
         private String description;
         private java.util.List<String> members = new java.util.ArrayList<>();
 
@@ -138,14 +138,14 @@ public class UserGroupBase   extends FaModel {
              return this;
         }
 
-        
+
         public UserGroupBase build() {
             return new UserGroupBase(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -165,6 +165,6 @@ public class UserGroupBase   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

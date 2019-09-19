@@ -27,27 +27,27 @@ public class TrainingWorkflowInput   extends FaModel {
 
   protected java.util.List<WorkflowParameter> parameters;
   protected java.util.List<TrainingWorkflowInputFingerprint> fingerprints;
-  
+
   public String getTypeID() {
     return "TrainingWorkflowInput";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected TrainingWorkflowInput() {}
-  
+
   private TrainingWorkflowInput(TrainingWorkflowInputBuilder builder) {
     
     parameters = immutable(builder.parameters);
     fingerprints = immutable(builder.fingerprints);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -74,7 +74,7 @@ public class TrainingWorkflowInput   extends FaModel {
   public java.util.List<WorkflowParameter> getParameters() {
         return parameters;
     }
-    
+
   /**
    * Get fingerprints
    * @return fingerprints 
@@ -82,19 +82,19 @@ public class TrainingWorkflowInput   extends FaModel {
   public java.util.List<TrainingWorkflowInputFingerprint> getFingerprints() {
         return fingerprints;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static TrainingWorkflowInputBuilder builder() {
   		return new TrainingWorkflowInputBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -105,14 +105,14 @@ public class TrainingWorkflowInput   extends FaModel {
         builder.fingerprints = entity.fingerprints;
  		return builder;
   	}
-  	
-  
+
+
     public static class TrainingWorkflowInputBuilder {
-    
+
         protected TrainingWorkflowInputBuilder(){
             
         }
-    
+
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
         private java.util.List<TrainingWorkflowInputFingerprint> fingerprints = new java.util.ArrayList<>();
 
@@ -134,14 +134,14 @@ public class TrainingWorkflowInput   extends FaModel {
              return this;
         }
 
-        
+
         public TrainingWorkflowInput build() {
             return new TrainingWorkflowInput(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -161,6 +161,6 @@ public class TrainingWorkflowInput   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

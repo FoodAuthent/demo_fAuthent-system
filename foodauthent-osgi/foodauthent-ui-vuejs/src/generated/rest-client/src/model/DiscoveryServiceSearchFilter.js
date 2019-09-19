@@ -133,9 +133,8 @@
   /**
    * EPCIS eventType
    * @member {String} eventType
-   * @default 'ObjectEvent'
    */
-  exports.prototype['eventType'] = 'ObjectEvent';
+  exports.prototype['eventType'] = undefined;
   /**
    * interfaceId
    * @member {String} interfaceId

@@ -28,15 +28,15 @@ public class Prediction   extends FaModel {
   protected java.util.UUID workflowId;
   protected java.util.UUID fingerprintsetId;
   protected java.util.UUID modelId;
-  
+
   public String getTypeID() {
     return "Prediction";
   }
-  
 
-  
+
+
   protected Prediction() {}
-  
+
   private Prediction(PredictionBuilder builder) {
     
     faId = immutable(builder.faId);
@@ -44,11 +44,11 @@ public class Prediction   extends FaModel {
     workflowId = immutable(builder.workflowId);
     fingerprintsetId = immutable(builder.fingerprintsetId);
     modelId = immutable(builder.modelId);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -75,7 +75,7 @@ public class Prediction   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * The predictions for each individual fingerprint. The map key is the fingerprint-id.
    * @return predictionMap 
@@ -83,7 +83,7 @@ public class Prediction   extends FaModel {
   public java.util.Map<String, java.util.Map<String, Float>> getPredictionMap() {
         return predictionMap;
     }
-    
+
   /**
    * Workflow used for the prediction.
    * @return workflowId 
@@ -91,7 +91,7 @@ public class Prediction   extends FaModel {
   public java.util.UUID getWorkflowId() {
         return workflowId;
     }
-    
+
   /**
    * Id of the set the prediction has been done for.
    * @return fingerprintsetId 
@@ -99,7 +99,7 @@ public class Prediction   extends FaModel {
   public java.util.UUID getFingerprintsetId() {
         return fingerprintsetId;
     }
-    
+
   /**
    * The model that has been used for the prediction.
    * @return modelId 
@@ -107,19 +107,19 @@ public class Prediction   extends FaModel {
   public java.util.UUID getModelId() {
         return modelId;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static PredictionBuilder builder() {
   		return new PredictionBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -133,14 +133,14 @@ public class Prediction   extends FaModel {
         builder.modelId = entity.modelId;
  		return builder;
   	}
-  	
-  
+
+
     public static class PredictionBuilder {
-    
+
         protected PredictionBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private java.util.Map<String, java.util.Map<String, Float>> predictionMap = new java.util.HashMap<>();
         private java.util.UUID workflowId;
@@ -192,14 +192,14 @@ public class Prediction   extends FaModel {
              return this;
         }
 
-        
+
         public Prediction build() {
             return new Prediction(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -219,6 +219,6 @@ public class Prediction   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

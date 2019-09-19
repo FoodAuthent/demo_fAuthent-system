@@ -24,26 +24,26 @@ public class TrainingWorkflowOutput   extends FaModel {
 
 
   protected String modelUri;
-  
+
   public String getTypeID() {
     return "TrainingWorkflowOutput";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected TrainingWorkflowOutput() {}
-  
+
   private TrainingWorkflowOutput(TrainingWorkflowOutputBuilder builder) {
     
     modelUri = immutable(builder.modelUri);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -70,19 +70,19 @@ public class TrainingWorkflowOutput   extends FaModel {
   public String getModelUri() {
         return modelUri;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static TrainingWorkflowOutputBuilder builder() {
   		return new TrainingWorkflowOutputBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -92,14 +92,14 @@ public class TrainingWorkflowOutput   extends FaModel {
         builder.modelUri = entity.modelUri;
  		return builder;
   	}
-  	
-  
+
+
     public static class TrainingWorkflowOutputBuilder {
-    
+
         protected TrainingWorkflowOutputBuilder(){
             
         }
-    
+
         private String modelUri;
 
         /**
@@ -111,14 +111,14 @@ public class TrainingWorkflowOutput   extends FaModel {
              return this;
         }
 
-        
+
         public TrainingWorkflowOutput build() {
             return new TrainingWorkflowOutput(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -138,6 +138,6 @@ public class TrainingWorkflowOutput   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

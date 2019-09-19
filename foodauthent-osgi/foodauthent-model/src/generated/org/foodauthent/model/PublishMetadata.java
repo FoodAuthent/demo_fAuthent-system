@@ -28,29 +28,29 @@ public class PublishMetadata   extends FaModel {
   protected java.util.List<GPCBrick> bricks;
   protected Boolean epcis;
   protected Boolean discovery;
-  
+
   public String getTypeID() {
     return "PublishMetadata";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected PublishMetadata() {}
-  
+
   private PublishMetadata(PublishMetadataBuilder builder) {
     
     gtin = immutable(builder.gtin);
     bricks = immutable(builder.bricks);
     epcis = immutable(builder.epcis);
     discovery = immutable(builder.discovery);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -77,7 +77,7 @@ public class PublishMetadata   extends FaModel {
   public String getGtin() {
         return gtin;
     }
-    
+
   /**
    * bricks
    * @return bricks 
@@ -85,7 +85,7 @@ public class PublishMetadata   extends FaModel {
   public java.util.List<GPCBrick> getBricks() {
         return bricks;
     }
-    
+
   /**
    * save to EPCIS Repository
    * @return epcis 
@@ -93,7 +93,7 @@ public class PublishMetadata   extends FaModel {
   public Boolean isEpcis() {
         return epcis;
     }
-    
+
   /**
    * send to discovery services
    * @return discovery 
@@ -101,19 +101,19 @@ public class PublishMetadata   extends FaModel {
   public Boolean isDiscovery() {
         return discovery;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static PublishMetadataBuilder builder() {
   		return new PublishMetadataBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -126,14 +126,14 @@ public class PublishMetadata   extends FaModel {
         builder.discovery = entity.discovery;
  		return builder;
   	}
-  	
-  
+
+
     public static class PublishMetadataBuilder {
-    
+
         protected PublishMetadataBuilder(){
             
         }
-    
+
         private String gtin;
         private java.util.List<GPCBrick> bricks = new java.util.ArrayList<>();
         private Boolean epcis;
@@ -175,14 +175,14 @@ public class PublishMetadata   extends FaModel {
              return this;
         }
 
-        
+
         public PublishMetadata build() {
             return new PublishMetadata(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -202,6 +202,6 @@ public class PublishMetadata   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

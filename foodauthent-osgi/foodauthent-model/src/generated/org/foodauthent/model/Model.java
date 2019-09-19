@@ -38,15 +38,15 @@ public class Model   extends FaModel {
   protected java.util.UUID workflowId;
   protected java.util.List<java.util.UUID> fingerprintsetIds;
   protected java.util.List<String> classLabels;
-  
+
   public String getTypeID() {
     return "Model";
   }
-  
 
-  
+
+
   protected Model() {}
-  
+
   private Model(ModelBuilder builder) {
     
     faId = immutable(builder.faId);
@@ -61,11 +61,11 @@ public class Model   extends FaModel {
     workflowId = immutable(builder.workflowId);
     fingerprintsetIds = immutable(builder.fingerprintsetIds);
     classLabels = immutable(builder.classLabels);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -92,7 +92,7 @@ public class Model   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * A name for the model.
    * @return name 
@@ -100,7 +100,7 @@ public class Model   extends FaModel {
   public String getName() {
         return name;
     }
-    
+
   /**
    * A more verbose description of the model.
    * @return description 
@@ -108,7 +108,7 @@ public class Model   extends FaModel {
   public String getDescription() {
         return description;
     }
-    
+
   /**
    * The authors name (TODO - could reference a user in the future).
    * @return author 
@@ -116,7 +116,7 @@ public class Model   extends FaModel {
   public String getAuthor() {
         return author;
     }
-    
+
   /**
    * The creation date.
    * @return date 
@@ -124,7 +124,7 @@ public class Model   extends FaModel {
   public LocalDate getDate() {
         return date;
     }
-    
+
   /**
    * The model&#39;s version.
    * @return version 
@@ -132,7 +132,7 @@ public class Model   extends FaModel {
   public Integer getVersion() {
         return version;
     }
-    
+
   /**
    * Get type
    * @return type 
@@ -140,7 +140,7 @@ public class Model   extends FaModel {
   public ModelType getType() {
         return type;
     }
-    
+
   /**
    * Descriptive tags/annotations for the model.
    * @return tags 
@@ -148,7 +148,7 @@ public class Model   extends FaModel {
   public java.util.List<Tag> getTags() {
         return tags;
     }
-    
+
   /**
    * id referencing the model file.
    * @return fileId 
@@ -156,7 +156,7 @@ public class Model   extends FaModel {
   public java.util.UUID getFileId() {
         return fileId;
     }
-    
+
   /**
    * Optional reference to the workflow used to create this model.
    * @return workflowId 
@@ -164,7 +164,7 @@ public class Model   extends FaModel {
   public java.util.UUID getWorkflowId() {
         return workflowId;
     }
-    
+
   /**
    * Reference to the fingerprint sets the model has been trained on
    * @return fingerprintsetIds 
@@ -172,7 +172,7 @@ public class Model   extends FaModel {
   public java.util.List<java.util.UUID> getFingerprintsetIds() {
         return fingerprintsetIds;
     }
-    
+
   /**
    * the available class labels
    * @return classLabels 
@@ -180,19 +180,19 @@ public class Model   extends FaModel {
   public java.util.List<String> getClassLabels() {
         return classLabels;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static ModelBuilder builder() {
   		return new ModelBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -213,14 +213,14 @@ public class Model   extends FaModel {
         builder.classLabels = entity.classLabels;
  		return builder;
   	}
-  	
-  
+
+
     public static class ModelBuilder {
-    
+
         protected ModelBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private String name;
         private String description;
@@ -342,14 +342,14 @@ public class Model   extends FaModel {
              return this;
         }
 
-        
+
         public Model build() {
             return new Model(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -369,6 +369,6 @@ public class Model   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

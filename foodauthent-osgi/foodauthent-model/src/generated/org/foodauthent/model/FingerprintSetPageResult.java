@@ -28,29 +28,29 @@ public class FingerprintSetPageResult   extends FaModel {
   protected Integer pageCount;
   protected Integer resultCount;
   protected java.util.List<FingerprintSet> results;
-  
+
   public String getTypeID() {
     return "FingerprintSetPageResult";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected FingerprintSetPageResult() {}
-  
+
   private FingerprintSetPageResult(FingerprintSetPageResultBuilder builder) {
     
     pageNumber = immutable(builder.pageNumber);
     pageCount = immutable(builder.pageCount);
     resultCount = immutable(builder.resultCount);
     results = immutable(builder.results);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -77,7 +77,7 @@ public class FingerprintSetPageResult   extends FaModel {
   public Integer getPageNumber() {
         return pageNumber;
     }
-    
+
   /**
    * Get pageCount
    * @return pageCount 
@@ -85,7 +85,7 @@ public class FingerprintSetPageResult   extends FaModel {
   public Integer getPageCount() {
         return pageCount;
     }
-    
+
   /**
    * Get resultCount
    * @return resultCount 
@@ -93,7 +93,7 @@ public class FingerprintSetPageResult   extends FaModel {
   public Integer getResultCount() {
         return resultCount;
     }
-    
+
   /**
    * Get results
    * @return results 
@@ -101,19 +101,19 @@ public class FingerprintSetPageResult   extends FaModel {
   public java.util.List<FingerprintSet> getResults() {
         return results;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static FingerprintSetPageResultBuilder builder() {
   		return new FingerprintSetPageResultBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -126,14 +126,14 @@ public class FingerprintSetPageResult   extends FaModel {
         builder.results = entity.results;
  		return builder;
   	}
-  	
-  
+
+
     public static class FingerprintSetPageResultBuilder {
-    
+
         protected FingerprintSetPageResultBuilder(){
             
         }
-    
+
         private Integer pageNumber;
         private Integer pageCount;
         private Integer resultCount;
@@ -175,14 +175,14 @@ public class FingerprintSetPageResult   extends FaModel {
              return this;
         }
 
-        
+
         public FingerprintSetPageResult build() {
             return new FingerprintSetPageResult(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -202,6 +202,6 @@ public class FingerprintSetPageResult   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

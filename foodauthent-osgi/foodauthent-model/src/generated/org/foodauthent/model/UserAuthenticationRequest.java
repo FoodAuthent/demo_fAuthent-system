@@ -25,19 +25,19 @@ public class UserAuthenticationRequest   extends FaModel {
 
   protected String user;
   protected String password;
-  
+
   public String getTypeID() {
     return "UserAuthenticationRequest";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected UserAuthenticationRequest() {}
-  
+
   private UserAuthenticationRequest(UserAuthenticationRequestBuilder builder) {
     
     if(builder.user == null) {
@@ -48,10 +48,10 @@ public class UserAuthenticationRequest   extends FaModel {
         throw new IllegalArgumentException("password must not be null.");
     }
     password = immutable(builder.password);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -78,7 +78,7 @@ public class UserAuthenticationRequest   extends FaModel {
   public String getUser() {
         return user;
     }
-    
+
   /**
    * Get password
    * @return password , never <code>null</code>
@@ -86,19 +86,19 @@ public class UserAuthenticationRequest   extends FaModel {
   public String getPassword() {
         return password;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static UserAuthenticationRequestBuilder builder() {
   		return new UserAuthenticationRequestBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -109,14 +109,14 @@ public class UserAuthenticationRequest   extends FaModel {
         builder.password = entity.password;
  		return builder;
   	}
-  	
-  
+
+
     public static class UserAuthenticationRequestBuilder {
-    
+
         protected UserAuthenticationRequestBuilder(){
             
         }
-    
+
         private String user;
         private String password;
 
@@ -144,14 +144,14 @@ public class UserAuthenticationRequest   extends FaModel {
              return this;
         }
 
-        
+
         public UserAuthenticationRequest build() {
             return new UserAuthenticationRequest(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -171,6 +171,6 @@ public class UserAuthenticationRequest   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

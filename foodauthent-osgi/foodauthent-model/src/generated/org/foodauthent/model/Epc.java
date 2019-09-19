@@ -24,26 +24,26 @@ public class Epc   extends FaModel {
 
 
   protected String epc;
-  
+
   public String getTypeID() {
     return "Epc";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected Epc() {}
-  
+
   private Epc(EpcBuilder builder) {
     
     epc = immutable(builder.epc);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -70,19 +70,19 @@ public class Epc   extends FaModel {
   public String getEpc() {
         return epc;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static EpcBuilder builder() {
   		return new EpcBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -92,14 +92,14 @@ public class Epc   extends FaModel {
         builder.epc = entity.epc;
  		return builder;
   	}
-  	
-  
+
+
     public static class EpcBuilder {
-    
+
         protected EpcBuilder(){
             
         }
-    
+
         private String epc;
 
         /**
@@ -111,14 +111,14 @@ public class Epc   extends FaModel {
              return this;
         }
 
-        
+
         public Epc build() {
             return new Epc(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -138,6 +138,6 @@ public class Epc   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

@@ -26,15 +26,15 @@ public class UserCreateRequest extends UserBase  {
 
   protected String parentDn;
   protected String userName;
-  
+
   public String getTypeID() {
     return "UserCreateRequest";
   }
-  
 
-  
+
+
   protected UserCreateRequest() {}
-  
+
   private UserCreateRequest(UserCreateRequestBuilder builder) {
     super();
     title = immutable(builder.title);
@@ -67,10 +67,10 @@ public class UserCreateRequest extends UserBase  {
         throw new IllegalArgumentException("parentDn must not be null.");
     }
     parentDn = immutable(builder.parentDn);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -97,7 +97,7 @@ public class UserCreateRequest extends UserBase  {
   public String getParentDn() {
         return parentDn;
     }
-    
+
   /**
    * unique userid
    * @return userName , never <code>null</code>
@@ -105,19 +105,19 @@ public class UserCreateRequest extends UserBase  {
   public String getUserName() {
         return userName;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static UserCreateRequestBuilder builder() {
   		return new UserCreateRequestBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -144,14 +144,14 @@ public class UserCreateRequest extends UserBase  {
         builder.parentDn = entity.parentDn;
  		return builder;
   	}
-  	
-  
+
+
     public static class UserCreateRequestBuilder extends UserBaseBuilder {
-    
+
         protected UserCreateRequestBuilder(){
             super();
         }
-    
+
         private String title;
         private String givenName;
         private String lastName;
@@ -345,14 +345,14 @@ public class UserCreateRequest extends UserBase  {
              return this;
         }
 
-        
+
         public UserCreateRequest build() {
             return new UserCreateRequest(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -372,6 +372,6 @@ public class UserCreateRequest extends UserBase  {
             return obj;
         }
     }
-    
+
 
 }

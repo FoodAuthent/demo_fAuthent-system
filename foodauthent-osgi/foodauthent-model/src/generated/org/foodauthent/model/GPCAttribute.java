@@ -27,28 +27,28 @@ public class GPCAttribute   extends FaModel {
   protected String code;
   protected String text;
   protected java.util.List<GPCAttributeValue> values;
-  
+
   public String getTypeID() {
     return "GPCAttribute";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected GPCAttribute() {}
-  
+
   private GPCAttribute(GPCAttributeBuilder builder) {
     
     code = immutable(builder.code);
     text = immutable(builder.text);
     values = immutable(builder.values);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -75,7 +75,7 @@ public class GPCAttribute   extends FaModel {
   public String getCode() {
         return code;
     }
-    
+
   /**
    * GPC attribute human readable text
    * @return text 
@@ -83,7 +83,7 @@ public class GPCAttribute   extends FaModel {
   public String getText() {
         return text;
     }
-    
+
   /**
    * Get values
    * @return values 
@@ -91,19 +91,19 @@ public class GPCAttribute   extends FaModel {
   public java.util.List<GPCAttributeValue> getValues() {
         return values;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static GPCAttributeBuilder builder() {
   		return new GPCAttributeBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -115,14 +115,14 @@ public class GPCAttribute   extends FaModel {
         builder.values = entity.values;
  		return builder;
   	}
-  	
-  
+
+
     public static class GPCAttributeBuilder {
-    
+
         protected GPCAttributeBuilder(){
             
         }
-    
+
         private String code;
         private String text;
         private java.util.List<GPCAttributeValue> values = new java.util.ArrayList<>();
@@ -154,14 +154,14 @@ public class GPCAttribute   extends FaModel {
              return this;
         }
 
-        
+
         public GPCAttribute build() {
             return new GPCAttribute(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -181,6 +181,6 @@ public class GPCAttribute   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

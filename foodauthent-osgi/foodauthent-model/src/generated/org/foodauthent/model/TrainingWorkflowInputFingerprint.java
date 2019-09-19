@@ -26,28 +26,28 @@ public class TrainingWorkflowInputFingerprint   extends FaModel {
   protected String URI;
   protected String classLabel;
   protected java.util.UUID fingerprintId;
-  
+
   public String getTypeID() {
     return "TrainingWorkflowInputFingerprint";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected TrainingWorkflowInputFingerprint() {}
-  
+
   private TrainingWorkflowInputFingerprint(TrainingWorkflowInputFingerprintBuilder builder) {
     
     URI = immutable(builder.URI);
     classLabel = immutable(builder.classLabel);
     fingerprintId = immutable(builder.fingerprintId);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -74,7 +74,7 @@ public class TrainingWorkflowInputFingerprint   extends FaModel {
   public String getURI() {
         return URI;
     }
-    
+
   /**
    * Get classLabel
    * @return classLabel 
@@ -82,7 +82,7 @@ public class TrainingWorkflowInputFingerprint   extends FaModel {
   public String getClassLabel() {
         return classLabel;
     }
-    
+
   /**
    * Get fingerprintId
    * @return fingerprintId 
@@ -90,19 +90,19 @@ public class TrainingWorkflowInputFingerprint   extends FaModel {
   public java.util.UUID getFingerprintId() {
         return fingerprintId;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static TrainingWorkflowInputFingerprintBuilder builder() {
   		return new TrainingWorkflowInputFingerprintBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -114,14 +114,14 @@ public class TrainingWorkflowInputFingerprint   extends FaModel {
         builder.fingerprintId = entity.fingerprintId;
  		return builder;
   	}
-  	
-  
+
+
     public static class TrainingWorkflowInputFingerprintBuilder {
-    
+
         protected TrainingWorkflowInputFingerprintBuilder(){
             
         }
-    
+
         private String URI;
         private String classLabel;
         private java.util.UUID fingerprintId;
@@ -153,14 +153,14 @@ public class TrainingWorkflowInputFingerprint   extends FaModel {
              return this;
         }
 
-        
+
         public TrainingWorkflowInputFingerprint build() {
             return new TrainingWorkflowInputFingerprint(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -180,6 +180,6 @@ public class TrainingWorkflowInputFingerprint   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

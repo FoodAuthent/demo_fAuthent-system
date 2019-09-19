@@ -52,26 +52,26 @@ public class Tag   extends FaModel {
   protected String name;
   protected String description;
   protected TypeEnum type;
-  
+
   public String getTypeID() {
     return "Tag";
   }
-  
 
-  
+
+
   protected Tag() {}
-  
+
   private Tag(TagBuilder builder) {
     
     faId = immutable(builder.faId);
     name = immutable(builder.name);
     description = immutable(builder.description);
     type = immutable(builder.type);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -98,7 +98,7 @@ public class Tag   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * A human-readable name
    * @return name 
@@ -106,7 +106,7 @@ public class Tag   extends FaModel {
   public String getName() {
         return name;
     }
-    
+
   /**
    * A more verbose description.
    * @return description 
@@ -114,7 +114,7 @@ public class Tag   extends FaModel {
   public String getDescription() {
         return description;
     }
-    
+
   /**
    * The type of the tag, e.g. whether it&#39;s a tag for a workflow, a model or a fingerprint.
    * @return type 
@@ -122,19 +122,19 @@ public class Tag   extends FaModel {
   public TypeEnum getType() {
         return type;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static TagBuilder builder() {
   		return new TagBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -147,14 +147,14 @@ public class Tag   extends FaModel {
         builder.type = entity.type;
  		return builder;
   	}
-  	
-  
+
+
     public static class TagBuilder {
-    
+
         protected TagBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private String name;
         private String description;
@@ -196,14 +196,14 @@ public class Tag   extends FaModel {
              return this;
         }
 
-        
+
         public Tag build() {
             return new Tag(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -223,6 +223,6 @@ public class Tag   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

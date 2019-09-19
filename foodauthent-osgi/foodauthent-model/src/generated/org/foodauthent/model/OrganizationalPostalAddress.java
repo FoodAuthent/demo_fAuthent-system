@@ -24,15 +24,15 @@ public class OrganizationalPostalAddress extends PostalAddress  {
 
 
   protected String recipientName;
-  
+
   public String getTypeID() {
     return "OrganizationalPostalAddress";
   }
-  
 
-  
+
+
   protected OrganizationalPostalAddress() {}
-  
+
   private OrganizationalPostalAddress(OrganizationalPostalAddressBuilder builder) {
     super();
     otherRecipientInformation = immutable(builder.otherRecipientInformation);
@@ -51,10 +51,10 @@ public class OrganizationalPostalAddress extends PostalAddress  {
     stateOrProvinceName = immutable(builder.stateOrProvinceName);
     country = immutable(builder.country);
     recipientName = immutable(builder.recipientName);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -81,19 +81,19 @@ public class OrganizationalPostalAddress extends PostalAddress  {
   public String getRecipientName() {
         return recipientName;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static OrganizationalPostalAddressBuilder builder() {
   		return new OrganizationalPostalAddressBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -109,14 +109,14 @@ public class OrganizationalPostalAddress extends PostalAddress  {
         builder.recipientName = entity.recipientName;
  		return builder;
   	}
-  	
-  
+
+
     public static class OrganizationalPostalAddressBuilder extends PostalAddressBuilder {
-    
+
         protected OrganizationalPostalAddressBuilder(){
             super();
         }
-    
+
         private String otherRecipientInformation;
         private String street;
         private String postalCode;
@@ -197,14 +197,14 @@ public class OrganizationalPostalAddress extends PostalAddress  {
              return this;
         }
 
-        
+
         public OrganizationalPostalAddress build() {
             return new OrganizationalPostalAddress(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -224,6 +224,6 @@ public class OrganizationalPostalAddress extends PostalAddress  {
             return obj;
         }
     }
-    
+
 
 }

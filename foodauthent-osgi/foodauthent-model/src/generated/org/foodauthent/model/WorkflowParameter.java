@@ -48,29 +48,29 @@ public class WorkflowParameter   extends FaModel {
   protected Boolean required;
   protected TypeEnum type;
   protected String value;
-  
+
   public String getTypeID() {
     return "WorkflowParameter";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected WorkflowParameter() {}
-  
+
   private WorkflowParameter(WorkflowParameterBuilder builder) {
     
     name = immutable(builder.name);
     required = immutable(builder.required);
     type = immutable(builder.type);
     value = immutable(builder.value);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -97,7 +97,7 @@ public class WorkflowParameter   extends FaModel {
   public String getName() {
         return name;
     }
-    
+
   /**
    * whether the parameter is required
    * @return required 
@@ -105,7 +105,7 @@ public class WorkflowParameter   extends FaModel {
   public Boolean isRequired() {
         return required;
     }
-    
+
   /**
    * the parameter type
    * @return type 
@@ -113,7 +113,7 @@ public class WorkflowParameter   extends FaModel {
   public TypeEnum getType() {
         return type;
     }
-    
+
   /**
    * the parameter value
    * @return value 
@@ -121,19 +121,19 @@ public class WorkflowParameter   extends FaModel {
   public String getValue() {
         return value;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static WorkflowParameterBuilder builder() {
   		return new WorkflowParameterBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -146,14 +146,14 @@ public class WorkflowParameter   extends FaModel {
         builder.value = entity.value;
  		return builder;
   	}
-  	
-  
+
+
     public static class WorkflowParameterBuilder {
-    
+
         protected WorkflowParameterBuilder(){
             
         }
-    
+
         private String name;
         private Boolean required;
         private TypeEnum type;
@@ -195,14 +195,14 @@ public class WorkflowParameter   extends FaModel {
              return this;
         }
 
-        
+
         public WorkflowParameter build() {
             return new WorkflowParameter(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -222,6 +222,6 @@ public class WorkflowParameter   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

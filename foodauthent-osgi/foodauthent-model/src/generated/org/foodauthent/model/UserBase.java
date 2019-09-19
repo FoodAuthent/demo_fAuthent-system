@@ -41,19 +41,19 @@ public class UserBase   extends FaModel {
   protected String employeeType;
   protected String employeeNumber;
   protected java.util.List<String> labeledURI;
-  
+
   public String getTypeID() {
     return "UserBase";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected UserBase() {}
-  
+
   private UserBase(UserBaseBuilder builder) {
     
     title = immutable(builder.title);
@@ -79,10 +79,10 @@ public class UserBase   extends FaModel {
     employeeType = immutable(builder.employeeType);
     employeeNumber = immutable(builder.employeeNumber);
     labeledURI = immutable(builder.labeledURI);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -109,7 +109,7 @@ public class UserBase   extends FaModel {
   public String getTitle() {
         return title;
     }
-    
+
   /**
    * givenName / first name
    * @return givenName , never <code>null</code>
@@ -117,7 +117,7 @@ public class UserBase   extends FaModel {
   public String getGivenName() {
         return givenName;
     }
-    
+
   /**
    * last name
    * @return lastName , never <code>null</code>
@@ -125,7 +125,7 @@ public class UserBase   extends FaModel {
   public String getLastName() {
         return lastName;
     }
-    
+
   /**
    * username
    * @return userName 
@@ -133,7 +133,7 @@ public class UserBase   extends FaModel {
   public String getUserName() {
         return userName;
     }
-    
+
   /**
    * email addresses
    * @return mail 
@@ -141,7 +141,7 @@ public class UserBase   extends FaModel {
   public java.util.List<String> getMail() {
         return mail;
     }
-    
+
   /**
    * verbose description
    * @return description 
@@ -149,7 +149,7 @@ public class UserBase   extends FaModel {
   public String getDescription() {
         return description;
     }
-    
+
   /**
    * fax numbers
    * @return faxNumbers 
@@ -157,7 +157,7 @@ public class UserBase   extends FaModel {
   public java.util.List<String> getFaxNumbers() {
         return faxNumbers;
     }
-    
+
   /**
    * phone numbers
    * @return phoneNumbers 
@@ -165,7 +165,7 @@ public class UserBase   extends FaModel {
   public java.util.List<String> getPhoneNumbers() {
         return phoneNumbers;
     }
-    
+
   /**
    * home phone numbers
    * @return homePhoneNumbers 
@@ -173,7 +173,7 @@ public class UserBase   extends FaModel {
   public java.util.List<String> getHomePhoneNumbers() {
         return homePhoneNumbers;
     }
-    
+
   /**
    * mobile phone numbers
    * @return mobilePhoneNumbers 
@@ -181,7 +181,7 @@ public class UserBase   extends FaModel {
   public java.util.List<String> getMobilePhoneNumbers() {
         return mobilePhoneNumbers;
     }
-    
+
   /**
    * business category
    * @return businessCategory 
@@ -189,7 +189,7 @@ public class UserBase   extends FaModel {
   public String getBusinessCategory() {
         return businessCategory;
     }
-    
+
   /**
    * Get postalAddress
    * @return postalAddress 
@@ -197,7 +197,7 @@ public class UserBase   extends FaModel {
   public PostalAddress getPostalAddress() {
         return postalAddress;
     }
-    
+
   /**
    * Get billingAddress
    * @return billingAddress 
@@ -205,7 +205,7 @@ public class UserBase   extends FaModel {
   public PostalAddress getBillingAddress() {
         return billingAddress;
     }
-    
+
   /**
    * secretary
    * @return secretary 
@@ -213,7 +213,7 @@ public class UserBase   extends FaModel {
   public String getSecretary() {
         return secretary;
     }
-    
+
   /**
    * employee type
    * @return employeeType 
@@ -221,7 +221,7 @@ public class UserBase   extends FaModel {
   public String getEmployeeType() {
         return employeeType;
     }
-    
+
   /**
    * employee number
    * @return employeeNumber 
@@ -229,7 +229,7 @@ public class UserBase   extends FaModel {
   public String getEmployeeNumber() {
         return employeeNumber;
     }
-    
+
   /**
    * URIs
    * @return labeledURI 
@@ -237,19 +237,19 @@ public class UserBase   extends FaModel {
   public java.util.List<String> getLabeledURI() {
         return labeledURI;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static UserBaseBuilder builder() {
   		return new UserBaseBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -275,14 +275,14 @@ public class UserBase   extends FaModel {
         builder.labeledURI = entity.labeledURI;
  		return builder;
   	}
-  	
-  
+
+
     public static class UserBaseBuilder {
-    
+
         protected UserBaseBuilder(){
             
         }
-    
+
         private String title;
         private String givenName;
         private String lastName;
@@ -460,14 +460,14 @@ public class UserBase   extends FaModel {
              return this;
         }
 
-        
+
         public UserBase build() {
             return new UserBase(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -487,6 +487,6 @@ public class UserBase   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

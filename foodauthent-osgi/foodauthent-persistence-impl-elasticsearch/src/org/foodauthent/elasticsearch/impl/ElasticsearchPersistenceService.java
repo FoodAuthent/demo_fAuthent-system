@@ -38,9 +38,6 @@ import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
 import org.foodauthent.model.Epc;
 import org.foodauthent.model.FaModel;
-import org.foodauthent.model.GPCAttribute;
-import org.foodauthent.model.GPCAttributeValue;
-import org.foodauthent.model.GPCBrick;
 import org.foodauthent.model.Product;
 import org.foodauthent.model.QuantityElement;
 import org.foodauthent.storage.FileStorageService;
@@ -298,11 +295,11 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 		final Optional<IdResult> r = op.ids(uuid.toString());
 		if (r.isPresent()) {
 			op.delete(r.get().id(), r.get().target());
-			//if we are deleting a filemetadata we also delete the data in the storage
-			if(r.get().target().indexName().equalsIgnoreCase("filemetadata")) {
+			// if we are deleting a filemetadata we also delete the data in the storage
+			if (r.get().target().indexName().equalsIgnoreCase("filemetadata")) {
 				removeBlobByUUID(uuid);
 			}
-		}else {
+		} else {
 			throw new NoSuchElementException();
 		}
 	}
@@ -425,15 +422,15 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 		// QUERY FOR QuantityList
 		if (dssf.getQuantityList().size() > 0) {
 			for (QuantityElement qe : dssf.getQuantityList()) {
-			 if(qe.getEpcClass() != null) {
-				qb.must(QueryBuilders.termsQuery("quantityList.epcClass.keyword", qe.getEpcClass())); 
-			 }	
-			 if(qe.getQuantity() != null) {
-				 qb.must(QueryBuilders.termsQuery("quantityList.quantity.keyword", qe.getQuantity()));  
-			 }	
-			 if(qe.getUom() != null) {
-				 qb.must(QueryBuilders.termsQuery("quantityList.uom.keyword", qe.getUom()));  
-			 }	
+				if (qe.getEpcClass() != null) {
+					qb.must(QueryBuilders.termsQuery("quantityList.epcClass.keyword", qe.getEpcClass()));
+				}
+				if (qe.getQuantity() != null) {
+					qb.must(QueryBuilders.termsQuery("quantityList.quantity.keyword", qe.getQuantity()));
+				}
+				if (qe.getUom() != null) {
+					qb.must(QueryBuilders.termsQuery("quantityList.uom.keyword", qe.getUom()));
+				}
 			}
 		}
 
@@ -442,52 +439,58 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 			qb.must(QueryBuilders.termsQuery("action.keyword", dssf.getAction()));
 		}
 
-
 		// QUERY FOR bizTransactionList
 		if (dssf.getBizTransactionList().size() > 0) {
 			for (BizTransaction bt : dssf.getBizTransactionList()) {
-				if(bt.getType() != null || bt.getValue() != null) {
-					if(bt.getType() != null) {
+				if (bt.getType() != null || bt.getValue() != null) {
+					if (bt.getType() != null) {
 						qb.must(QueryBuilders.termsQuery("bizTransactionList.type.keyword", bt.getType()));
 					}
-					if(bt.getValue() != null) {
+					if (bt.getValue() != null) {
 						qb.must(QueryBuilders.termsQuery("bizTransactionList.value.keyword", bt.getValue()));
 					}
 				}
 			}
 		}
 
-		
 		// QUERY FOR GTIN
 		if (dssf.getGtin() != null) {
 			qb.must(QueryBuilders.termsQuery("gtin.keyword", dssf.getGtin()));
 		}
-		
-		//Query for eventType
-		if(dssf.getEventType() != null) {
+
+		// Query for eventType
+		if (dssf.getEventType() != null) {
 			qb.must(QueryBuilders.termQuery("eventType.keyword", dssf.getEventType()));
 		}
-		
-		//Query for interfaceId
-		if(dssf.getInterfaceId() != null) {
+
+		// Query for interfaceId
+		if (dssf.getInterfaceId() != null) {
 			qb.must(QueryBuilders.termQuery("interfaceId.keyword", dssf.getInterfaceId()));
 		}
 
 		// QUERY FOR Bricks
-
+		if (dssf.getBricks().size() > 0) {
+			for (String brick : dssf.getBricks()) {
+				if (brick.contains("*")) {
+					qb.must(QueryBuilders.wildcardQuery("bricks.tree", brick));
+				} else {
+					qb.must(QueryBuilders.termQuery("bricks.raw", brick));
+				}
+			}
+		}
 
 		// QUERY FOR eventTime Range
 		if (dssf.getEventTimeFrom() != null || dssf.getEventTimeTo() != null) {
 			final RangeQueryBuilder queryBuilder = QueryBuilders.rangeQuery("eventTime");
 			if (dssf.getEventTimeFrom() != null) {
-//				queryBuilder.gte(Date.from(dssf.getEventTimeFrom().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()).getTime());
+				// queryBuilder.gte(Date.from(dssf.getEventTimeFrom().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()).getTime());
 				queryBuilder.from(dssf.getEventTimeFrom().toString());
 			}
 			if (dssf.getEventTimeTo() != null) {
-//				queryBuilder.lte(Date.from(dssf.getEventTimeTo().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()).getTime());
+				// queryBuilder.lte(Date.from(dssf.getEventTimeTo().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()).getTime());
 				queryBuilder.to(dssf.getEventTimeTo().toString());
 			}
-		
+
 			qb.must(queryBuilder);
 		}
 
@@ -498,7 +501,7 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 		if (transaction.isEmpty()) {
 			throw new EntityNotFoundException();
-			//throw new NoSuchElementException();
+			// throw new NoSuchElementException();
 		}
 
 		return DiscoveryServiceTransactionPageResult.builder().setPageCount(pageSize).setPageNumber(pageNumber)
@@ -525,7 +528,7 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 			}
 		}
 		return null;
-		
+
 	}
 
 }

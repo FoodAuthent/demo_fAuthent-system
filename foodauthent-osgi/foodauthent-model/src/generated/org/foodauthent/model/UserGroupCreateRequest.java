@@ -24,15 +24,15 @@ public class UserGroupCreateRequest extends UserGroupBase  {
 
 
   protected String name;
-  
+
   public String getTypeID() {
     return "UserGroupCreateRequest";
   }
-  
 
-  
+
+
   protected UserGroupCreateRequest() {}
-  
+
   private UserGroupCreateRequest(UserGroupCreateRequestBuilder builder) {
     super();
     description = immutable(builder.description);
@@ -44,10 +44,10 @@ public class UserGroupCreateRequest extends UserGroupBase  {
         throw new IllegalArgumentException("name must not be null.");
     }
     name = immutable(builder.name);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -74,19 +74,19 @@ public class UserGroupCreateRequest extends UserGroupBase  {
   public String getName() {
         return name;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static UserGroupCreateRequestBuilder builder() {
   		return new UserGroupCreateRequestBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -98,14 +98,14 @@ public class UserGroupCreateRequest extends UserGroupBase  {
         builder.name = entity.name;
  		return builder;
   	}
-  	
-  
+
+
     public static class UserGroupCreateRequestBuilder extends UserGroupBaseBuilder {
-    
+
         protected UserGroupCreateRequestBuilder(){
             super();
         }
-    
+
         private String description;
         private java.util.List<String> members = new java.util.ArrayList<>();
         private String name;
@@ -143,14 +143,14 @@ public class UserGroupCreateRequest extends UserGroupBase  {
              return this;
         }
 
-        
+
         public UserGroupCreateRequest build() {
             return new UserGroupCreateRequest(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -170,6 +170,6 @@ public class UserGroupCreateRequest extends UserGroupBase  {
             return obj;
         }
     }
-    
+
 
 }

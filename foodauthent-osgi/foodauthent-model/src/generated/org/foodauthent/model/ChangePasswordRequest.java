@@ -25,19 +25,19 @@ public class ChangePasswordRequest   extends FaModel {
 
   protected String current;
   protected String _new;
-  
+
   public String getTypeID() {
     return "ChangePasswordRequest";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected ChangePasswordRequest() {}
-  
+
   private ChangePasswordRequest(ChangePasswordRequestBuilder builder) {
     
     if(builder.current == null) {
@@ -48,10 +48,10 @@ public class ChangePasswordRequest   extends FaModel {
         throw new IllegalArgumentException("_new must not be null.");
     }
     _new = immutable(builder._new);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -78,7 +78,7 @@ public class ChangePasswordRequest   extends FaModel {
   public String getCurrent() {
         return current;
     }
-    
+
   /**
    * new password
    * @return _new , never <code>null</code>
@@ -86,19 +86,19 @@ public class ChangePasswordRequest   extends FaModel {
   public String getNew() {
         return _new;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static ChangePasswordRequestBuilder builder() {
   		return new ChangePasswordRequestBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -109,14 +109,14 @@ public class ChangePasswordRequest   extends FaModel {
         builder._new = entity._new;
  		return builder;
   	}
-  	
-  
+
+
     public static class ChangePasswordRequestBuilder {
-    
+
         protected ChangePasswordRequestBuilder(){
             
         }
-    
+
         private String current;
         private String _new;
 
@@ -144,14 +144,14 @@ public class ChangePasswordRequest   extends FaModel {
              return this;
         }
 
-        
+
         public ChangePasswordRequest build() {
             return new ChangePasswordRequest(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -171,6 +171,6 @@ public class ChangePasswordRequest   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

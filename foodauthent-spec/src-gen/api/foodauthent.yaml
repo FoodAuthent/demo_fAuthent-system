@@ -2106,6 +2106,7 @@ components:
     DiscoveryServiceTransaction:
       description: DiscoveryServiceTransaction
       type: object
+      x-non-empty: true
       x-ui-vue.js:
       - name: epcList
       - name: bizStep
@@ -2220,7 +2221,7 @@ components:
         eventType:
           description: EPCIS eventType
           type: string
-          default: "ObjectEvent"
+          example: "ObjectEvent"
         interfaceId:
           description: interfaceId
           type: string
@@ -2700,6 +2701,7 @@ components:
     ObjectEvent:
       description: Object Event Transaction
       type: object
+      x-non-empty: true
       x-ui-vue.js:
       - name: epcList
       - name: bizStep

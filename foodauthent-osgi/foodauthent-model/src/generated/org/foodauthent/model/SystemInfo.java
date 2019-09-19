@@ -34,19 +34,19 @@ public class SystemInfo   extends FaModel {
   protected Long numModels;
   protected Long numPredictionJobs;
   protected Long numTrainingJobs;
-  
+
   public String getTypeID() {
     return "SystemInfo";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected SystemInfo() {}
-  
+
   private SystemInfo(SystemInfoBuilder builder) {
     
     numSops = immutable(builder.numSops);
@@ -60,10 +60,10 @@ public class SystemInfo   extends FaModel {
     numModels = immutable(builder.numModels);
     numPredictionJobs = immutable(builder.numPredictionJobs);
     numTrainingJobs = immutable(builder.numTrainingJobs);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -90,7 +90,7 @@ public class SystemInfo   extends FaModel {
   public Long getNumSops() {
         return numSops;
     }
-    
+
   /**
    * Get numFiles
    * @return numFiles 
@@ -98,7 +98,7 @@ public class SystemInfo   extends FaModel {
   public Long getNumFiles() {
         return numFiles;
     }
-    
+
   /**
    * Get numProducts
    * @return numProducts 
@@ -106,7 +106,7 @@ public class SystemInfo   extends FaModel {
   public Long getNumProducts() {
         return numProducts;
     }
-    
+
   /**
    * Get numFingerprints
    * @return numFingerprints 
@@ -114,7 +114,7 @@ public class SystemInfo   extends FaModel {
   public Long getNumFingerprints() {
         return numFingerprints;
     }
-    
+
   /**
    * Get numFingerprintsets
    * @return numFingerprintsets 
@@ -122,7 +122,7 @@ public class SystemInfo   extends FaModel {
   public Long getNumFingerprintsets() {
         return numFingerprintsets;
     }
-    
+
   /**
    * Get numWorkflows
    * @return numWorkflows 
@@ -130,7 +130,7 @@ public class SystemInfo   extends FaModel {
   public Long getNumWorkflows() {
         return numWorkflows;
     }
-    
+
   /**
    * Get numSamples
    * @return numSamples 
@@ -138,7 +138,7 @@ public class SystemInfo   extends FaModel {
   public Long getNumSamples() {
         return numSamples;
     }
-    
+
   /**
    * Get numPredictions
    * @return numPredictions 
@@ -146,7 +146,7 @@ public class SystemInfo   extends FaModel {
   public Long getNumPredictions() {
         return numPredictions;
     }
-    
+
   /**
    * Get numModels
    * @return numModels 
@@ -154,7 +154,7 @@ public class SystemInfo   extends FaModel {
   public Long getNumModels() {
         return numModels;
     }
-    
+
   /**
    * Get numPredictionJobs
    * @return numPredictionJobs 
@@ -162,7 +162,7 @@ public class SystemInfo   extends FaModel {
   public Long getNumPredictionJobs() {
         return numPredictionJobs;
     }
-    
+
   /**
    * Get numTrainingJobs
    * @return numTrainingJobs 
@@ -170,19 +170,19 @@ public class SystemInfo   extends FaModel {
   public Long getNumTrainingJobs() {
         return numTrainingJobs;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static SystemInfoBuilder builder() {
   		return new SystemInfoBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -202,14 +202,14 @@ public class SystemInfo   extends FaModel {
         builder.numTrainingJobs = entity.numTrainingJobs;
  		return builder;
   	}
-  	
-  
+
+
     public static class SystemInfoBuilder {
-    
+
         protected SystemInfoBuilder(){
             
         }
-    
+
         private Long numSops;
         private Long numFiles;
         private Long numProducts;
@@ -321,14 +321,14 @@ public class SystemInfo   extends FaModel {
              return this;
         }
 
-        
+
         public SystemInfo build() {
             return new SystemInfo(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -348,6 +348,6 @@ public class SystemInfo   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

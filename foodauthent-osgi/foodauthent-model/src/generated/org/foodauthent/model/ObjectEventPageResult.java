@@ -28,29 +28,29 @@ public class ObjectEventPageResult   extends FaModel {
   protected Integer pageCount;
   protected Integer resultCount;
   protected java.util.List<ObjectEvent> results;
-  
+
   public String getTypeID() {
     return "ObjectEventPageResult";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected ObjectEventPageResult() {}
-  
+
   private ObjectEventPageResult(ObjectEventPageResultBuilder builder) {
     
     pageNumber = immutable(builder.pageNumber);
     pageCount = immutable(builder.pageCount);
     resultCount = immutable(builder.resultCount);
     results = immutable(builder.results);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -77,7 +77,7 @@ public class ObjectEventPageResult   extends FaModel {
   public Integer getPageNumber() {
         return pageNumber;
     }
-    
+
   /**
    * Get pageCount
    * @return pageCount 
@@ -85,7 +85,7 @@ public class ObjectEventPageResult   extends FaModel {
   public Integer getPageCount() {
         return pageCount;
     }
-    
+
   /**
    * Get resultCount
    * @return resultCount 
@@ -93,7 +93,7 @@ public class ObjectEventPageResult   extends FaModel {
   public Integer getResultCount() {
         return resultCount;
     }
-    
+
   /**
    * Get results
    * @return results 
@@ -101,19 +101,19 @@ public class ObjectEventPageResult   extends FaModel {
   public java.util.List<ObjectEvent> getResults() {
         return results;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static ObjectEventPageResultBuilder builder() {
   		return new ObjectEventPageResultBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -126,14 +126,14 @@ public class ObjectEventPageResult   extends FaModel {
         builder.results = entity.results;
  		return builder;
   	}
-  	
-  
+
+
     public static class ObjectEventPageResultBuilder {
-    
+
         protected ObjectEventPageResultBuilder(){
             
         }
-    
+
         private Integer pageNumber;
         private Integer pageCount;
         private Integer resultCount;
@@ -175,14 +175,14 @@ public class ObjectEventPageResult   extends FaModel {
              return this;
         }
 
-        
+
         public ObjectEventPageResult build() {
             return new ObjectEventPageResult(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -202,6 +202,6 @@ public class ObjectEventPageResult   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

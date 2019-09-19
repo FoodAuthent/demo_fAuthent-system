@@ -29,29 +29,29 @@ public class PredictionWorkflowInput   extends FaModel {
   protected FingerprintSet fingerprintset;
   protected java.util.List<String> fingerprintURIs;
   protected String modelURI;
-  
+
   public String getTypeID() {
     return "PredictionWorkflowInput";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected PredictionWorkflowInput() {}
-  
+
   private PredictionWorkflowInput(PredictionWorkflowInputBuilder builder) {
     
     parameters = immutable(builder.parameters);
     fingerprintset = immutable(builder.fingerprintset);
     fingerprintURIs = immutable(builder.fingerprintURIs);
     modelURI = immutable(builder.modelURI);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -78,7 +78,7 @@ public class PredictionWorkflowInput   extends FaModel {
   public java.util.List<WorkflowParameter> getParameters() {
         return parameters;
     }
-    
+
   /**
    * Get fingerprintset
    * @return fingerprintset 
@@ -86,7 +86,7 @@ public class PredictionWorkflowInput   extends FaModel {
   public FingerprintSet getFingerprintset() {
         return fingerprintset;
     }
-    
+
   /**
    * URIs pointing to the resource containg the fingerprints to predict the labels for. (in the same order as the fingerprint-ids of the fingerprint-set)
    * @return fingerprintURIs 
@@ -94,7 +94,7 @@ public class PredictionWorkflowInput   extends FaModel {
   public java.util.List<String> getFingerprintURIs() {
         return fingerprintURIs;
     }
-    
+
   /**
    * optional model uri (if required by the workflow) pointing to the model to use
    * @return modelURI 
@@ -102,19 +102,19 @@ public class PredictionWorkflowInput   extends FaModel {
   public String getModelURI() {
         return modelURI;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static PredictionWorkflowInputBuilder builder() {
   		return new PredictionWorkflowInputBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -127,14 +127,14 @@ public class PredictionWorkflowInput   extends FaModel {
         builder.modelURI = entity.modelURI;
  		return builder;
   	}
-  	
-  
+
+
     public static class PredictionWorkflowInputBuilder {
-    
+
         protected PredictionWorkflowInputBuilder(){
             
         }
-    
+
         private java.util.List<WorkflowParameter> parameters = new java.util.ArrayList<>();
         private FingerprintSet fingerprintset;
         private java.util.List<String> fingerprintURIs = new java.util.ArrayList<>();
@@ -176,14 +176,14 @@ public class PredictionWorkflowInput   extends FaModel {
              return this;
         }
 
-        
+
         public PredictionWorkflowInput build() {
             return new PredictionWorkflowInput(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -203,6 +203,6 @@ public class PredictionWorkflowInput   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

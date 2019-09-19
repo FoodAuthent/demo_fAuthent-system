@@ -28,15 +28,15 @@ public class FingerprintSet   extends FaModel {
   protected String name;
   protected String description;
   protected String classLabel;
-  
+
   public String getTypeID() {
     return "FingerprintSet";
   }
-  
 
-  
+
+
   protected FingerprintSet() {}
-  
+
   private FingerprintSet(FingerprintSetBuilder builder) {
     
     faId = immutable(builder.faId);
@@ -50,11 +50,11 @@ public class FingerprintSet   extends FaModel {
     name = immutable(builder.name);
     description = immutable(builder.description);
     classLabel = immutable(builder.classLabel);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -81,7 +81,7 @@ public class FingerprintSet   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * Ids referencing the fingerprints this set summarizes.
    * @return fingerprintIds , never <code>null</code>
@@ -89,7 +89,7 @@ public class FingerprintSet   extends FaModel {
   public java.util.List<java.util.UUID> getFingerprintIds() {
         return fingerprintIds;
     }
-    
+
   /**
    * A human-readable name of the fingerprint set.
    * @return name , never <code>null</code>
@@ -97,7 +97,7 @@ public class FingerprintSet   extends FaModel {
   public String getName() {
         return name;
     }
-    
+
   /**
    * A more detailed description of the fingerprint set.
    * @return description 
@@ -105,7 +105,7 @@ public class FingerprintSet   extends FaModel {
   public String getDescription() {
         return description;
     }
-    
+
   /**
    * A class label associated with this fingerprint set.
    * @return classLabel 
@@ -113,19 +113,19 @@ public class FingerprintSet   extends FaModel {
   public String getClassLabel() {
         return classLabel;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static FingerprintSetBuilder builder() {
   		return new FingerprintSetBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -139,14 +139,14 @@ public class FingerprintSet   extends FaModel {
         builder.classLabel = entity.classLabel;
  		return builder;
   	}
-  	
-  
+
+
     public static class FingerprintSetBuilder {
-    
+
         protected FingerprintSetBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private java.util.List<java.util.UUID> fingerprintIds = new java.util.ArrayList<>();
         private String name;
@@ -204,14 +204,14 @@ public class FingerprintSet   extends FaModel {
              return this;
         }
 
-        
+
         public FingerprintSet build() {
             return new FingerprintSet(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -231,6 +231,6 @@ public class FingerprintSet   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

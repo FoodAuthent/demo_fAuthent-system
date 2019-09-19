@@ -49,29 +49,29 @@ public class ModelType   extends FaModel {
 
 
   protected NameEnum name;
-  
+
   public String getTypeID() {
     return "ModelType";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected ModelType() {}
-  
+
   private ModelType(ModelTypeBuilder builder) {
     
     if(builder.name == null) {
         throw new IllegalArgumentException("name must not be null.");
     }
     name = immutable(builder.name);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -98,19 +98,19 @@ public class ModelType   extends FaModel {
   public NameEnum getName() {
         return name;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static ModelTypeBuilder builder() {
   		return new ModelTypeBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -120,14 +120,14 @@ public class ModelType   extends FaModel {
         builder.name = entity.name;
  		return builder;
   	}
-  	
-  
+
+
     public static class ModelTypeBuilder {
-    
+
         protected ModelTypeBuilder(){
             
         }
-    
+
         private NameEnum name;
 
         /**
@@ -142,14 +142,14 @@ public class ModelType   extends FaModel {
              return this;
         }
 
-        
+
         public ModelType build() {
             return new ModelType(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -169,6 +169,6 @@ public class ModelType   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

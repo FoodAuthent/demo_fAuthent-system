@@ -16,7 +16,7 @@ import org.foodauthent.model.Epc;
 import org.foodauthent.model.GPCBrick;
 import org.foodauthent.model.QuantityElement;
 
-
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 
 /**
@@ -25,6 +25,7 @@ import org.foodauthent.model.QuantityElement;
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ObjectEvent   extends FaModel {
 
   /**
@@ -62,15 +63,15 @@ public class ObjectEvent   extends FaModel {
   protected String gtin;
   protected java.util.List<GPCBrick> bricks;
   protected OffsetDateTime eventTime;
-  
+
   public String getTypeID() {
     return "ObjectEvent";
   }
-  
 
-  
+
+
   protected ObjectEvent() {}
-  
+
   private ObjectEvent(ObjectEventBuilder builder) {
     
     faId = immutable(builder.faId);
@@ -84,11 +85,11 @@ public class ObjectEvent   extends FaModel {
     gtin = immutable(builder.gtin);
     bricks = immutable(builder.bricks);
     eventTime = immutable(builder.eventTime);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -115,7 +116,7 @@ public class ObjectEvent   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * List of epcs
    * @return epcList 
@@ -123,7 +124,7 @@ public class ObjectEvent   extends FaModel {
   public java.util.List<Epc> getEpcList() {
         return epcList;
     }
-    
+
   /**
    * EPCIS bizStep
    * @return bizStep 
@@ -131,7 +132,7 @@ public class ObjectEvent   extends FaModel {
   public String getBizStep() {
         return bizStep;
     }
-    
+
   /**
    * Read point
    * @return readPoint 
@@ -139,7 +140,7 @@ public class ObjectEvent   extends FaModel {
   public String getReadPoint() {
         return readPoint;
     }
-    
+
   /**
    * List of quantity
    * @return quantityList 
@@ -147,7 +148,7 @@ public class ObjectEvent   extends FaModel {
   public java.util.List<QuantityElement> getQuantityList() {
         return quantityList;
     }
-    
+
   /**
    * Event action.
    * @return action 
@@ -155,7 +156,7 @@ public class ObjectEvent   extends FaModel {
   public ActionEnum getAction() {
         return action;
     }
-    
+
   /**
    * EPCIS Disposition
    * @return disposition 
@@ -163,7 +164,7 @@ public class ObjectEvent   extends FaModel {
   public String getDisposition() {
         return disposition;
     }
-    
+
   /**
    * List of bizTransactions
    * @return bizTransactionList 
@@ -171,7 +172,7 @@ public class ObjectEvent   extends FaModel {
   public java.util.List<BizTransaction> getBizTransactionList() {
         return bizTransactionList;
     }
-    
+
   /**
    * Global Trade Item Number
    * @return gtin 
@@ -179,7 +180,7 @@ public class ObjectEvent   extends FaModel {
   public String getGtin() {
         return gtin;
     }
-    
+
   /**
    * bricks
    * @return bricks 
@@ -187,7 +188,7 @@ public class ObjectEvent   extends FaModel {
   public java.util.List<GPCBrick> getBricks() {
         return bricks;
     }
-    
+
   /**
    * When the event happened
    * @return eventTime 
@@ -195,19 +196,19 @@ public class ObjectEvent   extends FaModel {
   public OffsetDateTime getEventTime() {
         return eventTime;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static ObjectEventBuilder builder() {
   		return new ObjectEventBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -227,14 +228,14 @@ public class ObjectEvent   extends FaModel {
         builder.eventTime = entity.eventTime;
  		return builder;
   	}
-  	
-  
+
+
     public static class ObjectEventBuilder {
-    
+
         protected ObjectEventBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private java.util.List<Epc> epcList = new java.util.ArrayList<>();
         private String bizStep;
@@ -346,14 +347,14 @@ public class ObjectEvent   extends FaModel {
              return this;
         }
 
-        
+
         public ObjectEvent build() {
             return new ObjectEvent(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -373,6 +374,6 @@ public class ObjectEvent   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

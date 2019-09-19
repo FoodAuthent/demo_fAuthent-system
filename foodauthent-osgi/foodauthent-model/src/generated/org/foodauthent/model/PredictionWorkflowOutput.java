@@ -24,26 +24,26 @@ public class PredictionWorkflowOutput   extends FaModel {
 
 
   protected java.util.Map<String, java.util.Map<String, Float>> predictionMap;
-  
+
   public String getTypeID() {
     return "PredictionWorkflowOutput";
   }
-  
+
 
   @Override
   public java.util.UUID getFaId() {
   	return null;
   }
-  
+
   protected PredictionWorkflowOutput() {}
-  
+
   private PredictionWorkflowOutput(PredictionWorkflowOutputBuilder builder) {
     
     predictionMap = immutable(builder.predictionMap);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -70,19 +70,19 @@ public class PredictionWorkflowOutput   extends FaModel {
   public java.util.Map<String, java.util.Map<String, Float>> getPredictionMap() {
         return predictionMap;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static PredictionWorkflowOutputBuilder builder() {
   		return new PredictionWorkflowOutputBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -92,14 +92,14 @@ public class PredictionWorkflowOutput   extends FaModel {
         builder.predictionMap = entity.predictionMap;
  		return builder;
   	}
-  	
-  
+
+
     public static class PredictionWorkflowOutputBuilder {
-    
+
         protected PredictionWorkflowOutputBuilder(){
             
         }
-    
+
         private java.util.Map<String, java.util.Map<String, Float>> predictionMap = new java.util.HashMap<>();
 
         /**
@@ -111,14 +111,14 @@ public class PredictionWorkflowOutput   extends FaModel {
              return this;
         }
 
-        
+
         public PredictionWorkflowOutput build() {
             return new PredictionWorkflowOutput(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -138,6 +138,6 @@ public class PredictionWorkflowOutput   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }

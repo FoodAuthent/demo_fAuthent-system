@@ -25,15 +25,15 @@ public class UserGroup extends UserGroupBase  {
 
   protected String dn;
   protected String name;
-  
+
   public String getTypeID() {
     return "UserGroup";
   }
-  
 
-  
+
+
   protected UserGroup() {}
-  
+
   private UserGroup(UserGroupBuilder builder) {
     super();
     description = immutable(builder.description);
@@ -49,10 +49,10 @@ public class UserGroup extends UserGroupBase  {
         throw new IllegalArgumentException("name must not be null.");
     }
     name = immutable(builder.name);
-    
-    
+
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -79,7 +79,7 @@ public class UserGroup extends UserGroupBase  {
   public String getDn() {
         return dn;
     }
-    
+
   /**
    * unique group name
    * @return name , never <code>null</code>
@@ -87,19 +87,19 @@ public class UserGroup extends UserGroupBase  {
   public String getName() {
         return name;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static UserGroupBuilder builder() {
   		return new UserGroupBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -112,14 +112,14 @@ public class UserGroup extends UserGroupBase  {
         builder.name = entity.name;
  		return builder;
   	}
-  	
-  
+
+
     public static class UserGroupBuilder extends UserGroupBaseBuilder {
-    
+
         protected UserGroupBuilder(){
             super();
         }
-    
+
         private String description;
         private java.util.List<String> members = new java.util.ArrayList<>();
         private String dn;
@@ -170,14 +170,14 @@ public class UserGroup extends UserGroupBase  {
              return this;
         }
 
-        
+
         public UserGroup build() {
             return new UserGroup(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -197,6 +197,6 @@ public class UserGroup extends UserGroupBase  {
             return obj;
         }
     }
-    
+
 
 }

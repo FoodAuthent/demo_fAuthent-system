@@ -89,15 +89,15 @@ public class FileMetadata   extends FaModel {
   protected LocalDate uploadDate;
   protected Integer version;
   protected java.util.Map<String, String> additionalProperties;
-  
+
   public String getTypeID() {
     return "FileMetadata";
   }
-  
 
-  
+
+
   protected FileMetadata() {}
-  
+
   private FileMetadata(FileMetadataBuilder builder) {
     
     faId = immutable(builder.faId);
@@ -111,11 +111,11 @@ public class FileMetadata   extends FaModel {
     uploadDate = immutable(builder.uploadDate);
     version = immutable(builder.version);
     additionalProperties = immutable(builder.additionalProperties);
-    
+
     faId = generateFaIdIfMissing(faId);
-    
+
   }
-  
+
    /**
      * {@inheritDoc}
      */
@@ -142,7 +142,7 @@ public class FileMetadata   extends FaModel {
   public java.util.UUID getFaId() {
         return faId;
     }
-    
+
   /**
    * The file type.
    * @return type 
@@ -150,7 +150,7 @@ public class FileMetadata   extends FaModel {
   public TypeEnum getType() {
         return type;
     }
-    
+
   /**
    * A name for the file.
    * @return name 
@@ -158,7 +158,7 @@ public class FileMetadata   extends FaModel {
   public String getName() {
         return name;
     }
-    
+
   /**
    * file content type
    * @return contentType 
@@ -166,7 +166,7 @@ public class FileMetadata   extends FaModel {
   public ContentTypeEnum getContentType() {
         return contentType;
     }
-    
+
   /**
    * The name of the file as uploaded. Will be set automatically if left empty and a file is uploaded for the first time.
    * @return uploadName 
@@ -174,7 +174,7 @@ public class FileMetadata   extends FaModel {
   public String getUploadName() {
         return uploadName;
     }
-    
+
   /**
    * A more verbose description of the file.
    * @return description 
@@ -182,7 +182,7 @@ public class FileMetadata   extends FaModel {
   public String getDescription() {
         return description;
     }
-    
+
   /**
    * The authors name (TODO - could reference a user in the future).
    * @return author 
@@ -190,7 +190,7 @@ public class FileMetadata   extends FaModel {
   public String getAuthor() {
         return author;
     }
-    
+
   /**
    * The creation date.
    * @return date 
@@ -198,7 +198,7 @@ public class FileMetadata   extends FaModel {
   public LocalDate getDate() {
         return date;
     }
-    
+
   /**
    * Time and date of the file upload. Will be set automatically.
    * @return uploadDate 
@@ -206,7 +206,7 @@ public class FileMetadata   extends FaModel {
   public LocalDate getUploadDate() {
         return uploadDate;
     }
-    
+
   /**
    * The file&#39;s version.
    * @return version 
@@ -214,7 +214,7 @@ public class FileMetadata   extends FaModel {
   public Integer getVersion() {
         return version;
     }
-    
+
   /**
    * Key-value-map for additional properties.
    * @return additionalProperties 
@@ -222,19 +222,19 @@ public class FileMetadata   extends FaModel {
   public java.util.Map<String, String> getAdditionalProperties() {
         return additionalProperties;
     }
-    
-  
+
+
  	/**
   	 * @return a newly created builder
   	 */
   	public static FileMetadataBuilder builder() {
   		return new FileMetadataBuilder();
   	}
-  	
+
   	/**
 	 * Copy-builder, i.e. creates a new builder with all properties of the passed
 	 * entity pre-set.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to copy the properties from
 	 * @return a new builder with the properties set
@@ -254,14 +254,14 @@ public class FileMetadata   extends FaModel {
         builder.additionalProperties = entity.additionalProperties;
  		return builder;
   	}
-  	
-  
+
+
     public static class FileMetadataBuilder {
-    
+
         protected FileMetadataBuilder(){
             
         }
-    
+
         private java.util.UUID faId;
         private TypeEnum type;
         private String name;
@@ -373,14 +373,14 @@ public class FileMetadata   extends FaModel {
              return this;
         }
 
-        
+
         public FileMetadata build() {
             return new FileMetadata(this);
         }
-    
+
     }
-    
-    
+
+
     /**
      * Turns an object into an immutable one (if not already).
      * TODO move it somewhere else
@@ -400,6 +400,6 @@ public class FileMetadata   extends FaModel {
             return obj;
         }
     }
-    
+
 
 }
