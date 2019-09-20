@@ -20,7 +20,7 @@ var MyObject = function () {
   
   var getTransaction = function (self) {
 	  	setUpApi();
-	    console.log('Get ObjectEvent');
+	    console.log('Get TransactionEvent');
 	    console.log('self Filter ',self.filter);
 	    var filterArray = null;
 	    if(self.filter !== null){
@@ -106,7 +106,7 @@ var MyObject = function () {
   
   var saveTransaction = function (json, self) {
 	setUpApi();
-    console.log('Save ObjectEvent');
+    console.log('Save TransactionEvent');
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);

@@ -2125,18 +2125,18 @@ components:
           type: string
           format: uuid
         epcList:
-          description: List of epcs
+          description: An unordered list of one or more EPCs(Electronic Product Code) naming the physical objects to which the event pertained. Each element of this list SHALL be a URI [RFC2396] denoting the unique identity for a physical object.
           type: array
           items:
             $ref: "#/components/schemas/Epc"
         bizStep:
-          description: EPCIS bizStep
+          description: The business step of which this event was a part
           type: string
         readPoint:
-          description: Read point
+          description: The read point at which the event took place.
           type: string
         quantityList:
-          description: List of quantity
+          description: Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
           type: array
           items: 
             $ref: "#/components/schemas/QuantityElement"
@@ -2148,12 +2148,12 @@ components:
             - OBSERVE
             - DELETE
         bizTransactionList:
-          description: List of bizTransactions
+          description: An unordered list of business transactions that define the context of this event(A BusinessTransaction identifies a particular business transaction. An example of a business transaction is a specific purchase order)
           type: array
           items:
             $ref: "#/components/schemas/BizTransaction"
         eventType:
-          description: EPCIS eventType
+          description: EPCIS eventType, for Foodauthent system could be only ObjectEvent
           type: string
           example: "ObjectEvent"
         interfaceId:
@@ -2163,16 +2163,16 @@ components:
           description: Global Trade Item Number
           type: string
         bricks:
-          description: bricks
+          description: A brick identifies a category of consumer-related products
           type: array
           items:
             type: string
-          example: "[ '10000111/20000750/30000207', '10000111/20000352/30015641' ]"
+          example: ["10000111/20000750/30000207", "10000111/20000352/300156412", ...]
         eventTime:
-          description: When the event happened
+          description: The time at which the EPCIS Capturing Applications asserts the event occurred. It’s an ISO 8601 format
           type: string
           format: date-time
-          example: "2018-09-10T09:15:30+01:00 or 2018-09-10T09:15:30Z"
+          example: "2019-09-20T13:12:55+02:00"
           
     DiscoveryServiceTransactionPageResult:
       type: object
@@ -2200,13 +2200,13 @@ components:
           items:
             $ref: "#/components/schemas/Epc"
         bizStep:
-          description: EPCIS bizStep
+          description: The business step of which this event was a part
           type: string
         readPoint:
-          description: Read point
+          description: The read point at which the event took place.
           type: string
         quantityList:
-          description: List of quantity
+          description: Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
           type: array
           items: 
             $ref: "#/components/schemas/QuantityElement"
@@ -2214,12 +2214,12 @@ components:
           description: Event action.
           type: string
         bizTransactionList:
-          description: List of bizTransactions
+          description: An unordered list of business transactions that define the context of this event(A BusinessTransaction identifies a particular business transaction. An example of a business transaction is a specific purchase order)
           type: array
           items:
             $ref: "#/components/schemas/BizTransaction"
         eventType:
-          description: EPCIS eventType
+          description: EPCIS eventType, for Foodauthent system could be only ObjectEvent
           type: string
           example: "ObjectEvent"
         interfaceId:
@@ -2230,21 +2230,21 @@ components:
           description: Global Trade Item Number
           type: string
         bricks:
-          description: bricks
+          description: A brick identifies a category of consumer-related products
           type: array
           items:
             type: string
-          example: "10000111/20000750/30000207,10000111/20000352/30015641"
+          example: ["10000111/20000750/30000207", "10000111/20000352/*", "10000111/*"]
         eventTimeFrom:
-          description: start date for the research
+          description: start date and time for the research. It’s an ISO 8601 format
           type: string
           format: date-time
-          example: "2018-09-10T09:15:30+01:00 or 2018-09-10T09:15:30Z"
+          example: "2019-09-20T13:12:55+02:00"
         eventTimeTo:
-          description: end date for the research
+          description: end date and time for the research. It’s an ISO 8601 format
           type: string
           format: date-time
-          example: "2018-09-10T09:15:30+01:00 or 2018-09-10T09:15:30Z"
+          example: "2019-09-20T13:12:55+02:00"
     
             
     Epc:

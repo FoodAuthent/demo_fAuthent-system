@@ -110,8 +110,9 @@ export default {
             save() {
                 let self = this;
                 self.loading = true;
-                console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
-                saveTransaction(JSON.stringify(this.model, undefined, 4), self);
+                var transactions = [this.model];
+                console.log("POST BODY", JSON.stringify(transactions, undefined, 4));
+                saveTransaction(JSON.stringify(transactions, undefined, 4), self);
                 self.model = {}
             },
              cancel() {
