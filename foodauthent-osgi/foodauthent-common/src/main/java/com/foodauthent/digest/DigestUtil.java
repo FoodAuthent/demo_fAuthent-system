@@ -1,6 +1,7 @@
 package com.foodauthent.digest;
 
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,12 +22,13 @@ public class DigestUtil {
 	}
 
 	public static final String toHex(MessageDigest digest) {
-		return toHex(digest.digest());
+		final String hex = DatatypeConverter.printHexBinary(digest.digest()).toLowerCase();
+		return hex;
 	}
 	
-	public static final String toHex(byte[] bytes) {
-		final String hex = DatatypeConverter.printHexBinary(bytes).toLowerCase();
-		return hex;
+	public static final String sha256(String s) throws NoSuchAlgorithmException {
+		final MessageDigest messageDigest = MessageDigest.getInstance(SHA256);
+		return DatatypeConverter.printHexBinary(messageDigest.digest(s.getBytes(StandardCharsets.UTF_8))).toLowerCase();
 	}
 
 }
