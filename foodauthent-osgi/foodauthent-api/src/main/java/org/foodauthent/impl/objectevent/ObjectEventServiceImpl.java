@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.foodauthent.api.ObjectEventService;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
+import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.ObjectEventPageResult;
 import org.osgi.service.component.annotations.Component;
@@ -44,6 +45,10 @@ public class ObjectEventServiceImpl implements ObjectEventService {
 	return persistenceService.getFaModelByUUID(objecteventId, ObjectEvent.class);
     }
 
-  
+    @Override
+    public DiscoveryServiceTransaction convertObjectEventToTransaction(UUID objecteventId) {
+	// TODO Auto-generated method stub
+	return null;
+    }
 
 }

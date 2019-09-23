@@ -106,17 +106,17 @@
    */
   exports.prototype['epcList'] = undefined;
   /**
-   * EPCIS bizStep
+   * The business step of which this event was a part
    * @member {String} bizStep
    */
   exports.prototype['bizStep'] = undefined;
   /**
-   * Read point
+   * The read point at which the event took place.
    * @member {String} readPoint
    */
   exports.prototype['readPoint'] = undefined;
   /**
-   * List of quantity
+   * Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
    * @member {Array.<module:model/QuantityElement>} quantityList
    */
   exports.prototype['quantityList'] = undefined;
@@ -126,12 +126,12 @@
    */
   exports.prototype['action'] = undefined;
   /**
-   * List of bizTransactions
+   * An unordered list of business transactions that define the context of this event(A BusinessTransaction identifies a particular business transaction. An example of a business transaction is a specific purchase order)
    * @member {Array.<module:model/BizTransaction>} bizTransactionList
    */
   exports.prototype['bizTransactionList'] = undefined;
   /**
-   * EPCIS eventType
+   * EPCIS eventType, for Foodauthent system could be only ObjectEvent
    * @member {String} eventType
    */
   exports.prototype['eventType'] = undefined;
@@ -146,17 +146,17 @@
    */
   exports.prototype['gtin'] = undefined;
   /**
-   * bricks
+   * A brick identifies a category of consumer-related products
    * @member {Array.<String>} bricks
    */
   exports.prototype['bricks'] = undefined;
   /**
-   * start date for the research
+   * start date and time for the research. It’s an ISO 8601 format
    * @member {Date} eventTimeFrom
    */
   exports.prototype['eventTimeFrom'] = undefined;
   /**
-   * end date for the research
+   * end date and time for the research. It’s an ISO 8601 format
    * @member {Date} eventTimeTo
    */
   exports.prototype['eventTimeTo'] = undefined;

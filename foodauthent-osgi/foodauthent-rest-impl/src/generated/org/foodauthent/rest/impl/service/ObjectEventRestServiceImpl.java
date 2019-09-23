@@ -10,6 +10,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.ObjectEventPageResult;
 
@@ -36,6 +37,18 @@ public class ObjectEventRestServiceImpl implements ObjectEventRestService {
 	@Reference(cardinality = ReferenceCardinality.MANDATORY)
     private ObjectEventService service;
 
+
+    /**
+     * Convert the ObjectEvent to Discovery Service Transaction.
+     *
+     * @param objecteventId 
+     * @return the response
+     */
+    public Response convertObjectEventToTransaction(java.util.UUID objecteventId) {
+        
+            Object res = service.convertObjectEventToTransaction(objecteventId);
+            return Response.ok(res).build();
+    }
 
     /**
      * Creates/adds a new ObjectEvent.

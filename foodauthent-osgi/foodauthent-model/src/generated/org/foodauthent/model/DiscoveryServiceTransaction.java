@@ -119,7 +119,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
     }
 
   /**
-   * List of epcs
+   * An unordered list of one or more EPCs(Electronic Product Code) naming the physical objects to which the event pertained. Each element of this list SHALL be a URI [RFC2396] denoting the unique identity for a physical object.
    * @return epcList 
    */
   public java.util.List<Epc> getEpcList() {
@@ -127,7 +127,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
     }
 
   /**
-   * EPCIS bizStep
+   * The business step of which this event was a part
    * @return bizStep 
    */
   public String getBizStep() {
@@ -135,7 +135,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
     }
 
   /**
-   * Read point
+   * The read point at which the event took place.
    * @return readPoint 
    */
   public String getReadPoint() {
@@ -143,7 +143,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
     }
 
   /**
-   * List of quantity
+   * Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
    * @return quantityList 
    */
   public java.util.List<QuantityElement> getQuantityList() {
@@ -159,7 +159,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
     }
 
   /**
-   * List of bizTransactions
+   * An unordered list of business transactions that define the context of this event(A BusinessTransaction identifies a particular business transaction. An example of a business transaction is a specific purchase order)
    * @return bizTransactionList 
    */
   public java.util.List<BizTransaction> getBizTransactionList() {
@@ -167,7 +167,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
     }
 
   /**
-   * EPCIS eventType
+   * EPCIS eventType, for Foodauthent system could be only ObjectEvent
    * @return eventType 
    */
   public String getEventType() {
@@ -191,7 +191,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
     }
 
   /**
-   * bricks
+   * A brick identifies a category of consumer-related products
    * @return bricks 
    */
   public java.util.List<String> getBricks() {
@@ -199,7 +199,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
     }
 
   /**
-   * When the event happened
+   * The time at which the EPCIS Capturing Applications asserts the event occurred. It’s an ISO 8601 format
    * @return eventTime 
    */
   public OffsetDateTime getEventTime() {
@@ -269,7 +269,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         }
 
         /**
-         * List of epcs
+         * An unordered list of one or more EPCs(Electronic Product Code) naming the physical objects to which the event pertained. Each element of this list SHALL be a URI [RFC2396] denoting the unique identity for a physical object.
          * @return epcList 
          */
         public DiscoveryServiceTransactionBuilder setEpcList(java.util.List<Epc> epcList) {
@@ -278,7 +278,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         }
 
         /**
-         * EPCIS bizStep
+         * The business step of which this event was a part
          * @return bizStep 
          */
         public DiscoveryServiceTransactionBuilder setBizStep(String bizStep) {
@@ -287,7 +287,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         }
 
         /**
-         * Read point
+         * The read point at which the event took place.
          * @return readPoint 
          */
         public DiscoveryServiceTransactionBuilder setReadPoint(String readPoint) {
@@ -296,7 +296,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         }
 
         /**
-         * List of quantity
+         * Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
          * @return quantityList 
          */
         public DiscoveryServiceTransactionBuilder setQuantityList(java.util.List<QuantityElement> quantityList) {
@@ -314,7 +314,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         }
 
         /**
-         * List of bizTransactions
+         * An unordered list of business transactions that define the context of this event(A BusinessTransaction identifies a particular business transaction. An example of a business transaction is a specific purchase order)
          * @return bizTransactionList 
          */
         public DiscoveryServiceTransactionBuilder setBizTransactionList(java.util.List<BizTransaction> bizTransactionList) {
@@ -323,7 +323,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         }
 
         /**
-         * EPCIS eventType
+         * EPCIS eventType, for Foodauthent system could be only ObjectEvent
          * @return eventType 
          */
         public DiscoveryServiceTransactionBuilder setEventType(String eventType) {
@@ -350,7 +350,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         }
 
         /**
-         * bricks
+         * A brick identifies a category of consumer-related products
          * @return bricks 
          */
         public DiscoveryServiceTransactionBuilder setBricks(java.util.List<String> bricks) {
@@ -359,7 +359,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         }
 
         /**
-         * When the event happened
+         * The time at which the EPCIS Capturing Applications asserts the event occurred. It’s an ISO 8601 format
          * @return eventTime 
          */
         public DiscoveryServiceTransactionBuilder setEventTime(OffsetDateTime eventTime) {

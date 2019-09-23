@@ -3,6 +3,7 @@
  */
 package org.foodauthent.api;
 
+import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.ObjectEventPageResult;
 
@@ -16,6 +17,15 @@ import org.foodauthent.common.exception.FAExceptions;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public interface ObjectEventService {
 
+    /**
+     * Convert the ObjectEvent to Discovery Service Transaction.
+     *
+     * @param objecteventId 
+     *
+     * @return the result
+     */
+    DiscoveryServiceTransaction convertObjectEventToTransaction(java.util.UUID objecteventId);
+        
     /**
      * Creates/adds a new ObjectEvent.
      *

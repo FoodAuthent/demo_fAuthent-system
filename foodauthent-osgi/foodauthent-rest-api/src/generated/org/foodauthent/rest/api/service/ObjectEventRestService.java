@@ -6,6 +6,7 @@ package org.foodauthent.rest.api.service;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
+import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.ObjectEventPageResult;
 
@@ -27,6 +28,18 @@ import org.foodauthent.common.exception.FAExceptions;
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
 public interface ObjectEventRestService{
 
+
+    /**
+     * Convert the ObjectEvent to Discovery Service Transaction.
+     *
+     * @param objecteventId 
+     * @return the response
+     */
+    @GET
+    @Path("/epcis/objectEvent/{objectevent-id}/discovery")
+    @Produces({ "application/json" })
+    public Response convertObjectEventToTransaction(@PathParam("objectevent-id") java.util.UUID objecteventId
+);
 
     /**
      * Creates/adds a new ObjectEvent.

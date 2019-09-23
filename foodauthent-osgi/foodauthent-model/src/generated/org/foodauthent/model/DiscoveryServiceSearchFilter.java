@@ -98,7 +98,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
     }
 
   /**
-   * EPCIS bizStep
+   * The business step of which this event was a part
    * @return bizStep 
    */
   public String getBizStep() {
@@ -106,7 +106,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
     }
 
   /**
-   * Read point
+   * The read point at which the event took place.
    * @return readPoint 
    */
   public String getReadPoint() {
@@ -114,7 +114,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
     }
 
   /**
-   * List of quantity
+   * Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
    * @return quantityList 
    */
   public java.util.List<QuantityElement> getQuantityList() {
@@ -130,7 +130,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
     }
 
   /**
-   * List of bizTransactions
+   * An unordered list of business transactions that define the context of this event(A BusinessTransaction identifies a particular business transaction. An example of a business transaction is a specific purchase order)
    * @return bizTransactionList 
    */
   public java.util.List<BizTransaction> getBizTransactionList() {
@@ -138,7 +138,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
     }
 
   /**
-   * EPCIS eventType
+   * EPCIS eventType, for Foodauthent system could be only ObjectEvent
    * @return eventType 
    */
   public String getEventType() {
@@ -162,7 +162,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
     }
 
   /**
-   * bricks
+   * A brick identifies a category of consumer-related products
    * @return bricks 
    */
   public java.util.List<String> getBricks() {
@@ -170,7 +170,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
     }
 
   /**
-   * start date for the research
+   * start date and time for the research. It’s an ISO 8601 format
    * @return eventTimeFrom 
    */
   public OffsetDateTime getEventTimeFrom() {
@@ -178,7 +178,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
     }
 
   /**
-   * end date for the research
+   * end date and time for the research. It’s an ISO 8601 format
    * @return eventTimeTo 
    */
   public OffsetDateTime getEventTimeTo() {
@@ -248,7 +248,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         }
 
         /**
-         * EPCIS bizStep
+         * The business step of which this event was a part
          * @return bizStep 
          */
         public DiscoveryServiceSearchFilterBuilder setBizStep(String bizStep) {
@@ -257,7 +257,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         }
 
         /**
-         * Read point
+         * The read point at which the event took place.
          * @return readPoint 
          */
         public DiscoveryServiceSearchFilterBuilder setReadPoint(String readPoint) {
@@ -266,7 +266,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         }
 
         /**
-         * List of quantity
+         * Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
          * @return quantityList 
          */
         public DiscoveryServiceSearchFilterBuilder setQuantityList(java.util.List<QuantityElement> quantityList) {
@@ -284,7 +284,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         }
 
         /**
-         * List of bizTransactions
+         * An unordered list of business transactions that define the context of this event(A BusinessTransaction identifies a particular business transaction. An example of a business transaction is a specific purchase order)
          * @return bizTransactionList 
          */
         public DiscoveryServiceSearchFilterBuilder setBizTransactionList(java.util.List<BizTransaction> bizTransactionList) {
@@ -293,7 +293,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         }
 
         /**
-         * EPCIS eventType
+         * EPCIS eventType, for Foodauthent system could be only ObjectEvent
          * @return eventType 
          */
         public DiscoveryServiceSearchFilterBuilder setEventType(String eventType) {
@@ -320,7 +320,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         }
 
         /**
-         * bricks
+         * A brick identifies a category of consumer-related products
          * @return bricks 
          */
         public DiscoveryServiceSearchFilterBuilder setBricks(java.util.List<String> bricks) {
@@ -329,7 +329,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         }
 
         /**
-         * start date for the research
+         * start date and time for the research. It’s an ISO 8601 format
          * @return eventTimeFrom 
          */
         public DiscoveryServiceSearchFilterBuilder setEventTimeFrom(OffsetDateTime eventTimeFrom) {
@@ -338,7 +338,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         }
 
         /**
-         * end date for the research
+         * end date and time for the research. It’s an ISO 8601 format
          * @return eventTimeTo 
          */
         public DiscoveryServiceSearchFilterBuilder setEventTimeTo(OffsetDateTime eventTimeTo) {

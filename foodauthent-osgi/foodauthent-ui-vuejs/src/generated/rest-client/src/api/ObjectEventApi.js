@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/ObjectEvent', '../model/ObjectEventPageResult'], factory);
+    define(['../ApiClient', '../model/DiscoveryServiceTransaction', '../model/ObjectEvent', '../model/ObjectEventPageResult'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/ObjectEvent'), require('../model/ObjectEventPageResult'));
+    module.exports = factory(require('../ApiClient'), require('../model/DiscoveryServiceTransaction'), require('../model/ObjectEvent'), require('../model/ObjectEventPageResult'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.ObjectEventApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.ObjectEvent, root.FoodAuthentSwaggerApi.ObjectEventPageResult);
+    root.FoodAuthentSwaggerApi.ObjectEventApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.DiscoveryServiceTransaction, root.FoodAuthentSwaggerApi.ObjectEvent, root.FoodAuthentSwaggerApi.ObjectEventPageResult);
   }
-}(this, function(ApiClient, ObjectEvent, ObjectEventPageResult) {
+}(this, function(ApiClient, DiscoveryServiceTransaction, ObjectEvent, ObjectEventPageResult) {
   'use strict';
 
   /**
@@ -47,6 +47,53 @@
   var exports = function(apiClient) {
     this.apiClient = apiClient || ApiClient.instance;
 
+
+    /**
+     * Callback function to receive the result of the convertObjectEventToTransaction operation.
+     * @callback module:api/ObjectEventApi~convertObjectEventToTransactionCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/DiscoveryServiceTransaction} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Convert the ObjectEvent to Discovery Service Transaction.
+     * @param {String} objecteventId 
+     * @param {module:api/ObjectEventApi~convertObjectEventToTransactionCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/DiscoveryServiceTransaction}
+     */
+    this.convertObjectEventToTransaction = function(objecteventId, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'objecteventId' is set
+      if (objecteventId === undefined || objecteventId === null) {
+        throw new Error("Missing the required parameter 'objecteventId' when calling convertObjectEventToTransaction");
+      }
+
+
+      var pathParams = {
+        'objectevent-id': objecteventId
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['jwtAuth'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = 'DiscoveryServiceTransaction';
+
+      return this.apiClient.callApi(
+        '/epcis/objectEvent/{objectevent-id}/discovery', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
 
     /**
      * Callback function to receive the result of the createObjectEvent operation.

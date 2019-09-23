@@ -1714,6 +1714,27 @@ paths:
               schema:
                 $ref: '#/components/schemas/ObjectEvent'
                 
+  '/epcis/objectEvent/{objectevent-id}/discovery':
+    get:
+      tags:
+        - ObjectEvent
+      description: Convert the ObjectEvent to Discovery Service Transaction.
+      operationId: convertObjectEventToTransaction
+      parameters:
+        - name: objectevent-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The DiscoveryServiceTransaction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscoveryServiceTransaction'
+                
   /discovery/transaction:
     get:
       tags:
