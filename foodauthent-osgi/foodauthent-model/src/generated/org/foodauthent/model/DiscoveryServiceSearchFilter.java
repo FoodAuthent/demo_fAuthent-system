@@ -13,7 +13,6 @@ import java.util.Objects;
 import java.time.OffsetDateTime;
 import org.foodauthent.model.BizTransaction;
 import org.foodauthent.model.Epc;
-import org.foodauthent.model.QuantityElement;
 
 
 
@@ -30,7 +29,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
   protected java.util.List<Epc> epcList;
   protected String bizStep;
   protected String readPoint;
-  protected java.util.List<QuantityElement> quantityList;
+  protected java.util.List<Epc> quantityList;
   protected String action;
   protected java.util.List<BizTransaction> bizTransactionList;
   protected String eventType;
@@ -117,7 +116,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
    * Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
    * @return quantityList 
    */
-  public java.util.List<QuantityElement> getQuantityList() {
+  public java.util.List<Epc> getQuantityList() {
         return quantityList;
     }
 
@@ -228,7 +227,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         private java.util.List<Epc> epcList = new java.util.ArrayList<>();
         private String bizStep;
         private String readPoint;
-        private java.util.List<QuantityElement> quantityList = new java.util.ArrayList<>();
+        private java.util.List<Epc> quantityList = new java.util.ArrayList<>();
         private String action;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
         private String eventType;
@@ -269,7 +268,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
          * Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
          * @return quantityList 
          */
-        public DiscoveryServiceSearchFilterBuilder setQuantityList(java.util.List<QuantityElement> quantityList) {
+        public DiscoveryServiceSearchFilterBuilder setQuantityList(java.util.List<Epc> quantityList) {
              this.quantityList = quantityList;
              return this;
         }

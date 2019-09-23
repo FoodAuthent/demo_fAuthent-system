@@ -13,7 +13,6 @@ import java.util.Objects;
 import java.time.OffsetDateTime;
 import org.foodauthent.model.BizTransaction;
 import org.foodauthent.model.Epc;
-import org.foodauthent.model.QuantityElement;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -55,7 +54,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   protected java.util.List<Epc> epcList;
   protected String bizStep;
   protected String readPoint;
-  protected java.util.List<QuantityElement> quantityList;
+  protected java.util.List<Epc> quantityList;
   protected ActionEnum action;
   protected java.util.List<BizTransaction> bizTransactionList;
   protected String eventType;
@@ -146,7 +145,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
    * @return quantityList 
    */
-  public java.util.List<QuantityElement> getQuantityList() {
+  public java.util.List<Epc> getQuantityList() {
         return quantityList;
     }
 
@@ -250,7 +249,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         private java.util.List<Epc> epcList = new java.util.ArrayList<>();
         private String bizStep;
         private String readPoint;
-        private java.util.List<QuantityElement> quantityList = new java.util.ArrayList<>();
+        private java.util.List<Epc> quantityList = new java.util.ArrayList<>();
         private ActionEnum action;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
         private String eventType;
@@ -299,7 +298,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
          * @return quantityList 
          */
-        public DiscoveryServiceTransactionBuilder setQuantityList(java.util.List<QuantityElement> quantityList) {
+        public DiscoveryServiceTransactionBuilder setQuantityList(java.util.List<Epc> quantityList) {
              this.quantityList = quantityList;
              return this;
         }

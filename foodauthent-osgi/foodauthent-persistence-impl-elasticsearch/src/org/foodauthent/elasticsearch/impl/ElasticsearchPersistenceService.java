@@ -421,18 +421,13 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 		// QUERY FOR QuantityList
 		if (dssf.getQuantityList().size() > 0) {
-			for (QuantityElement qe : dssf.getQuantityList()) {
-				if (qe.getEpcClass() != null) {
-					qb.must(QueryBuilders.termsQuery("quantityList.epcClass.keyword", qe.getEpcClass()));
-				}
-				if (qe.getQuantity() != null) {
-					qb.must(QueryBuilders.termsQuery("quantityList.quantity.keyword", qe.getQuantity()));
-				}
-				if (qe.getUom() != null) {
-					qb.must(QueryBuilders.termsQuery("quantityList.uom.keyword", qe.getUom()));
-				}
+			BoolQueryBuilder epcQuery = QueryBuilders.boolQuery();
+			for (Epc epc : dssf.getQuantityList()) {
+				epcQuery.must(QueryBuilders.termsQuery("quantityList.epc.keyword", epc.getEpc()));
 			}
+			qb.must(epcQuery);
 		}
+		
 
 		// QUERY FOR Action
 		if (dssf.getAction() != null) {

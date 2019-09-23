@@ -2,18 +2,28 @@ package org.foodauthent.impl.objectevent;
 
 import static org.foodauthent.api.internal.persistence.PersistenceService.toArray;
 
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.foodauthent.api.ObjectEventService;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
 import org.foodauthent.model.DiscoveryServiceTransaction;
+import org.foodauthent.model.DiscoveryServiceTransaction.ActionEnum;
+import org.foodauthent.model.Epc;
+import org.foodauthent.model.GPCAttribute;
+import org.foodauthent.model.GPCAttributeValue;
+import org.foodauthent.model.GPCBrick;
 import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.ObjectEventPageResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+
+import com.foodauthent.digest.DigestUtil;
 
 /**
  *
@@ -47,8 +57,69 @@ public class ObjectEventServiceImpl implements ObjectEventService {
 
     @Override
     public DiscoveryServiceTransaction convertObjectEventToTransaction(UUID objecteventId) {
-	// TODO Auto-generated method stub
-	return null;
+	ObjectEvent objectEvent = getObjectEventById(objecteventId);
+	DiscoveryServiceTransaction discoveryServiceTransaction = null;
+	try {
+	    discoveryServiceTransaction = buildDiscoveryServiceTransaction(objectEvent);
+	} catch (NoSuchAlgorithmException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	return discoveryServiceTransaction;
+    }
+
+    private static String getGlnMaskingCode(String sgln) {
+	return "1.FCK03l#";
+    }
+    
+
+    private static List<String> convertBrickList(List<GPCBrick> bricks) {
+	List<String> result = new ArrayList();
+	for (GPCBrick brick : bricks) {
+	    for (GPCAttribute att : brick.getAttributes()) {
+		for (GPCAttributeValue val : att.getValues()) {
+		    result.add(brick.getCode() + "/" + att.getCode() + "/" + val.getCode());
+		}
+	    }
+	}
+	return result;
+    }
+   
+
+    static ActionEnum ObjectToTransactionEnum(org.foodauthent.model.ObjectEvent.ActionEnum value) {
+	return ActionEnum.values()[value.ordinal()];
+    }
+
+    public static DiscoveryServiceTransaction buildDiscoveryServiceTransaction(ObjectEvent objectEvent)
+	    throws NoSuchAlgorithmException {
+	final DiscoveryServiceTransaction discoveryServiceTransaction = DiscoveryServiceTransaction.builder() //
+		.setAction(ObjectToTransactionEnum(objectEvent.getAction())) //
+		.setBizTransactionList(objectEvent.getBizTransactionList())//
+		.setEventType("ObjectEvent")//
+                .setQuantityList(objectEvent.getQuantityList()
+                        .stream().map(s -> {
+                            try {
+				return Epc.builder().setEpc("ni:///sha-256;"+DigestUtil.sha256(s.getEpcClass())).build();
+			    } catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			    }
+			    return null;
+                        }).collect(Collectors.toList()))
+		.setBizStep(objectEvent.getBizStep()) //
+		.setEventTime(objectEvent.getEventTime()) //
+                .setEpcList(objectEvent.getEpcList()
+                        .stream().map(s -> {
+                            try {
+				return Epc.builder().setEpc("ni:///sha-256;"+DigestUtil.sha256(s.getEpc())).build();
+			    } catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			    }
+			    return s;
+                        }).collect(Collectors.toList()))
+		.setGtin(objectEvent.getGtin()) //
+		.setReadPoint("ni:///sha-256;"+DigestUtil.sha256(objectEvent.getReadPoint()) + getGlnMaskingCode("")) //
+		.setBricks(convertBrickList(objectEvent.getBricks())).build();
+	return discoveryServiceTransaction;
     }
 
 }

@@ -6,7 +6,6 @@ package org.foodauthent.model.json.mixin;
 import java.time.OffsetDateTime;
 import org.foodauthent.model.BizTransaction;
 import org.foodauthent.model.Epc;
-import org.foodauthent.model.QuantityElement;
 
 import java.util.UUID;
 
@@ -60,7 +59,7 @@ public interface DiscoveryServiceSearchFilterMixIn {
     public String getReadPoint();
     
     @JsonProperty("quantityList")
-    public java.util.List<QuantityElement> getQuantityList();
+    public java.util.List<Epc> getQuantityList();
     
     @JsonProperty("action")
     public String getAction();
@@ -115,7 +114,7 @@ public interface DiscoveryServiceSearchFilterMixIn {
         public DiscoveryServiceSearchFilterMixInBuilder setReadPoint(final String readPoint);
         
         @JsonProperty("quantityList")
-        public DiscoveryServiceSearchFilterMixInBuilder setQuantityList(final java.util.List<QuantityElement> quantityList);
+        public DiscoveryServiceSearchFilterMixInBuilder setQuantityList(final java.util.List<Epc> quantityList);
         
         @JsonProperty("action")
         public DiscoveryServiceSearchFilterMixInBuilder setAction(final String action);

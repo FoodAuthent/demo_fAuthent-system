@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/BizTransaction', '../model/Epc', '../model/QuantityElement'], factory);
+    define(['../ApiClient', '../model/BizTransaction', '../model/Epc'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./BizTransaction'), require('./Epc'), require('./QuantityElement'));
+    module.exports = factory(require('../ApiClient'), require('./BizTransaction'), require('./Epc'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.DiscoveryServiceTransaction = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.BizTransaction, root.FoodAuthentSwaggerApi.Epc, root.FoodAuthentSwaggerApi.QuantityElement);
+    root.FoodAuthentSwaggerApi.DiscoveryServiceTransaction = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.BizTransaction, root.FoodAuthentSwaggerApi.Epc);
   }
-}(this, function(ApiClient, BizTransaction, Epc, QuantityElement) {
+}(this, function(ApiClient, BizTransaction, Epc) {
   'use strict';
 
 
@@ -73,7 +73,7 @@
         obj['readPoint'] = ApiClient.convertToType(data['readPoint'], 'String');
       }
       if (data.hasOwnProperty('quantityList')) {
-        obj['quantityList'] = ApiClient.convertToType(data['quantityList'], [QuantityElement]);
+        obj['quantityList'] = ApiClient.convertToType(data['quantityList'], [Epc]);
       }
       if (data.hasOwnProperty('action')) {
         obj['action'] = ApiClient.convertToType(data['action'], 'String');
@@ -122,7 +122,7 @@
   exports.prototype['readPoint'] = undefined;
   /**
    * Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
-   * @member {Array.<module:model/QuantityElement>} quantityList
+   * @member {Array.<module:model/Epc>} quantityList
    */
   exports.prototype['quantityList'] = undefined;
   /**

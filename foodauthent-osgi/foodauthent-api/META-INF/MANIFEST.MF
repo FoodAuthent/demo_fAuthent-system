@@ -11,6 +11,7 @@ Export-Package: org.foodauthent.api,
  org.foodauthent.impl.workflow
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: com.foodauthent.api.internal.people,
+ com.foodauthent.digest,
  org.apache.commons.io,
  org.apache.commons.io.input,
  org.foodauthent.api.internal.exception,
