@@ -54,7 +54,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
   protected java.util.List<Epc> epcList;
   protected String bizStep;
   protected String readPoint;
-  protected java.util.List<Epc> quantityList;
+  protected java.util.List<String> quantityList;
   protected ActionEnum action;
   protected java.util.List<BizTransaction> bizTransactionList;
   protected String eventType;
@@ -145,7 +145,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
    * Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
    * @return quantityList 
    */
-  public java.util.List<Epc> getQuantityList() {
+  public java.util.List<String> getQuantityList() {
         return quantityList;
     }
 
@@ -249,7 +249,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
         private java.util.List<Epc> epcList = new java.util.ArrayList<>();
         private String bizStep;
         private String readPoint;
-        private java.util.List<Epc> quantityList = new java.util.ArrayList<>();
+        private java.util.List<String> quantityList = new java.util.ArrayList<>();
         private ActionEnum action;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
         private String eventType;
@@ -298,7 +298,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
          * Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
          * @return quantityList 
          */
-        public DiscoveryServiceTransactionBuilder setQuantityList(java.util.List<Epc> quantityList) {
+        public DiscoveryServiceTransactionBuilder setQuantityList(java.util.List<String> quantityList) {
              this.quantityList = quantityList;
              return this;
         }

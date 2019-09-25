@@ -2160,7 +2160,7 @@ components:
           description: Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
           type: array
           items:
-            $ref: "#/components/schemas/Epc"
+            type: string
         action:
           description: Event action.
           type: string
@@ -2230,7 +2230,7 @@ components:
           description: Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
           type: array
           items:
-            $ref: "#/components/schemas/Epc"
+            type: string
         action:
           description: Event action.
           type: string

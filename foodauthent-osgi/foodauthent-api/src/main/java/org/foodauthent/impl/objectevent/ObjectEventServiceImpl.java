@@ -72,6 +72,10 @@ public class ObjectEventServiceImpl implements ObjectEventService {
 	return "1.FCK03l#";
     }
     
+    private static String getInterfaceMaskingCode(String interfaceId) {
+	return "Koe1nerD*m";
+    }
+    
 
     private static List<String> convertBrickList(List<GPCBrick> bricks) {
 	List<String> result = new ArrayList();
@@ -96,10 +100,11 @@ public class ObjectEventServiceImpl implements ObjectEventService {
 		.setAction(ObjectToTransactionEnum(objectEvent.getAction())) //
 		.setBizTransactionList(objectEvent.getBizTransactionList())//
 		.setEventType("ObjectEvent")//
-                .setQuantityList(objectEvent.getQuantityList()
+		.setInterfaceId("ni:///sha-256;"+DigestUtil.sha256("api.foodauthent.net (http://api.foodauthent.net/)" + getInterfaceMaskingCode(""))+"?input=iid.imc&multiHash=yes")
+		.setQuantityList(objectEvent.getQuantityList()
                         .stream().map(s -> {
                             try {
-				return Epc.builder().setEpc("ni:///sha-256;"+DigestUtil.sha256(s.getEpcClass())).build();
+				return "ni:///sha-256;"+DigestUtil.sha256(s.getEpcClass())+"?input=lgtin";
 			    } catch (NoSuchAlgorithmException e) {
 				e.printStackTrace();
 			    }
@@ -110,14 +115,14 @@ public class ObjectEventServiceImpl implements ObjectEventService {
                 .setEpcList(objectEvent.getEpcList()
                         .stream().map(s -> {
                             try {
-				return Epc.builder().setEpc("ni:///sha-256;"+DigestUtil.sha256(s.getEpc())).build();
+				return Epc.builder().setEpc("ni:///sha-256;"+DigestUtil.sha256(s.getEpc())+"?input=lgtin").build();
 			    } catch (NoSuchAlgorithmException e) {
 				e.printStackTrace();
 			    }
 			    return s;
                         }).collect(Collectors.toList()))
 		.setGtin(objectEvent.getGtin()) //
-		.setReadPoint("ni:///sha-256;"+DigestUtil.sha256(objectEvent.getReadPoint()) + getGlnMaskingCode("")) //
+		.setReadPoint("ni:///sha-256;"+DigestUtil.sha256(objectEvent.getReadPoint() + getGlnMaskingCode(""))+"?input=sgln.gmc&multiHash=yes")
 		.setBricks(convertBrickList(objectEvent.getBricks())).build();
 	return discoveryServiceTransaction;
     }

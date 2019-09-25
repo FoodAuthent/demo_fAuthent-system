@@ -422,8 +422,8 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 		// QUERY FOR QuantityList
 		if (dssf.getQuantityList().size() > 0) {
 			BoolQueryBuilder epcQuery = QueryBuilders.boolQuery();
-			for (Epc epc : dssf.getQuantityList()) {
-				epcQuery.must(QueryBuilders.termsQuery("quantityList.epc.keyword", epc.getEpc()));
+			for (String epcClass : dssf.getQuantityList()) {
+				epcQuery.must(QueryBuilders.termsQuery("quantityList.keyword", epcClass));
 			}
 			qb.must(epcQuery);
 		}

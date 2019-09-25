@@ -61,7 +61,7 @@ public interface DiscoveryServiceTransactionMixIn {
     public String getReadPoint();
     
     @JsonProperty("quantityList")
-    public java.util.List<Epc> getQuantityList();
+    public java.util.List<String> getQuantityList();
     
     @JsonProperty("action")
     public ActionEnum getAction();
@@ -116,7 +116,7 @@ public interface DiscoveryServiceTransactionMixIn {
         public DiscoveryServiceTransactionMixInBuilder setReadPoint(final String readPoint);
         
         @JsonProperty("quantityList")
-        public DiscoveryServiceTransactionMixInBuilder setQuantityList(final java.util.List<Epc> quantityList);
+        public DiscoveryServiceTransactionMixInBuilder setQuantityList(final java.util.List<String> quantityList);
         
         @JsonProperty("action")
         public DiscoveryServiceTransactionMixInBuilder setAction(final ActionEnum action);

@@ -70,7 +70,7 @@
         obj['readPoint'] = ApiClient.convertToType(data['readPoint'], 'String');
       }
       if (data.hasOwnProperty('quantityList')) {
-        obj['quantityList'] = ApiClient.convertToType(data['quantityList'], [Epc]);
+        obj['quantityList'] = ApiClient.convertToType(data['quantityList'], ['String']);
       }
       if (data.hasOwnProperty('action')) {
         obj['action'] = ApiClient.convertToType(data['action'], 'String');
@@ -117,7 +117,7 @@
   exports.prototype['readPoint'] = undefined;
   /**
    * Represents quantity of entities sharing a common EPC class, but where the individual identities of the entities are not specified.
-   * @member {Array.<module:model/Epc>} quantityList
+   * @member {Array.<String>} quantityList
    */
   exports.prototype['quantityList'] = undefined;
   /**

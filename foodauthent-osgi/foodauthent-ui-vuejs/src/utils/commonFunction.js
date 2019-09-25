@@ -42,16 +42,16 @@ var MyObject = function () {
 		        for (var i = 0; i < length; i++) {
 			        	let schemaID = schemasArray[i];
 		        		var getCustomMetadataSchemaCallback = function (schemaerror, schemadata, schemaresponse) {
-		        			
+		        			//now schemadata is not correct
+		        			schemadata = schemaresponse.body;
 		        			  if (schemaerror) {
 		        		        console.error("getCustomMetadataSchemaCallback error",schemaerror);
 		        		      } else {
-		        		        
 		        		        var title = schemadata.title;
 		        		        var nestedSchema = schemadata.properties;
 		        		        var nestedSchemaKeys = Object.keys(schemadata.properties);
-		        		        var nestedlength = nestedSchemaKeys.length;
 		        		        
+		        		        var nestedlength = nestedSchemaKeys.length;
 		        		        for (var nestedindex = 0; nestedindex < nestedlength; nestedindex++) {
 		        		        		var currentSchema = nestedSchema[nestedSchemaKeys[nestedindex]];
 		        		        		var newUISchema = {"fields" : []}
@@ -102,6 +102,7 @@ var MyObject = function () {
 		      }
 		  }
 		  customMetadataApi.getCustomMetadataSchemas(modelID,getCustomMetadataSchemasCallback);
+		  
 	  }
 	  // ////////////
 	  

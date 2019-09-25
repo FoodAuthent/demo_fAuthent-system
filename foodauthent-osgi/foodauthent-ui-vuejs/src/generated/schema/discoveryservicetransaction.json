@@ -52,19 +52,7 @@
     "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
     "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
     "newElementButtonLabel" : "Add",
-    "inputName" : "quantityList",
-    "items" : {
-      "type" : "object",
-      "schema" : {
-        "fields" : [ {
-          "label" : "Epc",
-          "model" : "epc",
-          "required" : false,
-          "type" : "input",
-          "inputType" : "text"
-        } ]
-      }
-    }
+    "inputName" : "quantityList"
   }, {
     "label" : "Action",
     "model" : "action",

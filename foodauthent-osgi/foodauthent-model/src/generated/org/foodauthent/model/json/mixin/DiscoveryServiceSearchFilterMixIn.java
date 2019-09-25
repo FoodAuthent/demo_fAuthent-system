@@ -59,7 +59,7 @@ public interface DiscoveryServiceSearchFilterMixIn {
     public String getReadPoint();
     
     @JsonProperty("quantityList")
-    public java.util.List<Epc> getQuantityList();
+    public java.util.List<String> getQuantityList();
     
     @JsonProperty("action")
     public String getAction();
@@ -114,7 +114,7 @@ public interface DiscoveryServiceSearchFilterMixIn {
         public DiscoveryServiceSearchFilterMixInBuilder setReadPoint(final String readPoint);
         
         @JsonProperty("quantityList")
-        public DiscoveryServiceSearchFilterMixInBuilder setQuantityList(final java.util.List<Epc> quantityList);
+        public DiscoveryServiceSearchFilterMixInBuilder setQuantityList(final java.util.List<String> quantityList);
         
         @JsonProperty("action")
         public DiscoveryServiceSearchFilterMixInBuilder setAction(final String action);
