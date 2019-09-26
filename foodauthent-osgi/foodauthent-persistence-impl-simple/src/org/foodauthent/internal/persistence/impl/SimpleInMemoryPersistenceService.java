@@ -100,7 +100,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 		tmp.add(createMPS(ObjectEvent.class,
 				m -> m.getEpcList().stream().map(e -> e.getEpc()).collect(Collectors.joining(","))));
 		tmp.add(createMPS(DiscoveryServiceTransaction.class,
-				m -> m.getEpcList().stream().map(e -> e.getEpc()).collect(Collectors.joining(","))));
+				m -> m.getEpcList().stream().map(e -> e).collect(Collectors.joining(","))));
 
 		modelPropertiesSupplier = tmp.stream().collect(Collectors.toMap(mps -> mps.getModelClass(), mps -> mps));
 	}

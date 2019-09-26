@@ -12,7 +12,6 @@ import java.util.Objects;
 
 import java.time.OffsetDateTime;
 import org.foodauthent.model.BizTransaction;
-import org.foodauthent.model.Epc;
 
 
 
@@ -26,12 +25,13 @@ import org.foodauthent.model.Epc;
 public class DiscoveryServiceSearchFilter   extends FaModel {
 
 
-  protected java.util.List<Epc> epcList;
+  protected java.util.List<String> epcList;
   protected String bizStep;
   protected String readPoint;
   protected java.util.List<String> quantityList;
   protected String action;
   protected java.util.List<BizTransaction> bizTransactionList;
+  protected String disposition;
   protected String eventType;
   protected java.util.UUID interfaceId;
   protected String gtin;
@@ -59,6 +59,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
     quantityList = immutable(builder.quantityList);
     action = immutable(builder.action);
     bizTransactionList = immutable(builder.bizTransactionList);
+    disposition = immutable(builder.disposition);
     eventType = immutable(builder.eventType);
     interfaceId = immutable(builder.interfaceId);
     gtin = immutable(builder.gtin);
@@ -84,7 +85,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
             return false;
         }
         DiscoveryServiceSearchFilter ent = (DiscoveryServiceSearchFilter)o;
-        return Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(eventType, ent.eventType) && Objects.equals(interfaceId, ent.interfaceId) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(eventTimeFrom, ent.eventTimeFrom) && Objects.equals(eventTimeTo, ent.eventTimeTo);
+        return Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(disposition, ent.disposition) && Objects.equals(eventType, ent.eventType) && Objects.equals(interfaceId, ent.interfaceId) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(eventTimeFrom, ent.eventTimeFrom) && Objects.equals(eventTimeTo, ent.eventTimeTo);
     }
 
 
@@ -92,7 +93,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
    * List of epcs
    * @return epcList 
    */
-  public java.util.List<Epc> getEpcList() {
+  public java.util.List<String> getEpcList() {
         return epcList;
     }
 
@@ -134,6 +135,14 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
    */
   public java.util.List<BizTransaction> getBizTransactionList() {
         return bizTransactionList;
+    }
+
+  /**
+   * The business condition of the objects associated with the EPCs, presumed to hold until contradicted by a subsequent event
+   * @return disposition 
+   */
+  public String getDisposition() {
+        return disposition;
     }
 
   /**
@@ -208,6 +217,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
         builder.quantityList = entity.quantityList;
         builder.action = entity.action;
         builder.bizTransactionList = entity.bizTransactionList;
+        builder.disposition = entity.disposition;
         builder.eventType = entity.eventType;
         builder.interfaceId = entity.interfaceId;
         builder.gtin = entity.gtin;
@@ -224,12 +234,13 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
             
         }
 
-        private java.util.List<Epc> epcList = new java.util.ArrayList<>();
+        private java.util.List<String> epcList = new java.util.ArrayList<>();
         private String bizStep;
         private String readPoint;
         private java.util.List<String> quantityList = new java.util.ArrayList<>();
         private String action;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
+        private String disposition;
         private String eventType;
         private java.util.UUID interfaceId;
         private String gtin;
@@ -241,7 +252,7 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
          * List of epcs
          * @return epcList 
          */
-        public DiscoveryServiceSearchFilterBuilder setEpcList(java.util.List<Epc> epcList) {
+        public DiscoveryServiceSearchFilterBuilder setEpcList(java.util.List<String> epcList) {
              this.epcList = epcList;
              return this;
         }
@@ -288,6 +299,15 @@ public class DiscoveryServiceSearchFilter   extends FaModel {
          */
         public DiscoveryServiceSearchFilterBuilder setBizTransactionList(java.util.List<BizTransaction> bizTransactionList) {
              this.bizTransactionList = bizTransactionList;
+             return this;
+        }
+
+        /**
+         * The business condition of the objects associated with the EPCs, presumed to hold until contradicted by a subsequent event
+         * @return disposition 
+         */
+        public DiscoveryServiceSearchFilterBuilder setDisposition(String disposition) {
+             this.disposition = disposition;
              return this;
         }
 

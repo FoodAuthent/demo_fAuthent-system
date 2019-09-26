@@ -5,7 +5,6 @@ package org.foodauthent.model.json.mixin;
 
 import java.time.OffsetDateTime;
 import org.foodauthent.model.BizTransaction;
-import org.foodauthent.model.Epc;
 
 import java.util.UUID;
 
@@ -52,7 +51,7 @@ public interface DiscoveryServiceTransactionMixIn {
     public java.util.UUID getFaId();
     
     @JsonProperty("epcList")
-    public java.util.List<Epc> getEpcList();
+    public java.util.List<String> getEpcList();
     
     @JsonProperty("bizStep")
     public String getBizStep();
@@ -68,6 +67,9 @@ public interface DiscoveryServiceTransactionMixIn {
     
     @JsonProperty("bizTransactionList")
     public java.util.List<BizTransaction> getBizTransactionList();
+    
+    @JsonProperty("disposition")
+    public String getDisposition();
     
     @JsonProperty("eventType")
     public String getEventType();
@@ -107,7 +109,7 @@ public interface DiscoveryServiceTransactionMixIn {
         public DiscoveryServiceTransactionMixInBuilder setFaId(final java.util.UUID faId);
         
         @JsonProperty("epcList")
-        public DiscoveryServiceTransactionMixInBuilder setEpcList(final java.util.List<Epc> epcList);
+        public DiscoveryServiceTransactionMixInBuilder setEpcList(final java.util.List<String> epcList);
         
         @JsonProperty("bizStep")
         public DiscoveryServiceTransactionMixInBuilder setBizStep(final String bizStep);
@@ -123,6 +125,9 @@ public interface DiscoveryServiceTransactionMixIn {
         
         @JsonProperty("bizTransactionList")
         public DiscoveryServiceTransactionMixInBuilder setBizTransactionList(final java.util.List<BizTransaction> bizTransactionList);
+        
+        @JsonProperty("disposition")
+        public DiscoveryServiceTransactionMixInBuilder setDisposition(final String disposition);
         
         @JsonProperty("eventType")
         public DiscoveryServiceTransactionMixInBuilder setEventType(final String eventType);

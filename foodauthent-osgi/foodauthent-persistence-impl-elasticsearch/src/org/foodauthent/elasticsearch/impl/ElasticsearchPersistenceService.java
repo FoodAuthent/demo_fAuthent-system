@@ -22,7 +22,6 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.foodauthent.api.internal.exception.EntityNotFoundException;
 import org.foodauthent.api.internal.exception.ModelExistsException;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
@@ -36,10 +35,8 @@ import org.foodauthent.model.BizTransaction;
 import org.foodauthent.model.DiscoveryServiceSearchFilter;
 import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
-import org.foodauthent.model.Epc;
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.Product;
-import org.foodauthent.model.QuantityElement;
 import org.foodauthent.storage.FileStorageService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -393,6 +390,7 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 	/**
 	 * Search DiscoveryServiceTransaction by filters
+	 * 
 	 */
 	@Override
 	public DiscoveryServiceTransactionPageResult findTransactionByFilter(DiscoveryServiceSearchFilter dssf,
@@ -403,8 +401,8 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 		// QUERY FOR epcList
 		if (dssf.getEpcList().size() > 0) {
 			BoolQueryBuilder epcQuery = QueryBuilders.boolQuery();
-			for (Epc epc : dssf.getEpcList()) {
-				epcQuery.must(QueryBuilders.termsQuery("epcList.epc.keyword", epc.getEpc()));
+			for (String epc : dssf.getEpcList()) {
+				epcQuery.must(QueryBuilders.termsQuery("epcList.keyword", epc));
 			}
 			qb.must(epcQuery);
 		}
@@ -412,6 +410,11 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 		// QUERY FOR bizStep
 		if (dssf.getBizStep() != null) {
 			qb.must(QueryBuilders.termsQuery("bizStep.keyword", dssf.getBizStep()));
+		}
+		
+		// QUERY FOR disposition
+		if (dssf.getDisposition() != null) {
+			qb.must(QueryBuilders.termsQuery("disposition.keyword", dssf.getDisposition()));
 		}
 
 		// QUERY FOR Readpoint
@@ -488,19 +491,29 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 			qb.must(queryBuilder);
 		}
-
+		
+		SearchRequest request = op.searchRequest(classTarget(DiscoveryServiceTransaction.class));
+		SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+		sourceBuilder.from((pageNumber - 1) * pageSize);
+		sourceBuilder.size(pageSize);
+		request.source(sourceBuilder);
+		SearchResult<DiscoveryServiceTransaction> result = op.search(request, op.manifest(DiscoveryServiceTransaction.class));
+		List<SearchResultItem<DiscoveryServiceTransaction>> res = op.resultAsJava(result, DiscoveryServiceTransaction.class);
+		List<DiscoveryServiceTransaction> transaction = res.stream().map(r -> r.item()).collect(Collectors.toList());
+		
 		System.out.println("Query: " + qb);
+		System.out.println("Query request: " + request);
+		
+//		List<DiscoveryServiceTransaction> transaction = op.search(qb, classTarget(DiscoveryServiceTransaction.class),
+//				op.manifest(DiscoveryServiceTransaction.class));
 
-		List<DiscoveryServiceTransaction> transaction = op.search(qb, classTarget(DiscoveryServiceTransaction.class),
-				op.manifest(DiscoveryServiceTransaction.class));
-
-		if (transaction.isEmpty()) {
-			throw new EntityNotFoundException();
+//		if (transaction.isEmpty()) {
 			// throw new NoSuchElementException();
-		}
+//		}
 
 		return DiscoveryServiceTransactionPageResult.builder().setPageCount(pageSize).setPageNumber(pageNumber)
 				.setResults(transaction).setResultCount(transaction.size()).build();
+		
 	}
 
 	@Override

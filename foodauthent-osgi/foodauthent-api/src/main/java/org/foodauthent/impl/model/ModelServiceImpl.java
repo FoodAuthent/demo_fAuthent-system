@@ -87,7 +87,7 @@ public class ModelServiceImpl implements ModelService {
 	    try {
 		final FaObjectSet objectSet = FaObjectSet.builder().setModels(Arrays.asList(modelId)).build();
 		exporter.export(objectSet, tmp.toFile());
-		final UUID fileUUID = fileService.createFileMetadata(FileMetadata.builder().setName("model.fakx")
+		final UUID fileUUID = fileService.createFileMetadata(FileMetadata.builder().setName("model.fakx").setUploadName("model.fakx")
 			.setType(TypeEnum.FAKX).setContentType(ContentTypeEnum.ZIP).build());
 		persistenceService.save(new Blob(fileUUID, new FileInputStream(tmp.toFile())));
 		final ObjectEvent event = buildClassificationEvent(publishMetadata, fileUUID);

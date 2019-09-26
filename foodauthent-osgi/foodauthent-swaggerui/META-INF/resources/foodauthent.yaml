@@ -2135,6 +2135,7 @@ components:
       - name: quantityList
       - name: action
       - name: bizTransactionList
+      - name: disposition
       - name: eventType
       - name: interfaceId
       - name: gtin
@@ -2149,7 +2150,7 @@ components:
           description: An unordered list of one or more EPCs(Electronic Product Code) naming the physical objects to which the event pertained. Each element of this list SHALL be a URI [RFC2396] denoting the unique identity for a physical object.
           type: array
           items:
-            $ref: "#/components/schemas/Epc"
+            type: string
         bizStep:
           description: The business step of which this event was a part
           type: string
@@ -2173,6 +2174,9 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/BizTransaction"
+        disposition:
+          description: The business condition of the objects associated with the EPCs, presumed to hold until contradicted by a subsequent event
+          type: string
         eventType:
           description: EPCIS eventType, for Foodauthent system could be only ObjectEvent
           type: string
@@ -2219,7 +2223,7 @@ components:
           description: List of epcs
           type: array
           items:
-            $ref: "#/components/schemas/Epc"
+            type: string
         bizStep:
           description: The business step of which this event was a part
           type: string
@@ -2239,6 +2243,9 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/BizTransaction"
+        disposition:
+          description: The business condition of the objects associated with the EPCs, presumed to hold until contradicted by a subsequent event
+          type: string
         eventType:
           description: EPCIS eventType, for Foodauthent system could be only ObjectEvent
           type: string

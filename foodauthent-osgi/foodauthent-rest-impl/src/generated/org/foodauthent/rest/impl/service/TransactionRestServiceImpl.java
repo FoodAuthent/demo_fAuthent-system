@@ -3,23 +3,16 @@
  */
 package org.foodauthent.rest.impl.service;
 
-import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-
+import org.foodauthent.api.TransactionService;
 import org.foodauthent.model.DiscoveryServiceSearchFilter;
 import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
-
-import org.foodauthent.api.TransactionService;
-import org.foodauthent.api.ServiceRegistry;
-
 import org.foodauthent.rest.api.service.TransactionRestService;
-
-import org.foodauthent.common.exception.FAExceptions;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 
 /**
  * FoodAuthent Swagger API
@@ -59,9 +52,17 @@ public class TransactionRestServiceImpl implements TransactionRestService {
      * @return the response
      */
     public Response findTransactionByFilter(Integer pageNumber, Integer pageSize, DiscoveryServiceSearchFilter discoveryServiceSearchFilter) {
-        
-            Object res = service.findTransactionByFilter(pageNumber, pageSize, discoveryServiceSearchFilter);
-            return Response.ok(res).build();
+//        Object res = service.findTransactionByFilter(pageNumber, pageSize, discoveryServiceSearchFilter);
+//        return Response.ok(res).build();
+    	
+    	DiscoveryServiceTransactionPageResult res = service.findTransactionByFilter(pageNumber, pageSize, discoveryServiceSearchFilter);
+
+            if(res.getResultCount() == 0) {
+            	return Response.status(404).build();
+            }else {
+            	return Response.ok(res).build();	
+            }
+            
     }
 
     /**

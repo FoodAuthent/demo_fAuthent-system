@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/BizTransaction', '../model/Epc'], factory);
+    define(['../ApiClient', '../model/BizTransaction'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./BizTransaction'), require('./Epc'));
+    module.exports = factory(require('../ApiClient'), require('./BizTransaction'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.DiscoveryServiceTransaction = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.BizTransaction, root.FoodAuthentSwaggerApi.Epc);
+    root.FoodAuthentSwaggerApi.DiscoveryServiceTransaction = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.BizTransaction);
   }
-}(this, function(ApiClient, BizTransaction, Epc) {
+}(this, function(ApiClient, BizTransaction) {
   'use strict';
 
 
@@ -64,7 +64,7 @@
         obj['fa-id'] = ApiClient.convertToType(data['fa-id'], 'String');
       }
       if (data.hasOwnProperty('epcList')) {
-        obj['epcList'] = ApiClient.convertToType(data['epcList'], [Epc]);
+        obj['epcList'] = ApiClient.convertToType(data['epcList'], ['String']);
       }
       if (data.hasOwnProperty('bizStep')) {
         obj['bizStep'] = ApiClient.convertToType(data['bizStep'], 'String');
@@ -80,6 +80,9 @@
       }
       if (data.hasOwnProperty('bizTransactionList')) {
         obj['bizTransactionList'] = ApiClient.convertToType(data['bizTransactionList'], [BizTransaction]);
+      }
+      if (data.hasOwnProperty('disposition')) {
+        obj['disposition'] = ApiClient.convertToType(data['disposition'], 'String');
       }
       if (data.hasOwnProperty('eventType')) {
         obj['eventType'] = ApiClient.convertToType(data['eventType'], 'String');
@@ -107,7 +110,7 @@
   exports.prototype['fa-id'] = undefined;
   /**
    * An unordered list of one or more EPCs(Electronic Product Code) naming the physical objects to which the event pertained. Each element of this list SHALL be a URI [RFC2396] denoting the unique identity for a physical object.
-   * @member {Array.<module:model/Epc>} epcList
+   * @member {Array.<String>} epcList
    */
   exports.prototype['epcList'] = undefined;
   /**
@@ -135,6 +138,11 @@
    * @member {Array.<module:model/BizTransaction>} bizTransactionList
    */
   exports.prototype['bizTransactionList'] = undefined;
+  /**
+   * The business condition of the objects associated with the EPCs, presumed to hold until contradicted by a subsequent event
+   * @member {String} disposition
+   */
+  exports.prototype['disposition'] = undefined;
   /**
    * EPCIS eventType, for Foodauthent system could be only ObjectEvent
    * @member {String} eventType
