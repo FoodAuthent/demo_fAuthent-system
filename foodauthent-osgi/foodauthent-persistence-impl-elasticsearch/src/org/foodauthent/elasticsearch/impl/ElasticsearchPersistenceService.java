@@ -494,6 +494,7 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 		
 		SearchRequest request = op.searchRequest(classTarget(DiscoveryServiceTransaction.class));
 		SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+		sourceBuilder.query(QueryBuilders.simpleQueryStringQuery(qb.toString()));
 		sourceBuilder.from((pageNumber - 1) * pageSize);
 		sourceBuilder.size(pageSize);
 		request.source(sourceBuilder);
