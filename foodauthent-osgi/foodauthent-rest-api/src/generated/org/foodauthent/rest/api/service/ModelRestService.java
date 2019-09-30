@@ -85,5 +85,17 @@ public interface ModelRestService{
     public Response publishModelById(@PathParam("model-id") java.util.UUID modelId
 , PublishMetadata publishMetadata
 );
+
+    /**
+     * TODO
+     *
+     * @param model TODO
+     * @return the response
+     */
+    @PUT
+    @Path("/model")
+    @Consumes({ "application/json" })
+    public Response updatedModel(Model model
+);
 }
 

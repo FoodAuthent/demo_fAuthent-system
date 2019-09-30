@@ -89,5 +89,18 @@ public class ModelRestServiceImpl implements ModelRestService {
             Object res = service.publishModelById(modelId, publishMetadata);
             return Response.ok(res).build();
     }
+
+    /**
+     * TODO
+     *
+     * @param model TODO
+     * @return the response
+     */
+    public Response updatedModel(Model model) {
+        
+            service.updatedModel(model);
+            
+                return Response.ok().build();
+    }
 }
 

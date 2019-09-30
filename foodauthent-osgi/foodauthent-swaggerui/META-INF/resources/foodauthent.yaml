@@ -693,6 +693,21 @@ paths:
             schema:
               $ref: '#/components/schemas/Model'
         description: TODO
+    put:
+      tags:
+        - model
+      summary: update a new model entity.
+      description: TODO
+      operationId: updatedModel
+      responses:
+        '200':
+          description: Model successfully updated.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Model'
+        description: TODO
 
   '/model/{model-id}':
     get:

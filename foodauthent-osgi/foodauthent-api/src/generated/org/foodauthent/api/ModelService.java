@@ -57,4 +57,13 @@ public interface ModelService {
      */
     ObjectEvent publishModelById(java.util.UUID modelId, PublishMetadata publishMetadata);
         
+    /**
+     * TODO
+     *
+     * @param model TODO
+     *
+     * 
+     */
+    void updatedModel(Model model);
+        
 }

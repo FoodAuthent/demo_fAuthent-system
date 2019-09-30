@@ -245,6 +245,49 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
+
+    /**
+     * Callback function to receive the result of the updatedModel operation.
+     * @callback module:api/ModelApi~updatedModelCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * update a new model entity.
+     * TODO
+     * @param {Object} opts Optional parameters
+     * @param {module:model/Model} opts.model TODO
+     * @param {module:api/ModelApi~updatedModelCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.updatedModel = function(opts, callback) {
+      opts = opts || {};
+      var postBody = opts['model'];
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['jwtAuth'];
+      var contentTypes = ['application/json'];
+      var accepts = [];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/model', 'PUT',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
   };
 
   return exports;

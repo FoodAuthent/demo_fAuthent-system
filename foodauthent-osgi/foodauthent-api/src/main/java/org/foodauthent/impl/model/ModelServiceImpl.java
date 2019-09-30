@@ -152,4 +152,10 @@ public class ModelServiceImpl implements ModelService {
 	return builder.build();
     }
 
+    @Override
+    public void updatedModel(Model model) {
+	persistenceService.replace(model);
+	
+    }
+
 }
