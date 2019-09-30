@@ -41,7 +41,8 @@ public class FakxExporter implements Exporter {
 	Set<UUID> predictionId = new LinkedHashSet<>(objectSet.getPredictions());
 	Set<UUID> workflowId = new LinkedHashSet<>(objectSet.getWorkflows());
 	Set<UUID> fingerprintSetId = new LinkedHashSet<>(objectSet.getFingerprintsets());
-	Set<UUID> fileId = new LinkedHashSet<>();
+	Set<UUID> fileId = new LinkedHashSet<>(objectSet.getFiles());
+	Set<UUID> rawFileId = new LinkedHashSet<>(objectSet.getFiles());
 
 	// 1.1 SOP
 	for (UUID id : objectSet.getSops()) {
@@ -63,15 +64,24 @@ public class FakxExporter implements Exporter {
 	    Model model = service.getFaModelByUUID(id, Model.class);
 
 	    if (model.getFileId() != null) {
-		fileId.add(model.getFileId());
+//		fileId.add(model.getFileId());
+		rawFileId.add(model.getFileId());
+		//Add also json about the file
+		metadataId.add(model.getFileId());
 	    }
 
 	    if (model.getFingerprintsetIds() != null) {
 		fingerprintSetId.addAll(model.getFingerprintsetIds());
 	    }
-
+	    //Add also the file inside workflow
 	    if (model.getWorkflowId() != null) {
 		workflowId.add(model.getWorkflowId());
+		Workflow workflow = service.getFaModelByUUID(model.getWorkflowId(), Workflow.class);
+		    if (workflow.getFileId() != null) {
+//			fileId.add(workflow.getFileId());
+			rawFileId.add(workflow.getFileId());
+			metadataId.add(workflow.getFileId());
+		    }
 	    }
 	}
 
@@ -120,6 +130,11 @@ public class FakxExporter implements Exporter {
 		modelId.stream().map(id -> service.getFaModelByUUID(id, Model.class)).collect(Collectors.toList()));
 	builder.prediction(predictionId.stream().map(id -> service.getFaModelByUUID(id, Prediction.class))
 		.collect(Collectors.toList()));
+	builder.workflow(workflowId.stream().map(id -> service.getFaModelByUUID(id, Workflow.class))
+		.collect(Collectors.toList()));
+	builder.rawFiles(rawFileId.stream().map(id -> service.getBlobByUUID(id))
+		.collect(Collectors.toList()));
+	
 	/*
 	builder.fingerprintset(fingerprintSetId.stream().map(id -> service.getFaModelByUUID(id, FingerprintSet.class))
 		.collect(Collectors.toList()));

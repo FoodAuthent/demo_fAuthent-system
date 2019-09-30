@@ -502,8 +502,8 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 		List<SearchResultItem<DiscoveryServiceTransaction>> res = op.resultAsJava(result, DiscoveryServiceTransaction.class);
 		List<DiscoveryServiceTransaction> transaction = res.stream().map(r -> r.item()).collect(Collectors.toList());
 		
-		System.out.println("Query: " + qb);
-		System.out.println("Query request: " + request);
+//		System.out.println("Query: " + qb);
+//		System.out.println("Query request: " + request);
 		
 //		List<DiscoveryServiceTransaction> transaction = op.search(qb, classTarget(DiscoveryServiceTransaction.class),
 //				op.manifest(DiscoveryServiceTransaction.class));

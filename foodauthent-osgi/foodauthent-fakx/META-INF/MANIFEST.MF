@@ -11,6 +11,8 @@ Import-Package: com.fasterxml.jackson.core,
  com.fasterxml.jackson.datatype.jsr310,
  com.google.common.io,
  de.unirostock.sems.cbarchive,
+ org.apache.commons.io,
+ org.foodauthent.api.internal.persistence,
  org.foodauthent.model,
  org.jdom2,
  org.junit;version="4.12.0"

@@ -4,7 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.foodauthent.model.*;
+import org.foodauthent.api.internal.persistence.Blob;
+import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.Fingerprint;
+import org.foodauthent.model.FingerprintSet;
+import org.foodauthent.model.Model;
+import org.foodauthent.model.Prediction;
+import org.foodauthent.model.Product;
+import org.foodauthent.model.SOP;
+import org.foodauthent.model.Tag;
+import org.foodauthent.model.Workflow;
 
 public class Archive {
 
@@ -18,6 +27,7 @@ public class Archive {
 	private List<Fingerprint> fingerprint;
 	private List<FingerprintSet> fingerprintset;
 	private List<Path> files;
+	private List<Blob> rawFiles;
 
 	private Archive() {
 	}
@@ -102,6 +112,15 @@ public class Archive {
 	public List<Path> getFile() {
 		return files;
 	}
+	
+	public Blob getRawFile(UUID uuid) {
+		// Files are named with their UUID in fAuthent
+		return rawFiles.stream().filter(it -> it.equals(uuid)).findFirst().orElse(null);
+	}
+
+	public List<Blob> getRawFile() {
+		return rawFiles;
+	}
 
 	public static class Builder {
 
@@ -115,6 +134,7 @@ public class Archive {
 		private List<Fingerprint> fingerprint = new ArrayList<>();
 		private List<FingerprintSet> fingerprintset = new ArrayList<>();
 		private List<Path> files = new ArrayList<>();
+		private List<Blob> rawFiles = new ArrayList<>();
 
 		public Builder sop(List<SOP> sop) {
 			this.sop = sop;
@@ -133,6 +153,11 @@ public class Archive {
 
 		public Builder files(List<Path> files) {
 			this.files = files;
+			return this;
+		}
+		
+		public Builder rawFiles(List<Blob> rawFiles) {
+			this.rawFiles = rawFiles;
 			return this;
 		}
 
@@ -172,6 +197,7 @@ public class Archive {
 			archive.product = product;
 			archive.metadata = metadata;
 			archive.files = files;
+			archive.rawFiles = rawFiles;
 			archive.tag = tag;
 			archive.model = model;
 			archive.prediction = prediction;
