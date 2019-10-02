@@ -76,6 +76,20 @@ public interface TransactionRestService{
 );
 
     /**
+     * Returns hashed epcClass from gtin and lot.
+     *
+     * @param gtin product gtin
+     * @param lot product lot
+     * @return the response
+     */
+    @GET
+    @Path("/discovery/transaction/sha256EpcClass")
+    @Produces({ "text/plain" })
+    public Response getSha256EpcClass(@QueryParam("gtin")String gtin
+, @QueryParam("lot")String lot
+);
+
+    /**
      * Get the Transaction an id.
      *
      * @param transactionId 

@@ -7,7 +7,8 @@ public class GS1IdentifierUtil {
 	public static final String EPC_CLASS_LGTIN_URN_PREFIX = "urn:epc:class:lgtin:";
 
 	public static String convertToEpcClass(String gtin, String lot, int gcpLength) {
-		final String sgtin = convertGTINtoSGTIN(gtin, DEFAULT_GCP_LENGTH);
+//		final String sgtin = convertGTINtoSGTIN(gtin, DEFAULT_GCP_LENGTH);
+		final String sgtin = convertGTINtoSGTIN(gtin, gcpLength);
 		return EPC_CLASS_LGTIN_URN_PREFIX + sgtin + "." + lot;
 	}
 

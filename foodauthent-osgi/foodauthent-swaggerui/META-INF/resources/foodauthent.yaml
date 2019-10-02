@@ -1842,7 +1842,31 @@ paths:
             schema:
               $ref: '#/components/schemas/DiscoveryServiceSearchFilter'
 
-                      
+  /discovery/transaction/sha256EpcClass:
+    get:
+      tags:
+        - Transaction
+      summary: Returns hashed epcClass from gtin and lot.
+      description: Returns hashed epcClass from gtin and lot.
+      operationId: getSha256EpcClass
+      parameters:
+        - in: query
+          name: gtin
+          schema:
+            type: string
+          description: product gtin
+        - in: query
+          name: lot
+          schema:
+            type: string
+          description: product lot
+      responses:
+        '200':
+          description: successful operation
+          content:
+            text/plain:
+              schema:
+                type: string                 
                       
   /relation/entities:
     get:
@@ -3103,6 +3127,7 @@ components:
         - name: regionOfOriginClaims
         - name: comment
         - name: gpcBricks
+        - name: gcpLength
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
@@ -3149,6 +3174,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GPCBrick'
+        gcpLength:
+          type: integer
+          default: 7
 
     ProductIngredientStatement:
       description: Incredient Statement by language Code

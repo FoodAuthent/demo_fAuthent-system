@@ -82,6 +82,9 @@ public interface ProductMixIn {
     @JsonProperty("gpcBricks")
     public java.util.List<GPCBrick> getGpcBricks();
     
+    @JsonProperty("gcpLength")
+    public Integer getGcpLength();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -136,6 +139,9 @@ public interface ProductMixIn {
         
         @JsonProperty("gpcBricks")
         public ProductMixInBuilder setGpcBricks(final java.util.List<GPCBrick> gpcBricks);
+        
+        @JsonProperty("gcpLength")
+        public ProductMixInBuilder setGcpLength(final Integer gcpLength);
         
     }
 

@@ -192,6 +192,53 @@
     }
 
     /**
+     * Callback function to receive the result of the getSha256EpcClass operation.
+     * @callback module:api/TransactionApi~getSha256EpcClassCallback
+     * @param {String} error Error message, if any.
+     * @param {String} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Returns hashed epcClass from gtin and lot.
+     * Returns hashed epcClass from gtin and lot.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.gtin product gtin
+     * @param {String} opts.lot product lot
+     * @param {module:api/TransactionApi~getSha256EpcClassCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link String}
+     */
+    this.getSha256EpcClass = function(opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'gtin': opts['gtin'],
+        'lot': opts['lot'],
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['jwtAuth'];
+      var contentTypes = [];
+      var accepts = ['text/plain'];
+      var returnType = 'String';
+
+      return this.apiClient.callApi(
+        '/discovery/transaction/sha256EpcClass', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the getTransactionById operation.
      * @callback module:api/TransactionApi~getTransactionByIdCallback
      * @param {String} error Error message, if any.

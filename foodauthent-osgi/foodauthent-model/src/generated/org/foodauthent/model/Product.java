@@ -37,6 +37,7 @@ public class Product   extends FaModel {
   protected ProductIngredientStatement ingredientStatement;
   protected String comment;
   protected java.util.List<GPCBrick> gpcBricks;
+  protected Integer gcpLength;
 
   public String getTypeID() {
     return "Product";
@@ -60,6 +61,7 @@ public class Product   extends FaModel {
     ingredientStatement = immutable(builder.ingredientStatement);
     comment = immutable(builder.comment);
     gpcBricks = immutable(builder.gpcBricks);
+    gcpLength = immutable(builder.gcpLength);
 
     faId = generateFaIdIfMissing(faId);
 
@@ -80,7 +82,7 @@ public class Product   extends FaModel {
             return false;
         }
         Product ent = (Product)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(gtin, ent.gtin) && Objects.equals(brand, ent.brand) && Objects.equals(targetMarket, ent.targetMarket) && Objects.equals(labelDescription, ent.labelDescription) && Objects.equals(companyName, ent.companyName) && Objects.equals(productClassification, ent.productClassification) && Objects.equals(countryOfOrigin, ent.countryOfOrigin) && Objects.equals(regionOfOriginClaims, ent.regionOfOriginClaims) && Objects.equals(ingredientStatement, ent.ingredientStatement) && Objects.equals(comment, ent.comment) && Objects.equals(gpcBricks, ent.gpcBricks);
+        return Objects.equals(faId, ent.faId) && Objects.equals(gtin, ent.gtin) && Objects.equals(brand, ent.brand) && Objects.equals(targetMarket, ent.targetMarket) && Objects.equals(labelDescription, ent.labelDescription) && Objects.equals(companyName, ent.companyName) && Objects.equals(productClassification, ent.productClassification) && Objects.equals(countryOfOrigin, ent.countryOfOrigin) && Objects.equals(regionOfOriginClaims, ent.regionOfOriginClaims) && Objects.equals(ingredientStatement, ent.ingredientStatement) && Objects.equals(comment, ent.comment) && Objects.equals(gpcBricks, ent.gpcBricks) && Objects.equals(gcpLength, ent.gcpLength);
     }
 
 
@@ -180,6 +182,14 @@ public class Product   extends FaModel {
         return gpcBricks;
     }
 
+  /**
+   * Get gcpLength
+   * @return gcpLength 
+   */
+  public Integer getGcpLength() {
+        return gcpLength;
+    }
+
 
  	/**
   	 * @return a newly created builder
@@ -210,6 +220,7 @@ public class Product   extends FaModel {
         builder.ingredientStatement = entity.ingredientStatement;
         builder.comment = entity.comment;
         builder.gpcBricks = entity.gpcBricks;
+        builder.gcpLength = entity.gcpLength;
  		return builder;
   	}
 
@@ -232,6 +243,7 @@ public class Product   extends FaModel {
         private ProductIngredientStatement ingredientStatement;
         private String comment;
         private java.util.List<GPCBrick> gpcBricks = new java.util.ArrayList<>();
+        private Integer gcpLength = 7;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -338,6 +350,15 @@ public class Product   extends FaModel {
          */
         public ProductBuilder setGpcBricks(java.util.List<GPCBrick> gpcBricks) {
              this.gpcBricks = gpcBricks;
+             return this;
+        }
+
+        /**
+         * Get gcpLength
+         * @return gcpLength 
+         */
+        public ProductBuilder setGcpLength(Integer gcpLength) {
+             this.gcpLength = gcpLength;
              return this;
         }
 

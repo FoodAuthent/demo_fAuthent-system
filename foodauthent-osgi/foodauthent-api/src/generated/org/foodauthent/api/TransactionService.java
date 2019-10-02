@@ -49,6 +49,16 @@ public interface TransactionService {
     DiscoveryServiceTransactionPageResult findTransactionByKeyword(Integer pageNumber, Integer pageSize, java.util.List<String> keywords);
         
     /**
+     * Returns hashed epcClass from gtin and lot.
+     *
+     * @param gtin product gtin
+     * @param lot product lot
+     *
+     * @return the result
+     */
+    String getSha256EpcClass(String gtin, String lot);
+        
+    /**
      * Get the Transaction an id.
      *
      * @param transactionId 

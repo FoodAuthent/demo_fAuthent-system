@@ -152,5 +152,12 @@
         } ]
       }
     }
+  }, {
+    "label" : "GcpLength",
+    "model" : "gcpLength",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "number",
+    "validator" : "integer"
   } ]
 }

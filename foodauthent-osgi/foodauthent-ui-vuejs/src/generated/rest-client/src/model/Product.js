@@ -96,6 +96,9 @@
       if (data.hasOwnProperty('gpcBricks')) {
         obj['gpcBricks'] = ApiClient.convertToType(data['gpcBricks'], [GPCBrick]);
       }
+      if (data.hasOwnProperty('gcpLength')) {
+        obj['gcpLength'] = ApiClient.convertToType(data['gcpLength'], 'Number');
+      }
     }
     return obj;
   }
@@ -157,6 +160,11 @@
    * @member {Array.<module:model/GPCBrick>} gpcBricks
    */
   exports.prototype['gpcBricks'] = undefined;
+  /**
+   * @member {Number} gcpLength
+   * @default 7
+   */
+  exports.prototype['gcpLength'] = 7;
 
 
 

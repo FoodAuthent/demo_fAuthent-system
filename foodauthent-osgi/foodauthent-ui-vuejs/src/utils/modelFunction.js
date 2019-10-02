@@ -173,20 +173,19 @@ var MyObject = function () {
 	        console.error(error);
 	        self.showError = true;
 	      } else {
-	        self.response = data.results;
+	        self.response = data;
 	        self.showSuccess = 5;
 	        console.log("API called successfully. Returned data: ", data);
 	      }
 	    };
 	    var opt = {
-	      product: json
+	      model: json
 	    };
 	    console.log("json:", json);
-	    alert("When the Api will support this features it will work and update this id: "+json["fa-id"]);
-	    // productApi.updateModel(
-	    //   opt,
-	    //   callback
-	    // );
+	    modelApi.updatedModel(
+	       opt,
+	       callback
+	     );
 	  };
 
 

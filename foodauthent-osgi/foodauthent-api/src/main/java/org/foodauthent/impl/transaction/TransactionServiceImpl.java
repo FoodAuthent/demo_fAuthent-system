@@ -2,8 +2,10 @@ package org.foodauthent.impl.transaction;
 
 import static org.foodauthent.api.internal.persistence.PersistenceService.toArray;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import org.foodauthent.api.TransactionService;
@@ -12,9 +14,13 @@ import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
 import org.foodauthent.model.DiscoveryServiceSearchFilter;
 import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
+import org.foodauthent.model.Product;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+
+import com.foodauthent.digest.DigestUtil;
+import com.foodauthent.gs1.GS1IdentifierUtil;
 
 /**
  *
@@ -59,6 +65,28 @@ public class TransactionServiceImpl implements TransactionService {
 	    results.add(dst.getFaId());
 	}
 	return results;
+    }
+
+    @Override
+    public String getSha256EpcClass(String gtin, String lot) {
+	String result = "";
+	String epcClass = "";
+	int gcpLength = 0;
+	try {
+	Product p = persistenceService.findProductByGtin(gtin);
+	gcpLength = p.getGcpLength();
+	}catch(NoSuchElementException e) {
+	 gcpLength = GS1IdentifierUtil.DEFAULT_GCP_LENGTH;
+	}
+	 epcClass = GS1IdentifierUtil.convertToEpcClass(gtin,lot, gcpLength);
+
+	try {
+	    result = DigestUtil.sha256(epcClass);
+	} catch (NoSuchAlgorithmException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	return "ni://sha-256;"+result+"?input=lgtin";
     }
     
 }

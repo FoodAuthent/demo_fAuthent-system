@@ -57,7 +57,7 @@ export default {
             response: "",
             pageType: "noType",
             entity: "model",
-            hasEdit: false,
+            hasEdit: true,
             loading: false,
             schemas: schemas,
             itemsMetadata: {},
@@ -126,9 +126,11 @@ export default {
 		       console.log(record); // This will be the item data for the row
 		       this.selected = record;
             },
-            handleEditOk() {
+            handleEditOk(modelUpdate) {
                 let self = this;
                 console.log("This is the model", self.model);
+                delete modelUpdate["actions"];
+                updateModel(JSON.stringify(modelUpdate, undefined, 4), self);
             },
                 myRowClickHandler(record, index) {
                 this.selected = record;

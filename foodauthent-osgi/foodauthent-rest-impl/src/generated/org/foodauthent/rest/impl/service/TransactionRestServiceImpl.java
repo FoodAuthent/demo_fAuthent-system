@@ -79,6 +79,19 @@ public class TransactionRestServiceImpl implements TransactionRestService {
     }
 
     /**
+     * Returns hashed epcClass from gtin and lot.
+     *
+     * @param gtin product gtin
+     * @param lot product lot
+     * @return the response
+     */
+    public Response getSha256EpcClass(String gtin, String lot) {
+        
+            Object res = service.getSha256EpcClass(gtin, lot);
+            return Response.ok(res).build();
+    }
+
+    /**
      * Get the Transaction an id.
      *
      * @param transactionId 
