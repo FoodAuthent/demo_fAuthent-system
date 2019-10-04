@@ -50,6 +50,7 @@ public class PredictionJob   extends FaModel {
   protected java.util.UUID predictionId;
   protected StatusEnum status;
   protected String statusMessage;
+  protected java.util.UUID workflowFileId;
 
   public String getTypeID() {
     return "PredictionJob";
@@ -65,6 +66,7 @@ public class PredictionJob   extends FaModel {
     predictionId = immutable(builder.predictionId);
     status = immutable(builder.status);
     statusMessage = immutable(builder.statusMessage);
+    workflowFileId = immutable(builder.workflowFileId);
 
     faId = generateFaIdIfMissing(faId);
 
@@ -85,7 +87,7 @@ public class PredictionJob   extends FaModel {
             return false;
         }
         PredictionJob ent = (PredictionJob)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(predictionId, ent.predictionId) && Objects.equals(status, ent.status) && Objects.equals(statusMessage, ent.statusMessage);
+        return Objects.equals(faId, ent.faId) && Objects.equals(predictionId, ent.predictionId) && Objects.equals(status, ent.status) && Objects.equals(statusMessage, ent.statusMessage) && Objects.equals(workflowFileId, ent.workflowFileId);
     }
 
 
@@ -121,6 +123,14 @@ public class PredictionJob   extends FaModel {
         return statusMessage;
     }
 
+  /**
+   * File id of the executed artifact (e.g. a workflow) if there is any.
+   * @return workflowFileId 
+   */
+  public java.util.UUID getWorkflowFileId() {
+        return workflowFileId;
+    }
+
 
  	/**
   	 * @return a newly created builder
@@ -143,6 +153,7 @@ public class PredictionJob   extends FaModel {
         builder.predictionId = entity.predictionId;
         builder.status = entity.status;
         builder.statusMessage = entity.statusMessage;
+        builder.workflowFileId = entity.workflowFileId;
  		return builder;
   	}
 
@@ -157,6 +168,7 @@ public class PredictionJob   extends FaModel {
         private java.util.UUID predictionId;
         private StatusEnum status;
         private String statusMessage;
+        private java.util.UUID workflowFileId;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -191,6 +203,15 @@ public class PredictionJob   extends FaModel {
          */
         public PredictionJobBuilder setStatusMessage(String statusMessage) {
              this.statusMessage = statusMessage;
+             return this;
+        }
+
+        /**
+         * File id of the executed artifact (e.g. a workflow) if there is any.
+         * @return workflowFileId 
+         */
+        public PredictionJobBuilder setWorkflowFileId(java.util.UUID workflowFileId) {
+             this.workflowFileId = workflowFileId;
              return this;
         }
 

@@ -3,7 +3,6 @@ package org.foodauthent.internal.impl.job.knime;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
@@ -36,10 +35,12 @@ import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelType;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
+import org.foodauthent.model.PredictionJob.PredictionJobBuilder;
 import org.foodauthent.model.PredictionJob.StatusEnum;
 import org.foodauthent.model.PredictionWorkflowInput;
 import org.foodauthent.model.PredictionWorkflowOutput;
 import org.foodauthent.model.TrainingJob;
+import org.foodauthent.model.TrainingJob.TrainingJobBuilder;
 import org.foodauthent.model.TrainingWorkflowInput;
 import org.foodauthent.model.TrainingWorkflowInputFingerprint;
 import org.foodauthent.model.TrainingWorkflowOutput;
@@ -157,11 +158,16 @@ public class LocalKnimeJobService implements JobService {
 							.setWorkflowId(workflow.getFaId()).setModelId(model.getFaId())
 							.setPredictionMap(predictionOutput.getPredictionMap()).build();
 					persistenceService.save(prediction);
-
-					// change the status and prediction id of the prediction job and replace
-					// prediction job in DB
-					persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(StatusEnum.SUCCESS)
-							.setPredictionId(prediction.getFaId()).build());
+					
+					// change the status, workflow-file and prediction id of the prediction job and
+					// replace prediction job in DB
+					PredictionJobBuilder builder = PredictionJob.builder(predictionJob);
+					UUID wfFileId;
+					if ((wfFileId = saveExecutedWorkflow(workflow)) != null) {
+						builder.setWorkflowFileId(wfFileId);
+					}
+					persistenceService.replace(
+							builder.setStatus(StatusEnum.SUCCESS).setPredictionId(prediction.getFaId()).build());
 				}, (message, exception) -> {
 					// write fail status to DB
 					persistenceService.replace(PredictionJob.builder(predictionJob).setStatus(StatusEnum.FAILED)
@@ -280,11 +286,15 @@ public class LocalKnimeJobService implements JobService {
 							.setFileId(modelFileId).build();
 					persistenceService.save(model);
 
-					// change the status and model id of the training job and replace
+					// change the status, workflow file and model id of the training job and replace
 					// training job in DB
-					persistenceService.replace(TrainingJob.builder(trainingJob)
-							.setStatus(org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS).setModelId(model.getFaId())
-							.build());
+					TrainingJobBuilder builder = TrainingJob.builder(trainingJob);
+					UUID wfFileId;
+					if ((wfFileId = saveExecutedWorkflow(workflow)) != null) {
+						builder.setWorkflowFileId(wfFileId);
+					}
+					persistenceService.replace(builder.setStatus(org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS)
+							.setModelId(model.getFaId()).build());
 				}, (message, exception) -> {
 					// write fail status to DB
 					persistenceService.replace(TrainingJob.builder(trainingJob)
@@ -329,5 +339,21 @@ public class LocalKnimeJobService implements JobService {
 		Blob wfFile = persistenceService.getBlobByUUID(workflow.getFileId());
 		FileMetadata fileMeta = persistenceService.getFaModelByUUID(workflow.getFileId(), FileMetadata.class);
 		knimeExecutor.loadWorkflow(workflow.getFaId(), fileMeta, wfFile);
+	}
+	
+	private UUID saveExecutedWorkflow(Workflow workflow) {
+		try {
+			File wfFile = knimeExecutor.saveWorklfow(workflow.getFaId());
+			FileMetadata fileMeta = FileMetadata.builder().setName("executed workflow: " + workflow.getName())
+					.setType(TypeEnum.ZIP).build();
+			persistenceService.save(fileMeta);
+			try (BufferedInputStream in = new BufferedInputStream(new FileInputStream(wfFile))) {
+				Blob blob = new Blob(fileMeta.getFaId(), in);
+				persistenceService.save(blob);
+			}
+			return fileMeta.getFaId();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

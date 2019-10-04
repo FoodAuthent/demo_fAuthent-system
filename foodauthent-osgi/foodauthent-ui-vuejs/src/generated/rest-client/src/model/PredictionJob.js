@@ -72,6 +72,9 @@
       if (data.hasOwnProperty('status-message')) {
         obj['status-message'] = ApiClient.convertToType(data['status-message'], 'String');
       }
+      if (data.hasOwnProperty('workflow-file-id')) {
+        obj['workflow-file-id'] = ApiClient.convertToType(data['workflow-file-id'], 'String');
+      }
     }
     return obj;
   }
@@ -96,6 +99,11 @@
    * @member {String} status-message
    */
   exports.prototype['status-message'] = undefined;
+  /**
+   * File id of the executed artifact (e.g. a workflow) if there is any.
+   * @member {String} workflow-file-id
+   */
+  exports.prototype['workflow-file-id'] = undefined;
 
 
   /**

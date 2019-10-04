@@ -51,6 +51,7 @@ public class TrainingJob   extends FaModel {
   protected java.util.List<java.util.UUID> fingerprintsetIds;
   protected StatusEnum status;
   protected String statusMessage;
+  protected java.util.UUID workflowFileId;
 
   public String getTypeID() {
     return "TrainingJob";
@@ -67,6 +68,7 @@ public class TrainingJob   extends FaModel {
     fingerprintsetIds = immutable(builder.fingerprintsetIds);
     status = immutable(builder.status);
     statusMessage = immutable(builder.statusMessage);
+    workflowFileId = immutable(builder.workflowFileId);
 
     faId = generateFaIdIfMissing(faId);
 
@@ -87,7 +89,7 @@ public class TrainingJob   extends FaModel {
             return false;
         }
         TrainingJob ent = (TrainingJob)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(modelId, ent.modelId) && Objects.equals(fingerprintsetIds, ent.fingerprintsetIds) && Objects.equals(status, ent.status) && Objects.equals(statusMessage, ent.statusMessage);
+        return Objects.equals(faId, ent.faId) && Objects.equals(modelId, ent.modelId) && Objects.equals(fingerprintsetIds, ent.fingerprintsetIds) && Objects.equals(status, ent.status) && Objects.equals(statusMessage, ent.statusMessage) && Objects.equals(workflowFileId, ent.workflowFileId);
     }
 
 
@@ -131,6 +133,14 @@ public class TrainingJob   extends FaModel {
         return statusMessage;
     }
 
+  /**
+   * File id of the executed artifact (e.g. a workflow) if there is any.
+   * @return workflowFileId 
+   */
+  public java.util.UUID getWorkflowFileId() {
+        return workflowFileId;
+    }
+
 
  	/**
   	 * @return a newly created builder
@@ -154,6 +164,7 @@ public class TrainingJob   extends FaModel {
         builder.fingerprintsetIds = entity.fingerprintsetIds;
         builder.status = entity.status;
         builder.statusMessage = entity.statusMessage;
+        builder.workflowFileId = entity.workflowFileId;
  		return builder;
   	}
 
@@ -169,6 +180,7 @@ public class TrainingJob   extends FaModel {
         private java.util.List<java.util.UUID> fingerprintsetIds = new java.util.ArrayList<>();
         private StatusEnum status;
         private String statusMessage;
+        private java.util.UUID workflowFileId;
 
         /**
          * A global id within the FoodAuthent-system.
@@ -212,6 +224,15 @@ public class TrainingJob   extends FaModel {
          */
         public TrainingJobBuilder setStatusMessage(String statusMessage) {
              this.statusMessage = statusMessage;
+             return this;
+        }
+
+        /**
+         * File id of the executed artifact (e.g. a workflow) if there is any.
+         * @return workflowFileId 
+         */
+        public TrainingJobBuilder setWorkflowFileId(java.util.UUID workflowFileId) {
+             this.workflowFileId = workflowFileId;
              return this;
         }
 

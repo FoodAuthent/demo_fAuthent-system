@@ -1,5 +1,7 @@
 package org.foodauthent.internal.impl.job.knime;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -65,6 +67,8 @@ public interface KnimeExecutor {
     void runWorkflow(UUID workflowId, JsonValue input, String inputName, String outputName,
 	    Consumer<JsonValue> successCallback, BiConsumer<String, Exception> failCallback, boolean async)
 	    throws IllegalStateException;
+    
+	File saveWorklfow(UUID workflowId) throws IOException;
     
     /**
      * When a workflow couldn't be loaded.

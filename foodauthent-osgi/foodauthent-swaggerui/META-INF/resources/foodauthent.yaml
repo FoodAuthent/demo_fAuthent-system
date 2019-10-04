@@ -3030,6 +3030,10 @@ components:
         status-message:
           description: 'A message, e.g., in case the workflow failed.'
           type: string
+        workflow-file-id:
+          description: File id of the executed artifact (e.g. a workflow) if there is any.
+          type: string
+          format: uuid
 
     PredictionJobPageResult:
       type: object
@@ -3490,6 +3494,10 @@ components:
         status-message:
           description: 'A message, e.g., in case the workflow failed.'
           type: string
+        workflow-file-id:
+          description: File id of the executed artifact (e.g. a workflow) if there is any.
+          type: string
+          format: uuid
 
     TrainingJobPageResult:
       type: object

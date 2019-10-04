@@ -1,8 +1,12 @@
 package org.foodauthent.internal.impl.job.knime;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -18,6 +22,7 @@ import java.util.zip.ZipInputStream;
 
 import javax.json.JsonValue;
 
+import org.apache.commons.io.IOUtils;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.model.FileMetadata;
 import org.knime.core.node.CanceledExecutionException;
@@ -110,6 +115,21 @@ public class LocalKnimeExecutor implements KnimeExecutor {
 				throw new IllegalStateException("Problem while waiting for the workflow to finish");
 			}
 		}
+	}
+	
+	@Override
+	public File saveWorklfow(UUID workflowId) throws IOException {
+		WorkflowManager wfm = m_workflowMap.get(workflowId);
+		Path tmpDir = Files.createTempDirectory("executed_workflow_" + workflowId);
+		File tmpFile = File.createTempFile("executed_workflow_" + workflowId, ".knwf");
+		try {
+			wfm.save(tmpDir.toFile(), new ExecutionMonitor(), true);
+		} catch (CanceledExecutionException | LockFailedException e) {
+			throw new IOException(e);
+		}
+		FileUtil.zipDir(tmpFile, tmpDir.toFile(), -1);
+		FileUtil.deleteRecursively(tmpDir.toFile());
+		return tmpFile;
 	}
 
 	private static WorkflowManager loadWorkflowInternal(UUID workflowId, FileMetadata workflowMetadata,

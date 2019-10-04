@@ -57,6 +57,9 @@ public interface PredictionJobMixIn {
     @JsonProperty("status-message")
     public String getStatusMessage();
     
+    @JsonProperty("workflow-file-id")
+    public java.util.UUID getWorkflowFileId();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -87,6 +90,9 @@ public interface PredictionJobMixIn {
         
         @JsonProperty("status-message")
         public PredictionJobMixInBuilder setStatusMessage(final String statusMessage);
+        
+        @JsonProperty("workflow-file-id")
+        public PredictionJobMixInBuilder setWorkflowFileId(final java.util.UUID workflowFileId);
         
     }
 
