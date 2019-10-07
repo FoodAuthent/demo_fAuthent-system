@@ -2174,7 +2174,6 @@ components:
       - name: quantityList
       - name: action
       - name: bizTransactionList
-      - name: disposition
       - name: eventType
       - name: interfaceId
       - name: gtin
@@ -2213,9 +2212,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/BizTransaction"
-        disposition:
-          description: The business condition of the objects associated with the EPCs, presumed to hold until contradicted by a subsequent event
-          type: string
         eventType:
           description: EPCIS eventType, for Foodauthent system could be only ObjectEvent
           type: string
@@ -2282,9 +2278,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/BizTransaction"
-        disposition:
-          description: The business condition of the objects associated with the EPCs, presumed to hold until contradicted by a subsequent event
-          type: string
         eventType:
           description: EPCIS eventType, for Foodauthent system could be only ObjectEvent
           type: string
@@ -2292,7 +2285,6 @@ components:
         interfaceId:
           description: interfaceId
           type: string
-          format: uuid
         gtin:
           description: Global Trade Item Number
           type: string

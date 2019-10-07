@@ -112,7 +112,6 @@ public class ObjectEventServiceImpl implements ObjectEventService {
                         }).collect(Collectors.toList()))
 		.setBizStep(objectEvent.getBizStep()) //
 		.setEventTime(objectEvent.getEventTime()) //
-		.setDisposition(objectEvent.getDisposition())//
 		.setEpcList(objectEvent.getEpcList()
                         .stream().map(s -> {
                             try {

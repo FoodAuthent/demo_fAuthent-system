@@ -56,7 +56,6 @@ public class DiscoveryServiceTransaction   extends FaModel {
   protected java.util.List<String> quantityList;
   protected ActionEnum action;
   protected java.util.List<BizTransaction> bizTransactionList;
-  protected String disposition;
   protected String eventType;
   protected String interfaceId;
   protected String gtin;
@@ -80,7 +79,6 @@ public class DiscoveryServiceTransaction   extends FaModel {
     quantityList = immutable(builder.quantityList);
     action = immutable(builder.action);
     bizTransactionList = immutable(builder.bizTransactionList);
-    disposition = immutable(builder.disposition);
     eventType = immutable(builder.eventType);
     interfaceId = immutable(builder.interfaceId);
     gtin = immutable(builder.gtin);
@@ -106,7 +104,7 @@ public class DiscoveryServiceTransaction   extends FaModel {
             return false;
         }
         DiscoveryServiceTransaction ent = (DiscoveryServiceTransaction)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(disposition, ent.disposition) && Objects.equals(eventType, ent.eventType) && Objects.equals(interfaceId, ent.interfaceId) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(eventTime, ent.eventTime);
+        return Objects.equals(faId, ent.faId) && Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(eventType, ent.eventType) && Objects.equals(interfaceId, ent.interfaceId) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(eventTime, ent.eventTime);
     }
 
 
@@ -164,14 +162,6 @@ public class DiscoveryServiceTransaction   extends FaModel {
    */
   public java.util.List<BizTransaction> getBizTransactionList() {
         return bizTransactionList;
-    }
-
-  /**
-   * The business condition of the objects associated with the EPCs, presumed to hold until contradicted by a subsequent event
-   * @return disposition 
-   */
-  public String getDisposition() {
-        return disposition;
     }
 
   /**
@@ -239,7 +229,6 @@ public class DiscoveryServiceTransaction   extends FaModel {
         builder.quantityList = entity.quantityList;
         builder.action = entity.action;
         builder.bizTransactionList = entity.bizTransactionList;
-        builder.disposition = entity.disposition;
         builder.eventType = entity.eventType;
         builder.interfaceId = entity.interfaceId;
         builder.gtin = entity.gtin;
@@ -262,7 +251,6 @@ public class DiscoveryServiceTransaction   extends FaModel {
         private java.util.List<String> quantityList = new java.util.ArrayList<>();
         private ActionEnum action;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
-        private String disposition;
         private String eventType;
         private String interfaceId;
         private String gtin;
@@ -329,15 +317,6 @@ public class DiscoveryServiceTransaction   extends FaModel {
          */
         public DiscoveryServiceTransactionBuilder setBizTransactionList(java.util.List<BizTransaction> bizTransactionList) {
              this.bizTransactionList = bizTransactionList;
-             return this;
-        }
-
-        /**
-         * The business condition of the objects associated with the EPCs, presumed to hold until contradicted by a subsequent event
-         * @return disposition 
-         */
-        public DiscoveryServiceTransactionBuilder setDisposition(String disposition) {
-             this.disposition = disposition;
              return this;
         }
 

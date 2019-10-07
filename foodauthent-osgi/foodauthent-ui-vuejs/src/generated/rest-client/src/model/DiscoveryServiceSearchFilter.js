@@ -78,9 +78,6 @@
       if (data.hasOwnProperty('bizTransactionList')) {
         obj['bizTransactionList'] = ApiClient.convertToType(data['bizTransactionList'], [BizTransaction]);
       }
-      if (data.hasOwnProperty('disposition')) {
-        obj['disposition'] = ApiClient.convertToType(data['disposition'], 'String');
-      }
       if (data.hasOwnProperty('eventType')) {
         obj['eventType'] = ApiClient.convertToType(data['eventType'], 'String');
       }
@@ -133,11 +130,6 @@
    * @member {Array.<module:model/BizTransaction>} bizTransactionList
    */
   exports.prototype['bizTransactionList'] = undefined;
-  /**
-   * The business condition of the objects associated with the EPCs, presumed to hold until contradicted by a subsequent event
-   * @member {String} disposition
-   */
-  exports.prototype['disposition'] = undefined;
   /**
    * EPCIS eventType, for Foodauthent system could be only ObjectEvent
    * @member {String} eventType

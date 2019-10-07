@@ -19,6 +19,7 @@ import org.apache.commons.io.output.NullOutputStream;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -397,44 +398,41 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 			int pageNumber, int pageSize) {
 
 		BoolQueryBuilder qb = QueryBuilders.boolQuery();
+		
 
 		// QUERY FOR epcList
 		if (dssf.getEpcList().size() > 0) {
 			BoolQueryBuilder epcQuery = QueryBuilders.boolQuery();
 			for (String epc : dssf.getEpcList()) {
-				epcQuery.must(QueryBuilders.termsQuery("epcList.keyword", epc));
+				epcQuery.should(QueryBuilders.termsQuery("epcList.keyword", epc));
 			}
-			qb.must(epcQuery);
+			qb.should(epcQuery);
 		}
 
 		// QUERY FOR bizStep
 		if (dssf.getBizStep() != null) {
-			qb.must(QueryBuilders.termsQuery("bizStep.keyword", dssf.getBizStep()));
+			qb.should(QueryBuilders.termsQuery("bizStep.keyword", dssf.getBizStep()));
 		}
 		
-		// QUERY FOR disposition
-		if (dssf.getDisposition() != null) {
-			qb.must(QueryBuilders.termsQuery("disposition.keyword", dssf.getDisposition()));
-		}
 
 		// QUERY FOR Readpoint
 		if (dssf.getReadPoint() != null) {
-			qb.must(QueryBuilders.termsQuery("readPoint.keyword", dssf.getReadPoint()));
+			qb.should(QueryBuilders.termsQuery("readPoint.keyword", dssf.getReadPoint()));
 		}
 
 		// QUERY FOR QuantityList
 		if (dssf.getQuantityList().size() > 0) {
 			BoolQueryBuilder epcQuery = QueryBuilders.boolQuery();
 			for (String epcClass : dssf.getQuantityList()) {
-				epcQuery.must(QueryBuilders.termsQuery("quantityList.keyword", epcClass));
+				epcQuery.should(QueryBuilders.termsQuery("quantityList.keyword", epcClass));
 			}
-			qb.must(epcQuery);
+			qb.should(epcQuery);
 		}
 		
 
 		// QUERY FOR Action
 		if (dssf.getAction() != null) {
-			qb.must(QueryBuilders.termsQuery("action.keyword", dssf.getAction()));
+			qb.should(QueryBuilders.termsQuery("action.keyword", dssf.getAction()));
 		}
 
 		// QUERY FOR bizTransactionList
@@ -442,10 +440,10 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 			for (BizTransaction bt : dssf.getBizTransactionList()) {
 				if (bt.getType() != null || bt.getValue() != null) {
 					if (bt.getType() != null) {
-						qb.must(QueryBuilders.termsQuery("bizTransactionList.type.keyword", bt.getType()));
+						qb.should(QueryBuilders.termsQuery("bizTransactionList.type.keyword", bt.getType()));
 					}
 					if (bt.getValue() != null) {
-						qb.must(QueryBuilders.termsQuery("bizTransactionList.value.keyword", bt.getValue()));
+						qb.should(QueryBuilders.termsQuery("bizTransactionList.value.keyword", bt.getValue()));
 					}
 				}
 			}
@@ -453,26 +451,26 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 		// QUERY FOR GTIN
 		if (dssf.getGtin() != null) {
-			qb.must(QueryBuilders.termsQuery("gtin.keyword", dssf.getGtin()));
+			qb.should(QueryBuilders.termsQuery("gtin.keyword", dssf.getGtin()));
 		}
 
 		// Query for eventType
 		if (dssf.getEventType() != null) {
-			qb.must(QueryBuilders.termQuery("eventType.keyword", dssf.getEventType()));
+			qb.should(QueryBuilders.termQuery("eventType.keyword", dssf.getEventType()));
 		}
 
 		// Query for interfaceId
 		if (dssf.getInterfaceId() != null) {
-			qb.must(QueryBuilders.termQuery("interfaceId.keyword", dssf.getInterfaceId()));
+			qb.should(QueryBuilders.termQuery("interfaceId.keyword", dssf.getInterfaceId()));
 		}
 
 		// QUERY FOR Bricks
 		if (dssf.getBricks().size() > 0) {
 			for (String brick : dssf.getBricks()) {
 				if (brick.contains("*")) {
-					qb.must(QueryBuilders.wildcardQuery("bricks.tree", brick));
+					qb.should(QueryBuilders.wildcardQuery("bricks.tree", brick));
 				} else {
-					qb.must(QueryBuilders.termQuery("bricks.raw", brick));
+					qb.should(QueryBuilders.termQuery("bricks.raw", brick));
 				}
 			}
 		}
@@ -489,28 +487,30 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 				queryBuilder.to(dssf.getEventTimeTo().toString());
 			}
 
-			qb.must(queryBuilder);
+			qb.should(queryBuilder);
 		}
-		
+		qb.minimumShouldMatch("100%");
 		SearchRequest request = op.searchRequest(classTarget(DiscoveryServiceTransaction.class));
 		SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
-		sourceBuilder.query(QueryBuilders.simpleQueryStringQuery(qb.toString()));
+//		sourceBuilder.query(QueryBuilders.simpleQueryStringQuery(qb.toString()));
+		sourceBuilder.query(qb);
 		sourceBuilder.from((pageNumber - 1) * pageSize);
 		sourceBuilder.size(pageSize);
 		request.source(sourceBuilder);
+	
 		SearchResult<DiscoveryServiceTransaction> result = op.search(request, op.manifest(DiscoveryServiceTransaction.class));
 		List<SearchResultItem<DiscoveryServiceTransaction>> res = op.resultAsJava(result, DiscoveryServiceTransaction.class);
 		List<DiscoveryServiceTransaction> transaction = res.stream().map(r -> r.item()).collect(Collectors.toList());
 		
-//		System.out.println("Query: " + qb);
-//		System.out.println("Query request: " + request);
+		System.out.println("Query: " + qb);
+		System.out.println("Query request: " + request);
 		
 //		List<DiscoveryServiceTransaction> transaction = op.search(qb, classTarget(DiscoveryServiceTransaction.class),
 //				op.manifest(DiscoveryServiceTransaction.class));
 
-//		if (transaction.isEmpty()) {
-			// throw new NoSuchElementException();
-//		}
+		if (transaction.isEmpty()) {
+			 throw new NoSuchElementException();
+		}
 
 		return DiscoveryServiceTransactionPageResult.builder().setPageCount(pageSize).setPageNumber(pageNumber)
 				.setResults(transaction).setResultCount(transaction.size()).build();

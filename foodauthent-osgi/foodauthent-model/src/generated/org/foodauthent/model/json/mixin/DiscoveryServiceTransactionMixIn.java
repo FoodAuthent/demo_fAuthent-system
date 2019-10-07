@@ -68,9 +68,6 @@ public interface DiscoveryServiceTransactionMixIn {
     @JsonProperty("bizTransactionList")
     public java.util.List<BizTransaction> getBizTransactionList();
     
-    @JsonProperty("disposition")
-    public String getDisposition();
-    
     @JsonProperty("eventType")
     public String getEventType();
     
@@ -125,9 +122,6 @@ public interface DiscoveryServiceTransactionMixIn {
         
         @JsonProperty("bizTransactionList")
         public DiscoveryServiceTransactionMixInBuilder setBizTransactionList(final java.util.List<BizTransaction> bizTransactionList);
-        
-        @JsonProperty("disposition")
-        public DiscoveryServiceTransactionMixInBuilder setDisposition(final String disposition);
         
         @JsonProperty("eventType")
         public DiscoveryServiceTransactionMixInBuilder setEventType(final String eventType);

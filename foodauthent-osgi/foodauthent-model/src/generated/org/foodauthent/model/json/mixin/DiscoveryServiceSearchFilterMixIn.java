@@ -66,14 +66,11 @@ public interface DiscoveryServiceSearchFilterMixIn {
     @JsonProperty("bizTransactionList")
     public java.util.List<BizTransaction> getBizTransactionList();
     
-    @JsonProperty("disposition")
-    public String getDisposition();
-    
     @JsonProperty("eventType")
     public String getEventType();
     
     @JsonProperty("interfaceId")
-    public java.util.UUID getInterfaceId();
+    public String getInterfaceId();
     
     @JsonProperty("gtin")
     public String getGtin();
@@ -124,14 +121,11 @@ public interface DiscoveryServiceSearchFilterMixIn {
         @JsonProperty("bizTransactionList")
         public DiscoveryServiceSearchFilterMixInBuilder setBizTransactionList(final java.util.List<BizTransaction> bizTransactionList);
         
-        @JsonProperty("disposition")
-        public DiscoveryServiceSearchFilterMixInBuilder setDisposition(final String disposition);
-        
         @JsonProperty("eventType")
         public DiscoveryServiceSearchFilterMixInBuilder setEventType(final String eventType);
         
         @JsonProperty("interfaceId")
-        public DiscoveryServiceSearchFilterMixInBuilder setInterfaceId(final java.util.UUID interfaceId);
+        public DiscoveryServiceSearchFilterMixInBuilder setInterfaceId(final String interfaceId);
         
         @JsonProperty("gtin")
         public DiscoveryServiceSearchFilterMixInBuilder setGtin(final String gtin);

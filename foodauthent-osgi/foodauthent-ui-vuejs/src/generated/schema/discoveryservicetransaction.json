@@ -92,12 +92,6 @@
       }
     }
   }, {
-    "label" : "Disposition",
-    "model" : "disposition",
-    "required" : false,
-    "type" : "input",
-    "inputType" : "text"
-  }, {
     "label" : "EventType",
     "model" : "eventType",
     "required" : false,
