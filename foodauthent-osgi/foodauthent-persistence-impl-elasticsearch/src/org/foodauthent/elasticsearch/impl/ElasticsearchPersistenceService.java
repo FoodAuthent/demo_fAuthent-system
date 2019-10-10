@@ -489,7 +489,7 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 			qb.should(queryBuilder);
 		}
-		qb.minimumShouldMatch("100%");
+		qb.minimumShouldMatch(1);
 		SearchRequest request = op.searchRequest(classTarget(DiscoveryServiceTransaction.class));
 		SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
 //		sourceBuilder.query(QueryBuilders.simpleQueryStringQuery(qb.toString()));
