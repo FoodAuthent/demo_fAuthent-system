@@ -95,22 +95,30 @@ public class PopulateDataApp {
 	    populateFingerprints(readBfrOilFingerprints(), c);
 	});
 
+	
 	List<UUID> fingerprintsetIds = doitWithRes("Populate fingerprint sets", () -> {
 	    return populateFingerprintSets(readBfrOilFingerprintSets(), c);
 	});
 
 	if (runTrainingAndPredictionJobs) {
 	    List<UUID> modelIds = doitWithRes("Train models", () -> {
-		return asList(train(trainingwfIds.get(0), fingerprintsetIds, c),
-			train(trainingwfIds.get(1), asList(fingerprintsetIds.get(0)), c));
+		return asList(
+			train(trainingwfIds.get(0), fingerprintsetIds, c), //multi-class model on all oils
+			train(trainingwfIds.get(1), asList(fingerprintsetIds.get(3)), c), //one-class model "kürbis"
+			train(trainingwfIds.get(1), asList(fingerprintsetIds.get(6)), c), //one-class model "raps"
+			train(trainingwfIds.get(1), asList(fingerprintsetIds.get(11)), c) //one-class model "sonnenblumen"
+			);
 	    });
 
 	    doit("Run predictions", () -> {
 		predict(predictionwfIds.get(0), fingerprintsetIds.get(0), modelIds.get(0), c);
 		predict(predictionwfIds.get(0), fingerprintsetIds.get(5), modelIds.get(0), c);
-		predict(predictionwfIds.get(0), fingerprintsetIds.get(6), modelIds.get(0), c);
-		predict(predictionwfIds.get(1), fingerprintsetIds.get(5), modelIds.get(1), c);
-		predict(predictionwfIds.get(1), fingerprintsetIds.get(0), modelIds.get(1), c);
+		predict(predictionwfIds.get(1), fingerprintsetIds.get(3), modelIds.get(1), c);
+		predict(predictionwfIds.get(1), fingerprintsetIds.get(6), modelIds.get(1), c);
+		predict(predictionwfIds.get(1), fingerprintsetIds.get(6), modelIds.get(2), c);
+		predict(predictionwfIds.get(1), fingerprintsetIds.get(2), modelIds.get(2), c);
+		predict(predictionwfIds.get(1), fingerprintsetIds.get(11), modelIds.get(3), c);
+		predict(predictionwfIds.get(1), fingerprintsetIds.get(1), modelIds.get(3), c);
 	    });
 	}
 
