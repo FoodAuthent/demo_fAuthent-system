@@ -5,6 +5,9 @@ package org.foodauthent.rest.api.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import org.foodauthent.auth.security.SecurityScheme;
 
 import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.ObjectEvent;
@@ -37,6 +40,7 @@ public interface ObjectEventRestService{
      */
     @GET
     @Path("/epcis/objectEvent/{objectevent-id}/discovery")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response convertObjectEventToTransaction(@PathParam("objectevent-id") java.util.UUID objecteventId
 );
@@ -49,6 +53,7 @@ public interface ObjectEventRestService{
      */
     @POST
     @Path("/epcis/objectEvent/")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createObjectEvent(ObjectEvent objectEvent
@@ -64,6 +69,7 @@ public interface ObjectEventRestService{
      */
     @GET
     @Path("/epcis/objectEvent/")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findObjectEventByKeyword(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -78,6 +84,7 @@ public interface ObjectEventRestService{
      */
     @GET
     @Path("/epcis/objectEvent/{objectevent-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getObjectEventById(@PathParam("objectevent-id") java.util.UUID objecteventId
 );

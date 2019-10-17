@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="org.foodauthent.jwt.internal.JwtServiceImpl">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" activate="activate" deactivate="deactivate" name="org.foodauthent.jwt.internal.JwtServiceImpl">
+   <property name="osgi.command.scope" value="nos_auth"/>
+   <property name="osgi.command.function" value="jwt_create"/>
    <service>
       <provide interface="org.foodauthent.jwt.JwtService"/>
+      <provide interface="org.foodauthent.auth.WebAuthenticationMethod"/>
    </service>
+   <reference cardinality="0..1" field="authenticationService" interface="org.foodauthent.auth.service.AuthenticationService" name="authenticationService"/>
    <implementation class="org.foodauthent.jwt.internal.JwtServiceImpl"/>
 </scr:component>

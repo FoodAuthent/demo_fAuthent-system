@@ -5,6 +5,9 @@ package org.foodauthent.rest.api.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import org.foodauthent.auth.security.SecurityScheme;
 
 import org.foodauthent.model.Organization;
 import org.foodauthent.model.OrganizationBase;
@@ -37,6 +40,7 @@ public interface OrganizationRestService{
      */
     @POST
     @Path("/organization")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json", "text/plain" })
     public Response createOrganization(OrganizationCreateRequest organizationCreateRequest
@@ -50,6 +54,7 @@ public interface OrganizationRestService{
      */
     @DELETE
     @Path("/organization/{dn}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "text/plain" })
     public Response deleteOrganization(@PathParam("dn") String dn
 );
@@ -62,6 +67,7 @@ public interface OrganizationRestService{
      */
     @GET
     @Path("/organization/{dn}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json", "text/plain" })
     public Response getOrganization(@PathParam("dn") String dn
 );
@@ -75,6 +81,7 @@ public interface OrganizationRestService{
      */
     @PUT
     @Path("/organization/{dn}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json", "text/plain" })
     public Response updateOrganization(@PathParam("dn") String dn

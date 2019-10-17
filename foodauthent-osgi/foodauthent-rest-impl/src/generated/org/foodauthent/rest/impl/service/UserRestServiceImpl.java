@@ -5,7 +5,8 @@ package org.foodauthent.rest.impl.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;

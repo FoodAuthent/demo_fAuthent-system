@@ -8,11 +8,13 @@ Automatic-Module-Name: org.foodauthent.jwt
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: com.auth0.java-jwt;bundle-version="3.4.1"
 Import-Package: javax.annotation,
+ javax.servlet.http,
  javax.ws.rs;version="2.1.99",
  javax.ws.rs.container;version="2.1.99",
  javax.ws.rs.core;version="2.1.99",
  javax.ws.rs.ext;version="2.1.99",
  org.foodauthent.auth,
+ org.foodauthent.auth.service,
  org.foodauthent.common.exception,
  org.foodauthent.config,
  org.osgi.framework;version="[1.3.0,2.0.0)",

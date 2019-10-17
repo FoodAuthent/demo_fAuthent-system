@@ -5,6 +5,9 @@ package org.foodauthent.rest.api.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import org.foodauthent.auth.security.SecurityScheme;
 
 
 import org.foodauthent.api.CustomMetadataService;
@@ -36,6 +39,7 @@ public interface CustomMetadataRestService{
      */
     @GET
     @Path("/custommetadata/{model-type}/{schema-id}/{fa-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getCustomMetadata(@PathParam("model-type") String modelType
 , @PathParam("schema-id") String schemaId
@@ -51,6 +55,7 @@ public interface CustomMetadataRestService{
      */
     @GET
     @Path("/custommetadata/{model-type}/{schema-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/schema+json" })
     public Response getCustomMetadataSchema(@PathParam("model-type") String modelType
 , @PathParam("schema-id") String schemaId
@@ -64,6 +69,7 @@ public interface CustomMetadataRestService{
      */
     @GET
     @Path("/custommetadata/{model-type}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getCustomMetadataSchemas(@PathParam("model-type") String modelType
 );
@@ -79,6 +85,7 @@ public interface CustomMetadataRestService{
      */
     @POST
     @Path("/custommetadata/{model-type}/{schema-id}/{fa-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     public Response saveCustomMetadata(@PathParam("model-type") String modelType
 , @PathParam("schema-id") String schemaId

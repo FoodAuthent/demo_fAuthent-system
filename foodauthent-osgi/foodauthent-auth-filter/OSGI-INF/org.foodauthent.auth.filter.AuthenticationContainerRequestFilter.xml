@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" activate="activate" deactivate="deactivate" name="org.foodauthent.auth.filter.AuthenticationContainerRequestFilter">
+   <service scope="prototype">
+      <provide interface="org.foodauthent.auth.filter.AuthenticationContainerRequestFilter"/>
+   </service>
+   <reference bind="bindAuthMethod" cardinality="1..n" interface="org.foodauthent.auth.WebAuthenticationMethod" name="AuthMethod" policy="dynamic" unbind="unbindAuthMethod"/>
+   <implementation class="org.foodauthent.auth.filter.AuthenticationContainerRequestFilter"/>
+</scr:component>

@@ -77,7 +77,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'SystemInfo';

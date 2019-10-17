@@ -83,7 +83,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json', 'text/plain'];
       var returnType = 'Organization';
@@ -130,7 +130,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['text/plain'];
       var returnType = null;
@@ -178,7 +178,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/plain'];
       var returnType = 'Organization';
@@ -232,7 +232,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json', 'text/plain'];
       var returnType = 'Organization';

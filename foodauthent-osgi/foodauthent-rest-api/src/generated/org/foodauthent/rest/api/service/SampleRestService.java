@@ -5,6 +5,9 @@ package org.foodauthent.rest.api.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import org.foodauthent.auth.security.SecurityScheme;
 
 import org.foodauthent.model.Sample;
 import org.foodauthent.model.SamplePageResult;
@@ -36,6 +39,7 @@ public interface SampleRestService{
      */
     @POST
     @Path("/sample")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createSample(Sample sample
@@ -51,6 +55,7 @@ public interface SampleRestService{
      */
     @GET
     @Path("/sample")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findSampleByKeyword(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -65,6 +70,7 @@ public interface SampleRestService{
      */
     @GET
     @Path("/sample/{sample-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getSampleById(@PathParam("sample-id") java.util.UUID sampleId
 );

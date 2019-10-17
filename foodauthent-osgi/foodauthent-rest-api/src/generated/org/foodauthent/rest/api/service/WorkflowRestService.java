@@ -5,6 +5,9 @@ package org.foodauthent.rest.api.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import org.foodauthent.auth.security.SecurityScheme;
 
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
@@ -44,6 +47,7 @@ public interface WorkflowRestService{
      */
     @POST
     @Path("/workflow/prediction/job")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response createPredictionJob(@QueryParam("workflow-id")java.util.UUID workflowId
 , @QueryParam("fingerprintset-id")java.util.UUID fingerprintsetId
@@ -60,6 +64,7 @@ public interface WorkflowRestService{
      */
     @POST
     @Path("/workflow/training/job")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response createTrainingJob(@QueryParam("workflow-id")java.util.UUID workflowId
 , @QueryParam("fingerprintset-ids")java.util.List<java.util.UUID> fingerprintsetIds
@@ -74,6 +79,7 @@ public interface WorkflowRestService{
      */
     @POST
     @Path("/workflow")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createWorkflow(Workflow workflow
@@ -89,6 +95,7 @@ public interface WorkflowRestService{
      */
     @GET
     @Path("/prediction")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findPredictionByKeyword(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -105,6 +112,7 @@ public interface WorkflowRestService{
      */
     @GET
     @Path("/workflow/prediction/job")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findPredictionJobs(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -121,6 +129,7 @@ public interface WorkflowRestService{
      */
     @GET
     @Path("/workflow/prediction")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findPredictionWorkflows(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -138,6 +147,7 @@ public interface WorkflowRestService{
      */
     @GET
     @Path("/prediction/relation/{fingerprintset-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findPredictionsByFingerprintSetId(@PathParam("fingerprintset-id") java.util.UUID fingerprintsetId
 , @QueryParam("pageNumber")Integer pageNumber
@@ -155,6 +165,7 @@ public interface WorkflowRestService{
      */
     @GET
     @Path("/workflow/training/job")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findTrainingJobs(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -171,6 +182,7 @@ public interface WorkflowRestService{
      */
     @GET
     @Path("/workflow/training")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findTrainingWorkflows(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -187,6 +199,7 @@ public interface WorkflowRestService{
      */
     @GET
     @Path("/workflow")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findWorkflowByKeyword(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -200,6 +213,7 @@ public interface WorkflowRestService{
      */
     @GET
     @Path("/workflow/prediction/job/{job-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getPredictionJob(@PathParam("job-id") java.util.UUID jobId
 );
@@ -211,6 +225,7 @@ public interface WorkflowRestService{
      */
     @GET
     @Path("/prediction/{prediction-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getPredictionResult(@PathParam("prediction-id") java.util.UUID predictionId
 );
@@ -222,6 +237,7 @@ public interface WorkflowRestService{
      */
     @GET
     @Path("/workflow/training/job/{job-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getTrainingJob(@PathParam("job-id") java.util.UUID jobId
 );
@@ -234,6 +250,7 @@ public interface WorkflowRestService{
      */
     @GET
     @Path("/workflow/{workflow-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getWorkflowById(@PathParam("workflow-id") java.util.UUID workflowId
 );

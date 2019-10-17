@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" activate="activate" immediate="true" name="com.noscendo.auth.apikey.impl.ApiKeyServiceImpl">
+   <service scope="singleton">
+      <provide interface="com.noscendo.auth.apikey.ApiKeyService"/>
+      <provide interface="com.noscendo.auth.method.WebAuthenticationMethod"/>
+   </service>
+   <reference cardinality="1..1" field="authenticationService" interface="com.noscendo.auth.service.AuthenticationService" name="authenticationService"/>
+   <implementation class="com.noscendo.auth.apikey.impl.ApiKeyServiceImpl"/>
+</scr:component>

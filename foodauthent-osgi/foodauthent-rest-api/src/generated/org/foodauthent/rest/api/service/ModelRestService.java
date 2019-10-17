@@ -5,6 +5,9 @@ package org.foodauthent.rest.api.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import org.foodauthent.auth.security.SecurityScheme;
 
 import org.foodauthent.model.Model;
 import org.foodauthent.model.ModelPageResult;
@@ -38,6 +41,7 @@ public interface ModelRestService{
      */
     @POST
     @Path("/model")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createModel(Model model
@@ -53,6 +57,7 @@ public interface ModelRestService{
      */
     @GET
     @Path("/model")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findModelByKeyword(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -67,6 +72,7 @@ public interface ModelRestService{
      */
     @GET
     @Path("/model/{model-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getModelById(@PathParam("model-id") java.util.UUID modelId
 );
@@ -80,6 +86,7 @@ public interface ModelRestService{
      */
     @POST
     @Path("/model/{model-id}/publish")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response publishModelById(@PathParam("model-id") java.util.UUID modelId
@@ -94,6 +101,7 @@ public interface ModelRestService{
      */
     @PUT
     @Path("/model")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     public Response updatedModel(Model model
 );

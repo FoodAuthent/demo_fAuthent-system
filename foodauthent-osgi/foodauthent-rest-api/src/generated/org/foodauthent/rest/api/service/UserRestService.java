@@ -5,6 +5,9 @@ package org.foodauthent.rest.api.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import org.foodauthent.auth.security.SecurityScheme;
 
 import org.foodauthent.model.ChangePasswordRequest;
 import org.foodauthent.model.User;
@@ -54,6 +57,7 @@ public interface UserRestService{
      */
     @POST
     @Path("/user/group")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json", "text/plain" })
     public Response createUserGroup(UserGroupCreateRequest userGroupCreateRequest
@@ -67,6 +71,7 @@ public interface UserRestService{
      */
     @DELETE
     @Path("/user/{dn}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "text/plain" })
     public Response deleteUser(@PathParam("dn") String dn
 );
@@ -79,6 +84,7 @@ public interface UserRestService{
      */
     @DELETE
     @Path("/user/group/{dn}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "text/plain" })
     public Response deleteUserGroup(@PathParam("dn") String dn
 );
@@ -105,6 +111,7 @@ public interface UserRestService{
      */
     @GET
     @Path("/user/{dn}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json", "text/plain" })
     public Response getUser(@PathParam("dn") String dn
 );
@@ -117,6 +124,7 @@ public interface UserRestService{
      */
     @GET
     @Path("/user/group/{dn}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json", "text/plain" })
     public Response getUserGroup(@PathParam("dn") String dn
 );
@@ -145,6 +153,7 @@ public interface UserRestService{
      */
     @PUT
     @Path("/user/{dn}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json", "text/plain" })
     public Response updateUser(@PathParam("dn") String dn
@@ -160,6 +169,7 @@ public interface UserRestService{
      */
     @PUT
     @Path("/user/group/{dn}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json", "text/plain" })
     public Response updateUserGroup(@PathParam("dn") String dn

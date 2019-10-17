@@ -82,7 +82,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
       var returnType = 'String';
@@ -143,7 +143,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/binary'];
       var returnType = 'File';
@@ -195,7 +195,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'FilePageResult';
@@ -242,7 +242,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/binary'];
       var returnType = 'Blob';
@@ -289,7 +289,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'FileMetadata';
@@ -336,7 +336,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['text/plain'];
       var returnType = 'String';
@@ -384,7 +384,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'ImportResult';
@@ -430,7 +430,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = [];
       var returnType = null;
@@ -484,7 +484,7 @@
         'filedata': filedata
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = ['multipart/form-data'];
       var accepts = ['application/json'];
       var returnType = 'String';

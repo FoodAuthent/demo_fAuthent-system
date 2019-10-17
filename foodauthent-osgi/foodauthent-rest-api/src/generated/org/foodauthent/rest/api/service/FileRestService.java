@@ -5,6 +5,9 @@ package org.foodauthent.rest.api.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import org.foodauthent.auth.security.SecurityScheme;
 
 import org.foodauthent.model.FaObjectSet;
 import java.io.File;
@@ -39,6 +42,7 @@ public interface FileRestService{
      */
     @POST
     @Path("/file")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createFileMetadata(FileMetadata fileMetadata
@@ -54,6 +58,7 @@ public interface FileRestService{
      */
     @POST
     @Path("/file/{file-id}/export")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/binary" })
     public Response exportFile(@QueryParam("file-type")String fileType
@@ -71,6 +76,7 @@ public interface FileRestService{
      */
     @GET
     @Path("/file")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getAllFiles(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -85,6 +91,7 @@ public interface FileRestService{
      */
     @GET
     @Path("/file/{file-id}/data")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/binary" })
     public Response getFileData(@PathParam("file-id") java.util.UUID fileId
 );
@@ -97,6 +104,7 @@ public interface FileRestService{
      */
     @GET
     @Path("/file/{file-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getFileMetadata(@PathParam("file-id") java.util.UUID fileId
 );
@@ -109,6 +117,7 @@ public interface FileRestService{
      */
     @GET
     @Path("/file/{file-id}/sha256")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "text/plain" })
     public Response getFileSHA256(@PathParam("file-id") java.util.UUID fileId
 );
@@ -121,6 +130,7 @@ public interface FileRestService{
      */
     @GET
     @Path("/file/{file-id}/import")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response importFile(@PathParam("file-id") java.util.UUID fileId
 );
@@ -133,6 +143,7 @@ public interface FileRestService{
      */
     @DELETE
     @Path("/file/{file-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     public Response removeFileMetadataAndData(@PathParam("file-id") java.util.UUID fileId
 );
 
@@ -145,6 +156,7 @@ public interface FileRestService{
      */
     @PUT
     @Path("/file/{file-id}/data")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
     public Response saveFileData(@PathParam("file-id") java.util.UUID fileId

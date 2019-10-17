@@ -3,8 +3,9 @@
    <service scope="singleton">
       <provide interface="org.foodauthent.auth.service.AuthenticationService"/>
    </service>
-   <reference cardinality="1..1" field="LdapOrganizationalUnitService" interface="org.foodauthent.ldap.LdapOrganizationalUnitService" name="LdapOrganizationalUnitService"/>
    <reference cardinality="1..1" field="ldapAuthenticationService" interface="org.foodauthent.ldap.LdapAuthenticationService" name="ldapAuthenticationService"/>
    <reference cardinality="1..1" field="ldapGroupService" interface="org.foodauthent.ldap.LdapGroupService" name="ldapGroupService"/>
+   <reference cardinality="1..1" field="ldapOrganizationalUnitService" interface="org.foodauthent.ldap.LdapOrganizationalUnitService" name="ldapOrganizationalUnitService"/>
+   <reference cardinality="1..1" field="ldapPersonService" interface="org.foodauthent.ldap.LdapPersonService" name="ldapPersonService"/>
    <implementation class="org.foodauthent.auth.ldap.AuthenticationServiceImpl"/>
 </scr:component>

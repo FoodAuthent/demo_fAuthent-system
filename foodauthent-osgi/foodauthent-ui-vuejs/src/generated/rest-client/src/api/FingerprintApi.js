@@ -82,7 +82,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
       var returnType = 'String';
@@ -128,7 +128,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
       var returnType = 'String';
@@ -180,7 +180,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'FingerprintPageResult';
@@ -232,7 +232,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'FingerprintSetPageResult';
@@ -279,7 +279,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'Fingerprint';
@@ -326,7 +326,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'FingerprintSet';

@@ -16,6 +16,7 @@ import org.ldaptive.auth.AuthenticationResponse;
 import org.ldaptive.auth.Authenticator;
 import org.ldaptive.auth.BindAuthenticationHandler;
 import org.ldaptive.auth.SearchDnResolver;
+import org.ldaptive.auth.User;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -109,6 +110,19 @@ public class LdapAuthenticationServiceImpl implements LdapAuthenticationService 
 				LOGGER.info("Authentication failure for unknown user {}", userName);
 			}
 			throw new UnauthorizedException("authorization failure");
+		} catch (LdapException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
+	}
+
+	@Override
+	public String resolve(String user) throws ServiceException {
+		try {
+			final String dn = auth.resolveDn(new User(user));
+			if (dn != null) {
+				return dn.substring(dn.indexOf(':')+1);
+			}
+			return null;
 		} catch (LdapException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}

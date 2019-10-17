@@ -2,6 +2,7 @@ package org.foodauthent.impl.authentication;
 
 import org.foodauthent.api.AuthenticationService;
 import org.foodauthent.auth.User;
+import org.foodauthent.auth.UserPrincipal;
 import org.foodauthent.common.exception.FAExceptions.FAException;
 import org.foodauthent.common.exception.FAExceptions.UnauthorizedResponse;
 import org.foodauthent.common.exception.ServiceException;
@@ -27,7 +28,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	try {
 	    final User user = authenticationService.authenticate(userAuthenticationRequest.getUser(),
 		    userAuthenticationRequest.getPassword());
-	    final String token = jwtService.create(user);
+	    final String token = jwtService.createToken(user);
 	    return token;
 	} catch (UnauthorizedException e) {
 	    throw new UnauthorizedResponse(e.getMessage(), e);
@@ -39,7 +40,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public String refreshJSONWebToken(String body) throws UnauthorizedResponse, FAException {
 	try {
-	    return jwtService.refresh(body);
+	    return jwtService.refreshToken(body);
 	} catch (UnauthorizedException e) {
 	    throw new UnauthorizedResponse(e.getMessage(), e);
 	}
@@ -48,7 +49,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public void verifyJSONWebToken(String body) throws UnauthorizedResponse, FAException {
 	try {
-	    jwtService.verify(body);
+	    jwtService.verifyToken(body);
 	} catch (UnauthorizedException e) {
 	    throw new UnauthorizedResponse(e.getMessage(), e);
 	}

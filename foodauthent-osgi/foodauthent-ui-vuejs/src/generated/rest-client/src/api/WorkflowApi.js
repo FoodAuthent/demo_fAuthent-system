@@ -101,7 +101,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'PredictionJob';
@@ -162,7 +162,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'TrainingJob';
@@ -206,7 +206,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
       var returnType = 'String';
@@ -258,7 +258,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'PredictionPageResult';
@@ -310,7 +310,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'PredictionJobPageResult';
@@ -362,7 +362,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'WorkflowPageResult';
@@ -420,7 +420,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'PredictionPageResult';
@@ -472,7 +472,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'TrainingJobPageResult';
@@ -524,7 +524,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'WorkflowPageResult';
@@ -576,7 +576,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'WorkflowPageResult';
@@ -623,7 +623,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'PredictionJob';
@@ -670,7 +670,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'Prediction';
@@ -717,7 +717,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'TrainingJob';
@@ -765,7 +765,7 @@
       var formParams = {
       };
 
-      var authNames = ['jwtAuth'];
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = 'Workflow';

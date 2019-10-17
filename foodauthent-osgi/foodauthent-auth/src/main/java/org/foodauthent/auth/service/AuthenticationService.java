@@ -7,5 +7,7 @@ import org.foodauthent.common.exception.UnauthorizedException;
 public interface AuthenticationService {
 
 	User authenticate(String userName, String password) throws UnauthorizedException, ServiceException;
+	
+	User find(String userName) throws UnauthorizedException, ServiceException;
 
 }

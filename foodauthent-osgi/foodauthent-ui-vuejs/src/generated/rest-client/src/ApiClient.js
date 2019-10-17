@@ -43,6 +43,8 @@
      * @type {Array.<String>}
      */
     this.authentications = {
+      'apiKeyId': {type: 'apiKey', 'in': 'header', name: 'X-API-KEY-ID'},
+      'apiKeySecret': {type: 'apiKey', 'in': 'header', name: 'X-API-KEY-SECRET'},
       'jwtAuth': {type: 'basic'}
     };
     /**

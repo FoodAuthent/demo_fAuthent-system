@@ -5,6 +5,9 @@ package org.foodauthent.rest.api.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import org.foodauthent.auth.security.SecurityScheme;
 
 import org.foodauthent.model.DiscoveryServiceSearchFilter;
 import org.foodauthent.model.DiscoveryServiceTransaction;
@@ -37,6 +40,7 @@ public interface TransactionRestService{
      */
     @POST
     @Path("/discovery/transaction")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createTransaction(java.util.List<DiscoveryServiceTransaction> discoveryServiceTransaction
@@ -52,6 +56,7 @@ public interface TransactionRestService{
      */
     @POST
     @Path("/discovery/transaction/findTransactionByFilter")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response findTransactionByFilter(@QueryParam("pageNumber")Integer pageNumber
@@ -69,6 +74,7 @@ public interface TransactionRestService{
      */
     @GET
     @Path("/discovery/transaction")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findTransactionByKeyword(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -84,6 +90,7 @@ public interface TransactionRestService{
      */
     @GET
     @Path("/discovery/transaction/sha256EpcClass")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "text/plain" })
     public Response getSha256EpcClass(@QueryParam("gtin")String gtin
 , @QueryParam("lot")String lot
@@ -97,6 +104,7 @@ public interface TransactionRestService{
      */
     @GET
     @Path("/discovery/transaction/{transaction-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getTransactionById(@PathParam("transaction-id") java.util.UUID transactionId
 );

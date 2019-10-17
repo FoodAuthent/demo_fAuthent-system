@@ -5,6 +5,9 @@ package org.foodauthent.rest.api.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import org.foodauthent.auth.security.SecurityScheme;
 
 import org.foodauthent.model.Fingerprint;
 import org.foodauthent.model.FingerprintPageResult;
@@ -38,6 +41,7 @@ public interface FingerprintRestService{
      */
     @POST
     @Path("/fingerprint")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createFingerprint(Fingerprint fingerprint
@@ -51,6 +55,7 @@ public interface FingerprintRestService{
      */
     @POST
     @Path("/fingerprintset")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createFingerprintSet(FingerprintSet fingerprintSet
@@ -66,6 +71,7 @@ public interface FingerprintRestService{
      */
     @GET
     @Path("/fingerprint")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findFingerprintByKeyword(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -82,6 +88,7 @@ public interface FingerprintRestService{
      */
     @GET
     @Path("/fingerprintset")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findFingerprintSetByKeyword(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -96,6 +103,7 @@ public interface FingerprintRestService{
      */
     @GET
     @Path("/fingerprint/{fingerprint-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getFingerprintById(@PathParam("fingerprint-id") java.util.UUID fingerprintId
 );
@@ -108,6 +116,7 @@ public interface FingerprintRestService{
      */
     @GET
     @Path("/fingerprintset/{fingerprintset-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getFingerprintSetById(@PathParam("fingerprintset-id") java.util.UUID fingerprintsetId
 );

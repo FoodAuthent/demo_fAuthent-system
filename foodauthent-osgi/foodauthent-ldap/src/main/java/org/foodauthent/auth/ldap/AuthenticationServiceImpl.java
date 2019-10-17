@@ -13,6 +13,7 @@ import org.foodauthent.ldap.DnUtil;
 import org.foodauthent.ldap.LdapAuthenticationService;
 import org.foodauthent.ldap.LdapGroupService;
 import org.foodauthent.ldap.LdapOrganizationalUnitService;
+import org.foodauthent.ldap.LdapPersonService;
 import org.foodauthent.ldap.beans.LdapPerson;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -27,8 +28,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	private LdapAuthenticationService ldapAuthenticationService;
 
 	@Reference(cardinality = ReferenceCardinality.MANDATORY)
-	private LdapOrganizationalUnitService LdapOrganizationalUnitService;
+	private LdapOrganizationalUnitService ldapOrganizationalUnitService;
 
+	@Reference(cardinality = ReferenceCardinality.MANDATORY)
+	private LdapPersonService ldapPersonService;
+	
 	@Reference(cardinality = ReferenceCardinality.MANDATORY)
 	private LdapGroupService ldapGroupService;
 
@@ -37,7 +41,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		final LdapPerson person = ldapAuthenticationService.authenticatePerson(userName, password);
 		final String organizationalUnitDn = DnUtil.getOrganizationalUnitDn(person);
 		final Organization organization = organizationalUnitDn != null
-				? new LdapUserOrganization(LdapOrganizationalUnitService.get(organizationalUnitDn))
+				? new LdapUserOrganization(ldapOrganizationalUnitService.get(organizationalUnitDn))
+				: LdapUserOrganization.ROOT;
+		final List<UserGroup> groups = ldapGroupService.getUserGroups(person.getDn()).stream()
+				.map(g -> new LdapUserGroup(g)).collect(Collectors.toList());
+		return new LdapUser(person, organization, groups);
+	}
+
+	@Override
+	public User find(String userName) throws UnauthorizedException, ServiceException {
+		final LdapPerson person = ldapPersonService.get(ldapAuthenticationService.resolve(userName));
+		final String organizationalUnitDn = DnUtil.getOrganizationalUnitDn(person);
+		final Organization organization = organizationalUnitDn != null
+				? new LdapUserOrganization(ldapOrganizationalUnitService.get(organizationalUnitDn))
 				: LdapUserOrganization.ROOT;
 		final List<UserGroup> groups = ldapGroupService.getUserGroups(person.getDn()).stream()
 				.map(g -> new LdapUserGroup(g)).collect(Collectors.toList());

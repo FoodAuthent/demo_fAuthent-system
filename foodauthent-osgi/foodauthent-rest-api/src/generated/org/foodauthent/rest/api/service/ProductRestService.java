@@ -5,6 +5,9 @@ package org.foodauthent.rest.api.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import org.foodauthent.auth.security.SecurityScheme;
 
 import org.foodauthent.model.Product;
 import org.foodauthent.model.ProductPageResult;
@@ -36,6 +39,7 @@ public interface ProductRestService{
      */
     @POST
     @Path("/product")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createProduct(Product product
@@ -49,6 +53,7 @@ public interface ProductRestService{
      */
     @GET
     @Path("/product/findByGtin")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findProductByGtin(@QueryParam("gtin")String gtin
 );
@@ -63,6 +68,7 @@ public interface ProductRestService{
      */
     @GET
     @Path("/product")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findProductByKeyword(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -77,6 +83,7 @@ public interface ProductRestService{
      */
     @GET
     @Path("/product/{product-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getProductById(@PathParam("product-id") java.util.UUID productId
 );
@@ -89,6 +96,7 @@ public interface ProductRestService{
      */
     @PUT
     @Path("/product")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     public Response updatedProduct(Product product
 );

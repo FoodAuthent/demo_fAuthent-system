@@ -1,5 +1,9 @@
 package org.foodauthent.jwt.internal;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class JwtConfig {
 	
     private String secrect;
@@ -9,6 +13,8 @@ public class JwtConfig {
     private String issuer;
 
     private int expiryMinutes = 120;
+    
+    private List<String> securitySchemes = Arrays.asList("jwtAuth");
     
 	public String getSecrect() {
 		return secrect;
@@ -40,6 +46,14 @@ public class JwtConfig {
 
 	public void setExpiryMinutes(int expiryMinutes) {
 		this.expiryMinutes = expiryMinutes;
+	}
+
+	public List<String> getSecuritySchemes() {
+		return securitySchemes;
+	}
+
+	public void setSecuritySchemes(List<String> securitySchemes) {
+		this.securitySchemes = securitySchemes;
 	}
 
 

@@ -31,4 +31,6 @@ public interface LdapAuthenticationService {
 	 */
 	LdapPerson authenticatePerson(String userName, String password) throws UnauthorizedException, ServiceException;
 
+	String resolve(String user) throws ServiceException;
+
 }

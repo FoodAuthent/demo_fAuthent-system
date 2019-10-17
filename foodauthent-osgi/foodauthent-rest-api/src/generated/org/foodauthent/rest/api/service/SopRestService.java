@@ -5,6 +5,9 @@ package org.foodauthent.rest.api.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import org.foodauthent.auth.security.SecurityScheme;
 
 import org.foodauthent.model.SOP;
 import org.foodauthent.model.SOPPageResult;
@@ -36,6 +39,7 @@ public interface SopRestService{
      */
     @POST
     @Path("/sop")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Response createNewSOP(SOP SOP
@@ -51,6 +55,7 @@ public interface SopRestService{
      */
     @GET
     @Path("/sop")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response findSOPByKeyword(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
@@ -65,6 +70,7 @@ public interface SopRestService{
      */
     @GET
     @Path("/sop/{sop-id}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getSOPById(@PathParam("sop-id") java.util.UUID sopId
 );

@@ -5,6 +5,9 @@ package org.foodauthent.rest.api.service;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import org.foodauthent.auth.security.SecurityScheme;
 
 
 import org.foodauthent.api.RelationService;
@@ -32,6 +35,7 @@ public interface RelationRestService{
      */
     @GET
     @Path("/relation/entities")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getEntities();
 
@@ -46,6 +50,7 @@ public interface RelationRestService{
      */
     @GET
     @Path("/relation/entity/{entity-name}/{fa-id}/{referenced-entity}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getForeignKeyEntities(@PathParam("entity-name") String entityName
 , @PathParam("fa-id") java.util.UUID faId
@@ -61,6 +66,7 @@ public interface RelationRestService{
      */
     @GET
     @Path("/relation/entity/{entity-name}")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getSupportedEntities(@PathParam("entity-name") String entityName
 );

@@ -3859,6 +3859,17 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      
+    apiKeyId:
+      type: apiKey
+      in: header
+      name: X-API-KEY-ID
+    apiKeySecret:
+      type: apiKey
+      in: header
+      name: X-API-KEY-SECRET
+
 security:
-  - jwtAuth: []              
+  - jwtAuth: []
+  - apiKeyId: []
+    apiKeySecret: []
+  
