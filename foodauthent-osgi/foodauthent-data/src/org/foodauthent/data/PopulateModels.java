@@ -12,6 +12,7 @@ import static org.foodauthent.rest.client.FASystemClientUtil.workflows;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -55,7 +56,7 @@ public class PopulateModels {
 		.collect(Collectors.toList());
     }
     
-    public static List<UUID> populateFingerprintSets(List<FingerprintSet> fingerprintSets, FASystemClient c) {
+    public static List<UUID> populateFingerprintSets(Collection<FingerprintSet> fingerprintSets, FASystemClient c) {
 	return fingerprintSets.stream().map(f -> fingerprints(c).createFingerprintSet(f).readEntity(UUID.class))
 		.collect(Collectors.toList());
     }
@@ -154,7 +155,7 @@ public class PopulateModels {
     
     public static UUID populateTrainingWorkflowOneClassClassification(FASystemClient c) {
 	String workflowName = "TrainingWorkflow_OneClassClassification";
-	String workflowDesc = "Training workflow that only requires one single class to 'train' a model.";
+	String workflowDesc = "Training workflow that only requires one single class to 'train' a model. Model will be a table of samples.";
 	
         // upload workflow file
 	FileMetadata fileMeta = FileMetadata.builder().setName(workflowName)
@@ -165,12 +166,19 @@ public class PopulateModels {
         uploadFileData(fileId, new File("files/workflows/TrainingWorkflow_OneClassClassification.knwf"), c);
 	
 	// upload workflow metadata
+	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("binning_min_ppm").setRequired(true)
+		.setValue(".018").setType(TypeEnum.NUMBER).build();
+	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("binning_max_ppm").setRequired(true)
+		.setValue("10.5").setType(TypeEnum.NUMBER).build();
+	WorkflowParameter wfp3 = WorkflowParameter.builder().setName("binning_width_ppm").setRequired(true)
+		.setValue(".0002").setType(TypeEnum.NUMBER).build();
 	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
 		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build()).build();
 	WorkflowIOTypes outputTypes = WorkflowIOTypes.builder()
 		//actually the wrong type!
-		.setModelType(ModelType.builder().setName(ModelType.NameEnum.PMML).build()).build();
+		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_TABLE).build()).build();
 	Workflow wf = Workflow.builder().setName(workflowName).setDescription(workflowDesc)
+		.setParameters(asList(wfp1, wfp2, wfp3))
 		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB)
 		.setRepresentation(RepresentationEnum.KNIME)
 		.setInputTypes(inputTypes)
@@ -183,7 +191,7 @@ public class PopulateModels {
     
     public static UUID populatePredictionWorkflowOneClassClassification(FASystemClient c) {
 	String workflowName = "PredictionWorkflow_OneClassClassification";
-	String workflowDesc = "Prediction workflow that uses a one-class-classification model to differentiate inliers and outliers (right now it's just a random decision).";
+	String workflowDesc = "Prediction workflow that uses a simple kNN one-class-classification to differentiate inliers and outliers.";
 
 	// upload workflow file
 	FileMetadata fileMeta = FileMetadata.builder().setName(workflowName).setDate(LocalDate.now())
@@ -193,16 +201,17 @@ public class PopulateModels {
 	uploadFileData(fileId, new File("files/workflows/PredictionWorkflow_OneClassClassification.knwf"), c);
 
 	// upload workflow metadata
-	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("inlier_class_label").setRequired(true)
-		.setValue("Inlier").setType(TypeEnum.STRING).build();
-	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("outlier_class_label").setRequired(true)
-		.setValue("Outlier").setType(TypeEnum.STRING).build();
+	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("binning_min_ppm").setRequired(true)
+		.setValue(".018").setType(TypeEnum.NUMBER).build();
+	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("binning_max_ppm").setRequired(true)
+		.setValue("10.5").setType(TypeEnum.NUMBER).build();
+	WorkflowParameter wfp3 = WorkflowParameter.builder().setName("binning_width_ppm").setRequired(true)
+		.setValue(".0002").setType(TypeEnum.NUMBER).build();
 	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
 		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build())
-		// actually the wrong model type
-		.setModelType(ModelType.builder().setName(NameEnum.PMML).build()).build();
+		.setModelType(ModelType.builder().setName(NameEnum.KNIME_TABLE).build()).build();
 	Workflow wf = Workflow.builder().setName(workflowName).setDescription(workflowDesc)
-		.setParameters(asList(wfp1, wfp2))
+		.setParameters(asList(wfp1, wfp2, wfp3))
 		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW_E680F8C1)
 		.setRepresentation(RepresentationEnum.KNIME).setInputTypes(inputTypes).setFileId(fileId).build();
 

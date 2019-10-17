@@ -2755,6 +2755,7 @@ components:
            - knime_workflow
            - knime_python
            - knime_random_forest
+           - knime_table
            - pmml
            
     ObjectEvent:

@@ -98,6 +98,11 @@
      */
     "knime_random_forest": "knime_random_forest",
     /**
+     * value: "knime_table"
+     * @const
+     */
+    "knime_table": "knime_table",
+    /**
      * value: "pmml"
      * @const
      */
