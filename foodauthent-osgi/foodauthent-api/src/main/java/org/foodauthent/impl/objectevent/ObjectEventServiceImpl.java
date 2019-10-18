@@ -123,7 +123,7 @@ public class ObjectEventServiceImpl implements ObjectEventService {
                         }).collect(Collectors.toList()))
 		.setGtin(objectEvent.getGtin()) //
 		.setReadPoint("ni:///sha-256;"+DigestUtil.sha256(objectEvent.getReadPoint() + getGlnMaskingCode(""))+"?input=sgln.gmc&multiHash=yes")
-		.setBricks(convertBrickList(objectEvent.getBricks())).build();
+		.setBricks(objectEvent.getBricks()).build();
 	return discoveryServiceTransaction;
     }
 

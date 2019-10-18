@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/GPCBrick'], factory);
+    define(['../ApiClient'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./GPCBrick'));
+    module.exports = factory(require('../ApiClient'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.PublishMetadata = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.GPCBrick);
+    root.FoodAuthentSwaggerApi.PublishMetadata = factory(root.FoodAuthentSwaggerApi.ApiClient);
   }
-}(this, function(ApiClient, GPCBrick) {
+}(this, function(ApiClient) {
   'use strict';
 
 
@@ -64,7 +64,7 @@
         obj['gtin'] = ApiClient.convertToType(data['gtin'], 'String');
       }
       if (data.hasOwnProperty('bricks')) {
-        obj['bricks'] = ApiClient.convertToType(data['bricks'], [GPCBrick]);
+        obj['bricks'] = ApiClient.convertToType(data['bricks'], ['String']);
       }
       if (data.hasOwnProperty('epcis')) {
         obj['epcis'] = ApiClient.convertToType(data['epcis'], 'Boolean');
@@ -82,8 +82,8 @@
    */
   exports.prototype['gtin'] = undefined;
   /**
-   * bricks
-   * @member {Array.<module:model/GPCBrick>} bricks
+   * A brick identifies a category of consumer-related products
+   * @member {Array.<String>} bricks
    */
   exports.prototype['bricks'] = undefined;
   /**

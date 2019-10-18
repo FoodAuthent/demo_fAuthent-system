@@ -2152,10 +2152,11 @@ components:
           description: Global Trade Item Number
           type: string
         bricks:
-          description: bricks
+          description: A brick identifies a category of consumer-related products
           type: array
           items:
-            $ref: "#/components/schemas/GPCBrick"
+            type: string
+          example: ["10000111/20000750/30000207", "10000111/20000352/300156412", ...]
         epcis:
           description: save to EPCIS Repository
           type: boolean

@@ -3,7 +3,6 @@
  */
 package org.foodauthent.model.json.mixin;
 
-import org.foodauthent.model.GPCBrick;
 
 import java.util.UUID;
 
@@ -51,7 +50,7 @@ public interface PublishMetadataMixIn {
     public String getGtin();
     
     @JsonProperty("bricks")
-    public java.util.List<GPCBrick> getBricks();
+    public java.util.List<String> getBricks();
     
     @JsonProperty("epcis")
     public Boolean isEpcis();
@@ -82,7 +81,7 @@ public interface PublishMetadataMixIn {
         public PublishMetadataMixInBuilder setGtin(final String gtin);
         
         @JsonProperty("bricks")
-        public PublishMetadataMixInBuilder setBricks(final java.util.List<GPCBrick> bricks);
+        public PublishMetadataMixInBuilder setBricks(final java.util.List<String> bricks);
         
         @JsonProperty("epcis")
         public PublishMetadataMixInBuilder setEpcis(final Boolean epcis);
