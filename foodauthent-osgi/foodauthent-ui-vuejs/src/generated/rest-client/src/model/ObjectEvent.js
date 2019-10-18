@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/BizTransaction', '../model/Epc', '../model/GPCBrick', '../model/QuantityElement'], factory);
+    define(['../ApiClient', '../model/BizTransaction', '../model/Epc', '../model/QuantityElement'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./BizTransaction'), require('./Epc'), require('./GPCBrick'), require('./QuantityElement'));
+    module.exports = factory(require('../ApiClient'), require('./BizTransaction'), require('./Epc'), require('./QuantityElement'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.ObjectEvent = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.BizTransaction, root.FoodAuthentSwaggerApi.Epc, root.FoodAuthentSwaggerApi.GPCBrick, root.FoodAuthentSwaggerApi.QuantityElement);
+    root.FoodAuthentSwaggerApi.ObjectEvent = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.BizTransaction, root.FoodAuthentSwaggerApi.Epc, root.FoodAuthentSwaggerApi.QuantityElement);
   }
-}(this, function(ApiClient, BizTransaction, Epc, GPCBrick, QuantityElement) {
+}(this, function(ApiClient, BizTransaction, Epc, QuantityElement) {
   'use strict';
 
 
@@ -88,7 +88,7 @@
         obj['gtin'] = ApiClient.convertToType(data['gtin'], 'String');
       }
       if (data.hasOwnProperty('bricks')) {
-        obj['bricks'] = ApiClient.convertToType(data['bricks'], [GPCBrick]);
+        obj['bricks'] = ApiClient.convertToType(data['bricks'], ['String']);
       }
       if (data.hasOwnProperty('eventTime')) {
         obj['eventTime'] = ApiClient.convertToType(data['eventTime'], 'Date');
@@ -143,8 +143,8 @@
    */
   exports.prototype['gtin'] = undefined;
   /**
-   * bricks
-   * @member {Array.<module:model/GPCBrick>} bricks
+   * A brick identifies a category of consumer-related products
+   * @member {Array.<String>} bricks
    */
   exports.prototype['bricks'] = undefined;
   /**

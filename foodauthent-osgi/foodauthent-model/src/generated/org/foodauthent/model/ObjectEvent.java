@@ -13,7 +13,6 @@ import java.util.Objects;
 import java.time.OffsetDateTime;
 import org.foodauthent.model.BizTransaction;
 import org.foodauthent.model.Epc;
-import org.foodauthent.model.GPCBrick;
 import org.foodauthent.model.QuantityElement;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -61,7 +60,7 @@ public class ObjectEvent   extends FaModel {
   protected String disposition;
   protected java.util.List<BizTransaction> bizTransactionList;
   protected String gtin;
-  protected java.util.List<GPCBrick> bricks;
+  protected java.util.List<String> bricks;
   protected OffsetDateTime eventTime;
 
   public String getTypeID() {
@@ -182,10 +181,10 @@ public class ObjectEvent   extends FaModel {
     }
 
   /**
-   * bricks
+   * A brick identifies a category of consumer-related products
    * @return bricks 
    */
-  public java.util.List<GPCBrick> getBricks() {
+  public java.util.List<String> getBricks() {
         return bricks;
     }
 
@@ -245,7 +244,7 @@ public class ObjectEvent   extends FaModel {
         private String disposition;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
         private String gtin;
-        private java.util.List<GPCBrick> bricks = new java.util.ArrayList<>();
+        private java.util.List<String> bricks = new java.util.ArrayList<>();
         private OffsetDateTime eventTime;
 
         /**
@@ -330,10 +329,10 @@ public class ObjectEvent   extends FaModel {
         }
 
         /**
-         * bricks
+         * A brick identifies a category of consumer-related products
          * @return bricks 
          */
-        public ObjectEventBuilder setBricks(java.util.List<GPCBrick> bricks) {
+        public ObjectEventBuilder setBricks(java.util.List<String> bricks) {
              this.bricks = bricks;
              return this;
         }
