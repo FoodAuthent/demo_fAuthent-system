@@ -126,28 +126,7 @@ public class ModelServiceImpl implements ModelService {
 	    builder.setGtin(publishMetadata.getGtin());
 	}
 	if (publishMetadata.getBricks() != null) {
-	    builder.setBricks(publishMetadata.getBricks().stream().map(b -> {
-		final GPCBrickBuilder brickBuilder = GPCBrick.builder() //
-			.setCode(b.getCode()) //
-			.setText(b.getText());
-		if (b.getAttributes() != null) {
-		    brickBuilder.setAttributes(b.getAttributes().stream().map(a -> {
-			final GPCAttributeBuilder attributeBuilder = GPCAttribute.builder() //
-				.setCode(a.getCode()) //
-				.setText(a.getText());
-			if (a.getValues() != null) {
-			    attributeBuilder.setValues(a.getValues().stream().map(v -> {
-				final GPCAttributeValueBuilder attributeValueBuilder = GPCAttributeValue.builder() //
-					.setCode(v.getCode()) //
-					.setText(v.getText());
-				return attributeValueBuilder.build();
-			    }).collect(Collectors.toList()));
-			}
-			return attributeBuilder.build();
-		    }).collect(Collectors.toList()));
-		}
-		return brickBuilder.build();
-	    }).collect(Collectors.toList()));
+	    builder.setBricks(publishMetadata.getBricks());
 	}
 	return builder.build();
     }

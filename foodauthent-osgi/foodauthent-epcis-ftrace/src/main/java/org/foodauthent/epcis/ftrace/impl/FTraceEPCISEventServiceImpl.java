@@ -132,28 +132,7 @@ public class FTraceEPCISEventServiceImpl implements EPCISEventService {
 		}
 
 		if (event.getBricks() != null && !event.getBricks().isEmpty()) {
-			o.getAny().addAll(event.getBricks().stream().map(b -> {
-				final Brick brick = foodAuthentObjectFactory.createBrick();
-				brick.setCode(b.getCode());
-				brick.setText(b.getText());
-				if (b.getAttributes() != null) {
-					brick.getAttType().addAll(b.getAttributes().stream().map(a -> {
-						final AttType attribute = foodAuthentObjectFactory.createAttType();
-						attribute.setCode(a.getCode());
-						attribute.setText(a.getText());
-						if (a.getValues() != null) {
-							attribute.getAttValue().addAll(a.getValues().stream().map(v -> {
-								final AttValue value = foodAuthentObjectFactory.createAttValue();
-								value.setCode(v.getCode());
-								value.setValue(v.getText());
-								return value;
-							}).collect(Collectors.toList()));
-						}
-						return attribute;
-					}).collect(Collectors.toList()));
-				}
-				return brick;
-			}).collect(Collectors.toList()));
+			o.getAny().addAll(event.getBricks());
 		}
 	}
 

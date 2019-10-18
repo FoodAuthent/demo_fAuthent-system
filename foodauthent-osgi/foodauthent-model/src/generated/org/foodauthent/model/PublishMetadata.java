@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.foodauthent.model.GPCBrick;
 
 
 
@@ -25,7 +24,7 @@ public class PublishMetadata   extends FaModel {
 
 
   protected String gtin;
-  protected java.util.List<GPCBrick> bricks;
+  protected java.util.List<String> bricks;
   protected Boolean epcis;
   protected Boolean discovery;
 
@@ -79,10 +78,10 @@ public class PublishMetadata   extends FaModel {
     }
 
   /**
-   * bricks
+   * A brick identifies a category of consumer-related products
    * @return bricks 
    */
-  public java.util.List<GPCBrick> getBricks() {
+  public java.util.List<String> getBricks() {
         return bricks;
     }
 
@@ -135,7 +134,7 @@ public class PublishMetadata   extends FaModel {
         }
 
         private String gtin;
-        private java.util.List<GPCBrick> bricks = new java.util.ArrayList<>();
+        private java.util.List<String> bricks = new java.util.ArrayList<>();
         private Boolean epcis;
         private Boolean discovery;
 
@@ -149,10 +148,10 @@ public class PublishMetadata   extends FaModel {
         }
 
         /**
-         * bricks
+         * A brick identifies a category of consumer-related products
          * @return bricks 
          */
-        public PublishMetadataBuilder setBricks(java.util.List<GPCBrick> bricks) {
+        public PublishMetadataBuilder setBricks(java.util.List<String> bricks) {
              this.bricks = bricks;
              return this;
         }
