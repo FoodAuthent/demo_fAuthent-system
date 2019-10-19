@@ -23,18 +23,25 @@ import static org.foodauthent.data.ReadModels.readBfrOilFileMetadata;
 import static org.foodauthent.data.ReadModels.readBfrOilFingerprintSets;
 import static org.foodauthent.data.ReadModels.readBfrOilFingerprints;
 import static org.foodauthent.data.ReadModels.readBfrOilSamples;
+import static org.foodauthent.data.ReadModels.readEFOilFileMetadata;
+import static org.foodauthent.data.ReadModels.readEFOilFingerprintSets;
+import static org.foodauthent.data.ReadModels.readEFOilSamples;
 import static org.foodauthent.data.ReadModels.readOilProducts;
 import static org.foodauthent.rest.client.FASystemClientUtil.info;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.function.Supplier;
 
 import org.foodauthent.model.FaModel;
 import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.SystemInfo;
 import org.foodauthent.model.json.ObjectMapperUtil;
 import org.foodauthent.rest.client.FASystemClient;
@@ -83,42 +90,60 @@ public class PopulateDataApp {
 
 	doit("Populate samples", () -> {
 	    populateSamples(readBfrOilSamples(), c);
+	    populateSamples(readEFOilSamples(), c);
 	});
 
 	doit("Populate fingerprint files", () -> {
 	    List<FileMetadata> metaList = readBfrOilFileMetadata();
 	    List<File> files = listBfrOilFingerprintFiles();
 	    populateFilesWithMetadata(files, metaList, c);
+	    
+	    metaList = readEFOilFileMetadata();
+	    files = ListFiles.listEFOilFingerprintFiles();
+	    populateFilesWithMetadata(files, metaList, c);
+
 	});
 
 	doit("Populate fingerprints", () -> {
 	    populateFingerprints(readBfrOilFingerprints(), c);
+	    populateFingerprints(ReadModels.readEFOilFingerprints(), c);
 	});
 
 	
-	List<UUID> fingerprintsetIds = doitWithRes("Populate fingerprint sets", () -> {
-	    return populateFingerprintSets(readBfrOilFingerprintSets(), c);
+	Map<String, UUID> fingerprintsetIds = doitWithRes("Populate fingerprint sets", () -> {
+	    Map<String, UUID> ids = new HashMap<>();
+	    List<FingerprintSet> fpsets = readBfrOilFingerprintSets();
+	    List<UUID> uuids = populateFingerprintSets(fpsets, c);
+	    for (int i = 0; i < fpsets.size(); i++) {
+		ids.put("bfr_" + fpsets.get(i).getClassLabel(), uuids.get(i));
+	    }
+
+	    fpsets = readEFOilFingerprintSets();
+	    uuids = populateFingerprintSets(fpsets, c);
+	    for (int i = 0; i < fpsets.size(); i++) {
+		ids.put("ef_" + fpsets.get(i).getClassLabel(), uuids.get(i));
+	    }
+	    return ids;
 	});
+	
 
 	if (runTrainingAndPredictionJobs) {
-	    List<UUID> modelIds = doitWithRes("Train models", () -> {
-		return asList(
-			train(trainingwfIds.get(0), fingerprintsetIds, c), //multi-class model on all oils
-			train(trainingwfIds.get(1), asList(fingerprintsetIds.get(3)), c), //one-class model "kürbis"
-			train(trainingwfIds.get(1), asList(fingerprintsetIds.get(6)), c), //one-class model "raps"
-			train(trainingwfIds.get(1), asList(fingerprintsetIds.get(11)), c) //one-class model "sonnenblumen"
-			);
+	    Map<String, UUID> modelIds = doitWithRes("Train models", () -> {
+		Map<String, UUID> ids = new HashMap<>();
+		//ids.put("multi_class_oils", train(trainingwfIds.get(0), new ArrayList(fingerprintsetIds.values()), c));
+		ids.put("one_class_kürbis",
+			train(trainingwfIds.get(1), asList(fingerprintsetIds.get("bfr_kürbis")), c));
+		ids.put("one_class_raps", train(trainingwfIds.get(1), asList(fingerprintsetIds.get("bfr_raps")), c));
+		ids.put("one_class_sonnenblumen",
+			train(trainingwfIds.get(1), asList(fingerprintsetIds.get("bfr_sonnenlbumen")), c));
+		return ids;
 	    });
 
 	    doit("Run predictions", () -> {
-		predict(predictionwfIds.get(0), fingerprintsetIds.get(0), modelIds.get(0), c);
-		predict(predictionwfIds.get(0), fingerprintsetIds.get(5), modelIds.get(0), c);
-		predict(predictionwfIds.get(1), fingerprintsetIds.get(3), modelIds.get(1), c);
-		predict(predictionwfIds.get(1), fingerprintsetIds.get(6), modelIds.get(1), c);
-		predict(predictionwfIds.get(1), fingerprintsetIds.get(6), modelIds.get(2), c);
-		predict(predictionwfIds.get(1), fingerprintsetIds.get(2), modelIds.get(2), c);
-		predict(predictionwfIds.get(1), fingerprintsetIds.get(11), modelIds.get(3), c);
-		predict(predictionwfIds.get(1), fingerprintsetIds.get(1), modelIds.get(3), c);
+		//predict(predictionwfIds.get(0), fingerprintsetIds.get("bfr_kürbis"), modelIds.get("multi_class_oils"), c);
+		predict(predictionwfIds.get(0), fingerprintsetIds.get("bfr_raps"), modelIds.get("multi_class_oils"), c);
+		predict(predictionwfIds.get(1), fingerprintsetIds.get("bfr_kürbis"), modelIds.get("one_class_kürbis"), c);
+		predict(predictionwfIds.get(1), fingerprintsetIds.get("bfr_raps"), modelIds.get("one_class_kürbis"), c);
 	    });
 	}
 
