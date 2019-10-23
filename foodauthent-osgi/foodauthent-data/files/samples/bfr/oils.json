@@ -4,1903 +4,1903 @@
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 15/06/18",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "Spreewald", "nein", null, null ],
-  "product-id" : "a89dda25-fc84-40c1-abcf-d9d4dadd60a1",
-  "fa-id" : "3478c177-f3a8-443c-8606-d442f17925bd"
+  "product-id" : "978424aa-43a7-4a02-a7ef-7dbe96e62038",
+  "fa-id" : "fd1577b6-2030-470f-bab3-0ae5da296318"
 }, {
   "sample-id" : "W_FAO06510_17P",
   "dateOfSampleDrawing" : "2017-07-17T00:00",
   "bestBeforeDate" : "mindestens \nhaltbar bis: \n02.09.18",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Deutschland", "nein", "mild \ndampfveredelt", null ],
-  "product-id" : "2b383a90-64a9-4766-87e6-eb372d58a307",
-  "fa-id" : "3df7efaa-0ea7-4a06-ab40-f2e58653d47c"
+  "product-id" : "97d17d91-1118-4165-8bd3-532f23998b25",
+  "fa-id" : "4cf5e3b2-e19e-43cd-87bb-02d187749256"
 }, {
   "sample-id" : "W_FAO06511_17P",
   "dateOfSampleDrawing" : "2017-07-17T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis \nEnde: 10.2018",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "Deutschland", "nein", null, null ],
-  "product-id" : "d27fbc9d-5aca-45f0-b199-03ce669e13c5",
-  "fa-id" : "5d34cbf2-671e-450d-b499-ce30596934f8"
+  "product-id" : "6ef597b4-90e6-4f4f-89af-87ef40a673a2",
+  "fa-id" : "11f5c3b9-ec41-4162-9b56-7bee694e24f0"
 }, {
   "sample-id" : "W_FAO06512_17P",
   "dateOfSampleDrawing" : "2017-07-17T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis \nEnde: 12.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "3c463286-f854-4e79-ae4c-5fb255a5675f",
-  "fa-id" : "9ae739b5-4259-4c12-870e-fd13303a0b39"
+  "product-id" : "ad65a872-3f20-43bf-b693-3a95a04e594a",
+  "fa-id" : "afa1efa5-dc76-4598-9067-6e9244bbd7cd"
 }, {
   "sample-id" : "W_FAO06513_17P",
   "dateOfSampleDrawing" : "2017-07-17T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 01/07/18",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Spreewald", "nein", null, null ],
-  "product-id" : "68e1e580-207d-4e51-a074-f3c66f4dff79",
-  "fa-id" : "1c4f206f-ebc5-4a16-95a3-a818226dbd00"
+  "product-id" : "0437a24a-744e-411b-8947-febbcfa905cc",
+  "fa-id" : "59355dab-46a3-4a87-96e0-80bc58827ecd"
 }, {
   "sample-id" : "W_FAO06514_17P",
   "dateOfSampleDrawing" : "2017-07-17T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 08.08.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "nein", "Deutschland", "nein", null, null ],
-  "product-id" : "852cff2d-76cf-4386-be59-1115c0b7a20b",
-  "fa-id" : "ea639c87-3898-4d2c-a3ca-2853c2e90c35"
+  "product-id" : "06c42461-98ea-4bb1-ae3c-b98d81d75403",
+  "fa-id" : "8b4ebbf9-1796-4351-bb95-d14aa7cda115"
 }, {
   "sample-id" : "W_FAO06515_17P",
   "dateOfSampleDrawing" : "2017-07-17T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 23.08.18",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "fd6e253b-8e5e-4a60-a8ad-2ba63be673a7",
-  "fa-id" : "d1ceb64e-bcab-4f9e-b3ae-a06893c10fc5"
+  "product-id" : "5e08765b-fa74-4173-8261-4312b7bd999a",
+  "fa-id" : "51d8dc93-3cd7-4a1e-9975-0def7cdae6bb"
 }, {
   "sample-id" : "W_FAO06516_17P",
   "dateOfSampleDrawing" : "2017-07-17T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 01/07/18",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Spreewald", "nein", null, null ],
-  "product-id" : "4e6d35a2-4edf-4581-8500-1948e6e5a0df",
-  "fa-id" : "82a77767-3ffa-49e8-820a-61a32460b6b5"
+  "product-id" : "c09d8f5d-7f3d-4a92-9d4d-43ced49ea624",
+  "fa-id" : "4bfff2c9-2d1c-44f8-88a2-0123acff7dd4"
 }, {
   "sample-id" : "W_FAO06517_17P",
   "dateOfSampleDrawing" : "2017-07-17T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 27.06.18",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "a0e65418-1d6a-400d-9dee-e3e26672fd99",
-  "fa-id" : "a92bc22e-c5bb-472f-8e4f-1a64720764ff"
+  "product-id" : "9547cf4c-d4ee-423e-b47f-b04402347fda",
+  "fa-id" : "2d4f959e-f4ed-4208-b98b-975b117f85a3"
 }, {
   "sample-id" : "W_FAO06518_17P",
   "dateOfSampleDrawing" : "2017-07-17T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 06.06.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-Öko-003 ", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "d7e31e64-b942-4366-869d-d628069ab5ed",
-  "fa-id" : "13018943-5945-458d-b0cc-e36e1f036062"
+  "product-id" : "c22479b6-1939-4587-91c1-139f290750d7",
+  "fa-id" : "f7704545-ce3b-4690-8e49-fd242e9110fd"
 }, {
   "sample-id" : "W_FAO06519_17P",
   "dateOfSampleDrawing" : "2017-07-17T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 16.02.18",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "k.A.", "nein", null, "Vitamin E Zusatz" ],
-  "product-id" : "1f2b9144-4080-4b71-a2ad-9f8b9b40a96c",
-  "fa-id" : "80eab1c7-af68-4594-a775-ad83ae42fa39"
+  "product-id" : "fb930533-1f56-4684-a030-7aec01d1b2ff",
+  "fa-id" : "ce3d065f-6423-42a3-8131-f47d374e4d19"
 }, {
   "sample-id" : "W_FAO06520_17P",
   "dateOfSampleDrawing" : "2017-07-17T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 28.01.18",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "k.A.", "nein", null, "Vitamin E Zusatz" ],
-  "product-id" : "e0c413cb-6bd1-4e06-92ac-e6d299ca372f",
-  "fa-id" : "65f1f98c-6370-4d30-97a7-b555ca23df68"
+  "product-id" : "d754672a-0507-44ec-a657-e57c782b0e7d",
+  "fa-id" : "28c586e0-bc90-4ddb-89d5-d0f856feb12f"
 }, {
   "sample-id" : "W_FAO06521_17P",
   "dateOfSampleDrawing" : "2017-07-17T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 06/06/18",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Spreewald", "nein", null, null ],
-  "product-id" : "80ca3efa-ce3c-4f0c-89ce-d67ec9ba40de",
-  "fa-id" : "1eb1aa18-3328-4eb7-ae00-025feb7da8b3"
+  "product-id" : "30926d9f-2dd0-4966-9f5d-9f8b3046c834",
+  "fa-id" : "3835552f-59dd-4e9c-9cc4-01b3e6a86e55"
 }, {
   "sample-id" : "W_FAO06523_17P",
   "dateOfSampleDrawing" : "2017-07-26T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis \nEnde: 04/2018",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "Österreich", "nein", null, null ],
-  "product-id" : "1280d5c2-e12e-4759-9093-2a5a93c2b146",
-  "fa-id" : "2192f9c6-98e6-494f-8def-f5ed171550d6"
+  "product-id" : "4d87cd31-04b2-45ff-a76d-898946ff22c4",
+  "fa-id" : "742f633f-0f74-4fa0-84c8-134721ac05ed"
 }, {
   "sample-id" : "W_FAO06524_17P",
   "dateOfSampleDrawing" : "2017-07-26T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 07.01.2019",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "281f0659-baa8-4a16-9d4a-30f7e8562a72",
-  "fa-id" : "d8996517-1f47-43a2-9ce1-11647dc97590"
+  "product-id" : "c55a669a-bdfa-4539-939e-a8e4d09199e5",
+  "fa-id" : "9d8f4e51-4296-4b88-b85b-d28b3e4eac0c"
 }, {
   "sample-id" : "W_FAO06525_17P",
   "dateOfSampleDrawing" : "2017-07-26T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 07.06.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "63615f08-757f-4c17-9de8-c42978728590",
-  "fa-id" : "86e16bbb-2e24-4155-a04f-6185e8582855"
+  "product-id" : "d8ad4804-6dca-4067-89f0-a597a9f515e5",
+  "fa-id" : "23370627-fa82-4bfe-84e5-8138bd664bb7"
 }, {
   "sample-id" : "W_FAO06526_17P",
   "dateOfSampleDrawing" : "2017-07-26T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 02.05.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-006 ", "EU-Landwirtschaft", "nein", "aus geschälter Saat", null ],
-  "product-id" : "f51e28c5-59e6-4aa8-8a1d-b79f092921c7",
-  "fa-id" : "6043a7c5-8d98-4671-b81f-db404b6e5584"
+  "product-id" : "f319d525-c70f-4bdf-b446-a5cec24d57b3",
+  "fa-id" : "e60c08a9-17eb-4e8b-9461-3893b112ebe9"
 }, {
   "sample-id" : "W_FAO06527_17P",
   "dateOfSampleDrawing" : "2017-07-26T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 14.06.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "DE-ÖKO-013", "EU-/Nicht-EU-\nLandwirtschaft", "nein", null, null ],
-  "product-id" : "a11a160b-2125-41e4-b8ef-a01238f56af2",
-  "fa-id" : "7ee53e0f-8e88-44dd-968a-f83f133c411d"
+  "product-id" : "cd726e47-a0f1-45ae-a267-23c096b5fd61",
+  "fa-id" : "b0a574c3-9774-4daa-b7eb-2893bdd40947"
 }, {
   "sample-id" : "W_FAO06528_17P",
   "dateOfSampleDrawing" : "2017-07-26T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 31.08.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "geröstet", "DE-ÖKO-013", "EU-/Nicht-EU-\nLandwirtschaft", "nein", null, null ],
-  "product-id" : "753c8edb-8fcb-4af0-bd57-f5a5dd6e905b",
-  "fa-id" : "8c0e8e31-de7f-4cc8-a7d2-125c0c22faf3"
+  "product-id" : "7e050caf-d90f-4d3f-aa63-c5fe1cc92c37",
+  "fa-id" : "a453e964-f81b-4593-a479-569124574ddb"
 }, {
   "sample-id" : "W_FAO06529_17P",
   "dateOfSampleDrawing" : "2017-07-26T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 31.05.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "geröstet", "DE-ÖKO-006 ", "Österreich", "nein", null, null ],
-  "product-id" : "c571b5f6-f7dd-46cf-90c0-c7c046400bd1",
-  "fa-id" : "5b5ef829-e25d-4458-af57-31ab05893796"
+  "product-id" : "62437b32-b4c2-4d7c-a262-465e0ad555fe",
+  "fa-id" : "76f8be91-885d-49f8-8c43-b40cb1902765"
 }, {
   "sample-id" : "W_FAO06530_17P",
   "dateOfSampleDrawing" : "2017-07-26T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 21.12.2017",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "geröstet", "DE-ÖKO-013", "EU-/Nicht-EU-\nLandwirtschaft", "nein", null, null ],
-  "product-id" : "fcbd689e-4838-43ea-9351-2057e0b73a8f",
-  "fa-id" : "8a41199d-c2ac-431b-a09d-042cd9b04f2f"
+  "product-id" : "0eb79999-97f0-417c-8061-48a1d83e39b8",
+  "fa-id" : "80f40fc6-4dca-4698-ac07-5b042bd606f4"
 }, {
   "sample-id" : "W_FAO06531_17P",
   "dateOfSampleDrawing" : "2017-07-26T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 22.01.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-006 ", "Österreich", "nein", null, null ],
-  "product-id" : "df14f10d-c2de-44de-a0a2-f09cac5f73d3",
-  "fa-id" : "da0f8676-ee93-405f-b2d9-9f0ef56794e5"
+  "product-id" : "4bdecb67-cfcd-4014-bde7-dd3e6344a5e0",
+  "fa-id" : "190d9f83-6998-4702-83de-4b800e13654f"
 }, {
   "sample-id" : "W_FAO06532_17P",
   "dateOfSampleDrawing" : "2017-07-26T00:00",
   "bestBeforeDate" : "Mindestens \nhaltbar bis: 28.03.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "DE-ÖKO-013", "EU-/Nicht-EU-\nLandwirtschaft", "nein", null, null ],
-  "product-id" : "24163788-4ff6-41f0-9dba-99ed157b1421",
-  "fa-id" : "81c1d438-10eb-4a79-9a4f-f92c2e56d7ed"
+  "product-id" : "b1febcd8-d223-4f01-b739-a1397240ef8c",
+  "fa-id" : "1eec3ad2-8421-42fc-b648-190a11b2422f"
 }, {
   "sample-id" : "W_FAO06713_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis:18.09.2018",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "Spreewald", "nein", null, null ],
-  "product-id" : "456f4716-eb8e-481f-b98b-e1c5291a13c5",
-  "fa-id" : "ac48488e-6eec-4717-82cf-54c459b6ebf2"
+  "product-id" : "9ce5e60c-5bff-4ea2-be84-b839ea772bfe",
+  "fa-id" : "f45044c4-08de-4b17-b33b-2b1f4ccc169c"
 }, {
   "sample-id" : "W_FAO06714_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 10.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "nein", "Deutschland", "nein", null, null ],
-  "product-id" : "5e3a9dbf-5f21-4903-98be-d802f31c7705",
-  "fa-id" : "c31e6df3-1e94-4059-a233-7f5b08758235"
+  "product-id" : "5909db8a-d118-4050-85cb-0901d3d5d0c0",
+  "fa-id" : "3cb4a007-a8bb-4a88-8b6f-7facc18e6e03"
 }, {
   "sample-id" : "W_FAO06715_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : " Mindestens haltbar bis Ende: 02.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Fläming", "nein", null, null ],
-  "product-id" : "97e0e63d-dfce-48ca-853f-d6d85b163357",
-  "fa-id" : "d35b54d2-ecc6-4ace-9f36-efc1d2223d00"
+  "product-id" : "d96a9206-cdcd-47fe-b9b7-3fa08e8d7b7e",
+  "fa-id" : "74f4f8df-e5de-4354-bd65-62b4c3408050"
 }, {
   "sample-id" : "W_FAO06716_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : " Mindestens haltbar bis Ende: 02.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Fläming", "nein", "gereift im Rotwein-Eichenfass", null ],
-  "product-id" : "968de6ab-2c4f-48fc-b4e4-6f2f9cffbaf9",
-  "fa-id" : "b8abec34-8bdc-4eb2-aea9-f40ab6ddd240"
+  "product-id" : "140d29ba-8c02-40fe-9edb-59f5fdb8f855",
+  "fa-id" : "527fa4c7-4c5c-497a-a4f6-efef72e90c65"
 }, {
   "sample-id" : "W_FAO06717_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 22.03.18",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Deutschland", "nein", null, null ],
-  "product-id" : "285e0a4f-dcb7-4a30-9a09-3e29ac31754e",
-  "fa-id" : "231e2803-a523-4760-b465-0e48669e6277"
+  "product-id" : "86689564-e35d-4e48-a455-e21f4575ca22",
+  "fa-id" : "9c522642-83d5-4ec8-8167-27d51f242906"
 }, {
   "sample-id" : "W_FAO06718_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 23.02.2019",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "ab3d6fd2-51c9-43d9-ada4-9fcbb3d68e48",
-  "fa-id" : "5dbc079b-bd20-4e1c-8f2b-718a95c1297c"
+  "product-id" : "d962f0e9-45fd-446a-8812-0358a663cbf4",
+  "fa-id" : "6fe01c30-9158-4cfa-901c-a2034029b9fc"
 }, {
   "sample-id" : "W_FAO06719_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 13.08.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "nein", "Deutschland", "nein", null, null ],
-  "product-id" : "97abef21-6b4a-44c0-a269-e53e589b6ac6",
-  "fa-id" : "566b76ac-1b10-481f-ac6f-bbc5adecba2d"
+  "product-id" : "ca406db7-0f4a-4760-b834-59f2b1acc1a0",
+  "fa-id" : "ea55ca1c-3c1e-4c37-9ad1-d0eb2d057395"
 }, {
   "sample-id" : "W_FAO06720_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 08.2018",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "Österreich", "nein", null, null ],
-  "product-id" : "c6e11bc9-81c6-493d-9437-c7a2d141c1c1",
-  "fa-id" : "2f994343-5322-4e6f-8686-60ce14c20eff"
+  "product-id" : "fec0f659-797c-4aaa-909d-298287e31770",
+  "fa-id" : "48836f2d-c6da-439c-a22c-e72dc59f2428"
 }, {
   "sample-id" : "W_FAO06721_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 07.2018",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "43d37c3d-28e4-4a1b-a3f6-5a4be15e3b9a",
-  "fa-id" : "8a36fa9a-2c26-4391-b332-d3c4a2dfb519"
+  "product-id" : "f069f2d9-0dcb-44d4-8735-70ab97104ca6",
+  "fa-id" : "ca69be91-2d78-4356-bd53-4195664bff87"
 }, {
   "sample-id" : "W_FAO06722_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 10.2018",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "Deutschland", "nein", null, null ],
-  "product-id" : "4f120cbc-03ef-4ff0-a916-dd055b0a567d",
-  "fa-id" : "02df837f-bb8f-4c73-bb80-4eec9476a476"
+  "product-id" : "45752dd1-1d4e-4863-b809-ec87886a1340",
+  "fa-id" : "f0295635-93eb-4713-88f8-b92103d5019f"
 }, {
   "sample-id" : "W_FAO06723_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 20.09.18",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Deutschland", "nein", "aus geschälter Saat", null ],
-  "product-id" : "e59f3c5e-9eaf-4cd3-bc53-bf8f178740c2",
-  "fa-id" : "cb10dcc5-1f79-4a50-a1b5-85d2fa05341b"
+  "product-id" : "c2a70d5f-7989-495d-b51f-c6923465baba",
+  "fa-id" : "ae6f1b1d-38ae-4522-bd58-4b198cece082"
 }, {
   "sample-id" : "W_FAO06724_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 07.10.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "nein", "Deutschland", "nein", null, null ],
-  "product-id" : "4761dbfd-833d-4a24-9cae-a7ced633e171",
-  "fa-id" : "a3528e5c-8353-490f-aaa8-ed49d0826685"
+  "product-id" : "73d9b5aa-77fe-481f-8221-1261f2429833",
+  "fa-id" : "2563c39b-fe16-4b54-ad69-31c51facc39d"
 }, {
   "sample-id" : "W_FAO06725_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 20.09.18",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "aa352803-73ff-4aa1-aed2-eb717ce43c90",
-  "fa-id" : "81f99972-6cec-4e40-aca3-e05b381480bf"
+  "product-id" : "3b6160b6-a301-42b2-a11c-a1f2f6aefd5f",
+  "fa-id" : "011c6035-b7d2-486a-bb85-c5b4a63dc2f3"
 }, {
   "sample-id" : "W_FAO06726_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 08.09.18",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "f0a6fb39-49fd-4148-b46e-da8ba47ac0b6",
-  "fa-id" : "79a84a53-a71a-4441-a417-1db539cb6fe9"
+  "product-id" : "e4cb8f01-c987-40f8-acc7-d43fe235fa17",
+  "fa-id" : "88689caa-25a9-43c0-b0f9-69fa3260bfae"
 }, {
   "sample-id" : "W_FAO06727_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 20.08.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-003 ", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "9a79be77-2b47-46c1-8c4f-8a06aefb6d80",
-  "fa-id" : "5afc3724-c206-4848-bfd4-fc4aba6938cc"
+  "product-id" : "60050fd1-76f2-4b9a-9916-2c89c1bf1a52",
+  "fa-id" : "8dafec87-385a-428c-bd6e-292be2a3b320"
 }, {
   "sample-id" : "W_FAO06728_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 10.2018",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", null, "nein", null, null ],
-  "product-id" : "b0d06606-c0f9-4f9c-ae8d-a76787d9ff4d",
-  "fa-id" : "df36f7a3-6e5f-4739-9587-5520aa4c9bca"
+  "product-id" : "400ee920-1cd5-45bf-be92-22d2566400e4",
+  "fa-id" : "4120a85a-d171-4575-a656-17e620eba817"
 }, {
   "sample-id" : "W_FAO06729_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 11.08.18",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", null, "nein", null, null ],
-  "product-id" : "b532c386-b270-4a55-8e7c-c58c92ae8b05",
-  "fa-id" : "95ee8503-f7dd-41e5-93a4-f1ca5b9f8a90"
+  "product-id" : "03e29b16-e55c-4a06-b2b1-74fa25124d19",
+  "fa-id" : "952011d8-2b44-4689-b6f8-f194e19b33e2"
 }, {
   "sample-id" : "W_FAO06730_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 04.09.18",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", null, "nein", null, null ],
-  "product-id" : "b1d3698f-d6de-406a-b70d-d41baa96d6ef",
-  "fa-id" : "51e19631-eba1-4e34-b9f4-8193fb245bb4"
+  "product-id" : "de1245c7-aee6-4c11-a6fe-92c8cd79bc29",
+  "fa-id" : "398de84b-0974-4716-994b-1467900ed2a1"
 }, {
   "sample-id" : "W_FAO06731_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 28.09.2018",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", null, "nein", null, null ],
-  "product-id" : "46cd7e0b-65ee-44b1-b296-7eb3f13701e1",
-  "fa-id" : "32ac9f2d-62be-4927-815d-066b06406b37"
+  "product-id" : "5e3cb33b-ecce-4fb9-aff8-7dd8b816ede8",
+  "fa-id" : "eb28a28b-d8e9-49c2-be5c-1eb8cd46cebc"
 }, {
   "sample-id" : "W_FAO06732_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 11.2017",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Fläming", "nein", null, null ],
-  "product-id" : "f76fad64-7a62-4e3b-8c69-23a429d6f56d",
-  "fa-id" : "c5cc1986-f845-4427-9a65-f618a8b9082c"
+  "product-id" : "0c3b0cec-f52b-48ad-a8df-31482209780e",
+  "fa-id" : "b560cbc9-e845-4d85-bb0f-5318fc07cdf2"
 }, {
   "sample-id" : "W_FAO06733_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 11.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "FR-BIO-01", "Frankreich", "nein", null, null ],
-  "product-id" : "f17113f9-bae7-4963-aa99-667b3f9c35ca",
-  "fa-id" : "ecd15aa1-a3be-451d-afbe-9c395793cebe"
+  "product-id" : "fdddfa6b-3e56-4707-aebb-059a616252ad",
+  "fa-id" : "73e18536-774a-42e2-a1e0-22fe5d0441c9"
 }, {
   "sample-id" : "W_FAO06734_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 01.02.18",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", null, "nein", null, null ],
-  "product-id" : "2dacb51e-0195-4dfe-91a5-9467b7355dc2",
-  "fa-id" : "c96b81a0-d270-42c7-8e66-d54a6b8d85ac"
+  "product-id" : "9edbe83e-0bb5-4dbe-8990-daca9dfdaed3",
+  "fa-id" : "975f4dca-76fc-424c-ab2a-53af26c7a945"
 }, {
   "sample-id" : "W_FAO06735_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis:30.06.2018",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", null, "nein", null, null ],
-  "product-id" : "6497a3f4-1335-48fb-bca2-d601001d5cd6",
-  "fa-id" : "3cd3cea8-93f0-4a21-836d-b35e58adadc7"
+  "product-id" : "b6c4d9a8-615a-46e1-9e63-9cf3b174fcae",
+  "fa-id" : "ab79e20f-d13b-41a0-9e0b-2f11687965cb"
 }, {
   "sample-id" : "W_FAO06736_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 08.02.2019",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "geröstet", "nein", null, "nein", null, null ],
-  "product-id" : "74800f45-bf88-4fcb-81d8-fb25463f3eaa",
-  "fa-id" : "217462a5-a038-4835-a6ad-12d1c0e497d7"
+  "product-id" : "50c71a42-7788-48c3-b305-dd68b8a5e095",
+  "fa-id" : "74bcde1f-9ea1-4417-9b1b-e371a0e8e23c"
 }, {
   "sample-id" : "W_FAO06737_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 02.11.2018",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", null, "nein", null, null ],
-  "product-id" : "3c5ddfda-53eb-4f40-a729-7c05963fae3d",
-  "fa-id" : "c7f07ae2-7b97-4925-a55d-2c3ee93707a2"
+  "product-id" : "f4f4ad6c-7e09-4ed8-a487-5184e1991f1e",
+  "fa-id" : "09317620-fc6e-4dcc-93f4-f32f2637ffda"
 }, {
   "sample-id" : "W_FAO06738_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis:31.10.18",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", null, "nein", null, null ],
-  "product-id" : "b3736b0f-0ba1-400f-a8b1-edb5aebd92c2",
-  "fa-id" : "ec3ae3b2-f250-42f8-bdfe-8f283e319c1c"
+  "product-id" : "7caad5b4-cdb6-4653-bbbb-d4a52651d57a",
+  "fa-id" : "f8786277-acfa-4607-8c23-3dbbd299ea7e"
 }, {
   "sample-id" : "W_FAO06739_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 01.08.18",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", null, "nein", null, null ],
-  "product-id" : "804be590-5e0b-49d6-b161-403c63097ee9",
-  "fa-id" : "9780a239-b972-474a-b419-c40ac341f825"
+  "product-id" : "c26b2d92-ad22-4210-b9c2-a1cf4b456a20",
+  "fa-id" : "2f3102c5-3180-42ee-8047-7856a7a5e63d"
 }, {
   "sample-id" : "W_FAO06740_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 20.05.18",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "geröstet", "nein", null, "nein", null, null ],
-  "product-id" : "5a0beba2-4fbc-4986-b65d-783a3715bce7",
-  "fa-id" : "b53c68fe-a235-4ed8-9529-4263f35219f8"
+  "product-id" : "bd754c34-0038-49ed-807e-bbb64409f21a",
+  "fa-id" : "8d9c8111-1628-4e0e-b8b5-6b0e1479d70b"
 }, {
   "sample-id" : "W_FAO06741_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 21.04.2018",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "Österreich", "g. g. A.", null, null ],
-  "product-id" : "26be0944-5d18-49e2-9865-12b6a747695f",
-  "fa-id" : "79a3c963-b535-4032-8ac5-58e48b6a028b"
+  "product-id" : "2450c49a-4628-4dcf-8a04-c5489c7b4513",
+  "fa-id" : "5f99873b-fa70-4945-8a25-30988c023992"
 }, {
   "sample-id" : "W_FAO06742_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 04.10.2018",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", null, "nein", null, null ],
-  "product-id" : "eb7d4049-c1e8-4d8a-804c-aa4aa1186965",
-  "fa-id" : "8b7fa0b7-6cd6-4d9f-b6d5-76384386f3c5"
+  "product-id" : "b79d3aee-9329-428f-9fd6-8a3fd38c0a84",
+  "fa-id" : "edf1716d-35f3-4cdb-8cae-8533baf5e7fe"
 }, {
   "sample-id" : "W_FAO06743_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 09.2018",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "Österreich", "g. g. A.", null, null ],
-  "product-id" : "faee567d-0c5e-49b7-bd0d-2363c93b1338",
-  "fa-id" : "94171841-cdbf-44ff-a4cb-74017e1ee49c"
+  "product-id" : "2f1ec612-90b5-446d-bb59-26259ad034d3",
+  "fa-id" : "080cfc23-ce80-4a40-8879-62d6a8804219"
 }, {
   "sample-id" : "W_FAO06744_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 20.03.2019",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", null, "nein", null, null ],
-  "product-id" : "efa4c95f-ff88-4887-9bb3-66c13278f164",
-  "fa-id" : "02a18e3c-8250-4c18-8abc-be8cb2bd49a7"
+  "product-id" : "d4c5146c-2c2a-47e5-b4f9-b34654ae712c",
+  "fa-id" : "7913fd2b-fef2-4fd6-bd39-3190c6263f23"
 }, {
   "sample-id" : "W_FAO06745_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 10.05.18",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-003 ", "Nicht-EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "aeeeeabb-694f-46b7-bec5-434db2e61c2c",
-  "fa-id" : "5ab8f95f-871e-46c7-afbb-23926a504e7d"
+  "product-id" : "bc1f1ca3-dd57-4f0c-950d-225f5c6ddea7",
+  "fa-id" : "d91bcdfb-4b8a-47c7-9409-c777ce498514"
 }, {
   "sample-id" : "W_FAO06746_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 15.01.19",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", null, "nein", null, "Feststoffrückstände! " ],
-  "product-id" : "f2629ee5-2143-48ce-a701-dcb9c1ccc6cf",
-  "fa-id" : "d4f987c6-865e-4dba-b21b-759db15b95f0"
+  "product-id" : "c3dbce9a-af82-4144-9b0c-917e0a1c6998",
+  "fa-id" : "0c27dc36-c9a0-4f1a-9b84-7ce62b3e8849"
 }, {
   "sample-id" : "W_FAO06747_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 01.11.18",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", null, "nein", null, null ],
-  "product-id" : "89050ca5-d655-46ee-a567-b8d26c13367b",
-  "fa-id" : "574fb116-cfc3-4bb9-8804-31be1ac9055e"
+  "product-id" : "8393c011-707d-43ee-9a8a-965012151cba",
+  "fa-id" : "3358cb62-59a0-402c-b35a-5b03346c1312"
 }, {
   "sample-id" : "W_FAO06748_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 01.10.18",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", null, "nein", null, null ],
-  "product-id" : "a45e20eb-42b8-4e20-ae5d-2f0fc72531ef",
-  "fa-id" : "5b549c08-03a7-4425-92cd-372a256a7681"
+  "product-id" : "f26f909c-10f7-45c2-8426-12da43dbc744",
+  "fa-id" : "b9a608b2-0155-4d6c-a89c-df6b5d63552b"
 }, {
   "sample-id" : "W_FAO06749_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 15.09.18",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", null, "nein", null, null ],
-  "product-id" : "415c452c-dca8-4908-bd48-597391cff28f",
-  "fa-id" : "a4460343-4911-497a-a016-5d4ef8a1d117"
+  "product-id" : "bcc0a58f-8a7c-467f-b641-2d0e2132203f",
+  "fa-id" : "a29c4d4a-de16-4eb2-8f15-822f5eaf414c"
 }, {
   "sample-id" : "W_FAO06750_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 26.01.19",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", null, "nein", null, null ],
-  "product-id" : "0bd81927-e235-4ac8-9d08-6ac17c432e62",
-  "fa-id" : "1bd47fcb-1daa-48e3-9cdf-7a32bba5c2fd"
+  "product-id" : "354d4e85-fda0-449e-8828-85d89814d020",
+  "fa-id" : "580bc03c-71ac-4943-90c7-befa1bdd19e5"
 }, {
   "sample-id" : "W_FAO06751_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 19.12.17",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "DE-ÖKO-021", "Nicht-EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "b2c01e85-e517-492d-a6a0-184837e09251",
-  "fa-id" : "1aa89d06-7c14-4e2c-b5ef-ee495a54bb8b"
+  "product-id" : "7c372fc4-fcb9-44b4-a148-f53f9a47f2c8",
+  "fa-id" : "07d29208-d54f-4fe3-836e-def36f71fb5b"
 }, {
   "sample-id" : "W_FAO06752_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 04.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "FR-BIO-01", "Rumänien", "nein", null, null ],
-  "product-id" : "db67e67e-f803-4f56-8ad2-264747e119ee",
-  "fa-id" : "bf0e11b7-f7d6-4c6e-b362-ed0d3f343fec"
+  "product-id" : "7ade68d7-8e99-4c44-85ce-d2efa90a48ff",
+  "fa-id" : "a9c003d2-c3ed-4ad7-b7b0-0a33941c0b49"
 }, {
   "sample-id" : "W_FAO06753_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 11.2017",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Fläming", "nein", null, null ],
-  "product-id" : "3647232d-a262-4311-aa36-59926d8aa7ae",
-  "fa-id" : "ed4ca845-30b5-4512-9614-d6cb4fe736d6"
+  "product-id" : "1bf2961e-e926-47a1-86d2-f22d6a6a6b5b",
+  "fa-id" : "cbc844ec-cc51-49c8-b8c2-d66746119623"
 }, {
   "sample-id" : "W_FAO06754_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 17.01.18",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "DE-ÖKO-003 ", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "1ca3191b-5ad9-47aa-8f74-7a9084b01741",
-  "fa-id" : "b9977d9e-664c-49ca-8adf-6d55cf09a6c2"
+  "product-id" : "7212f492-1db0-40da-9c4f-cfc56a8811b1",
+  "fa-id" : "dec0f29f-119f-4dbd-b0a6-ae5c988a1785"
 }, {
   "sample-id" : "W_FAO06755_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 01.05.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", null, "nein", null, null ],
-  "product-id" : "6d676dcb-ad08-4c16-b841-2ffb16d3f26d",
-  "fa-id" : "04944175-e94a-4f17-a362-75d3866efd3c"
+  "product-id" : "2dd2c50a-0c55-44a3-ab80-d31e851167d3",
+  "fa-id" : "774ad597-e257-440c-8dce-4c362b84ddd2"
 }, {
   "sample-id" : "W_FAO06756_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 27.12.17",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", "Spreewald", "nein", null, null ],
-  "product-id" : "dfa143fc-1a58-4175-ad3a-e34e7fb13e6e",
-  "fa-id" : "3b4d7662-d26a-407c-9693-8c38d567fbae"
+  "product-id" : "ae086b30-d6bb-45c9-b4ea-f6a62e9e4c51",
+  "fa-id" : "3a4d61d1-8658-424b-bf17-2f671bce6c33"
 }, {
   "sample-id" : "W_FAO06757_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 01.08.18",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", "Spreewald", "nein", null, null ],
-  "product-id" : "fbc2a6a5-aeeb-48b1-b4a4-5b94ba00a698",
-  "fa-id" : "f285e94b-3cf0-464d-8ca8-271b02b36820"
+  "product-id" : "4ce3231d-26e8-48e6-80ad-79b98c87c294",
+  "fa-id" : "4558a49e-3d9a-4686-8fb7-847c12af437f"
 }, {
   "sample-id" : "W_FAO06758_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 01.19",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", null, "nein", null, null ],
-  "product-id" : "dabf14c4-c9ad-4083-9fe4-47ef1cd413fc",
-  "fa-id" : "84e3cbeb-385d-4aad-b826-7f8745708235"
+  "product-id" : "33961342-cbce-4c85-91ef-4b1bff98e2d5",
+  "fa-id" : "aa506898-8a93-4995-9eec-34bb8eded986"
 }, {
   "sample-id" : "W_FAO06759_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 16.01.19",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", null, "nein", null, null ],
-  "product-id" : "a543ed70-d591-4702-ae6c-f86306da3925",
-  "fa-id" : "dcd6f286-ce2f-46bb-a1b2-097aa09628bf"
+  "product-id" : "3d1b64ee-2cb7-41ef-b076-7cc981fb0660",
+  "fa-id" : "ce3a4d16-a859-4efb-91e0-f8393b0d684a"
 }, {
   "sample-id" : "W_FAO06760_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 06.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Fläming", "nein", null, null ],
-  "product-id" : "def0f8a2-ae59-452f-9d0d-1613dcf2b0bb",
-  "fa-id" : "d4e93b1a-eeeb-44ca-93f3-70797e338947"
+  "product-id" : "89490783-f2ac-4306-b3e9-528d9e754c57",
+  "fa-id" : "46793263-153b-4848-8500-cca33474cc05"
 }, {
   "sample-id" : "W_FAO06761_17P",
   "dateOfSampleDrawing" : "2017-10-16T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 07.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Fläming", "nein", null, null ],
-  "product-id" : "9f9c42df-cb8d-4806-9973-1f575ed62503",
-  "fa-id" : "19f75582-d6d4-42f2-8fc8-62a1bb47d148"
+  "product-id" : "cfc9bd9d-ec9d-47c3-8319-cae167e6d4f4",
+  "fa-id" : "b53fd78b-d159-4f4d-aa0d-17d2fe9a169d"
 }, {
   "sample-id" : "W_FAO06767_17P",
   "dateOfSampleDrawing" : "2017-10-26T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 08.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "FR-BIO-01", "Frankreich", "nein", null, null ],
-  "product-id" : "34dabd16-7c54-4cce-bcbf-2db064cbf716",
-  "fa-id" : "f21475cf-3f84-4259-bda9-5d7a95070278"
+  "product-id" : "549d416a-cdc0-40a9-a058-94347b941565",
+  "fa-id" : "354a3162-df62-426d-bcc3-3eedffd5b4cc"
 }, {
   "sample-id" : "W_FAO06768_17P",
   "dateOfSampleDrawing" : "2017-10-26T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 08.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-006", "Nicht-EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "75bf53d2-b47d-47e4-b749-eee14aee247d",
-  "fa-id" : "a0540ce1-838c-427c-8092-865d20e20948"
+  "product-id" : "bde4b4b7-f27e-49eb-87a7-9fadbc912f81",
+  "fa-id" : "c9ccf9bb-fb1e-41ad-b65a-bbf4a2b8d18b"
 }, {
   "sample-id" : "W_FAO06769_17P",
   "dateOfSampleDrawing" : "2017-11-01T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis 20.04.2019",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "874d226a-cf10-4512-8cc5-22365a222dbc",
-  "fa-id" : "a6c2321d-aebb-49a2-a862-d158b1c7fa21"
+  "product-id" : "ddf5ba67-c07d-401c-b5ab-951b1bd4edec",
+  "fa-id" : "eb44dcaa-a9ff-44df-8b6e-a831e4a9df10"
 }, {
   "sample-id" : "W_FAO06770_17P",
   "dateOfSampleDrawing" : "2017-11-01T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis 23.10.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "nein", "Deutschland", "nein", null, null ],
-  "product-id" : "6d1e3f21-55c2-4a64-98c7-583eaf7b25b8",
-  "fa-id" : "bd52158c-5a5a-4760-829f-0fb5c135e8e4"
+  "product-id" : "ee337f93-4231-4991-8c11-943ccb5d5150",
+  "fa-id" : "3666b70a-11f6-4789-9c33-12b5b7d78ee5"
 }, {
   "sample-id" : "W_FAO06771_17P",
   "dateOfSampleDrawing" : "2017-11-01T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 13.11.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-039", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "110bba3e-471e-4973-a8b5-b007c00985f9",
-  "fa-id" : "d7021333-0038-4582-8b37-96a9b60a2499"
+  "product-id" : "2ee76a69-152a-4061-a573-fbc20c6d498f",
+  "fa-id" : "5fe31e00-b2af-43f8-9a43-8bb6281b366a"
 }, {
   "sample-id" : "W_FAO06772_17P",
   "dateOfSampleDrawing" : "2017-11-01T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 10.10.18",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Deutschland", "nein", null, null ],
-  "product-id" : "f55852b8-3f20-41d6-929f-3b4179e64dc3",
-  "fa-id" : "f18fd318-dae3-4b1a-ba2f-ccb97a4b35ec"
+  "product-id" : "6b91aed4-cb89-4127-9726-949fbffdb8f6",
+  "fa-id" : "6eca7278-d6eb-4382-a229-70a3050d3833"
 }, {
   "sample-id" : "W_FAO06773_17P",
   "dateOfSampleDrawing" : "2017-11-01T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 06.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "DE-ÖKO-006", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "4aba1aa3-d534-40f8-8990-879b258c70f8",
-  "fa-id" : "dd5c488f-a7fb-4a49-bb42-1926e13ebd02"
+  "product-id" : "b6cff670-9a6d-4236-8ecd-42adfaa07f5f",
+  "fa-id" : "57fdb266-d1bb-49f5-973f-5c1b44196218"
 }, {
   "sample-id" : "W_FAO06774_17P",
   "dateOfSampleDrawing" : "2017-11-01T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 02.09.18",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Deutschland", "nein", null, null ],
-  "product-id" : "70fff9ee-23e7-40e0-8b7e-e56ed7321b65",
-  "fa-id" : "8ffa0f8e-69c6-4028-90fe-62846511c4c8"
+  "product-id" : "260bf36a-a32e-462a-9041-ae2a94ce4657",
+  "fa-id" : "e0258347-2260-4e3a-b99f-58d5b0e3bad6"
 }, {
   "sample-id" : "W_FAO06775_17P",
   "dateOfSampleDrawing" : "2017-11-01T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 26.10.18",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", null, "nein", null, null ],
-  "product-id" : "16e9dbae-f2e9-43e7-90f7-0003ea405c08",
-  "fa-id" : "7a829bbf-340e-4ab1-83ee-861e2ec617f3"
+  "product-id" : "fbe079f8-252a-449b-9308-4ced07774a9f",
+  "fa-id" : "5fdb575b-f874-49e5-9b76-bf258596f451"
 }, {
   "sample-id" : "W_FAO06776_17P",
   "dateOfSampleDrawing" : "2017-11-01T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 14.09.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-003 ", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "f7e5633e-91cd-461e-b248-30e5d038d741",
-  "fa-id" : "2776fca5-cb96-4272-859a-38709358c26d"
+  "product-id" : "9457c36f-6f33-4b4b-91f7-1cddee8b54a3",
+  "fa-id" : "b7118204-ed0a-429b-b013-daa654d909c1"
 }, {
   "sample-id" : "W_FAO06777_17P",
   "dateOfSampleDrawing" : "2017-11-01T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 22.05.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", null, "nein", null, "mit Vitamin E" ],
-  "product-id" : "497e06d4-fdc7-4977-9a80-65cc47cbebe5",
-  "fa-id" : "95038f65-dd50-4585-bfc9-326a1243a7d6"
+  "product-id" : "85b62dab-cca5-4b58-bab7-8ec8605d5cfe",
+  "fa-id" : "542cc69f-6a90-425e-b60e-42b07b1f9afb"
 }, {
   "sample-id" : "W_FAO06778_17P",
   "dateOfSampleDrawing" : "2017-11-01T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 03.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "DE-ÖKO-006", "Nicht-EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "0899a6fb-ac63-45f5-b9bf-2a8cc33f0215",
-  "fa-id" : "2286c84c-411a-45d4-9a31-88c27e1bb3b0"
+  "product-id" : "b70e99f0-1d46-4b78-8890-a45e14820593",
+  "fa-id" : "8a856ef3-5c22-421e-977d-acb747ba8e71"
 }, {
   "sample-id" : "W_FAO06779_17P",
   "dateOfSampleDrawing" : "2017-11-01T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 28.12.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", null, "nein", null, null ],
-  "product-id" : "96004e0d-4643-47be-acb5-aec6bbd0a09c",
-  "fa-id" : "2c9adee5-f392-4ee4-a913-2b7afc687aad"
+  "product-id" : "cdc4d411-df75-4434-bedc-d48bc2711e08",
+  "fa-id" : "78e74fbc-9996-4a53-bce4-83c82f0d5d4c"
 }, {
   "sample-id" : "W_FAO06780_17P",
   "dateOfSampleDrawing" : "2017-11-01T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 13.01.2019",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", null, "nein", null, null ],
-  "product-id" : "92a6f97f-d042-4a36-8fe9-dbc7cb4d4d89",
-  "fa-id" : "db3b1527-efce-4b11-b534-407995ce6d77"
+  "product-id" : "b417354b-d8d0-49e1-91ac-121931952082",
+  "fa-id" : "6a33b50e-2721-4a64-b48b-e45b62515422"
 }, {
   "sample-id" : "W_FAO06781_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 22.09.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-006", "EU-Landwirtschaft", "nein", "teilgeschälte Saat", null ],
-  "product-id" : "8b5ddeb2-7aea-431b-b23d-1e6e0c9dba86",
-  "fa-id" : "b6c2f12b-4b4b-446b-80da-8723886b963c"
+  "product-id" : "ffa7409a-5d56-43c4-bdc4-0cff72bc78b4",
+  "fa-id" : "99ca65b9-7ac2-4217-a16a-5f676d946213"
 }, {
   "sample-id" : "W_FAO06782_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 23.09.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-006", "Deutschland", "nein", "teilgeschälte Saat", null ],
-  "product-id" : "4081f963-73a2-414d-8207-c7b358a6b971",
-  "fa-id" : "22c93e3f-ccaa-4801-beab-caaa0af7fd87"
+  "product-id" : "4fd019dd-588d-45ad-a61c-c92bcf9d8442",
+  "fa-id" : "b0346c9e-fcce-4b32-9a74-901f4073d6a0"
 }, {
   "sample-id" : "W_FAO06783_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 11.01.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-006", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "40c574c7-8115-4747-9636-d9885e6c0866",
-  "fa-id" : "d505d90f-fe13-4f01-87b5-7d1031980608"
+  "product-id" : "62c16b4c-e4fe-4880-83d2-a63d27a6d62d",
+  "fa-id" : "76fe9aef-9172-403f-bd1c-a982e12c052b"
 }, {
   "sample-id" : "W_FAO06784_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 10.07.2019",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Al-Baraka-Qualität (heißes Klima, sandige Böden)", "nein", "1. Pressung ", null ],
-  "product-id" : "1f8f7810-f379-4c80-aae6-e465de0b6a2c",
-  "fa-id" : "4e1bcecb-5437-4527-ae8c-4b5b34ace4fc"
+  "product-id" : "47535ade-91e0-4170-a865-2257b9501166",
+  "fa-id" : "1828f00c-21b4-4264-9454-dc963926f1f1"
 }, {
   "sample-id" : "W_FAO06785_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 20.07.219",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Palästina", "nein", null, null ],
-  "product-id" : "5b2e7005-ef26-4095-a334-66b22e65a4a9",
-  "fa-id" : "cb7e843c-9b4c-44a1-abce-41b99b016d6a"
+  "product-id" : "6de16bf6-fe2e-49ba-88e7-24a57dd17eb7",
+  "fa-id" : "bcc0a887-b016-48ac-9ba8-da78a82d978c"
 }, {
   "sample-id" : "W_FAO06786_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 11.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "FR-BIO-01", "China", "nein", null, null ],
-  "product-id" : "d600fec8-5a3a-40f0-a649-45710234d124",
-  "fa-id" : "e17d8c30-6e51-4d63-b781-7441c354eea3"
+  "product-id" : "1fb811a2-3671-4ad3-950c-643e2d39c9cb",
+  "fa-id" : "248c4b9e-d698-4449-9953-14ff698aa400"
 }, {
   "sample-id" : "W_FAO06787_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 08.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "FR-BIO-01", "Rumänien", "nein", null, null ],
-  "product-id" : "92c469b0-3292-441a-92a5-40408932f498",
-  "fa-id" : "aab999b8-c010-493c-9a12-13cde47c1189"
+  "product-id" : "3982f23b-3ade-4304-99dc-852d504630ee",
+  "fa-id" : "3a56996b-fe00-4014-b8b8-a585ff050bb4"
 }, {
   "sample-id" : "W_FAO06788_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 30.04.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-034", "Fläming", "nein", "ungefiltert", null ],
-  "product-id" : "96bd66d4-1f83-4f3d-9849-2640f0cc9880",
-  "fa-id" : "75f351bf-92cf-49e5-907d-0f2ea9893e77"
+  "product-id" : "558866f0-6677-4eba-a100-134ec27c563b",
+  "fa-id" : "41b30b88-6e86-4f0a-bf9b-2f61fd7ee480"
 }, {
   "sample-id" : "W_FAO06789_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 03.05.18",
   "application" : "FoodAuthent",
   "comments" : [ "Oxyguard-Verfahren (Luft-, Lichtabschluss, keine Wärmezufuhr), nativ", "nein", "DE-ÖKO-006", "Rumänien", "nein", null, null ],
-  "product-id" : "bb74b936-4a56-450a-a17c-d6e052113bca",
-  "fa-id" : "c693e3de-ae56-434e-84ed-f173b0c5cb69"
+  "product-id" : "f50d9426-51dc-4663-b729-cbec194e9578",
+  "fa-id" : "834b62bb-ea24-4c26-9fc3-bff96ae1b96c"
 }, {
   "sample-id" : "W_FAO06790_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 08.07.2020",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", null, "nein", null, null ],
-  "product-id" : "5970fed3-8eff-48e2-8026-d4ef84171803",
-  "fa-id" : "255b3f0f-d563-419b-81ab-164bfd6469f2"
+  "product-id" : "976d4d42-b89b-4331-ac83-6b4bb85a3495",
+  "fa-id" : "e289f19d-f923-4c4b-9e4b-b86b2fb72461"
 }, {
   "sample-id" : "W_FAO06791_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 11.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "FR-BIO-01", "Burkina Faso ", "nein", null, null ],
-  "product-id" : "3202d0ec-b5e5-40a8-a325-c3ce18a5393d",
-  "fa-id" : "54e64707-7829-427e-acd0-695d8da023a1"
+  "product-id" : "b10c9d88-b832-4324-94b1-3e9743373fb8",
+  "fa-id" : "9be39efd-2bf6-4966-ba92-b3dac3c7937b"
 }, {
   "sample-id" : "W_FAO06792_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 05.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "FR-BIO-01", "Moldawien ", "nein", null, null ],
-  "product-id" : "322da3a5-7096-4b07-af4a-5a176c1fbe70",
-  "fa-id" : "92ad2843-cdaf-4b03-872b-75ed49bfc4ab"
+  "product-id" : "2f409caf-d2fd-4c37-b071-9c84aba7e590",
+  "fa-id" : "2d6557f9-f1af-46dd-89b3-6c482704c41f"
 }, {
   "sample-id" : "W_FAO06793_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 05.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "FR-BIO-01", "Moldawien ", "nein", "1. Pressung ", null ],
-  "product-id" : "a1317600-7469-4c7e-8244-7432db4434c9",
-  "fa-id" : "4a1e42d7-5950-487b-b71f-5f64a781bf1e"
+  "product-id" : "0ad1228e-1b66-49f9-a1b9-6f13aff2b72a",
+  "fa-id" : "e1def86e-426a-4d65-b55c-3c174afa6fd4"
 }, {
   "sample-id" : "W_FAO06794_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 11.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "FR-BIO-01", "Österreich", "nein", null, null ],
-  "product-id" : "db03da7a-b74a-4f15-8fd9-59a72c64d07a",
-  "fa-id" : "1cbc4e77-c98b-476a-bd60-b500a0f10094"
+  "product-id" : "e5982260-8bef-4b78-9947-e8bc2a25eb27",
+  "fa-id" : "79ea49d4-13be-4a1a-8ba5-0a8b238d49db"
 }, {
   "sample-id" : "W_FAO06795_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 30.10.18",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-021", "Brandenburg", "nein", "1. Pressung ", null ],
-  "product-id" : "9706b605-8c3e-4d09-ad79-1c3e257a7566",
-  "fa-id" : "b6f452d9-2f02-49e5-8d4f-c96365c1c982"
+  "product-id" : "f4e788b7-20f4-4814-bde4-106f16c91ceb",
+  "fa-id" : "dfe2e0da-dd06-4f4a-b843-2620955e2b38"
 }, {
   "sample-id" : "W_FAO06796_17P",
   "dateOfSampleDrawing" : "2017-10-25T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 31.08.18",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-006", "Österreich", "nein", null, null ],
-  "product-id" : "e564fcda-776a-4f51-a637-8e7801c6a36b",
-  "fa-id" : "39afe197-d3db-4d62-820d-9f0d2d276873"
+  "product-id" : "539bf0ab-d25a-4af6-84e0-770a38868099",
+  "fa-id" : "b9fd6285-5f2b-44cb-8354-731fb53ae5f8"
 }, {
   "sample-id" : "W_FAO06797_17P",
   "dateOfSampleDrawing" : "2017-10-26T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 09.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "FR-BIO-01", "Frankreich ", "nein", "1. Pressung ", null ],
-  "product-id" : "7913d185-c537-460e-9a9f-c1e6cf80bf79",
-  "fa-id" : "674b82a0-2bf2-4082-b611-8b6483a350ea"
+  "product-id" : "a5daa972-c4b3-4dd7-b519-2f2e0a191138",
+  "fa-id" : "4fd9c6f9-ab6e-4b42-88d4-55cba335ec9c"
 }, {
   "sample-id" : "W_FAO06821_17P",
   "dateOfSampleDrawing" : "2017-11-13T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 03.01.18",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "DE-ÖKO-037", "EU-/Nicht-EU-\nLandwirtschaft", "nein", null, null ],
-  "product-id" : "90d8d2fb-e2fc-495b-b5c6-7ccebbb81653",
-  "fa-id" : "962c6f70-203f-42d5-bf84-25529a3dbc73"
+  "product-id" : "2914b0a4-912c-4370-9a0a-02dfe3bfb7ca",
+  "fa-id" : "fc8bab43-5a8a-478b-92b9-1b0f383482bb"
 }, {
   "sample-id" : "W_FAO06822_17P",
   "dateOfSampleDrawing" : "2017-11-14T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 22.09.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-003 ", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "fe38cf58-1818-46af-ba63-f6d39f61ddfc",
-  "fa-id" : "5c4ca0e8-cacc-4913-bc59-2a4d1952f868"
+  "product-id" : "842c402a-a05d-4b52-bb89-abdf5f1c0127",
+  "fa-id" : "9b1ef1d8-969f-4479-ac7a-fcdee317f1e3"
 }, {
   "sample-id" : "W_FAO06823_17P",
   "dateOfSampleDrawing" : "2017-11-14T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 17.10.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-003 ", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "3c8e4fd1-0762-47af-a659-182eed659a1b",
-  "fa-id" : "658fb826-2a92-403e-ba88-fd2272411d57"
+  "product-id" : "ac60f7c4-137b-4abc-a6ea-3d38de4cc44b",
+  "fa-id" : "9598d2a7-ac2a-4864-a923-23162323fce4"
 }, {
   "sample-id" : "W_FAO06824_17P",
   "dateOfSampleDrawing" : "2017-11-14T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 10.06.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-039", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "65542aef-803b-4596-a3da-ead02ef4003f",
-  "fa-id" : "fcc9db5a-ccd1-4775-9885-6921c88050ed"
+  "product-id" : "79893658-d00a-4896-b700-d1b67afc7748",
+  "fa-id" : "80359cf6-2b1d-4c65-b4a2-33b598d69df6"
 }, {
   "sample-id" : "W_FAO06825_17P",
   "dateOfSampleDrawing" : "2017-11-14T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 08.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "FR-BIO-01", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "f5140344-7bdf-467c-af09-e41958f92776",
-  "fa-id" : "885f8eb8-5bea-4aed-abd4-5fd68e81787e"
+  "product-id" : "3b033374-dac8-46e2-b55c-d6eb37d7efed",
+  "fa-id" : "10d73ca6-4b0b-4d19-b3a4-4681660e2312"
 }, {
   "sample-id" : "W_FAO06826_17P",
   "dateOfSampleDrawing" : "2017-11-14T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 18.04.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-003 ", "EU-Landwirtschaft (Polen, Rumänien)", "nein", null, null ],
-  "product-id" : "9a3e36b9-5ebe-444a-9d13-a6f5f893168c",
-  "fa-id" : "1aa9db38-c5ec-42c1-8998-7d56331f4b76"
+  "product-id" : "947d3702-6f9b-443c-9667-e7359ea62fb3",
+  "fa-id" : "68ca1dec-7026-4a5e-a466-5dfdc143dacc"
 }, {
   "sample-id" : "W_FAO06961_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 12.09.18",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "ef59404b-5a28-4af9-abe0-7fbf74d3e4fd",
-  "fa-id" : "c8283770-3849-4cc3-ae60-ff62a93cdcb1"
+  "product-id" : "b2a688bb-a2fb-4a9a-bbdb-1b884031b277",
+  "fa-id" : "c4d4436a-dc68-4d0e-81c0-927ec24a01df"
 }, {
   "sample-id" : "W_FAO06962_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis:04.12.18",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "abc806e7-6d13-43b6-9124-5837fd4191c5",
-  "fa-id" : "80aa0e77-52e0-4102-a6c8-ca9c8298bec8"
+  "product-id" : "be92e962-13b7-4547-9311-55691ce281ed",
+  "fa-id" : "22b94c21-c09c-4fe4-a727-255a5c38dbc5"
 }, {
   "sample-id" : "W_FAO06963_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 22.12.18 ",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "e325c707-0818-4370-b606-f13ea33687e8",
-  "fa-id" : "8190c7e3-cbef-47ab-88f4-8ce4871bdd9e"
+  "product-id" : "8286b62b-1579-4131-8484-449cef372e05",
+  "fa-id" : "0e4bd14c-6c23-4657-90a0-f99caa1f258f"
 }, {
   "sample-id" : "W_FAO06964_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis:28.12.18",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "71c1aba3-2339-4bb7-b0b5-988d6acfd458",
-  "fa-id" : "cbd088a9-0094-49df-b089-c9167ad634a6"
+  "product-id" : "161cde84-4c29-4f4f-9f9c-5fac6d7d8d08",
+  "fa-id" : "4836c4bd-0778-45f2-9a2e-0633c47a46dc"
 }, {
   "sample-id" : "W_FAO06965_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 15.06.2019",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "5c543f02-2138-484e-8fb1-489b6ba952ab",
-  "fa-id" : "95c89235-6577-4da2-a1dd-e24acfdecc7f"
+  "product-id" : "19309335-dbb7-4f8b-968c-cc3d99a779d4",
+  "fa-id" : "9b92df5d-c08d-4082-8c4a-f6828ae68cb8"
 }, {
   "sample-id" : "W_FAO06966_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 04.06.2019",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "3d50b863-d097-47ae-a63a-3688cffea1d1",
-  "fa-id" : "45eb5325-d383-46f7-91d0-d91a15451f27"
+  "product-id" : "b8d8f362-cfe7-4ec7-9dba-6ea07d0d370a",
+  "fa-id" : "98a8974b-08e3-4bc0-8e22-59c8e3f517db"
 }, {
   "sample-id" : "W_FAO06967_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 27.12.18",
   "application" : "FoodAuthent",
   "comments" : [ "raffiniert", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "f3a2074e-59d9-4824-96dc-ba8075aef482",
-  "fa-id" : "02fdce75-2b97-4115-afca-3eec0b91b6fa"
+  "product-id" : "135213b3-5038-490e-99d0-20d4fca09234",
+  "fa-id" : "02d35566-6d26-4ffc-afff-4416a5bf50a1"
 }, {
   "sample-id" : "W_FAO06968_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 05.2019",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "c8f308d7-4561-414a-9c27-da1b7b6939eb",
-  "fa-id" : "e17322ff-f412-4280-8094-369a1edd4431"
+  "product-id" : "c751e946-548e-40dd-9e7a-07965d9f52ac",
+  "fa-id" : "c960e91a-3833-48e2-8e33-f25ddfe2e08a"
 }, {
   "sample-id" : "W_FAO06969_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 18.10.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", "Österreich", "g. g. A.", null, null ],
-  "product-id" : "a53f81c8-3b71-49ac-922a-bcb86d9236ee",
-  "fa-id" : "e31b7e8b-6cd0-4589-a321-4b26031bff73"
+  "product-id" : "36e3cceb-6c6f-49fd-a2c3-1e985a28fbc3",
+  "fa-id" : "0bf4cd4c-288d-431d-94f6-5fc6400386d4"
 }, {
   "sample-id" : "W_FAO06970_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 07.11.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", null, "nein", null, null ],
-  "product-id" : "46481295-48a7-42ff-9dc4-ed98e0fd2842",
-  "fa-id" : "980c9bcd-7009-4621-9823-be48d78c5e99"
+  "product-id" : "c61067f2-64f4-4b63-b5c1-3654cb3f3258",
+  "fa-id" : "272fccc6-191b-4fb9-8d8a-63c84ebc8f9b"
 }, {
   "sample-id" : "W_FAO06971_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 30.12.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "geröstet", "DE-ÖKO-021", "Brandenburg", "nein", "1. Pressung ", null ],
-  "product-id" : "3e81bc01-c32b-45fe-8d38-488855d9d29a",
-  "fa-id" : "d55087de-b643-4212-8d76-8aff93fd33e7"
+  "product-id" : "27cab8eb-07e1-4d2d-95d1-b4cce06bd6e3",
+  "fa-id" : "01ebe31e-de8c-480d-bc0a-4060b72359ed"
 }, {
   "sample-id" : "W_FAO06972_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 12.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "FR-BIO-01", "Ungarn ", "nein", null, null ],
-  "product-id" : "7e4ac3c6-908d-4c33-953c-908a3a6d7508",
-  "fa-id" : "30e422cb-8b8b-439b-9ae9-0d17cae532d3"
+  "product-id" : "1774cb35-b5e2-4a5a-ac05-0b337fdaaa4c",
+  "fa-id" : "d975e34d-05eb-415f-98ed-aedfbad45b89"
 }, {
   "sample-id" : "W_FAO06973_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 29.11.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-006", "Österreich", "nein", null, null ],
-  "product-id" : "6c3ab266-d86c-4086-bf89-e512da34a890",
-  "fa-id" : "406c5b9a-20af-4261-8868-0567232e48a2"
+  "product-id" : "e4c5741f-d3df-43ed-a5fd-8c7ff7bd6f97",
+  "fa-id" : "26e222da-3c41-4e7d-8271-b905b10cb341"
 }, {
   "sample-id" : "W_FAO06974_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 30.12.18",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "geröstet", "DE-ÖKO-021", "Brandenburg", "nein", "1. Pressung ", null ],
-  "product-id" : "0420e4c8-0366-479f-a042-c3188f7ff985",
-  "fa-id" : "e59f173c-584b-4f3b-aad5-316edcb94aae"
+  "product-id" : "ba485497-c5d0-4bb4-886d-331e9799da31",
+  "fa-id" : "aca5809f-8f54-46c6-811a-d0d88bc3db84"
 }, {
   "sample-id" : "W_FAO06975_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 16.11.18",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-006", "Österreich", "nein", null, null ],
-  "product-id" : "30f2151a-d479-4e7e-acca-dcfe9400d5bd",
-  "fa-id" : "4a984905-b1da-4c40-84f3-cc3f1646fc5b"
+  "product-id" : "e7593cdc-dddf-4108-ab00-1898b385a2ab",
+  "fa-id" : "0d7b5bc0-a1e6-4b2e-8897-51a133452ded"
 }, {
   "sample-id" : "W_FAO06976_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 30.08.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-013", "Österreich", "g. g. A.", null, null ],
-  "product-id" : "1da04522-b137-40eb-91d9-9e54c7646b44",
-  "fa-id" : "e1d828b3-3d4d-4f0d-89e6-3b87454561ee"
+  "product-id" : "70605985-bd93-4b8f-af15-dce5d8e09ecd",
+  "fa-id" : "82852198-8c30-4ead-9c21-66bd3b46b54c"
 }, {
   "sample-id" : "W_FAO06977_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 15.12.18",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", null, "nein", "1. Pressung ", null ],
-  "product-id" : "053b7b10-b115-468e-8097-841356a14eb6",
-  "fa-id" : "ec0e9143-6b21-46a3-a7ce-32ff10b6bc35"
+  "product-id" : "a14cf949-9f25-40b4-8bf5-203dce6bcdd7",
+  "fa-id" : "cba2ad0b-0662-4f88-9b79-765716b48233"
 }, {
   "sample-id" : "W_FAO06978_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 19.10.2019",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", null, "nein", null, null ],
-  "product-id" : "9794e655-363a-42c7-97b7-11fd2c9b8739",
-  "fa-id" : "1a02de23-dbc7-42c4-a883-afd7f4875f97"
+  "product-id" : "db05aac0-8de7-4b6f-9ae8-23f66f8b417c",
+  "fa-id" : "ba19adeb-f3e3-4ae8-8dee-32ac8cb091ce"
 }, {
   "sample-id" : "W_FAO06979_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 05.06.19",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", "Österreich", "nein", null, null ],
-  "product-id" : "daed0a08-c1c3-4558-acb3-d4c44615745f",
-  "fa-id" : "6164448f-9621-415e-9d35-cfd9194d0995"
+  "product-id" : "c1f98495-5a50-4040-98d9-c43c6fae7f0e",
+  "fa-id" : "d5afcc35-c86b-48bd-af96-c1a89c4bf0c7"
 }, {
   "sample-id" : "W_FAO06980_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 11.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "DE-ÖKO-006", "Nicht-EU-Landwirtschaft", "nein", "1. Pressung ", "viel heller, Geruch nicht nach Kürbiskernöl (eher Mischung)" ],
-  "product-id" : "978e36c1-82cd-45ac-9920-0de9a7dfee1c",
-  "fa-id" : "6d0f12cd-3b07-474b-b244-de13dfb5ee29"
+  "product-id" : "20b2a457-6b04-45be-98b4-1fb535148b46",
+  "fa-id" : "e19874ec-e075-4723-9fc2-3015cedccf03"
 }, {
   "sample-id" : "W_FAO06981_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 30.04.2019",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "AT-BIO-902", "Österreich", "g. g. A.", null, null ],
-  "product-id" : "50023c34-361c-40da-9b32-5f6307f3213a",
-  "fa-id" : "2f9d316e-4444-4837-89ee-62990efd8f30"
+  "product-id" : "8e2652b4-2cb2-4b87-b61f-8b3e8e53f856",
+  "fa-id" : "63c885b5-2bb4-412c-9d21-4f7baea4a816"
 }, {
   "sample-id" : "W_FAO06982_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 31.03.2019",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-013", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "101fb4a1-d460-4ec4-b2c5-1b97f0cbd1ed",
-  "fa-id" : "f28c8717-3675-4171-829e-6b83a3b0e469"
+  "product-id" : "f50533bd-be57-4d68-948c-bb6323d535e8",
+  "fa-id" : "4d4b56de-889f-41c5-a37e-004fc42f9b51"
 }, {
   "sample-id" : "W_FAO06983_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 04.2019",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "AT-BIO-902", "Österreich", "g. g. A.", null, null ],
-  "product-id" : "2d8e7a02-c486-4508-a5cc-52324f106ad2",
-  "fa-id" : "0a26af9b-a403-4062-90b5-31e754eb7dde"
+  "product-id" : "90df803e-ff5b-4dde-8edc-69619d78dc94",
+  "fa-id" : "596c2cb3-7f0e-4927-8ee2-6f838a5d7d65"
 }, {
   "sample-id" : "W_FAO06984_18P",
   "dateOfSampleDrawing" : "2018-01-08T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 02.2019",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "FR-BIO-01", "Österreich", "nein", null, null ],
-  "product-id" : "5e09b092-a049-4f28-b2d2-5f6a550edfb2",
-  "fa-id" : "5c3bc7d6-7bdb-491a-9943-58d490ec948e"
+  "product-id" : "aa6e7860-d9b6-44fc-abcd-aa67cff6b968",
+  "fa-id" : "a28ba3ad-3498-4d63-bdfb-72b9a48bc07a"
 }, {
   "sample-id" : "W_FAO06985_18P",
   "dateOfSampleDrawing" : "2018-01-09T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 11.09.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "AT-301-BIO", "Österreich", "g. g. A.", "1. Pressung ", null ],
-  "product-id" : "1d3c25d4-c84e-4cf7-b91f-6c66116d1551",
-  "fa-id" : "22e8f490-0e28-403d-97a9-e9e9629f4370"
+  "product-id" : "e6b8aed4-8b5c-4276-be14-5663c54a9292",
+  "fa-id" : "afc72fc8-f0ee-4032-9192-c47f9c88c9f0"
 }, {
   "sample-id" : "W_FAO06986_18P",
   "dateOfSampleDrawing" : "2018-01-09T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 14.08.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", "internationaler Anbau, (hergestellt in Österreich)", "nein", null, null ],
-  "product-id" : "d2cc8d06-cdb4-403f-b64d-0718371ac865",
-  "fa-id" : "565ed4d3-3915-4f5b-b654-25fdeb58f0cd"
+  "product-id" : "b3adb02e-a83e-4373-afb2-3114b018f38e",
+  "fa-id" : "2baba1b4-eaef-448c-9af8-402f3b0970ca"
 }, {
   "sample-id" : "W_FAO06987_18P",
   "dateOfSampleDrawing" : "2018-01-10T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 22.06.2019",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "k.A.", "nein", null, null ],
-  "product-id" : "efe92172-7944-4df9-b80d-3965ff00dc6a",
-  "fa-id" : "c41bf728-b816-485d-a4fa-e91fdb35f4c3"
+  "product-id" : "77ebb46a-af7e-4c8a-8ec7-388ce4932bf2",
+  "fa-id" : "4d1d1bf1-f6ae-4b2d-bb71-ec0c6361912d"
 }, {
   "sample-id" : "W_FAO06988_18P",
   "dateOfSampleDrawing" : "2018-01-10T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 04.2019",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "AT-BIO-902", "Österreich", "g. g. A.", null, null ],
-  "product-id" : "3d7c2783-f7f8-4000-98ba-ffdb465fc958",
-  "fa-id" : "8ec88816-c497-4b1a-b66d-2c70aed13ca2"
+  "product-id" : "d22b0f14-8ee7-47dd-87c6-e05edc1d6fa4",
+  "fa-id" : "94570030-ab1f-4507-a555-09ff08ced01c"
 }, {
   "sample-id" : "W_FAO06989_18P",
   "dateOfSampleDrawing" : "2018-01-10T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 10.08.18",
   "application" : "FoodAuthent",
   "comments" : [ "(Oxyguard-Verfahren: kaltgepresst, ohne Licht, Luftabschluss)", null, "DE-ÖKO-006", "Österreich", "nein", null, "viel heller, Geruch nicht nach Kürbiskernöl (eher Mischung)" ],
-  "product-id" : "5d383547-fafb-46f3-aaf6-5ca6a9a8a923",
-  "fa-id" : "981ebe02-7cb0-4165-a246-7b6a2ebb91c0"
+  "product-id" : "b9c8eba8-c23a-4ca7-b2e1-6f75de020d0f",
+  "fa-id" : "e0c02d20-12a1-4314-9352-4972f1b9380e"
 }, {
   "sample-id" : "W_FAO06990_18P",
   "dateOfSampleDrawing" : "2018-01-10T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 12.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", "Österreich", "g. g. A.", null, null ],
-  "product-id" : "94a6d763-2332-4354-83f7-31fb1fc2530b",
-  "fa-id" : "d4e49bc8-7f9e-4a60-bdb7-f10610c7498f"
+  "product-id" : "077b8c67-e344-44bf-8488-1d01998374f9",
+  "fa-id" : "2c7ee010-b206-4403-96b7-cba5c43c9232"
 }, {
   "sample-id" : "W_FAO06991_18P",
   "dateOfSampleDrawing" : "2018-01-10T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 01.12.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", null, "nein", "1. Pressung ", null ],
-  "product-id" : "583fc133-9364-4a2c-ac61-008811a2d3e7",
-  "fa-id" : "855890d1-bc84-4ced-84ce-f85897edf163"
+  "product-id" : "18730127-8504-4d8c-9e02-68b602d27a82",
+  "fa-id" : "a1a18aeb-d265-48b5-9d6c-291e850f8ff5"
 }, {
   "sample-id" : "W_FAO06992_18P",
   "dateOfSampleDrawing" : "2018-01-10T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 19.10.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", "Österreich", "g. g. A.", null, null ],
-  "product-id" : "27f54668-6506-4e1d-94af-716e0fd48fa1",
-  "fa-id" : "cd078de0-d7ff-4e20-8564-645b59201ca1"
+  "product-id" : "fec2dd44-e3da-4e4d-be03-c67fb19bf7d0",
+  "fa-id" : "5f3a5310-b10f-484f-a274-03596ac8d808"
 }, {
   "sample-id" : "W_FAO06993_18P",
   "dateOfSampleDrawing" : "2018-01-11T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 30.10.18",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "AT-BIO-301", "Österreich", "nein", null, null ],
-  "product-id" : "a6a52389-38a2-4c8b-9deb-b8e7ad52d5eb",
-  "fa-id" : "fe024712-df94-4476-a1a5-a2cc7738c4be"
+  "product-id" : "26bc1d82-21b5-4c08-9f6a-0b7b66b56f91",
+  "fa-id" : "ba3ca5fc-4d18-4979-8e3b-2cf0361081f8"
 }, {
   "sample-id" : "W_FAO06994_18P",
   "dateOfSampleDrawing" : "2018-01-11T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 23.01.2019",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "AT-BIO-402", "Österreich", "g. g. A.", null, null ],
-  "product-id" : "2178c782-fb16-4404-8b2a-27c42de907fa",
-  "fa-id" : "7b3ae69b-dd28-489e-a990-ad5a7b77447e"
+  "product-id" : "d100a975-7374-4f5a-865a-9a144411806c",
+  "fa-id" : "037a49c4-2b2c-43ba-a831-d6d4f5623f79"
 }, {
   "sample-id" : "W_FAO06995_18P",
   "dateOfSampleDrawing" : "2018-01-11T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 06.05.2018",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Österreich", "g. g. A.", null, null ],
-  "product-id" : "467e9afc-e396-4e1e-8da0-e1faa8425a95",
-  "fa-id" : "1917f058-c25a-43fd-b34b-1397297d71c9"
+  "product-id" : "a48f4db2-455f-497c-ac8e-94a4cf3eb2d7",
+  "fa-id" : "64e338d1-5e91-412e-b93e-1a73ea952372"
 }, {
   "sample-id" : "W_FAO06996_18P",
   "dateOfSampleDrawing" : "2018-01-11T00:00",
   "bestBeforeDate" : "Mindestenst haltbar bis Ende: 11.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", "Österreich", "g. g. A.", null, null ],
-  "product-id" : "3826a4f9-6b73-47b0-907f-a7e4a96ae0fc",
-  "fa-id" : "d65500e2-0605-4f31-9938-9b6952de7dda"
+  "product-id" : "e257c718-bb27-4ff1-a3ee-97b0e56b51c1",
+  "fa-id" : "39c893de-34d9-45c3-be06-5d338b337eec"
 }, {
   "sample-id" : "W_FAO06997_18P",
   "dateOfSampleDrawing" : "2018-01-11T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis Ende: 10.2018",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", "Österreich", "g. g. A.", null, null ],
-  "product-id" : "64f06cbb-1a16-4034-9c01-a8d1d58b13f1",
-  "fa-id" : "afbfe970-4c48-48db-b4a6-b5bbdd8d7692"
+  "product-id" : "da2dd706-6011-4921-bfd8-0d0dc7093a17",
+  "fa-id" : "6f0b19c6-f621-4ecc-a762-87462a67c374"
 }, {
   "sample-id" : "W_FAO06998_18P",
   "dateOfSampleDrawing" : "2018-01-11T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 29.11.18",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-006", "Österreich", "nein", null, null ],
-  "product-id" : "d7692ad2-9579-44b4-814d-18f12cd94b57",
-  "fa-id" : "2a3c218c-9129-427a-9bf4-d301e2e62a22"
+  "product-id" : "fcbb72e5-f19a-48db-8556-fc39f29c97d2",
+  "fa-id" : "7b4d0abf-ce2f-407e-a22f-c7250bc45cf7"
 }, {
   "sample-id" : "W_FAO06999_18P",
   "dateOfSampleDrawing" : "2018-01-11T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 30.04.2019",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-013", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "dde18ca9-70f4-4b3f-ac66-36759d4fd584",
-  "fa-id" : "9872b956-f86a-47d2-b432-40337a3bc627"
+  "product-id" : "6d549e9b-94a3-484c-aa62-cd2dca3b6f6c",
+  "fa-id" : "b84eafcd-55ea-4c51-80eb-555ed2fea2a3"
 }, {
   "sample-id" : "W_FAO07000_18P",
   "dateOfSampleDrawing" : "2018-01-11T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 22.06.2018",
   "application" : "FoodAuthent",
   "comments" : [ "(Oxyguard-Verfahren: kaltgepresst, ohne Licht, Luftabschluss)", null, "DE-ÖKO-006", "Österreich", "nein", null, "viel heller, Geruch nicht nach Kürbiskernöl (eher Mischung)" ],
-  "product-id" : "7bcadd10-7465-433e-b8eb-4bc3f70064cb",
-  "fa-id" : "09d87482-f4a4-4baa-a8d2-e26c971b4fb1"
+  "product-id" : "59d62d8d-3e00-4835-a019-b6dc5d5987e0",
+  "fa-id" : "f4fd3224-ea71-437e-8114-9c234161281c"
 }, {
   "sample-id" : "W_FAO07001_18P",
   "dateOfSampleDrawing" : "2018-01-15T00:00",
   "bestBeforeDate" : "Mindestens haltbar bis: 27.10.2018",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "nein", "DE-ÖKO-034", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "9764d26f-c921-4e75-8be4-7eb7d34f3d20",
-  "fa-id" : "fcd0102d-fda6-4121-9708-174e18943432"
+  "product-id" : "d8f8b951-a166-4d6e-85ba-3461d72f4ad8",
+  "fa-id" : "09187438-06b7-48d7-b662-6da2187f3ae6"
 }, {
   "sample-id" : "W_FAO07180_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "2019-04-24",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Polen", "nein", "1. Pressung ", null ],
-  "product-id" : "628a3c76-6a89-4ff5-bf5c-ed50a160c627",
-  "fa-id" : "d007d71c-0bf0-4495-aa60-ddde20b7c115"
+  "product-id" : "6addc440-5dca-4a7d-8eba-a32f2a05c044",
+  "fa-id" : "d00db1bb-50a3-4b21-9cd9-f4e5dee44695"
 }, {
   "sample-id" : "W_FAO07181_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "2019-02-20",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Slowenien", "nein", null, null ],
-  "product-id" : "02a0995b-a663-4dc3-ac4f-83644c569ac0",
-  "fa-id" : "42ff6def-45a7-4536-b0b3-050860771e52"
+  "product-id" : "bbb61aec-51b5-4d99-87a5-feceb2af2c4f",
+  "fa-id" : "2dbfa6c4-4fc8-492f-a7ad-22e9a8e5a9b1"
 }, {
   "sample-id" : "W_FAO07182_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "2019-09-11",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Tschechien", "nein", null, null ],
-  "product-id" : "a5b870af-6de9-4800-a7d9-e87a26ff5d30",
-  "fa-id" : "b58e379d-d3ea-49b3-a6c5-845f12a51a93"
+  "product-id" : "773158fd-dcc5-4b27-8d0b-b0a56f04f03a",
+  "fa-id" : "c4ffcdda-5065-45f7-a127-15243b5f2f27"
 }, {
   "sample-id" : "W_FAO07183_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "2019-07-09",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Tschechien", "nein", null, null ],
-  "product-id" : "4d975a9d-267a-466c-8862-e7e3a3925acf",
-  "fa-id" : "8adb9a70-61a8-4d1f-aca1-d1b526cd1f21"
+  "product-id" : "bd861d9a-badb-423c-8499-93e02019af12",
+  "fa-id" : "ff2464e2-37d3-4d11-94dc-5040c45fbc78"
 }, {
   "sample-id" : "W_FAO07184_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "2019-06-12",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Tschechien", "nein", null, null ],
-  "product-id" : "daa26940-83c6-48b2-b3ed-4d331d78da25",
-  "fa-id" : "0537f83c-86b3-4488-a87a-b1cc4d107bb7"
+  "product-id" : "e5ef2ba3-55b7-4fc2-b9eb-91b8c33e1112",
+  "fa-id" : "d1a2467e-eefb-40c3-a9de-f3d6b9915359"
 }, {
   "sample-id" : "W_FAO07185_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "2019-05-22",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Polen", "nein", null, null ],
-  "product-id" : "3fd683f5-ef1a-4987-abf0-d4bdab94435f",
-  "fa-id" : "9a702497-633d-4dbe-ac8a-f39c7e5e2453"
+  "product-id" : "304f3172-f8ba-4191-b181-5fc8f359df1a",
+  "fa-id" : "2c292dc6-aa53-484a-9818-6fd4abc3df6b"
 }, {
   "sample-id" : "W_FAO07186_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "2019-04-05",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Österreich", "nein", null, null ],
-  "product-id" : "166a7a24-130e-4574-ab91-3af215d8745f",
-  "fa-id" : "70239960-3163-423d-b39f-f9993ea9b8d9"
+  "product-id" : "2d140539-9c89-4086-a012-0f0aca8a9439",
+  "fa-id" : "62c24938-8c48-4f64-a44b-2f05e7f7c3b6"
 }, {
   "sample-id" : "W_FAO07187_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "2019-06-21",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Tschechien", "nein", null, null ],
-  "product-id" : "1ed9d3e7-e8ff-4048-bce9-fc25f65a1f4b",
-  "fa-id" : "78eff0cb-79b8-40e8-bd50-58fd6fd279e2"
+  "product-id" : "7a72deb5-a07b-4ebb-bfd5-b83e583c3770",
+  "fa-id" : "c9acfec9-0d6a-4c51-b1ff-de512984113f"
 }, {
   "sample-id" : "W_FAO07188_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "?.2019",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Polen", "nein", null, null ],
-  "product-id" : "25b57e3f-fff7-4947-b729-e3eca80dc249",
-  "fa-id" : "b25f7833-6ed7-4823-832f-58dda0aaca8f"
+  "product-id" : "1ddc32ee-ba69-4f71-9be2-bbb4edafa186",
+  "fa-id" : "0a769835-08a9-45fe-955d-5f9243aa02e8"
 }, {
   "sample-id" : "W_FAO07189_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "2019-03-08",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Polen", "nein", null, null ],
-  "product-id" : "a190c334-faac-4745-a4a6-777431540cb8",
-  "fa-id" : "3cefda1d-b159-45da-a65f-ac5ed318f855"
+  "product-id" : "43af78e9-b1f3-4570-bb7e-7b211cab3529",
+  "fa-id" : "e5de95ad-a78c-44ec-9bad-9d3d7ddb44bd"
 }, {
   "sample-id" : "W_FAO07190_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "2019-09-19",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Polen", "nein", null, null ],
-  "product-id" : "ac29a87d-0e3f-4f67-b811-b56840b82c0f",
-  "fa-id" : "dad7ff23-0d37-4fe7-b81f-b8ded4e359a0"
+  "product-id" : "5310a7bb-d361-4d79-9e6e-de7d7f2c9cc8",
+  "fa-id" : "eb89ebd0-a66b-4487-ae26-ce988da79c62"
 }, {
   "sample-id" : "W_FAO07191_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "2019-09-01",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Österreich", "nein", null, null ],
-  "product-id" : "835c9d1f-3642-4052-8c7b-af45641873e8",
-  "fa-id" : "9af1bb14-e210-4cf6-be97-cf9ae9a3e92f"
+  "product-id" : "dc1adaa5-1576-4192-8acd-06583c27fa34",
+  "fa-id" : "93cf1cdd-0d3f-4d74-b41b-06a3cdcb6371"
 }, {
   "sample-id" : "W_FAO07192_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "2019-05-01",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Österreich", "nein", null, null ],
-  "product-id" : "da0e740c-fde6-4fe7-b7db-111226ddae47",
-  "fa-id" : "a1bd2773-6acc-443a-a60f-be203d706429"
+  "product-id" : "f4ea8507-84c5-41a8-9534-1110b3f9784c",
+  "fa-id" : "ffe8bd2f-5181-4394-a707-92b1f7b7ed68"
 }, {
   "sample-id" : "W_FAO07193_18P",
   "dateOfSampleDrawing" : "2018-09-03T00:00",
   "bestBeforeDate" : "2019-04-12",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "nein", "Österreich", "nein", null, null ],
-  "product-id" : "df7e67cd-c6b3-47a3-ad7f-060687423fdb",
-  "fa-id" : "fc507c71-9ce4-433f-b8d5-2bc2a243551b"
+  "product-id" : "2873ff0f-2f16-4a66-bceb-198faba7e2bb",
+  "fa-id" : "dc325a05-e503-446b-8eee-84833dfabdf3"
 }, {
   "sample-id" : "W_FAO07197_18P",
   "dateOfSampleDrawing" : "2018-10-08T00:00",
   "bestBeforeDate" : "2019-12-18",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "IT Bio 007", "Italien ", "nein", null, null ],
-  "product-id" : "22514ef1-8b4e-4fc1-b871-b76df90be17d",
-  "fa-id" : "7b6b3251-267e-4434-a571-c523fb0c1c14"
+  "product-id" : "1c0ed203-4911-470b-82d5-bf02cf1c438a",
+  "fa-id" : "af3d039a-a3c0-4836-a241-2b51059f7e20"
 }, {
   "sample-id" : "W_FAO07198_18P",
   "dateOfSampleDrawing" : "2018-10-08T00:00",
   "bestBeforeDate" : "24 M",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "nein", "Bio", "Italien (laut Internet Ungarn)", "nein", null, null ],
-  "product-id" : "467a76d4-af71-449f-9c61-d62b7d66d0d4",
-  "fa-id" : "3c1ddb69-027f-4265-8b1a-0bd37c9f563b"
+  "product-id" : "d3e5a995-df0a-4ffe-867f-898125431128",
+  "fa-id" : "eb3345cb-becd-4046-85bc-c4febc883ac9"
 }, {
   "sample-id" : "W_FAO07315_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "bestBeforeDate" : "2018-05-28",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "nein", "China ", "nein", null, "Huangshan city, Anhui province" ],
-  "product-id" : "20c84e60-06c3-4267-877b-859b4223a31d",
-  "fa-id" : "74be89cf-6aac-4a2b-ba84-4f52d2e3bfd9"
+  "product-id" : "b5290736-0d46-4611-8043-4006b3c4b8cb",
+  "fa-id" : "10304ec8-8619-422b-b8e9-4d61beb8f13b"
 }, {
   "sample-id" : "W_FAO07317_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "nein", "China ", "nein", null, "Deyang city, Sichuan province" ],
-  "product-id" : "84f229c9-bc68-4528-8f26-c6f99389af11",
-  "fa-id" : "c53ad12e-56e0-4db5-9074-d90520c796e9"
+  "product-id" : "31bb3530-d076-4051-b0a9-9fb829fd882d",
+  "fa-id" : "32fde554-8307-4871-9c67-3b3e60fe9860"
 }, {
   "sample-id" : "W_FAO07318_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "nein", "China ", "nein", null, "Bengbu city, Anhui province" ],
-  "product-id" : "2250ea4b-f42f-4c80-8490-d44f30449404",
-  "fa-id" : "3300fe7f-cbb4-4a6e-8692-a8f60af6df99"
+  "product-id" : "d33636a7-1eab-41fc-8b2d-55f97e8debc3",
+  "fa-id" : "b2e3e34c-ba5e-4d2d-95d8-407dfa821db2"
 }, {
   "sample-id" : "W_FAO07319_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "nein", "China ", "nein", null, "Yichun city, Jiangxi province" ],
-  "product-id" : "42ab6ba7-ff96-4f23-aeb4-d1aead063680",
-  "fa-id" : "6978d158-26aa-4cb0-a66c-5400bd875617"
+  "product-id" : "3e413a4d-7234-43ad-b13a-f56860ccce7c",
+  "fa-id" : "417c5e80-c04d-4016-bd15-29223697438c"
 }, {
   "sample-id" : "W_FAO07320_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "bestBeforeDate" : "2015-09-18",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "nein", "China ", "nein", null, "Fengcheng city, Jiangxi province" ],
-  "product-id" : "f11e2546-930f-4b9f-9f4b-33b71dcb4c50",
-  "fa-id" : "dd59a049-ff70-45b5-af13-4d3f22d08f7c"
+  "product-id" : "7afc8f78-d365-44be-8249-068b128a1dbe",
+  "fa-id" : "e25abe12-ba41-4dec-b565-82bccdf333bc"
 }, {
   "sample-id" : "W_FAO07321_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "bestBeforeDate" : "2018-05-09",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "nein", "China ", "nein", null, "Yangxian county, Shanxi province" ],
-  "product-id" : "b50f18e2-d210-41aa-9da6-a041d38eb530",
-  "fa-id" : "7cdf71ae-9031-4101-a992-e55d903ee1ab"
+  "product-id" : "230119b8-f1e2-4afc-9ccd-8355bf4c7e2d",
+  "fa-id" : "a0201033-037b-4bd3-9645-55d889fe194c"
 }, {
   "sample-id" : "W_FAO07322_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "nein", "China ", "nein", null, "Hangzhou city, Zhejiang province" ],
-  "product-id" : "efbb26e8-18cc-4caf-a51f-626fd4f186cd",
-  "fa-id" : "9460e13d-a8c8-41d2-8f38-05010d2302cd"
+  "product-id" : "8d5ea539-fab9-4cd4-9a2e-46935052d57d",
+  "fa-id" : "2cde7e7f-de65-47e0-bf6a-e15a2b7f18fc"
 }, {
   "sample-id" : "W_FAO07323_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "nein", "China ", "nein", null, "Kunming city, Yunan province" ],
-  "product-id" : "c3ac6dc8-9bb6-44d6-8952-85746b440cfd",
-  "fa-id" : "118bdb7b-e5ee-4662-998c-710d7509a1f5"
+  "product-id" : "e81a9f70-3b73-4a02-a798-2883eb6ed0a4",
+  "fa-id" : "5386d340-d652-47b5-8f46-fe0f0444474b"
 }, {
   "sample-id" : "W_FAO07326_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "nein", "China ", "nein", null, "Qiandongnan prefecture, Guizhou province" ],
-  "product-id" : "90c83e8d-e52d-46c1-98db-cc0e37dd73d7",
-  "fa-id" : "50ee5265-2b98-4189-976d-390c767dccd7"
+  "product-id" : "5a016cb5-0617-494d-b032-18283fbf5654",
+  "fa-id" : "95a76369-e670-488c-b528-6528d99ded55"
 }, {
   "sample-id" : "W_FAO07327_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "nein", "China ", "nein", null, "Baoji city, Shanxi province" ],
-  "product-id" : "69a18d9e-2fcf-4857-b981-5d4e8c666200",
-  "fa-id" : "c4ac1d85-9e7e-41e9-a952-b0e32cc835fc"
+  "product-id" : "c3b7d182-b743-40f9-b503-d09018c90c63",
+  "fa-id" : "e8506ff3-b548-4ce0-b8c5-17a8d1c46d7f"
 }, {
   "sample-id" : "W_FAO07328_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "nein", "China ", "nein", null, "Luan city, Anhui province" ],
-  "product-id" : "e3e2d8e1-b39b-406b-a107-0952f8f4db97",
-  "fa-id" : "506634c5-0a7e-46b2-ae17-72efbcf6488d"
+  "product-id" : "71644f41-c0bb-4fd2-8357-1f776605fa3d",
+  "fa-id" : "a1b787a6-90c8-4e3f-bf69-31565cdf4a3b"
 }, {
   "sample-id" : "W_FAO07329_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "bestBeforeDate" : "2018-09-28",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "nein", "China ", "nein", null, "Deyang city, Sichuan province" ],
-  "product-id" : "6bd7ab4b-e5ad-4dce-979a-45df7817e671",
-  "fa-id" : "5d061bef-fe71-4dbc-9095-5f1a9d9ef068"
+  "product-id" : "bc084936-bf29-47ff-997f-21bf5b16516d",
+  "fa-id" : "23045a55-f184-45b9-aea3-513cf885cb43"
 }, {
   "sample-id" : "W_FAO07330_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "bestBeforeDate" : "08 2019",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "nein", "Frankreich ", "nein", null, null ],
-  "product-id" : "aa9b8aa6-2cc6-445e-814d-384700552df2",
-  "fa-id" : "9325d8f7-16e6-4199-912a-9b4fb3358c6c"
+  "product-id" : "eb139ffd-22a2-4f01-9a68-625dd7684c97",
+  "fa-id" : "faa0d7e5-95c7-46c1-84d3-bf12ba9718ce"
 }, {
   "sample-id" : "W_FAO07331_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "bestBeforeDate" : "2019-10-01",
   "application" : "FoodAuthent",
   "comments" : [ "k.A. ", "k.A. ", "ES-Eco-001-AN Agriculture UE", "Spanien", "nein", "Vierge ", null ],
-  "product-id" : "cf307d3e-9fbe-420e-b703-9f89a73c61ac",
-  "fa-id" : "3e7cc422-44ca-49b1-a21e-3993c3c96add"
+  "product-id" : "9f6c42b6-b84c-4714-b955-c2d0864e7fd9",
+  "fa-id" : "c4f4de82-55cc-4daa-b3e4-de3a5baf2bf4"
 }, {
   "sample-id" : "W_FAO07332_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "bestBeforeDate" : "2019-09-24",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "k.A. ", "nein", "Deutschland", "nein", "naturtrüb", null ],
-  "product-id" : "d304938a-e4c2-4224-9bfd-eeb8d8d51dfc",
-  "fa-id" : "f3c0e0c8-e97d-40bc-8777-17c5e052763c"
+  "product-id" : "92cdc5cd-a6b9-45f7-ba96-b906fd7ec599",
+  "fa-id" : "776455c5-c06b-4a5f-9112-1fdbc7d3e4b3"
 }, {
   "sample-id" : "W_FAO07333_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "k.A. ", "nein", "China ", "nein", null, "Chengdu,Sichuan,China" ],
-  "product-id" : "ce6d64ea-134d-43f5-97ce-75274834b5f1",
-  "fa-id" : "22897f25-c3a7-4555-88fe-0b36aa28d4b0"
+  "product-id" : "cebca253-c46d-47a6-b153-3dad65f424ea",
+  "fa-id" : "aff98389-496d-4e79-9d6a-541a003484e5"
 }, {
   "sample-id" : "W_FAO07335_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "k.A. ", "nein", "China ", "nein", null, "Mianyang,Sichuan,China" ],
-  "product-id" : "b7f9ac3b-a7a4-440a-b524-d6c47dac1392",
-  "fa-id" : "49fa6de1-dcd9-4c54-a3e0-92f31d4633af"
+  "product-id" : "34f22d50-a51c-4f82-91ec-e14f45c12b80",
+  "fa-id" : "a4fa9725-2406-4fd5-b3f5-5fcafa522784"
 }, {
   "sample-id" : "W_FAO07336_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "k.A. ", "nein", "China ", "nein", null, "Mianyang,Sichuan,China" ],
-  "product-id" : "68a2c043-8cf5-48ff-b89c-b75bf24e1847",
-  "fa-id" : "fb1bd2c2-0a04-4e58-ad0b-45c80a5bf3bf"
+  "product-id" : "cf380bba-8bf7-4ad6-8450-276427d813c5",
+  "fa-id" : "9fc5e378-404d-4248-9646-94d65a7a069a"
 }, {
   "sample-id" : "W_FAO07337_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "k.A. ", "nein", "China ", "nein", null, "Chongqing,Sichuan,China" ],
-  "product-id" : "da5eec73-a1f4-4b01-afdd-656b113967d1",
-  "fa-id" : "b35e0417-6e24-4582-9c90-e2f80bf94756"
+  "product-id" : "a86f6671-af96-4d03-ab65-7e412e8a6f8e",
+  "fa-id" : "25b434e5-cf8a-40c0-8e84-cf16b35d22e8"
 }, {
   "sample-id" : "W_FAO07338_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "k.A. ", "nein", "China ", "nein", null, "Mianyang,Sichuan,China" ],
-  "product-id" : "5524c359-4b7d-41c6-aa72-28379dd29398",
-  "fa-id" : "7a0eed3a-6bd7-43d5-9400-f7b3bc1fa8af"
+  "product-id" : "fa76a32c-86c4-4887-bb3f-97955cf35536",
+  "fa-id" : "f8b497ce-8940-4cf8-8277-c1c5edb29ffb"
 }, {
   "sample-id" : "W_FAO07339_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "k.A. ", "nein", "China ", "nein", null, "Neimenggu,China" ],
-  "product-id" : "af0beba6-7a03-48a9-9af6-9cfe232f7c7c",
-  "fa-id" : "941dc734-da13-4ebc-a9c2-906d9e54911b"
+  "product-id" : "62d19a4b-abdd-469e-bd70-9c020123b126",
+  "fa-id" : "5b5ca48c-8e60-4c31-b147-5f30a7634a83"
 }, {
   "sample-id" : "W_FAO07340_18P",
   "dateOfSampleDrawing" : "2018-11-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "k.A. ", "nein", "China ", "nein", null, "Guangdong,China" ],
-  "product-id" : "f96762c8-47f7-434d-b76b-7876422543f6",
-  "fa-id" : "5e40c38a-649d-49f3-850c-4ba98e26dd46"
+  "product-id" : "24ebba53-389e-4868-81d1-fce76ff97b69",
+  "fa-id" : "0d6e96a7-145b-4d48-b99c-1b1f3d8c6910"
 }, {
   "sample-id" : "W_FAO07467_19P",
   "dateOfSampleDrawing" : "2019-01-04T00:00",
   "bestBeforeDate" : "2019-07-23",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "k.A. ", "nein", "Schweiz", "nein", null, null ],
-  "product-id" : "f5301c69-2892-447a-a096-72ebca865f68",
-  "fa-id" : "e545c28d-0523-4213-967d-7bb984e3667e"
+  "product-id" : "a60d2749-7621-4c9f-a119-c7d1ecbdb45c",
+  "fa-id" : "1e52e0f7-0892-4567-a5e6-e29d0637f4ce"
 }, {
   "sample-id" : "W_FAO07468_19P",
   "dateOfSampleDrawing" : "2019-01-04T00:00",
   "bestBeforeDate" : "2019-03-16",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "k.A. ", "nein", "Schweiz", "nein", null, null ],
-  "product-id" : "c1a08527-cfc4-4c0b-905a-90a459f880c6",
-  "fa-id" : "8834acd2-a430-41a9-be71-9746f363a7e7"
+  "product-id" : "75f6e1b0-bb75-4374-a7d9-2b88ac0b6173",
+  "fa-id" : "dcb63202-a375-4f92-99d4-803b2e7d1064"
 }, {
   "sample-id" : "W_FAO07469_19P",
   "dateOfSampleDrawing" : "2019-01-04T00:00",
   "bestBeforeDate" : "07.2019",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "k.A. ", "nein", "Schweiz", "nein", null, null ],
-  "product-id" : "29c72279-4bc5-4a1f-873a-4e4215b1f9fb",
-  "fa-id" : "4477c0fa-65da-4c47-a6ea-10b24b50e583"
+  "product-id" : "ffe95c86-430e-4026-a5a3-c26ad9caa721",
+  "fa-id" : "fa0eb3de-b6cb-4678-85b1-1736309bbc2f"
 }, {
   "sample-id" : "W_FAO07500_19P",
   "dateOfSampleDrawing" : "2019-01-21T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "k.A. ", "nein", "Russland", "nein", null, "Krasnodar Gebiet" ],
-  "product-id" : "75043900-a00c-4684-a110-0cf26f08f19a",
-  "fa-id" : "d43c007a-c84f-4f02-98b1-ed744a008f89"
+  "product-id" : "27129bee-5ff5-46aa-9ac5-fe3998ff92d5",
+  "fa-id" : "ad15a422-45c0-4724-8d83-6af3a7a4543e"
 }, {
   "sample-id" : "W_FAO07501_19P",
   "dateOfSampleDrawing" : "2019-01-21T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "k.A. ", "nein", "Russland", "nein", null, "Krasnodar Gebiet" ],
-  "product-id" : "e3af7e60-2aab-4d2a-a713-a87e362ff164",
-  "fa-id" : "6c4edf45-6ae2-4627-8e81-22be69cbc89d"
+  "product-id" : "c99140b5-40ef-4448-8464-33b8f657dd21",
+  "fa-id" : "015640fb-8ffc-4c50-880b-962893a9ce63"
 }, {
   "sample-id" : "W_FAO07502_19P",
   "dateOfSampleDrawing" : "2019-01-21T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "k.A. ", "nein", "Russland", "nein", null, "Moskauer Gebiet" ],
-  "product-id" : "c1e1c002-fd61-4dc8-b401-0fefa2a03547",
-  "fa-id" : "7b50054b-8146-402a-8c7d-0654b3b47b3a"
+  "product-id" : "f47a19ef-4c9e-4dd3-af79-32837b605379",
+  "fa-id" : "2f58614c-f4d5-48b4-82ca-9141d29b18c7"
 }, {
   "sample-id" : "W_FAO07503_19P",
   "dateOfSampleDrawing" : "2019-01-21T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "k.A. ", "nein", "Russland", "nein", null, "Moskauer Gebiet" ],
-  "product-id" : "c40ed730-4684-4750-8e84-2370941de90c",
-  "fa-id" : "c98ddc41-c28b-41b7-be33-91826bf0817a"
+  "product-id" : "716a4908-b021-4cce-b144-243e2c9b16e8",
+  "fa-id" : "7fb2a65d-184b-4b57-9116-c2a5e0ddfb98"
 }, {
   "sample-id" : "W_FAO07504_19P",
   "dateOfSampleDrawing" : "2019-01-21T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "k.A. ", "nein", "Russland", "nein", null, "Stavropol Gebiet" ],
-  "product-id" : "3bdacbb6-d5dd-4b2d-80d9-abbc749cb043",
-  "fa-id" : "25be67b7-0a70-4f68-9e2d-28f468213c3f"
+  "product-id" : "584f9f36-991d-4a2f-b67c-55dd22382e91",
+  "fa-id" : "0293c1fd-2e95-4350-9cb5-7a2c825384da"
 }, {
   "sample-id" : "W_FAO07505_19P",
   "dateOfSampleDrawing" : "2019-01-21T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "k.A. ", "nein", "Russland", "nein", null, "Krasnodar Gebiet" ],
-  "product-id" : "536f0015-278e-4aa0-8fdb-9b1050bbb987",
-  "fa-id" : "8477a558-223b-4dbd-99a8-3f792bc56725"
+  "product-id" : "1a2f685f-663e-4a54-9927-99c004290edd",
+  "fa-id" : "fa5e84f0-4e7d-4aa3-87b7-774605a5e17d"
 }, {
   "sample-id" : "W_FAO07506_19P",
   "dateOfSampleDrawing" : "2019-01-21T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "k.A. ", "nein", "Russland", "nein", null, "Altai Gebiet" ],
-  "product-id" : "92912754-4a71-4f74-95da-0bf59495c37a",
-  "fa-id" : "939a8553-d68f-4f24-b6d8-5e15d918cae9"
+  "product-id" : "d51292e8-44b6-4f1e-a000-24d793fc94bd",
+  "fa-id" : "0d1bebdb-4ff7-4283-9c5f-9652af6fc8c1"
 }, {
   "sample-id" : "W_FAO07529_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2019-10-08T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "100% rein", null, "nein", "Österreich", "nein", null, null ],
-  "product-id" : "bd710118-d31c-4377-9efd-8eba2dd3b786",
-  "fa-id" : "915657b6-2460-4a73-bd60-394ee97a793d"
+  "product-id" : "66dda1db-0f06-4899-ba1e-87dbb3fd6fe6",
+  "fa-id" : "d9595696-225d-425b-b413-c0c916d146ea"
 }, {
   "sample-id" : "W_FAO07530_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2019-10-08T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "100% rein", null, "nein", "Österreich", "nein", null, null ],
-  "product-id" : "c8171f2c-030b-4441-82d1-5180cd6cf82d",
-  "fa-id" : "0adc6127-04ed-46dc-83d7-1808f3a55544"
+  "product-id" : "9dd2f8b2-a638-4bcd-abb6-0a0a2f29637d",
+  "fa-id" : "0c188420-b55b-420f-93e5-e8e96b9761c0"
 }, {
   "sample-id" : "W_FAO07531_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2019-10-08T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "100% rein", null, "nein", "Österreich", "nein", null, null ],
-  "product-id" : "a87de605-8a51-4fa3-942a-edf309d26ef4",
-  "fa-id" : "32859c97-ed9f-4585-97a9-5eaf277a4a0d"
+  "product-id" : "e0896df9-05b4-49e6-82b3-6896bd06b73a",
+  "fa-id" : "719bda07-ac11-4851-98e8-cffd28b574af"
 }, {
   "sample-id" : "W_FAO07532_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2019-11-30T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-021", "Deutschland", "ja", "1. Pressung ", null ],
-  "product-id" : "7f55207c-b12b-43eb-9f7a-d95d27040751",
-  "fa-id" : "83fc2f4f-959e-4b0f-9332-506e75485e81"
+  "product-id" : "91de1e2c-a153-4381-ba45-db4532e85c57",
+  "fa-id" : "38c40267-33c4-4012-b007-7fb660c26ae4"
 }, {
   "sample-id" : "W_FAO07533_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2019-11-30T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-021", "Deutschland", "ja", "1. Pressung ", null ],
-  "product-id" : "3523fa02-fc1a-44bd-988e-6cbd834ab1e7",
-  "fa-id" : "8ed0906d-e43d-4ed4-a769-25af1c8dee50"
+  "product-id" : "0d11d20e-edcd-4d7b-8ec4-b8d0a3a19f9a",
+  "fa-id" : "b7dc98de-1733-4880-9973-7454c1280cb6"
 }, {
   "sample-id" : "W_FAO07534_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2019-09-10T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, null, "nein", "Abfüllung: Österrerich", "nein", null, null ],
-  "product-id" : "5c2d4ccf-5176-495f-a173-7bb92c00a58b",
-  "fa-id" : "4549e777-92db-456c-9070-c34dabeb17b6"
+  "product-id" : "66c69860-abc0-4112-b2e6-2b1da57d661a",
+  "fa-id" : "0ad46216-83ab-4dc5-9434-5674fcbd8e41"
 }, {
   "sample-id" : "W_FAO07535_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2019-10-26T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, null, "nein", "Großbritannien", "nein", null, null ],
-  "product-id" : "e6d4e8cf-66d2-4f8d-9f60-8226e6b20cb2",
-  "fa-id" : "41e4f6ce-521d-4763-bc3e-21a414a56e5f"
+  "product-id" : "e57a6d91-a331-4157-bb48-1328f484c333",
+  "fa-id" : "ed759cde-95f9-4738-97c1-5f8cab93a563"
 }, {
   "sample-id" : "W_FAO07536_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2019-03-07T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kaltgepresst ", null, "DE-ÖKO-006", "Österrreich/Deutschland", "ja", null, null ],
-  "product-id" : "853ccafc-de90-427c-80f7-fbeabac3c880",
-  "fa-id" : "149158de-2d8f-4713-a60a-8c475fcf362f"
+  "product-id" : "a6a8e4f4-17f2-42f3-8bb8-fc94a8b41e96",
+  "fa-id" : "ff9bac31-c6bc-4cc9-8e07-e883e2b551e2"
 }, {
   "sample-id" : "W_FAO07537_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2019-12-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kaltgepresst ", "geröstet", "DE-ÖKO-006", "Deutschland", "ja", null, null ],
-  "product-id" : "72891e68-b64d-4109-ac08-6cb14d67c240",
-  "fa-id" : "67c55030-bd61-4c12-8055-42efc34fbbbd"
+  "product-id" : "ea65b723-e688-4663-8d0b-44fd2f45e4ae",
+  "fa-id" : "9a0693a5-0417-4933-9b40-ccbfd407d74a"
 }, {
   "sample-id" : "W_FAO07538_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2019-12-17T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", "Österrreich/Deutschland", "ja", null, null ],
-  "product-id" : "2d6ea11e-5d2d-46e8-96ab-6cf67b8d096b",
-  "fa-id" : "1befc00e-cac1-4799-93d7-8b553acdf597"
+  "product-id" : "b7e6e1aa-2955-4e8c-be5d-cec69a6b29fc",
+  "fa-id" : "0ee056d2-2e2a-450f-acf8-b3f0a2c5eaac"
 }, {
   "sample-id" : "W_FAO07539_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2019-12-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, null, "nein", "Deutschland", "nein", null, null ],
-  "product-id" : "5f272989-8b6d-44ac-803d-84c12048f1f5",
-  "fa-id" : "8bba9f61-e4a6-454d-995c-e126aa70fa64"
+  "product-id" : "19e94ab3-327d-4c4a-9110-fb9a3d5de2bc",
+  "fa-id" : "41dde123-b84a-4f9d-918d-c598f67cfb44"
 }, {
   "sample-id" : "W_FAO07540_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2020-02-05T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, null, "nein", "Deutschland", "g. g. A.", null, "Steirisches Kürbiskernöl" ],
-  "product-id" : "971df5fd-e022-430c-b5c0-c691cd8e7e5d",
-  "fa-id" : "9ea04a92-272a-465e-b156-e72e2830a029"
+  "product-id" : "db568b64-255e-4ec0-9d11-338fb710bd89",
+  "fa-id" : "2af9bfa1-58e9-4c26-a868-049d89381b35"
 }, {
   "sample-id" : "W_FAO07541_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2020-03-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "AT-BIO-902", "Deutschland", "g. g. A.", null, "Steirisches Kürbiskernöl" ],
-  "product-id" : "b594b280-84ff-4713-87bd-f87eecdc55dc",
-  "fa-id" : "71a5e1b7-2cea-47b8-8858-daf8f908f1fb"
+  "product-id" : "b3f6d01a-e227-44eb-9add-4f1a8e28e9c8",
+  "fa-id" : "061608e7-96bc-4452-b6b9-c438ed2754f2"
 }, {
   "sample-id" : "W_FAO07542_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2019-05-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, null, "nein", "Österreich", "g. g. A.", null, "Steirisches Kürbiskernöl" ],
-  "product-id" : "5187de75-1adb-4389-9660-7ae070c49682",
-  "fa-id" : "c8b09f81-d678-4479-bcff-cebe71489607"
+  "product-id" : "27b97e59-3666-48df-a01e-01ca3905c342",
+  "fa-id" : "50db9eb3-f57f-4f3d-ac8e-63d592e8d95d"
 }, {
   "sample-id" : "W_FAO07543_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2019-09-28T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kaltgepresst ", "geröstet", "nein", "Österreich", "g. g. A.", null, "Steirisches Kürbiskernöl" ],
-  "product-id" : "84a306c8-c1ad-4647-83c0-6f31725e9725",
-  "fa-id" : "652e3ddf-2906-4702-9218-4ded6776f32f"
+  "product-id" : "887f7d89-ac58-4dd2-88c6-d7f824eac41d",
+  "fa-id" : "05a326b1-2b3d-41e2-a827-6c449bcb418e"
 }, {
   "sample-id" : "W_FAO07544_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2020-06-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", "Österreich", "g. g. A.", null, "Steirisches Kürbiskernöl" ],
-  "product-id" : "3ff8c959-7e68-47c9-9014-91260148c090",
-  "fa-id" : "a8b5b663-4e37-4e95-846e-1a7181b20a2e"
+  "product-id" : "7a6bd152-c007-4b7e-89d2-55434b02a4c5",
+  "fa-id" : "14795b93-455c-4985-bb65-3ef26fc68a0d"
 }, {
   "sample-id" : "W_FAO07545_19P",
   "dateOfSampleDrawing" : "2019-02-13T00:00",
   "bestBeforeDate" : "2020-06-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", "Österreich", "g. g. A.", null, "Steirisches Kürbiskernöl" ],
-  "product-id" : "20f7e905-66d6-4ccc-bb70-98d27fa30885",
-  "fa-id" : "1522a955-834d-4908-83e8-3ef8f73535bf"
+  "product-id" : "850e30f7-b5e3-415c-b289-96d19e7d9397",
+  "fa-id" : "15d953bd-0a50-42dd-a63f-374e54d58782"
 }, {
   "sample-id" : "W_FAO07546_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-12-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "DE-ÖKO-006", "Nicht-EU-Landwirtschaft", "nein", "1. Pressung ", null ],
-  "product-id" : "d16ce023-3f03-4d04-a3b1-345f5380fea4",
-  "fa-id" : "c50f6e14-9fdb-424d-ac52-3f5edcf26a0e"
+  "product-id" : "093d760a-84a3-4a7b-8c03-820611d960ce",
+  "fa-id" : "fddeda79-da61-49c3-a220-36abf2277953"
 }, {
   "sample-id" : "W_FAO07547_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-09-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "DE-ÖKO-006", "Nicht-EU-Landwirtschaft", "nein", "1. Pressung ", null ],
-  "product-id" : "3a517bf8-a217-44d6-9260-a034f33933a6",
-  "fa-id" : "9b958e24-368f-4dd0-ae48-5786f78ea593"
+  "product-id" : "cbaf8de9-0a8b-40b4-9c32-319eb42d040e",
+  "fa-id" : "7f6bd6a6-94c9-4b2d-b935-8c189c9e660b"
 }, {
   "sample-id" : "W_FAO07548_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-12-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", "Deutschland", "nein", "1. Pressung ", null ],
-  "product-id" : "24e929f3-1886-404a-9916-ec194cf9bf5b",
-  "fa-id" : "6407af22-aee5-4dbb-a8b3-f645e8c50172"
+  "product-id" : "22b862e7-6be0-48a9-b4a1-8fd7a8bc7977",
+  "fa-id" : "a2573ac4-1039-4f65-8524-e94958e91041"
 }, {
   "sample-id" : "W_FAO07549_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2020-02-15T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", "Deutschland", "nein", "1. Pressung ", null ],
-  "product-id" : "25fb90d5-66f9-492c-a1b2-f4fbb2c83f5f",
-  "fa-id" : "a2b1ff38-d13d-4560-a914-793ce5f130e4"
+  "product-id" : "f2d07b04-444c-4699-a53c-c643ea6d302b",
+  "fa-id" : "bbe1e102-0587-4b26-840a-63858a710156"
 }, {
   "sample-id" : "W_FAO07550_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2020-01-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, null, null, "Österreich", "g. g. A.", null, null ],
-  "product-id" : "112ea561-44e5-4ebc-8d4d-0e358ce78e58",
-  "fa-id" : "9cc995f0-3ded-4ede-a6b2-d1909f996b14"
+  "product-id" : "ae6d4c1e-966e-40ba-8e56-25e098e70c0a",
+  "fa-id" : "84dd14e0-42b0-4d5f-a628-33b37d33b896"
 }, {
   "sample-id" : "W_FAO07551_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2020-05-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "AT-BIO-902", "Österreich", null, null, null ],
-  "product-id" : "f9034a63-7551-486d-b0e2-11574a90b5c5",
-  "fa-id" : "619afb2c-967c-4512-bbd3-993b373cea57"
+  "product-id" : "e1593591-426d-4b90-b13c-07ebf07514a4",
+  "fa-id" : "a807b23f-dae4-4598-8915-31bf6155f504"
 }, {
   "sample-id" : "W_FAO07552_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2020-04-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-006", "Österreich", null, null, null ],
-  "product-id" : "f0d5cd5e-8142-4ca8-a81a-0bb1020639b9",
-  "fa-id" : "544b216e-b342-44a3-b2fd-b32f9c42c2c0"
+  "product-id" : "9436b0b5-7d3d-4ba4-99e2-640f04ac6fc1",
+  "fa-id" : "2965bc38-f1d6-4660-896b-ddfc273ea08b"
 }, {
   "sample-id" : "W_FAO07553_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-03-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "FR-BIO-01", "Österreich", null, null, null ],
-  "product-id" : "9f85cea7-2e41-4d22-8984-621eaefa0a7b",
-  "fa-id" : "d195bcb7-d04b-4726-9b35-05eb8d274b72"
+  "product-id" : "f97d3fc0-5c90-4822-893c-8fb5ace498f2",
+  "fa-id" : "ddfb3666-2208-4787-a237-d72509c520f8"
 }, {
   "sample-id" : "W_FAO07554_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-10-30T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-021", "Brandenburg", "nein", "1. Pressung ", null ],
-  "product-id" : "a66ece85-9ef1-4c8c-8f41-f82f10a6293e",
-  "fa-id" : "7409a229-c4a5-450c-90a3-c932baad1e8b"
+  "product-id" : "0c5978e7-f036-4064-b6d9-7ad2d63f3004",
+  "fa-id" : "898dc6d9-94a6-45c9-ad3a-f5289566cb0e"
 }, {
   "sample-id" : "W_FAO07555_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-08-14T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "DE-ÖKO-021", "Brandenburg", "nein", "1. Pressung ", null ],
-  "product-id" : "bb293b61-2a7b-4bd2-a0d6-c3ffa612a345",
-  "fa-id" : "7358f2f2-ed1c-49cd-a392-f71d9053924f"
+  "product-id" : "250929a2-250e-47f7-a853-176832fe8ee8",
+  "fa-id" : "aebb9938-d6bf-413d-9deb-3c2f6978cc5e"
 }, {
   "sample-id" : "W_FAO07556_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-12-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "100% rein", "nein", "nein", "Österreich", "nein", null, null ],
-  "product-id" : "9832e4de-f85f-484e-a7ff-3c8229c05527",
-  "fa-id" : "5250ba25-3f1c-4d3a-8f9b-03642154490e"
+  "product-id" : "209c9944-661a-47ed-8447-99a88fa10694",
+  "fa-id" : "88a5d04b-f4ba-4bd2-9bc6-5f5db0caefb7"
 }, {
   "sample-id" : "W_FAO07557_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2020-05-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", "Österreich", "g. g. A.", null, "Steirisches Kürbiskernöl" ],
-  "product-id" : "22c90bee-40ea-4689-b984-e495978dc750",
-  "fa-id" : "89b9234e-39e0-42d2-b707-11cbbca9a77f"
+  "product-id" : "834d8f7c-13eb-44e7-bcb4-e927c11b5057",
+  "fa-id" : "bc46b941-b14b-40e6-92bb-38a6f9eef2dd"
 }, {
   "sample-id" : "W_FAO07558_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2020-06-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "nein", "Österreich", "g. g. A.", null, "Steirisches Kürbiskernöl" ],
-  "product-id" : "90a17efa-a262-460c-98a0-298f5e2de817",
-  "fa-id" : "b7b4379b-5dd8-4452-9850-76bc86c250cf"
+  "product-id" : "a37aa669-394c-4cbf-acb1-99d681191694",
+  "fa-id" : "d65fd7be-2434-4ea4-9784-9ea6b7521d07"
 }, {
   "sample-id" : "W_FAO07559_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-11-28T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, null, null, "Österreich", "g. g. A.", null, "Steirisches Kürbiskernöl" ],
-  "product-id" : "2aa1f394-6b3d-42be-b13f-5ef7084d7634",
-  "fa-id" : "a218563e-0e49-497a-befd-2cd4f2d7d660"
+  "product-id" : "82b96fbc-9d61-4925-9e9e-e1ae7c467e1e",
+  "fa-id" : "4d1b0c90-6b70-42cc-b09a-6662b21b023e"
 }, {
   "sample-id" : "W_FAO07560_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-03-20T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, null, null, "Österreich", "g. g. A.", null, "Steirisches Kürbiskernöl" ],
-  "product-id" : "203553b0-16b1-4de6-b14e-bebde29dbe7b",
-  "fa-id" : "3dd2b8cd-ad5d-4a26-bb83-5fea8000dd14"
+  "product-id" : "bb4f47ad-5eab-4341-8372-776ac2aaf5ee",
+  "fa-id" : "2d73b4fc-883a-4737-a5e9-b7f2067b69f0"
 }, {
   "sample-id" : "W_FAO07561_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-09-27T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "nativ", "geröstet", "DE-ÖKO-034", "EU-Landwirtschaft", "nein", null, null ],
-  "product-id" : "990ab0c8-e84f-49ef-bb6b-b2054202e6e1",
-  "fa-id" : "743c2fdf-691b-4fbd-862f-0c016b9c119d"
+  "product-id" : "64df949f-acb0-40c8-ac79-31fb8ff4353a",
+  "fa-id" : "d02a1fc5-5704-4a31-8471-987bbcf2f539"
 }, {
   "sample-id" : "W_FAO07562_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2020-01-30T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "AT-BIO-301", "Österreich", "nein", null, "Steirisches Kürbiskernöl" ],
-  "product-id" : "7863cfd6-772a-4c09-8912-6cab5d767196",
-  "fa-id" : "72d59b0c-e5ab-4b5e-9c33-94c74a784454"
+  "product-id" : "c5b80a5b-6386-4b11-a286-a123761d7439",
+  "fa-id" : "1f642179-eb5f-4d5e-bad4-45eb3258f16c"
 }, {
   "sample-id" : "W_FAO07563_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-10-09T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "nein", "Großbritannien", "nein", null, null ],
-  "product-id" : "699e5846-f410-4424-b992-db944782dada",
-  "fa-id" : "a396aa76-4705-4333-8780-c06e1eee0b3f"
+  "product-id" : "33411102-127f-4d7d-a4ed-e25dbaabe539",
+  "fa-id" : "d21a0302-8c1f-49c5-9956-8b6903f949ac"
 }, {
   "sample-id" : "W_FAO07564_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-10-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Niederlande", "g. g. A.", null, "Steirisches Kürbiskernöl" ],
-  "product-id" : "78aa984e-23ed-4433-a1a2-07f56d8f85d2",
-  "fa-id" : "3680138c-b1dd-4784-a3f1-317c72b98807"
+  "product-id" : "2ac2e855-ea2e-4bc7-aa4f-cb9fdd4df478",
+  "fa-id" : "9544d832-28a8-4c24-91dd-afb99a959162"
 }, {
   "sample-id" : "W_FAO07565_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2020-05-30T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "geröstet", "AT-BIO-902", "Österreich", "g. g. A.", null, "Steirisches Kürbiskernöl" ],
-  "product-id" : "f68ec612-f51c-4ca5-9efb-3577dcbfdfb6",
-  "fa-id" : "75662f73-a709-46d4-8a47-2771e9fb19b1"
+  "product-id" : "767ef7d9-f578-44fe-942a-343fa83a5047",
+  "fa-id" : "0fd5d2ab-5444-44eb-8ec7-994b132c7430"
 }, {
   "sample-id" : "W_FAO07566_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-10-23T00:00",
   "application" : "FoodAuthent",
   "comments" : [ "kalt gepresst", "nein", "nein", "Spreewald", "nein", null, null ],
-  "product-id" : "ae7b22b1-083e-46b6-94a3-530b0a963f08",
-  "fa-id" : "7f0b18ad-e1da-4dd7-bcbb-5f80e2e0b368"
+  "product-id" : "aa1c133c-4076-4a53-95fc-b05260e429fb",
+  "fa-id" : "fc53cb25-38a8-4e79-9764-cde1f00e8224"
 }, {
   "sample-id" : "W_FAO07567_19P",
   "dateOfSampleDrawing" : "2019-02-15T00:00",
   "bestBeforeDate" : "2019-11-06T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", "AT-BIO-402", "Österreich", "nein", null, null ],
-  "product-id" : "ed77146e-bbaf-4eac-9553-4ccb8e04af78",
-  "fa-id" : "cc9fa968-3ba3-408d-b9f9-c858e8b4b51f"
+  "product-id" : "3abc83cd-c1fd-46b2-9ea1-ff5526fe0675",
+  "fa-id" : "a34afee3-7467-4356-9160-e5befc9be860"
 }, {
   "sample-id" : "W_FAO07568_19P",
   "dateOfSampleDrawing" : "2019-02-18T00:00",
   "bestBeforeDate" : "2020-01-15T00:00",
   "comments" : [ null, "nein", "AT-BIO-402", null, null, null, null ],
-  "product-id" : "666c92df-d48c-4a1c-9916-ff23603cd585",
-  "fa-id" : "ed251057-2976-44cf-b876-77d540c84954"
+  "product-id" : "47f6ed2f-eee4-46d5-9e47-45224bf27194",
+  "fa-id" : "81bcfe3a-2f6a-4e18-94c5-3e0c7b9e8e74"
 }, {
   "sample-id" : "W_FAO07569_19P",
   "dateOfSampleDrawing" : "2019-02-18T00:00",
   "bestBeforeDate" : "2019-10-01T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", null, "Österreich", "g. g. A.", null, null ],
-  "product-id" : "524d88d3-41e8-488a-9d44-06d7e6002a31",
-  "fa-id" : "fdb8f8ed-7dd9-4738-813b-3230748f4ac6"
+  "product-id" : "979ac44e-47a5-4a72-9e88-944e4db72893",
+  "fa-id" : "195b582b-7a6b-4ccc-be99-1aa11bd9e63e"
 }, {
   "sample-id" : "W_FAO07610_19P",
   "dateOfSampleDrawing" : "2019-06-13T00:00",
   "bestBeforeDate" : "2018-11-12T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", null, "Russland", null, null, null ],
-  "product-id" : "5cb8b86a-59ad-4efe-b5ca-6d53d59aa44f",
-  "fa-id" : "4d652339-ac62-4ee1-9dac-54db83b35ba9"
+  "product-id" : "d381020d-bb98-47b0-b2b2-fc71986cbde8",
+  "fa-id" : "3619f5d4-f31c-425a-86e5-b93afcd9c2a8"
 }, {
   "sample-id" : "W_FAO07611_19P",
   "dateOfSampleDrawing" : "2019-06-13T00:00",
   "bestBeforeDate" : "2019-03-15T00:00",
   "application" : "FoodAuthent",
   "comments" : [ null, "nein", null, "Russland", null, null, null ],
-  "product-id" : "23be0411-1023-44bf-8043-0f1ab7806299",
-  "fa-id" : "df7f796f-0e75-4e19-ba3b-d191392c0a22"
+  "product-id" : "f82b725d-df69-4772-86c3-2bb42666f290",
+  "fa-id" : "bd324061-e7cd-4a19-bedc-7ee80eb3b3d8"
 } ]
