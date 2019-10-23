@@ -1,71 +1,71 @@
 [ {
-  "name" : "erdnuss",
-  "fingerprint-ids" : [ "f53c2702-5087-4e39-a3d8-8008f50e29e6", "7e5f9712-58f5-4e6e-a73d-1565305ab9b0", "bc96aaaf-12c6-43c9-b28c-f97146a2da0f", "02075124-3d48-4a0b-8556-c01734fdfcd7", "dcb2ca42-4c67-4200-9f09-d7d290fddf4c", "9660bebb-9a0a-4d00-9ce4-2b08c002d768" ],
-  "fa-id" : "f09fc33e-7f68-462b-9b66-ceab7c47ad15",
-  "class-label" : "erdnuss"
+  "name" : "bfr_erdnuss",
+  "fingerprint-ids" : [ "2c6e056d-de87-43af-b422-c08b42cdc45c", "2aec09dd-4531-4ec3-8332-5bd31f664440", "f89c36b2-5be0-4627-ad43-70256e114dbf", "603fa781-c851-4045-8e04-f2b742584a0c", "b52453fe-a2b1-44bf-9b4e-4125a76a983a", "814d3454-e639-4b2a-a38a-f7e8143711b2" ],
+  "fa-id" : "04aa78a1-fab2-4271-9a3f-5efdff7f5165",
+  "class-label" : "bfr_erdnuss"
 }, {
-  "name" : "hanf",
-  "fingerprint-ids" : [ "e2d6f250-fa5c-46f7-b684-d01afe0b5fbe", "13bc15c3-cb92-482c-a35a-cc7dc387cd51" ],
-  "fa-id" : "d8385097-a93e-4207-9c47-45702ee50fda",
-  "class-label" : "hanf"
+  "name" : "bfr_hanf",
+  "fingerprint-ids" : [ "a8538a81-803b-4d5b-9e25-c5e593a6cf38", "2abc7b9c-c727-42da-a87d-5b1c9777ae65" ],
+  "fa-id" : "4e0b296c-a449-4b3f-9945-62300c40fe1c",
+  "class-label" : "bfr_hanf"
 }, {
-  "name" : "haselnuss",
-  "fingerprint-ids" : [ "efd4bf67-628b-439d-83cb-f9b02d4aee52" ],
-  "fa-id" : "1a267cec-0fd9-4216-89f0-fb209c7b9f81",
-  "class-label" : "haselnuss"
+  "name" : "bfr_haselnuss",
+  "fingerprint-ids" : [ "ca9f4485-b95a-47c8-833c-39e6227ea887" ],
+  "fa-id" : "8fc2b450-b6d2-4d59-9440-6bdbb46cbd65",
+  "class-label" : "bfr_haselnuss"
 }, {
-  "name" : "kürbis",
-  "fingerprint-ids" : [ "d13661de-f30b-4be2-ba2e-594c4a1d5aff", "bdee4623-78fa-452b-ac96-d99d4660b949", "86824f62-3f7d-43d8-8142-2b811f50def2", "a16da528-9d89-48e9-a4a2-c3bb84d95118", "fbdf3abb-9e18-49a8-bc67-323930ad57a2", "229ea0d6-cd94-49dd-831f-875c70170bff", "0c2cd570-12b1-4258-a912-a9e1185ba530", "ebbb1a48-798e-404d-abfc-d90d3571ce49", "d692a53e-c326-4743-9519-b367bca890db", "2b97a94c-2da6-4017-9f56-59921270bc40", "18d7881b-dca4-4c4b-93a1-b25c9bc686aa", "e61c08f9-36c7-4b39-be23-79fb6895231c", "912c82e7-5a4e-494a-a200-19e149f656b4", "d1188d12-0840-4b6f-b348-3835a74a41c5", "f30d3098-732f-42d1-b324-6f474963fdfe", "12e0214f-4c19-4dc4-83e4-303e4393308e", "ba3bc33e-9dd4-40c6-8b31-5be33d4596eb", "f75c6010-8e3b-47fe-905e-2d3fb6039006", "440856ba-a8de-4785-b138-0c1d1fc86a4b", "62bb3c93-adaa-439b-a97a-9cb3449bcf6b", "5824c630-9dd4-4dba-8b6e-efc8021e8eb2", "b974ae1b-141d-41d5-b101-605ebcf82de7", "e8f1d034-6169-40c6-8c06-70a586c2061c", "34f66906-c536-41a1-928f-c9347b841857", "b765fa58-2950-4fcf-a278-a32c9bf3781f", "e4ef85bd-866b-4899-bdcb-3ecc3f690a47", "7c3370bd-b443-4269-bb9d-54a5a431db2d", "4eae9392-cac2-4062-9e7c-00703f6db47f", "22447c86-6de1-4b01-afac-dc45b9bd5ee4", "928510d4-1067-4849-86e7-cc4806377aeb", "51ab42fd-97a9-4077-8ff8-52c7b06150e5", "9930ed98-66a6-4630-8128-6911833951a3", "248a8e4d-58ea-4339-8e26-d2175a9b7fc1", "34e13e5b-e817-4dc2-8309-c6ba3e2aa5f8", "a3d50e39-a2c2-4069-9b6f-85e311e4bf1d", "9e70dcdc-c825-46bf-988c-2f1aa53105b1", "15a42d25-c7d7-4987-9d17-1f2cd183973e", "d93421e0-a414-47c4-833b-c7773d08312f", "1913550c-3f93-4ca5-8883-0ba0ae8d54b3", "cdeaeed9-8ab1-4432-877f-93e0a03e8784", "1b7e803b-f1c1-4c93-95bb-bbd885f4fa49", "2d4fa4c0-39f3-43b2-9209-302525855c7b", "61c2c752-7032-4bb0-a06d-39fe8c79d74b", "31801241-90e1-44e6-9278-58ecf4eeda9f", "f5e4a8c4-7387-4c36-bc92-2149f5fdc845", "0db1573b-2b18-40e2-a36b-19895ef81450", "f47d0e4a-7531-4c17-90ff-5313ae20bdec", "5c929ab6-b342-4d3c-b912-f15d8fcbd401", "cde8bf4f-a908-4fa1-b332-cba1a7c161d7", "82056dfe-821a-40e6-a25c-677e450b69ef", "c9a6b13e-41c5-4bb5-809d-2ec935ab82cb", "6c7851b0-94f4-49c6-9c4e-d16d43a5f5b5", "877e7349-4c81-430c-999f-3c4ba2076ae5", "80029b98-c888-4b70-92da-59c870fe181b", "eabc046a-320a-4bb9-9276-05b0157a1574", "cd8346a5-c744-4489-832a-cc1dae7e8ebc", "cad234d4-f9c7-4a08-b2f2-32e80703dba3", "c02a4722-e6b9-4a2e-bfc1-d68245e48819", "5a02f940-a63f-4111-ab93-d42bf3fc3379", "7c0b837d-3f1a-4587-b033-2eb6c016c52e", "8271e726-8e54-4eed-b6f9-fcd40cc7d09c", "cc2ad833-b0b5-401d-98bb-75a5fd9d4e34", "50c20a59-0e3d-40d8-97a0-b5ef66d69f59", "cfcc3543-8d5b-4785-8ce4-81cc07c9ed93", "85b118d7-d292-4c22-9a94-60f38f345239", "7b647458-1e43-42c2-bfe3-6644a29e2de0", "b58c12aa-6d8d-4b0d-9172-cd65af3e6967", "e457db35-a5a9-4512-82a3-b6bb6a28cb0d", "7a8400b5-03c4-4476-b2f5-4a7b60e5897a", "8851413b-b30b-474f-abcc-16a701daab45", "d25aefba-8332-48e1-ba99-bfe16fdeebcc", "f3b9906f-1ae0-4aca-8873-876411b493e3", "f56e6ba2-6e22-48a8-acbc-bebe4c5a3694", "5cf4fab1-d8ee-4417-ab87-228adbc755ca", "11d5b279-829e-4025-b2fc-bb1e3d438b88", "7cc50b92-7c2e-4c8c-9ce2-f11a0701dc3a", "e8670216-027d-4e6a-a9d9-211b4ac37f24", "4bd06e1a-9666-48d4-808d-68d2cb67f362", "b71f242e-46c7-4953-b06a-1630f5ac1d10", "32c9810a-3e9b-419d-9f15-5b9fba0b108b", "b80075c9-ac10-4b31-8398-341233d63748" ],
-  "fa-id" : "db81e7e6-900f-449e-85f6-86019d3a033e",
-  "class-label" : "kürbis"
+  "name" : "bfr_kürbis",
+  "fingerprint-ids" : [ "7b3ab0ec-1cb2-4ce7-8c43-7e83dc8f046e", "d152cb53-9f9f-4988-9042-8e3f92ed24f7", "a62fc5d3-36bb-4d61-8998-c45996b34c4f", "2beba14d-5b15-40da-92d2-0d7968c35874", "6d2dacc4-63e5-4ba5-a032-617664fc635d", "72e4efd7-8474-4ca5-9aa6-bcdc3b3f3f7c", "77cf61e5-4654-44e3-8688-f6713c058fe4", "b4a12270-2df2-41f2-8692-afe13d039315", "1528d654-3d4a-4e82-8003-32f45c717f6f", "0ec19699-182a-4154-bf58-0a87c10ed3a5", "2dc27ad0-9c40-4aa8-9c3f-a92f37c85dc3", "09c15241-0e22-4d88-b93b-56623e98070d", "8d578fed-ed42-45d0-a51d-33fe43323f4d", "4f75aadd-8bf2-4d83-93b8-2fb27d7f8a1b", "04c9be4a-aff9-4b88-836a-8caf4f124e2c", "7a007ccf-957c-4f56-b325-b6ea68a495ff", "d3ae1b34-21d6-4ddc-9868-c60d8aacaca9", "01b20e7d-0a0d-4658-bef6-7d3b629665e2", "352c7e90-48aa-49bd-a313-daf846a99f41", "0b92f12e-78fd-4f58-ba6c-ea6176fd4cde", "e817caba-709f-4a98-8935-c82595536423", "1f857a2c-02d4-410c-8181-3e99333daaee", "f2a27d93-a847-4b29-8ca2-d9a9a08ca4db", "113774c2-c22c-4bc8-af4c-b446c0af557d", "fe62d52f-25fb-402b-a0df-443a6e66901d", "932790f5-dede-42f4-86ae-5977e3f27891", "5ab47656-5fa3-4384-843b-aa49ece22021", "a589e4e1-8152-48a4-ad3b-d963cc399d1d", "fac6499c-4916-4d90-8487-2e5849145cf2", "612110c3-3076-4721-9747-3f289a1537d3", "5a3d00fc-d038-487a-92dd-dac4d7442469", "16424134-afba-4456-8b0f-3b300c6c46a7", "590db6af-5e5d-4af9-a1e0-311bd7134f63", "688092fe-64da-4fc4-896c-7f89f3e5320b", "6d274ddc-591e-47b0-8ecc-158dc98cda3d", "11ded0d9-dde6-441a-b8cd-62bf53d80cb1", "505ff6c7-2349-45d2-b677-3cc8d2e98377", "f258824b-e821-4b27-88fb-42aa346ca19e", "02b018a6-4bf9-47ec-94c0-35c4857506c7", "28a5c166-f300-459f-8bab-b1770c997994", "785e298b-f322-44d0-b957-549f3648f25d", "a8012451-4ac2-4464-844a-74c382c583ea", "a8222032-321d-4c43-b147-7c669f057aad", "695e1645-27bf-450c-b239-c5a7e8121173", "e267488c-10ab-4011-8292-70ec8e9d27ce", "9504d7b4-1879-4319-a7c1-84293c3f7df6", "6386ee2b-f2f0-4dd9-affb-b864b4be0ce4", "e3adbaa6-9cc4-4c41-928b-ccc22079c598", "41f31f84-ad59-4716-90da-4a3c3a718c50", "9956963d-ef77-479c-94a9-4e46a788ba4f", "11be13fd-f366-418d-add6-6fea4bc2a44e", "79986209-bcd1-4a51-8ed6-5b2f20cf3e16", "a91a3234-89ec-44dd-b8fa-c6cc17b3d26d", "f95d5e4d-7b3a-4e0c-9ba9-0446f9c84a93", "4631e24a-592a-40b1-afb2-2e626fecab5a", "08aa61fa-f36b-41a2-9810-639c50731feb", "0955fb68-f296-4f51-b3df-9f02a66a447e", "bffecbfd-911e-4573-8ccb-c57aa33f408f", "ad6800de-e6b0-4ccc-860e-a428de4f5a19", "848acbcc-4382-4753-8e47-c581b38ddad7", "03049203-9ab3-4da4-bbf4-4bb542862b57", "5240e2a3-e296-4780-979e-22cc5cfe44dd", "235d6217-c384-41b2-9184-e894e606063b", "dd2accd0-7ea7-4ee2-9c7c-503b1ed7ede5", "b1abefb9-4d0a-47e1-9036-945a57e18ff1", "7d949367-01f3-4fdf-80c9-86699bbe9d91", "0456ed2d-51f5-4d11-b7d9-9ff288e58714", "983080f8-03a1-4798-aafc-c9a993f369fb", "35a95e71-39ea-4178-886a-8d16d3440333", "d978c91d-48dc-4c26-ad46-e81a7e60fdd0", "84efdecf-77b5-46d7-a597-cc388db3ef15", "6e4bb37b-c640-4845-8c32-511c345202f9", "d7fa35f6-d503-4d6e-8a03-80e369fcb52c", "cb066d39-e945-4e41-b98b-5dfc9d4f1bc1", "28c612db-4c6c-4e92-a84d-aa80404cbc12", "295a6842-f93e-4224-af67-1b806f2a48bb", "38e7e71a-355d-460e-88f0-50c474352ffd", "46787cc5-6447-48cc-86f5-6943b2006647", "a2345ab6-2efe-4f20-89f4-067d473daad3", "45b65f9d-3730-4fb1-8932-e8ad5f1a9b2e", "2f5e0e95-2156-4003-a530-71f633f500d3" ],
+  "fa-id" : "410b38b7-d945-4411-9a54-c6fdfca0dd89",
+  "class-label" : "bfr_kürbis"
 }, {
-  "name" : "lein",
-  "fingerprint-ids" : [ "30b54059-e0d4-458a-b575-8f77dd4e8af7", "14f0a495-c5e6-432d-b5e3-6b7474efaf5c", "7555cf54-53b9-4ae9-a8b8-99b234808cce", "fdc0dc2c-a078-4a68-9f71-e265d3f2a29b", "6b3aa948-6da4-4959-8026-838936a1d26a", "878ab902-52f7-410f-ac80-edc413b90bbb", "820a48c9-fe63-4f9c-8d98-041a63d62969", "be2defe3-0300-4f19-bc83-e75056022e1b", "f304306b-e68c-4635-8658-b07d17d1122c", "65245248-639b-4339-9506-d4a7157ff4f1", "07fd2896-1613-4f48-8d13-755cb70b95d1", "9c0b3deb-2a4c-4957-95ac-1a05ce5473eb", "1bcb7fe5-7c69-41e7-9297-fcdd78d963ae", "48790b30-074f-4a98-a27b-fe6a75263688", "5966b3b0-6245-4583-a8d2-dafe2173345e", "7421ae60-1679-48d1-9570-f93619e49159" ],
-  "fa-id" : "ddc04773-1907-4442-8a97-2e71c24e1662",
-  "class-label" : "lein"
+  "name" : "bfr_lein",
+  "fingerprint-ids" : [ "297ee951-b3ec-4941-b5e1-173d7784ffb8", "c6f0f238-9abd-4dd7-ad48-7a5393df4291", "a688f858-73a3-4351-920a-67ac78d42b4f", "6a39c423-cd0d-4f40-ba71-70d5df97593c", "3e424c98-3ed1-4d60-ab6e-c600bb0ab3f2", "e5865210-b2fe-4351-9d1e-e5c7843640f1", "5ea3fb23-20fb-4e71-b13d-f29995d28840", "5f022306-bfeb-4350-9e2e-76a5cc2cdcda", "f3c3e9f0-62be-4f69-94fd-d8b1c29a89a5", "57af4118-79fc-485b-b8c9-c850f9834eaa", "7135674d-c98c-44a8-8105-09f39d07d9b6", "a1f9a8b5-50ff-42c1-9194-c9963655b7df", "cd52f54b-c582-4997-ad42-00ed9052ebad", "fbd0bc47-1bf7-44dc-ad36-6132d9f15c38", "e4a85b35-47dd-4e8d-b803-052345726517", "8f5bb0ac-6d00-40be-9f81-1c60a8f6cc76" ],
+  "fa-id" : "d939a64f-4411-4d32-a910-39d4456f7ebc",
+  "class-label" : "bfr_lein"
 }, {
-  "name" : "mohn",
-  "fingerprint-ids" : [ "1675c64c-c79b-4c04-8373-4732bd84405f" ],
-  "fa-id" : "e743ee45-12f7-4da3-b75f-2467e45ae26f",
-  "class-label" : "mohn"
+  "name" : "bfr_mohn",
+  "fingerprint-ids" : [ "b80f0d96-5199-4735-9c40-5ccede1f37d6" ],
+  "fa-id" : "b2503060-582a-4e31-9e69-141251d692c5",
+  "class-label" : "bfr_mohn"
 }, {
-  "name" : "raps",
-  "fingerprint-ids" : [ "b453feb0-757d-46fa-ac96-f4b451999a87", "78f9cf7f-6ff9-485e-92d8-3b610cc1aa92", "a9755fea-5904-4dc8-bd62-392992dc05a4", "591b67c1-0e38-4bb0-9924-aad0f5cc7828", "062ba30f-89e4-4365-bf6d-d7d3bb5fae0a", "b77603c1-9c68-4507-af92-bce3ef022ae6", "77f1c4a5-fc4c-46db-96c3-71cbfbaaab56", "b046a740-4046-44ef-ac84-760bab2a53d4", "d7e2e78e-937a-4f79-99f5-a3b20d435061", "d813fe00-9f16-405d-bd68-8314ea501b07", "3761c058-d27d-42ff-bf1f-65e0692e96b8", "3cd44996-e258-4d12-861d-7320f99a13c3", "29ee71e0-cb8d-414e-8abe-6b5b0c24b3e9", "13aa6e2a-97bc-43ce-bd51-e9bcfb3213da", "1c077e27-9432-4bae-b38e-0d8e3c0ac7c2", "35b40d25-bee4-4e35-8fd1-3c4e2383eb45", "5191c873-55c8-4c57-96fe-088b41f9b26a", "58ab2e8b-5f07-448a-96ac-6a8425827162", "b8bbae11-ac18-4cc8-b763-5b36a6b1fa6f", "6c764795-b97c-4acb-9bd0-32a03415864b", "0555bf06-23ca-4ed7-987f-c1dd46689cb0", "0ee27cdc-2b62-4816-893e-6c1032918364", "732ca7a5-4e1d-4d25-a0f6-02eee22d958c", "a7616865-9e60-49db-b46f-667f570e8538", "9634c230-ed14-4fec-82e4-aa74322cc0bd", "74e9d41b-889e-45c5-87d2-92f226998d7e", "902d0c4c-1672-48b4-856f-76b32ff3afb9", "e99badb8-7390-41d7-8c1e-6d1a05348312", "f5042ac2-8158-4a0d-a8f8-6783f1287c2d", "2db50066-bddd-4e57-a6e4-1bf5a96fe290", "208f059f-262c-452b-b206-44628abc0aca", "ae2f44b6-8f5c-45ce-a1ba-4f811c820894", "61d6b986-f36f-447b-aa93-bf9dcf0dcadb", "5f24fa96-66de-4079-970f-ddfc157c2ca4", "b8be326d-3c94-4d02-9e03-7877e9520ad3", "d98d2c7c-0493-4113-a90b-e2bba9882abb", "b5eba477-8ce3-4d5b-a914-0a3c050012e6", "8f7d7f9d-9072-4f69-9255-420395598787", "4d47b777-252b-413f-8505-518e140b7233", "baa3f1cc-587c-4b37-b0a6-f897e899b48c", "1fd21e61-02f5-4c96-9cbf-d736bd9263e9", "91d72f80-6e53-4bb3-a625-3190b3234062", "328282f9-2b92-4051-afc7-70703c1a1dd3", "5848cbfd-0d6d-4fc3-9c70-78a20da89fc0", "a544efa5-27db-43a6-bcde-24ad2c77ba3b", "a194bcf5-3e7d-4a9f-bf19-07e68c4a9599", "1e67808c-c867-4dcc-87ec-d90f8d79be4e", "b59deaa2-c35e-43e1-a39e-5f431f95f160", "e2064ec7-2d41-4553-9ea4-2b61a43252d6", "ae7e192e-7e4e-42b2-9db6-0fb648e68b68", "1822e035-3803-41d1-a19b-efcaf0608c44", "33703498-58e2-4768-b992-7b9af37c6865", "9a9819cb-92c5-437a-a092-12202bf7f89a", "41a21a46-9777-44fd-aaa8-038ebeb915c3", "a3885347-1f4b-41ac-a2a5-8d17843b34d6", "63ecdbeb-0a96-4a2d-b52c-86cabb5db2e3", "bd254cfe-74ed-4d73-8708-96815a7feccc", "52a4519e-5642-4296-9689-93ef87f6fbf5", "bb1d9e26-162b-47c2-b494-2118ae2fa567", "f2e1f3fe-aeab-42eb-ad9a-cb57c11538ed", "3f5dc6ad-6de9-4907-82a7-5656e786e830", "2bc6e63e-a92d-4af9-a260-abff0100a4f5", "ca27af62-3824-421d-9901-8ca7b5d7eb00", "f7e4901a-1caf-429b-ba99-c9c8601fca86", "627ac978-7bf9-4279-9549-e6f3b9229cbc", "a0212fe5-4b1a-4d04-b18c-0309cdf1eacc", "dd2e9534-f80b-4eed-a848-a7824bd0f26d", "fcdb8617-52be-4144-99eb-f65a63a474bc", "54192d77-32c3-45ce-a18e-1d980ac3361e", "425afaf7-6ba7-4532-ba2b-582f8ee24e0a", "342ff617-bfff-47e0-8fee-13d810c1b12f", "363b64ac-793a-47db-8ad1-337da77641c0", "b23775d9-8223-46d2-9395-f81659b93b16", "75e342a7-eaf5-4c1c-8faf-7bada2eeab02", "bf0829af-3ec2-47e1-8c9a-a105a23f9fec", "fa92b11d-3bec-400c-b9d5-8c0f99c02227", "28bbda03-1ae5-45ce-ba1e-529c62a623f3", "0ca78a53-54ee-4b1d-b5ad-83a2d3f00ef8", "f14b2b7f-ecdb-4cf4-a375-75e967817030", "d65725ad-dbb5-44b7-b8f6-94644e72b680", "e77df91a-06c9-4ef9-b684-704972ee7a60", "bd476a79-8bc7-4f95-b2f8-b0eb9d33620c", "c7e68571-abfe-4c04-b3ee-d158e64a0822", "270b0071-5044-47c3-b086-4fc315d27aaf", "1d55997f-2615-405d-a5e4-cd3b34b00901", "83b3935e-49cf-47dc-8a2f-7253e23b0e0a", "e27b2361-7a56-4293-a5c1-b7d618f15452", "3853f8a6-ecb3-4fea-a8d2-88654523ee51", "0c0ef0c8-40c0-4eec-bf54-548e418162d9", "9f07256b-18ce-41d3-b34d-0fba53ad5fe1", "9cb41691-45a9-4b21-b96f-b35aa5e02394", "52fa7863-d2b0-417e-b2fb-69c37718f8cb", "ff387a47-cc81-417f-8689-24a2a2caefaa", "d24792a3-f205-4803-87bc-35c3ba0d9c2e" ],
-  "fa-id" : "6f3bcbcd-0221-4967-add5-5639704f4e29",
-  "class-label" : "raps"
+  "name" : "bfr_raps",
+  "fingerprint-ids" : [ "b2b54f02-7d40-4f61-85f2-0a35e6a258c2", "9b626788-480d-463d-bbc8-06d87b195695", "f9d737e2-895f-4030-96fa-5140e49c98d3", "56042830-d6e7-414d-830e-a0503e77a12e", "dfd492f4-f90b-4fff-8737-12fdba03657d", "576e40c3-1ad5-4996-b7c2-1d2cb31dd9d8", "45717381-3254-485a-9cf0-dee2c8c4f9a8", "14376fac-aff5-466f-91cc-264e4e085a2b", "3d6534a3-e183-43e1-b782-4efbbdb29ce2", "d22e5901-7db9-463d-bb03-e6ec640d7d9f", "81e5aeaa-f9b6-4175-9153-3068d20d090a", "435f4cc3-55f6-447f-96a1-d28b37870d95", "e118f1fe-1473-4608-8cb3-dcad3a82b4c9", "46225c5c-0302-49be-afbc-69cfd6277cf6", "9cae6c4c-550a-4f1a-86b6-124389edfaec", "42675fa9-5417-4aaa-8de8-fb0af47dd980", "46c1c0b3-4255-4f1a-8380-26fad63428fd", "9da052b1-1e9c-4a70-9de8-2211aad5ceda", "818855d9-51ce-4781-b32a-29fb02fc7aa0", "17cd648a-70c6-45ce-b986-a477fbf8c821", "2b74ef63-5f54-45d8-b9a5-3a1889a8635e", "5700cd11-e17f-47e2-90b2-f8de83438d82", "3bdb04e1-6773-4d5f-b9a8-2533bdd21819", "c58f5102-e4be-401c-b72a-2ca83d2dd025", "e53e0ba5-0a26-494c-a520-d8cfe50159ae", "67357afe-339a-444f-b227-9a336c98066e", "2504ff62-596b-4585-8a04-b0e4286fdce4", "9ffb5d7e-52d2-4580-94fb-d1caca25cb8e", "a714e6df-cec7-42d4-82e6-8dc76bb8d53a", "ac5f5a54-c76f-4794-ad32-be3576f85c12", "fe84e7dd-9526-402c-bd44-bd4809e62e6b", "ea260ec1-5f8e-47e6-b9db-7aee576dd8c9", "fcdd55d5-2871-481f-a6af-1b4033cb04b7", "9862a919-336f-4723-a7cc-61dcb8994adc", "9a558e4a-f7e0-4e44-89de-042dd0df6bf8", "b72dab56-98a8-434a-bdee-5beefe901bd5", "0c5c58c9-0d4b-43a6-9f5f-0e4aacc36c56", "b96fc432-9903-4155-9b50-f9856dc138c5", "77c7b615-2c4b-4285-8754-e47e4ca8fdcc", "9c1a123b-3ed7-48e9-9025-d763284f1a9b", "7b7ad7d8-8a36-416e-8e68-69a8470a3aa6", "49fe0726-b403-4420-bddf-352ff6b353e6", "5feac609-baca-4468-9e2c-6f0b101d142f", "46b69720-a7ef-4680-b0c3-cda36623549d", "88f2ab8b-c2a5-4389-801c-adfe08bfb959", "2bcd508b-0a04-44d5-97db-23cbabdaeea2", "e6f0ac54-2654-402a-9db7-71e92b912474", "538a37af-6587-4f42-bd4f-04ed405a15a2", "aeb3e228-e8ee-45e4-8eaf-122907844ef7", "38b7349c-6c24-444b-add3-614d44b3fbe9", "201ef765-a6df-487a-8296-e2b1c8efddbe", "4ffeac72-04d4-430e-b029-dedb79e16a42", "ca02e779-69f3-48d3-9bff-852b896cbbfe", "a5e37e0a-bfac-4bd1-8499-1fa0f82d055b", "da0b7a87-4ee5-40a3-bfd8-1af26ae024d9", "d24a14b9-771c-43da-9635-30d9ce5081ba", "c4ee7a3d-071b-46eb-8629-b29390f05e2b", "26039e12-e4f5-4025-a288-1377cbfba591", "fe1d6318-1fb6-47c6-8810-925f0c952f37", "9b7c101b-69e7-4b92-a5a2-85f83d454ffa", "03c8ec41-d65c-4182-82c4-3a609beed920", "566ee76d-274c-4c6e-a7a3-b1cddd7e6284", "fc314cad-6635-437c-a35e-9f11c7f9b8e7", "244178aa-2694-4f7d-b00d-2877dec4ba86", "6ab6352b-1bb3-42c9-8aed-2912e74b433b", "a4b45017-6e96-4535-94b5-d469174eb8ba", "dc61d65c-9742-499d-8355-9fe47289019b", "bbe9dbae-961a-487f-a2b3-9b39dabcc112", "40328a8f-916b-4568-b23b-2d225b5b67df", "f1b03a3b-2c94-44b8-bb06-292d5d292bf1", "a35d5e61-46c6-420c-9171-4c6258645659", "c6f93606-7d0c-4f33-8856-708e4794fb73", "b2e518bf-8017-4064-bce1-81f1173f8411", "30fec6b0-866b-467f-b6ce-54b6e5b80d13", "8eebb1c6-a4d5-49f8-b53f-62109f089334", "88d9b879-bdc4-4fce-8c0e-a8af1aff8d21", "5e86d7e8-7535-432d-9843-65ffd48e3b70", "e0e70316-9324-495a-a5d2-19078df6ffcf", "e8992764-fb11-4af0-bc35-0b679f3fb150", "66ea9b22-8096-4fef-8a91-a8cae9912919", "72a2074a-9f70-4fa8-bdb1-18694be6f68f", "511d5c10-86a3-437c-a7f5-fa8ec5d24a61", "1590a082-6200-408b-83b1-918e4d81673b", "0e55885f-83da-4c2d-809d-8bff104aa8bd", "8cd6d251-906f-4552-bc76-0711ea958b19", "3c3cb98b-6db1-4c8a-aba9-f9e13818be7e", "84994b12-13f9-4a5a-9475-70fb2f458aa8", "7a1f699d-9375-490d-ac09-fb3a4000cc9e", "365faddb-c90b-420e-b4e2-778a21f4b99b", "1bd56c96-f77b-4eaa-8d28-dc443dc0760e", "4d45a557-5a72-4db8-96ce-f07fa8b11621", "d04f6c15-f06c-4403-ae2a-78c7869611f1", "d2efdb34-e98f-4da3-ae14-b65485909d7d", "c8140d1a-8c25-4738-91c9-410808cce028" ],
+  "fa-id" : "83ea0e04-3250-425a-a5e6-88bc9f937cdd",
+  "class-label" : "bfr_raps"
 }, {
-  "name" : "schwarzkümmel",
-  "fingerprint-ids" : [ "90c723f4-f1fa-43a0-87d2-1da95b0d468a", "0c812d94-6467-4fa3-9a5a-a29e9e1ddba4" ],
-  "fa-id" : "02915ea8-c23e-409b-b0da-527657c701f8",
-  "class-label" : "schwarzkümmel"
+  "name" : "bfr_schwarzkümmel",
+  "fingerprint-ids" : [ "c06cafa0-58b4-44d5-a0fd-966c15324088", "280be22f-85f3-4e01-94b0-870ab791de30" ],
+  "fa-id" : "63c6b027-6089-4fc6-8c24-130fc0daca02",
+  "class-label" : "bfr_schwarzkümmel"
 }, {
-  "name" : "senf",
-  "fingerprint-ids" : [ "e6ded5a9-335a-4382-9864-55547d1e92fa" ],
-  "fa-id" : "9b466896-0ddc-40ed-8f2b-9d6487d71447",
-  "class-label" : "senf"
+  "name" : "bfr_senf",
+  "fingerprint-ids" : [ "ae6bddfa-9392-4d8c-8bf9-3ba54777b46e" ],
+  "fa-id" : "4e60f6d8-57f8-497d-8afb-64e96ce389de",
+  "class-label" : "bfr_senf"
 }, {
-  "name" : "sesam",
-  "fingerprint-ids" : [ "a7fb17a8-eb13-4a8e-bbe8-fa6428d7f83e", "a52de798-7a50-45f6-a60c-68ab27ffcd7c", "cb872e13-f0c4-4cdc-8a69-205d44acecd2", "fda0d0c2-2f47-401e-8ce8-8f2135a2b0ba", "0fd373ba-18e6-4cfd-88d4-a64642f622dd", "e20189d1-5c6e-4e36-8e95-53400cb3e04c", "87fa3288-01e8-4f0c-b1de-d6070cad2875", "76c94fef-c3ff-45c1-b2ee-1302fe0ac174", "59a86ac7-3edc-42a0-887c-29b8ece040a6", "a9d1c4b0-7d2c-4e74-9ba6-5d6f2e4aa30a" ],
-  "fa-id" : "7026eadd-1aa5-4130-a7be-85517f59e881",
-  "class-label" : "sesam"
+  "name" : "bfr_sesam",
+  "fingerprint-ids" : [ "a0491b24-e9bf-45b6-9298-106f52ff5e72", "729a971c-fbd1-411a-9155-4fe9f22614db", "65a4919f-6d95-42e8-8b72-0399d25c36a8", "2a4afdfe-87ec-4f17-93ca-ec376bd11033", "2c148949-b359-4089-b38a-70050da96347", "3c4f53c2-3989-49b1-8af8-76b7cc9b5bd2", "aac09661-e3bb-46a6-9283-e175b8561e8f", "307a2913-87fe-4c72-9e37-94d7485e8387", "027d95f1-9afb-4c0f-b242-33a1e834a6ad", "afb845dc-f7a8-4d86-a718-80fd705fe7ad" ],
+  "fa-id" : "1253eca4-2995-4c33-8085-d94f6ddd157e",
+  "class-label" : "bfr_sesam"
 }, {
-  "name" : "soja",
-  "fingerprint-ids" : [ "7d516a75-dbd1-4997-be28-2c5d8a1ed60a", "5fd7cf96-0b7d-4b2d-809f-3da832ac33c4", "06e6444e-8bb4-4709-9c15-6704944e35e4" ],
-  "fa-id" : "1cd09f23-2ca9-4e0b-b26c-26a6cf72588f",
-  "class-label" : "soja"
+  "name" : "bfr_soja",
+  "fingerprint-ids" : [ "d6d4c36b-3a53-41b7-9c0e-924814093a9f", "8ec3044e-cf48-49b3-ac92-373182526c91", "d0001a61-7104-41f5-935c-2f7f2aa5814a" ],
+  "fa-id" : "1e2baa5f-0846-47ba-bf3f-8c0b86173447",
+  "class-label" : "bfr_soja"
 }, {
-  "name" : "sonnenblumen",
-  "fingerprint-ids" : [ "48b4ad5d-78e7-43a6-88d0-ec2494cce637", "bf1079b9-56d3-4735-9ab9-3f6d9c037b34", "066ae777-0669-49b8-ade2-73df37833a4f", "7c308c1f-a85f-42a5-9ec8-3aaf681fbdfe", "b6af108d-28c1-4a53-b743-1e2ceea39abb", "deda6f0c-fde5-486e-b1a9-6f686d35066a", "f9ccffd0-0269-4127-99f5-2e10c888cee6", "335147f5-a7a6-4535-aabf-739455d5d572", "5ed46e3a-5533-4ec4-b695-38695c0dd82f", "d17fa9d2-34b8-427f-91b5-e9624ab7b39d", "ca8be64a-3f8b-4a7e-9590-22e6e554b791", "71cbb0b5-51fa-4116-81e6-b9d5b13020c2", "784ae461-26a1-46f3-ba5b-398a709a4b65", "96641aaa-6b03-43c8-89f5-8c5e59fd6827", "37251f01-9e98-4d24-96ea-ab6691cdd61f", "dc35fdf1-7bfb-4504-9866-e9b6bb8bb8b9" ],
-  "fa-id" : "66fbd6bc-3846-4906-b2ed-fd536ed9f99f",
-  "class-label" : "sonnenblumen"
+  "name" : "bfr_sonnenblumen",
+  "fingerprint-ids" : [ "75d13f89-6ef9-492f-973a-6a0b822dbe8c", "56de3b21-172e-49b4-a6a3-f1c1db159c99", "0ac1573d-947a-47d6-a554-db7277a8687a", "87e4f60a-8273-4f66-afc6-79045d13c6b7", "3b8613fb-3f86-4660-abfc-f503897bb650", "fa270077-43dd-4d7c-8c85-75cf2f37c300", "071a63a5-87be-4717-a755-2226bfeb9db8", "7a662fdd-464a-4696-ab70-eb39ec6b755e", "f27b6850-830a-4eca-acce-21ea9c097218", "ce39454a-c3a5-46cc-96d0-d6ea9086ad2d", "6623bde2-bf31-47e8-b917-78f6a4bec709", "d6a15a4d-2c27-4226-836a-f19df562b0cc", "b7c3e411-8bf1-46d6-980b-74f64a331dc5", "c896bd65-e372-4f2e-b643-18f22451a79c", "2765424e-5432-4a90-832b-fa9244a09ab8", "3c2ce504-f8c9-4c2d-9db0-1b278cb3204d" ],
+  "fa-id" : "2b480c04-2b67-4ff2-85f7-4dfc132df983",
+  "class-label" : "bfr_sonnenblumen"
 }, {
-  "name" : "traubenkern",
-  "fingerprint-ids" : [ "0b228a45-c4e6-4554-984e-fdb4f0fdc068", "86c1af2f-f1e0-4e72-be7c-44c9910dc043", "c1c30bd1-8561-4a89-bc9d-a39673210f0a" ],
-  "fa-id" : "2b195dc3-2e18-409f-b3a3-9565dbdcfc16",
-  "class-label" : "traubenkern"
+  "name" : "bfr_traubenkern",
+  "fingerprint-ids" : [ "fafdd6c0-0957-4fae-b2b7-7719fc21cf67", "1169dc97-59f4-4b6b-a510-0b7a7caea915", "db15f78b-630b-4365-b524-cab1349527da" ],
+  "fa-id" : "e1952ed4-12d0-476d-bfd8-845cab88fdb1",
+  "class-label" : "bfr_traubenkern"
 }, {
-  "name" : "walnuss",
-  "fingerprint-ids" : [ "dd41db02-a498-4573-abbb-a4ebd9932843", "854deed9-2a64-4ba7-a138-bb3daf44c0c9", "37f0e30b-3b6c-47c6-b065-2c2ccbe1f8ca", "a6216da8-58aa-465f-80e2-297642efeab8", "841c4b5e-a36b-4116-9095-98963f178537" ],
-  "fa-id" : "5823b930-2f9e-4d50-b4a4-e459b7ca203a",
-  "class-label" : "walnuss"
+  "name" : "bfr_walnuss",
+  "fingerprint-ids" : [ "61738c1f-3287-4813-b9f0-01e53369773d", "87d25009-4e24-428e-af60-abe1a22cd3e5", "eb7f345b-604a-4dfc-bf73-9fdc41349285", "e1db1e51-ad9a-492e-9aad-1e892f87c8bb", "92886a4e-39f6-4d91-ba0b-ededced9b778" ],
+  "fa-id" : "87f02cb6-cec9-42f7-9bba-8ebbcae60abc",
+  "class-label" : "bfr_walnuss"
 } ]
