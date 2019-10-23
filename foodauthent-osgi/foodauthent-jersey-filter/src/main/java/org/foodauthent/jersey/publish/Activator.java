@@ -21,6 +21,8 @@ public class Activator implements BundleActivator {
 
 	private List<ServiceRegistration<? extends ExceptionMapper<?>>> exceptionMapperRegistrations = new ArrayList<>();
 
+	private ServiceRegistration<CorsFilter> corsFilterServiceRegistration;
+
 	static BundleContext getContext() {
 		return context;
 	}
@@ -37,6 +39,7 @@ public class Activator implements BundleActivator {
 				new FoodAuthentResourceFilter(bundleContext), null);
 		gzipWriterInterceptorServiceRegistration = context.registerService(GZIPWriterInterceptor.class,
 				new GZIPWriterInterceptor(), null);
+		corsFilterServiceRegistration = context.registerService(CorsFilter.class, new CorsFilter(), null);
 		exceptionMapperRegistrations.add(context.registerService(JsonMappingExceptionMapper.class,
 				new JsonMappingExceptionMapper(), null));
 		exceptionMapperRegistrations.add(context.registerService(JsonParseExceptionMapper.class,
@@ -57,6 +60,10 @@ public class Activator implements BundleActivator {
 		if (gzipWriterInterceptorServiceRegistration != null) {
 			gzipWriterInterceptorServiceRegistration.unregister();
 			gzipWriterInterceptorServiceRegistration = null;
+		}
+		if (corsFilterServiceRegistration != null) {
+			corsFilterServiceRegistration.unregister();
+			corsFilterServiceRegistration = null;
 		}
 		for (ServiceRegistration<? extends ExceptionMapper<?>> reg : exceptionMapperRegistrations) {
 			reg.unregister();

@@ -13,7 +13,7 @@ import org.foodauthent.model.DiscoveryServiceSearchFilter;
 import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
 
-import org.foodauthent.api.TransactionService;
+import org.foodauthent.api.DiscoveryService;
 import org.foodauthent.api.ServiceRegistry;
 
 import org.foodauthent.common.exception.FAExceptions;
@@ -23,13 +23,13 @@ import org.foodauthent.common.exception.FAExceptions;
  *
  * <p>This is the FoodAuthent API Description [www.foodauthent.net]
  *
- * <p> All Transaction related endpoints.
+ * <p> All Discovery Transaction related endpoints.
  *
  * @author Martin Horn, University of Konstanz
  */
 @Path("/v0/foodauthent")
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface TransactionRestService{
+public interface DiscoveryRestService{
 
 
     /**
@@ -56,9 +56,8 @@ public interface TransactionRestService{
      */
     @POST
     @Path("/discovery/transaction/findTransactionByFilter")
-	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Consumes({ "application/json" })
-    @Produces({ "application/json" })
+    @Produces({ "application/json", "text/plain" })
     public Response findTransactionByFilter(@QueryParam("pageNumber")Integer pageNumber
 , @QueryParam("pageSize")Integer pageSize
 , DiscoveryServiceSearchFilter discoveryServiceSearchFilter

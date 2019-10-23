@@ -1,0 +1,15 @@
+{
+  "fields" : [ {
+    "label" : "Code",
+    "model" : "code",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
+    "label" : "Text",
+    "model" : "text",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  } ]
+}

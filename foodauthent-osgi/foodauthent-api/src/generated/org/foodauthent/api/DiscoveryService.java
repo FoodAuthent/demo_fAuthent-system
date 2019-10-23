@@ -10,12 +10,12 @@ import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
 import org.foodauthent.common.exception.FAExceptions;
 
 /**
- * All Transaction related endpoints.
+ * All Discovery Transaction related endpoints.
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-public interface TransactionService {
+public interface DiscoveryService {
 
     /**
      * Creates/adds a new Transaction.
@@ -34,8 +34,11 @@ public interface TransactionService {
      * @param discoveryServiceSearchFilter 
      *
      * @return the result
+     * @throws UnauthorizedResponse Unauthorized access.
+     * @throws ModelNotFoundResponse Response thrown when an model could not be found.
+     * @throws FAException Unspecified exception.
      */
-    DiscoveryServiceTransactionPageResult findTransactionByFilter(Integer pageNumber, Integer pageSize, DiscoveryServiceSearchFilter discoveryServiceSearchFilter);
+    DiscoveryServiceTransactionPageResult findTransactionByFilter(Integer pageNumber, Integer pageSize, DiscoveryServiceSearchFilter discoveryServiceSearchFilter) throws FAExceptions.UnauthorizedResponse, FAExceptions.ModelNotFoundResponse, FAExceptions.FAException;
         
     /**
      * Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.

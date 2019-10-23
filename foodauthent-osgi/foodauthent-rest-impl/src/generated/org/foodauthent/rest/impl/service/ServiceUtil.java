@@ -21,12 +21,13 @@ public class ServiceUtil {
         List<Class<?>> res = new ArrayList<Class<?>>();
         res.add(FileRestServiceImpl.class);
         res.add(OrganizationRestServiceImpl.class);
-        res.add(TransactionRestServiceImpl.class);
+        res.add(DiscoveryRestServiceImpl.class);
         res.add(EntityRestServiceImpl.class);
         res.add(ObjectEventRestServiceImpl.class);
         res.add(SampleRestServiceImpl.class);
         res.add(RelationRestServiceImpl.class);
         res.add(CustomMetadataRestServiceImpl.class);
+        res.add(GpcRestServiceImpl.class);
         res.add(ModelRestServiceImpl.class);
         res.add(SopRestServiceImpl.class);
         res.add(AuthenticationRestServiceImpl.class);

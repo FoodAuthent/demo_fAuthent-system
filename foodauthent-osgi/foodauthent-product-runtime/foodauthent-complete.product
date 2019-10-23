@@ -99,7 +99,7 @@
       <plugin id="org.foodauthent.logging.osgi" autoStart="true" startLevel="1" />
       <plugin id="org.foodauthent.persistence.impl.elasticsearch" autoStart="true" startLevel="3" />
       <plugin id="org.foodauthent.rest.api" autoStart="true" startLevel="0" />
-      <plugin id="org.foodauthent.rest.impl" autoStart="true" startLevel="0" />
+      <plugin id="org.foodauthent.rest.impl" autoStart="true" startLevel="3" />
       <plugin id="org.foodauthent.storage.impl.s3" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.swaggerui" autoStart="true" startLevel="0" />
       <plugin id="org.foodauthent.ui.vuejs" autoStart="true" startLevel="0" />

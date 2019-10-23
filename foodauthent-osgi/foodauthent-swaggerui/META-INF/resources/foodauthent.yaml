@@ -11,6 +11,8 @@ info:
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 
 tags:
+  - name: authentication
+    description: Authentication endpoint.
   - name: info
     description: Statistics, status, system info etc.
   - name: sop
@@ -31,21 +33,97 @@ tags:
     description: Generic endpoint to deal with all kinds fa-entities (workflows, models, files, ...)
   - name: custom-metadata
     description: Endpoints that deal with custom metadata.
-  - name: authentication
-    description: Authentication endpoint.
   - name: user
     description: All user related endpoints.
   - name: organization
     description: All organization related endpoints.
   - name: ObjectEvent
     description: All ObjectEvent related endpoints.
-  - name: Transaction
-    description: All Transaction related endpoints.
+  - name: Discovery
+    description: All Discovery Transaction related endpoints.
   - name: relation
     description: Find entities by foreign key relationships
     
 paths:
 
+  /authenticate/jwt:
+    post:
+      tags:
+        - authentication
+      summary: Authenticate user.
+      description: TODO
+      operationId: authenticateUserJSONWebToken
+      responses:
+        200:
+          description: JSON Web Token for authenticated user successfully.
+          content:
+            text/plain:
+              schema:
+                type: string
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        500:
+          $ref: "#/components/responses/FAException"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAuthenticationRequest'
+        description: TODO
+        required: true
+      "security": []
+
+  /authenticate/jwt/verify:
+    post:
+      tags:
+        - authentication
+      summary: verify JSON Web Token.
+      description: TODO
+      operationId: verifyJSONWebToken
+      responses:
+        200:
+          description: Token verified successfully.
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        500:
+          $ref: "#/components/responses/FAException"
+      requestBody:
+        description: JWT token to be verfied
+        required: true   
+        content:     
+          text/plain:
+            schema:
+              type: string
+      "security": []
+
+  /authenticate/jwt/refresh:
+    post:
+      tags:
+        - authentication
+      summary: refresh JSON Web Token to extend expirtation time
+      description: TODO
+      operationId: refreshJSONWebToken
+      responses:
+        200:
+          description: Updated JSON Web Token for authenticated user's token.
+          content:
+            text/plain:
+              schema:
+                type: string
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        500:
+          $ref: "#/components/responses/FAException"
+      requestBody:
+        description: User's JSON Web Token to refresh
+        required: true   
+        content:     
+          text/plain:
+            schema:
+              type: string
+      "security": []
+      
+      
   /info:
     get:
       tags:
@@ -484,6 +562,41 @@ paths:
               schema:
                 $ref: '#/components/schemas/FingerprintSet'
 
+  /gpc:
+    get:
+      tags:
+        - gpc
+      description: find gpc bricks by filter
+      operationId: findGpcBricks
+      parameters:
+        - name: s
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: lang
+          in: query
+          required: true
+          schema:
+            type: string
+            default: "de"
+      responses:
+        200:
+          description: The bricks.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GPCBrickData'
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        404:
+          $ref: "#/components/responses/ModelNotFoundResponse" 
+        500:
+          $ref: "#/components/responses/FAException"
+      "security": []
+      
   /product:
     get:
       tags:
@@ -1043,84 +1156,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PredictionJob'
-                
-  /authenticate/jwt:
-    post:
-      tags:
-        - authentication
-      summary: Authenticate user.
-      description: TODO
-      operationId: authenticateUserJSONWebToken
-      responses:
-        200:
-          description: JSON Web Token for authenticated user successfully.
-          content:
-            text/plain:
-              schema:
-                type: string
-        401:
-          $ref: "#/components/responses/UnauthorizedResponse" 
-        500:
-          $ref: "#/components/responses/FAException"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserAuthenticationRequest'
-        description: TODO
-        required: true
-      "security": []
-
-  /authenticate/jwt/verify:
-    post:
-      tags:
-        - authentication
-      summary: verify JSON Web Token.
-      description: TODO
-      operationId: verifyJSONWebToken
-      responses:
-        200:
-          description: Token verified successfully.
-        401:
-          $ref: "#/components/responses/UnauthorizedResponse" 
-        500:
-          $ref: "#/components/responses/FAException"
-      requestBody:
-        description: JWT token to be verfied
-        required: true   
-        content:     
-          text/plain:
-            schema:
-              type: string
-      "security": []
-
-  /authenticate/jwt/refresh:
-    post:
-      tags:
-        - authentication
-      summary: refresh JSON Web Token to extend expirtation time
-      description: TODO
-      operationId: refreshJSONWebToken
-      responses:
-        200:
-          description: Updated JSON Web Token for authenticated user's token.
-          content:
-            text/plain:
-              schema:
-                type: string
-        401:
-          $ref: "#/components/responses/UnauthorizedResponse" 
-        500:
-          $ref: "#/components/responses/FAException"
-      requestBody:
-        description: User's JSON Web Token to refresh
-        required: true   
-        content:     
-          text/plain:
-            schema:
-              type: string
-      "security": []
-
             
   /user:
     post:
@@ -1753,7 +1788,7 @@ paths:
   /discovery/transaction:
     get:
       tags:
-        - Transaction
+        - Discovery
       summary: Finds transaction by keywords or return all transactions.
       description: >-
         Muliple keywords can be provided with comma separated strings, e.g, keyword1, keyword2.
@@ -1771,7 +1806,7 @@ paths:
                 $ref: '#/components/schemas/DiscoveryServiceTransactionPageResult'
     post:
       tags:
-        - Transaction
+        - Discovery
       summary: Creates/adds a new Transaction.
       description: Creates/adds a new Transaction.
       operationId: createTransaction
@@ -1800,7 +1835,7 @@ paths:
   '/discovery/transaction/{transaction-id}':
     get:
       tags:
-        - Transaction
+        - Discovery
       description: Get the Transaction an id.
       operationId: getTransactionById
       parameters:
@@ -1821,31 +1856,37 @@ paths:
   '/discovery/transaction/findTransactionByFilter':
     post:
       tags:
-        - Transaction
+        - Discovery
       description: Find Transaction by filters
       operationId: findTransactionByFilter
       parameters:
         - $ref: "#/components/parameters/pageNumber"
         - $ref: "#/components/parameters/pageSize"
       responses:
-        '200':
+        200:
           description: successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscoveryServiceTransactionPageResult'
-        '404':
-          description: TODO, add response reference
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse" 
+        404:
+          $ref: "#/components/responses/ModelNotFoundResponse" 
+        500:
+          $ref: "#/components/responses/FAException"
+          
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/DiscoveryServiceSearchFilter'
+      "security": []              
 
   /discovery/transaction/sha256EpcClass:
     get:
       tags:
-        - Transaction
+        - Discovery
       summary: Returns hashed epcClass from gtin and lot.
       description: Returns hashed epcClass from gtin and lot.
       operationId: getSha256EpcClass
@@ -2641,6 +2682,64 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GPCAttribute'
+
+    GPCAttributeData:
+      description: >-
+        Global Product Classification Attribute for storing gpc brick details
+      type: object
+      x-no-faid: true
+      x-ui-vue.js:
+      - name: code
+      - name: text
+      - name: elements
+      properties:
+        code:
+          description: GPC attribute code
+          type: string
+        text:
+          description: GPC attribute human readable text
+          type: string
+        elements:
+          type: array
+          items:
+            $ref: '#/components/schemas/GPCAttributeValueData'
+
+    GPCAttributeValueData:
+      description: >-
+        Global Product Classification Attribute for storing gpc brick details
+      type: object
+      x-no-faid: true
+      x-ui-vue.js:
+      - name: code
+      - name: text
+      properties:
+        code:
+          description: GPC attribute value code
+          type: string
+        text:
+          description: GPC attribute value human readable text
+          type: string
+
+    GPCBrickData:
+      description: >-
+        Global Product Classification Brick for storing gpc brick details
+      type: object
+      x-no-faid: true
+      x-ui-vue.js:
+      - name: code
+      - name: text
+      - name: elements
+      properties:
+        code:
+          description: GPC brick code
+          type: string
+        text:
+          description: GPC brick human readable text
+          type: string
+        elements:
+          type: array
+          items:
+            $ref: '#/components/schemas/GPCAttributeData'
 
     ImportResult:
       type: object

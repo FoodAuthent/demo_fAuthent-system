@@ -15,10 +15,10 @@ import org.foodauthent.model.DiscoveryServiceSearchFilter;
 import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.DiscoveryServiceTransactionPageResult;
 
-import org.foodauthent.api.TransactionService;
+import org.foodauthent.api.DiscoveryService;
 import org.foodauthent.api.ServiceRegistry;
 
-import org.foodauthent.rest.api.service.TransactionRestService;
+import org.foodauthent.rest.api.service.DiscoveryRestService;
 
 import org.foodauthent.common.exception.FAExceptions;
 
@@ -27,16 +27,16 @@ import org.foodauthent.common.exception.FAExceptions;
  *
  * <p>This is the FoodAuthent API Description [www.foodauthent.net]
  *
- * <p> All Transaction related endpoints.
+ * <p> All Discovery Transaction related endpoints.
  *
  * @author Martin Horn, University of Konstanz
  */
 @javax.annotation.Generated(value = "org.foodauthent.codegen.FoodAuthentCodegen")
-@Component(service = TransactionRestService.class, immediate = true)
-public class TransactionRestServiceImpl implements TransactionRestService {
+@Component(service = DiscoveryRestService.class, immediate = true)
+public class DiscoveryRestServiceImpl implements DiscoveryRestService {
 
 	@Reference(cardinality = ReferenceCardinality.MANDATORY)
-    private TransactionService service;
+    private DiscoveryService service;
 
 
     /**
@@ -60,9 +60,21 @@ public class TransactionRestServiceImpl implements TransactionRestService {
      * @return the response
      */
     public Response findTransactionByFilter(Integer pageNumber, Integer pageSize, DiscoveryServiceSearchFilter discoveryServiceSearchFilter) {
-        
+        try { 
             Object res = service.findTransactionByFilter(pageNumber, pageSize, discoveryServiceSearchFilter);
             return Response.ok(res).build();
+         } 
+        catch(FAExceptions.UnauthorizedResponse e) {
+           return Response.status(401).entity(e.getMessage()).build();
+        }
+        
+        catch(FAExceptions.ModelNotFoundResponse e) {
+           return Response.status(404).entity(e.getMessage()).build();
+        }
+        
+        catch(FAExceptions.FAException e) {
+           return Response.status(500).entity(e.getMessage()).build();
+        }
     }
 
     /**

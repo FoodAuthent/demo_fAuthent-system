@@ -4,15 +4,29 @@ Bundle-Name: foodauthent-api
 Bundle-SymbolicName: org.foodauthent.api;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Export-Package: org.foodauthent.api,
+ org.foodauthent.impl.authentication,
+ org.foodauthent.impl.custommetadata,
+ org.foodauthent.impl.discovery,
+ org.foodauthent.impl.entity,
  org.foodauthent.impl.file,
  org.foodauthent.impl.fingerprint,
+ org.foodauthent.impl.gpc,
+ org.foodauthent.impl.info,
+ org.foodauthent.impl.model,
+ org.foodauthent.impl.objectevent,
+ org.foodauthent.impl.organization,
  org.foodauthent.impl.product,
+ org.foodauthent.impl.relation,
+ org.foodauthent.impl.sample,
  org.foodauthent.impl.sop,
+ org.foodauthent.impl.user,
  org.foodauthent.impl.workflow
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: com.foodauthent.api.internal.people,
  com.foodauthent.digest,
  com.foodauthent.gs1,
+ javax.ws.rs,
+ javax.ws.rs.core,
  org.apache.commons.io,
  org.apache.commons.io.input,
  org.foodauthent.api.internal.exception,
@@ -23,6 +37,7 @@ Import-Package: com.foodauthent.api.internal.people,
  org.foodauthent.auth.service,
  org.foodauthent.common.exception,
  org.foodauthent.fakx,
+ org.foodauthent.gpc,
  org.foodauthent.jwt,
  org.foodauthent.model,
  org.foodauthent.people,
@@ -45,7 +60,6 @@ Service-Component:
  OSGI-INF/org.foodauthent.impl.authentication.AuthenticationServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.custommetadata.CustomMetadataServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.objectevent.ObjectEventServiceImpl.xml,
- OSGI-INF/org.foodauthent.impl.transaction.TransactionServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.sample.SampleServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.info.InfoServiceImpl.xml,
  OSGI-INF/org.foodauthent.impl.entity.EntityServiceImpl.xml,
@@ -54,7 +68,9 @@ Service-Component:
  OSGI-INF/org.foodauthent.impl.relation.SampleRelationDelegate.xml,
  OSGI-INF/org.foodauthent.impl.relation.WorkflowRelationDelegate.xml,
  OSGI-INF/org.foodauthent.impl.relation.SOPRelationDelegate.xml,
- OSGI-INF/org.foodauthent.impl.relation.ModelRelationDelegate.xml
+ OSGI-INF/org.foodauthent.impl.relation.ModelRelationDelegate.xml,
+ OSGI-INF/org.foodauthent.impl.gpc.GpcServiceImpl.xml,
+ OSGI-INF/org.foodauthent.impl.discovery.DiscoveryServiceImpl.xml
 Require-Capability: osgi.extender;
  filter:="(&(osgi.extender=osgi.component)(version>=1.2)(!(version>=2.0)))"
 Require-Bundle: com.google.guava;bundle-version="17.0.0",

@@ -193,9 +193,12 @@
 	<modules>
 		<module>foodauthent-jwt</module>
 		<module>foodauthent-auth</module>
+		<module>foodauthent-auth-apikey</module>
+		<module>foodauthent-auth-filter</module>
 		<module>foodauthent-common</module>
 		<module>foodauthent-config</module>
 		<module>foodauthent-ldap</module>
+		<module>foodauthent-gpc</module>
 		<module>foodauthent-model</module>
 		<module>foodauthent-jersey-filter</module>
 		<module>foodauthent-osgi-logging</module>

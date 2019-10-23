@@ -52,10 +52,16 @@ public class ModelUtil {
         mapper.addMixIn(FingerprintSetPageResult.FingerprintSetPageResultBuilder.class, FingerprintSetPageResultMixIn.FingerprintSetPageResultMixInBuilder.class);
         mapper.addMixIn(FingerprintType.class, FingerprintTypeMixIn.class);
         mapper.addMixIn(FingerprintType.FingerprintTypeBuilder.class, FingerprintTypeMixIn.FingerprintTypeMixInBuilder.class);
+        mapper.addMixIn(GPCAttributeData.class, GPCAttributeDataMixIn.class);
+        mapper.addMixIn(GPCAttributeData.GPCAttributeDataBuilder.class, GPCAttributeDataMixIn.GPCAttributeDataMixInBuilder.class);
         mapper.addMixIn(GPCAttribute.class, GPCAttributeMixIn.class);
         mapper.addMixIn(GPCAttribute.GPCAttributeBuilder.class, GPCAttributeMixIn.GPCAttributeMixInBuilder.class);
+        mapper.addMixIn(GPCAttributeValueData.class, GPCAttributeValueDataMixIn.class);
+        mapper.addMixIn(GPCAttributeValueData.GPCAttributeValueDataBuilder.class, GPCAttributeValueDataMixIn.GPCAttributeValueDataMixInBuilder.class);
         mapper.addMixIn(GPCAttributeValue.class, GPCAttributeValueMixIn.class);
         mapper.addMixIn(GPCAttributeValue.GPCAttributeValueBuilder.class, GPCAttributeValueMixIn.GPCAttributeValueMixInBuilder.class);
+        mapper.addMixIn(GPCBrickData.class, GPCBrickDataMixIn.class);
+        mapper.addMixIn(GPCBrickData.GPCBrickDataBuilder.class, GPCBrickDataMixIn.GPCBrickDataMixInBuilder.class);
         mapper.addMixIn(GPCBrick.class, GPCBrickMixIn.class);
         mapper.addMixIn(GPCBrick.GPCBrickBuilder.class, GPCBrickMixIn.GPCBrickMixInBuilder.class);
         mapper.addMixIn(ImportFile.class, ImportFileMixIn.class);
