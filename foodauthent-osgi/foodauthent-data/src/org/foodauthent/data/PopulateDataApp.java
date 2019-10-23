@@ -32,6 +32,7 @@ import static org.foodauthent.rest.client.FASystemClientUtil.info;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -127,23 +128,26 @@ public class PopulateDataApp {
 	});
 	
 
+	//oils with sample-size > 1
+	List<String> oils = Arrays.asList("hanf", "schwarzkümmel", "soja", "traubenkern", "walnuss", "erdnuss", "sesam",
+		"lein", "sonnenblumen", "kürbis", "raps");
 	if (runTrainingAndPredictionJobs) {
 	    Map<String, UUID> modelIds = doitWithRes("Train models", () -> {
 		Map<String, UUID> ids = new HashMap<>();
 		//ids.put("multi_class_oils", train(trainingwfIds.get(0), new ArrayList(fingerprintsetIds.values()), c));
-		ids.put("one_class_kürbis",
-			train(trainingwfIds.get(1), asList(fingerprintsetIds.get("bfr_kürbis")), c));
-		ids.put("one_class_raps", train(trainingwfIds.get(1), asList(fingerprintsetIds.get("bfr_raps")), c));
-		ids.put("one_class_sonnenblumen",
-			train(trainingwfIds.get(1), asList(fingerprintsetIds.get("bfr_sonnenlbumen")), c));
+		for (String s : oils) {
+		    ids.put("one_class_" + s,
+			    train(trainingwfIds.get(1), asList(fingerprintsetIds.get("bfr_" + s)), c));
+		}
 		return ids;
 	    });
 
 	    doit("Run predictions", () -> {
-		//predict(predictionwfIds.get(0), fingerprintsetIds.get("bfr_kürbis"), modelIds.get("multi_class_oils"), c);
-		predict(predictionwfIds.get(0), fingerprintsetIds.get("bfr_raps"), modelIds.get("multi_class_oils"), c);
-		predict(predictionwfIds.get(1), fingerprintsetIds.get("bfr_kürbis"), modelIds.get("one_class_kürbis"), c);
-		predict(predictionwfIds.get(1), fingerprintsetIds.get("bfr_raps"), modelIds.get("one_class_kürbis"), c);
+//		predict(predictionwfIds.get(0), fingerprintsetIds.get("bfr_kürbis"), modelIds.get("multi_class_oils"), c);
+//		predict(predictionwfIds.get(0), fingerprintsetIds.get("bfr_raps"), modelIds.get("multi_class_oils"), c);
+		predict(predictionwfIds.get(1), fingerprintsetIds.get("bfr_hanf"), modelIds.get("one_class_hanf"), c);
+		predict(predictionwfIds.get(1), fingerprintsetIds.get("bfr_schwarzkümmel"), modelIds.get("one_class_hanf"), c);
+		predict(predictionwfIds.get(1), fingerprintsetIds.get("bfr_soja"), modelIds.get("one_class_hanf"), c);
 	    });
 	}
 
