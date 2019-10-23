@@ -277,12 +277,12 @@ public class LocalKnimeJobService implements JobService {
 							.setName(ModelType.NameEnum.valueOf(
 									workflow.getOutputTypes().getModelType().getName().toString().toUpperCase()))
 							.build();
-					Model model = Model.builder().setName(modelName)
-							.setDate(LocalDate.now())
-							.setType(modelType)
+					Model model = Model.builder().setName(modelName).setDate(LocalDate.now()).setType(modelType)
 							.setWorkflowId(workflow.getFaId())
 							.setFingerprintsetIds(
 									fingerprintSets.stream().map(fps -> fps.getFaId()).collect(Collectors.toList()))
+							.setClassLabels(fingerprintSets.stream().map(fps -> fps.getClassLabel())
+									.collect(Collectors.toList()))
 							.setFileId(modelFileId).build();
 					persistenceService.save(model);
 
