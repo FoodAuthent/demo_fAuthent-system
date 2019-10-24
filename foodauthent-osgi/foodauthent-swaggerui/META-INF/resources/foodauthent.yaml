@@ -2870,6 +2870,7 @@ components:
       - name: action
       - name: disposition
       - name: bizTransactionList
+      - name: eventType
       - name: gtin
       - name: bricks
       - name: eventTime
@@ -2909,6 +2910,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/BizTransaction"
+        eventType:
+          description: EPCIS eventType, for Foodauthent system could be only ObjectEvent
+          type: string
+          example: "ObjectEvent"
         gtin:
           description: Global Trade Item Number
           type: string

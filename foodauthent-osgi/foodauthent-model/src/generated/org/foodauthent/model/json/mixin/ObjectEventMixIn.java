@@ -73,6 +73,9 @@ public interface ObjectEventMixIn {
     @JsonProperty("bizTransactionList")
     public java.util.List<BizTransaction> getBizTransactionList();
     
+    @JsonProperty("eventType")
+    public String getEventType();
+    
     @JsonProperty("gtin")
     public String getGtin();
     
@@ -124,6 +127,9 @@ public interface ObjectEventMixIn {
         
         @JsonProperty("bizTransactionList")
         public ObjectEventMixInBuilder setBizTransactionList(final java.util.List<BizTransaction> bizTransactionList);
+        
+        @JsonProperty("eventType")
+        public ObjectEventMixInBuilder setEventType(final String eventType);
         
         @JsonProperty("gtin")
         public ObjectEventMixInBuilder setGtin(final String gtin);

@@ -59,6 +59,7 @@ public class ObjectEvent   extends FaModel {
   protected ActionEnum action;
   protected String disposition;
   protected java.util.List<BizTransaction> bizTransactionList;
+  protected String eventType;
   protected String gtin;
   protected java.util.List<String> bricks;
   protected OffsetDateTime eventTime;
@@ -81,6 +82,7 @@ public class ObjectEvent   extends FaModel {
     action = immutable(builder.action);
     disposition = immutable(builder.disposition);
     bizTransactionList = immutable(builder.bizTransactionList);
+    eventType = immutable(builder.eventType);
     gtin = immutable(builder.gtin);
     bricks = immutable(builder.bricks);
     eventTime = immutable(builder.eventTime);
@@ -104,7 +106,7 @@ public class ObjectEvent   extends FaModel {
             return false;
         }
         ObjectEvent ent = (ObjectEvent)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(disposition, ent.disposition) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(eventTime, ent.eventTime);
+        return Objects.equals(faId, ent.faId) && Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(disposition, ent.disposition) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(eventType, ent.eventType) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(eventTime, ent.eventTime);
     }
 
 
@@ -173,6 +175,14 @@ public class ObjectEvent   extends FaModel {
     }
 
   /**
+   * EPCIS eventType, for Foodauthent system could be only ObjectEvent
+   * @return eventType 
+   */
+  public String getEventType() {
+        return eventType;
+    }
+
+  /**
    * Global Trade Item Number
    * @return gtin 
    */
@@ -222,6 +232,7 @@ public class ObjectEvent   extends FaModel {
         builder.action = entity.action;
         builder.disposition = entity.disposition;
         builder.bizTransactionList = entity.bizTransactionList;
+        builder.eventType = entity.eventType;
         builder.gtin = entity.gtin;
         builder.bricks = entity.bricks;
         builder.eventTime = entity.eventTime;
@@ -243,6 +254,7 @@ public class ObjectEvent   extends FaModel {
         private ActionEnum action;
         private String disposition;
         private java.util.List<BizTransaction> bizTransactionList = new java.util.ArrayList<>();
+        private String eventType;
         private String gtin;
         private java.util.List<String> bricks = new java.util.ArrayList<>();
         private OffsetDateTime eventTime;
@@ -316,6 +328,15 @@ public class ObjectEvent   extends FaModel {
          */
         public ObjectEventBuilder setBizTransactionList(java.util.List<BizTransaction> bizTransactionList) {
              this.bizTransactionList = bizTransactionList;
+             return this;
+        }
+
+        /**
+         * EPCIS eventType, for Foodauthent system could be only ObjectEvent
+         * @return eventType 
+         */
+        public ObjectEventBuilder setEventType(String eventType) {
+             this.eventType = eventType;
              return this;
         }
 

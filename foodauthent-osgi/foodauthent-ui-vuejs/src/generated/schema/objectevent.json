@@ -134,6 +134,12 @@
       }
     }
   }, {
+    "label" : "EventType",
+    "model" : "eventType",
+    "required" : false,
+    "type" : "input",
+    "inputType" : "text"
+  }, {
     "label" : "Gtin",
     "model" : "gtin",
     "required" : false,

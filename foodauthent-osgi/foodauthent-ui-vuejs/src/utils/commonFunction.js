@@ -224,6 +224,7 @@ var MyObject = function () {
 	  };
 	  
 	  var getInfo = function (self) {
+		  setUpApi();
 		  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
 		  var apiClient = new ApiClient();
 		  var InfoApi = require("@/generated/rest-client/src/api/InfoApi.js");
@@ -247,6 +248,7 @@ var MyObject = function () {
 		  };
 		  
 		var getLinkInfo = function(faId, infoType, self){
+		setUpApi();
 		var generalApi;
 		  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
 		  var apiClient = new ApiClient();
