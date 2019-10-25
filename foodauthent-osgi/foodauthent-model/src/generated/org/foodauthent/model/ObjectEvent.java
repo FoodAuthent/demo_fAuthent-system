@@ -12,7 +12,6 @@ import java.util.Objects;
 
 import java.time.OffsetDateTime;
 import org.foodauthent.model.BizTransaction;
-import org.foodauthent.model.Epc;
 import org.foodauthent.model.QuantityElement;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -52,7 +51,7 @@ public class ObjectEvent   extends FaModel {
 
 
   protected java.util.UUID faId;
-  protected java.util.List<Epc> epcList;
+  protected java.util.List<String> epcList;
   protected String bizStep;
   protected String readPoint;
   protected java.util.List<QuantityElement> quantityList;
@@ -119,10 +118,10 @@ public class ObjectEvent   extends FaModel {
     }
 
   /**
-   * List of epcs
+   * An unordered list of one or more EPCs(Electronic Product Code) naming the physical objects to which the event pertained. Each element of this list SHALL be a URI [RFC2396] denoting the unique identity for a physical object.
    * @return epcList 
    */
-  public java.util.List<Epc> getEpcList() {
+  public java.util.List<String> getEpcList() {
         return epcList;
     }
 
@@ -247,7 +246,7 @@ public class ObjectEvent   extends FaModel {
         }
 
         private java.util.UUID faId;
-        private java.util.List<Epc> epcList = new java.util.ArrayList<>();
+        private java.util.List<String> epcList = new java.util.ArrayList<>();
         private String bizStep;
         private String readPoint;
         private java.util.List<QuantityElement> quantityList = new java.util.ArrayList<>();
@@ -269,10 +268,10 @@ public class ObjectEvent   extends FaModel {
         }
 
         /**
-         * List of epcs
+         * An unordered list of one or more EPCs(Electronic Product Code) naming the physical objects to which the event pertained. Each element of this list SHALL be a URI [RFC2396] denoting the unique identity for a physical object.
          * @return epcList 
          */
-        public ObjectEventBuilder setEpcList(java.util.List<Epc> epcList) {
+        public ObjectEventBuilder setEpcList(java.util.List<String> epcList) {
              this.epcList = epcList;
              return this;
         }

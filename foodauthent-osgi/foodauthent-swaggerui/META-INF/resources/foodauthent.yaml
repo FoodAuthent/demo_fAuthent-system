@@ -2880,10 +2880,10 @@ components:
           type: string
           format: uuid
         epcList:
-          description: List of epcs
+          description: An unordered list of one or more EPCs(Electronic Product Code) naming the physical objects to which the event pertained. Each element of this list SHALL be a URI [RFC2396] denoting the unique identity for a physical object.
           type: array
-          items: 
-            $ref: "#/components/schemas/Epc"
+          items:
+            type: string
         bizStep:
           description: EPCIS bizStep
           type: string

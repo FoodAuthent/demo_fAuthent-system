@@ -5,7 +5,6 @@ package org.foodauthent.model.json.mixin;
 
 import java.time.OffsetDateTime;
 import org.foodauthent.model.BizTransaction;
-import org.foodauthent.model.Epc;
 import org.foodauthent.model.QuantityElement;
 
 import java.util.UUID;
@@ -53,7 +52,7 @@ public interface ObjectEventMixIn {
     public java.util.UUID getFaId();
     
     @JsonProperty("epcList")
-    public java.util.List<Epc> getEpcList();
+    public java.util.List<String> getEpcList();
     
     @JsonProperty("bizStep")
     public String getBizStep();
@@ -108,7 +107,7 @@ public interface ObjectEventMixIn {
         public ObjectEventMixInBuilder setFaId(final java.util.UUID faId);
         
         @JsonProperty("epcList")
-        public ObjectEventMixInBuilder setEpcList(final java.util.List<Epc> epcList);
+        public ObjectEventMixInBuilder setEpcList(final java.util.List<String> epcList);
         
         @JsonProperty("bizStep")
         public ObjectEventMixInBuilder setBizStep(final String bizStep);

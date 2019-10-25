@@ -19,10 +19,7 @@ public class MockedObjectEventBuilder {
 				.setBizStep("urn:epcglobal:cbv:bizstep:commissioning") //
 				.setEventTime(OffsetDateTime.now()) //
 				.setEpcList(Arrays.asList(
-						"ni://api.foodauthent.net/sha-256;9ed1b204ec3f1b37d318ceaeb3f79dfd7d9743234512bc34818b4c736f82beca?type=fakx")
-						.stream().map(s -> {
-							return Epc.builder().setEpc(s).build();
-						}).collect(Collectors.toList())) //
+						"ni://api.foodauthent.net/sha-256;9ed1b204ec3f1b37d318ceaeb3f79dfd7d9743234512bc34818b4c736f82beca?type=fakx")) //
 				.setDisposition("urn:epcglobal:cbv:disp:active") //
 				.setGtin("04012345123456") //
 				.setReadPoint("urn:epc:id:sgln:439990230054..0") //

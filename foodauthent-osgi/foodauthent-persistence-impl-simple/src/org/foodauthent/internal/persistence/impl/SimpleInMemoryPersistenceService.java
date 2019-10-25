@@ -98,7 +98,7 @@ public class SimpleInMemoryPersistenceService implements PersistenceServiceProvi
 				m -> m.getWorkflowId().toString()));
 
 		tmp.add(createMPS(ObjectEvent.class,
-				m -> m.getEpcList().stream().map(e -> e.getEpc()).collect(Collectors.joining(","))));
+				m -> m.getEpcList().stream().map(e -> e).collect(Collectors.joining(","))));
 		tmp.add(createMPS(DiscoveryServiceTransaction.class,
 				m -> m.getEpcList().stream().map(e -> e).collect(Collectors.joining(","))));
 

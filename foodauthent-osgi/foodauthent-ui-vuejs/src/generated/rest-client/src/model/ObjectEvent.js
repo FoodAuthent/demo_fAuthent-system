@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/BizTransaction', '../model/Epc', '../model/QuantityElement'], factory);
+    define(['../ApiClient', '../model/BizTransaction', '../model/QuantityElement'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./BizTransaction'), require('./Epc'), require('./QuantityElement'));
+    module.exports = factory(require('../ApiClient'), require('./BizTransaction'), require('./QuantityElement'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.ObjectEvent = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.BizTransaction, root.FoodAuthentSwaggerApi.Epc, root.FoodAuthentSwaggerApi.QuantityElement);
+    root.FoodAuthentSwaggerApi.ObjectEvent = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.BizTransaction, root.FoodAuthentSwaggerApi.QuantityElement);
   }
-}(this, function(ApiClient, BizTransaction, Epc, QuantityElement) {
+}(this, function(ApiClient, BizTransaction, QuantityElement) {
   'use strict';
 
 
@@ -64,7 +64,7 @@
         obj['fa-id'] = ApiClient.convertToType(data['fa-id'], 'String');
       }
       if (data.hasOwnProperty('epcList')) {
-        obj['epcList'] = ApiClient.convertToType(data['epcList'], [Epc]);
+        obj['epcList'] = ApiClient.convertToType(data['epcList'], ['String']);
       }
       if (data.hasOwnProperty('bizStep')) {
         obj['bizStep'] = ApiClient.convertToType(data['bizStep'], 'String');
@@ -106,8 +106,8 @@
    */
   exports.prototype['fa-id'] = undefined;
   /**
-   * List of epcs
-   * @member {Array.<module:model/Epc>} epcList
+   * An unordered list of one or more EPCs(Electronic Product Code) naming the physical objects to which the event pertained. Each element of this list SHALL be a URI [RFC2396] denoting the unique identity for a physical object.
+   * @member {Array.<String>} epcList
    */
   exports.prototype['epcList'] = undefined;
   /**

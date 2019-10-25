@@ -182,7 +182,7 @@ public class FTraceEPCISEventServiceImpl implements EPCISEventService {
 			return null;
 		}
 		final EPCListType epcList = new EPCListType();
-		epcList.getEpc().addAll(event.getEpcList().stream().map(epc -> epc.getEpc()).collect(Collectors.toList()));
+		epcList.getEpc().addAll(event.getEpcList());
 		return epcList;
 	}
 

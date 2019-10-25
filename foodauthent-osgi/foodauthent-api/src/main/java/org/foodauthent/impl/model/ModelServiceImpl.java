@@ -114,11 +114,7 @@ public class ModelServiceImpl implements ModelService {
 		.setAction(ActionEnum.ADD) //
 		.setBizStep("urn:epcglobal:cbv:bizstep:commissioning") //
 		.setEventTime(OffsetDateTime.now()) //
-		.setEpcList(Arrays.asList(
-			String.format("ni://api.foodauthent.net/sha-256;%s?bt=%s&ffmt=application/zip", sha256, bt))
-			.stream().map(s -> {
-			    return Epc.builder().setEpc(s).build();
-			}).collect(Collectors.toList())) //
+		.setEpcList(Arrays.asList(String.format("ni://api.foodauthent.net/sha-256;%s?bt=%s&ffmt=application/zip", sha256, bt)))
 		.setDisposition("urn:epcglobal:cbv:disp:active") //
 		.setReadPoint("urn:epc:id:sgln:439990230054..0");
 

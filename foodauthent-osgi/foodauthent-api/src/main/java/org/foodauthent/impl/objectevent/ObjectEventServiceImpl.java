@@ -112,15 +112,7 @@ public class ObjectEventServiceImpl implements ObjectEventService {
                         }).collect(Collectors.toList()))
 		.setBizStep(objectEvent.getBizStep()) //
 		.setEventTime(objectEvent.getEventTime()) //
-		.setEpcList(objectEvent.getEpcList()
-                        .stream().map(s -> {
-                            try {
-				return "ni:///sha-256;"+DigestUtil.sha256(s.getEpc())+"?input=lgtin";
-			    } catch (NoSuchAlgorithmException e) {
-				e.printStackTrace();
-			    }
-			    return null;
-                        }).collect(Collectors.toList()))
+		.setEpcList(objectEvent.getEpcList())
 		.setGtin(objectEvent.getGtin()) //
 		.setReadPoint("ni:///sha-256;"+DigestUtil.sha256(objectEvent.getReadPoint() + getGlnMaskingCode(""))+"?input=sgln.gmc&multiHash=yes")
 		.setBricks(objectEvent.getBricks()).build();
