@@ -2,6 +2,8 @@ package org.foodauthent.auth.apikey.impl;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -11,10 +13,13 @@ import javax.ws.rs.core.SecurityContext;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.foodauthent.auth.SecurityContextImpl;
+import org.foodauthent.auth.User;
 import org.foodauthent.auth.UserPrincipal;
 import org.foodauthent.auth.WebAuthenticationMethod;
 import org.foodauthent.auth.apikey.ApiKeyService;
+import org.foodauthent.auth.apikey.impl.ApiKeyConfig.ApiUser;
 import org.foodauthent.auth.service.AuthenticationService;
+import org.foodauthent.common.exception.ServiceException;
 import org.foodauthent.common.exception.UnauthorizedException;
 import org.foodauthent.config.ConfigObjectRegistration;
 import org.foodauthent.config.ConfigurationListener;
@@ -39,11 +44,11 @@ public class ApiKeyServiceImpl implements ApiKeyService {
 
 	@Reference(cardinality = ReferenceCardinality.MANDATORY)
 	private AuthenticationService authenticationService;
-	
+
 	private Logger LOG = LoggerFactory.getLogger(ApiKeyServiceImpl.class);
 
 	@Override
-	public SecurityContext getSecurityContext(ContainerRequestContext requestContext) throws UnauthorizedException {
+	public SecurityContext getSecurityContext(ContainerRequestContext requestContext) throws ServiceException {
 		final Optional<ApiKeyHeader> header = ApiKeyHeader.of(requestContext);
 		if (header.isPresent()) {
 			final Optional<UserPrincipal> user = getUserPrincipal(header.get());
@@ -56,7 +61,7 @@ public class ApiKeyServiceImpl implements ApiKeyService {
 	}
 
 	@Override
-	public Principal getUserPrincipal(HttpServletRequest request) throws UnauthorizedException {
+	public Principal getUserPrincipal(HttpServletRequest request) throws ServiceException {
 		final Optional<ApiKeyHeader> header = ApiKeyHeader.of(request);
 		if (header.isPresent()) {
 			final Optional<UserPrincipal> user = getUserPrincipal(header.get());
@@ -93,26 +98,35 @@ public class ApiKeyServiceImpl implements ApiKeyService {
 		}
 	}
 
-	private Optional<UserPrincipal> getUserPrincipal(ApiKeyHeader header) {
-		return Optional.empty();
+	private Optional<UserPrincipal> getUserPrincipal(ApiKeyHeader header)
+			throws UnauthorizedException, ServiceException {
+		final Optional<ApiUser> user = apiKeyConfig.getUser(header.keyId);
+		if (!user.isPresent()) {
+			return Optional.empty();
+		}
+		if (!header.secretKey.equals(user.get().getSecretKey())) {
+			return Optional.empty();
+		}
+		final User authUser = authenticationService.find(user.get().getName());
+		final UserPrincipal u = new ApiKeyUserPrincipal(authUser);
+		return Optional.ofNullable(u);
 	}
-	
+
 	private static final class ApiKeyHeader {
-		
+
 		private String keyId;
-		
+
 		private String secretKey;
-		
+
 		private static boolean isAuthSupported(ContainerRequestContext requestContext) {
 			return (requestContext.getHeaderString(HTTP_HEADER_KEY_ID) != null
 					&& requestContext.getHeaderString(HTTP_HEADER_SECRET_KEY) != null);
 		}
 
 		private static boolean isAuthSupported(HttpServletRequest request) {
-			return (request.getHeader(HTTP_HEADER_KEY_ID) != null
-					&& request.getHeader(HTTP_HEADER_SECRET_KEY) != null);
+			return (request.getHeader(HTTP_HEADER_KEY_ID) != null && request.getHeader(HTTP_HEADER_SECRET_KEY) != null);
 		}
-		
+
 		private static Optional<ApiKeyHeader> of(ContainerRequestContext requestContext) {
 			if (isAuthSupported(requestContext)) {
 				return Optional.of(new ApiKeyHeader(requestContext));
@@ -126,7 +140,7 @@ public class ApiKeyServiceImpl implements ApiKeyService {
 			}
 			return Optional.empty();
 		}
-		
+
 		private ApiKeyHeader(ContainerRequestContext requestContext) {
 			this.keyId = requestContext.getHeaderString(HTTP_HEADER_KEY_ID);
 			this.secretKey = hashSecretKey(requestContext.getHeaderString(HTTP_HEADER_SECRET_KEY));
@@ -136,7 +150,7 @@ public class ApiKeyServiceImpl implements ApiKeyService {
 			this.keyId = request.getHeader(HTTP_HEADER_KEY_ID);
 			this.secretKey = hashSecretKey(request.getHeader(HTTP_HEADER_SECRET_KEY));
 		}
-		
+
 		private String hashSecretKey(final String secretKey) {
 			return "sha256;" + DigestUtils.sha256Hex(secretKey);
 		}
@@ -146,5 +160,5 @@ public class ApiKeyServiceImpl implements ApiKeyService {
 	public int getPriority() {
 		return 0;
 	}
-	
+
 }

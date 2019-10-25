@@ -16,6 +16,7 @@ import javax.ws.rs.ext.Provider;
 
 import org.foodauthent.auth.WebAuthenticationMethod;
 import org.foodauthent.auth.security.SecuritySchemeUtil;
+import org.foodauthent.common.exception.ServiceException;
 import org.foodauthent.common.exception.UnauthorizedException;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
@@ -62,7 +63,7 @@ public class AuthenticationContainerRequestFilter implements ContainerRequestFil
 				try {
 					requestContext.setSecurityContext(m.getSecurityContext(requestContext));
 					return;
-				} catch (UnauthorizedException e) {
+				} catch (ServiceException e) {
 					// do nothing - try next
 				}
 			}
