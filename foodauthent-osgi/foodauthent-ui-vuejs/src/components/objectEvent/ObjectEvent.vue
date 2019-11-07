@@ -108,8 +108,9 @@ export default {
             save() {
                 let self = this;
                 self.loading = true;
-                console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
-                saveObjectEvent(JSON.stringify(this.model, undefined, 4), self);
+                //console.log("POST BODY", JSON.stringify(self.model, undefined, 4));
+                //saveObjectEvent(JSON.stringify(self.model, undefined, 4), self);
+                saveObjectEvent(self.model, self);
                 self.model = {}
             },
              cancel() {

@@ -1155,6 +1155,16 @@ paths:
             type: string
             format: uuid
         - in: query
+          name: objectevent-ids
+          description: >
+            One or more objectevent-ids
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              format: uuid
+        - in: query
           name: async
           description: >-
             Whether to run the workflow asynchronously
@@ -2218,12 +2228,13 @@ components:
           nullable: false
 
     PublishMetadata:
-      description: DiscoveryServiceTransaction
+      description: PublishMetadata
       type: object
       x-no-faid: true
       x-ui-vue.js:
       - name: gtin
       - name: bricks
+      - name: transaction-ids
       properties:
         gtin:
           description: Global Trade Item Number
@@ -2240,6 +2251,12 @@ components:
         discovery:
           description: send to discovery services
           type: boolean
+        transaction-ids:
+          description: List of transaction Id
+          type: array
+          items:
+            type: string
+            format: uuid
 
     DiscoveryServiceTransaction:
       description: DiscoveryServiceTransaction
@@ -2808,6 +2825,10 @@ components:
           id-list-provider: select-fingerprintset
           id-list-model: fingerprintset-id
           id-list-label: Fingerprintset-id
+        - name: objectevent-ids
+          id-list-provider: select-objectevent
+          id-list-model: objectevent-id
+          id-list-label: objectevent-id
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
@@ -2856,6 +2877,12 @@ components:
           type: array
           items:
             type: string
+        objectevent-ids:
+          description: list of object event Id related to this model
+          type: array
+          items:
+            type: string
+            format: uuid
 
     ModelPageResult:
       type: object
@@ -2910,6 +2937,10 @@ components:
       - name: gtin
       - name: bricks
       - name: eventTime
+      - name: transaction-ids
+        id-list-provider: select-transaction
+        id-list-model: transaction-id
+        id-list-label: transaction-id  
       properties:
         fa-id:
           description: A global id within the FoodAuthent-system.
@@ -2964,6 +2995,12 @@ components:
           type: string
           format: date-time
           example: "2007-12-03T10:15:30+01:00"
+        transaction-ids:
+          description: List of discovery service transaction related to this ObjecEvent
+          type: array
+          items:
+            type: string
+            format: uuid
 
     ObjectEventPageResult:
       type: object
@@ -3138,6 +3175,12 @@ components:
           type: string
           format: uuid
           example: ''
+        objectevent-ids:
+          description: list of object event Id related to this model
+          type: array
+          items:
+            type: string
+            format: uuid
     
     PredictionJob:
       description: Represents prediction job.

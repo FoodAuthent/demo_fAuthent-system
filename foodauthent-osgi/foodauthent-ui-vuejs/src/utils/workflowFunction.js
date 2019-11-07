@@ -496,10 +496,51 @@ var findWorkflowById = function (self) {
       callback
     );
   };
+  
+  
+  var updatePrediction =  function (json, self) {
+	  setUpApi();
+	    console.log('Update prediction');
+	    var idsObjectEvent =[];  
+	    var tempArrayObjecEvent = json["objectevent-ids"];
+	    for (var key in tempArrayObjecEvent) {
+	        if (tempArrayObjecEvent.hasOwnProperty(key)) {           
+	        	idsObjectEvent.push(tempArrayObjecEvent[key]["objectevent-id"]);
+	        }
+	    }
+	    json["objectevent-ids"] = idsObjectEvent;
+	    var callback = function (error, data, response) {
+	      console.log("data:", data);
+	      console.log("response:", response);
+	      if (error) {
+	        console.error(error);
+	        self.showError = true;
+	      } else {
+	        self.response = data;
+	        self.showSuccess = 5;
+	        console.log("API called successfully. Returned data: ", data);
+	      }
+	    };
+	    var opt = {
+	      prediction: json
+	    };
+	    console.log("json:", json);
+	    workflowApi.updatedPrediction(
+	       opt,
+	       callback
+	     );
+	  };
 
-  var savePredictionJob = function (workflowId, fingerprintsetId, modelId, self) {
+  var savePredictionJob = function (workflowId, fingerprintsetId, modelId, objecteventIds, self) {
 	  setUpApi();
     console.log('Save Prediction Job');
+    var idsObjectEvent =[];  
+    var tempArrayObjecEvent = objecteventIds;
+    for (var key in tempArrayObjecEvent) {
+        if (tempArrayObjecEvent.hasOwnProperty(key)) {           
+        	idsObjectEvent.push(tempArrayObjecEvent[key]["objectevent-id"]);
+        }
+    }
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
@@ -521,6 +562,7 @@ var findWorkflowById = function (self) {
       } 
     };
     var opt = {
+    		objecteventIds: idsObjectEvent,
     		async: true
     };
     workflowApi.createPredictionJob(
@@ -618,7 +660,8 @@ var findWorkflowById = function (self) {
     findPredictionJobsByKeyword: findPredictionJobsByKeyword,
     findTrainingJobsByKeyword: findTrainingJobsByKeyword,
     findTriningJobById: findTriningJobById,
-    findWorkflowById: findWorkflowById
+    findWorkflowById: findWorkflowById,
+    updatePrediction: updatePrediction
   }
 }();
 

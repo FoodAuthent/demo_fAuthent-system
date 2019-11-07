@@ -113,7 +113,7 @@ export default new Router({
             }
     },
         {
-            path: '/objectEvent',
+            path: '/objectEvents',
             name: 'ObjectEvent',
             component: ObjectEvent,
             meta: {
@@ -121,7 +121,7 @@ export default new Router({
             }
      },
         {
-            path: '/discoveryService',
+            path: '/transactions',
             name: 'DiscoveryService',
             component: DiscoveryService,
             meta: {

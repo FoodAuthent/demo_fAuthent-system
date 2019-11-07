@@ -62,6 +62,7 @@ public class ObjectEvent   extends FaModel {
   protected String gtin;
   protected java.util.List<String> bricks;
   protected OffsetDateTime eventTime;
+  protected java.util.List<java.util.UUID> transactionIds;
 
   public String getTypeID() {
     return "ObjectEvent";
@@ -85,6 +86,7 @@ public class ObjectEvent   extends FaModel {
     gtin = immutable(builder.gtin);
     bricks = immutable(builder.bricks);
     eventTime = immutable(builder.eventTime);
+    transactionIds = immutable(builder.transactionIds);
 
     faId = generateFaIdIfMissing(faId);
 
@@ -105,7 +107,7 @@ public class ObjectEvent   extends FaModel {
             return false;
         }
         ObjectEvent ent = (ObjectEvent)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(disposition, ent.disposition) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(eventType, ent.eventType) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(eventTime, ent.eventTime);
+        return Objects.equals(faId, ent.faId) && Objects.equals(epcList, ent.epcList) && Objects.equals(bizStep, ent.bizStep) && Objects.equals(readPoint, ent.readPoint) && Objects.equals(quantityList, ent.quantityList) && Objects.equals(action, ent.action) && Objects.equals(disposition, ent.disposition) && Objects.equals(bizTransactionList, ent.bizTransactionList) && Objects.equals(eventType, ent.eventType) && Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(eventTime, ent.eventTime) && Objects.equals(transactionIds, ent.transactionIds);
     }
 
 
@@ -205,6 +207,14 @@ public class ObjectEvent   extends FaModel {
         return eventTime;
     }
 
+  /**
+   * List of discovery service transaction related to this ObjecEvent
+   * @return transactionIds 
+   */
+  public java.util.List<java.util.UUID> getTransactionIds() {
+        return transactionIds;
+    }
+
 
  	/**
   	 * @return a newly created builder
@@ -235,6 +245,7 @@ public class ObjectEvent   extends FaModel {
         builder.gtin = entity.gtin;
         builder.bricks = entity.bricks;
         builder.eventTime = entity.eventTime;
+        builder.transactionIds = entity.transactionIds;
  		return builder;
   	}
 
@@ -257,6 +268,7 @@ public class ObjectEvent   extends FaModel {
         private String gtin;
         private java.util.List<String> bricks = new java.util.ArrayList<>();
         private OffsetDateTime eventTime;
+        private java.util.List<java.util.UUID> transactionIds = new java.util.ArrayList<>();
 
         /**
          * A global id within the FoodAuthent-system.
@@ -363,6 +375,15 @@ public class ObjectEvent   extends FaModel {
          */
         public ObjectEventBuilder setEventTime(OffsetDateTime eventTime) {
              this.eventTime = eventTime;
+             return this;
+        }
+
+        /**
+         * List of discovery service transaction related to this ObjecEvent
+         * @return transactionIds 
+         */
+        public ObjectEventBuilder setTransactionIds(java.util.List<java.util.UUID> transactionIds) {
+             this.transactionIds = transactionIds;
              return this;
         }
 

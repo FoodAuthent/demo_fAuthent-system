@@ -74,6 +74,9 @@
       if (data.hasOwnProperty('model-id')) {
         obj['model-id'] = ApiClient.convertToType(data['model-id'], 'String');
       }
+      if (data.hasOwnProperty('objectevent-ids')) {
+        obj['objectevent-ids'] = ApiClient.convertToType(data['objectevent-ids'], ['String']);
+      }
     }
     return obj;
   }
@@ -103,6 +106,11 @@
    * @member {String} model-id
    */
   exports.prototype['model-id'] = undefined;
+  /**
+   * list of object event Id related to this model
+   * @member {Array.<String>} objectevent-ids
+   */
+  exports.prototype['objectevent-ids'] = undefined;
 
 
 

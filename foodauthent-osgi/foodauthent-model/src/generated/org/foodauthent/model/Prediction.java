@@ -28,6 +28,7 @@ public class Prediction   extends FaModel {
   protected java.util.UUID workflowId;
   protected java.util.UUID fingerprintsetId;
   protected java.util.UUID modelId;
+  protected java.util.List<java.util.UUID> objecteventIds;
 
   public String getTypeID() {
     return "Prediction";
@@ -44,6 +45,7 @@ public class Prediction   extends FaModel {
     workflowId = immutable(builder.workflowId);
     fingerprintsetId = immutable(builder.fingerprintsetId);
     modelId = immutable(builder.modelId);
+    objecteventIds = immutable(builder.objecteventIds);
 
     faId = generateFaIdIfMissing(faId);
 
@@ -64,7 +66,7 @@ public class Prediction   extends FaModel {
             return false;
         }
         Prediction ent = (Prediction)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(predictionMap, ent.predictionMap) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetId, ent.fingerprintsetId) && Objects.equals(modelId, ent.modelId);
+        return Objects.equals(faId, ent.faId) && Objects.equals(predictionMap, ent.predictionMap) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetId, ent.fingerprintsetId) && Objects.equals(modelId, ent.modelId) && Objects.equals(objecteventIds, ent.objecteventIds);
     }
 
 
@@ -108,6 +110,14 @@ public class Prediction   extends FaModel {
         return modelId;
     }
 
+  /**
+   * list of object event Id related to this model
+   * @return objecteventIds 
+   */
+  public java.util.List<java.util.UUID> getObjecteventIds() {
+        return objecteventIds;
+    }
+
 
  	/**
   	 * @return a newly created builder
@@ -131,6 +141,7 @@ public class Prediction   extends FaModel {
         builder.workflowId = entity.workflowId;
         builder.fingerprintsetId = entity.fingerprintsetId;
         builder.modelId = entity.modelId;
+        builder.objecteventIds = entity.objecteventIds;
  		return builder;
   	}
 
@@ -146,6 +157,7 @@ public class Prediction   extends FaModel {
         private java.util.UUID workflowId;
         private java.util.UUID fingerprintsetId;
         private java.util.UUID modelId;
+        private java.util.List<java.util.UUID> objecteventIds = new java.util.ArrayList<>();
 
         /**
          * A global id within the FoodAuthent-system.
@@ -189,6 +201,15 @@ public class Prediction   extends FaModel {
          */
         public PredictionBuilder setModelId(java.util.UUID modelId) {
              this.modelId = modelId;
+             return this;
+        }
+
+        /**
+         * list of object event Id related to this model
+         * @return objecteventIds 
+         */
+        public PredictionBuilder setObjecteventIds(java.util.List<java.util.UUID> objecteventIds) {
+             this.objecteventIds = objecteventIds;
              return this;
         }
 

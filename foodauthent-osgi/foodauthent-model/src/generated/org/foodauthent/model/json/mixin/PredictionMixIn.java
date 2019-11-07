@@ -59,6 +59,9 @@ public interface PredictionMixIn {
     @JsonProperty("model-id")
     public java.util.UUID getModelId();
     
+    @JsonProperty("objectevent-ids")
+    public java.util.List<java.util.UUID> getObjecteventIds();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -92,6 +95,9 @@ public interface PredictionMixIn {
         
         @JsonProperty("model-id")
         public PredictionMixInBuilder setModelId(final java.util.UUID modelId);
+        
+        @JsonProperty("objectevent-ids")
+        public PredictionMixInBuilder setObjecteventIds(final java.util.List<java.util.UUID> objecteventIds);
         
     }
 

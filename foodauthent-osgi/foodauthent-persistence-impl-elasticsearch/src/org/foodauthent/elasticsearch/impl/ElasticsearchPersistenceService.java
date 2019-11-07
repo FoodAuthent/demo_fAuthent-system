@@ -515,7 +515,7 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 			throw new NoSuchElementException();
 		}
 
-		return DiscoveryServiceTransactionPageResult.builder().setPageCount(pageSize).setPageNumber(pageNumber)
+		return DiscoveryServiceTransactionPageResult.builder().setPageCount((int)transaction.size() / pageSize).setPageNumber(pageNumber)
 				.setResults(transaction).setResultCount(transaction.size()).build();
 
 	}

@@ -115,6 +115,9 @@ public class ModelServiceImpl implements ModelService {
 	if (publishMetadata.getBricks() != null) {
 	    builder.setBricks(publishMetadata.getBricks());
 	}
+	if (publishMetadata.getTransactionIds() != null) {
+	    builder.setTransactionIds(publishMetadata.getTransactionIds());
+	}
 	return builder.build();
     }
 

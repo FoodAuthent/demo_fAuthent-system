@@ -70,14 +70,23 @@ var MyObject = function () {
     console.log('Save Model');
     //just a workaround, the backend wait for a list of UUID string, not object
     var idsFingerprintset =[];  
-    var tempArray = json["fingerprintset-ids"];
-    for (var key in tempArray) {
-        if (tempArray.hasOwnProperty(key)) {           
-            //console.log(key, fingerprintsetIdss[key]["fingerprintset-id"]);
-            idsFingerprintset.push(tempArray[key]["fingerprintset-id"]);
+    var tempArrayFingerprint = json["fingerprintset-ids"];
+    for (var key in tempArrayFingerprint) {
+        if (tempArrayFingerprint.hasOwnProperty(key)) {           
+            idsFingerprintset.push(tempArrayFingerprint[key]["fingerprintset-id"]);
         }
     }
     json["fingerprintset-ids"] = idsFingerprintset;
+    	
+    var idsObjectEvent =[];  
+    var tempArrayObjecEvent = json["objectevent-ids"];
+    for (var key in tempArrayObjecEvent) {
+        if (tempArrayObjecEvent.hasOwnProperty(key)) {           
+            //console.log(key, tempArrayObjecEvent[key]["objectevent-id"]);
+        	idsObjectEvent.push(tempArrayObjecEvent[key]["objectevent-id"]);
+        }
+    }
+    json["objectevent-ids"] = idsObjectEvent;
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);
