@@ -84,6 +84,9 @@ public interface ObjectEventMixIn {
     @JsonProperty("eventTime")
     public OffsetDateTime getEventTime();
     
+    @JsonProperty("transaction-ids")
+    public java.util.List<java.util.UUID> getTransactionIds();
+    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -138,6 +141,9 @@ public interface ObjectEventMixIn {
         
         @JsonProperty("eventTime")
         public ObjectEventMixInBuilder setEventTime(final OffsetDateTime eventTime);
+        
+        @JsonProperty("transaction-ids")
+        public ObjectEventMixInBuilder setTransactionIds(final java.util.List<java.util.UUID> transactionIds);
         
     }
 

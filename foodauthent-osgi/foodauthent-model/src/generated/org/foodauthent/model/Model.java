@@ -38,6 +38,7 @@ public class Model   extends FaModel {
   protected java.util.UUID workflowId;
   protected java.util.List<java.util.UUID> fingerprintsetIds;
   protected java.util.List<String> classLabels;
+  protected java.util.List<java.util.UUID> objecteventIds;
 
   public String getTypeID() {
     return "Model";
@@ -61,6 +62,7 @@ public class Model   extends FaModel {
     workflowId = immutable(builder.workflowId);
     fingerprintsetIds = immutable(builder.fingerprintsetIds);
     classLabels = immutable(builder.classLabels);
+    objecteventIds = immutable(builder.objecteventIds);
 
     faId = generateFaIdIfMissing(faId);
 
@@ -81,7 +83,7 @@ public class Model   extends FaModel {
             return false;
         }
         Model ent = (Model)o;
-        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetIds, ent.fingerprintsetIds) && Objects.equals(classLabels, ent.classLabels);
+        return Objects.equals(faId, ent.faId) && Objects.equals(name, ent.name) && Objects.equals(description, ent.description) && Objects.equals(author, ent.author) && Objects.equals(date, ent.date) && Objects.equals(version, ent.version) && Objects.equals(type, ent.type) && Objects.equals(tags, ent.tags) && Objects.equals(fileId, ent.fileId) && Objects.equals(workflowId, ent.workflowId) && Objects.equals(fingerprintsetIds, ent.fingerprintsetIds) && Objects.equals(classLabels, ent.classLabels) && Objects.equals(objecteventIds, ent.objecteventIds);
     }
 
 
@@ -181,6 +183,14 @@ public class Model   extends FaModel {
         return classLabels;
     }
 
+  /**
+   * list of object event Id related to this model
+   * @return objecteventIds 
+   */
+  public java.util.List<java.util.UUID> getObjecteventIds() {
+        return objecteventIds;
+    }
+
 
  	/**
   	 * @return a newly created builder
@@ -211,6 +221,7 @@ public class Model   extends FaModel {
         builder.workflowId = entity.workflowId;
         builder.fingerprintsetIds = entity.fingerprintsetIds;
         builder.classLabels = entity.classLabels;
+        builder.objecteventIds = entity.objecteventIds;
  		return builder;
   	}
 
@@ -233,6 +244,7 @@ public class Model   extends FaModel {
         private java.util.UUID workflowId;
         private java.util.List<java.util.UUID> fingerprintsetIds = new java.util.ArrayList<>();
         private java.util.List<String> classLabels = new java.util.ArrayList<>();
+        private java.util.List<java.util.UUID> objecteventIds = new java.util.ArrayList<>();
 
         /**
          * A global id within the FoodAuthent-system.
@@ -339,6 +351,15 @@ public class Model   extends FaModel {
          */
         public ModelBuilder setClassLabels(java.util.List<String> classLabels) {
              this.classLabels = classLabels;
+             return this;
+        }
+
+        /**
+         * list of object event Id related to this model
+         * @return objecteventIds 
+         */
+        public ModelBuilder setObjecteventIds(java.util.List<java.util.UUID> objecteventIds) {
+             this.objecteventIds = objecteventIds;
              return this;
         }
 

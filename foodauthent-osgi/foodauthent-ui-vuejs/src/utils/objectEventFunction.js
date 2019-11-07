@@ -106,7 +106,21 @@ var MyObject = function () {
   
   var saveObjectEvent = function (json, self) {
 	  setUpApi();
-    console.log('Save ObjectEvent');
+    console.log('Save ObjectEvent', json);
+    //just a workaround, the backend wait for a list of UUID string, not object
+    var idsTransaction =[];  
+    var tempArrayTransaction = [];
+    console.log("TRANSACTION IDS",json["transaction-ids"]);
+    tempArrayTransaction = json["transaction-ids"];
+    console.log("tempArrayTransaction",tempArrayTransaction);
+    for (var key in tempArrayTransaction) {
+        if (tempArrayTransaction.hasOwnProperty(key)) {           
+            console.log(key, tempArrayTransaction[key]["transaction-id"]);
+            idsTransaction.push(tempArrayTransaction[key]["transaction-id"]);
+        }
+    }
+    json["transaction-ids"] = [];
+    json["transaction-ids"] = idsTransaction;
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);

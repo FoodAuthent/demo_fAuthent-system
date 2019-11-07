@@ -96,6 +96,9 @@
       if (data.hasOwnProperty('class-labels')) {
         obj['class-labels'] = ApiClient.convertToType(data['class-labels'], ['String']);
       }
+      if (data.hasOwnProperty('objectevent-ids')) {
+        obj['objectevent-ids'] = ApiClient.convertToType(data['objectevent-ids'], ['String']);
+      }
     }
     return obj;
   }
@@ -159,6 +162,11 @@
    * @member {Array.<String>} class-labels
    */
   exports.prototype['class-labels'] = undefined;
+  /**
+   * list of object event Id related to this model
+   * @member {Array.<String>} objectevent-ids
+   */
+  exports.prototype['objectevent-ids'] = undefined;
 
 
 

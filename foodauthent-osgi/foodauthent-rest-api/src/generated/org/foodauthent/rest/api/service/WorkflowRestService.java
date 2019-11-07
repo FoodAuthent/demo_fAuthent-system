@@ -42,6 +42,7 @@ public interface WorkflowRestService{
      * @param workflowId TODO
      * @param fingerprintsetId TODO
      * @param modelId The model to be used for prediction. Needs to be compatible with the selected workflow!!
+     * @param objecteventIds One or more objectevent-ids 
      * @param async Whether to run the workflow asynchronously
      * @return the response
      */
@@ -52,6 +53,7 @@ public interface WorkflowRestService{
     public Response createPredictionJob(@QueryParam("workflow-id")java.util.UUID workflowId
 , @QueryParam("fingerprintset-id")java.util.UUID fingerprintsetId
 , @QueryParam("model-id")java.util.UUID modelId
+, @QueryParam("objectevent-ids")java.util.List<java.util.UUID> objecteventIds
 , @QueryParam("async")Boolean async
 );
 

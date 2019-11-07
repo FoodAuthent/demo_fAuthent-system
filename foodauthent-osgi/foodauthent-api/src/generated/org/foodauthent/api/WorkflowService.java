@@ -28,12 +28,13 @@ public interface WorkflowService {
      * @param workflowId TODO
      * @param fingerprintsetId TODO
      * @param modelId The model to be used for prediction. Needs to be compatible with the selected workflow!!
+     * @param objecteventIds One or more objectevent-ids 
      * @param async Whether to run the workflow asynchronously
      *
      * @return the result
      * @throws InitJobException Exception thrown when a job could not be initialized.
      */
-    PredictionJob createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId, Boolean async) throws FAExceptions.InitJobException;
+    PredictionJob createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId, java.util.List<java.util.UUID> objecteventIds, Boolean async) throws FAExceptions.InitJobException;
         
     /**
      * 

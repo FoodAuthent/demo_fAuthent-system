@@ -112,7 +112,7 @@ export default {
                 let self = this;
                 self.loading = true;
                 console.log("POST BODY", JSON.stringify(this.model, undefined, 4));
-                savePredictionJob(self.model["workflow-id"],self.model["fingerprintset-id"], self.model["model-id"],self);
+                savePredictionJob(self.model["workflow-id"],self.model["fingerprintset-id"], self.model["model-id"],self.model["objectevent-ids"],self);
                 self.model = {}
             },
            cancel() {

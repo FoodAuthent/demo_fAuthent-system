@@ -227,8 +227,12 @@ var MyObject = function () {
 		  var ApiClient = require("../generated/rest-client/src/ApiClient.js");
 		  var apiClient = new ApiClient();
 		  var InfoApi = require("@/generated/rest-client/src/api/InfoApi.js");
+		  apiClient.basePath = window.location.origin + "/v0/foodauthent";
+		  if(localStorage.getItem('token')){
+			  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
+			  apiClient.defaultHeaders = headerToken;  
+		  }
 		  var infoApi = new InfoApi(apiClient);
-			setUpApi();
 		    var callback = function (error, data, response) {
 		      console.log("data:", data);
 		      console.log("response:", response);

@@ -96,6 +96,9 @@
       if (data.hasOwnProperty('eventTime')) {
         obj['eventTime'] = ApiClient.convertToType(data['eventTime'], 'Date');
       }
+      if (data.hasOwnProperty('transaction-ids')) {
+        obj['transaction-ids'] = ApiClient.convertToType(data['transaction-ids'], ['String']);
+      }
     }
     return obj;
   }
@@ -160,6 +163,11 @@
    * @member {Date} eventTime
    */
   exports.prototype['eventTime'] = undefined;
+  /**
+   * List of discovery service transaction related to this ObjecEvent
+   * @member {Array.<String>} transaction-ids
+   */
+  exports.prototype['transaction-ids'] = undefined;
 
 
   /**

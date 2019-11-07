@@ -61,6 +61,8 @@ var getWorkflows = require("@/utils/workflowFunction.js").default.getWorkflows;
 var getModels = require("@/utils/modelFunction.js").default.getModels;
 var getSops = require("@/utils/sopFunction.js").default.getSops;
 var getSample = require("@/utils/sampleFunction.js").default.getSample;
+var getObjectEvent = require("@/utils/objectEventFunction.js").default.getObjectEvent;
+var getTransaction = require("@/utils/discoveryServiceFunction.js").default.getTransaction;
 
 var findProductByGtin = require("@/utils/productFunction.js").default.findProductByGtin;
 var findFingerprintById = require("@/utils/fingerprintFunction.js").default.findFingerprintById;
@@ -69,6 +71,8 @@ var findWorkflowById = require("@/utils/workflowFunction.js").default.findWorkfl
 var findModelById = require("@/utils/modelFunction.js").default.findModelById;
 var findSopById = require("@/utils/sopFunction.js").default.findSopById;
 var findSampleById = require("@/utils/sampleFunction.js").default.findSampleById;
+var findObjectEventById = require("@/utils/objectEventFunction.js").default.findObjectEventById;
+var findTransactionById = require("@/utils/discoveryServiceFunction.js").default.findTransactionById;
 
 const regex1 = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
 const regex2 = /\b\d{8}(?:\d{4,6})?\b/;
@@ -108,6 +112,10 @@ export default {
         getSops(self);
      } else if (this.schema.idprovider == "select-sample") {
         getSample(self);
+      } else if(this.schema.idprovider == "select-objectevent"){
+      getObjectEvent(self);
+      }else if(this.schema.idprovider == "select-transaction"){
+      getTransaction(self);
       } else {
         console.log("NO method found");
       }
@@ -153,6 +161,10 @@ export default {
         self.searchSop();
       }else if (this.schema.idprovider == "select-sample") {
         self.searchSample();
+      }else if(this.schema.idprovider == "select-objectevent"){
+      self.searchObjectEvent();
+      }else if(this.schema.idprovider == "select-transaction"){
+      searchTransaction();
       } else {
         alert("NO method found");
       }
@@ -221,6 +233,24 @@ export default {
 	   		getSample(self);
 			}
     },
+    searchObjectEvent(){
+        	let self = this;
+	    //check if it is a valid UUID
+		if (regex1.test(self.filter)) {
+	    	findObjectEventById(self);
+			} else {
+	   		getObjectEvent(self);
+			}
+    },
+    searchTransaction(){
+            	let self = this;
+	    //check if it is a valid UUID
+		if (regex1.test(self.filter)) {
+	    	findTransactionById(self);
+			} else {
+	   		getTransaction(self);
+			}
+    }
   },
   computed: {
     sortOptions() {
