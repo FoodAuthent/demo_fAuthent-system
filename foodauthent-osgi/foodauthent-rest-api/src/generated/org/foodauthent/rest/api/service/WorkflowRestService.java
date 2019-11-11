@@ -9,10 +9,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 import org.foodauthent.auth.security.SecurityScheme;
 
+import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJobPageResult;
 import org.foodauthent.model.PredictionPageResult;
+import org.foodauthent.model.PublishMetadata;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.TrainingJobPageResult;
 import org.foodauthent.model.Workflow;
@@ -253,6 +255,23 @@ public interface WorkflowRestService{
 	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getWorkflowById(@PathParam("workflow-id") java.util.UUID workflowId
+);
+
+    /**
+     *
+     * @param predictionId TODO
+     * @param sellable TODO
+     * @param publishMetadata TODO
+     * @return the response
+     */
+    @POST
+    @Path("/prediction/{prediction-id}/publish")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    public Response publishPredictionResult(@PathParam("prediction-id") java.util.UUID predictionId
+, @QueryParam("sellable")Boolean sellable
+, PublishMetadata publishMetadata
 );
 }
 

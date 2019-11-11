@@ -2,21 +2,39 @@ package org.foodauthent.impl.workflow;
 
 import static org.foodauthent.api.internal.persistence.PersistenceService.toArray;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.foodauthent.api.FileService;
 import org.foodauthent.api.WorkflowService;
 import org.foodauthent.api.internal.job.JobService;
+import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.api.internal.persistence.PersistenceService;
 import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
 import org.foodauthent.common.exception.FAExceptions.InitJobException;
+import org.foodauthent.epcis.EPCISEventService;
+import org.foodauthent.impl.file.FakxExporter;
+import org.foodauthent.model.FaObjectSet;
+import org.foodauthent.model.FileMetadata;
+import org.foodauthent.model.FileMetadata.ContentTypeEnum;
 import org.foodauthent.model.FingerprintSet;
 import org.foodauthent.model.Model;
+import org.foodauthent.model.ObjectEvent;
+import org.foodauthent.model.ObjectEvent.ActionEnum;
+import org.foodauthent.model.ObjectEvent.ObjectEventBuilder;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJobPageResult;
 import org.foodauthent.model.PredictionPageResult;
+import org.foodauthent.model.PublishMetadata;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.TrainingJobPageResult;
 import org.foodauthent.model.Workflow;
@@ -45,6 +63,12 @@ public class WorkflowServiceImpl implements WorkflowService {
 
     @Reference(cardinality = ReferenceCardinality.MANDATORY)
     private JobService jobService;
+
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
+    private FileService fileService;
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    private EPCISEventService epcisEventService;
 
     public WorkflowServiceImpl() {
     }
@@ -89,7 +113,7 @@ public class WorkflowServiceImpl implements WorkflowService {
     public Workflow getWorkflowById(final UUID workflowId) {
 	return persistenceService.getFaModelByUUID(workflowId, Workflow.class);
     }
-    
+
     @Override
     public UUID createWorkflow(final Workflow workflow) {
 	persistenceService.save(workflow);
@@ -114,8 +138,8 @@ public class WorkflowServiceImpl implements WorkflowService {
 
     @Override
     public PredictionJobPageResult findPredictionJobs(Integer pageNumber, Integer pageSize, List<String> keywords) {
-	ResultPage<PredictionJob> res = persistenceService.findByKeywordsPaged(PredictionJob.class,
-		pageNumber, pageSize, toArray(keywords));
+	ResultPage<PredictionJob> res = persistenceService.findByKeywordsPaged(PredictionJob.class, pageNumber,
+		pageSize, toArray(keywords));
 	return PredictionJobPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
@@ -143,7 +167,7 @@ public class WorkflowServiceImpl implements WorkflowService {
 	return WorkflowPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
-  
+
     @Override
     public PredictionPageResult findPredictionsByFingerprintSetId(UUID fingerprintsetId, Integer pageNumber,
 	    Integer pageSize, List<String> keywords) {
@@ -151,5 +175,56 @@ public class WorkflowServiceImpl implements WorkflowService {
 		toArray(keywords), toArray(fingerprintsetId.toString()));
 	return PredictionPageResult.builder().setPageCount(res.getTotalNumPages()).setPageNumber(pageNumber)
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
+    }
+
+    private ObjectEvent buildClassificationEvent(PublishMetadata publishMetadata, UUID fileUUID)
+	    throws UnsupportedEncodingException {
+	final String sha256 = fileService.getFileSHA256(fileUUID);
+	final String bt = "http://api.foodauthent.net/bt/" + fileUUID.toString();
+	final ObjectEventBuilder builder = ObjectEvent.builder() //
+		.setAction(ActionEnum.ADD) //
+		.setBizStep("urn:epcglobal:cbv:bizstep:commissioning") //
+		.setEventTime(OffsetDateTime.now()) //
+		.setEpcList(Arrays.asList(
+			String.format("ni://api.foodauthent.net/sha-256;%s?bt=%s&ffmt=application/zip", sha256, bt)))
+		.setDisposition("urn:epcglobal:cbv:disp:active") //
+		.setReadPoint("urn:epc:id:sgln:439990230054..0");
+
+	if (publishMetadata.getGtin() != null) {
+	    builder.setGtin(publishMetadata.getGtin());
+	}
+	if (publishMetadata.getBricks() != null) {
+	    builder.setBricks(publishMetadata.getBricks());
+	}
+	return builder.build();
+    }
+
+    @Override
+    public ObjectEvent publishPredictionResult(UUID predictionId, Boolean sellable, PublishMetadata publishMetadata) {
+	final FakxExporter exporter = new FakxExporter(persistenceService);
+	try {
+	    Path tmp = Files.createTempFile(predictionId.toString(), ".zip");
+	    try {
+		final FaObjectSet objectSet = FaObjectSet.builder().setPredictions(Arrays.asList(predictionId)).build();
+		exporter.export(objectSet, tmp.toFile());
+		final UUID fileUUID = fileService.createFileMetadata(FileMetadata.builder().setName("model.fakx")
+			.setUploadName("model.fakx").setType(org.foodauthent.model.FileMetadata.TypeEnum.FAKX)
+			.setContentType(ContentTypeEnum.ZIP).build());
+		persistenceService.save(new Blob(fileUUID, new FileInputStream(tmp.toFile())));
+		final ObjectEvent event = buildClassificationEvent(publishMetadata, fileUUID);
+		persistenceService.save(event);
+		if (publishMetadata.isEpcis() != null && publishMetadata.isEpcis() && epcisEventService != null) {
+		    epcisEventService.publish(event);
+		}
+		return event;
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    } finally {
+		Files.delete(tmp);
+	    }
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
+	return null;
     }
 }

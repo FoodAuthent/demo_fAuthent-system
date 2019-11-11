@@ -3,10 +3,12 @@
  */
 package org.foodauthent.api;
 
+import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJobPageResult;
 import org.foodauthent.model.PredictionPageResult;
+import org.foodauthent.model.PublishMetadata;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.TrainingJobPageResult;
 import org.foodauthent.model.Workflow;
@@ -169,5 +171,16 @@ public interface WorkflowService {
      * @return the result
      */
     Workflow getWorkflowById(java.util.UUID workflowId);
+        
+    /**
+     * 
+     *
+     * @param predictionId TODO
+     * @param sellable TODO
+     * @param publishMetadata TODO
+     *
+     * @return the result
+     */
+    ObjectEvent publishPredictionResult(java.util.UUID predictionId, Boolean sellable, PublishMetadata publishMetadata);
         
 }

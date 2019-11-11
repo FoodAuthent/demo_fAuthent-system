@@ -11,10 +11,12 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJobPageResult;
 import org.foodauthent.model.PredictionPageResult;
+import org.foodauthent.model.PublishMetadata;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.TrainingJobPageResult;
 import org.foodauthent.model.Workflow;
@@ -232,6 +234,19 @@ public class WorkflowRestServiceImpl implements WorkflowRestService {
     public Response getWorkflowById(java.util.UUID workflowId) {
         
             Object res = service.getWorkflowById(workflowId);
+            return Response.ok(res).build();
+    }
+
+    /**
+     *
+     * @param predictionId TODO
+     * @param sellable TODO
+     * @param publishMetadata TODO
+     * @return the response
+     */
+    public Response publishPredictionResult(java.util.UUID predictionId, Boolean sellable, PublishMetadata publishMetadata) {
+        
+            Object res = service.publishPredictionResult(predictionId, sellable, publishMetadata);
             return Response.ok(res).build();
     }
 }

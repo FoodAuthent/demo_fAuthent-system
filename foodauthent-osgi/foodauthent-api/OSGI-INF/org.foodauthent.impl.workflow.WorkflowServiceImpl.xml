@@ -3,6 +3,8 @@
    <service scope="singleton">
       <provide interface="org.foodauthent.api.WorkflowService"/>
    </service>
+   <reference cardinality="0..1" field="epcisEventService" interface="org.foodauthent.epcis.EPCISEventService" name="epcisEventService"/>
+   <reference cardinality="1..1" field="fileService" interface="org.foodauthent.api.FileService" name="fileService"/>
    <reference cardinality="1..1" field="jobService" interface="org.foodauthent.api.internal.job.JobService" name="jobService"/>
    <reference cardinality="1..1" field="persistenceService" interface="org.foodauthent.api.internal.persistence.PersistenceService" name="persistenceService"/>
    <implementation class="org.foodauthent.impl.workflow.WorkflowServiceImpl"/>

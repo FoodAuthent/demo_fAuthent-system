@@ -100,7 +100,7 @@ public class ObjectEventServiceImpl implements ObjectEventService {
 		.setAction(ObjectToTransactionEnum(objectEvent.getAction())) //
 		.setBizTransactionList(objectEvent.getBizTransactionList())//
 		.setEventType("ObjectEvent")//
-		.setInterfaceId("ni:///sha-256;"+DigestUtil.sha256("api.foodauthent.net (http://api.foodauthent.net/)" + getInterfaceMaskingCode(""))+"?input=iid.imc&multiHash=yes")
+		.setInterfaceId("ni:///sha-256;"+DigestUtil.sha256("api.foodauthent.net" + getInterfaceMaskingCode(""))+"?input=iid.imc&multiHash=yes")
 		.setQuantityList(objectEvent.getQuantityList()
                         .stream().map(s -> {
                             try {
