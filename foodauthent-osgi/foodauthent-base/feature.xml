@@ -28,6 +28,14 @@
          id="org.foodauthent.openchrom.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.equinox.core.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.platform"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.glassfish.jersey.media.jersey-media-multipart"/>
       <import plugin="slf4j.api"/>
@@ -93,6 +101,13 @@
 
    <plugin
          id="ch.qos.logback.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.log4j"
          download-size="0"
          install-size="0"
          version="0.0.0"
