@@ -188,6 +188,7 @@ public class WorkflowServiceImpl implements WorkflowService {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private ObjectEvent buildClassificationEvent(PublishMetadata publishMetadata, UUID fileUUID)
 	    throws UnsupportedEncodingException {
 	final String sha256 = fileService.getFileSHA256(fileUUID);
@@ -242,4 +243,8 @@ public class WorkflowServiceImpl implements WorkflowService {
 
 
 >>>>>>> new branch for testing new features
+=======
+
+
+>>>>>>> b86523ee60c2dc5dfcffe340bc0c8f7afba94032
 }

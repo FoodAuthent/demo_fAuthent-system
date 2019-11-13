@@ -234,6 +234,7 @@ var MyObject = function () {
 		  }
 		  var infoApi = new InfoApi(apiClient);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  if(localStorage.getItem('token')){
 			  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
 			  apiClient.defaultHeaders = headerToken;  
@@ -241,6 +242,8 @@ var MyObject = function () {
 			//setUpApi();
 =======
 >>>>>>> new branch for testing new features
+=======
+>>>>>>> b86523ee60c2dc5dfcffe340bc0c8f7afba94032
 		    var callback = function (error, data, response) {
 		      console.log("data:", data);
 		      console.log("response:", response);
