@@ -17,7 +17,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -72,8 +71,7 @@ public class WorkflowTest extends AbstractITTest {
 	UUID modelId = uploadModel();
 
 	/* run prediction workflow */
-	List<UUID> objecteventIds = new ArrayList();
-	PredictionJob predictionJob = handleResp(workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId,objecteventIds, true),
+	PredictionJob predictionJob = handleResp(workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, true),
 		PredictionJob.class);
 	assertEquals(StatusEnum.RUNNING, predictionJob.getStatus());
 	// let the job finish the prediction
@@ -162,8 +160,7 @@ public class WorkflowTest extends AbstractITTest {
 	UUID wfId = workflows(client()).createWorkflow(wfb.build()).readEntity(UUID.class);
 
 	// try to run prediction job
-	List<UUID> objecteventIds = new ArrayList();
-	Response response = workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId,objecteventIds, true);
+	Response response = workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, true);
 	assertEquals("Unexpected status code", 500, response.getStatus());
 	String message = response.readEntity(String.class);
 	assertTrue(message.contains("not a knime workflow"));
@@ -175,7 +172,7 @@ public class WorkflowTest extends AbstractITTest {
 	wfId = workflows(client()).createWorkflow(wfb.build()).readEntity(UUID.class);
 	
 	// try to run prediction job
-	response = workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId,objecteventIds, true);
+	response = workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, true);
 	assertEquals("Unexpected status code", 500, response.getStatus());
 	message = response.readEntity(String.class);
 	assertTrue(message.contains("not a prediction workflow"));
@@ -187,7 +184,7 @@ public class WorkflowTest extends AbstractITTest {
 	wfId = workflows(client()).createWorkflow(wfb.build()).readEntity(UUID.class);
 
 	// try to run prediction job
-	response = workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId,objecteventIds, true);
+	response = workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, true);
 	assertEquals("Unexpected status code", 500, response.getStatus());
 	message = response.readEntity(String.class);
 	assertTrue(message.contains("No model file found"));
@@ -199,9 +196,9 @@ public class WorkflowTest extends AbstractITTest {
 	UUID wfId = uploadPredictionWorkflow();
 	UUID fingerprintSetId = uploadFingerprintSets().get(0);
 	UUID modelId = uploadModel();
-	List<UUID> objecteventIds = new ArrayList();
+
 	PredictionJob predictionJob = handleResp(
-		workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId,objecteventIds, false), PredictionJob.class);
+		workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, false), PredictionJob.class);
 	assertEquals(StatusEnum.SUCCESS, predictionJob.getStatus());
     }
     

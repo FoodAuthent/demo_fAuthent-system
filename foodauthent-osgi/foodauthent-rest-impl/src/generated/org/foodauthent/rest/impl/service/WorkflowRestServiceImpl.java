@@ -51,13 +51,12 @@ public class WorkflowRestServiceImpl implements WorkflowRestService {
      * @param workflowId TODO
      * @param fingerprintsetId TODO
      * @param modelId The model to be used for prediction. Needs to be compatible with the selected workflow!!
-     * @param objecteventIds One or more objectevent-ids 
      * @param async Whether to run the workflow asynchronously
      * @return the response
      */
-    public Response createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId, java.util.List<java.util.UUID> objecteventIds, Boolean async) {
+    public Response createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId, Boolean async) {
         try { 
-            Object res = service.createPredictionJob(workflowId, fingerprintsetId, modelId, objecteventIds, async);
+            Object res = service.createPredictionJob(workflowId, fingerprintsetId, modelId, async);
             return Response.ok(res).build();
          } 
         catch(FAExceptions.InitJobException e) {

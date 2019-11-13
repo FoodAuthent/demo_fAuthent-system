@@ -12,7 +12,6 @@ import static org.foodauthent.rest.client.FASystemClientUtil.workflows;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -225,8 +224,7 @@ public class PopulateModels {
     }
 
     public static UUID predict(UUID workflowId, UUID fingerprintsetId, UUID modelId, FASystemClient c) {
-	List<UUID> objecteventIds = new ArrayList();
-	return handleResp(workflows(c).createPredictionJob(workflowId, fingerprintsetId, modelId, objecteventIds, false),
+	return handleResp(workflows(c).createPredictionJob(workflowId, fingerprintsetId, modelId, false),
 		PredictionJob.class).getPredictionId();
     }
 

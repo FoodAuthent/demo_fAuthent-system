@@ -1155,16 +1155,6 @@ paths:
             type: string
             format: uuid
         - in: query
-          name: objectevent-ids
-          description: >
-            One or more objectevent-ids
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-              format: uuid
-        - in: query
           name: async
           description: >-
             Whether to run the workflow asynchronously
@@ -3212,6 +3202,7 @@ components:
           description: File id of the executed artifact (e.g. a workflow) if there is any.
           type: string
           format: uuid
+
 
     PredictionJobPageResult:
       type: object

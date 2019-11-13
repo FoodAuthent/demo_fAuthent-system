@@ -62,7 +62,6 @@
      * @param {String} fingerprintsetId TODO
      * @param {String} modelId The model to be used for prediction. Needs to be compatible with the selected workflow!!
      * @param {Object} opts Optional parameters
-     * @param {Array.<String>} opts.objecteventIds One or more objectevent-ids 
      * @param {Boolean} opts.async Whether to run the workflow asynchronously
      * @param {module:api/WorkflowApi~createPredictionJobCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/PredictionJob}
@@ -96,10 +95,6 @@
         'async': opts['async'],
       };
       var collectionQueryParams = {
-        'objectevent-ids': {
-          value: opts['objecteventIds'],
-          collectionFormat: 'multi'
-        },
       };
       var headerParams = {
       };

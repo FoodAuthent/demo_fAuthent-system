@@ -73,23 +73,13 @@ public class WorkflowServiceImpl implements WorkflowService {
     public WorkflowServiceImpl() {
     }
 
-//    @Override
-//    public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId, UUID modelId,
-//	    Boolean async) throws InitJobException {
-//	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId, Workflow.class);
-//	final FingerprintSet fingerprint = persistenceService.getFaModelByUUID(fingerprintSetId, FingerprintSet.class);
-//	final Model model = persistenceService.getFaModelByUUID(modelId, Model.class);
-//	final PredictionJob job = jobService.createNewPredictionJob(workflow, fingerprint, model, async);
-//	return job;
-//    }
-    
     @Override
-    public PredictionJob createPredictionJob(UUID workflowId, UUID fingerprintsetId, UUID modelId,
-	    List<UUID> objecteventIds, Boolean async) throws InitJobException {
+    public PredictionJob createPredictionJob(final UUID workflowId, final UUID fingerprintSetId, UUID modelId,
+	    Boolean async) throws InitJobException {
 	final Workflow workflow = persistenceService.getFaModelByUUID(workflowId, Workflow.class);
-	final FingerprintSet fingerprint = persistenceService.getFaModelByUUID(fingerprintsetId, FingerprintSet.class);
+	final FingerprintSet fingerprint = persistenceService.getFaModelByUUID(fingerprintSetId, FingerprintSet.class);
 	final Model model = persistenceService.getFaModelByUUID(modelId, Model.class);
-	final PredictionJob job = jobService.createNewPredictionJob(workflow, fingerprint, model, objecteventIds, async);
+	final PredictionJob job = jobService.createNewPredictionJob(workflow, fingerprint, model, async);
 	return job;
     }
 
@@ -187,8 +177,6 @@ public class WorkflowServiceImpl implements WorkflowService {
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     private ObjectEvent buildClassificationEvent(PublishMetadata publishMetadata, UUID fileUUID)
 	    throws UnsupportedEncodingException {
 	final String sha256 = fileService.getFileSHA256(fileUUID);
@@ -239,12 +227,5 @@ public class WorkflowServiceImpl implements WorkflowService {
 	}
 	return null;
     }
-=======
 
-
->>>>>>> new branch for testing new features
-=======
-
-
->>>>>>> b86523ee60c2dc5dfcffe340bc0c8f7afba94032
 }
