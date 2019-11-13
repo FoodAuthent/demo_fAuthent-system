@@ -765,6 +765,42 @@ paths:
             application/json: 
               schema:
                 $ref: '#/components/schemas/Prediction'
+                
+  '/prediction/{prediction-id}/publish':
+    post:
+      tags:
+        - workflow
+      summary: Get a specific prediction result.
+      operationId: publishPredictionResult
+      parameters:
+        - in: path
+          name: prediction-id
+          description: TODO
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - in: query
+          name: sellable
+          description: TODO
+          required: true
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublishMetadata'
+        description: TODO
+        required: true
+      responses:
+        '200':
+          description: The published model's ObjectEvent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectEvent'
+              
   /model:
     get:
       tags:
@@ -1118,16 +1154,6 @@ paths:
           schema:
             type: string
             format: uuid
-        - in: query
-          name: objectevent-ids
-          description: >
-            One or more objectevent-ids
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-              format: uuid
         - in: query
           name: async
           description: >-

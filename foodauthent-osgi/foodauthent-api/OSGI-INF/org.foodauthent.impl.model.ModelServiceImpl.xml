@@ -3,8 +3,10 @@
    <service>
       <provide interface="org.foodauthent.api.ModelService"/>
    </service>
+   <reference cardinality="1..1" field="discoveryService" interface="org.foodauthent.api.DiscoveryService" name="discoveryService"/>
    <reference cardinality="0..1" field="epcisEventService" interface="org.foodauthent.epcis.EPCISEventService" name="epcisEventService"/>
    <reference cardinality="1..1" field="fileService" interface="org.foodauthent.api.FileService" name="fileService"/>
+   <reference cardinality="1..1" field="objectEventService" interface="org.foodauthent.api.ObjectEventService" name="objectEventService"/>
    <reference cardinality="1..1" field="persistenceService" interface="org.foodauthent.api.internal.persistence.PersistenceService" name="persistenceService"/>
    <implementation class="org.foodauthent.impl.model.ModelServiceImpl"/>
 </scr:component>

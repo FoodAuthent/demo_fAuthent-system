@@ -20,7 +20,6 @@ Require-Bundle: org.knime.core;bundle-version="[3.6.0,4.0.0)",
  com.fasterxml.jackson.core.jackson-core,
  org.knime.json;bundle-version="[3.6.0,4.0.0)",
  org.knime.ext.jep;bundle-version="3.6.2",
- net.openchrom.knime.node.nmr.digitalfilter;bundle-version="1.1.0",
  net.openchrom.knime.node.nmr.apodization;bundle-version="1.0.0",
  net.openchrom.knime.node.nmr.ft;bundle-version="1.1.0",
  net.openchrom.knime.node.nmr.io.bruker;bundle-version="1.1.0",
@@ -30,7 +29,8 @@ Require-Bundle: org.knime.core;bundle-version="[3.6.0,4.0.0)",
  net.openchrom.knime.node.fid.table;bundle-version="1.1.0",
  net.openchrom.knime.node.nmr.table;bundle-version="1.1.0",
  org.knime.datageneration;bundle-version="3.6.0",
- org.apache.log4j;bundle-version="1.2.15"
+ org.apache.log4j;bundle-version="1.2.15",
+ net.openchrom.knime.node.fid.digitalfilter;bundle-version="3.5.0"
 Export-Package: org.foodauthent.internal.impl.job.knime
 Service-Component: OSGI-INF/org.foodauthent.internal.impl.job.knime.LocalKnimeJobService.xml
 Require-Capability: osgi.extender;
