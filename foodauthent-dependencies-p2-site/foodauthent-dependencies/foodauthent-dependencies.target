@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Equinox-Oxygen" sequenceNumber="143">
+<?pde version="3.8"?>
+<target name="Equinox-Oxygen" sequenceNumber="143">
 <locations>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="net.openchrom.knime.node.nmr.feature.feature.group" version="0.0.0"/>
-<repository location="https://update.openchrom.net/repositories/knime"/>
-</location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="com.knime.features.enterprise.client.exampleserver.feature.group" version="0.0.0"/>
 <unit id="com.knime.features.enterprise.client.feature.group" version="0.0.0"/>
@@ -271,5 +268,11 @@
 <unit id="slf4j.api.source" version="0.0.0"/>
 <repository location="http://repository.foodauthent.net/p2/p2-maven-1.0.1-SNAPSHOT"/>
 </location>
+	<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+		<repository location="https://update.openchrom.net/repositories/knime/3.5"/>
+		<unit id="com.lablicate.nmr.converter.bruker.headless.feature.group" version="1.0.0.201910231648"/>
+		<unit id="net.openchrom.knime.node.deps.feature.group" version="3.5.0.201910231648"/>
+		<unit id="net.openchrom.knime.node.nmr.feature.feature.group" version="3.5.1.201910231648"/>
+	</location>
 </locations>
 </target>

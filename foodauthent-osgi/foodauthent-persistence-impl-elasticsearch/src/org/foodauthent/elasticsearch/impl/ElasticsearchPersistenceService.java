@@ -160,9 +160,13 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 
 	@Override
 	public <T extends FaModel> T getFaModelByUUID(UUID uuid, Class<T> modelType) throws NoSuchElementException {
-		Option<T> value = op.get(uuid.toString(), classTarget(modelType), op.manifest(modelType));
-		if (value.isDefined()) {
-			return value.get();
+		try {
+			Option<T> value = op.get(uuid.toString(), classTarget(modelType), op.manifest(modelType));
+			if (value.isDefined()) {
+				return value.get();
+			}
+		} catch (Exception e) {
+			throw new NoSuchElementException();
 		}
 		throw new NoSuchElementException();
 	}
@@ -398,7 +402,6 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 			int pageNumber, int pageSize) {
 
 		BoolQueryBuilder qb = QueryBuilders.boolQuery();
-		
 
 		// QUERY FOR epcList
 		if (dssf.getEpcList().size() > 0) {
@@ -413,7 +416,6 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 		if (dssf.getBizStep() != null) {
 			qb.should(QueryBuilders.termsQuery("bizStep.keyword", dssf.getBizStep()));
 		}
-		
 
 		// QUERY FOR Readpoint
 		if (dssf.getReadPoint() != null) {
@@ -428,7 +430,6 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 			}
 			qb.should(epcQuery);
 		}
-		
 
 		// QUERY FOR Action
 		if (dssf.getAction() != null) {
@@ -497,24 +498,26 @@ public class ElasticsearchPersistenceService implements PersistenceServiceProvid
 		sourceBuilder.from((pageNumber - 1) * pageSize);
 		sourceBuilder.size(pageSize);
 		request.source(sourceBuilder);
-	
-		SearchResult<DiscoveryServiceTransaction> result = op.search(request, op.manifest(DiscoveryServiceTransaction.class));
-		List<SearchResultItem<DiscoveryServiceTransaction>> res = op.resultAsJava(result, DiscoveryServiceTransaction.class);
+
+		SearchResult<DiscoveryServiceTransaction> result = op.search(request,
+				op.manifest(DiscoveryServiceTransaction.class));
+		List<SearchResultItem<DiscoveryServiceTransaction>> res = op.resultAsJava(result,
+				DiscoveryServiceTransaction.class);
 		List<DiscoveryServiceTransaction> transaction = res.stream().map(r -> r.item()).collect(Collectors.toList());
-		
+
 		System.out.println("Query: " + qb);
 		System.out.println("Query request: " + request);
-		
+
 //		List<DiscoveryServiceTransaction> transaction = op.search(qb, classTarget(DiscoveryServiceTransaction.class),
 //				op.manifest(DiscoveryServiceTransaction.class));
 
 		if (transaction.isEmpty()) {
-			 throw new NoSuchElementException();
+			throw new NoSuchElementException();
 		}
 
 		return DiscoveryServiceTransactionPageResult.builder().setPageCount((int)transaction.size() / pageSize).setPageNumber(pageNumber)
 				.setResults(transaction).setResultCount(transaction.size()).build();
-		
+
 	}
 
 	@Override

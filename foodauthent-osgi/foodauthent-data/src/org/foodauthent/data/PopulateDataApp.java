@@ -145,9 +145,9 @@ public class PopulateDataApp {
 	    doit("Run predictions", () -> {
 //		predict(predictionwfIds.get(0), fingerprintsetIds.get("bfr_kürbis"), modelIds.get("multi_class_oils"), c);
 //		predict(predictionwfIds.get(0), fingerprintsetIds.get("bfr_raps"), modelIds.get("multi_class_oils"), c);
-		predict(predictionwfIds.get(1), fingerprintsetIds.get("bfr_hanf"), modelIds.get("one_class_hanf"), c);
-		predict(predictionwfIds.get(1), fingerprintsetIds.get("bfr_schwarzkümmel"), modelIds.get("one_class_hanf"), c);
-		predict(predictionwfIds.get(1), fingerprintsetIds.get("bfr_soja"), modelIds.get("one_class_hanf"), c);
+//		predict(predictionwfIds.get(1), fingerprintsetIds.get("bfr_hanf"), modelIds.get("one_class_hanf"), c);
+//		predict(predictionwfIds.get(1), fingerprintsetIds.get("bfr_schwarzkümmel"), modelIds.get("one_class_hanf"), c);
+//		predict(predictionwfIds.get(1), fingerprintsetIds.get("bfr_soja"), modelIds.get("one_class_hanf"), c);
 	    });
 	}
 

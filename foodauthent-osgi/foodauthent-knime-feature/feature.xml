@@ -1259,7 +1259,7 @@
          unpack="false"/>
 
    <plugin
-         id="net.openchrom.knime.node.nmr.digitalfilter"
+         id="net.openchrom.knime.node.fid.digitalfilter"
          download-size="0"
          install-size="0"
          version="0.0.0"

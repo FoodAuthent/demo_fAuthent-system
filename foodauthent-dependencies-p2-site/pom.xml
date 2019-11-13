@@ -13,7 +13,7 @@
 		<equinox-oxygen-repo.url>http://repository.foodauthent.net/p2/equinox-SDK-Oxygen.3a</equinox-oxygen-repo.url>
 		<p2-maven-repo.url>http://repository.foodauthent.net/p2/p2-maven-1.0.1-SNAPSHOT</p2-maven-repo.url>
 		<knime-analytics-platform.url>http://update.knime.com/analytics-platform/3.6/</knime-analytics-platform.url>
-		<p2-openchrom-knime.url>https://update.openchrom.net/repositories/knime</p2-openchrom-knime.url>
+		<p2-openchrom-knime.url>https://update.openchrom.net/repositories/knime/3.5</p2-openchrom-knime.url>
 
 		<!-- use UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

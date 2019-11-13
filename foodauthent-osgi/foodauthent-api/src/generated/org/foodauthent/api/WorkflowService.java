@@ -3,10 +3,12 @@
  */
 package org.foodauthent.api;
 
+import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJobPageResult;
 import org.foodauthent.model.PredictionPageResult;
+import org.foodauthent.model.PublishMetadata;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.TrainingJobPageResult;
 import org.foodauthent.model.Workflow;
@@ -28,13 +30,12 @@ public interface WorkflowService {
      * @param workflowId TODO
      * @param fingerprintsetId TODO
      * @param modelId The model to be used for prediction. Needs to be compatible with the selected workflow!!
-     * @param objecteventIds One or more objectevent-ids 
      * @param async Whether to run the workflow asynchronously
      *
      * @return the result
      * @throws InitJobException Exception thrown when a job could not be initialized.
      */
-    PredictionJob createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId, java.util.List<java.util.UUID> objecteventIds, Boolean async) throws FAExceptions.InitJobException;
+    PredictionJob createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId, Boolean async) throws FAExceptions.InitJobException;
         
     /**
      * 
@@ -170,5 +171,16 @@ public interface WorkflowService {
      * @return the result
      */
     Workflow getWorkflowById(java.util.UUID workflowId);
+        
+    /**
+     * 
+     *
+     * @param predictionId TODO
+     * @param sellable TODO
+     * @param publishMetadata TODO
+     *
+     * @return the result
+     */
+    ObjectEvent publishPredictionResult(java.util.UUID predictionId, Boolean sellable, PublishMetadata publishMetadata);
         
 }

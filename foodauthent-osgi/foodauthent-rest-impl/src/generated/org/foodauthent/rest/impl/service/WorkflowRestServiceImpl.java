@@ -11,10 +11,12 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJobPageResult;
 import org.foodauthent.model.PredictionPageResult;
+import org.foodauthent.model.PublishMetadata;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.TrainingJobPageResult;
 import org.foodauthent.model.Workflow;
@@ -49,13 +51,12 @@ public class WorkflowRestServiceImpl implements WorkflowRestService {
      * @param workflowId TODO
      * @param fingerprintsetId TODO
      * @param modelId The model to be used for prediction. Needs to be compatible with the selected workflow!!
-     * @param objecteventIds One or more objectevent-ids 
      * @param async Whether to run the workflow asynchronously
      * @return the response
      */
-    public Response createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId, java.util.List<java.util.UUID> objecteventIds, Boolean async) {
+    public Response createPredictionJob(java.util.UUID workflowId, java.util.UUID fingerprintsetId, java.util.UUID modelId, Boolean async) {
         try { 
-            Object res = service.createPredictionJob(workflowId, fingerprintsetId, modelId, objecteventIds, async);
+            Object res = service.createPredictionJob(workflowId, fingerprintsetId, modelId, async);
             return Response.ok(res).build();
          } 
         catch(FAExceptions.InitJobException e) {
@@ -233,6 +234,19 @@ public class WorkflowRestServiceImpl implements WorkflowRestService {
     public Response getWorkflowById(java.util.UUID workflowId) {
         
             Object res = service.getWorkflowById(workflowId);
+            return Response.ok(res).build();
+    }
+
+    /**
+     *
+     * @param predictionId TODO
+     * @param sellable TODO
+     * @param publishMetadata TODO
+     * @return the response
+     */
+    public Response publishPredictionResult(java.util.UUID predictionId, Boolean sellable, PublishMetadata publishMetadata) {
+        
+            Object res = service.publishPredictionResult(predictionId, sellable, publishMetadata);
             return Response.ok(res).build();
     }
 }

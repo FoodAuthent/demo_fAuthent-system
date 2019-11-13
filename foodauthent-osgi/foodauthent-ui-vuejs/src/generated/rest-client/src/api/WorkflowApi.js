@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['../ApiClient', '../model/Prediction', '../model/PredictionJob', '../model/PredictionJobPageResult', '../model/PredictionPageResult', '../model/TrainingJob', '../model/TrainingJobPageResult', '../model/Workflow', '../model/WorkflowPageResult'], factory);
+    define(['../ApiClient', '../model/ObjectEvent', '../model/Prediction', '../model/PredictionJob', '../model/PredictionJobPageResult', '../model/PredictionPageResult', '../model/PublishMetadata', '../model/TrainingJob', '../model/TrainingJobPageResult', '../model/Workflow', '../model/WorkflowPageResult'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Prediction'), require('../model/PredictionJob'), require('../model/PredictionJobPageResult'), require('../model/PredictionPageResult'), require('../model/TrainingJob'), require('../model/TrainingJobPageResult'), require('../model/Workflow'), require('../model/WorkflowPageResult'));
+    module.exports = factory(require('../ApiClient'), require('../model/ObjectEvent'), require('../model/Prediction'), require('../model/PredictionJob'), require('../model/PredictionJobPageResult'), require('../model/PredictionPageResult'), require('../model/PublishMetadata'), require('../model/TrainingJob'), require('../model/TrainingJobPageResult'), require('../model/Workflow'), require('../model/WorkflowPageResult'));
   } else {
     // Browser globals (root is window)
     if (!root.FoodAuthentSwaggerApi) {
       root.FoodAuthentSwaggerApi = {};
     }
-    root.FoodAuthentSwaggerApi.WorkflowApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.Prediction, root.FoodAuthentSwaggerApi.PredictionJob, root.FoodAuthentSwaggerApi.PredictionJobPageResult, root.FoodAuthentSwaggerApi.PredictionPageResult, root.FoodAuthentSwaggerApi.TrainingJob, root.FoodAuthentSwaggerApi.TrainingJobPageResult, root.FoodAuthentSwaggerApi.Workflow, root.FoodAuthentSwaggerApi.WorkflowPageResult);
+    root.FoodAuthentSwaggerApi.WorkflowApi = factory(root.FoodAuthentSwaggerApi.ApiClient, root.FoodAuthentSwaggerApi.ObjectEvent, root.FoodAuthentSwaggerApi.Prediction, root.FoodAuthentSwaggerApi.PredictionJob, root.FoodAuthentSwaggerApi.PredictionJobPageResult, root.FoodAuthentSwaggerApi.PredictionPageResult, root.FoodAuthentSwaggerApi.PublishMetadata, root.FoodAuthentSwaggerApi.TrainingJob, root.FoodAuthentSwaggerApi.TrainingJobPageResult, root.FoodAuthentSwaggerApi.Workflow, root.FoodAuthentSwaggerApi.WorkflowPageResult);
   }
-}(this, function(ApiClient, Prediction, PredictionJob, PredictionJobPageResult, PredictionPageResult, TrainingJob, TrainingJobPageResult, Workflow, WorkflowPageResult) {
+}(this, function(ApiClient, ObjectEvent, Prediction, PredictionJob, PredictionJobPageResult, PredictionPageResult, PublishMetadata, TrainingJob, TrainingJobPageResult, Workflow, WorkflowPageResult) {
   'use strict';
 
   /**
@@ -62,7 +62,6 @@
      * @param {String} fingerprintsetId TODO
      * @param {String} modelId The model to be used for prediction. Needs to be compatible with the selected workflow!!
      * @param {Object} opts Optional parameters
-     * @param {Array.<String>} opts.objecteventIds One or more objectevent-ids 
      * @param {Boolean} opts.async Whether to run the workflow asynchronously
      * @param {module:api/WorkflowApi~createPredictionJobCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/PredictionJob}
@@ -96,10 +95,6 @@
         'async': opts['async'],
       };
       var collectionQueryParams = {
-        'objectevent-ids': {
-          value: opts['objecteventIds'],
-          collectionFormat: 'multi'
-        },
       };
       var headerParams = {
       };
@@ -777,6 +772,66 @@
 
       return this.apiClient.callApi(
         '/workflow/{workflow-id}', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the publishPredictionResult operation.
+     * @callback module:api/WorkflowApi~publishPredictionResultCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/ObjectEvent} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get a specific prediction result.
+     * @param {String} predictionId TODO
+     * @param {Boolean} sellable TODO
+     * @param {module:model/PublishMetadata} publishMetadata TODO
+     * @param {module:api/WorkflowApi~publishPredictionResultCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/ObjectEvent}
+     */
+    this.publishPredictionResult = function(predictionId, sellable, publishMetadata, callback) {
+      var postBody = publishMetadata;
+
+      // verify the required parameter 'predictionId' is set
+      if (predictionId === undefined || predictionId === null) {
+        throw new Error("Missing the required parameter 'predictionId' when calling publishPredictionResult");
+      }
+
+      // verify the required parameter 'sellable' is set
+      if (sellable === undefined || sellable === null) {
+        throw new Error("Missing the required parameter 'sellable' when calling publishPredictionResult");
+      }
+
+      // verify the required parameter 'publishMetadata' is set
+      if (publishMetadata === undefined || publishMetadata === null) {
+        throw new Error("Missing the required parameter 'publishMetadata' when calling publishPredictionResult");
+      }
+
+
+      var pathParams = {
+        'prediction-id': predictionId
+      };
+      var queryParams = {
+        'sellable': sellable,
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['apiKeyId', 'apiKeySecret', 'jwtAuth'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = 'ObjectEvent';
+
+      return this.apiClient.callApi(
+        '/prediction/{prediction-id}/publish', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

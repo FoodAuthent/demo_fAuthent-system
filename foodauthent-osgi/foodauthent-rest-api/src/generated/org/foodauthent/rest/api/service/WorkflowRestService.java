@@ -9,10 +9,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 import org.foodauthent.auth.security.SecurityScheme;
 
+import org.foodauthent.model.ObjectEvent;
 import org.foodauthent.model.Prediction;
 import org.foodauthent.model.PredictionJob;
 import org.foodauthent.model.PredictionJobPageResult;
 import org.foodauthent.model.PredictionPageResult;
+import org.foodauthent.model.PublishMetadata;
 import org.foodauthent.model.TrainingJob;
 import org.foodauthent.model.TrainingJobPageResult;
 import org.foodauthent.model.Workflow;
@@ -42,7 +44,6 @@ public interface WorkflowRestService{
      * @param workflowId TODO
      * @param fingerprintsetId TODO
      * @param modelId The model to be used for prediction. Needs to be compatible with the selected workflow!!
-     * @param objecteventIds One or more objectevent-ids 
      * @param async Whether to run the workflow asynchronously
      * @return the response
      */
@@ -53,7 +54,6 @@ public interface WorkflowRestService{
     public Response createPredictionJob(@QueryParam("workflow-id")java.util.UUID workflowId
 , @QueryParam("fingerprintset-id")java.util.UUID fingerprintsetId
 , @QueryParam("model-id")java.util.UUID modelId
-, @QueryParam("objectevent-ids")java.util.List<java.util.UUID> objecteventIds
 , @QueryParam("async")Boolean async
 );
 
@@ -255,6 +255,23 @@ public interface WorkflowRestService{
 	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
     @Produces({ "application/json" })
     public Response getWorkflowById(@PathParam("workflow-id") java.util.UUID workflowId
+);
+
+    /**
+     *
+     * @param predictionId TODO
+     * @param sellable TODO
+     * @param publishMetadata TODO
+     * @return the response
+     */
+    @POST
+    @Path("/prediction/{prediction-id}/publish")
+	@SecurityScheme({ "apiKeyId", "apiKeySecret", "jwtAuth" })
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    public Response publishPredictionResult(@PathParam("prediction-id") java.util.UUID predictionId
+, @QueryParam("sellable")Boolean sellable
+, PublishMetadata publishMetadata
 );
 }
 
