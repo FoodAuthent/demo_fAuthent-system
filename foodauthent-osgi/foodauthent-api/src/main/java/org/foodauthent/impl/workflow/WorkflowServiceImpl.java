@@ -8,12 +8,15 @@ import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.foodauthent.api.DiscoveryService;
 import org.foodauthent.api.FileService;
+import org.foodauthent.api.ObjectEventService;
 import org.foodauthent.api.WorkflowService;
 import org.foodauthent.api.internal.job.JobService;
 import org.foodauthent.api.internal.persistence.Blob;
@@ -22,6 +25,7 @@ import org.foodauthent.api.internal.persistence.PersistenceService.ResultPage;
 import org.foodauthent.common.exception.FAExceptions.InitJobException;
 import org.foodauthent.epcis.EPCISEventService;
 import org.foodauthent.impl.file.FakxExporter;
+import org.foodauthent.model.DiscoveryServiceTransaction;
 import org.foodauthent.model.FaObjectSet;
 import org.foodauthent.model.FileMetadata;
 import org.foodauthent.model.FileMetadata.ContentTypeEnum;
@@ -70,6 +74,12 @@ public class WorkflowServiceImpl implements WorkflowService {
     @Reference(cardinality = ReferenceCardinality.OPTIONAL)
     private EPCISEventService epcisEventService;
 
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
+    private ObjectEventService objectEventService;
+
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
+    private DiscoveryService discoveryService;
+    
     public WorkflowServiceImpl() {
     }
 
@@ -213,8 +223,21 @@ public class WorkflowServiceImpl implements WorkflowService {
 		persistenceService.save(new Blob(fileUUID, new FileInputStream(tmp.toFile())));
 		ObjectEvent event = buildClassificationEvent(publishMetadata, fileUUID);
 		event = persistenceService.save(event);
+		final Prediction prediction = persistenceService.getFaModelByUUID(predictionId, Prediction.class);
+		final List<UUID> predictionObjectsEvents = prediction.getObjecteventIds() == null ? new ArrayList<UUID>()
+			: prediction.getObjecteventIds();
+		predictionObjectsEvents.add(event.getFaId());
+		persistenceService.save(Prediction.builder(prediction).setObjecteventIds(predictionObjectsEvents).build());
 		if (publishMetadata.isEpcis() != null && publishMetadata.isEpcis() && epcisEventService != null) {
 		    epcisEventService.publish(event);
+		}
+		if (publishMetadata.isDiscovery()) {
+		    final DiscoveryServiceTransaction trans = objectEventService
+			    .convertObjectEventToTransaction(event.getFaId());
+		    final List<UUID> transIds = new ArrayList<UUID>(
+			    discoveryService.createTransaction(Arrays.asList(trans)));
+		    transIds.addAll(event.getTransactionIds());
+		    event = persistenceService.save(ObjectEvent.builder(event).setTransactionIds(transIds).build());
 		}
 		return event;
 	    } catch (Exception e) {
