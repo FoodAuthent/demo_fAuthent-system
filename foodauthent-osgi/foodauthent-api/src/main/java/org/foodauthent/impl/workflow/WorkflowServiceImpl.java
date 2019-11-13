@@ -250,8 +250,4 @@ public class WorkflowServiceImpl implements WorkflowService {
 	}
 	return null;
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> ff5442a7cd8441c7cc88c0b6c4bd0b410cb5b020
 }

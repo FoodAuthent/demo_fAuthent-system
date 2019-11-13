@@ -70,13 +70,8 @@ public class WorkflowTest extends AbstractITTest {
 	UUID modelId = uploadModel();
 
 	/* run prediction workflow */
-<<<<<<< HEAD
 	PredictionJob predictionJob = handleResp(workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, true),
 		PredictionJob.class);
-=======
-	PredictionJob predictionJob = handleResp(
-		workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, true), PredictionJob.class);
->>>>>>> ff5442a7cd8441c7cc88c0b6c4bd0b410cb5b020
 	assertEquals(StatusEnum.RUNNING, predictionJob.getStatus());
 	// let the job finish the prediction
 	Thread.sleep(2000);
@@ -198,15 +193,9 @@ public class WorkflowTest extends AbstractITTest {
 	UUID wfId = uploadPredictionWorkflow();
 	UUID fingerprintSetId = uploadFingerprintSets().get(0);
 	UUID modelId = uploadModel();
-<<<<<<< HEAD
 
 	PredictionJob predictionJob = handleResp(
 		workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, false), PredictionJob.class);
-=======
-	PredictionJob predictionJob = handleResp(
-		workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, false),
-		PredictionJob.class);
->>>>>>> ff5442a7cd8441c7cc88c0b6c4bd0b410cb5b020
 	assertEquals(StatusEnum.SUCCESS, predictionJob.getStatus());
     }
 

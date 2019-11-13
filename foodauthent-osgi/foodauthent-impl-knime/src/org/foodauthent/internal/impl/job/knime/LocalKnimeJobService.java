@@ -77,11 +77,8 @@ public class LocalKnimeJobService implements JobService {
 	@Override
 	public PredictionJob createNewPredictionJob(Workflow workflow, FingerprintSet fingerprintSet, Model model,
 			boolean async) throws InitJobException {
-<<<<<<< HEAD
+
 		if(workflow == null) {
-=======
-		if (workflow == null) {
->>>>>>> ff5442a7cd8441c7cc88c0b6c4bd0b410cb5b020
 			throw new InitJobException("No workflow given");
 		}
 		if (fingerprintSet == null) {
@@ -160,12 +157,7 @@ public class LocalKnimeJobService implements JobService {
 					}
 					Prediction prediction = Prediction.builder().setFingerprintsetId(fingerprintSet.getFaId())
 							.setWorkflowId(workflow.getFaId()).setModelId(model.getFaId())
-<<<<<<< HEAD
 							.setPredictionMap(predictionOutput.getPredictionMap()).build();
-=======
-							.setPredictionMap(predictionOutput.getPredictionMap())
-							.build();
->>>>>>> ff5442a7cd8441c7cc88c0b6c4bd0b410cb5b020
 					persistenceService.save(prediction);
 
 					// change the status, workflow-file and prediction id of the prediction job and
