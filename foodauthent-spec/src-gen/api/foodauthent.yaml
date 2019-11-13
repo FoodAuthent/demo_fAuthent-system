@@ -765,7 +765,7 @@ paths:
             application/json: 
               schema:
                 $ref: '#/components/schemas/Prediction'
-
+                
   '/prediction/{prediction-id}/publish':
     post:
       tags:
@@ -800,7 +800,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ObjectEvent'
-
+              
   /model:
     get:
       tags:

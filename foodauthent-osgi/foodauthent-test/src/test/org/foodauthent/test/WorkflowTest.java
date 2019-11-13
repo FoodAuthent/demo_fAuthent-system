@@ -45,7 +45,6 @@ import org.foodauthent.model.WorkflowPageResult;
 import org.foodauthent.model.WorkflowParameter;
 import org.foodauthent.model.WorkflowParameter.TypeEnum;
 import org.foodauthent.rest.client.FASystemClientUtil;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -56,7 +55,7 @@ import org.junit.Test;
  */
 
 public class WorkflowTest extends AbstractITTest {
-    
+
     @Before
     public void clearAllWorkflows() {
 	List<Workflow> workflows = workflows(client()).findWorkflowByKeyword(1, Integer.MAX_VALUE, null)
@@ -71,8 +70,13 @@ public class WorkflowTest extends AbstractITTest {
 	UUID modelId = uploadModel();
 
 	/* run prediction workflow */
+<<<<<<< HEAD
 	PredictionJob predictionJob = handleResp(workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, true),
 		PredictionJob.class);
+=======
+	PredictionJob predictionJob = handleResp(
+		workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, true), PredictionJob.class);
+>>>>>>> ff5442a7cd8441c7cc88c0b6c4bd0b410cb5b020
 	assertEquals(StatusEnum.RUNNING, predictionJob.getStatus());
 	// let the job finish the prediction
 	Thread.sleep(2000);
@@ -84,7 +88,7 @@ public class WorkflowTest extends AbstractITTest {
 	Prediction prediction = workflows(client()).getPredictionResult(predictionJob.getPredictionId())
 		.readEntity(Prediction.class);
 	assertEquals(prediction.getPredictionMap().size(), 2);
-	
+
 	/* retrieve prediction by fingerprintset-id */
 	PredictionPageResult predictionPage = handleResp(
 		workflows(client()).findPredictionByKeyword(1, 10, Arrays.asList(fingerprintSetId.toString())),
@@ -100,7 +104,7 @@ public class WorkflowTest extends AbstractITTest {
 		.readEntity(PredictionPageResult.class);
 	assertThat(predictionPage.getResultCount(), is(0));
     }
-    
+
     private UUID uploadPredictionWorkflow() {
 	UUID predictionWorkflowFileId = uploadPredictionWorkflowFile();
 
@@ -122,13 +126,13 @@ public class WorkflowTest extends AbstractITTest {
 
 	return workflows(client()).createWorkflow(wf).readEntity(UUID.class);
     }
-   
+
     private UUID uploadPredictionWorkflowFile() {
-        
-        // upload workflow file
-        FileMetadata fileMeta = FileMetadata.builder().setName("PredictionWorkflow").setDate(LocalDate.now())
-        	.setDescription("file description").setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW)
-        	.setVersion(0).build();
+
+	// upload workflow file
+	FileMetadata fileMeta = FileMetadata.builder().setName("PredictionWorkflow").setDate(LocalDate.now())
+		.setDescription("file description").setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW)
+		.setVersion(0).build();
 	UUID predictionWorkflowFileId = files(client()).createFileMetadata(fileMeta).readEntity(UUID.class);
 	Response response = FASystemClientUtil.uploadFileData(fileMeta.getFaId(),
 		new File("files/workflows/PredictionWorkflow.knwf"), client());
@@ -138,25 +142,23 @@ public class WorkflowTest extends AbstractITTest {
 
     @Test
     public void testFailInitPredictionWorkflow() {
-	
+
 	UUID predictionWorkflowFileId = uploadPredictionWorkflowFile();
 	UUID fingerprintSetId = uploadFingerprintSets().get(0);
 	ModelType modelType = ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build();
 	Model m = Model.builder().setName("mymodel").setType(modelType).build();
 	UUID modelId = models(client()).createModel(m).readEntity(UUID.class);
-	
+
 	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
 		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build())
-		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build())
-		.build();
+		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build()).build();
 	WorkflowBuilder wfb = Workflow.builder().setName("inconsistent_prediction_workflow").setDescription("desc")
 		.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW_E680F8C1)
-		//on purpose not a knime workflow
-		.setRepresentation(RepresentationEnum.CWL)
-		.setInputTypes(inputTypes)
+		// on purpose not a knime workflow
+		.setRepresentation(RepresentationEnum.CWL).setInputTypes(inputTypes)
 		.setFileId(predictionWorkflowFileId);
-	
-	//post workflow
+
+	// post workflow
 	UUID wfId = workflows(client()).createWorkflow(wfb.build()).readEntity(UUID.class);
 
 	// try to run prediction job
@@ -164,20 +166,20 @@ public class WorkflowTest extends AbstractITTest {
 	assertEquals("Unexpected status code", 500, response.getStatus());
 	String message = response.readEntity(String.class);
 	assertTrue(message.contains("not a knime workflow"));
-	//TODO use 'assertThat' instead!
-	
-	//wrong type
+	// TODO use 'assertThat' instead!
+
+	// wrong type
 	wfb.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB);
-	//post workflow
+	// post workflow
 	wfId = workflows(client()).createWorkflow(wfb.build()).readEntity(UUID.class);
-	
+
 	// try to run prediction job
 	response = workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, true);
 	assertEquals("Unexpected status code", 500, response.getStatus());
 	message = response.readEntity(String.class);
 	assertTrue(message.contains("not a prediction workflow"));
-	
-	//no model file
+
+	// no model file
 	wfb.setType(org.foodauthent.model.Workflow.TypeEnum.PREDICTION_WORKFLOW_E680F8C1)
 		.setRepresentation(RepresentationEnum.KNIME);
 	// post workflow
@@ -189,24 +191,30 @@ public class WorkflowTest extends AbstractITTest {
 	message = response.readEntity(String.class);
 	assertTrue(message.contains("No model file found"));
 
-    } 
-    
+    }
+
     @Test
     public void testRunPredictionWorkflowSynchronously() {
 	UUID wfId = uploadPredictionWorkflow();
 	UUID fingerprintSetId = uploadFingerprintSets().get(0);
 	UUID modelId = uploadModel();
+<<<<<<< HEAD
 
 	PredictionJob predictionJob = handleResp(
 		workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, false), PredictionJob.class);
+=======
+	PredictionJob predictionJob = handleResp(
+		workflows(client()).createPredictionJob(wfId, fingerprintSetId, modelId, false),
+		PredictionJob.class);
+>>>>>>> ff5442a7cd8441c7cc88c0b6c4bd0b410cb5b020
 	assertEquals(StatusEnum.SUCCESS, predictionJob.getStatus());
     }
-    
+
     @Test
     public void testUploadAndRunTrainingWorkflow() throws InterruptedException {
 
 	/* upload workflow */
-	
+
 	// upload workflow file
 	FileMetadata fileMeta = FileMetadata.builder().setName("TrainingWorkflow").setDate(LocalDate.now())
 		.setDescription("file description").setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_WORKFLOW)
@@ -218,27 +226,23 @@ public class WorkflowTest extends AbstractITTest {
 	WorkflowParameter wfp1 = WorkflowParameter.builder().setName("train_param1").setRequired(false)
 		.setValue("train_paramValue1").setType(TypeEnum.NUMBER).build();
 	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("train_param2").setRequired(true)
-		.setValue("train_paramValue2")	.setType(TypeEnum.STRING).build();
+		.setValue("train_paramValue2").setType(TypeEnum.STRING).build();
 	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
-		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build())
-		.build();
+		.setFingerprintType(FingerprintType.builder().setName(FingerprintType.NameEnum.BRUKER).build()).build();
 	WorkflowIOTypes outputTypes = WorkflowIOTypes.builder()
-		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build())
-		.build();
+		.setModelType(ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build()).build();
 	Workflow wf = Workflow.builder().setName("my training workflow").setDescription("desc")
 		.setParameters(Arrays.asList(wfp1, wfp2))
-		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB)
-		.setFileId(fileId)
-		.setRepresentation(RepresentationEnum.KNIME)
-		.setInputTypes(inputTypes)
-		.setOutputTypes(outputTypes)
+		.setType(org.foodauthent.model.Workflow.TypeEnum.TRAINING_WORKFLOW_64B046CB).setFileId(fileId)
+		.setRepresentation(RepresentationEnum.KNIME).setInputTypes(inputTypes).setOutputTypes(outputTypes)
 		.build(); // TODO set more (or even all) properties
 	UUID wfId = workflows(client()).createWorkflow(wf).readEntity(UUID.class);
-	
+
 	List<UUID> fingerprintSetIds = uploadFingerprintSets();
 
 	/* run training workflow */
-	TrainingJob trainingJob = handleResp(workflows(client()).createTrainingJob(wfId, fingerprintSetIds, true), TrainingJob.class);
+	TrainingJob trainingJob = handleResp(workflows(client()).createTrainingJob(wfId, fingerprintSetIds, true),
+		TrainingJob.class);
 	assertEquals(org.foodauthent.model.TrainingJob.StatusEnum.RUNNING, trainingJob.getStatus());
 	// let the job finish the training
 	Thread.sleep(2000);
@@ -252,16 +256,16 @@ public class WorkflowTest extends AbstractITTest {
     }
 
     private List<UUID> uploadFingerprintSets() {
-        
-        //upload product
-        Product p = Product.builder().setBrand("my_product").setGtin("1234").build();
-        UUID productId = products(client()).createProduct(p).readEntity(UUID.class);
-        
-        //upload sample
-        Sample s = Sample.builder().setProductId(productId).build();
-        UUID sampleId = samples(client()).createSample(s).readEntity(UUID.class);
-        
-        //upload fingerprint files
+
+	// upload product
+	Product p = Product.builder().setBrand("my_product").setGtin("1234").build();
+	UUID productId = products(client()).createProduct(p).readEntity(UUID.class);
+
+	// upload sample
+	Sample s = Sample.builder().setProductId(productId).build();
+	UUID sampleId = samples(client()).createSample(s).readEntity(UUID.class);
+
+	// upload fingerprint files
 	FileMetadata fpFile1 = FileMetadata.builder().setName("fingerprint1")
 		.setType(org.foodauthent.model.FileMetadata.TypeEnum.FINGERPRINT_BRUKER).build();
 	files(client()).createFileMetadata(fpFile1);
@@ -275,16 +279,15 @@ public class WorkflowTest extends AbstractITTest {
 	files(client()).createFileMetadata(fpFile3);
 	uploadFileData(fpFile3.getFaId(), new File("files/fingerprints/fp3.zip"), client());
 
- 
-	//upload fingerprints
+	// upload fingerprints
 	Fingerprint fp1 = Fingerprint.builder().setSampleId(sampleId).setFileId(fpFile1.getFaId()).build();
 	fingerprints(client()).createFingerprint(fp1);
 	Fingerprint fp2 = Fingerprint.builder().setSampleId(sampleId).setFileId(fpFile2.getFaId()).build();
 	fingerprints(client()).createFingerprint(fp2);
 	Fingerprint fp3 = Fingerprint.builder().setSampleId(sampleId).setFileId(fpFile3.getFaId()).build();
 	fingerprints(client()).createFingerprint(fp3);
-     
-        // upload fingerprint sets
+
+	// upload fingerprint sets
 	FingerprintSet fps = FingerprintSet.builder().setName("myset1")
 		.setFingerprintIds(Arrays.asList(fp1.getFaId(), fp2.getFaId())).setClassLabel("label1").build();
 	FingerprintSet fps2 = FingerprintSet.builder().setName("myset2").setFingerprintIds(Arrays.asList(fp3.getFaId()))
@@ -292,7 +295,7 @@ public class WorkflowTest extends AbstractITTest {
 	return asList(fingerprints(client()).createFingerprintSet(fps).readEntity(UUID.class),
 		fingerprints(client()).createFingerprintSet(fps2).readEntity(UUID.class));
     }
-    
+
     @Test
     public void testFindWorkflows() {
 	Workflow wf1 = Workflow.builder().setDescription("desc1").setName("wf1name")
@@ -312,15 +315,14 @@ public class WorkflowTest extends AbstractITTest {
 	workflows(client()).createWorkflow(wf2);
 	workflows(client()).createWorkflow(wf3);
 	workflows(client()).createWorkflow(wf4);
-	
+
 	WorkflowPageResult wfPage = workflows(client()).findPredictionWorkflows(1, 10, Collections.emptyList())
 		.readEntity(WorkflowPageResult.class);
 	assertThat(wfPage.getResultCount(), is(2));
-	
-	wfPage = workflows(client()).findPredictionWorkflows(1, 10, asList("wf1"))
-		.readEntity(WorkflowPageResult.class);
+
+	wfPage = workflows(client()).findPredictionWorkflows(1, 10, asList("wf1")).readEntity(WorkflowPageResult.class);
 	assertThat(wfPage.getResultCount(), is(1));
-	
+
 	wfPage = workflows(client()).findPredictionWorkflows(1, 10, asList("wf1blub"))
 		.readEntity(WorkflowPageResult.class);
 	assertThat(wfPage.getResultCount(), is(0));
@@ -328,22 +330,21 @@ public class WorkflowTest extends AbstractITTest {
 	wfPage = workflows(client()).findPredictionWorkflows(1, 10, asList("wf1", "desc2", "desc3"))
 		.readEntity(WorkflowPageResult.class);
 	assertThat(wfPage.getResultCount(), is(2));
-	
-	wfPage = workflows(client()).findTrainingWorkflows(1, 10, asList("wf3"))
-		.readEntity(WorkflowPageResult.class);
+
+	wfPage = workflows(client()).findTrainingWorkflows(1, 10, asList("wf3")).readEntity(WorkflowPageResult.class);
 	assertThat(wfPage.getResultCount(), is(1));
     }
 
     private UUID uploadModel() {
 	// upload model file
-        FileMetadata fileMeta = FileMetadata.builder().setName("dummy_model").setDate(LocalDate.now())
-        	.setDescription("a non-sense model for testing").setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_MODEL)
-        	.setVersion(0).build();
+	FileMetadata fileMeta = FileMetadata.builder().setName("dummy_model").setDate(LocalDate.now())
+		.setDescription("a non-sense model for testing")
+		.setType(org.foodauthent.model.FileMetadata.TypeEnum.KNIME_MODEL).setVersion(0).build();
 	UUID modelFileId = files(client()).createFileMetadata(fileMeta).readEntity(UUID.class);
-	Response response = FASystemClientUtil.uploadFileData(fileMeta.getFaId(),
-		new File("files/models/dummy_model"), client());
+	Response response = FASystemClientUtil.uploadFileData(fileMeta.getFaId(), new File("files/models/dummy_model"),
+		client());
 	assertEquals(200, response.getStatus());
-	
+
 	/* upload model */
 	ModelType modelType = ModelType.builder().setName(ModelType.NameEnum.KNIME_WORKFLOW).build();
 	Model m = Model.builder().setName("mymodel").setType(modelType).setFileId(modelFileId).build();
