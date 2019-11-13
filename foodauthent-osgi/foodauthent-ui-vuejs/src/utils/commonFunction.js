@@ -228,7 +228,11 @@ var MyObject = function () {
 		  var apiClient = new ApiClient();
 		  var InfoApi = require("@/generated/rest-client/src/api/InfoApi.js");
 		  var infoApi = new InfoApi(apiClient);
-			setUpApi();
+		  if(localStorage.getItem('token')){
+			  var headerToken = {Authorization: 'Bearer ' + localStorage.getItem('token')};
+			  apiClient.defaultHeaders = headerToken;  
+		  }
+			//setUpApi();
 		    var callback = function (error, data, response) {
 		      console.log("data:", data);
 		      console.log("response:", response);
