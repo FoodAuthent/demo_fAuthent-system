@@ -1,0 +1,50 @@
+{
+  "fields" : [ {
+    "label" : "Workflow-id",
+    "model" : "workflow-id",
+    "required" : false,
+    "idprovider" : "select-workflow",
+    "fieldName" : "fa-id",
+    "type" : "selectModel"
+  }, {
+    "label" : "Fingerprintset-id",
+    "model" : "fingerprintset-id",
+    "required" : false,
+    "idprovider" : "select-fingerprintset",
+    "fieldName" : "fa-id",
+    "type" : "selectModel"
+  }, {
+    "label" : "Model-id",
+    "model" : "model-id",
+    "required" : false,
+    "idprovider" : "select-model",
+    "fieldName" : "fa-id",
+    "type" : "selectModel"
+  },
+  {
+    "label" : "Objectevent-ids",
+    "model" : "objectevent-ids",
+    "required" : true,
+    "type" : "array",
+    "validator" : "array",
+    "showRemoveButton" : true,
+    "itemFieldClasses" : "form-control",
+    "itemContainerClasses" : "input-group pb-2",
+    "newElementButtonLabelClasses" : "btn btn-outline-dark",
+    "removeElementButtonClasses" : "btn btn-danger input-group-append",
+    "moveElementUpButtonClasses" : "btn btn-outline-dark input-group-append",
+    "moveElementDownButtonClasses" : "btn btn-outline-dark input-group-append",
+    "newElementButtonLabel" : "Add",
+    "inputName" : "fingerprint-ids",
+    "items" : {
+      "type" : "object",
+      "schema" : {
+        "fields" : [ {
+          "label" : "Objectevent-id",
+          "model" : "objectevent-ids",
+          "required" : "false"
+        } ]
+      }
+    }
+  } ]
+}

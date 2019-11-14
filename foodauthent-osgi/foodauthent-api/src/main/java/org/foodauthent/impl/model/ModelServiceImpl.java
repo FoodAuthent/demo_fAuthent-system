@@ -95,10 +95,12 @@ public class ModelServiceImpl implements ModelService {
 		ObjectEvent event = buildClassificationEvent(publishMetadata, fileUUID);
 		event = persistenceService.save(event);
 		final Model model = persistenceService.getFaModelByUUID(modelId, Model.class);
-		final List<UUID> modelObjectsEvents = model.getObjecteventIds() == null ? new ArrayList<UUID>()
+		List<UUID> modelObjectsEvents = model.getObjecteventIds() == null ? new ArrayList<UUID>()
 			: model.getObjecteventIds();
+		modelObjectsEvents = new ArrayList<UUID>(modelObjectsEvents);
 		modelObjectsEvents.add(event.getFaId());
-		persistenceService.save(Model.builder(model).setObjecteventIds(modelObjectsEvents).build());
+		persistenceService.replace(Model.builder(model).setObjecteventIds(modelObjectsEvents).build());
+//		persistenceService.save(Model.builder(model).setObjecteventIds(modelObjectsEvents).build());
 		if (publishMetadata.isEpcis() != null && publishMetadata.isEpcis() && epcisEventService != null) {
 		    epcisEventService.publish(event);
 		}
@@ -108,7 +110,8 @@ public class ModelServiceImpl implements ModelService {
 		    final List<UUID> transIds = new ArrayList<UUID>(
 			    discoveryService.createTransaction(Arrays.asList(trans)));
 		    transIds.addAll(event.getTransactionIds());
-		    event = persistenceService.save(ObjectEvent.builder(event).setTransactionIds(transIds).build());
+//		    event = persistenceService.save(ObjectEvent.builder(event).setTransactionIds(transIds).build());
+		    event = persistenceService.replace(ObjectEvent.builder(event).setTransactionIds(transIds).build());
 		}
 		return event;
 	    } catch (Exception e) {
@@ -140,9 +143,6 @@ public class ModelServiceImpl implements ModelService {
 	}
 	if (publishMetadata.getBricks() != null) {
 	    builder.setBricks(publishMetadata.getBricks());
-	}
-	if (publishMetadata.getTransactionIds() != null) {
-	    builder.setTransactionIds(publishMetadata.getTransactionIds());
 	}
 	return builder.build();
     }

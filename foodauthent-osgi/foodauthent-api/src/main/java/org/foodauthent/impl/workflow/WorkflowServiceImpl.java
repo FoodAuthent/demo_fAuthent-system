@@ -220,14 +220,17 @@ public class WorkflowServiceImpl implements WorkflowService {
 		final UUID fileUUID = fileService.createFileMetadata(FileMetadata.builder().setName("model.fakx")
 			.setUploadName("model.fakx").setType(org.foodauthent.model.FileMetadata.TypeEnum.FAKX)
 			.setContentType(ContentTypeEnum.ZIP).build());
+		System.out.println("File ID "+fileUUID.toString());
 		persistenceService.save(new Blob(fileUUID, new FileInputStream(tmp.toFile())));
 		ObjectEvent event = buildClassificationEvent(publishMetadata, fileUUID);
 		event = persistenceService.save(event);
 		final Prediction prediction = persistenceService.getFaModelByUUID(predictionId, Prediction.class);
-		final List<UUID> predictionObjectsEvents = prediction.getObjecteventIds() == null ? new ArrayList<UUID>()
+		List<UUID> predictionObjectsEvents = prediction.getObjecteventIds() == null ? new ArrayList<UUID>()
 			: prediction.getObjecteventIds();
+		predictionObjectsEvents = new ArrayList<UUID>(predictionObjectsEvents);
 		predictionObjectsEvents.add(event.getFaId());
-		persistenceService.save(Prediction.builder(prediction).setObjecteventIds(predictionObjectsEvents).build());
+		persistenceService.replace(Prediction.builder(prediction).setObjecteventIds(predictionObjectsEvents).build());
+//		persistenceService.save(Prediction.builder(prediction).setObjecteventIds(predictionObjectsEvents).build());
 		if (publishMetadata.isEpcis() != null && publishMetadata.isEpcis() && epcisEventService != null) {
 		    epcisEventService.publish(event);
 		}
@@ -237,8 +240,10 @@ public class WorkflowServiceImpl implements WorkflowService {
 		    final List<UUID> transIds = new ArrayList<UUID>(
 			    discoveryService.createTransaction(Arrays.asList(trans)));
 		    transIds.addAll(event.getTransactionIds());
-		    event = persistenceService.save(ObjectEvent.builder(event).setTransactionIds(transIds).build());
+		    event = persistenceService.replace(ObjectEvent.builder(event).setTransactionIds(transIds).build());
+//		    event = persistenceService.save(ObjectEvent.builder(event).setTransactionIds(transIds).build());
 		}
+		System.out.println("EVENT "+event.toString());
 		return event;
 	    } catch (Exception e) {
 		e.printStackTrace();

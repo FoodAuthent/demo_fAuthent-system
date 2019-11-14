@@ -58,9 +58,6 @@ public interface PublishMetadataMixIn {
     @JsonProperty("discovery")
     public Boolean isDiscovery();
     
-    @JsonProperty("transaction-ids")
-    public java.util.List<java.util.UUID> getTransactionIds();
-    
 
     /**
      * MixIn class for entity builder implementations that adds jackson annotations for the de-/serialization.
@@ -91,9 +88,6 @@ public interface PublishMetadataMixIn {
         
         @JsonProperty("discovery")
         public PublishMetadataMixInBuilder setDiscovery(final Boolean discovery);
-        
-        @JsonProperty("transaction-ids")
-        public PublishMetadataMixInBuilder setTransactionIds(final java.util.List<java.util.UUID> transactionIds);
         
     }
 

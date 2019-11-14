@@ -531,16 +531,9 @@ var findWorkflowById = function (self) {
 	     );
 	  };
 
-  var savePredictionJob = function (workflowId, fingerprintsetId, modelId, objecteventIds, self) {
+  var savePredictionJob = function (workflowId, fingerprintsetId, modelId, self) {
 	  setUpApi();
     console.log('Save Prediction Job');
-    var idsObjectEvent =[];  
-    var tempArrayObjecEvent = objecteventIds;
-    for (var key in tempArrayObjecEvent) {
-        if (tempArrayObjecEvent.hasOwnProperty(key)) {           
-        	idsObjectEvent.push(tempArrayObjecEvent[key]["objectevent-id"]);
-        }
-    }
     var callback = function (error, data, response) {
       console.log("data:", data);
       console.log("response:", response);

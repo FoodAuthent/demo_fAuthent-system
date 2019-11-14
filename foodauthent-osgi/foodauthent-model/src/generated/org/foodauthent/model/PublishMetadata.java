@@ -27,7 +27,6 @@ public class PublishMetadata   extends FaModel {
   protected java.util.List<String> bricks;
   protected Boolean epcis;
   protected Boolean discovery;
-  protected java.util.List<java.util.UUID> transactionIds;
 
   public String getTypeID() {
     return "PublishMetadata";
@@ -47,7 +46,6 @@ public class PublishMetadata   extends FaModel {
     bricks = immutable(builder.bricks);
     epcis = immutable(builder.epcis);
     discovery = immutable(builder.discovery);
-    transactionIds = immutable(builder.transactionIds);
 
 
   }
@@ -67,7 +65,7 @@ public class PublishMetadata   extends FaModel {
             return false;
         }
         PublishMetadata ent = (PublishMetadata)o;
-        return Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(epcis, ent.epcis) && Objects.equals(discovery, ent.discovery) && Objects.equals(transactionIds, ent.transactionIds);
+        return Objects.equals(gtin, ent.gtin) && Objects.equals(bricks, ent.bricks) && Objects.equals(epcis, ent.epcis) && Objects.equals(discovery, ent.discovery);
     }
 
 
@@ -103,14 +101,6 @@ public class PublishMetadata   extends FaModel {
         return discovery;
     }
 
-  /**
-   * List of transaction Id
-   * @return transactionIds 
-   */
-  public java.util.List<java.util.UUID> getTransactionIds() {
-        return transactionIds;
-    }
-
 
  	/**
   	 * @return a newly created builder
@@ -133,7 +123,6 @@ public class PublishMetadata   extends FaModel {
         builder.bricks = entity.bricks;
         builder.epcis = entity.epcis;
         builder.discovery = entity.discovery;
-        builder.transactionIds = entity.transactionIds;
  		return builder;
   	}
 
@@ -148,7 +137,6 @@ public class PublishMetadata   extends FaModel {
         private java.util.List<String> bricks = new java.util.ArrayList<>();
         private Boolean epcis;
         private Boolean discovery;
-        private java.util.List<java.util.UUID> transactionIds = new java.util.ArrayList<>();
 
         /**
          * Global Trade Item Number
@@ -183,15 +171,6 @@ public class PublishMetadata   extends FaModel {
          */
         public PublishMetadataBuilder setDiscovery(Boolean discovery) {
              this.discovery = discovery;
-             return this;
-        }
-
-        /**
-         * List of transaction Id
-         * @return transactionIds 
-         */
-        public PublishMetadataBuilder setTransactionIds(java.util.List<java.util.UUID> transactionIds) {
-             this.transactionIds = transactionIds;
              return this;
         }
 

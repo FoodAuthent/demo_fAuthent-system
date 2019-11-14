@@ -2224,7 +2224,6 @@ components:
       x-ui-vue.js:
       - name: gtin
       - name: bricks
-      - name: transaction-ids
       properties:
         gtin:
           description: Global Trade Item Number
@@ -2241,12 +2240,6 @@ components:
         discovery:
           description: send to discovery services
           type: boolean
-        transaction-ids:
-          description: List of transaction Id
-          type: array
-          items:
-            type: string
-            format: uuid
 
     DiscoveryServiceTransaction:
       description: DiscoveryServiceTransaction

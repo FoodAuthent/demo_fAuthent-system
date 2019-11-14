@@ -72,9 +72,6 @@
       if (data.hasOwnProperty('discovery')) {
         obj['discovery'] = ApiClient.convertToType(data['discovery'], 'Boolean');
       }
-      if (data.hasOwnProperty('transaction-ids')) {
-        obj['transaction-ids'] = ApiClient.convertToType(data['transaction-ids'], ['String']);
-      }
     }
     return obj;
   }
@@ -99,11 +96,6 @@
    * @member {Boolean} discovery
    */
   exports.prototype['discovery'] = undefined;
-  /**
-   * List of transaction Id
-   * @member {Array.<String>} transaction-ids
-   */
-  exports.prototype['transaction-ids'] = undefined;
 
 
 
