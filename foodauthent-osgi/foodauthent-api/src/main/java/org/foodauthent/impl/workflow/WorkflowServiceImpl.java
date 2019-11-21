@@ -79,7 +79,7 @@ public class WorkflowServiceImpl implements WorkflowService {
 
     @Reference(cardinality = ReferenceCardinality.MANDATORY)
     private DiscoveryService discoveryService;
-    
+
     public WorkflowServiceImpl() {
     }
 
@@ -187,19 +187,24 @@ public class WorkflowServiceImpl implements WorkflowService {
 		.setResultCount(res.getTotalNumEntries()).setResults(res.getResult()).build();
     }
 
-    private ObjectEvent buildClassificationEvent(PublishMetadata publishMetadata, UUID fileUUID)
+    private ObjectEvent buildClassificationEvent(PublishMetadata publishMetadata, UUID fileUUID, Boolean sellable)
 	    throws UnsupportedEncodingException {
 	final String sha256 = fileService.getFileSHA256(fileUUID);
 	final String bt = "http://api.foodauthent.net/bt/" + fileUUID.toString();
 	final ObjectEventBuilder builder = ObjectEvent.builder() //
-		.setAction(ActionEnum.ADD) //
-		.setBizStep("urn:epcglobal:cbv:bizstep:commissioning") //
+		.setAction(ActionEnum.OBSERVE) //
+		.setBizStep("urn:epcglobal:cbv:bizstep:inspecting") //
 		.setEventTime(OffsetDateTime.now()) //
 		.setEpcList(Arrays.asList(
 			String.format("ni://api.foodauthent.net/sha-256;%s?bt=%s&ffmt=application/zip", sha256, bt)))
-		.setDisposition("urn:epcglobal:cbv:disp:active") //
 		.setReadPoint("urn:epc:id:sgln:439990230054..0");
 
+	if (sellable) {
+	    builder.setDisposition("urn:epcglobal:cbv:disp:sellable");
+	} else {
+	    builder.setDisposition("urn:epcglobal:cbv:disp:non_sellable_other");
+	}
+	
 	if (publishMetadata.getGtin() != null) {
 	    builder.setGtin(publishMetadata.getGtin());
 	}
@@ -220,17 +225,18 @@ public class WorkflowServiceImpl implements WorkflowService {
 		final UUID fileUUID = fileService.createFileMetadata(FileMetadata.builder().setName("model.fakx")
 			.setUploadName("model.fakx").setType(org.foodauthent.model.FileMetadata.TypeEnum.FAKX)
 			.setContentType(ContentTypeEnum.ZIP).build());
-		System.out.println("File ID "+fileUUID.toString());
+		System.out.println("File ID " + fileUUID.toString());
 		persistenceService.save(new Blob(fileUUID, new FileInputStream(tmp.toFile())));
-		ObjectEvent event = buildClassificationEvent(publishMetadata, fileUUID);
+		ObjectEvent event = buildClassificationEvent(publishMetadata, fileUUID, sellable);
 		event = persistenceService.save(event);
 		final Prediction prediction = persistenceService.getFaModelByUUID(predictionId, Prediction.class);
 		List<UUID> predictionObjectsEvents = prediction.getObjecteventIds() == null ? new ArrayList<UUID>()
 			: prediction.getObjecteventIds();
 		predictionObjectsEvents = new ArrayList<UUID>(predictionObjectsEvents);
 		predictionObjectsEvents.add(event.getFaId());
-		persistenceService.replace(Prediction.builder(prediction).setObjecteventIds(predictionObjectsEvents).build());
-//		persistenceService.save(Prediction.builder(prediction).setObjecteventIds(predictionObjectsEvents).build());
+		persistenceService
+			.replace(Prediction.builder(prediction).setObjecteventIds(predictionObjectsEvents).build());
+		// persistenceService.save(Prediction.builder(prediction).setObjecteventIds(predictionObjectsEvents).build());
 		if (publishMetadata.isEpcis() != null && publishMetadata.isEpcis() && epcisEventService != null) {
 		    epcisEventService.publish(event);
 		}
@@ -241,9 +247,10 @@ public class WorkflowServiceImpl implements WorkflowService {
 			    discoveryService.createTransaction(Arrays.asList(trans)));
 		    transIds.addAll(event.getTransactionIds());
 		    event = persistenceService.replace(ObjectEvent.builder(event).setTransactionIds(transIds).build());
-//		    event = persistenceService.save(ObjectEvent.builder(event).setTransactionIds(transIds).build());
+		    // event =
+		    // persistenceService.save(ObjectEvent.builder(event).setTransactionIds(transIds).build());
 		}
-		System.out.println("EVENT "+event.toString());
+		System.out.println("EVENT " + event.toString());
 		return event;
 	    } catch (Exception e) {
 		e.printStackTrace();
