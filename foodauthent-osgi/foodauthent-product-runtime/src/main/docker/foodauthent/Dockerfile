@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:8-jdk-stretch
 MAINTAINER Sven Boeckelmann <sboeckelmann@benelog.com>
 
 ENV FA_USER_TIMEZONE="Europe/Berlin"
@@ -8,6 +8,14 @@ ENV CFG_OPTS=""
 ENV YJP="off"
 ENV DEBUG="off"
 
+RUN apt-get update
+RUN apt-get -y install xvfb
+
+# setup YourKit 
+ADD https://www.yourkit.com/download/docker/YourKit-JavaProfiler-2019.1-docker.zip /tmp
+RUN  unzip /tmp/YourKit-JavaProfiler-2019.1-docker.zip -d /usr/local && \
+  rm /tmp/YourKit-JavaProfiler-2019.1-docker.zip
+  
 RUN mkdir -p /opt/foodauthent
 COPY maven/org.foodauthent.runtime /opt/foodauthent/runtime
 
