@@ -1,0 +1,163 @@
+{ "mappings" : {
+    "data": {
+        "properties": {
+            "interfaceId": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "bizStep": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "epcList": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "readPoint": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "bricks": {
+                "fields": {
+                    "raw": {
+                        "type": "keyword"
+                    }, 
+                    "tree": {
+                        "type": "text", 
+                        "analyzer": "paths"
+                    }
+                }, 
+                "type": "keyword"
+            }, 
+            "eventType": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "bizTransactionList": {
+                "properties": {
+                    "type": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }, 
+                    "value": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }
+                }
+            }, 
+            "eventTime": {
+                "type": "date"
+            }, 
+            "gtin": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "quantityList": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "action": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "fa-id": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }
+        }
+    }
+},
+    "settings" : {
+      "index" : {
+        "analysis" : {
+          "normalizer" : {
+            "lowercase_normalyzer" : {
+              "filter" : [
+                "lowercase",
+                "asciifolding"
+              ],
+              "type" : "custom",
+              "char_filter" : [ ]
+            }
+          },
+          "analyzer" : {
+            "sort_analyzer" : {
+              "filter" : [
+                "lowercase"
+              ],
+              "tokenizer" : "keyword"
+            },
+            "whitespace_analyzer" : {
+              "filter" : [
+                "lowercase"
+              ],
+              "tokenizer" : "whitespace"
+            },
+            "keyword_analyzer" : {
+              "filter" : [
+                "lowercase"
+              ],
+              "tokenizer" : "keyword"
+            },
+            "paths" : {
+              "tokenizer" : "path_hierarchy"
+            }
+          }
+        }
+   } }
+}

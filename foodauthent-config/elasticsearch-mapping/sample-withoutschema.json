@@ -1,0 +1,18 @@
+{
+  "sample-withoutschema" : {
+    "aliases" : { },
+    "mappings" : { },
+    "settings" : {
+      "index" : {
+        "creation_date" : "1558955603128",
+        "number_of_shards" : "5",
+        "number_of_replicas" : "1",
+        "uuid" : "zVStvY-oT8WT9l3jYKb2nQ",
+        "version" : {
+          "created" : "6050499"
+        },
+        "provided_name" : "sample-withoutschema"
+      }
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{ "mappings" : {
+    "data": {
+        "properties": {
+            "bizStep": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "epcList": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "readPoint": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "bricks": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "eventType": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "bizTransactionList": {
+                "properties": {
+                    "type": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }, 
+                    "value": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }
+                }
+            }, 
+            "eventTime": {
+                "type": "date"
+            }, 
+            "gtin": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "disposition": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "quantityList": {
+                "properties": {
+                    "uom": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }, 
+                    "epcClass": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }, 
+                    "quantity": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }
+                }
+            }, 
+            "action": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "fa-id": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }
+        }
+    }
+}
+}

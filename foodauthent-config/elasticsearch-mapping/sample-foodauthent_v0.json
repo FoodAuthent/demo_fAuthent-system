@@ -1,0 +1,18 @@
+{
+  "sample-foodauthent_v0" : {
+    "aliases" : { },
+    "mappings" : { },
+    "settings" : {
+      "index" : {
+        "creation_date" : "1561294481110",
+        "number_of_shards" : "5",
+        "number_of_replicas" : "1",
+        "uuid" : "JqJJAMZVS8CZn_WyLsANDA",
+        "version" : {
+          "created" : "6050499"
+        },
+        "provided_name" : "sample-foodauthent_v0"
+      }
+    }
+  }
+}

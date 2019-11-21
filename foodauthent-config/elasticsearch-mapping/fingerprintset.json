@@ -1,0 +1,70 @@
+{
+  "fingerprintset" : {
+    "aliases" : {
+      "fingerprintset" : { }
+    },
+    "mappings" : {
+      "data" : {
+        "properties" : {
+          "class-label" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "description" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "fa-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "fingerprint-ids" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "name" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings" : {
+      "index" : {
+        "creation_date" : "1568902616061",
+        "number_of_shards" : "5",
+        "number_of_replicas" : "1",
+        "uuid" : "IYFiijTVRWCP2wPH5GihPA",
+        "version" : {
+          "created" : "6050499"
+        },
+        "provided_name" : "fingerprintset"
+      }
+    }
+  }
+}

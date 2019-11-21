@@ -1,11 +1,15 @@
 package org.foodauthent.rest.client;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Cookie;
+import javax.ws.rs.core.Form;
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.foodauthent.rest.impl.json.JacksonJSONReader;
 import org.foodauthent.rest.impl.json.JacksonJSONWriter;
@@ -28,7 +32,7 @@ public class FASystemClient {
     }
 
     public FASystemClient(String host, int port) {
-	this("http://" + host + ":" + port);
+	this(host + ":" + port);
     }
 
     private WebTarget newWebTarget(String url) {
@@ -40,8 +44,11 @@ public class FASystemClient {
 
     @SuppressWarnings("unchecked")
     <S> S createClientProxy(Class<S> serviceClass) {
-	return (S) clientProxyCache.computeIfAbsent(serviceClass,
-		c -> WebResourceFactory.newResource(serviceClass, webTarget));
+	final MultivaluedHashMap<String, Object> headers = new MultivaluedHashMap<String, Object>();
+//	headers.put("Authorization", Arrays.asList(
+//		"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmdhbml6YXRpb25OYW1lIjoiQmZSX3Rlc3QiLCJ1c2VySWRlbnRpZmllciI6InVpZD10aG9tYXMuc2NodWVsZXJAZm9vZGF1dGhlbnQubmV0LG91PXVzZXJzLG91PUJmUl90ZXN0LGRjPWZvb2RhdXRoZW50LGRjPW9yZyIsIm9yZ2FuaXphdGlvbklkZW50aWZpZXIiOiJvdT1CZlJfdGVzdCxkYz1mb29kYXV0aGVudCxkYz1vcmciLCJpc3MiOiJmb29kYXV0aGVudC1hcGkiLCJncm91cHMiOltdLCJ1c2VyTmFtZSI6InRob21hcy5zY2h1ZWxlckBmb29kYXV0aGVudC5uZXQiLCJleHAiOjE1NzM3NTQxOTh9.MXS1K_MgtpLF5pab1lwtYEuJhIbRUg2StWLdzRngvAw"));
+	return (S) clientProxyCache.computeIfAbsent(serviceClass, c -> WebResourceFactory.newResource(serviceClass,
+		webTarget, false, headers, Collections.<Cookie>emptyList(), new Form()));
     }
 
     WebTarget getWebTarget() {

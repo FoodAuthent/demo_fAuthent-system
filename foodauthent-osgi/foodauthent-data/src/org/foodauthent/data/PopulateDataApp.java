@@ -60,7 +60,8 @@ public class PopulateDataApp {
 
 	// config - TODO parse from args
 	boolean runTrainingAndPredictionJobs = true;
-	FASystemClient c = new FASystemClient("localhost", 9090);
+	FASystemClient c = new FASystemClient("http://10.10.111.20", 9090);
+	//FASystemClient c = new FASystemClient("https://api.foodauthent.net", 443);
 
 	doit("Delete all entities", () -> {
 	    clearAllProducts(c);
@@ -76,13 +77,13 @@ public class PopulateDataApp {
 	// log(info().getInfo().readEntity(SystemInfo.class));
 
 	List<UUID> trainingwfIds = doitWithRes("Populate training workflows", () -> {
-	    return asList(populateTrainingWorkflowOpenChromRandomForest(c),
-		    PopulateModels.populateTrainingWorkflowOneClassClassification(c));
+	    return asList(populateTrainingWorkflowOpenChromRandomForest(c, "1r"),
+		    PopulateModels.populateTrainingWorkflowOneClassClassification(c, "1r"));
 	});
 
 	List<UUID> predictionwfIds = doitWithRes("Populate prediction workflows", () -> {
-	    return asList(populatePredictionWorkflowOpenChromRandomForest(c),
-		    populatePredictionWorkflowOneClassClassification(c));
+	    return asList(populatePredictionWorkflowOpenChromRandomForest(c, "1r"),
+		    populatePredictionWorkflowOneClassClassification(c, "1r"));
 	});
 
 	doit("Populate products", () -> {
@@ -137,7 +138,7 @@ public class PopulateDataApp {
 		//ids.put("multi_class_oils", train(trainingwfIds.get(0), new ArrayList(fingerprintsetIds.values()), c));
 		for (String s : oils) {
 		    ids.put("one_class_" + s,
-			    train(trainingwfIds.get(1), asList(fingerprintsetIds.get("bfr_" + s)), c));
+			    train(trainingwfIds.get(1), asList(fingerprintsetIds.get("bfr_" + s)), c, true));
 		}
 		return ids;
 	    });

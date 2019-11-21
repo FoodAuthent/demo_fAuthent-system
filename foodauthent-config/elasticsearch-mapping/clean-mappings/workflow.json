@@ -1,0 +1,142 @@
+{ "mappings" : {
+    "data": {
+        "properties": {
+            "file-id": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "description": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "parameters": {
+                "properties": {
+                    "required": {
+                        "type": "boolean"
+                    }, 
+                    "type": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }, 
+                    "name": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }, 
+                    "value": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }
+                }
+            }, 
+            "output-types": {
+                "properties": {
+                    "model-type": {
+                        "properties": {
+                            "name": {
+                                "fields": {
+                                    "keyword": {
+                                        "ignore_above": 256, 
+                                        "type": "keyword"
+                                    }
+                                }, 
+                                "type": "text"
+                            }
+                        }
+                    }
+                }
+            }, 
+            "input-types": {
+                "properties": {
+                    "fingerprint-type": {
+                        "properties": {
+                            "name": {
+                                "fields": {
+                                    "keyword": {
+                                        "ignore_above": 256, 
+                                        "type": "keyword"
+                                    }
+                                }, 
+                                "type": "text"
+                            }
+                        }
+                    }, 
+                    "model-type": {
+                        "properties": {
+                            "name": {
+                                "fields": {
+                                    "keyword": {
+                                        "ignore_above": 256, 
+                                        "type": "keyword"
+                                    }
+                                }, 
+                                "type": "text"
+                            }
+                        }
+                    }
+                }
+            }, 
+            "representation": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "type": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "fa-id": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "name": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }
+        }
+    }
+}
+}

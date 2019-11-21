@@ -1,8 +1,6 @@
 package org.foodauthent.internal.impl.job.knime;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -22,7 +20,6 @@ import java.util.zip.ZipInputStream;
 
 import javax.json.JsonValue;
 
-import org.apache.commons.io.IOUtils;
 import org.foodauthent.api.internal.persistence.Blob;
 import org.foodauthent.model.FileMetadata;
 import org.knime.core.node.CanceledExecutionException;
@@ -41,6 +38,8 @@ import org.knime.core.node.workflow.WorkflowPersistor.WorkflowLoadResult;
 import org.knime.core.util.FileUtil;
 import org.knime.core.util.LockFailedException;
 import org.knime.core.util.Version;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -51,6 +50,8 @@ import org.knime.core.util.Version;
  */
 public class LocalKnimeExecutor implements KnimeExecutor {
 
+    private static final Logger logger = LoggerFactory.getLogger(LocalKnimeExecutor.class);
+	
 	private ExecutorService executionService;
 
 	private final Map<UUID, WorkflowManager> m_workflowMap;
@@ -171,7 +172,8 @@ public class LocalKnimeExecutor implements KnimeExecutor {
 		if ((loadRes.getType() == LoadResultEntryType.Error)
 				|| ((loadRes.getType() == LoadResultEntryType.DataLoadError)
 						&& loadRes.getGUIMustReportDataLoadErrors())) {
-			throw new LoadingFailedException("Loading workflow failed: " + loadRes);
+			logger.error("Loading workflow failed: " + loadRes);
+			//throw new LoadingFailedException("Loading workflow failed: " + loadRes);
 		}
 		return loadRes.getWorkflowManager();
 	}

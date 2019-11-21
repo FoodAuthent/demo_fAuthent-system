@@ -1,0 +1,179 @@
+{ "mappings" : {
+    "data": {
+        "properties": {
+            "comment": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "productClassification": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "targetMarket": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "regionOfOriginClaims": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "companyName": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "countryOfOrigin": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "brand": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "ingredientStatement": {
+                "properties": {
+                    "text": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }
+                }
+            }, 
+            "labelDescription": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "gpcBricks": {
+                "properties": {
+                    "attributes": {
+                        "properties": {
+                            "text": {
+                                "fields": {
+                                    "keyword": {
+                                        "ignore_above": 256, 
+                                        "type": "keyword"
+                                    }
+                                }, 
+                                "type": "text"
+                            }, 
+                            "code": {
+                                "fields": {
+                                    "keyword": {
+                                        "ignore_above": 256, 
+                                        "type": "keyword"
+                                    }
+                                }, 
+                                "type": "text"
+                            }, 
+                            "values": {
+                                "properties": {
+                                    "text": {
+                                        "fields": {
+                                            "keyword": {
+                                                "ignore_above": 256, 
+                                                "type": "keyword"
+                                            }
+                                        }, 
+                                        "type": "text"
+                                    }, 
+                                    "code": {
+                                        "fields": {
+                                            "keyword": {
+                                                "ignore_above": 256, 
+                                                "type": "keyword"
+                                            }
+                                        }, 
+                                        "type": "text"
+                                    }
+                                }
+                            }
+                        }
+                    }, 
+                    "code": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }, 
+                    "text": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }
+                }
+            }, 
+            "gtin": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "fa-id": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "gcpLength": {
+                "type": "long"
+            }
+        }
+    }
+}
+}
