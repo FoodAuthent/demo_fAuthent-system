@@ -1,0 +1,43 @@
+{ "mappings" : {
+    "data": {
+        "properties": {
+            "workflow-id": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "fingerprintset-id": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "fa-id": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "model-id": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }
+        }
+    }
+}
+}

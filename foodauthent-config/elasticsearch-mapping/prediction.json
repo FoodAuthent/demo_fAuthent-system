@@ -1,0 +1,2744 @@
+{
+  "prediction" : {
+    "aliases" : {
+      "prediction" : { }
+    },
+    "mappings" : {
+      "data" : {
+        "properties" : {
+          "fa-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "fingerprintset-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "model-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "prediction-map" : {
+            "properties" : {
+              "03961ac5-20d7-4f6c-857e-9ebe590f5231" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "04f09847-1ed0-401a-ac13-36c9f9015a1f" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "05ec19f1-f786-4dcf-94af-9e10ad8f334c" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "07868a45-f1c7-4493-a4b4-09e226d78d4b" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  },
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "09950d06-3587-4905-8c55-7e86c5fc6a08" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "09b9c12f-fd08-45d3-b83b-abeab8a9b403" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "0a75837a-52d0-4d83-b046-69a356182990" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "0b3a513d-f942-414c-b357-620e5377fb24" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "0b3c4561-26c3-4e2e-ae41-d785775dba8d" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "0de31709-ce06-4538-bdc2-a8597b6d88fa" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  },
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "118d5009-1c32-42f3-92a9-77946f3053d5" : {
+                "properties" : {
+                  "Maiskeimoel" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "1264c072-d4ed-4b43-87a1-1d7529860ee1" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "128fa1ea-dbf4-4dca-abf6-07e63d90331f" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "1310d894-c162-4173-8b80-bc657c05f739" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  },
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "1a3aa26e-ba0a-491a-ac9b-1fd9217b05a0" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "1b4edcfe-fa78-4de6-b478-b69494ead114" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "1e5c9c9a-6682-495e-8086-aa326c0d5bdd" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "1e64174a-5499-4b64-b1fe-ad2a90f07c6a" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "1fa54b6c-96e1-46c3-affd-0b6b3949363a" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "20ef2796-a13a-4d6f-a776-07c9285f2872" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "236387c8-b661-46ca-992e-9283d0f33f10" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "285a1dce-fc31-444d-9739-c17c3523d931" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  },
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "28800517-6859-4599-869a-8308231845f3" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "2947a277-9bdd-498f-949d-c8e5b4e6f4af" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "2aa340db-6de1-41eb-a762-d3777ecb34f8" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "2e28e8e6-7aca-4628-af13-adeba857856c" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "310346ff-b74a-48eb-9507-2fa45e3515a6" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "321e81be-acc3-4a46-8876-521e7c2320c5" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  },
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "3235db08-2d05-4758-8093-6713e1a11097" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "34103f66-5938-4409-afb5-05efcf99683c" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "345d696b-60b7-48ed-8673-8fed8575b8e7" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "34acb5d1-2020-44b5-8edc-fc818c90543b" : {
+                "properties" : {
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "378a421a-ed80-4184-93bd-041779264f80" : {
+                "properties" : {
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "38cfb4f0-935f-4c5a-b8f0-3a55a4dfb1ef" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "39745879-dc74-4993-aacf-b5df616b6edb" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  },
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "3d1979dd-9d29-4e49-9815-6c313b6c8307" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  },
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "3d23b50b-c922-4e07-957c-05537a1443c6" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "4066b495-b1a4-4a5d-8f14-af5bedec03d4" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  },
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "41d75924-2d80-4f53-aade-5bc2384fc8cf" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "43e65ef9-2761-44f1-ad38-457c38d71217" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "44dd36a3-a0ea-438c-a333-003fed919ee8" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "47dd1783-9ed7-4f21-962f-b5cc53d4082d" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "49cbf0a0-c16b-4209-9567-f1e497636d34" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  },
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "4dca0de0-bc5d-45ce-bcdb-08106607a7f1" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "50f4e2d0-9f4a-41f4-abeb-111265d9f901" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "516646db-c05e-4d2c-b0e7-7383fd32ea60" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "549f07f2-35b0-47b3-a291-7e030d0d5fec" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "54a2760a-b89f-4783-9dde-0d800cae07cd" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "55566c56-2f6c-44e4-b68a-f5557aed786d" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "585fd816-eeff-4cdf-8d1c-549c926f351d" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "594b1126-20d1-4008-ab0e-79c1ecde3f40" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "5fa515f3-3e49-4f79-bb8d-f4452009da58" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "61e247df-7cf8-47ab-9e8a-fb4d9d2e3a99" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "6460b5f9-2dba-4def-886d-4a440899bd9f" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "6785f4a7-e540-4eb7-89bd-497e53919ed2" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "693ee2cd-7c6c-483a-8d2f-5d831111709d" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "6c364cb0-c181-48a6-8fa3-07dbfab0e133" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "6dbc9f2b-ad53-4a28-bcde-e6fe076b8d4e" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "6f040f86-6513-4d2c-b065-292681a5794a" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "70468cb3-f514-483b-932b-04ae8b99dd78" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "759bba93-c38f-4bcb-be8b-7e79085625b2" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "7991c79f-26ff-4667-912e-cb9f2b6f20e2" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "7c743d5b-4f5e-48f0-8e8e-6d13e59083eb" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "7e30fb60-b5bf-4823-b67a-6bdba85f5f9b" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "7ee942e1-15a1-47a5-a166-1f8dadbacd52" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "7f78a281-b88f-4e55-bfa6-d6776cd563aa" : {
+                "properties" : {
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "82ce78e2-6f34-436c-b44a-af32cb7b2b9f" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "82fc4156-8227-4b56-9614-b9ea6926f7d1" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "839cba2d-aeb8-4b77-ab4b-4f0e486a2f82" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "8a2ec007-866e-495a-8cb0-8e815771179d" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "8c458ee1-6c9d-4d81-a01e-48583415b78a" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "8ca63700-ec21-402d-b3d6-8f642d50d72e" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "8d8e30b9-7e2e-4df5-a218-702bfdb326c6" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "8ee0a989-3065-4105-8ebf-fd46e32b6beb" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "9205b718-1172-4d4b-a4f9-035d30061a9e" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "96c19646-de21-43d2-82df-2d1f7ac35bfd" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "97933620-2f8e-40ff-b4e8-7a5435c668c9" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "996b34c7-ae8d-41a8-8c42-41a87a821cc1" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "9ae9ddc8-1f0a-4aef-835a-586c51c5d938" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "9d6c08f7-e143-44e1-becb-861a57f145cb" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  },
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "a353d592-5418-4015-9599-c711267e2e1e" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "a43184ac-70eb-4f5d-810c-8c51479f31fb" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "a7ccc383-ce30-4afe-95d6-1442ae01f04a" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "a7e44f7a-824d-4241-bff8-ae4fccebb680" : {
+                "properties" : {
+                  "Leindotteröl" : {
+                    "type" : "float"
+                  },
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Senföl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "aaf94081-2ec8-4adf-b68b-3905739b3946" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "acdf54d9-bc2d-4474-99ce-5b492b4ad31b" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "ae664ad8-a2fe-44c4-843a-10bea86c0bca" : {
+                "properties" : {
+                  "Maiskeimoel" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "af1de040-7810-49db-8ac1-9780516caf7f" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "af3dfad2-dc4c-48e9-b214-1a783863a9cc" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "b2961587-e49c-4da8-ba5f-91048c0cc2f6" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "b5c47daa-6ba0-4702-81f5-e195d5fe761e" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "b6a8c9cf-977e-45f0-afc7-b62714c61af0" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "b6ab3921-6d9b-4a9d-bc0e-31e1f46df0e3" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "ba0fac39-19c4-435e-8524-de27fa3fbfae" : {
+                "properties" : {
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "bac1c634-bea9-4ded-8ad2-d1c1d898cdc4" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "bd1359e8-e17e-42ae-91f3-bfa075d55605" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "be134b94-7bf5-455c-bd19-cd776977d639" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "c1624f55-48d3-42b4-8b83-d622d408ce1a" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "c867b489-70dc-4140-a93c-4cb5b7257575" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "c8e783d3-6e2d-48e9-8554-dded04381227" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "ca829df6-e7f6-4c2b-8b69-0a3917b1cc24" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "cf2d127b-93e9-4738-baef-f1099107fe45" : {
+                "properties" : {
+                  "Maiskeimoel" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "d2dfc40f-0826-4267-ab39-95fcb4aebe63" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "d320660e-7610-4111-8122-ab5e7f39e6aa" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  },
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "d596260e-3505-4793-b5ae-b79f1bae76db" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "d5bbfed6-17e0-4a76-9389-3c912a6870be" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "e04ec53d-f059-4daa-b2c1-4289627fc61b" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "e0628263-838c-4e1e-a40a-7b6a370217bb" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "e156d294-46ed-4a3c-aae3-2a73defe86aa" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "e70d90b6-3f60-4f25-a2fc-59affa5edf37" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "e9a8b6fe-3081-44dc-bc58-df1d8426f552" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "ec7494bf-8e94-4aec-8425-7abe9b8b2c13" : {
+                "properties" : {
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "f076ca7a-a1b6-4a34-94e8-0986f69bb51f" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "f0dd2dbf-aa44-4293-9dc3-d215785a7964" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "f5640786-94ad-4781-abfd-96db12c9fabb" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  },
+                  "Mohnöl" : {
+                    "type" : "float"
+                  },
+                  "Traubenkernöl" : {
+                    "type" : "float"
+                  },
+                  "Walnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "f60f4cad-bcb3-4325-b53c-9b29d66604fa" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "f8e01e9f-3fe6-44b6-97eb-8d0ec5fe514d" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "fb635856-e75a-4dd1-bfba-ea0c5c39c90f" : {
+                "properties" : {
+                  "Inlier" : {
+                    "type" : "float"
+                  },
+                  "Outlier" : {
+                    "type" : "float"
+                  },
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "fbf93c71-1981-4831-93d2-6def60bc4369" : {
+                "properties" : {
+                  "Erdnussöl" : {
+                    "type" : "float"
+                  },
+                  "Hanföl" : {
+                    "type" : "float"
+                  },
+                  "Haselnussöl" : {
+                    "type" : "float"
+                  }
+                }
+              },
+              "fffe83ef-d5f0-4b38-89ad-0c10c1a9291f" : {
+                "properties" : {
+                  "erdnuss" : {
+                    "type" : "float"
+                  },
+                  "hanf" : {
+                    "type" : "float"
+                  },
+                  "haselnuss" : {
+                    "type" : "float"
+                  },
+                  "kürbis" : {
+                    "type" : "float"
+                  },
+                  "lein" : {
+                    "type" : "float"
+                  },
+                  "mohn" : {
+                    "type" : "float"
+                  },
+                  "raps" : {
+                    "type" : "float"
+                  },
+                  "schwarzkümmel" : {
+                    "type" : "float"
+                  },
+                  "senf" : {
+                    "type" : "float"
+                  },
+                  "sesam" : {
+                    "type" : "float"
+                  },
+                  "soja" : {
+                    "type" : "float"
+                  },
+                  "sonnenblumen" : {
+                    "type" : "float"
+                  },
+                  "traubenkern" : {
+                    "type" : "float"
+                  },
+                  "walnuss" : {
+                    "type" : "float"
+                  }
+                }
+              }
+            }
+          },
+          "workflow-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings" : {
+      "index" : {
+        "creation_date" : "1568902617423",
+        "number_of_shards" : "5",
+        "number_of_replicas" : "1",
+        "uuid" : "vKvCNYSFQwSHOCfC12xScA",
+        "version" : {
+          "created" : "6050499"
+        },
+        "provided_name" : "prediction"
+      }
+    }
+  }
+}

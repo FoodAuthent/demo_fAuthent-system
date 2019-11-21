@@ -1,0 +1,82 @@
+{ "mappings" : {
+    "data": {
+        "properties": {
+            "additional-properties": {
+                "type": "object"
+            }, 
+            "contentType": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "description": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "author": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "version": {
+                "type": "long"
+            }, 
+            "uploadName": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "uploadDate": {
+                "type": "date"
+            }, 
+            "date": {
+                "type": "date"
+            }, 
+            "type": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "fa-id": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "name": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }
+        }
+    }
+}
+}

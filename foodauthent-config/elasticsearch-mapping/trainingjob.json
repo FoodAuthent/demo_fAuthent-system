@@ -1,0 +1,70 @@
+{
+  "trainingjob" : {
+    "aliases" : {
+      "trainingjob" : { }
+    },
+    "mappings" : {
+      "data" : {
+        "properties" : {
+          "fa-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "model-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "status" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "status-message" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "workflow-file-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings" : {
+      "index" : {
+        "creation_date" : "1568902618708",
+        "number_of_shards" : "5",
+        "number_of_replicas" : "1",
+        "uuid" : "8QHp79CsTvC9U-U0kws7Qg",
+        "version" : {
+          "created" : "6050499"
+        },
+        "provided_name" : "trainingjob"
+      }
+    }
+  }
+}

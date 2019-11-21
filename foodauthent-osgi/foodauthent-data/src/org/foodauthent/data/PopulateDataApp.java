@@ -60,7 +60,7 @@ public class PopulateDataApp {
 
 	// config - TODO parse from args
 	boolean runTrainingAndPredictionJobs = true;
-	FASystemClient c = new FASystemClient("http://localhost", 9090);
+	FASystemClient c = new FASystemClient("http://10.10.111.20", 9090);
 	//FASystemClient c = new FASystemClient("https://api.foodauthent.net", 443);
 
 	doit("Delete all entities", () -> {

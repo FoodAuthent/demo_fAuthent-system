@@ -1,0 +1,98 @@
+{ "mappings" : {
+    "data": {
+        "properties": {
+            "description": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "author": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "file-id": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "fingerprintset-ids": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "date": {
+                "type": "date"
+            }, 
+            "version": {
+                "type": "long"
+            }, 
+            "workflow-id": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "class-labels": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "type": {
+                "properties": {
+                    "name": {
+                        "fields": {
+                            "keyword": {
+                                "ignore_above": 256, 
+                                "type": "keyword"
+                            }
+                        }, 
+                        "type": "text"
+                    }
+                }
+            }, 
+            "fa-id": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }, 
+            "name": {
+                "fields": {
+                    "keyword": {
+                        "ignore_above": 256, 
+                        "type": "keyword"
+                    }
+                }, 
+                "type": "text"
+            }
+        }
+    }
+}
+}

@@ -1,0 +1,61 @@
+{
+  "fingerprint" : {
+    "aliases" : {
+      "fingerprint" : { }
+    },
+    "mappings" : {
+      "data" : {
+        "properties" : {
+          "fa-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "file-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "sample-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "sop-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings" : {
+      "index" : {
+        "creation_date" : "1568902616390",
+        "number_of_shards" : "5",
+        "number_of_replicas" : "1",
+        "uuid" : "IkiwbwcXSYeq9xhGSVXkCQ",
+        "version" : {
+          "created" : "6050499"
+        },
+        "provided_name" : "fingerprint"
+      }
+    }
+  }
+}

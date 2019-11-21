@@ -1,0 +1,70 @@
+{
+  "predictionjob" : {
+    "aliases" : {
+      "predictionjob" : { }
+    },
+    "mappings" : {
+      "data" : {
+        "properties" : {
+          "fa-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "prediction-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "status" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "status-message" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "workflow-file-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings" : {
+      "index" : {
+        "creation_date" : "1568902617114",
+        "number_of_shards" : "5",
+        "number_of_replicas" : "1",
+        "uuid" : "Z1So30ZzSZqMP20sxT3q0w",
+        "version" : {
+          "created" : "6050499"
+        },
+        "provided_name" : "predictionjob"
+      }
+    }
+  }
+}

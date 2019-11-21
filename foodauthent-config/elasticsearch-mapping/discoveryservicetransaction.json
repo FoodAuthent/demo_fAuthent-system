@@ -1,0 +1,176 @@
+{
+  "discoveryservicetransaction" : {
+    "aliases" : { },
+    "mappings" : {
+      "data" : {
+        "properties" : {
+          "action" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "bizStep" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "bizTransactionList" : {
+            "properties" : {
+              "type" : {
+                "type" : "text",
+                "fields" : {
+                  "keyword" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  }
+                }
+              },
+              "value" : {
+                "type" : "text",
+                "fields" : {
+                  "keyword" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  }
+                }
+              }
+            }
+          },
+          "bricks" : {
+            "type" : "keyword",
+            "fields" : {
+              "raw" : {
+                "type" : "keyword"
+              },
+              "tree" : {
+                "type" : "text",
+                "analyzer" : "paths"
+              }
+            }
+          },
+          "epcList" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "eventTime" : {
+            "type" : "date"
+          },
+          "eventType" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "fa-id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "gtin" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "interfaceId" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "quantityList" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "readPoint" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings" : {
+      "index" : {
+        "number_of_shards" : "5",
+        "provided_name" : "discoveryservicetransaction",
+        "creation_date" : "1570518452737",
+        "analysis" : {
+          "normalizer" : {
+            "lowercase_normalyzer" : {
+              "filter" : [
+                "lowercase",
+                "asciifolding"
+              ],
+              "type" : "custom",
+              "char_filter" : [ ]
+            }
+          },
+          "analyzer" : {
+            "sort_analyzer" : {
+              "filter" : [
+                "lowercase"
+              ],
+              "tokenizer" : "keyword"
+            },
+            "whitespace_analyzer" : {
+              "filter" : [
+                "lowercase"
+              ],
+              "tokenizer" : "whitespace"
+            },
+            "keyword_analyzer" : {
+              "filter" : [
+                "lowercase"
+              ],
+              "tokenizer" : "keyword"
+            },
+            "paths" : {
+              "tokenizer" : "path_hierarchy"
+            }
+          }
+        },
+        "number_of_replicas" : "1",
+        "uuid" : "955hKjzRSBi6XCdvcO7YAw",
+        "version" : {
+          "created" : "6050499"
+        }
+      }
+    }
+  }
+}
