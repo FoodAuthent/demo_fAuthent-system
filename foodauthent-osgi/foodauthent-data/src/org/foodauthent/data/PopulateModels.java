@@ -114,7 +114,7 @@ public class PopulateModels {
 	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("binning_max_ppm").setRequired(true)
 		.setValue("10.5").setType(TypeEnum.NUMBER).build();
 	WorkflowParameter wfp3 = WorkflowParameter.builder().setName("binning_width_ppm").setRequired(true)
-		.setValue(".0002").setType(TypeEnum.NUMBER).build();
+		.setValue(".004").setType(TypeEnum.NUMBER).build();
 	WorkflowParameter wfp4 = WorkflowParameter.builder().setName("signal_type").setRequired(true)
 		.setValue(signalType).setType(TypeEnum.STRING).build();
 	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
@@ -159,7 +159,7 @@ public class PopulateModels {
 	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("binning_max_ppm").setRequired(true)
 		.setValue("10.5").setType(TypeEnum.NUMBER).build();
 	WorkflowParameter wfp3 = WorkflowParameter.builder().setName("binning_width_ppm").setRequired(true)
-		.setValue(".0002").setType(TypeEnum.NUMBER).build();
+		.setValue(".004").setType(TypeEnum.NUMBER).build();
 	WorkflowParameter wfp4 = WorkflowParameter.builder().setName("signal_type").setRequired(true)
 		.setValue(signalType).setType(TypeEnum.STRING).build();
 	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
@@ -202,7 +202,7 @@ public class PopulateModels {
 	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("binning_max_ppm").setRequired(true)
 		.setValue("10.5").setType(TypeEnum.NUMBER).build();
 	WorkflowParameter wfp3 = WorkflowParameter.builder().setName("binning_width_ppm").setRequired(true)
-		.setValue(".0002").setType(TypeEnum.NUMBER).build();
+		.setValue(".004").setType(TypeEnum.NUMBER).build();
 	WorkflowParameter wfp4 = WorkflowParameter.builder().setName("signal_type").setRequired(true)
 		.setValue(signalType).setType(TypeEnum.STRING).build();
 	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
@@ -248,7 +248,7 @@ public class PopulateModels {
 	WorkflowParameter wfp2 = WorkflowParameter.builder().setName("binning_max_ppm").setRequired(true)
 		.setValue("10.5").setType(TypeEnum.NUMBER).build();
 	WorkflowParameter wfp3 = WorkflowParameter.builder().setName("binning_width_ppm").setRequired(true)
-		.setValue(".0002").setType(TypeEnum.NUMBER).build();
+		.setValue(".004").setType(TypeEnum.NUMBER).build();
 	WorkflowParameter wfp4 = WorkflowParameter.builder().setName("signal_type").setRequired(true)
 		.setValue(signalType).setType(TypeEnum.STRING).build();
 	WorkflowIOTypes inputTypes = WorkflowIOTypes.builder()
