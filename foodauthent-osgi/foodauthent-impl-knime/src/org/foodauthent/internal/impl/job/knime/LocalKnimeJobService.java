@@ -288,10 +288,11 @@ public class LocalKnimeJobService implements JobService {
 					// change the status, workflow file and model id of the training job and replace
 					// training job in DB
 					TrainingJobBuilder builder = TrainingJob.builder(trainingJob);
-					UUID wfFileId;
-					if ((wfFileId = saveExecutedWorkflow(workflow)) != null) {
-						builder.setWorkflowFileId(wfFileId);
-					}
+					builder.setWorkflowFileId(workflow.getFaId());
+//					UUID wfFileId;
+//					if ((wfFileId = saveExecutedWorkflow(workflow)) != null) {
+//						builder.setWorkflowFileId(wfFileId);
+//					}
 					persistenceService.replace(builder.setStatus(org.foodauthent.model.TrainingJob.StatusEnum.SUCCESS)
 							.setModelId(model.getFaId()).build());
 				}, (message, exception) -> {
