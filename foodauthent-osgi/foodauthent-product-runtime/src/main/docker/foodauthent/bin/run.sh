@@ -11,12 +11,15 @@ case $DEBUG in [yY]|[yY][eE][sS]|[oO][nN]|1|[tT][rR][uU][eE])
 	RUNTIME_OPTS="${RUNTIME_OPTS} -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=9000" ;; 
 esac
 
-# run headless
 #/usr/local/openjdk-8/bin/java -Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dorg.osgi.service.http.port=9090 \
 # -Dorg.eclipse.equinox.http.jetty.http.host=0.0.0.0 -Djava.awt.headless=true -Dosgi.console=9023 -Dconfig.file=/config/fa.conf \
 # ${RUNTIME_OPTS} -jar /opt/foodauthent/runtime/plugins/org.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar
 
-# run with display
+# run headless
+case $HEADLESS in [yY]|[yY][eE][sS]|[oO][nN]|1|[tT][rR][uU][eE])
+	RUNTIME_OPTS="-Djava.awt.headless=true ${RUNTIME_OPTS}" ;; 
+esac
+
 /usr/bin/Xvfb :1 -screen 0 1024x768x16 &> xvfb.log  &
 export DISPLAY=:1.0
 /usr/local/openjdk-8/bin/java -Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dorg.osgi.service.http.port=9090 \
