@@ -85,12 +85,8 @@ export default {
             search() {
                 let self = this;
                 //check if it is a valid UUID
-                var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
-                if (re.test(self.filter)) {
-                    findModelById(self);
-                } else {
+                //var re = new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$");
                     getModels(self);
-                }
             },
             myPaginationHandler(page) {
                 let self = this;
