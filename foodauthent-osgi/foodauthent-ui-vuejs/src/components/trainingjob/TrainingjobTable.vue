@@ -1,6 +1,6 @@
 <template>
 
-<div id="predictionTable">
+<div id="trainingTable">
     <b-container fluid>
         <!-- UPDATE -->
         <b-row>
@@ -131,7 +131,7 @@ export default {
             myPaginationHandler(page) {
                 let self = this;
                 self.currentPage = page;
-                getPredictionJobs(self);
+                getTrainingJobs(self);
                 self.currentPage = 1;
             },
             myRowClickHandler(record, index) {

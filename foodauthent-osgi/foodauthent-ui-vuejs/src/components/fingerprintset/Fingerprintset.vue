@@ -98,7 +98,7 @@ export default {
             myPaginationHandler(page) {
                 let self = this;
                 self.currentPage = page;
-                getFingerprints(self);
+                getFingerprintset(self);
                 self.currentPage = 1;
             },
             loadTableData() {

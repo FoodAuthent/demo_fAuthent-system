@@ -3,7 +3,7 @@
 <div class="page-container">
     <md-app>
         <md-app-toolbar class="md-primary">
-            <span class="md-title">Fingerprint Set</span>
+            <span class="md-title">Fingerprint</span>
         </md-app-toolbar>
      <!--   <md-app-drawer md-permanent="full">
             <md-list v-for="route in this.$router.options.routes">
